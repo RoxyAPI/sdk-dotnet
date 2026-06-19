@@ -1,0 +1,637 @@
+# RoxyApi .NET SDK - Complete Method Reference
+
+> .NET SDK for RoxyAPI. Multi-domain spiritual and metaphysical intelligence API. Fully typed, generated from the OpenAPI spec. Install: `dotnet add package RoxyApi`
+
+```csharp
+using RoxyApi;
+using RoxyApi.Models;
+using Microsoft.Kiota.Abstractions; // the Date type
+
+var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
+```
+
+How the calls below map to the API:
+
+- **The fluent path mirrors the URL.** `GET /astrology/horoscope/{sign}/daily` is `roxy.Astrology.Horoscope["aries"].Daily.GetAsync()`. Each path segment is a property; each `{param}` is an indexer.
+- **Request bodies use a target-typed `new()`.** The body type is inferred from the method, so you never name it. Property names are the PascalCase of the JSON fields (`birth_date` becomes `BirthDate`).
+- **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
+- **Dates use `new Date(year, month, day)`; times are 24-hour strings (`"14:30:00"`).**
+- **`Timezone` is a union:** `new() { Double = 5.5 }` (decimal offset) or `new() { String = "Asia/Kolkata" }` (IANA name, resolved to the DST-correct offset).
+- **Every call is async and throws `RoxyError` on a 4xx or 5xx.** Capture the result directly: `var chart = await roxy.Astrology.NatalChart.PostAsync(new() { ... });`
+
+**Multi-language responses.** Interpretations are available in eight languages: en, tr, de, es, fr, hi, pt, ru. Add `c => c.QueryParameters.Lang = "es"` to any supported endpoint. Supported: astrology, vedicAstrology, numerology, tarot, biorhythm, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. Untranslated fields fall back to English.
+
+---
+
+<!-- Method sections below are generated from the OpenAPI spec by tools/RoxyDevTools. Do not hand-edit between the BEGIN/END:METHODS markers; edit the spec instead. Each example is verified to compile by tests/RoxyApi.Tests/Generated/MethodReferenceExamples.g.cs. The intro above and the Error Handling / Links sections below are curated. -->
+<!-- BEGIN:METHODS -->
+## Western Astrology - `roxy.Astrology`
+
+Production-ready Western astrology API + remote MCP for AI agents and developers
+
+```csharp
+// Get all zodiac signs - Complete zodiac signs list with dates and elements
+await roxy.Astrology.Signs.GetAsync();
+
+// Get zodiac sign details - Complete astrology sign profile with personality traits
+await roxy.Astrology.Signs["aries"].GetAsync();
+
+// Get all planet meanings - Complete astrology planet interpretations list
+await roxy.Astrology.PlanetMeanings.GetAsync();
+
+// Get planet meaning details - Complete astrology planet interpretation
+await roxy.Astrology.PlanetMeanings["sun"].GetAsync();
+
+// Generate natal chart - Birth chart calculator API with houses and aspects
+await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Get planetary positions - Ephemeris calculator for all planets
+await roxy.Astrology.Planets.PostAsync(new() { Date = new Date(2025, 12, 18), Time = "12:00:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Get current moon phase - Lunar phase calculator with zodiac sign
+await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = "12:00:00"; c.QueryParameters.Timezone = 0; });
+
+// Get upcoming moon phases - Next new moon, full moon, quarters
+await roxy.Astrology.MoonPhase.Upcoming.GetAsync(c => { c.QueryParameters.StartDate = new Date(2025, 12, 18); c.QueryParameters.Count = 8; });
+
+// Get lunar calendar - Moon phases for entire month
+await roxy.Astrology.MoonPhase.Calendar[2026][3].GetAsync();
+
+// Calculate synastry - Relationship compatibility analysis API
+await roxy.Astrology.Synastry.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" }, Person2 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" } });
+
+// Calculate house cusps - House system calculator with comparison
+await roxy.Astrology.Houses.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Calculate planetary aspects - Aspect finder for any date and time
+await roxy.Astrology.Aspects.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Timezone = new() { Double = -5 }, Planets = ["Sun"], AspectTypes = ["CONJUNCTION"] });
+
+// Detect aspect patterns - Grand Trine, Kite, T-Square, Grand Cross, Yod, Mystic Rectangle, Stellium
+await roxy.Astrology.AspectPatterns.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => { c.QueryParameters.StrictOrbs = "false"; c.QueryParameters.Include = ""; });
+
+// Calculate planetary transits - Current transits with natal chart comparison
+await roxy.Astrology.Transits.PostAsync(new() { Date = new Date(2025, 12, 19), Time = "12:00:00", Timezone = new() { Double = 0 } });
+
+// Transit Aspects - Detailed transit-to-natal aspect analysis with interpretations
+await roxy.Astrology.TransitAspects.PostAsync(new() { NatalChart = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, TransitDate = new Date(2026, 2, 3), TransitTime = "12:00:00", MinStrength = 50 });
+
+// Solar Return Chart - Annual birthday forecast with relocated chart
+await roxy.Astrology.SolarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ReturnYear = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Lunar Return Chart - Monthly emotional forecast with Moon cycle chart
+await roxy.Astrology.LunarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ReturnDate = new Date(2026, 2, 12), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Composite Chart - Midpoint relationship chart with interpretations
+await roxy.Astrology.CompositeChart.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
+
+// Compatibility Score. Relationship compatibility analysis with category breakdown
+await roxy.Astrology.CompatibilityScore.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
+
+// Daily horoscope by zodiac sign - Transit-based forecast with house activations
+await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 4, 3));
+
+// Weekly horoscope by zodiac sign - 7-day transit forecast
+await roxy.Astrology.Horoscope["aries"].Weekly.GetAsync();
+
+// Monthly horoscope by zodiac sign - 30-day transit forecast with key dates
+await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync();
+
+// Planetary Return Chart - Saturn return, Jupiter return, and inner planet cycles
+await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+```
+
+---
+
+## Vedic Astrology - `roxy.VedicAstrology`
+
+Production-grade Vedic (Jyotish) and KP astrology API + remote MCP for AI agents and developers
+
+```csharp
+// Get birth chart (D1 Rashi chart) - Kundli Calculator API
+await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get Navamsa chart (D9) - Marriage Compatibility Calculator
+await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get divisional chart (Varga) - D2 to D60 Calculator
+await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Division = 10 });
+
+// Calculate compatibility score - Gun Milan API (Ashtakoot Matching)
+await roxy.VedicAstrology.Compatibility.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } } });
+
+// Get planetary positions - Graha Positions API
+await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Monthly Ephemeris - Daily sidereal planetary positions for a month
+await roxy.VedicAstrology.PlanetaryPositions.Monthly.PostAsync(new() { Year = 2026, Month = 2 });
+
+// Get current Mahadasha, Antardasha, Pratyantardasha - Dasha Calculator API
+await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get all 9 Mahadasha periods (120-year cycle)
+await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get all Antardashas (sub-periods) for a specific Mahadasha
+await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get basic Panchang - Tithi Nakshatra Yoga Karana Calculator
+await roxy.VedicAstrology.Panchang.Basic.PostAsync(new() { Date = new Date(2025, 12, 17), Time = "12:00:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get detailed Panchang with Rahu Kaal, Yamaganda, Gulika
+await roxy.VedicAstrology.Panchang.Detailed.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get Choghadiya - 8 Muhurta divisions of day and night
+await roxy.VedicAstrology.Panchang.Choghadiya.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+
+// Get Hora - 24 Planetary Hours (12 day + 12 night)
+await roxy.VedicAstrology.Panchang.Hora.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+
+// Check Manglik Dosha - Mangal Dosha Calculator API
+await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Check Kalsarpa Dosha - Kalsarpa Yoga Calculator API
+await roxy.VedicAstrology.Dosha.Kalsarpa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Check Sadhesati - Sade Sati Calculator API (Saturn Transit)
+await roxy.VedicAstrology.Dosha.Sadhesati.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// List all planetary yogas - 300+ Vedic Yoga Glossary
+await roxy.VedicAstrology.Yoga.GetAsync();
+
+// Get yoga details by ID - Vedic Yoga Glossary Entry
+await roxy.VedicAstrology.Yoga["gajakesari"].GetAsync();
+
+// Detect classical Vedic yogas in a birth chart
+await roxy.VedicAstrology.Yoga.Detect.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get KP-Newcomb ayanamsa - Dynamic daily calculation
+await roxy.VedicAstrology.Kp.Ayanamsa.GetAsync(c => c.QueryParameters.Date = new Date(2025, 12, 26));
+
+// Get KP planetary positions with sub-lords
+await roxy.VedicAstrology.Kp.Planets.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+
+// Get KP Placidus house cusps with sub-lords
+await roxy.VedicAstrology.Kp.Cusps.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+
+// Generate complete KP birth chart
+await roxy.VedicAstrology.Kp.Chart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+
+// Get KP ruling planets with optional significators
+await roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new() { Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Datetime = "2025-01-15T10:30:00Z", BirthDate = new Date(1990, 7, 4), BirthTime = "10:12:00" });
+
+// Get KP ruling planets with significators at intervals
+await roxy.VedicAstrology.Kp.RulingPlanetsInterval.PostAsync(new() { StartDatetime = "2026-02-03T00:00:00Z", EndDatetime = "2026-02-03T01:00:00Z", IntervalMinutes = 5, Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+
+// Find KP sublord changes
+await roxy.VedicAstrology.Kp.SublordChanges.PostAsync(new() { Planet = "Moon", StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 1, 31), Timezone = new() { Double = 5.5 } });
+
+// Find KP rasi ingress times
+await roxy.VedicAstrology.Kp.RasiChanges.PostAsync(new() { Planet = "Sun", StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 12, 31), Timezone = new() { Double = 5.5 } });
+
+// Get KP planets at time intervals
+await roxy.VedicAstrology.Kp.PlanetsInterval.PostAsync(new() { StartDatetime = "2025-01-15T00:00:00Z", EndDatetime = "2025-01-15T23:59:00Z", IntervalMinutes = 60, Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get planetary aspects (Drishti) - Mutual aspects between all planets
+await roxy.VedicAstrology.Aspects.PostAsync(new() { Date = new Date(2026, 2, 3), Time = "12:00:00", Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+
+// Monthly Planetary Aspects - Major and minor aspect events for a month
+await roxy.VedicAstrology.Aspects.Monthly.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
+
+// Monthly Lunar Aspects - Moon aspect events with all planets for a month
+await roxy.VedicAstrology.Aspects.Lunar.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
+
+// Transit Analysis - Compare current planets to natal chart (Gochar)
+await roxy.VedicAstrology.Transit.PostAsync(new() { BirthDate = new Date(1990, 7, 4), BirthTime = "10:12:00", TransitDate = new Date(2026, 2, 3), TransitTime = "12:00:00", Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+
+// Monthly Transit - Planetary sign changes for an entire month
+await roxy.VedicAstrology.Transit.Monthly.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
+
+// Declination Parallels - Planets at same or opposite declination
+await roxy.VedicAstrology.Parallels.PostAsync(new() { Date = new Date(2026, 2, 3), Time = "12:00:00", Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 }, Orb = 1.5 });
+
+// Monthly Declination Parallels - Parallel and contraparallel events for a month
+await roxy.VedicAstrology.Parallels.Monthly.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
+
+// Ecliptic Crossings - When planets cross the ecliptic plane
+await roxy.VedicAstrology.EclipticCrossings.PostAsync(new() { Year = 2026, Timezone = new() { Double = 5.5 } });
+
+// List all 12 Rashis - Vedic Zodiac Signs Reference
+await roxy.VedicAstrology.Rashis.GetAsync();
+
+// Get Rashi by ID - Vedic Zodiac Sign Detail
+await roxy.VedicAstrology.Rashis["mesha"].GetAsync();
+
+// List all 27 Nakshatras - Lunar Mansions Reference
+await roxy.VedicAstrology.Nakshatras.GetAsync();
+
+// Get Nakshatra by ID - Lunar Mansion Detail
+await roxy.VedicAstrology.Nakshatras["ashwini"].GetAsync();
+
+// Get upagraha (sub-planet) positions - Upagraha Calculator API
+await roxy.VedicAstrology.Upagraha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get Ashtakavarga (planetary strength) analysis - Ashtakavarga Calculator API
+await roxy.VedicAstrology.Ashtakavarga.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get Shadbala (six-fold planetary strength) analysis - Shadbala Calculator API
+await roxy.VedicAstrology.Shadbala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+```
+
+---
+
+## Numerology - `roxy.Numerology`
+
+Production-ready Pythagorean numerology API + hosted MCP for AI agents and developers
+
+```csharp
+// Calculate Life Path number - Most important numerology calculation
+await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 7, Day = 15 });
+
+// Calculate Expression number - Natural talents and life goals
+await roxy.Numerology.Expression.PostAsync(new() { FullName = "John William Smith" });
+
+// Calculate Bridge Numbers - Harmonize different aspects of personality
+await roxy.Numerology.Bridge.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15 });
+
+// Calculate Soul Urge number - Inner motivations and desires
+await roxy.Numerology.SoulUrge.PostAsync(new() { FullName = "John William Smith" });
+
+// Calculate Personality number - How others perceive you
+await roxy.Numerology.Personality.PostAsync(new() { FullName = "John William Smith" });
+
+// Calculate Birth Day number - Special talents from day of birth
+await roxy.Numerology.BirthDay.PostAsync(new() { Day = 23 });
+
+// Calculate Maturity number - Who you become in later life
+await roxy.Numerology.Maturity.PostAsync(new() { LifePath = 5, Expression = 7, FullName = "John William Smith", Year = 1990, Month = 7, Day = 15 });
+
+// Analyze Karmic Lessons - Life lessons from missing numbers
+await roxy.Numerology.KarmicLessons.PostAsync(new() { FullName = "John William Smith" });
+
+// Detect Karmic Debt numbers - Past life challenges (13, 14, 16, 19)
+await roxy.Numerology.KarmicDebt.PostAsync(new() { Year = 1990, Month = 7, Day = 15, FullName = "John William Smith" });
+
+// Calculate Personal Day - Daily personalized numerology forecast
+await roxy.Numerology.PersonalDay.PostAsync(new() { Month = 7, Day = 18, TargetDate = "2026-04-04" });
+
+// Calculate Personal Month - Monthly numerology forecast
+await roxy.Numerology.PersonalMonth.PostAsync(new() { Month = 7, Day = 18, Year = 2026, TargetMonth = 4 });
+
+// Calculate Personal Year - Annual cycle and forecast for current year
+await roxy.Numerology.PersonalYear.PostAsync(new() { Month = 7, Day = 15, Year = 2025 });
+
+// Calculate Compatibility - Relationship dynamics between two people
+await roxy.Numerology.Compatibility.PostAsync(new() { Person1 = new() { LifePath = 5, Expression = 7, SoulUrge = 6, FullName = "John William Smith", Year = 1990, Month = 7, Day = 15 }, Person2 = new() { LifePath = 3, Expression = 9, SoulUrge = 2, FullName = "Jane Marie Doe", Year = 1992, Month = 3, Day = 22 } });
+
+// Generate Complete Numerology Chart - Full profile analysis
+await roxy.Numerology.Chart.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, CurrentYear = 2025 });
+
+// Get Number Meaning - Interpretation for any number 1-9, 11, 22, 33
+await roxy.Numerology.Meanings["5"].GetAsync();
+
+// Get daily numerology number - Number of the Day with interpretation
+await roxy.Numerology.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+
+// Chaldean numerology name reading - Destiny, compound number, planetary ruler
+await roxy.Numerology.Chaldean.PostAsync(new() { Name = "Helen" });
+
+// Compound number meaning - Cheiro Chaldean interpretation 10 to 52
+await roxy.Numerology.CompoundNumber["23"].GetAsync();
+
+// Dual numerology - Pythagorean and Chaldean name numbers in one call
+await roxy.Numerology.Dual.PostAsync(new() { Name = "David" });
+
+// Business name numerology - Chaldean brand name analysis and lucky numbers
+await roxy.Numerology.BusinessName.PostAsync(new() { Name = "Ford" });
+```
+
+---
+
+## Tarot - `roxy.Tarot`
+
+Production-ready tarot card reading API + hosted MCP for AI agents and developers
+
+```csharp
+// List all 78 tarot cards
+await roxy.Tarot.Cards.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; c.QueryParameters.Number = 1; });
+
+// Get detailed tarot card information
+await roxy.Tarot.Cards["fool"].GetAsync();
+
+// Draw random tarot cards with reproducible results
+await roxy.Tarot.Draw.PostAsync(new() { Count = 3, Seed = "user123-2025-12-27", AllowReversals = true, AllowDuplicates = false });
+
+// Get daily tarot card reading
+await roxy.Tarot.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+
+// Get yes/no answer to your question
+await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I accept the job offer?", Seed = "optional-seed" });
+
+// Three-Card Spread: Past, Present, Future
+await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "What do I need to know about my career?", Seed = "optional-seed" });
+
+// Celtic Cross Spread (10 cards)
+await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I know about this situation?", Seed = "optional-seed" });
+
+// Love Spread (5 cards)
+await roxy.Tarot.Spreads.Love.PostAsync(new() { Question = "What do I need to know about my relationship?", Seed = "optional-seed" });
+
+// Career Spread (7 cards)
+await roxy.Tarot.Spreads.Career.PostAsync(new() { Question = "What do I need to know about my career path?", Seed = "optional-seed" });
+
+// Custom Spread Builder
+await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread", Positions = [new() { Name = "Core Issue", Interpretation = "What is really going on" }], Question = "Optional question", Seed = "optional-seed" });
+```
+
+---
+
+## Human Design - `roxy.HumanDesign`
+
+Generate the full Human Design bodygraph from a birth moment: type, strategy, inner authority, profile, definition, i...
+
+```csharp
+// Generate full Human Design bodygraph - Type, authority, profile, centers, channels, gates
+await roxy.HumanDesign.Bodygraph.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+
+// Calculate Human Design connection chart - Two-person composite bodygraph compatibility
+await roxy.HumanDesign.Connection.PostAsync(new() { PersonA = new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, PersonB = new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 } });
+
+// Calculate Human Design Penta - Small-group BG5 operating system for three to five people
+await roxy.HumanDesign.Penta.PostAsync(new() { Members = [new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }] });
+
+// Generate Human Design transit overlay - Current planetary activations on a natal bodygraph
+await roxy.HumanDesign.Transit.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, Date = new Date(2026, 5, 23), Time = "12:00:00" });
+
+// Calculate Human Design type, authority and profile
+await roxy.HumanDesign.Type.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+
+// Calculate the 26 Human Design gate activations
+await roxy.HumanDesign.Gates.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+
+// Look up a Human Design gate by number
+await roxy.HumanDesign.Gates[34].GetAsync();
+
+// Calculate the defined Human Design channels
+await roxy.HumanDesign.Channels.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+
+// Calculate the nine Human Design centers
+await roxy.HumanDesign.Centers.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+
+// Look up a Human Design center by id
+await roxy.HumanDesign.Centers["sacral"].GetAsync();
+
+// Calculate the Human Design profile and line keynotes
+await roxy.HumanDesign.Profile.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+
+// Calculate Human Design Variables - The four arrows and Color, Tone, Base substructure
+await roxy.HumanDesign.Variables.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+```
+
+---
+
+## Forecast - `roxy.Forecast`
+
+Merge upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm critical days, and...
+
+```csharp
+// Cross-domain forecast timeline - Transits, ingresses, stations, dasha changes, critical days
+await roxy.Forecast.Timeline.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
+
+// Western astrology forecast - aspects, ingresses, stations, eclipses, moon phases
+await roxy.Forecast.Transits.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0 });
+
+// Significant dates - High-significance cross-domain forecast highlights
+await roxy.Forecast.SignificantDates.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 70, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
+
+// Forecast digest - Pre-summarized next 24h, 7d, 30d, and 90d rollups
+await roxy.Forecast.Digest.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 }, Top = 3 });
+
+// Solar return chart - Annual birthday forecast chart for a single subject
+await roxy.Forecast.SolarReturn.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Year = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = 5.5 } });
+```
+
+---
+
+## Biorhythm - `roxy.Biorhythm`
+
+The most complete biorhythm API + remote MCP for AI agents and developers
+
+```csharp
+// Get biorhythm reading - Complete cycle analysis for any date
+await roxy.Biorhythm.Reading.PostAsync(new() { BirthDate = new Date(1990, 7, 15), TargetDate = new Date(2026, 4, 10) });
+
+// Get biorhythm forecast - Multi-day cycle predictions with best and worst days
+await roxy.Biorhythm.Forecast.PostAsync(new() { BirthDate = new Date(1990, 7, 15), StartDate = new Date(2026, 4, 1), EndDate = new Date(2026, 4, 30) });
+
+// Find critical days - Zero crossing detection for any date range
+await roxy.Biorhythm.CriticalDays.PostAsync(new() { BirthDate = new Date(1990, 7, 15), StartDate = new Date(2026, 4, 1), EndDate = new Date(2026, 6, 30) });
+
+// Calculate compatibility - Biorhythm alignment between two people
+await roxy.Biorhythm.Compatibility.PostAsync(new() { Person1 = new() { BirthDate = new Date(1990, 7, 15) }, Person2 = new() { BirthDate = new Date(1992, 3, 22) }, TargetDate = new Date(2026, 4, 10) });
+
+// Get phase info - Lightweight cycle status for dashboards and widgets
+await roxy.Biorhythm.Phases.PostAsync(new() { BirthDate = new Date(1990, 7, 15), TargetDate = new Date(2026, 4, 10) });
+
+// Get daily biorhythm - Seeded reading for daily check-in features
+await roxy.Biorhythm.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+```
+
+---
+
+## I-Ching - `roxy.Iching`
+
+I-Ching oracle API + hosted MCP for AI agents and developers
+
+```csharp
+// Get daily I-Ching hexagram
+await roxy.Iching.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+
+// Cast daily I-Ching reading with changing lines
+await roxy.Iching.Daily.Cast.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+
+// List all 64 hexagrams
+await roxy.Iching.Hexagrams.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get a random hexagram
+await roxy.Iching.Hexagrams.Random.GetAsync();
+
+// Lookup hexagram by line pattern
+await roxy.Iching.Hexagrams.Lookup.GetAsync(c => c.QueryParameters.Lines = "111111");
+
+// Get hexagram by number
+await roxy.Iching.Hexagrams[1].GetAsync();
+
+// Cast an I-Ching reading
+await roxy.Iching.Cast.GetAsync(c => c.QueryParameters.Seed = "user123-question1");
+
+// List all 8 trigrams
+await roxy.Iching.Trigrams.GetAsync();
+
+// Get trigram by number or name
+await roxy.Iching.Trigrams["Heaven"].GetAsync();
+```
+
+---
+
+## Crystals and Healing Stones - `roxy.Crystals`
+
+Production-ready crystal healing API + hosted MCP for AI agents and developers
+
+```csharp
+// Crystals by Zodiac Sign
+await roxy.Crystals.Zodiac["pisces"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Crystals by Chakra
+await roxy.Crystals.Chakra["Heart"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Crystals by Element
+await roxy.Crystals.Element["Water"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Birthstone Crystals by Month
+await roxy.Crystals.Birthstone[2].GetAsync();
+
+// Search Crystals
+await roxy.Crystals.Search.GetAsync(c => { c.QueryParameters.Q = "love"; c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Crystal Pairings
+await roxy.Crystals.Pairings["amethyst"].GetAsync();
+
+// Daily Crystal
+await roxy.Crystals.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+
+// Random Crystal
+await roxy.Crystals.Random.GetAsync();
+
+// List Crystal Colors
+await roxy.Crystals.Colors.GetAsync();
+
+// List Crystal Planets
+await roxy.Crystals.Planets.GetAsync();
+
+// List All Crystals
+await roxy.Crystals.GetAsync(c => { c.QueryParameters.Color = "pink"; c.QueryParameters.Planet = "Venus"; c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get Crystal Healing Properties
+await roxy.Crystals["amethyst"].GetAsync();
+```
+
+---
+
+## Dreams - `roxy.Dreams`
+
+Dream interpretation API + hosted MCP for AI agents and developers
+
+```csharp
+// List and search dream symbols
+await roxy.Dreams.Symbols.GetAsync(c => { c.QueryParameters.Q = "water"; c.QueryParameters.Letter = "a"; c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get random dream symbols
+await roxy.Dreams.Symbols.Random.GetAsync(c => c.QueryParameters.Count = 1);
+
+// Get symbol counts by letter
+await roxy.Dreams.Symbols.Letters.GetAsync();
+
+// Get dream symbol details
+await roxy.Dreams.Symbols["snake"].GetAsync();
+
+// Get daily dream symbol
+await roxy.Dreams.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+```
+
+---
+
+## Angel Numbers - `roxy.AngelNumbers`
+
+Production-ready angel numbers API + hosted MCP for AI agents and developers
+
+```csharp
+// List All Angel Numbers
+await roxy.AngelNumbers.Numbers.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get Angel Number Meaning
+await roxy.AngelNumbers.Numbers["444"].GetAsync();
+
+// Analyze Any Number Sequence
+await roxy.AngelNumbers.Lookup.GetAsync(c => c.QueryParameters.Number = "1234");
+
+// Daily Angel Number
+await roxy.AngelNumbers.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
+```
+
+---
+
+## Location and Timezone - `roxy.Location`
+
+City search and geocoding API + hosted MCP for AI agents and astrology apps
+
+```csharp
+// Search cities worldwide - Geocoding autocomplete with coordinates and timezone
+await roxy.Location.Search.GetAsync(c => { c.QueryParameters.Q = "berlin"; c.QueryParameters.Limit = 10; c.QueryParameters.Offset = 0; });
+
+// List all countries - ISO codes and city coverage
+await roxy.Location.Countries.GetAsync(c => { c.QueryParameters.Limit = 50; c.QueryParameters.Offset = 0; });
+
+// Get cities in a country - Geocoding directory sorted by population
+await roxy.Location.Countries["DE"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+```
+
+---
+
+## Usage - `roxy.Usage`
+
+Monitor your API usage, check rate limits, and track request consumption
+
+```csharp
+// Get API usage statistics
+await roxy.Usage.GetAsync();
+```
+
+---
+
+## Languages - `roxy.Languages`
+
+List the response languages accepted by the `lang` query parameter on every i18n-aware endpoint
+
+```csharp
+// List supported response languages
+await roxy.Languages.GetAsync();
+```
+<!-- END:METHODS -->
+
+---
+
+## Error handling
+
+Calls throw `RoxyApi.Models.RoxyError` (a subclass of `Microsoft.Kiota.Abstractions.ApiException`) on a 4xx or 5xx response.
+
+```csharp
+try
+{
+    var chart = await roxy.Astrology.NatalChart.PostAsync(new() { /* ... */ });
+}
+catch (RoxyApi.Models.RoxyError e)
+{
+    // e.Code is stable (switch on it); e.Message may change wording.
+    // e.ResponseStatusCode is the HTTP status. On a 400, e.Issues lists each invalid field.
+    Console.WriteLine($"{e.ResponseStatusCode} {e.Code}: {e.Message}");
+}
+```
+
+Codes: validation_error (400), api_key_required / invalid_api_key / subscription_not_found / subscription_inactive (401), not_found (404), rate_limit_exceeded (429), internal_error (500).
+
+## Advanced
+
+`new RoxyClient(apiKey)` is the common path. For a custom `HttpClient`, proxy, or middleware, build the client from a Kiota request adapter:
+
+```csharp
+using Microsoft.Kiota.Http.HttpClientLibrary;
+
+var adapter = new HttpClientRequestAdapter(authProvider, httpClient: yourHttpClient);
+var roxy = new RoxyClient(adapter);
+```
+
+## Links
+
+- Interactive API docs: https://roxyapi.com/api-reference
+- Pricing and API keys: https://roxyapi.com/pricing
+- MCP for AI agents: https://roxyapi.com/docs/mcp

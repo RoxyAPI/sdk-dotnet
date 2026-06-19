@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "RoxyAPI .NET SDK"
+abstract: "Official .NET SDK for RoxyAPI. Astrology, Vedic astrology, numerology, tarot, and more across multiple spiritual intelligence domains behind one API key. Fully typed, MCP ready."
+authors:
+  - name: "RoxyAPI"
+url: "https://github.com/RoxyAPI/sdk-dotnet"
+repository-code: "https://github.com/RoxyAPI/sdk-dotnet"
+license: MIT
+type: software
+keywords:
+  - astrology-api
+  - vedic-astrology-api
+  - tarot-api
+  - numerology-api
+  - mcp-server
+  - dotnet-sdk
+  - csharp
+  - openapi

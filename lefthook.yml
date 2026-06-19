@@ -1,0 +1,20 @@
+pre-commit:
+  parallel: true
+  commands:
+    docs-sync:
+      glob: "{specs/openapi.json,tools/RoxyDevTools/**/*.cs}"
+      run: dotnet run --project tools/RoxyDevTools -- sync-docs && git add README.md AGENTS.md docs/llms-full.txt
+      stage_fixed: true
+
+pre-push:
+  parallel: false
+  commands:
+    build:
+      run: dotnet build -c Release --nologo
+      priority: 1
+    docs-drift:
+      run: dotnet run --project tools/RoxyDevTools -- sync-docs && git diff --exit-code -- README.md AGENTS.md docs/llms-full.txt || { echo "README.md/AGENTS.md/llms-full.txt drifted from spec, commit the sync output"; exit 1; }
+      priority: 2
+    test:
+      run: dotnet test -c Release --nologo
+      priority: 3

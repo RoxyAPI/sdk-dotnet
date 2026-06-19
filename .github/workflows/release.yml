@@ -1,0 +1,114 @@
+name: Release
+
+on:
+  repository_dispatch:
+    types: [openapi-updated]
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'patch | minor | major'
+        required: false
+        default: 'patch'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Install Kiota
+        run: |
+          dotnet tool install --global Microsoft.OpenApi.Kiota --version 1.32.2
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Regenerate from live spec
+        run: dotnet run --project tools/RoxyDevTools -- generate
+
+      - name: Check if spec changed
+        id: diff
+        run: |
+          if git diff --quiet specs/openapi.json src/Generated; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: dotnet build -c Release
+
+      - name: Test
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: dotnet test -c Release --no-build
+        env:
+          ROXY_API_KEY: ${{ secrets.ROXY_API_KEY }}
+
+      - name: Bump version in src/RoxyApi.csproj
+        id: bump
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          python3 - <<'PY'
+          import os, re
+          bump = "${{ github.event.inputs.version_bump || 'patch' }}"
+          path = "src/RoxyApi.csproj"
+          text = open(path).read()
+          cur = re.search(r"<Version>(.+?)</Version>", text).group(1)
+          major, minor, patch = (int(x) for x in cur.split("."))
+          if bump == "major":   major, minor, patch = major + 1, 0, 0
+          elif bump == "minor": minor, patch = minor + 1, 0
+          else:                 patch += 1
+          new = f"{major}.{minor}.{patch}"
+          open(path, "w").write(text.replace(f"<Version>{cur}</Version>", f"<Version>{new}</Version>", 1))
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"version={new}\n")
+          print(f"Bumped {cur} -> {new} ({bump})")
+          PY
+
+      - name: Pack
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: dotnet pack src/RoxyApi.csproj -c Release -o artifacts
+
+      - name: NuGet login (OIDC, short-lived API key)
+        id: login
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push to NuGet
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: dotnet nuget push "artifacts/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: Commit, tag, push
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          VERSION=${{ steps.bump.outputs.version }}
+          git add specs/openapi.json src/ README.md AGENTS.md docs/llms-full.txt tests/RoxyApi.Tests/Generated
+          git commit -m "release: v$VERSION"
+          git tag "v$VERSION"
+          git push --follow-tags
+
+      - name: Create GitHub release
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: v${{ steps.bump.outputs.version }}
+          generate_release_notes: true
+          make_latest: 'true'
+          files: artifacts/*.nupkg

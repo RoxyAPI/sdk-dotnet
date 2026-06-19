@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Install Kiota
+        run: |
+          dotnet tool install --global Microsoft.OpenApi.Kiota --version 1.32.2
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Codegen drift check
+        run: |
+          dotnet run --project tools/RoxyDevTools -- generate
+          git diff --exit-code -- specs/openapi.json src/Generated \
+            || { echo 'codegen drift: run "dotnet run --project tools/RoxyDevTools -- generate" and commit the result'; exit 1; }
+
+      - name: Docs drift check
+        run: |
+          dotnet run --project tools/RoxyDevTools -- sync-docs
+          git diff --exit-code -- README.md AGENTS.md docs/llms-full.txt tests/RoxyApi.Tests/Generated \
+            || { echo 'docs drift: run "dotnet run --project tools/RoxyDevTools -- sync-docs" and commit the result'; exit 1; }
+
+      - name: Format check
+        run: dotnet format --verify-no-changes --exclude src/Generated/
+
+      - name: Build
+        run: dotnet build -c Release
+
+      - name: Test
+        run: dotnet test -c Release --no-build
+        env:
+          ROXY_API_KEY: ${{ secrets.ROXY_API_KEY }}
