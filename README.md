@@ -1,8 +1,4 @@
-<p align="center">
-  <a href="https://roxyapi.com">
-    <img src="https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/hero.png" alt="Roxy .NET SDK. Astrology, Vedic, numerology, tarot, and more behind one API key." width="100%">
-  </a>
-</p>
+[![Roxy .NET SDK. Astrology, Vedic, numerology, tarot, and more behind one API key.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/hero.png)](https://roxyapi.com)
 
 # RoxyApi
 
@@ -56,7 +52,7 @@ using Microsoft.Kiota.Abstractions; // for the Date type
 var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 
 // Step 1: geocode the birth city (required for any chart endpoint).
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Mumbai, India");
+var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London, UK");
 var city = search!.Cities![0];
 
 // Step 2: Western natal chart. Pass the IANA timezone string and the server
@@ -88,7 +84,7 @@ var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 These are the only .NET-specific shapes worth learning. The rest is plain typed objects.
 
 - **Dates use the `Date` type.** `Date = new Date(1990, 1, 15)` (from `Microsoft.Kiota.Abstractions`). Times stay strings: `Time = "14:30:00"`.
-- **`Timezone` is a typed union.** Pass a decimal offset with `new() { Double = 5.5 }` or an IANA name with `new() { String = "Asia/Kolkata" }`. The server resolves an IANA name to the DST-correct offset for the request date.
+- **`Timezone` is a typed union.** Pass a decimal offset with `new() { Double = -5 }` or an IANA name with `new() { String = "America/New_York" }`. The server resolves an IANA name to the DST-correct offset for the request date.
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
 
 ## Location first
@@ -102,7 +98,7 @@ var city = search!.Cities![0];
 // endpoint. city.UtcOffset (a decimal like 9 or 5.5) also works.
 ```
 
-`Q` accepts a bare city (`"Mumbai"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate same-named cities.
+`Q` accepts a bare city (`"Paris"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate same-named cities.
 
 ## Domains
 
@@ -140,7 +136,7 @@ The global astrology app market is $6.27B and almost entirely Western. These end
 var natal = await roxy.Astrology.NatalChart.PostAsync(new()
 {
     Date = new Date(1990, 1, 15), Time = "14:30:00",
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 },
 });
 
 // Daily horoscope. Highest per-user call frequency in the catalog, drives DAUs and push.
@@ -150,8 +146,8 @@ var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
 // Synastry. The dating-app pro-tier feature, full inter-aspect analysis between two charts.
 var synastry = await roxy.Astrology.Synastry.PostAsync(new()
 {
-    Person1 = new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 28.61, Longitude = 77.20, Timezone = new() { Double = 5.5 } },
-    Person2 = new() { Date = new Date(1992, 7, 22), Time = "09:00:00", Latitude = 19.07, Longitude = 72.87, Timezone = new() { Double = 5.5 } },
+    Person1 = new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } },
+    Person2 = new() { Date = new Date(1992, 7, 22), Time = "09:00:00", Latitude = 51.5074, Longitude = -0.1278, Timezone = new() { Double = 0 } },
 });
 
 // Moon phase. Viral for wellness, cycle-tracking, and meditation apps.
@@ -343,9 +339,7 @@ var any = await roxy.AngelNumbers.Lookup.GetAsync(c => c.QueryParameters.Number 
 
 ## Built for AI agents (Cursor, Claude Code, Copilot, Codex, Gemini CLI)
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/agents.png" alt="Built for Cursor, Claude Code, Copilot, Codex. AGENTS.md ships in the package, remote MCP, no local setup." width="100%">
-</p>
+![Built for Cursor, Claude Code, Copilot, Codex. AGENTS.md ships in the package, remote MCP, no local setup.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/agents.png)
 
 This package ships documentation that AI coding agents read directly from the restored NuGet package:
 
@@ -434,7 +428,7 @@ Every response is a fully typed object, so your IDE autocompletes every field. T
 `roxy.Location.Search` returns `Cities`, a list where each item has `City` (the name), `Country`, `Province`, `Latitude`, `Longitude`, `Timezone` (IANA string), `UtcOffset` (decimal), and `Population`.
 
 ```csharp
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Mumbai, India");
+var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London, UK");
 var city = search!.Cities![0];
 Console.WriteLine($"{city.City}, {city.Country} at {city.Latitude}, {city.Longitude} ({city.Timezone})");
 ```

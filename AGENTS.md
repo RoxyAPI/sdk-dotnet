@@ -33,14 +33,14 @@ Get these and the generated types do the rest.
 Every chart, horoscope, panchang, dasha, dosha, navamsa, KP, synastry, compatibility, and natal endpoint needs `Latitude`, `Longitude`, and (for Western) `Timezone`. **Never ask the user for coordinates.** Call `roxy.Location.Search` first.
 
 ```csharp
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Mumbai");
+var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Berlin");
 var city = search!.Cities![0];
-// city.Timezone is the IANA string ("Asia/Kolkata"); pass it straight into a chart call and
+// city.Timezone is the IANA string ("Europe/Berlin"); pass it straight into a chart call and
 // the server resolves the DST-correct offset for the chart date. city.UtcOffset (5.5, -5, ...)
 // is the decimal equivalent.
 ```
 
-`Q` accepts a bare city (`"Mumbai"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate.
+`Q` accepts a bare city (`"Paris"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate.
 
 ## Domains
 
@@ -68,7 +68,7 @@ var city = search!.Cities![0];
 ### Two-step pattern for coordinate-dependent endpoints
 
 ```csharp
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Delhi");
+var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London");
 var city = search!.Cities![0];
 
 var chart = await roxy.Astrology.NatalChart.PostAsync(new()
@@ -192,7 +192,7 @@ Ordered by domain priority (Western, Vedic, Numerology, Tarot, Human Design, For
 | Crystal by chakra | `roxy.Crystals.Chakra["Heart"].GetAsync()` |
 | Dream symbol lookup | `roxy.Dreams.Symbols["snake"].GetAsync()` |
 | Angel number meaning | `roxy.AngelNumbers.Numbers["1111"].GetAsync()` |
-| Find city coordinates | `roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Mumbai")` |
+| Find city coordinates | `roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Berlin")` |
 | Check API usage | `roxy.Usage.GetAsync()` |
 
 ## Field formats that trip agents
@@ -216,7 +216,7 @@ Copy the format column exactly.
 
 | Region | Decimal | Region | Decimal |
 |--------|---------|--------|---------|
-| UTC / London (winter) | `0` | Delhi / Mumbai (IST) | `5.5` |
+| UTC / London (winter) | `0` | Delhi / Kolkata (IST) | `5.5` |
 | Berlin / Paris | `1` (winter) / `2` (summer) | Kathmandu | `5.75` |
 | Istanbul / Moscow | `3` | Dhaka | `6` |
 | Dubai | `4` | Bangkok | `7` |
@@ -254,7 +254,7 @@ Use the SDK for typed .NET apps. Use MCP for AI agents (Claude, Cursor, ChatGPT)
 - **Path params are indexers, query params are a lambda.** `roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 4, 3))`.
 - **Do not guess method names.** Type `roxy.Domain.` and let IntelliSense show the fluent tree. It mirrors the URL path.
 - **Responses are nullable.** Use `result!.Field` or null checks; the success body is non-null only on a 2xx (errors throw).
-- **`Timezone` is a union wrapper, never a bare number.** Use `new() { Double = 5.5 }` or `new() { String = "Asia/Kolkata" }`.
+- **`Timezone` is a union wrapper, never a bare number.** Use `new() { Double = -5 }` or `new() { String = "America/New_York" }`.
 - **Do not expose API keys client-side.** Call Roxy from server, API, or backend code only.
 
 ## Dependencies
