@@ -1,6 +1,6 @@
 # RoxyApi .NET SDK - Complete Method Reference
 
-> .NET SDK for RoxyAPI. Multi-domain spiritual and metaphysical intelligence API. Fully typed, generated from the OpenAPI spec. Install: `dotnet add package RoxyApi`
+> .NET SDK for RoxyAPI. Multi-domain spiritual and metaphysical intelligence API. Fully typed, generated from the OpenAPI spec. Install: `dotnet add package RoxyApi.Sdk`
 
 ```csharp
 using RoxyApi;

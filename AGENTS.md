@@ -7,7 +7,7 @@
 ## Install and initialize
 
 ```bash
-dotnet add package RoxyApi
+dotnet add package RoxyApi.Sdk
 ```
 
 ```csharp

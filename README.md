@@ -6,7 +6,7 @@
 
 # RoxyApi
 
-[![NuGet](https://img.shields.io/nuget/v/RoxyApi)](https://www.nuget.org/packages/RoxyApi)
+[![NuGet](https://img.shields.io/nuget/v/RoxyApi.Sdk)](https://www.nuget.org/packages/RoxyApi.Sdk)
 [![Docs](https://img.shields.io/badge/docs-roxyapi.com-blue)](https://roxyapi.com/docs/sdk)
 [![API Reference](https://img.shields.io/badge/api%20reference-roxyapi.com-blue)](https://roxyapi.com/api-reference)
 [![Pricing](https://img.shields.io/badge/pricing-roxyapi.com-blue)](https://roxyapi.com/pricing)
@@ -20,13 +20,13 @@ The fastest way to add natal charts, kundli matching, daily horoscopes, tarot re
 ## Install
 
 ```bash
-dotnet add package RoxyApi
+dotnet add package RoxyApi.Sdk
 ```
 
 Or add it to your project file:
 
 ```xml
-<PackageReference Include="RoxyApi" Version="*" />
+<PackageReference Include="RoxyApi.Sdk" Version="*" />
 ```
 
 Targets `netstandard2.0` and `net8.0`, so it runs on .NET 8 and later, .NET Framework 4.6.1 and later, Unity, and Mono.
@@ -352,7 +352,7 @@ This package ships documentation that AI coding agents read directly from the re
 - `AGENTS.md` for quick start, patterns, gotchas, and a common-tasks reference
 - `docs/llms-full.txt` for the complete method reference with one example per endpoint
 
-Agents that support `AGENTS.md` (Claude Code, Cursor, GitHub Copilot, OpenAI Codex, Gemini CLI) pick it up automatically. For other tools, point your agent at the restored package under `~/.nuget/packages/roxyapi/<version>/`.
+Agents that support `AGENTS.md` (Claude Code, Cursor, GitHub Copilot, OpenAI Codex, Gemini CLI) pick it up automatically. For other tools, point your agent at the restored package under `~/.nuget/packages/roxyapi.sdk/<version>/`.
 
 Prefer MCP? Every domain has a [remote MCP server](https://roxyapi.com/docs/mcp) at `https://roxyapi.com/mcp/{domain}` (Streamable HTTP, no stdio, no self-hosting). One-line Claude Code setup:
 

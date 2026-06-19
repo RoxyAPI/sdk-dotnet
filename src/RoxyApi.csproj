@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package">
-    <PackageId>RoxyApi</PackageId>
+    <PackageId>RoxyApi.Sdk</PackageId>
     <Version>0.1.0</Version>
     <Authors>RoxyAPI</Authors>
     <Company>RoxyAPI</Company>
