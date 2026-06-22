@@ -98,6 +98,21 @@ await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync();
 
 // Planetary Return Chart - Saturn return, Jupiter return, and inner planet cycles
 await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Astrocartography map - planetary lines and relocation calculator
+await roxy.Astrology.Astrocartography.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron");
+
+// Generate relocation chart - Relocated birth chart calculator with shifted houses and angles
+await roxy.Astrology.RelocationChart.PostAsync(new() { Date = new Date(1961, 8, 4), Time = "19:24:00", Timezone = new() { Double = -10 }, BirthLatitude = 21.3069, BirthLongitude = -157.8583, RelocationLatitude = 40.7167, RelocationLongitude = -74.006 });
+
+// Local space astrology map - Directional planetary compass lines
+await roxy.Astrology.LocalSpace.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron,lilith");
+
+// Fixed stars and star conjunctions calculator - Regulus, Spica, Algol natal report
+await roxy.Astrology.FixedStars.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Orb = 1);
+
+// Arabic lots calculator - seven Hermetic parts including Part of Fortune and Spirit
+await roxy.Astrology.ArabicLots.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 ```
 
 ---

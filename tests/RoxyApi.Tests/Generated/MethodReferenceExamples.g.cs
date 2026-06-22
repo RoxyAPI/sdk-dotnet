@@ -34,6 +34,11 @@ internal static class MethodReferenceExamples
         await roxy.Astrology.Horoscope["aries"].Weekly.GetAsync();
         await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync();
         await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+        await roxy.Astrology.Astrocartography.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron");
+        await roxy.Astrology.RelocationChart.PostAsync(new() { Date = new Date(1961, 8, 4), Time = "19:24:00", Timezone = new() { Double = -10 }, BirthLatitude = 21.3069, BirthLongitude = -157.8583, RelocationLatitude = 40.7167, RelocationLongitude = -74.006 });
+        await roxy.Astrology.LocalSpace.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron,lilith");
+        await roxy.Astrology.FixedStars.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Orb = 1);
+        await roxy.Astrology.ArabicLots.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
         await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Division = 10 });

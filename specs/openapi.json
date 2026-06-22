@@ -3,7 +3,7 @@
   "info": {
     "title": "RoxyAPI",
     "version": "2.0.0",
-    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 12 domains (astrology, Vedic astrology, human design, forecast, biorhythm, tarot, numerology, crystals, dreams, I-Ching, angel numbers, location), 152\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (MCP)\n\nRoxyAPI has native Model Context Protocol support. Your AI agent auto-discovers all 152\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable (stable \u2014 safe to switch on programmatically).\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 to $699/month.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
+    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 12 domains (astrology, Vedic astrology, human design, forecast, biorhythm, tarot, numerology, crystals, dreams, I-Ching, angel numbers, location), 157\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (MCP)\n\nRoxyAPI has native Model Context Protocol support. Your AI agent auto-discovers all 157\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable (stable \u2014 safe to switch on programmatically).\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 to $699/month.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
     "contact": {
       "name": "RoxyAPI Support",
       "url": "https://roxyapi.com/contact"
@@ -31,7 +31,7 @@
   "tags": [
     {
       "name": "Western Astrology",
-      "description": "Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, plus aspect-pattern detection (Grand Trine, T-Square, Yod). 23\u002B endpoints for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes with a date parameter for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
+      "description": "Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, aspect-pattern detection (Grand Trine, T-Square, Yod), astrocartography planetary lines, relocation charts, and local space maps for location based astrology, plus classical points like fixed star conjunctions and Arabic lots. 28\u002B endpoints for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes with a date parameter for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
     },
     {
       "name": "Vedic Astrology",
@@ -1768,6 +1768,1242 @@
             "description": "Optional natal chart data to compare transits against"
           }
         }
+      },
+      "AstrocartographyResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place used to compute every planetary line."
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "planet": {
+                  "type": "string",
+                  "example": "Sun",
+                  "description": "Celestial body this set of planetary lines belongs to."
+                },
+                "symbol": {
+                  "type": "string",
+                  "example": "\u2609",
+                  "description": "Unicode astronomical symbol for this body."
+                },
+                "rightAscension": {
+                  "type": "number",
+                  "example": 90.66,
+                  "description": "Equatorial right ascension of the body in degrees (0 to 360), the basis for every line."
+                },
+                "declination": {
+                  "type": "number",
+                  "example": 23.44,
+                  "description": "Equatorial declination of the body in degrees (-90 to 90), which sets how far the rising and setting lines curve."
+                },
+                "mc": {
+                  "type": "object",
+                  "properties": {
+                    "longitude": {
+                      "type": "number",
+                      "example": -71.23,
+                      "description": "Constant geographic longitude of this vertical meridian line in decimal degrees. The body culminates (MC) or anti-culminates (IC) along it, so plot it as a straight north to south line."
+                    },
+                    "interpretation": {
+                      "type": "string",
+                      "description": "Plain language meaning of this meridian planetary line for relocation, suitable for chart reports and AI agents."
+                    }
+                  },
+                  "required": [
+                    "longitude",
+                    "interpretation"
+                  ],
+                  "description": "Midheaven (MC) line. Places along this meridian where the body was culminating overhead, tied to public life, career, and reputation."
+                },
+                "ic": {
+                  "type": "object",
+                  "properties": {
+                    "longitude": {
+                      "type": "number",
+                      "example": -71.23,
+                      "description": "Constant geographic longitude of this vertical meridian line in decimal degrees. The body culminates (MC) or anti-culminates (IC) along it, so plot it as a straight north to south line."
+                    },
+                    "interpretation": {
+                      "type": "string",
+                      "description": "Plain language meaning of this meridian planetary line for relocation, suitable for chart reports and AI agents."
+                    }
+                  },
+                  "required": [
+                    "longitude",
+                    "interpretation"
+                  ],
+                  "description": "Imum Coeli (IC) line, opposite the MC. Places where the body was anti-culminating, tied to home, family, and inner foundations."
+                },
+                "ascendant": {
+                  "type": "object",
+                  "properties": {
+                    "points": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "latitude": {
+                            "type": "number",
+                            "example": 40,
+                            "description": "Geographic latitude of this sampled point in decimal degrees."
+                          },
+                          "longitude": {
+                            "type": "number",
+                            "example": -71.42,
+                            "description": "Geographic longitude in decimal degrees where the body sits exactly on the horizon at this latitude."
+                          }
+                        },
+                        "required": [
+                          "latitude",
+                          "longitude"
+                        ]
+                      },
+                      "description": "Sampled geographic points tracing this rising or setting line from 70 South to 70 North. Join them in latitude order to draw the curved planetary line on a world map."
+                    },
+                    "circumpolarBeyond": {
+                      "type": "number",
+                      "nullable": true,
+                      "example": 66.56,
+                      "description": "Absolute latitude in degrees beyond which the body never crosses the horizon, so the line has no points past it. Null when the line spans the full sampled range."
+                    },
+                    "interpretation": {
+                      "type": "string",
+                      "description": "Plain language meaning of this rising or setting planetary line for relocation, suitable for chart reports and AI agents."
+                    }
+                  },
+                  "required": [
+                    "points",
+                    "circumpolarBeyond",
+                    "interpretation"
+                  ],
+                  "description": "Ascendant (rising) line. Places where the body was on the eastern horizon, tied to identity, vitality, and self-expression."
+                },
+                "descendant": {
+                  "type": "object",
+                  "properties": {
+                    "points": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "latitude": {
+                            "type": "number",
+                            "example": 40,
+                            "description": "Geographic latitude of this sampled point in decimal degrees."
+                          },
+                          "longitude": {
+                            "type": "number",
+                            "example": -71.42,
+                            "description": "Geographic longitude in decimal degrees where the body sits exactly on the horizon at this latitude."
+                          }
+                        },
+                        "required": [
+                          "latitude",
+                          "longitude"
+                        ]
+                      },
+                      "description": "Sampled geographic points tracing this rising or setting line from 70 South to 70 North. Join them in latitude order to draw the curved planetary line on a world map."
+                    },
+                    "circumpolarBeyond": {
+                      "type": "number",
+                      "nullable": true,
+                      "example": 66.56,
+                      "description": "Absolute latitude in degrees beyond which the body never crosses the horizon, so the line has no points past it. Null when the line spans the full sampled range."
+                    },
+                    "interpretation": {
+                      "type": "string",
+                      "description": "Plain language meaning of this rising or setting planetary line for relocation, suitable for chart reports and AI agents."
+                    }
+                  },
+                  "required": [
+                    "points",
+                    "circumpolarBeyond",
+                    "interpretation"
+                  ],
+                  "description": "Descendant (setting) line. Places where the body was on the western horizon, tied to relationships and partnerships."
+                }
+              },
+              "required": [
+                "planet",
+                "rightAscension",
+                "declination",
+                "mc",
+                "ic",
+                "ascendant",
+                "descendant"
+              ]
+            },
+            "description": "One entry per body, each carrying its Midheaven, Imum Coeli, Ascendant, and Descendant planetary lines for relocation mapping."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Astrocartography lines for 1990-07-15. 10 bodies, each with Midheaven, Imum Coeli, Ascendant, and Descendant lines mapping where their themes turn angular worldwide for relocation planning.",
+            "description": "Short overview of the astrocartography map for previews and report intros."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "lines",
+          "summary"
+        ]
+      },
+      "RelocationChartResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "example": "1961-08-04",
+                "description": "Birth date used for this chart (YYYY-MM-DD)."
+              },
+              "time": {
+                "type": "string",
+                "example": "19:24:00",
+                "description": "Birth time used for this chart (HH:MM:SS, 24-hour)."
+              },
+              "latitude": {
+                "type": "number",
+                "example": 21.3069,
+                "description": "Birthplace latitude in decimal degrees."
+              },
+              "longitude": {
+                "type": "number",
+                "example": -157.8583,
+                "description": "Birthplace longitude in decimal degrees."
+              },
+              "timezone": {
+                "type": "number",
+                "example": -10,
+                "description": "Birth timezone offset from UTC in decimal hours."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Birthplace details echoed back. The birth instant is unchanged by relocation."
+          },
+          "relocation": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "example": 40.7167,
+                "description": "New location latitude in decimal degrees."
+              },
+              "longitude": {
+                "type": "number",
+                "example": -74.006,
+                "description": "New location longitude in decimal degrees."
+              }
+            },
+            "required": [
+              "latitude",
+              "longitude"
+            ],
+            "description": "New location the chart was recomputed for."
+          },
+          "planets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelocationPlanet"
+            },
+            "description": "All 14 celestial bodies with their unchanged natal signs and degrees, reassigned to the houses they occupy in the relocated chart."
+          },
+          "houses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 12,
+                  "example": 1,
+                  "description": "House number (1-12). Each house governs specific life themes in Western astrology."
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 45.32,
+                  "description": "Ecliptic longitude of this house cusp in degrees (0-360)."
+                },
+                "sign": {
+                  "type": "string",
+                  "example": "Taurus",
+                  "description": "Zodiac sign on this house cusp. Colors the themes of this life area."
+                },
+                "degree": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 30,
+                  "example": 15.32,
+                  "description": "Degree within the zodiac sign on this cusp (0-29.999)."
+                }
+              },
+              "required": [
+                "number",
+                "longitude",
+                "sign",
+                "degree"
+              ]
+            },
+            "description": "All 12 relocated house cusps with zodiac positions for the new location."
+          },
+          "houseSystem": {
+            "type": "string",
+            "example": "placidus",
+            "description": "House system used for the relocated chart (placidus, whole-sign, equal, or koch). Quadrant systems fall back to whole-sign above the polar circle."
+          },
+          "ascendant": {
+            "type": "object",
+            "properties": {
+              "sign": {
+                "type": "string",
+                "example": "Gemini",
+                "description": "Tropical zodiac sign on this relocated angle."
+              },
+              "degree": {
+                "type": "number",
+                "example": 12.67,
+                "description": "Degree within the zodiac sign on this angle (0-29.999)."
+              },
+              "longitude": {
+                "type": "number",
+                "example": 72.67,
+                "description": "Absolute ecliptic longitude of this angle in degrees (0-360)."
+              }
+            },
+            "required": [
+              "sign",
+              "degree",
+              "longitude"
+            ],
+            "description": "Relocated Ascendant (rising sign). The eastern horizon at the new place, defining how you come across there."
+          },
+          "midheaven": {
+            "type": "object",
+            "properties": {
+              "sign": {
+                "type": "string",
+                "example": "Gemini",
+                "description": "Tropical zodiac sign on this relocated angle."
+              },
+              "degree": {
+                "type": "number",
+                "example": 12.67,
+                "description": "Degree within the zodiac sign on this angle (0-29.999)."
+              },
+              "longitude": {
+                "type": "number",
+                "example": 72.67,
+                "description": "Absolute ecliptic longitude of this angle in degrees (0-360)."
+              }
+            },
+            "required": [
+              "sign",
+              "degree",
+              "longitude"
+            ],
+            "description": "Relocated Midheaven (MC). The highest point of the ecliptic at the new place, tied to career and public image there."
+          },
+          "vertex": {
+            "type": "object",
+            "properties": {
+              "sign": {
+                "type": "string",
+                "example": "Virgo",
+                "description": "Zodiac sign holding the Vertex."
+              },
+              "degree": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30,
+                "example": 12.9,
+                "description": "Degree within the Vertex sign (0-29.999)."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360,
+                "example": 162.9,
+                "description": "Absolute ecliptic longitude of the Vertex (0-360)."
+              }
+            },
+            "required": [
+              "sign",
+              "degree",
+              "longitude"
+            ],
+            "description": "Relocated Vertex. The western prime-vertical and ecliptic intersection at the new place, read as a point of fated encounters."
+          },
+          "changes": {
+            "type": "object",
+            "properties": {
+              "ascendantSignChanged": {
+                "type": "boolean",
+                "example": true,
+                "description": "Whether the Ascendant sign differs between the birthplace chart and the relocated chart."
+              },
+              "planetsChangedHouse": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "planet": {
+                      "type": "string",
+                      "example": "Sun",
+                      "description": "Body that occupies a different house after relocation."
+                    },
+                    "natalHouse": {
+                      "type": "number",
+                      "example": 5,
+                      "description": "House this body occupied in the birthplace chart (1-12)."
+                    },
+                    "relocatedHouse": {
+                      "type": "number",
+                      "example": 3,
+                      "description": "House this body occupies in the relocated chart (1-12)."
+                    }
+                  },
+                  "required": [
+                    "planet",
+                    "natalHouse",
+                    "relocatedHouse"
+                  ]
+                },
+                "description": "Bodies whose house placement shifts from the birthplace chart to the relocated chart. Empty when nothing changes house."
+              },
+              "angularPlanets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": [
+                  "Venus"
+                ],
+                "description": "Bodies within three degrees of a relocated angle (Ascendant, Imum Coeli, Descendant, or Midheaven), where their influence is strongest at this location."
+              },
+              "distanceKm": {
+                "type": "number",
+                "example": 7983.4,
+                "description": "Great-circle distance from the birthplace to the new location in kilometers."
+              },
+              "direction": {
+                "type": "string",
+                "example": "northeast",
+                "description": "Compass direction (16-point) from the birthplace to the new location."
+              }
+            },
+            "required": [
+              "ascendantSignChanged",
+              "planetsChangedHouse",
+              "angularPlanets",
+              "distanceKm",
+              "direction"
+            ],
+            "description": "How relocation reshapes the chart: Ascendant shift, planets that change house, angular planets, and the move geometry from the birthplace."
+          },
+          "interpretation": {
+            "type": "object",
+            "properties": {
+              "summary": {
+                "type": "string",
+                "example": "Relocated to this place, your chart angles shift while the planets keep their birth positions. The Ascendant moves to Gemini and the Midheaven to Aquarius, and Venus moves close to the angles, where its influence grows strongest in daily life here.",
+                "description": "Narrative summary of the relocation: the new Ascendant and Midheaven signs and any planets that move onto the angles. Localized via the lang query parameter."
+              }
+            },
+            "required": [
+              "summary"
+            ],
+            "description": "Relocation interpretation summary."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "relocation",
+          "planets",
+          "houses",
+          "houseSystem",
+          "ascendant",
+          "midheaven",
+          "vertex",
+          "changes",
+          "interpretation"
+        ]
+      },
+      "RelocationPlanet": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mercury",
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn",
+              "Uranus",
+              "Neptune",
+              "Pluto",
+              "North Node",
+              "South Node",
+              "Chiron",
+              "Black Moon Lilith"
+            ],
+            "example": "Sun",
+            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee)."
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 360,
+            "example": 112.45,
+            "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+          },
+          "latitude": {
+            "type": "number",
+            "example": 0.01,
+            "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+          },
+          "sign": {
+            "type": "string",
+            "example": "Cancer",
+            "description": "Tropical zodiac sign this planet occupies. Determined by 30-degree divisions of ecliptic longitude."
+          },
+          "degree": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 30,
+            "example": 22.45,
+            "description": "Degree within the zodiac sign (0-29.999). Indicates how far the planet has progressed through the sign."
+          },
+          "house": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12,
+            "example": 7,
+            "description": "House placement (1-12). Determined by the selected house system and birth location."
+          },
+          "speed": {
+            "type": "number",
+            "example": 0.9571,
+            "description": "Daily motion in degrees per day. Negative values indicate retrograde motion."
+          },
+          "isRetrograde": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether the planet appears to move backward from Earth perspective. Retrograde periods signal review and introspection."
+          },
+          "interpretation": {
+            "type": "object",
+            "properties": {
+              "summary": {
+                "type": "string",
+                "example": "Your Sun in Leo in The Third House reveals how you express self-awareness and ego in the realm of communication.",
+                "description": "One-sentence interpretation of this planet in its sign and relocated house."
+              },
+              "detailed": {
+                "type": "string",
+                "example": "Sun represents self-awareness and ego. In Leo, this energy becomes confident and expressive...",
+                "description": "Multi-sentence interpretation of this relocated placement."
+              },
+              "keywords": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": [
+                  "Confident",
+                  "Expressive",
+                  "Communicative"
+                ],
+                "description": "Key themes for this relocated placement."
+              }
+            },
+            "required": [
+              "summary",
+              "detailed",
+              "keywords"
+            ],
+            "description": "Relocated placement interpretation. The planet keeps its natal sign, so this reads its meaning through the new house it occupies at this location."
+          }
+        },
+        "required": [
+          "name",
+          "longitude",
+          "latitude",
+          "sign",
+          "degree",
+          "house",
+          "speed",
+          "isRetrograde"
+        ]
+      },
+      "RelocationChartRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "1961-08-04",
+            "description": "Birth date in YYYY-MM-DD format. The birth moment is unchanged by relocation, so this still defines the planetary positions of the chart."
+          },
+          "time": {
+            "type": "string",
+            "example": "19:24:00",
+            "description": "Birth time in 24-hour HH:MM:SS format. Combined with the timezone it fixes the exact birth instant, which the relocated angles and houses are recomputed for."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -14,
+                "maximum": 14
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+              }
+            ],
+            "description": "Birth timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022). Resolved to the DST-correct offset for the birth date. This is the birthplace timezone, not the new location timezone.",
+            "example": -10
+          },
+          "birthLatitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 21.3069,
+            "description": "Birthplace latitude in decimal degrees (-90 to 90). Used for the original natal angles and houses that the relocated chart is compared against."
+          },
+          "birthLongitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -157.8583,
+            "description": "Birthplace longitude in decimal degrees (-180 to 180). Positive East, negative West."
+          },
+          "relocationLatitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 40.7167,
+            "description": "New location latitude in decimal degrees (-90 to 90). The relocated Ascendant and house cusps are most sensitive to north-south movement."
+          },
+          "relocationLongitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -74.006,
+            "description": "New location longitude in decimal degrees (-180 to 180). The relocated Midheaven shifts roughly one degree per degree of longitude moved."
+          },
+          "houseSystem": {
+            "type": "string",
+            "enum": [
+              "placidus",
+              "whole-sign",
+              "equal",
+              "koch"
+            ],
+            "default": "placidus",
+            "example": "placidus",
+            "description": "House system for dividing the relocated chart into 12 houses. Placidus (default) is time-sensitive and most popular in Western astrology. Whole Sign assigns one sign per house. Equal divides into 30 degree segments from the Ascendant. Koch emphasizes higher latitudes. Quadrant systems fall back to Whole Sign above the polar circle."
+          }
+        },
+        "required": [
+          "date",
+          "time",
+          "timezone",
+          "birthLatitude",
+          "birthLongitude",
+          "relocationLatitude",
+          "relocationLongitude"
+        ]
+      },
+      "LocalSpaceResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "example": "1990-07-15",
+                "description": "Birth date echoed from the request."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time echoed from the request."
+              },
+              "latitude": {
+                "type": "number",
+                "example": 40.7128,
+                "description": "Birthplace latitude, the origin of every local space line."
+              },
+              "longitude": {
+                "type": "number",
+                "example": -74.006,
+                "description": "Birthplace longitude, the origin of every local space line."
+              },
+              "timezone": {
+                "type": "number",
+                "example": -5,
+                "description": "Timezone offset from UTC applied to the birth instant."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "The birthplace and birth instant the map was computed for."
+          },
+          "bodies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "planet": {
+                  "type": "string",
+                  "example": "Sun",
+                  "description": "Body name (Sun, Moon, Mercury through Pluto, plus North Node, Chiron, or Black Moon Lilith when requested). Localized when a translation exists."
+                },
+                "symbol": {
+                  "type": "string",
+                  "example": "\u2609",
+                  "description": "Unicode astronomical symbol for this body."
+                },
+                "azimuth": {
+                  "type": "number",
+                  "example": 113.63,
+                  "description": "Compass bearing of the body as seen from the birthplace, in degrees clockwise from true north (0 = north, 90 = east, 180 = south, 270 = west). This is the direction the local space line points."
+                },
+                "altitude": {
+                  "type": "number",
+                  "example": 59.48,
+                  "description": "Angular height of the body above (positive) or below (negative) the local horizon at birth, in degrees (-90 to 90)."
+                },
+                "compassDirection": {
+                  "type": "string",
+                  "example": "ESE",
+                  "description": "Nearest 16-point compass abbreviation for the azimuth (N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW)."
+                },
+                "aboveHorizon": {
+                  "type": "boolean",
+                  "example": true,
+                  "description": "True when the body is above the local horizon (altitude greater than 0) at the birth moment."
+                },
+                "line": {
+                  "type": "object",
+                  "properties": {
+                    "points": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "latitude": {
+                            "type": "number",
+                            "example": 39.42,
+                            "description": "Waypoint latitude in decimal degrees."
+                          },
+                          "longitude": {
+                            "type": "number",
+                            "example": -72.71,
+                            "description": "Waypoint longitude in decimal degrees."
+                          }
+                        },
+                        "required": [
+                          "latitude",
+                          "longitude"
+                        ]
+                      },
+                      "description": "Ordered latitude and longitude waypoints tracing the great-circle local space line from the birthplace along the body azimuth. The first point is the birthplace itself."
+                    }
+                  },
+                  "required": [
+                    "points"
+                  ],
+                  "description": "The great-circle directional line for this body, ready to plot on a map."
+                },
+                "interpretation": {
+                  "type": "string",
+                  "example": "Your Sun line points southeast from your birthplace. Travelling or facing this direction tends to emphasize Self-awareness and ego in your daily experience.",
+                  "description": "Plain-language reading of what travelling or facing along this body line tends to emphasize. Localized when a translation exists."
+                }
+              },
+              "required": [
+                "planet",
+                "azimuth",
+                "altitude",
+                "compassDirection",
+                "aboveHorizon",
+                "line",
+                "interpretation"
+              ]
+            },
+            "description": "Every requested body with its horizon direction, altitude, compass direction, great-circle line, and interpretation."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Local space directional map of 10 celestial bodies seen from latitude 40.7128, longitude -74.006. 6 of them sit above the horizon at the birth moment.",
+            "description": "One-line overview of the local space map."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "bodies",
+          "summary"
+        ]
+      },
+      "FixedStarsResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place used to precess every star."
+          },
+          "orb": {
+            "type": "number",
+            "example": 1,
+            "description": "Conjunction orb in degrees applied to detect contacts between stars and natal points."
+          },
+          "stars": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "regulus",
+                  "description": "Lowercase identifier for the fixed star."
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Regulus",
+                  "description": "Proper name of the fixed star."
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 150.06,
+                  "description": "Tropical ecliptic longitude of the star in degrees (0-360), precessed from its J2000 position to the chart date."
+                },
+                "sign": {
+                  "type": "string",
+                  "example": "Virgo",
+                  "description": "Tropical zodiac sign the star currently occupies."
+                },
+                "degree": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 30,
+                  "example": 0.06,
+                  "description": "Degree within the zodiac sign (0-29.999)."
+                },
+                "magnitude": {
+                  "type": "number",
+                  "example": 1.4,
+                  "description": "Apparent visual magnitude. Lower is brighter, and the brightest stars are negative."
+                },
+                "nature": {
+                  "type": "string",
+                  "example": "Mars and Jupiter",
+                  "description": "Traditional planetary nature of the star in classical astrology."
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": [
+                    "royalty",
+                    "honor",
+                    "power",
+                    "ambition",
+                    "downfall"
+                  ],
+                  "description": "Traditional astrological keywords associated with the star."
+                },
+                "conjunctions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "point": {
+                        "type": "string",
+                        "example": "Sun",
+                        "description": "Natal point conjunct this star: a planet name, or the chart angles MC and ASC. Planet names are localized to the requested language."
+                      },
+                      "pointLongitude": {
+                        "type": "number",
+                        "example": 149.21,
+                        "description": "Tropical ecliptic longitude of the natal point in degrees (0-360)."
+                      },
+                      "orb": {
+                        "type": "number",
+                        "example": 0.62,
+                        "description": "Angular separation in degrees between the star and the natal point. Smaller means a tighter, stronger contact."
+                      }
+                    },
+                    "required": [
+                      "point",
+                      "pointLongitude",
+                      "orb"
+                    ]
+                  },
+                  "description": "Natal points within the chosen orb of this star. Empty when no planet or angle contacts the star."
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "longitude",
+                "sign",
+                "degree",
+                "magnitude",
+                "nature",
+                "keywords",
+                "conjunctions"
+              ]
+            },
+            "description": "Every catalog star with its precessed tropical position, magnitude, traditional nature, and any conjunctions to the natal chart."
+          },
+          "conjunctions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "star": {
+                  "type": "string",
+                  "example": "Regulus",
+                  "description": "Proper name of the conjunct fixed star."
+                },
+                "point": {
+                  "type": "string",
+                  "example": "Sun",
+                  "description": "Natal point conjunct the star: a localized planet name, or the chart angles MC and ASC."
+                },
+                "orb": {
+                  "type": "number",
+                  "example": 0.62,
+                  "description": "Angular separation in degrees between the star and the natal point."
+                },
+                "interpretation": {
+                  "type": "string",
+                  "description": "Plain language meaning of this star contact, blending the star traditional nature with the chart point. Localized to the requested language."
+                }
+              },
+              "required": [
+                "star",
+                "point",
+                "orb",
+                "interpretation"
+              ]
+            },
+            "description": "Flat list of every star to natal point conjunction, sorted tightest first, each with an interpretation. The high-value summary of where fixed stars touch the chart."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Fixed star positions for 1990-07-15 with 3 conjunctions within 1 degrees across the major named stars including Regulus, Spica, and Algol.",
+            "description": "Short overview of the fixed-star report for previews and report intros."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "orb",
+          "stars",
+          "conjunctions",
+          "summary"
+        ]
+      },
+      "ArabicLotsResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place used to compute every lot."
+          },
+          "sect": {
+            "type": "string",
+            "enum": [
+              "day",
+              "night"
+            ],
+            "example": "night",
+            "description": "Chart sect that selected each formula. Day (diurnal) when the Sun is above the horizon, night (nocturnal) when below. Every lot swaps its two non-Ascendant terms between day and night."
+          },
+          "lots": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "fortune",
+                  "description": "Stable machine identifier for the lot (fortune, spirit, eros, necessity, courage, victory, nemesis). Use this for lookups; the name field carries the localized display label."
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Part of Fortune",
+                  "description": "Display name of the lot, localized to the requested language."
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 27.24,
+                  "description": "Absolute tropical ecliptic longitude of the lot in degrees (0 to 360)."
+                },
+                "sign": {
+                  "type": "string",
+                  "example": "Aries",
+                  "description": "Tropical zodiac sign the lot falls in."
+                },
+                "degree": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 30,
+                  "example": 27.24,
+                  "description": "Degree of the lot within its zodiac sign (0 to 29.999)."
+                },
+                "formula": {
+                  "type": "string",
+                  "example": "Ascendant \u002B Sun - Moon",
+                  "description": "Human readable arc used for this chart, with the day or night term order already applied by sect."
+                },
+                "interpretation": {
+                  "type": "string",
+                  "description": "Plain language meaning of this lot in its sign, suitable for chart reports and AI agents. Localized to the requested language."
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "longitude",
+                "sign",
+                "degree",
+                "formula",
+                "interpretation"
+              ]
+            },
+            "description": "The seven Hermetic lots in canonical order: Part of Fortune and Part of Spirit from the luminaries, then Eros, Necessity, Courage, Victory, and Nemesis from a planet paired with Fortune or Spirit."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Seven Hermetic lots for 1990-07-15 cast from a night chart: Fortune, Spirit, Eros, Necessity, Courage, Victory, and Nemesis, each projected by arc from the Ascendant.",
+            "description": "Short overview of the lot set for previews and report intros."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "sect",
+          "lots",
+          "summary"
+        ]
+      },
+      "ArabicLotsRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-07-15",
+            "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+          },
+          "time": {
+            "type": "string",
+            "example": "14:30:00",
+            "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 40.7128,
+            "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -74.006,
+            "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -14,
+                "maximum": 14
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+              }
+            ],
+            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "example": -5
+          },
+          "houseSystem": {
+            "type": "string",
+            "enum": [
+              "placidus",
+              "whole-sign",
+              "equal",
+              "koch"
+            ],
+            "default": "placidus",
+            "example": "placidus",
+            "description": "House system used to place the Sun, which determines the chart sect (day when the Sun is above the horizon, night when below) and therefore which lot formula applies. Placidus (default), Whole Sign, Equal, or Koch."
+          }
+        },
+        "required": [
+          "date",
+          "time",
+          "latitude",
+          "longitude",
+          "timezone"
+        ]
       },
       "BirthChartResponse": {
         "type": "object",
@@ -16581,6 +17817,780 @@
                     "natalPlanetPosition",
                     "interpretation"
                   ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/astrocartography": {
+      "post": {
+        "operationId": "generateAstrocartography",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Astrocartography map - planetary lines and relocation calculator",
+        "description": "Generate an astrocartography map of Midheaven, Imum Coeli, Ascendant, and Descendant planetary lines for any birth moment. Each line marks where a planet turns angular across the world, the core of relocation astrology and astro mapping. Returns right ascension, declination, the two meridian line longitudes, and sampled rising and setting curves ready to plot, with a short interpretation per line.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "chiron",
+              "description": "Optional comma separated list of extra bodies to plot beyond the ten classical planets. Allowed values: north-node, chiron, lilith. Unknown values are ignored. Defaults to none."
+            },
+            "required": false,
+            "description": "Optional comma separated list of extra bodies to plot beyond the ten classical planets. Allowed values: north-node, chiron, lilith. Unknown values are ignored. Defaults to none.",
+            "name": "include",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "1990-07-15",
+                    "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+                  },
+                  "time": {
+                    "type": "string",
+                    "example": "14:30:00",
+                    "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "example": 40.7128,
+                    "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180,
+                    "example": -74.006,
+                    "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+                  },
+                  "timezone": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -14,
+                        "maximum": 14
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                      }
+                    ],
+                    "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                    "example": -5
+                  }
+                },
+                "required": [
+                  "date",
+                  "time",
+                  "latitude",
+                  "longitude",
+                  "timezone"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Astrocartography planetary lines calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstrocartographyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/relocation-chart": {
+      "post": {
+        "operationId": "generateRelocationChart",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Generate relocation chart - Relocated birth chart calculator with shifted houses and angles",
+        "description": "Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelocationChartRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Relocation chart calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelocationChartResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/local-space": {
+      "post": {
+        "operationId": "generateLocalSpace",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Local space astrology map - Directional planetary compass lines",
+        "description": "Generate a local space astrology map that projects the natal planets onto the local horizon as compass directions and great-circle lines radiating from the birthplace. Returns each body azimuth (degrees clockwise from true north), altitude, 16-point compass direction, whether it sits above the horizon, and the latitude and longitude waypoints of its directional line. Ideal for relocation planning, directional astrology, and travel-direction maps.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "chiron,lilith",
+              "description": "Optional comma-separated extra bodies to add beyond the 10 classical planets. Allowed values: north-node, chiron, lilith. Omit to return the 10 classical planets only."
+            },
+            "required": false,
+            "description": "Optional comma-separated extra bodies to add beyond the 10 classical planets. Allowed values: north-node, chiron, lilith. Omit to return the 10 classical planets only.",
+            "name": "include",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "1990-07-15",
+                    "description": "Birth date in YYYY-MM-DD format. Combined with time and timezone it fixes the birth instant whose planetary positions are projected onto the local horizon."
+                  },
+                  "time": {
+                    "type": "string",
+                    "example": "14:30:00",
+                    "description": "Birth time in 24-hour HH:MM:SS format. Time is essential: the local horizon rotates a full circle each day, so the azimuth (compass direction) of every body depends on the exact birth time."
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "example": 40.7128,
+                    "description": "Birthplace latitude in decimal degrees (-90 to 90). This is the origin point of every local space line and the observer latitude used to turn each body into an azimuth and altitude."
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180,
+                    "example": -74.006,
+                    "description": "Birthplace longitude in decimal degrees (-180 to 180). Sets the local horizon orientation and the starting point from which the directional lines radiate."
+                  },
+                  "timezone": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -14,
+                        "maximum": 14
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                      }
+                    ],
+                    "description": "Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST) OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the birth date.",
+                    "example": -5
+                  }
+                },
+                "required": [
+                  "date",
+                  "time",
+                  "latitude",
+                  "longitude",
+                  "timezone"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Local space map generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalSpaceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/fixed-stars": {
+      "post": {
+        "operationId": "generateFixedStars",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Fixed stars and star conjunctions calculator - Regulus, Spica, Algol natal report",
+        "description": "Calculate the tropical zodiac positions of the major named fixed stars for any birth moment, including the four Royal stars and the fifteen Behenian stars, then detect conjunctions to the natal planets, Ascendant, and Midheaven. Each star returns its precessed ecliptic longitude, zodiac sign, visual magnitude, and traditional planetary nature, with a plain language interpretation for every conjunction inside the chosen orb. A focused tool for natal reports that weigh Regulus, Spica, Aldebaran, Antares, and Algol against the chart.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "maximum": 3,
+              "default": 1,
+              "example": 1,
+              "description": "Conjunction orb in degrees, the maximum separation for a star to count as conjunct a chart point. Defaults to 1, maximum 3. Widen it to surface looser contacts or tighten it for only the closest hits."
+            },
+            "required": false,
+            "description": "Conjunction orb in degrees, the maximum separation for a star to count as conjunct a chart point. Defaults to 1, maximum 3. Widen it to surface looser contacts or tighten it for only the closest hits.",
+            "name": "orb",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "1990-07-15",
+                    "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+                  },
+                  "time": {
+                    "type": "string",
+                    "example": "14:30:00",
+                    "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "example": 40.7128,
+                    "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180,
+                    "example": -74.006,
+                    "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+                  },
+                  "timezone": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -14,
+                        "maximum": 14
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                      }
+                    ],
+                    "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                    "example": -5
+                  }
+                },
+                "required": [
+                  "date",
+                  "time",
+                  "latitude",
+                  "longitude",
+                  "timezone"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Fixed star positions and conjunctions calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FixedStarsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/arabic-lots": {
+      "post": {
+        "operationId": "calculateArabicLots",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Arabic lots calculator - seven Hermetic parts including Part of Fortune and Spirit",
+        "description": "Calculate the seven Hermetic lots (Arabic parts) for any birth moment: Part of Fortune, Part of Spirit, Eros, Necessity, Courage, Victory, and Nemesis. Each lot is a sensitive point projected by arc from the Ascendant, with the day or night formula applied automatically from the chart sect. Returns the zodiac sign, degree, exact longitude, the arc used, and a plain language interpretation per lot, for Hellenistic and traditional astrology apps. Built on accurate tropical chart positions, no astronomy expertise needed.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArabicLotsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Arabic lots calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArabicLotsResponse"
                 }
               }
             }

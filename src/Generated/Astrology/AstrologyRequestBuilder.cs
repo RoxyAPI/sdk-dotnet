@@ -2,18 +2,23 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using RoxyApi.Astrology.ArabicLots;
 using RoxyApi.Astrology.AspectPatterns;
 using RoxyApi.Astrology.Aspects;
+using RoxyApi.Astrology.Astrocartography;
 using RoxyApi.Astrology.CompatibilityScore;
 using RoxyApi.Astrology.CompositeChart;
+using RoxyApi.Astrology.FixedStars;
 using RoxyApi.Astrology.Horoscope;
 using RoxyApi.Astrology.Houses;
+using RoxyApi.Astrology.LocalSpace;
 using RoxyApi.Astrology.LunarReturn;
 using RoxyApi.Astrology.MoonPhase;
 using RoxyApi.Astrology.NatalChart;
 using RoxyApi.Astrology.PlanetMeanings;
 using RoxyApi.Astrology.PlanetaryReturns;
 using RoxyApi.Astrology.Planets;
+using RoxyApi.Astrology.RelocationChart;
 using RoxyApi.Astrology.Signs;
 using RoxyApi.Astrology.SolarReturn;
 using RoxyApi.Astrology.Synastry;
@@ -31,6 +36,11 @@ namespace RoxyApi.Astrology
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AstrologyRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The arabicLots property</summary>
+        public global::RoxyApi.Astrology.ArabicLots.ArabicLotsRequestBuilder ArabicLots
+        {
+            get => new global::RoxyApi.Astrology.ArabicLots.ArabicLotsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The aspectPatterns property</summary>
         public global::RoxyApi.Astrology.AspectPatterns.AspectPatternsRequestBuilder AspectPatterns
         {
@@ -40,6 +50,11 @@ namespace RoxyApi.Astrology
         public global::RoxyApi.Astrology.Aspects.AspectsRequestBuilder Aspects
         {
             get => new global::RoxyApi.Astrology.Aspects.AspectsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The astrocartography property</summary>
+        public global::RoxyApi.Astrology.Astrocartography.AstrocartographyRequestBuilder Astrocartography
+        {
+            get => new global::RoxyApi.Astrology.Astrocartography.AstrocartographyRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The compatibilityScore property</summary>
         public global::RoxyApi.Astrology.CompatibilityScore.CompatibilityScoreRequestBuilder CompatibilityScore
@@ -51,6 +66,11 @@ namespace RoxyApi.Astrology
         {
             get => new global::RoxyApi.Astrology.CompositeChart.CompositeChartRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The fixedStars property</summary>
+        public global::RoxyApi.Astrology.FixedStars.FixedStarsRequestBuilder FixedStars
+        {
+            get => new global::RoxyApi.Astrology.FixedStars.FixedStarsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The horoscope property</summary>
         public global::RoxyApi.Astrology.Horoscope.HoroscopeRequestBuilder Horoscope
         {
@@ -60,6 +80,11 @@ namespace RoxyApi.Astrology
         public global::RoxyApi.Astrology.Houses.HousesRequestBuilder Houses
         {
             get => new global::RoxyApi.Astrology.Houses.HousesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The localSpace property</summary>
+        public global::RoxyApi.Astrology.LocalSpace.LocalSpaceRequestBuilder LocalSpace
+        {
+            get => new global::RoxyApi.Astrology.LocalSpace.LocalSpaceRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The lunarReturn property</summary>
         public global::RoxyApi.Astrology.LunarReturn.LunarReturnRequestBuilder LunarReturn
@@ -90,6 +115,11 @@ namespace RoxyApi.Astrology
         public global::RoxyApi.Astrology.Planets.PlanetsRequestBuilder Planets
         {
             get => new global::RoxyApi.Astrology.Planets.PlanetsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The relocationChart property</summary>
+        public global::RoxyApi.Astrology.RelocationChart.RelocationChartRequestBuilder RelocationChart
+        {
+            get => new global::RoxyApi.Astrology.RelocationChart.RelocationChartRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The signs property</summary>
         public global::RoxyApi.Astrology.Signs.SignsRequestBuilder Signs
