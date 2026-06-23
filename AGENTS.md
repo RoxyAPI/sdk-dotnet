@@ -1,6 +1,6 @@
 # RoxyApi .NET SDK - Agent Guide
 
-.NET SDK for RoxyAPI. Twelve domains (Western astrology, Vedic astrology, numerology, tarot, human design, forecast, biorhythm, I Ching, crystals, dreams, angel numbers, location) plus usage and languages. One API key, fully typed, generated from the OpenAPI spec.
+.NET SDK for RoxyAPI. 12+ domains (Western astrology, Vedic astrology, numerology, tarot, human design, forecast, biorhythm, I Ching, crystals, dreams, angel numbers, location) plus utility namespaces (usage, languages). One API key, fully typed, generated from the OpenAPI spec.
 
 > Before writing code with this SDK, read `docs/llms-full.txt` in this package for the complete method reference with one example per endpoint.
 
@@ -153,7 +153,7 @@ Responses are fully typed objects, not dictionaries. Discover fields with Intell
 - **Natal chart**: `Planets`, `Houses`, `Aspects`, `Ascendant`, `Midheaven`, `Summary`. Each planet has `Name`, `Sign`, `Degree`, `House`, `IsRetrograde`. The `Planets` list has more than ten entries (classical bodies plus nodes and key points).
 
 ```csharp
-var chart = await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+var chart = await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 foreach (var p in chart!.Planets!)
     Console.WriteLine($"{p.Name}: {p.Sign} (house {p.House})");
 ```
@@ -204,7 +204,7 @@ Copy the format column exactly.
 | `Date` (and `BirthDate`, `StartDate`, ...) | The `Date` struct from `Microsoft.Kiota.Abstractions` | `new Date(1990, 1, 15)` | `"1990-01-15"`, `DateTime.Now`, `new DateTime(...)` |
 | `Time` | 24-hour string | `"14:30:00"`, `"09:00:00"` | `"2:30 PM"`, `"14:30"` (no seconds) |
 | `Timezone` | Union wrapper: decimal OR IANA | `new() { Double = 5.5 }`, `new() { Double = -5 }` OR `new() { String = "America/New_York" }` | `5.5`, `"5.5"`, `"+0530"` assigned directly |
-| `Latitude` / `Longitude` | `double` | `28.6139`, `-74.006` | `"28.6139"`, DMS strings |
+| `Latitude` / `Longitude` | `double` | `40.7128`, `-74.006` | `"40.7128"`, DMS strings |
 | `sign` (horoscope indexer) | Lowercase zodiac name | `["aries"]`, `["scorpio"]` | `["Aries"]`, `["1"]` |
 | `chakra` (crystals indexer) | Title-case name | `["Root"]`, `["Heart"]`, `["Third Eye"]` | `["heart"]`, `["third-eye"]` |
 | `FullName` (numerology) | Birth-certificate name | `"John William Smith"` | Nickname, partial name |

@@ -16,7 +16,7 @@ How the calls below map to the API:
 - **Request bodies use a target-typed `new()`.** The body type is inferred from the method, so you never name it. Property names are the PascalCase of the JSON fields (`birth_date` becomes `BirthDate`).
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
 - **Dates use `new Date(year, month, day)`; times are 24-hour strings (`"14:30:00"`).**
-- **`Timezone` is a union:** `new() { Double = 5.5 }` (decimal offset) or `new() { String = "Asia/Kolkata" }` (IANA name, resolved to the DST-correct offset).
+- **`Timezone` is a union:** `new() { Double = -5 }` (decimal offset) or `new() { String = "America/New_York" }` (IANA name, resolved to the DST-correct offset).
 - **Every call is async and throws `RoxyError` on a 4xx or 5xx.** Capture the result directly: `var chart = await roxy.Astrology.NatalChart.PostAsync(new() { ... });`
 
 **Multi-language responses.** Interpretations are available in eight languages: en, tr, de, es, fr, hi, pt, ru. Add `c => c.QueryParameters.Lang = "es"` to any supported endpoint. Supported: astrology, vedicAstrology, numerology, tarot, biorhythm, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. Untranslated fields fall back to English.

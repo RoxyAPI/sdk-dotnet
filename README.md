@@ -11,7 +11,7 @@ The .NET SDK for astrology, Vedic astrology, numerology, tarot, and more.
 
 One API key. Fully typed. Verified against NASA JPL Horizons.
 
-The fastest way to add natal charts, kundli matching, daily horoscopes, tarot readings, and spiritual insights to ASP.NET Core, Blazor, MAUI, Unity, and AI agents. Twelve domains behind a single [Roxy](https://roxyapi.com) subscription, interpretations in eight languages, generated from the OpenAPI spec so new endpoints appear the day they ship.
+The fastest way to add natal charts, daily horoscopes, synastry, Vedic kundli, tarot spreads, numerology, human design bodygraphs, and transit forecasts to ASP.NET Core, Blazor, MAUI, Unity, and AI agents. 12+ domains behind a single [Roxy](https://roxyapi.com) subscription, interpretations in eight languages, generated from the OpenAPI spec so new endpoints appear the day they ship.
 
 ## Install
 
@@ -147,7 +147,7 @@ var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
 var synastry = await roxy.Astrology.Synastry.PostAsync(new()
 {
     Person1 = new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } },
-    Person2 = new() { Date = new Date(1992, 7, 22), Time = "09:00:00", Latitude = 51.5074, Longitude = -0.1278, Timezone = new() { Double = 0 } },
+    Person2 = new() { Date = new Date(1992, 7, 22), Time = "09:00:00", Latitude = 51.5074, Longitude = -0.1278, Timezone = new() { Double = 1 } },
 });
 
 // Moon phase. Viral for wellness, cycle-tracking, and meditation apps.
@@ -248,7 +248,7 @@ The breakout 2026 self-discovery category. One call returns the full bodygraph f
 var bodygraph = await roxy.HumanDesign.Bodygraph.PostAsync(new()
 {
     Date = new Date(1990, 7, 4), Time = "10:12:00",
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -4 },
 });
 // bodygraph.Type, bodygraph.Strategy, bodygraph.Profile, bodygraph.Definition
 // bodygraph.Centers, bodygraph.Channels, bodygraph.Gates, bodygraph.IncarnationCross
@@ -261,7 +261,7 @@ The first cross-domain, stateless forecast in the catalog. One call merges Weste
 ```csharp
 var timeline = await roxy.Forecast.Timeline.PostAsync(new()
 {
-    BirthData = new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } },
+    BirthData = new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -4 } },
     StartDate = new Date(2026, 6, 1),
     EndDate = new Date(2026, 6, 30),
 });
@@ -441,7 +441,7 @@ Console.WriteLine($"{city.City}, {city.Country} at {city.Latitude}, {city.Longit
 var chart = await roxy.Astrology.NatalChart.PostAsync(new()
 {
     Date = new Date(1990, 1, 15), Time = "14:30:00",
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 },
 });
 
 foreach (var planet in chart!.Planets!)
