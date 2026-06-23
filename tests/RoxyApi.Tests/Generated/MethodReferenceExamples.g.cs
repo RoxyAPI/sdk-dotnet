@@ -39,6 +39,11 @@ internal static class MethodReferenceExamples
         await roxy.Astrology.LocalSpace.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron,lilith");
         await roxy.Astrology.FixedStars.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Orb = 1);
         await roxy.Astrology.ArabicLots.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+        await roxy.Astrology.Asteroids.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+        await roxy.Astrology.Lilith.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+        await roxy.Astrology.Progressions.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
+        await roxy.Astrology.SolarArc.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
+        await roxy.Astrology.Profections.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 8, 4) });
         await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Division = 10 });

@@ -5,12 +5,14 @@ using Microsoft.Kiota.Abstractions;
 using RoxyApi.Astrology.ArabicLots;
 using RoxyApi.Astrology.AspectPatterns;
 using RoxyApi.Astrology.Aspects;
+using RoxyApi.Astrology.Asteroids;
 using RoxyApi.Astrology.Astrocartography;
 using RoxyApi.Astrology.CompatibilityScore;
 using RoxyApi.Astrology.CompositeChart;
 using RoxyApi.Astrology.FixedStars;
 using RoxyApi.Astrology.Horoscope;
 using RoxyApi.Astrology.Houses;
+using RoxyApi.Astrology.Lilith;
 using RoxyApi.Astrology.LocalSpace;
 using RoxyApi.Astrology.LunarReturn;
 using RoxyApi.Astrology.MoonPhase;
@@ -18,8 +20,11 @@ using RoxyApi.Astrology.NatalChart;
 using RoxyApi.Astrology.PlanetMeanings;
 using RoxyApi.Astrology.PlanetaryReturns;
 using RoxyApi.Astrology.Planets;
+using RoxyApi.Astrology.Profections;
+using RoxyApi.Astrology.Progressions;
 using RoxyApi.Astrology.RelocationChart;
 using RoxyApi.Astrology.Signs;
+using RoxyApi.Astrology.SolarArc;
 using RoxyApi.Astrology.SolarReturn;
 using RoxyApi.Astrology.Synastry;
 using RoxyApi.Astrology.TransitAspects;
@@ -51,6 +56,11 @@ namespace RoxyApi.Astrology
         {
             get => new global::RoxyApi.Astrology.Aspects.AspectsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The asteroids property</summary>
+        public global::RoxyApi.Astrology.Asteroids.AsteroidsRequestBuilder Asteroids
+        {
+            get => new global::RoxyApi.Astrology.Asteroids.AsteroidsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The astrocartography property</summary>
         public global::RoxyApi.Astrology.Astrocartography.AstrocartographyRequestBuilder Astrocartography
         {
@@ -80,6 +90,11 @@ namespace RoxyApi.Astrology
         public global::RoxyApi.Astrology.Houses.HousesRequestBuilder Houses
         {
             get => new global::RoxyApi.Astrology.Houses.HousesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The lilith property</summary>
+        public global::RoxyApi.Astrology.Lilith.LilithRequestBuilder Lilith
+        {
+            get => new global::RoxyApi.Astrology.Lilith.LilithRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The localSpace property</summary>
         public global::RoxyApi.Astrology.LocalSpace.LocalSpaceRequestBuilder LocalSpace
@@ -116,6 +131,16 @@ namespace RoxyApi.Astrology
         {
             get => new global::RoxyApi.Astrology.Planets.PlanetsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The profections property</summary>
+        public global::RoxyApi.Astrology.Profections.ProfectionsRequestBuilder Profections
+        {
+            get => new global::RoxyApi.Astrology.Profections.ProfectionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The progressions property</summary>
+        public global::RoxyApi.Astrology.Progressions.ProgressionsRequestBuilder Progressions
+        {
+            get => new global::RoxyApi.Astrology.Progressions.ProgressionsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The relocationChart property</summary>
         public global::RoxyApi.Astrology.RelocationChart.RelocationChartRequestBuilder RelocationChart
         {
@@ -125,6 +150,11 @@ namespace RoxyApi.Astrology
         public global::RoxyApi.Astrology.Signs.SignsRequestBuilder Signs
         {
             get => new global::RoxyApi.Astrology.Signs.SignsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The solarArc property</summary>
+        public global::RoxyApi.Astrology.SolarArc.SolarArcRequestBuilder SolarArc
+        {
+            get => new global::RoxyApi.Astrology.SolarArc.SolarArcRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The solarReturn property</summary>
         public global::RoxyApi.Astrology.SolarReturn.SolarReturnRequestBuilder SolarReturn

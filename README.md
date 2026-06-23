@@ -107,7 +107,7 @@ Type `roxy.` to see every domain. Type `roxy.Astrology.` to see every endpoint i
 <!-- BEGIN:DOMAINS -->
 | Accessor | Endpoints | What it covers |
 |----------|-----------|----------------|
-| `roxy.Astrology` | 28 | Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, syn... |
+| `roxy.Astrology` | 33 | Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, syn... |
 | `roxy.VedicAstrology` | 43 | Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional charts (D1-D60), Ashtakoot Gun Milan ku... |
 | `roxy.Numerology` | 20 | Numerology API to calculate life path, expression, soul urge, personality, and maturity numbers, with Pinnacle and Ch... |
 | `roxy.Tarot` | 10 | Tarot reading API with the complete 78-card Rider-Waite-Smith deck and card meanings for love, career, health, and sp... |

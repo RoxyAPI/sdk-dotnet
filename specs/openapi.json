@@ -3,7 +3,7 @@
   "info": {
     "title": "RoxyAPI",
     "version": "2.0.0",
-    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 12 domains (astrology, Vedic astrology, human design, forecast, biorhythm, tarot, numerology, crystals, dreams, I-Ching, angel numbers, location), 157\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (MCP)\n\nRoxyAPI has native Model Context Protocol support. Your AI agent auto-discovers all 157\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable (stable \u2014 safe to switch on programmatically).\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 to $699/month.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
+    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 12 domains (astrology, Vedic astrology, human design, forecast, biorhythm, tarot, numerology, crystals, dreams, I-Ching, angel numbers, location), 162\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (MCP)\n\nRoxyAPI has native Model Context Protocol support. Your AI agent auto-discovers all 162\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable (stable \u2014 safe to switch on programmatically).\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 to $699/month.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
     "contact": {
       "name": "RoxyAPI Support",
       "url": "https://roxyapi.com/contact"
@@ -31,7 +31,7 @@
   "tags": [
     {
       "name": "Western Astrology",
-      "description": "Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, aspect-pattern detection (Grand Trine, T-Square, Yod), astrocartography planetary lines, relocation charts, and local space maps for location based astrology, plus classical points like fixed star conjunctions and Arabic lots. 28\u002B endpoints for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes with a date parameter for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
+      "description": "Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, aspect-pattern detection (Grand Trine, T-Square, Yod), astrocartography planetary lines, relocation charts, and local space maps for location based astrology, plus classical and professional points like fixed star conjunctions, Arabic lots, the asteroid goddesses (Ceres, Pallas, Juno, Vesta), mean and true Black Moon Lilith, and timing techniques like secondary progressions, solar arc directions, and annual profections. 33\u002B endpoints for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes with a date parameter for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
     },
     {
       "name": "Vedic Astrology",
@@ -3003,6 +3003,1064 @@
           "latitude",
           "longitude",
           "timezone"
+        ]
+      },
+      "AsteroidsResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place used to compute every asteroid."
+          },
+          "houseSystem": {
+            "type": "string",
+            "enum": [
+              "placidus",
+              "whole-sign",
+              "equal",
+              "koch"
+            ],
+            "example": "placidus",
+            "description": "House system actually used to place the asteroids, after any polar fallback to Whole Sign."
+          },
+          "asteroids": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Ceres",
+                  "description": "Display name of the asteroid, localized to the requested language."
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 64.72,
+                  "description": "Absolute tropical ecliptic longitude of the asteroid in degrees (0 to 360)."
+                },
+                "latitude": {
+                  "type": "number",
+                  "example": -2.83,
+                  "description": "Ecliptic latitude in degrees, the angular distance north or south of the ecliptic plane."
+                },
+                "sign": {
+                  "type": "string",
+                  "example": "Gemini",
+                  "description": "Tropical zodiac sign the asteroid falls in."
+                },
+                "degree": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 30,
+                  "example": 4.72,
+                  "description": "Degree of the asteroid within its zodiac sign (0 to 29.999)."
+                },
+                "house": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 12,
+                  "example": 7,
+                  "description": "Natal house placement (1 to 12) from the selected house system and birth location."
+                },
+                "speed": {
+                  "type": "number",
+                  "example": 0.409,
+                  "description": "Daily motion in degrees per day. Negative values indicate retrograde motion."
+                },
+                "isRetrograde": {
+                  "type": "boolean",
+                  "example": false,
+                  "description": "Whether the asteroid appears to move backward from Earth, true when the daily speed is negative."
+                },
+                "interpretation": {
+                  "type": "string",
+                  "description": "Plain language meaning of this asteroid in its sign, suitable for chart reports and AI agents. Localized to the requested language."
+                }
+              },
+              "required": [
+                "name",
+                "longitude",
+                "latitude",
+                "sign",
+                "degree",
+                "house",
+                "speed",
+                "isRetrograde",
+                "interpretation"
+              ]
+            },
+            "description": "The four classical asteroid goddesses in canonical order: Ceres, Pallas, Juno, and Vesta, each with its tropical position, house, motion, and interpretation."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Asteroid goddess positions for 1990-07-15: Ceres, Pallas, Juno, and Vesta placed by sign, house, and retrograde motion.",
+            "description": "Short overview of the asteroid set for previews and report intros."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "houseSystem",
+          "asteroids",
+          "summary"
+        ]
+      },
+      "AsteroidsRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-07-15",
+            "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+          },
+          "time": {
+            "type": "string",
+            "example": "14:30:00",
+            "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 40.7128,
+            "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -74.006,
+            "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -14,
+                "maximum": 14
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+              }
+            ],
+            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "example": -5
+          },
+          "houseSystem": {
+            "type": "string",
+            "enum": [
+              "placidus",
+              "whole-sign",
+              "equal",
+              "koch"
+            ],
+            "default": "placidus",
+            "example": "placidus",
+            "description": "House system used to assign each asteroid to a natal house. Placidus (default), Whole Sign, Equal, or Koch. Above the polar circle, quadrant systems fall back to Whole Sign and the echoed houseSystem reports the system actually used."
+          }
+        },
+        "required": [
+          "date",
+          "time",
+          "latitude",
+          "longitude",
+          "timezone"
+        ]
+      },
+      "LilithResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place used to compute both Lilith variants."
+          },
+          "houseSystem": {
+            "type": "string",
+            "enum": [
+              "placidus",
+              "whole-sign",
+              "equal",
+              "koch"
+            ],
+            "example": "placidus",
+            "description": "House system applied when placing each variant in a house."
+          },
+          "lilith": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "variant": {
+                  "type": "string",
+                  "example": "mean",
+                  "description": "Which lunar apogee this entry describes, localized to the requested language. The mean variant is the smoothed average apogee; the true variant is the instantaneous osculating apogee."
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 140.58,
+                  "description": "Absolute tropical ecliptic longitude of the apogee in degrees (0 to 360)."
+                },
+                "latitude": {
+                  "type": "number",
+                  "example": -0.66,
+                  "description": "Ecliptic latitude in degrees, the projection of the apogee off the ecliptic plane. Reaches up to about 5 degrees because the lunar orbit is inclined."
+                },
+                "sign": {
+                  "type": "string",
+                  "example": "Leo",
+                  "description": "Tropical zodiac sign the apogee falls in, naming where the suppressed instinct lives."
+                },
+                "degree": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 30,
+                  "example": 20.58,
+                  "description": "Degree of the apogee within its zodiac sign (0 to 29.999)."
+                },
+                "house": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 12,
+                  "example": 7,
+                  "description": "House placement (1 to 12) in the selected house system, the area of life where the Lilith theme plays out."
+                },
+                "speed": {
+                  "type": "number",
+                  "example": 0.1108,
+                  "description": "Daily motion in degrees per day. The mean apogee is always positive (direct); the true apogee can be negative (retrograde)."
+                },
+                "isRetrograde": {
+                  "type": "boolean",
+                  "example": false,
+                  "description": "Whether the apogee is moving backward. Always false for the mean apogee; the true apogee turns retrograde when the osculating ellipse swings the apogee direction backward."
+                },
+                "interpretation": {
+                  "type": "string",
+                  "description": "Plain language meaning of this Lilith variant in its sign, suitable for chart reports and AI agents. Localized to the requested language."
+                },
+                "note": {
+                  "type": "string",
+                  "description": "Short explanation of how this variant is defined and how it differs from the other, localized to the requested language."
+                }
+              },
+              "required": [
+                "variant",
+                "longitude",
+                "latitude",
+                "sign",
+                "degree",
+                "house",
+                "speed",
+                "isRetrograde",
+                "interpretation",
+                "note"
+              ]
+            },
+            "description": "Both Black Moon Lilith variants, the mean lunar apogee first and the true (osculating) apogee second."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Black Moon Lilith for 1961-08-04: mean apogee in Leo and true osculating apogee in Leo, each with sign, degree, house, and interpretation.",
+            "description": "Short overview of both variants for previews and report intros."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "houseSystem",
+          "lilith",
+          "summary"
+        ]
+      },
+      "LilithRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-07-15",
+            "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+          },
+          "time": {
+            "type": "string",
+            "example": "14:30:00",
+            "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 40.7128,
+            "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -74.006,
+            "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -14,
+                "maximum": 14
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+              }
+            ],
+            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "example": -5
+          },
+          "houseSystem": {
+            "type": "string",
+            "enum": [
+              "placidus",
+              "whole-sign",
+              "equal",
+              "koch"
+            ],
+            "default": "placidus",
+            "example": "placidus",
+            "description": "House system used to place each Lilith variant in a house. Placidus (default), Whole Sign, Equal, or Koch."
+          }
+        },
+        "required": [
+          "date",
+          "time",
+          "latitude",
+          "longitude",
+          "timezone"
+        ]
+      },
+      "ProgressionsResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place the progressed chart is built from."
+          },
+          "targetDate": {
+            "type": "string",
+            "example": "2025-07-15",
+            "description": "The requested date the chart was progressed to."
+          },
+          "progressedDate": {
+            "type": "string",
+            "example": "1990-08-17",
+            "description": "UTC calendar date of the progressed moment, the ephemeris day whose real positions stand in for the target date. One day after birth per year of elapsed life."
+          },
+          "elapsedYears": {
+            "type": "number",
+            "example": 35,
+            "description": "Years elapsed between birth and the target date, measured in mean tropical years. Drives both the progressed planets and the Naibod progression of the angles. Negative values progress the chart converse (before birth)."
+          },
+          "planets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Sun",
+                  "description": "Body name in canonical English. One of the 10 classical planets, the lunar nodes, Chiron, or Black Moon Lilith."
+                },
+                "longitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 165.18,
+                  "description": "Progressed tropical ecliptic longitude in degrees (0 to 360)."
+                },
+                "sign": {
+                  "type": "string",
+                  "example": "Virgo",
+                  "description": "Tropical zodiac sign the progressed body falls in."
+                },
+                "degree": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 30,
+                  "example": 15.18,
+                  "description": "Degree of the progressed body within its zodiac sign (0 to 29.999)."
+                },
+                "house": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 12,
+                  "example": 2,
+                  "description": "Whole-sign house (1 to 12) counted from the progressed Ascendant sign. The 1st house is the entire sign the progressed Ascendant falls in."
+                },
+                "speed": {
+                  "type": "number",
+                  "example": 0.985,
+                  "description": "Daily motion of the body at the progressed instant in degrees per day. Negative values indicate retrograde motion."
+                },
+                "isRetrograde": {
+                  "type": "boolean",
+                  "example": false,
+                  "description": "Whether the body is retrograde at the progressed instant, true when the daily speed is negative."
+                },
+                "interpretation": {
+                  "type": "string",
+                  "description": "Plain language meaning of this progressed body in its sign, suitable for chart reports and AI agents. Localized to the requested language."
+                }
+              },
+              "required": [
+                "name",
+                "longitude",
+                "sign",
+                "degree",
+                "house",
+                "speed",
+                "isRetrograde",
+                "interpretation"
+              ]
+            },
+            "description": "Every progressed body in canonical order: the 10 classical planets, the lunar nodes, Chiron, and Black Moon Lilith. The progressed Sun moves about one degree per year and the progressed Moon about one sign per two and a half years, so these two are the headline movers in any progressed reading."
+          },
+          "ascendant": {
+            "type": "object",
+            "properties": {
+              "longitude": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360,
+                "example": 134.27,
+                "description": "Absolute tropical ecliptic longitude of the progressed angle in degrees (0 to 360)."
+              },
+              "sign": {
+                "type": "string",
+                "example": "Leo",
+                "description": "Tropical zodiac sign the progressed angle falls in."
+              },
+              "degree": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30,
+                "example": 14.27,
+                "description": "Degree of the progressed angle within its zodiac sign (0 to 29.999)."
+              }
+            },
+            "required": [
+              "longitude",
+              "sign",
+              "degree"
+            ],
+            "description": "Progressed Ascendant, the rising degree advanced by the Naibod arc per year. Marks the evolving outward style and immediate environment."
+          },
+          "midheaven": {
+            "type": "object",
+            "properties": {
+              "longitude": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360,
+                "example": 134.27,
+                "description": "Absolute tropical ecliptic longitude of the progressed angle in degrees (0 to 360)."
+              },
+              "sign": {
+                "type": "string",
+                "example": "Leo",
+                "description": "Tropical zodiac sign the progressed angle falls in."
+              },
+              "degree": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30,
+                "example": 14.27,
+                "description": "Degree of the progressed angle within its zodiac sign (0 to 29.999)."
+              }
+            },
+            "required": [
+              "longitude",
+              "sign",
+              "degree"
+            ],
+            "description": "Progressed Midheaven, the culminating degree advanced by the Naibod arc per year. Marks the evolving vocation and public direction."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Your secondary progressed chart advances the birth chart by one day for each year of life.",
+            "description": "Short overview of the progressed chart led by the progressed Sun and Moon. Localized to the requested language."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "targetDate",
+          "progressedDate",
+          "elapsedYears",
+          "planets",
+          "ascendant",
+          "midheaven",
+          "summary"
+        ]
+      },
+      "ProgressionsRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-07-15",
+            "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+          },
+          "time": {
+            "type": "string",
+            "example": "14:30:00",
+            "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 40.7128,
+            "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -74.006,
+            "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -14,
+                "maximum": 14
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+              }
+            ],
+            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "example": -5
+          },
+          "targetDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-07-15",
+            "description": "Date to progress the chart to, in YYYY-MM-DD format. Usually today or a forecast date. The day-for-a-year key turns the elapsed years since birth into the same number of ephemeris days after the birth moment."
+          }
+        },
+        "required": [
+          "date",
+          "time",
+          "latitude",
+          "longitude",
+          "timezone",
+          "targetDate"
+        ]
+      },
+      "SolarArcResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place used to compute the natal chart and the solar arc."
+          },
+          "targetDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-07-15",
+            "description": "Echo of the date the chart was directed to."
+          },
+          "solarArc": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 360,
+            "example": 34.52,
+            "description": "The solar arc in degrees: the secondary-progressed Sun longitude minus the natal Sun longitude. Approximately one degree per year of life. Every natal point is advanced by exactly this arc."
+          },
+          "summary": {
+            "type": "string",
+            "example": "Solar arc directions move every point in your chart forward by the same arc the Sun has travelled by progression, about one degree per year.",
+            "description": "Short overview of the directed chart for previews and report intros. Localized to the requested language."
+          },
+          "directed": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Sun",
+                  "description": "Name of the directed point, localized to the requested language. This covers the planets and the two angles, the Ascendant and the Midheaven, alike."
+                },
+                "natalLongitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 112.45,
+                  "description": "Absolute tropical ecliptic longitude of the point in the natal chart, in degrees (0 to 360)."
+                },
+                "directedLongitude": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360,
+                  "example": 143.78,
+                  "description": "Absolute tropical ecliptic longitude after directing, in degrees (0 to 360). Equals the natal longitude plus the solar arc, normalized to a full circle."
+                },
+                "sign": {
+                  "type": "string",
+                  "example": "Leo",
+                  "description": "Tropical zodiac sign the directed point falls in. A directed point crossing into a new sign marks a developmental turning point."
+                },
+                "degree": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 30,
+                  "example": 23.78,
+                  "description": "Degree of the directed point within its zodiac sign (0 to 29.999)."
+                },
+                "interpretation": {
+                  "type": "string",
+                  "description": "Plain language meaning of this directed point, suitable for chart reports and AI agents. Localized to the requested language."
+                }
+              },
+              "required": [
+                "name",
+                "natalLongitude",
+                "directedLongitude",
+                "sign",
+                "degree",
+                "interpretation"
+              ]
+            },
+            "description": "Every natal point advanced by the solar arc: the planets and bodies in canonical order first, then the Ascendant and the Midheaven."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "targetDate",
+          "solarArc",
+          "summary",
+          "directed"
+        ]
+      },
+      "SolarArcRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-07-15",
+            "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+          },
+          "time": {
+            "type": "string",
+            "example": "14:30:00",
+            "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 40.7128,
+            "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -74.006,
+            "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -14,
+                "maximum": 14
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+              }
+            ],
+            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "example": -5
+          },
+          "targetDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-07-15",
+            "description": "Date to direct the chart to, in YYYY-MM-DD format. Every natal point is advanced by the solar arc accumulated from birth to this date, about one degree for each year of life."
+          }
+        },
+        "required": [
+          "date",
+          "time",
+          "latitude",
+          "longitude",
+          "timezone",
+          "targetDate"
+        ]
+      },
+      "ProfectionsResponse": {
+        "type": "object",
+        "properties": {
+          "birthDetails": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-15",
+                "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+              },
+              "time": {
+                "type": "string",
+                "example": "14:30:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 40.7128,
+                "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": -74.006,
+                "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+              },
+              "timezone": {
+                "type": "number",
+                "minimum": -12,
+                "maximum": 14,
+                "example": -5,
+                "description": "Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9."
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude",
+              "timezone"
+            ],
+            "description": "Echo of the birth moment and place used to derive the natal Ascendant and the lord of the year placement."
+          },
+          "targetDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-08-04",
+            "description": "Target date whose profection year was computed, echoed from the request."
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 0,
+            "example": 30,
+            "description": "Completed whole years from birth to the target date. Age 0 is the birth year and profects the first house."
+          },
+          "profectedHouse": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12,
+            "example": 7,
+            "description": "Profected whole sign house activated for the year (1 to 12), computed as age modulo 12 plus 1. House 1 is the rising sign and the cycle repeats every twelve years."
+          },
+          "profectedSign": {
+            "type": "string",
+            "example": "Leo",
+            "description": "Tropical zodiac sign on the profected house: the rising sign advanced by one whole sign for each completed year."
+          },
+          "lordOfYear": {
+            "type": "string",
+            "example": "Sun",
+            "description": "Lord of the year (annual time lord): the traditional ruling planet of the profected sign whose natal condition and transits color the themes of the year."
+          },
+          "lordNatalPosition": {
+            "type": "object",
+            "properties": {
+              "sign": {
+                "type": "string",
+                "example": "Leo",
+                "description": "Zodiac sign the lord of the year occupies in the natal chart."
+              },
+              "house": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 12,
+                "example": 6,
+                "description": "Natal house the lord of the year occupies (1 to 12), in the requested house system."
+              }
+            },
+            "required": [
+              "sign",
+              "house"
+            ],
+            "description": "Where the lord of the year sits in the birth chart: the natal sign and house that ground the theme of the profection year."
+          },
+          "interpretation": {
+            "type": "string",
+            "description": "Plain language reading of the profection year, combining the profected house theme, the profected sign, and the lord of the year. Localized to the requested language."
+          },
+          "summary": {
+            "type": "string",
+            "example": "At age 30, the annual profection activates house 7 in Leo, making Sun the lord of the year for 2025-08-04.",
+            "description": "Short overview of the profection year for previews and report intros."
+          }
+        },
+        "required": [
+          "birthDetails",
+          "targetDate",
+          "age",
+          "profectedHouse",
+          "profectedSign",
+          "lordOfYear",
+          "lordNatalPosition",
+          "interpretation",
+          "summary"
+        ]
+      },
+      "ProfectionsRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-07-15",
+            "description": "Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day."
+          },
+          "time": {
+            "type": "string",
+            "example": "14:30:00",
+            "description": "Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown."
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "example": 40.7128,
+            "description": "Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South."
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "example": -74.006,
+            "description": "Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -14,
+                "maximum": 14
+              },
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+              }
+            ],
+            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "example": -5
+          },
+          "targetDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-08-04",
+            "description": "Date whose profection year you want, in YYYY-MM-DD format. The completed whole years from the birth date to this date select the profected house and sign. Must fall on or after the birth date."
+          },
+          "houseSystem": {
+            "type": "string",
+            "enum": [
+              "placidus",
+              "whole-sign",
+              "equal",
+              "koch"
+            ],
+            "default": "placidus",
+            "example": "placidus",
+            "description": "House system used only to report where the lord of the year sits in the natal chart. The profected house and sign always use whole sign profection from the rising sign. Placidus (default), Whole Sign, Equal, or Koch."
+          }
+        },
+        "required": [
+          "date",
+          "time",
+          "latitude",
+          "longitude",
+          "timezone",
+          "targetDate"
         ]
       },
       "BirthChartResponse": {
@@ -18591,6 +19649,596 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ArabicLotsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/asteroids": {
+      "post": {
+        "operationId": "generateAsteroids",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Asteroid goddesses calculator - Ceres, Pallas, Juno, and Vesta natal positions",
+        "description": "Calculate the natal positions of the four classical asteroid goddesses, Ceres, Pallas, Juno, and Vesta, for any birth moment. Each asteroid returns its tropical zodiac sign, degree, house placement, daily speed, retrograde status, and a plain language interpretation of its meaning in the chart. Chiron is available through the natal chart endpoint, so this endpoint stays focused on the four asteroid goddesses for natal reports and relationship astrology.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AsteroidsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Asteroid positions calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsteroidsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/lilith": {
+      "post": {
+        "operationId": "generateLilith",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Black Moon Lilith calculator - mean and true lunar apogee in the natal chart",
+        "description": "Calculate Black Moon Lilith for any birth chart, both the mean lunar apogee, the steady and most widely used point, and the true or osculating apogee, the exact position that can shift sign and turn retrograde. Returns the zodiac sign, degree, house, ecliptic longitude and latitude, daily speed, retrograde flag, and a plain language interpretation for each variant. Built for natal astrology apps and AI agents exploring the wild, suppressed, and reclaimed self that Lilith represents.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LilithRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Black Moon Lilith calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LilithResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/progressions": {
+      "post": {
+        "operationId": "generateProgressions",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Secondary progressions calculator - progressed chart, progressed Sun and Moon",
+        "description": "Generate the secondary progressed chart for any date using the day-for-a-year key, where each day of ephemeris motion after birth stands in for one year of life. Returns every progressed body with its sign, degree, whole-sign house, motion, and retrograde state, plus the progressed Ascendant and Midheaven via the Naibod arc. The progressed Sun and progressed Moon are the headline timing markers for inner growth and emotional chapters. Secondary progressions API, progressed chart calculator, progressed Sun and Moon, progressed Ascendant and Midheaven.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressionsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Progressed chart calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/solar-arc": {
+      "post": {
+        "operationId": "generateSolarArc",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Solar arc directions calculator - directed chart at one degree per year",
+        "description": "Calculate a solar arc directed chart for any birth moment and target date. The solar arc is the secondary-progressed Sun longitude minus the natal Sun longitude, about one degree for each year of life, and every natal point including the Ascendant and Midheaven is advanced forward by that same arc. Returns the solar arc, each directed point with its natal and directed longitude, zodiac sign, degree, and a plain language interpretation, for predictive astrology apps timing major life events. Built on accurate tropical chart positions, no astronomy expertise needed.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolarArcRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Solar arc directed chart calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolarArcResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/profections": {
+      "post": {
+        "operationId": "generateProfections",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Annual profections calculator - lord of the year and yearly time lord by age",
+        "description": "Calculate the annual profection and lord of the year for any birth chart and target date using the Hellenistic time lord technique. Each completed year of life advances the rising sign by one whole sign house, activating a new profected house, profected sign, and ruling planet that sets the tone of the year. Returns the age, profected house and sign, the lord of the year with its natal sign and house placement, and a plain language interpretation for traditional and Hellenistic astrology apps.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English."
+            },
+            "required": false,
+            "description": "Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfectionsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Annual profection calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfectionsResponse"
                 }
               }
             }

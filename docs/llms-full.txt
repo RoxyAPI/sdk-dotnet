@@ -113,6 +113,21 @@ await roxy.Astrology.FixedStars.PostAsync(new() { Date = new Date(1990, 7, 15), 
 
 // Arabic lots calculator - seven Hermetic parts including Part of Fortune and Spirit
 await roxy.Astrology.ArabicLots.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Asteroid goddesses calculator - Ceres, Pallas, Juno, and Vesta natal positions
+await roxy.Astrology.Asteroids.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Black Moon Lilith calculator - mean and true lunar apogee in the natal chart
+await roxy.Astrology.Lilith.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+
+// Secondary progressions calculator - progressed chart, progressed Sun and Moon
+await roxy.Astrology.Progressions.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
+
+// Solar arc directions calculator - directed chart at one degree per year
+await roxy.Astrology.SolarArc.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
+
+// Annual profections calculator - lord of the year and yearly time lord by age
+await roxy.Astrology.Profections.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 8, 4) });
 ```
 
 ---
