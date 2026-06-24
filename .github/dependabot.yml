@@ -13,6 +13,11 @@ updates:
       dependencies:
         patterns:
           - "*"
+    # Kiota runtime is pinned to the generator version. Bumps can desync from
+    # the pinned Kiota CLI and break generated code, so they are upgraded
+    # deliberately at release time, never by dependabot.
+    ignore:
+      - dependency-name: "Microsoft.Kiota.*"
 
   - package-ecosystem: github-actions
     directory: /
