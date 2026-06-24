@@ -45,22 +45,22 @@ var city = search!.Cities![0];
 ## Domains
 
 <!-- BEGIN:DOMAINS -->
-| Accessor | Endpoints | What it covers |
-|----------|-----------|----------------|
-| `roxy.Astrology` | 33 | Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, syn... |
-| `roxy.VedicAstrology` | 43 | Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional charts (D1-D60), Ashtakoot Gun Milan ku... |
-| `roxy.Numerology` | 20 | Numerology API to calculate life path, expression, soul urge, personality, and maturity numbers, with Pinnacle and Ch... |
-| `roxy.Tarot` | 10 | Tarot reading API with the complete 78-card Rider-Waite-Smith deck and card meanings for love, career, health, and sp... |
-| `roxy.HumanDesign` | 12 | Generate the full Human Design bodygraph from a birth moment: type, strategy, inner authority, profile, definition, i... |
-| `roxy.Forecast` | 5 | Merge upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm critical days, and... |
-| `roxy.Biorhythm` | 6 | The most complete biorhythm API: 10 cycle types across 3 primary (physical, emotional, intellectual), 4 secondary (in... |
-| `roxy.Iching` | 9 | I-Ching oracle API with all 64 hexagrams, 384 changing lines, 8 trigrams, and modern interpretations for love, career... |
-| `roxy.Crystals` | 12 | Crystal healing API with 80 healing crystals and gemstones and their spiritual, emotional, and physical properties |
-| `roxy.Dreams` | 5 | Dream interpretation API with a 2,000+ symbol dream dictionary and psychological meanings covering animals, objects,... |
-| `roxy.AngelNumbers` | 4 | Angel numbers API with meanings for 111, 222, 333, 444, 555, 666, 777, 888, 999, 1111, and 75+ sequences covering eve... |
-| `roxy.Location` | 3 | City search and geocoding API with 7,000+ cities across 227 countries, returning latitude, longitude, IANA timezone,... |
-| `roxy.Usage` | 1 | Monitor your API usage, check rate limits, and track request consumption |
-| `roxy.Languages` | 1 | List the response languages accepted by the `lang` query parameter on every i18n-aware endpoint |
+| Accessor | What it covers |
+|----------|----------------|
+| `roxy.Astrology` | Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, syn... |
+| `roxy.VedicAstrology` | Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional charts (D1-D60), Ashtakoot Gun Milan ku... |
+| `roxy.Numerology` | Numerology API to calculate life path, expression, soul urge, personality, and maturity numbers, with Pinnacle and Ch... |
+| `roxy.Tarot` | Tarot reading API with the complete 78-card Rider-Waite-Smith deck and card meanings for love, career, health, and sp... |
+| `roxy.HumanDesign` | Generate the full Human Design bodygraph from a birth moment: type, strategy, inner authority, profile, definition, i... |
+| `roxy.Forecast` | Merge upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm critical days, and... |
+| `roxy.Biorhythm` | The most complete biorhythm API: 10 cycle types across 3 primary (physical, emotional, intellectual), 4 secondary (in... |
+| `roxy.Iching` | I-Ching oracle API with all 64 hexagrams, 384 changing lines, 8 trigrams, and modern interpretations for love, career... |
+| `roxy.Crystals` | Crystal healing API with 80 healing crystals and gemstones and their spiritual, emotional, and physical properties |
+| `roxy.Dreams` | Dream interpretation API with a 2,000+ symbol dream dictionary and psychological meanings covering animals, objects,... |
+| `roxy.AngelNumbers` | Angel numbers API with meanings for 111, 222, 333, 444, 555, 666, 777, 888, 999, 1111, and 75+ sequences covering eve... |
+| `roxy.Location` | City search and geocoding API with 7,000+ cities across 227 countries, returning latitude, longitude, IANA timezone,... |
+| `roxy.Usage` | Monitor your API usage, check rate limits, and track request consumption |
+| `roxy.Languages` | List the response languages accepted by the `lang` query parameter on every i18n-aware endpoint |
 <!-- END:DOMAINS -->
 
 ## Critical patterns

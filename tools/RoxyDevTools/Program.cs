@@ -286,10 +286,10 @@ string RenderDomainsTable(List<Domain> domains)
 {
     var sb = new StringBuilder();
     sb.AppendLine("<!-- BEGIN:DOMAINS -->");
-    sb.AppendLine("| Accessor | Endpoints | What it covers |");
-    sb.AppendLine("|----------|-----------|----------------|");
+    sb.AppendLine("| Accessor | What it covers |");
+    sb.AppendLine("|----------|----------------|");
     foreach (var d in domains)
-        sb.AppendLine($"| `{d.Accessor}` | {d.Count} | {d.Summary} |");
+        sb.AppendLine($"| `{d.Accessor}` | {d.Summary} |");
     sb.Append("<!-- END:DOMAINS -->");
     return sb.ToString();
 }
