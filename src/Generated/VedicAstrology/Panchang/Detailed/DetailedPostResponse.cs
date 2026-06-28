@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
 #else
         public List<global::RoxyApi.VedicAstrology.Panchang.Detailed.DetailedPostResponse_amritKalam> AmritKalam { get; set; }
 #endif
-        /// <summary>Bhadra (Vishti Karana), the 7th movable karana, avoided for all auspicious activities. Bhadra recurs roughly every 3 to 5 days and lasts about half a tithi, so most occurrences begin after sunrise rather than at it. startsAt and endsAt report the Bhadra beginning on this date regardless of whether it is active at sunrise.</summary>
+        /// <summary>Bhadra (Vishti Karana), the 7th movable karana, avoided for all auspicious activities. Bhadra recurs roughly every 3 to 5 days and lasts about half a tithi. active is true whenever a Bhadra is attributed to this date; startsAt and endsAt give the window, which may end on the next calendar day.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Panchang.Detailed.DetailedPostResponse_bhadra? Bhadra { get; set; }

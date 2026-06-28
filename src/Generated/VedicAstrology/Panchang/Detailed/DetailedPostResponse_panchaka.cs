@@ -13,7 +13,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DetailedPostResponse_panchaka : IAdditionalDataHolder, IParsable
     {
-        /// <summary>Whether Panchaka is in force at sunrise, the panchang day reference. Can be false while startsAt and endsAt are populated when Panchaka begins later in the day.</summary>
+        /// <summary>True when Panchaka is in effect on this date, whether it is already running at sunrise or begins later in the day, in which case startsAt and endsAt give the window. False only when no Panchaka touches this date.</summary>
         public bool? Active { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
