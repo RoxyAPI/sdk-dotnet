@@ -58,7 +58,7 @@ var city = search!.Cities![0];
 | `roxy.Crystals` | Crystal healing API with 80 healing crystals and gemstones and their spiritual, emotional, and physical properties |
 | `roxy.Dreams` | Dream interpretation API with a 2,000+ symbol dream dictionary and psychological meanings covering animals, objects,... |
 | `roxy.AngelNumbers` | Angel numbers API with meanings for 111, 222, 333, 444, 555, 666, 777, 888, 999, 1111, and 75+ sequences covering eve... |
-| `roxy.Location` | City search and geocoding API with 7,000+ cities across 227 countries, returning latitude, longitude, IANA timezone,... |
+| `roxy.Location` | City search and geocoding API with 23,000+ cities across 240+ countries, returning latitude, longitude, IANA timezone... |
 | `roxy.Usage` | Monitor your API usage, check rate limits, and track request consumption |
 | `roxy.Languages` | List the response languages accepted by the `lang` query parameter on every i18n-aware endpoint |
 <!-- END:DOMAINS -->
