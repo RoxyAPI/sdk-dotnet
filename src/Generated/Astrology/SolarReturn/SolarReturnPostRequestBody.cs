@@ -18,13 +18,7 @@ namespace RoxyApi.Astrology.SolarReturn
         /// <summary>Original birth date in YYYY-MM-DD format. Used to determine natal Sun longitude for the solar return calculation.</summary>
         public Date? BirthDate { get; set; }
         /// <summary>Original birth time in 24-hour HH:MM:SS format. Determines exact natal Sun position for annual return timing.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BirthTime { get; set; }
-#nullable restore
-#else
-        public string BirthTime { get; set; }
-#endif
+        public Time? BirthTime { get; set; }
         /// <summary>House system for the solar return chart. Placidus (default) is most common in Western astrology. Whole Sign, Equal, and Koch also supported.</summary>
         public global::RoxyApi.Astrology.SolarReturn.SolarReturnPostRequestBody_houseSystem? HouseSystem { get; set; }
         /// <summary>Latitude of the solar return location in decimal degrees (-90 to 90). Use current residence or travel location at time of birthday. Solar return charts are location-sensitive.</summary>
@@ -68,7 +62,7 @@ namespace RoxyApi.Astrology.SolarReturn
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "birthDate", n => { BirthDate = n.GetDateValue(); } },
-                { "birthTime", n => { BirthTime = n.GetStringValue(); } },
+                { "birthTime", n => { BirthTime = n.GetTimeValue(); } },
                 { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Astrology.SolarReturn.SolarReturnPostRequestBody_houseSystem>(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
@@ -84,7 +78,7 @@ namespace RoxyApi.Astrology.SolarReturn
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("birthDate", BirthDate);
-            writer.WriteStringValue("birthTime", BirthTime);
+            writer.WriteTimeValue("birthTime", BirthTime);
             writer.WriteEnumValue<global::RoxyApi.Astrology.SolarReturn.SolarReturnPostRequestBody_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);

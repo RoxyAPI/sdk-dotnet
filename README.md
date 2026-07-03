@@ -60,7 +60,7 @@ var city = search!.Cities![0];
 var chart = await roxy.Astrology.NatalChart.PostAsync(new()
 {
     Date = new Date(1990, 1, 15),
-    Time = "14:30:00",
+    Time = new Time(14, 30, 0),
     Latitude = city.Latitude,
     Longitude = city.Longitude,
     Timezone = new() { String = city.Timezone },
@@ -70,7 +70,7 @@ var chart = await roxy.Astrology.NatalChart.PostAsync(new()
 var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 {
     Date = new Date(1990, 1, 15),
-    Time = "14:30:00",
+    Time = new Time(14, 30, 0),
     Latitude = city.Latitude,
     Longitude = city.Longitude,
     Timezone = new() { String = city.Timezone },
@@ -83,7 +83,7 @@ var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 
 These are the only .NET-specific shapes worth learning. The rest is plain typed objects.
 
-- **Dates use the `Date` type.** `Date = new Date(1990, 1, 15)` (from `Microsoft.Kiota.Abstractions`). Times stay strings: `Time = "14:30:00"`.
+- **Dates and times use typed structs.** `Date = new Date(1990, 1, 15)` and `Time = new Time(14, 30, 0)`, both from `Microsoft.Kiota.Abstractions`.
 - **`Timezone` is a typed union.** Pass a decimal offset with `new() { Double = -5 }` or an IANA name with `new() { String = "America/New_York" }`. The server resolves an IANA name to the DST-correct offset for the request date.
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
 
@@ -135,7 +135,7 @@ The global astrology app market is $6.27B and almost entirely Western. These end
 // Natal chart. The number-one Western query, called on every onboarding.
 var natal = await roxy.Astrology.NatalChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = "14:30:00",
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
     Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 },
 });
 
@@ -146,8 +146,8 @@ var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
 // Synastry. The dating-app pro-tier feature, full inter-aspect analysis between two charts.
 var synastry = await roxy.Astrology.Synastry.PostAsync(new()
 {
-    Person1 = new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } },
-    Person2 = new() { Date = new Date(1992, 7, 22), Time = "09:00:00", Latitude = 51.5074, Longitude = -0.1278, Timezone = new() { Double = 1 } },
+    Person1 = new() { Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } },
+    Person2 = new() { Date = new Date(1992, 7, 22), Time = new Time(9, 0, 0), Latitude = 51.5074, Longitude = -0.1278, Timezone = new() { Double = 1 } },
 });
 
 // Moon phase. Viral for wellness, cycle-tracking, and meditation apps.
@@ -162,7 +162,7 @@ The depth moat. India astrology market: $163M in 2024, projected $1.8B by 2030. 
 // Vedic kundli. Top India astrology keyword. Entry point for every Jyotish product.
 var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = "14:30:00",
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
     Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
 });
 
@@ -175,29 +175,29 @@ var panchang = await roxy.VedicAstrology.Panchang.Detailed.PostAsync(new()
 // Vimshottari dasha. Highest-value single-shot Vedic query.
 var dasha = await roxy.VedicAstrology.Dasha.Current.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = "14:30:00",
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
     Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
 });
 
 // Mangal Dosha. Most-asked matrimonial question in India.
 var manglik = await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = "14:30:00",
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
     Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
 });
 
 // Guna Milan. 36-point Ashtakoota matrimonial compatibility score.
 var milan = await roxy.VedicAstrology.Compatibility.PostAsync(new()
 {
-    Person1 = new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 28.61, Longitude = 77.20, Timezone = new() { Double = 5.5 } },
-    Person2 = new() { Date = new Date(1992, 7, 22), Time = "09:00:00", Latitude = 19.07, Longitude = 72.87, Timezone = new() { Double = 5.5 } },
+    Person1 = new() { Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0), Latitude = 28.61, Longitude = 77.20, Timezone = new() { Double = 5.5 } },
+    Person2 = new() { Date = new Date(1992, 7, 22), Time = new Time(9, 0, 0), Latitude = 19.07, Longitude = 72.87, Timezone = new() { Double = 5.5 } },
 });
 
 // KP ruling planets. Horary answers for "will X happen" questions in real time.
 var kp = await roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new()
 {
     Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
-    Datetime = "2026-04-22T10:30:00Z",
+    Datetime = DateTimeOffset.Parse("2026-04-22T10:30:00Z"),
 });
 ```
 
@@ -247,7 +247,7 @@ The breakout 2026 self-discovery category. One call returns the full bodygraph f
 ```csharp
 var bodygraph = await roxy.HumanDesign.Bodygraph.PostAsync(new()
 {
-    Date = new Date(1990, 7, 4), Time = "10:12:00",
+    Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0),
     Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -4 },
 });
 // bodygraph.Type, bodygraph.Strategy, bodygraph.Profile, bodygraph.Definition
@@ -261,7 +261,7 @@ The first cross-domain, stateless forecast in the catalog. One call merges Weste
 ```csharp
 var timeline = await roxy.Forecast.Timeline.PostAsync(new()
 {
-    BirthData = new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -4 } },
+    BirthData = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -4 } },
     StartDate = new Date(2026, 6, 1),
     EndDate = new Date(2026, 6, 30),
 });
@@ -440,7 +440,7 @@ Console.WriteLine($"{city.City}, {city.Country} at {city.Latitude}, {city.Longit
 ```csharp
 var chart = await roxy.Astrology.NatalChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = "14:30:00",
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
     Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 },
 });
 

@@ -28,13 +28,7 @@ namespace RoxyApi.Models
         /// <summary>Lunar node type for Rahu and Ketu positions. &quot;mean&quot; uses the smooth mean node (traditional Vedic astrology default). &quot;true&quot; uses the osculating node with perturbation corrections, oscillating up to 1.5 degrees from mean with a 173-day period. Impacts KP sub-lord assignments in narrow boundary cases. Defaults to &quot;mean&quot;.</summary>
         public global::RoxyApi.Models.KPPlanetsRequest_nodeType? NodeType { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Timezone offset from UTC in hours. Defaults to 5.5 (IST) for Vedic astrology.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -76,7 +70,7 @@ namespace RoxyApi.Models
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.Models.KPPlanetsRequest_nodeType>(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.KPPlanetsRequest.KPPlanetsRequest_timezone>(global::RoxyApi.Models.KPPlanetsRequest.KPPlanetsRequest_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -93,7 +87,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.Models.KPPlanetsRequest_nodeType>("nodeType", NodeType);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.KPPlanetsRequest.KPPlanetsRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -15,7 +15,7 @@ How the calls below map to the API:
 - **The fluent path mirrors the URL.** `GET /astrology/horoscope/{sign}/daily` is `roxy.Astrology.Horoscope["aries"].Daily.GetAsync()`. Each path segment is a property; each `{param}` is an indexer.
 - **Request bodies use a target-typed `new()`.** The body type is inferred from the method, so you never name it. Property names are the PascalCase of the JSON fields (`birth_date` becomes `BirthDate`).
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
-- **Dates use `new Date(year, month, day)`; times are 24-hour strings (`"14:30:00"`).**
+- **Dates use `new Date(year, month, day)`; times use `new Time(hour, minute, second)`** (both from `Microsoft.Kiota.Abstractions`).
 - **`Timezone` is a union:** `new() { Double = -5 }` (decimal offset) or `new() { String = "America/New_York" }` (IANA name, resolved to the DST-correct offset).
 - **Every call is async and throws `RoxyError` on a 4xx or 5xx.** Capture the result directly: `var chart = await roxy.Astrology.NatalChart.PostAsync(new() { ... });`
 
@@ -43,13 +43,13 @@ await roxy.Astrology.PlanetMeanings.GetAsync();
 await roxy.Astrology.PlanetMeanings["sun"].GetAsync();
 
 // Generate natal chart - Birth chart calculator API with houses and aspects
-await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Get planetary positions - Ephemeris calculator for all planets
-await roxy.Astrology.Planets.PostAsync(new() { Date = new Date(2025, 12, 18), Time = "12:00:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.Planets.PostAsync(new() { Date = new Date(2025, 12, 18), Time = new Time(12, 0, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Get current moon phase - Lunar phase calculator with zodiac sign
-await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = "12:00:00"; c.QueryParameters.Timezone = 0; });
+await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = new Time(12, 0, 0); c.QueryParameters.Timezone = 0; });
 
 // Get upcoming moon phases - Next new moon, full moon, quarters
 await roxy.Astrology.MoonPhase.Upcoming.GetAsync(c => { c.QueryParameters.StartDate = new Date(2025, 12, 18); c.QueryParameters.Count = 8; });
@@ -58,34 +58,34 @@ await roxy.Astrology.MoonPhase.Upcoming.GetAsync(c => { c.QueryParameters.StartD
 await roxy.Astrology.MoonPhase.Calendar[2026][3].GetAsync();
 
 // Calculate synastry - Relationship compatibility analysis API
-await roxy.Astrology.Synastry.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" }, Person2 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" } });
+await roxy.Astrology.Synastry.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" } });
 
 // Calculate house cusps - House system calculator with comparison
-await roxy.Astrology.Houses.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.Houses.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Calculate planetary aspects - Aspect finder for any date and time
-await roxy.Astrology.Aspects.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Timezone = new() { Double = -5 }, Planets = ["Sun"], AspectTypes = ["CONJUNCTION"] });
+await roxy.Astrology.Aspects.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Timezone = new() { Double = -5 }, Planets = ["Sun"], AspectTypes = ["CONJUNCTION"] });
 
 // Detect aspect patterns - Grand Trine, Kite, T-Square, Grand Cross, Yod, Mystic Rectangle, Stellium
-await roxy.Astrology.AspectPatterns.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => { c.QueryParameters.StrictOrbs = "false"; c.QueryParameters.Include = ""; });
+await roxy.Astrology.AspectPatterns.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => { c.QueryParameters.StrictOrbs = "false"; c.QueryParameters.Include = ""; });
 
 // Calculate planetary transits - Current transits with natal chart comparison
-await roxy.Astrology.Transits.PostAsync(new() { Date = new Date(2025, 12, 19), Time = "12:00:00", Timezone = new() { Double = 0 } });
+await roxy.Astrology.Transits.PostAsync(new() { Date = new Date(2025, 12, 19), Time = new Time(12, 0, 0), Timezone = new() { Double = 0 } });
 
 // Transit Aspects - Detailed transit-to-natal aspect analysis with interpretations
-await roxy.Astrology.TransitAspects.PostAsync(new() { NatalChart = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, TransitDate = new Date(2026, 2, 3), TransitTime = "12:00:00", MinStrength = 50 });
+await roxy.Astrology.TransitAspects.PostAsync(new() { NatalChart = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, TransitDate = new Date(2026, 2, 3), TransitTime = new Time(12, 0, 0), MinStrength = 50 });
 
 // Solar Return Chart - Annual birthday forecast with relocated chart
-await roxy.Astrology.SolarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ReturnYear = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.SolarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ReturnYear = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Lunar Return Chart - Monthly emotional forecast with Moon cycle chart
-await roxy.Astrology.LunarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ReturnDate = new Date(2026, 2, 12), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.LunarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ReturnDate = new Date(2026, 2, 12), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Composite Chart - Midpoint relationship chart with interpretations
-await roxy.Astrology.CompositeChart.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
+await roxy.Astrology.CompositeChart.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
 
 // Compatibility Score. Relationship compatibility analysis with category breakdown
-await roxy.Astrology.CompatibilityScore.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
+await roxy.Astrology.CompatibilityScore.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
 
 // Daily horoscope by zodiac sign - Transit-based forecast with house activations
 await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 4, 3));
@@ -97,37 +97,37 @@ await roxy.Astrology.Horoscope["aries"].Weekly.GetAsync();
 await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync();
 
 // Planetary Return Chart - Saturn return, Jupiter return, and inner planet cycles
-await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = "14:30:00", ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Astrocartography map - planetary lines and relocation calculator
-await roxy.Astrology.Astrocartography.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron");
+await roxy.Astrology.Astrocartography.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron");
 
 // Generate relocation chart - Relocated birth chart calculator with shifted houses and angles
-await roxy.Astrology.RelocationChart.PostAsync(new() { Date = new Date(1961, 8, 4), Time = "19:24:00", Timezone = new() { Double = -10 }, BirthLatitude = 21.3069, BirthLongitude = -157.8583, RelocationLatitude = 40.7167, RelocationLongitude = -74.006 });
+await roxy.Astrology.RelocationChart.PostAsync(new() { Date = new Date(1961, 8, 4), Time = new Time(19, 24, 0), Timezone = new() { Double = -10 }, BirthLatitude = 21.3069, BirthLongitude = -157.8583, RelocationLatitude = 40.7167, RelocationLongitude = -74.006 });
 
 // Local space astrology map - Directional planetary compass lines
-await roxy.Astrology.LocalSpace.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron,lilith");
+await roxy.Astrology.LocalSpace.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron,lilith");
 
 // Fixed stars and star conjunctions calculator - Regulus, Spica, Algol natal report
-await roxy.Astrology.FixedStars.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Orb = 1);
+await roxy.Astrology.FixedStars.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Orb = 1);
 
 // Arabic lots calculator - seven Hermetic parts including Part of Fortune and Spirit
-await roxy.Astrology.ArabicLots.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.ArabicLots.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Asteroid goddesses calculator - Ceres, Pallas, Juno, and Vesta natal positions
-await roxy.Astrology.Asteroids.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.Asteroids.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Black Moon Lilith calculator - mean and true lunar apogee in the natal chart
-await roxy.Astrology.Lilith.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+await roxy.Astrology.Lilith.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Secondary progressions calculator - progressed chart, progressed Sun and Moon
-await roxy.Astrology.Progressions.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
+await roxy.Astrology.Progressions.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
 
 // Solar arc directions calculator - directed chart at one degree per year
-await roxy.Astrology.SolarArc.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
+await roxy.Astrology.SolarArc.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 7, 15) });
 
 // Annual profections calculator - lord of the year and yearly time lord by age
-await roxy.Astrology.Profections.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 8, 4) });
+await roxy.Astrology.Profections.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, TargetDate = new Date(2025, 8, 4) });
 ```
 
 ---
@@ -138,34 +138,34 @@ Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional ch
 
 ```csharp
 // Get birth chart (D1 Rashi chart) - Kundli Calculator API
-await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get Navamsa chart (D9) - Marriage Compatibility Calculator
-await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get divisional chart (Varga) - D2 to D60 Calculator
-await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Division = 10 });
+await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Division = 10 });
 
 // Calculate compatibility score - Gun Milan API (Ashtakoot Matching)
-await roxy.VedicAstrology.Compatibility.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } } });
+await roxy.VedicAstrology.Compatibility.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } } });
 
 // Get planetary positions - Graha Positions API
-await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Monthly Ephemeris - Daily sidereal planetary positions for a month
 await roxy.VedicAstrology.PlanetaryPositions.Monthly.PostAsync(new() { Year = 2026, Month = 2 });
 
 // Get current Mahadasha, Antardasha, Pratyantardasha - Dasha Calculator API
-await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get all 9 Mahadasha periods (120-year cycle)
-await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get all Antardashas (sub-periods) for a specific Mahadasha
-await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get basic Panchang - Tithi Nakshatra Yoga Karana Calculator
-await roxy.VedicAstrology.Panchang.Basic.PostAsync(new() { Date = new Date(2025, 12, 17), Time = "12:00:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Panchang.Basic.PostAsync(new() { Date = new Date(2025, 12, 17), Time = new Time(12, 0, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get detailed Panchang with Rahu Kaal, Yamaganda, Gulika
 await roxy.VedicAstrology.Panchang.Detailed.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
@@ -177,13 +177,13 @@ await roxy.VedicAstrology.Panchang.Choghadiya.PostAsync(new() { Date = new Date(
 await roxy.VedicAstrology.Panchang.Hora.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
 
 // Check Manglik Dosha - Mangal Dosha Calculator API
-await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Check Kalsarpa Dosha - Kalsarpa Yoga Calculator API
-await roxy.VedicAstrology.Dosha.Kalsarpa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dosha.Kalsarpa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Check Sadhesati - Sade Sati Calculator API (Saturn Transit)
-await roxy.VedicAstrology.Dosha.Sadhesati.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dosha.Sadhesati.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // List all planetary yogas - 300+ Vedic Yoga Glossary
 await roxy.VedicAstrology.Yoga.GetAsync();
@@ -192,25 +192,25 @@ await roxy.VedicAstrology.Yoga.GetAsync();
 await roxy.VedicAstrology.Yoga["gajakesari"].GetAsync();
 
 // Detect classical Vedic yogas in a birth chart
-await roxy.VedicAstrology.Yoga.Detect.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Yoga.Detect.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get KP-Newcomb ayanamsa - Dynamic daily calculation
 await roxy.VedicAstrology.Kp.Ayanamsa.GetAsync(c => c.QueryParameters.Date = new Date(2025, 12, 26));
 
 // Get KP planetary positions with sub-lords
-await roxy.VedicAstrology.Kp.Planets.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+await roxy.VedicAstrology.Kp.Planets.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get KP Placidus house cusps with sub-lords
-await roxy.VedicAstrology.Kp.Cusps.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+await roxy.VedicAstrology.Kp.Cusps.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Generate complete KP birth chart
-await roxy.VedicAstrology.Kp.Chart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+await roxy.VedicAstrology.Kp.Chart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get KP ruling planets with optional significators
-await roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new() { Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Datetime = "2025-01-15T10:30:00Z", BirthDate = new Date(1990, 7, 4), BirthTime = "10:12:00" });
+await roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new() { Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Datetime = DateTimeOffset.Parse("2025-01-15T10:30:00Z"), BirthDate = new Date(1990, 7, 4), BirthTime = new Time(10, 12, 0) });
 
 // Get KP ruling planets with significators at intervals
-await roxy.VedicAstrology.Kp.RulingPlanetsInterval.PostAsync(new() { StartDatetime = "2026-02-03T00:00:00Z", EndDatetime = "2026-02-03T01:00:00Z", IntervalMinutes = 5, Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Kp.RulingPlanetsInterval.PostAsync(new() { StartDatetime = DateTimeOffset.Parse("2026-02-03T00:00:00Z"), EndDatetime = DateTimeOffset.Parse("2026-02-03T01:00:00Z"), IntervalMinutes = 5, Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
 
 // Find KP sublord changes
 await roxy.VedicAstrology.Kp.SublordChanges.PostAsync(new() { Planet = "Moon", StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 1, 31), Timezone = new() { Double = 5.5 } });
@@ -219,10 +219,10 @@ await roxy.VedicAstrology.Kp.SublordChanges.PostAsync(new() { Planet = "Moon", S
 await roxy.VedicAstrology.Kp.RasiChanges.PostAsync(new() { Planet = "Sun", StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 12, 31), Timezone = new() { Double = 5.5 } });
 
 // Get KP planets at time intervals
-await roxy.VedicAstrology.Kp.PlanetsInterval.PostAsync(new() { StartDatetime = "2025-01-15T00:00:00Z", EndDatetime = "2025-01-15T23:59:00Z", IntervalMinutes = 60, Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Kp.PlanetsInterval.PostAsync(new() { StartDatetime = DateTimeOffset.Parse("2025-01-15T00:00:00Z"), EndDatetime = DateTimeOffset.Parse("2025-01-15T23:59:00Z"), IntervalMinutes = 60, Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get planetary aspects (Drishti) - Mutual aspects between all planets
-await roxy.VedicAstrology.Aspects.PostAsync(new() { Date = new Date(2026, 2, 3), Time = "12:00:00", Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Aspects.PostAsync(new() { Date = new Date(2026, 2, 3), Time = new Time(12, 0, 0), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
 
 // Monthly Planetary Aspects - Major and minor aspect events for a month
 await roxy.VedicAstrology.Aspects.Monthly.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
@@ -231,13 +231,13 @@ await roxy.VedicAstrology.Aspects.Monthly.PostAsync(new() { Year = 2026, Month =
 await roxy.VedicAstrology.Aspects.Lunar.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
 
 // Transit Analysis - Compare current planets to natal chart (Gochar)
-await roxy.VedicAstrology.Transit.PostAsync(new() { BirthDate = new Date(1990, 7, 4), BirthTime = "10:12:00", TransitDate = new Date(2026, 2, 3), TransitTime = "12:00:00", Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Transit.PostAsync(new() { BirthDate = new Date(1990, 7, 4), BirthTime = new Time(10, 12, 0), TransitDate = new Date(2026, 2, 3), TransitTime = new Time(12, 0, 0), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
 
 // Monthly Transit - Planetary sign changes for an entire month
 await roxy.VedicAstrology.Transit.Monthly.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
 
 // Declination Parallels - Planets at same or opposite declination
-await roxy.VedicAstrology.Parallels.PostAsync(new() { Date = new Date(2026, 2, 3), Time = "12:00:00", Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 }, Orb = 1.5 });
+await roxy.VedicAstrology.Parallels.PostAsync(new() { Date = new Date(2026, 2, 3), Time = new Time(12, 0, 0), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 }, Orb = 1.5 });
 
 // Monthly Declination Parallels - Parallel and contraparallel events for a month
 await roxy.VedicAstrology.Parallels.Monthly.PostAsync(new() { Year = 2026, Month = 2, Timezone = new() { Double = 5.5 } });
@@ -258,13 +258,13 @@ await roxy.VedicAstrology.Nakshatras.GetAsync();
 await roxy.VedicAstrology.Nakshatras["ashwini"].GetAsync();
 
 // Get upagraha (sub-planet) positions - Upagraha Calculator API
-await roxy.VedicAstrology.Upagraha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Upagraha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get Ashtakavarga (planetary strength) analysis - Ashtakavarga Calculator API
-await roxy.VedicAstrology.Ashtakavarga.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Ashtakavarga.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get Shadbala (six-fold planetary strength) analysis - Shadbala Calculator API
-await roxy.VedicAstrology.Shadbala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = "10:12:00", Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Shadbala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 ```
 
 ---
@@ -302,7 +302,7 @@ await roxy.Numerology.KarmicLessons.PostAsync(new() { FullName = "John William S
 await roxy.Numerology.KarmicDebt.PostAsync(new() { Year = 1990, Month = 7, Day = 15, FullName = "John William Smith" });
 
 // Calculate Personal Day - Daily personalized numerology forecast
-await roxy.Numerology.PersonalDay.PostAsync(new() { Month = 7, Day = 18, TargetDate = "2026-04-04" });
+await roxy.Numerology.PersonalDay.PostAsync(new() { Month = 7, Day = 18, TargetDate = new Date(2026, 4, 4) });
 
 // Calculate Personal Month - Monthly numerology forecast
 await roxy.Numerology.PersonalMonth.PostAsync(new() { Month = 7, Day = 18, Year = 2026, TargetMonth = 4 });
@@ -381,40 +381,40 @@ Generate the full Human Design bodygraph from a birth moment: type, strategy, in
 
 ```csharp
 // Generate full Human Design bodygraph - Type, authority, profile, centers, channels, gates
-await roxy.HumanDesign.Bodygraph.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+await roxy.HumanDesign.Bodygraph.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
 
 // Calculate Human Design connection chart - Two-person composite bodygraph compatibility
-await roxy.HumanDesign.Connection.PostAsync(new() { PersonA = new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, PersonB = new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 } });
+await roxy.HumanDesign.Connection.PostAsync(new() { PersonA = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, PersonB = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 } });
 
 // Calculate Human Design Penta - Small-group BG5 operating system for three to five people
-await roxy.HumanDesign.Penta.PostAsync(new() { Members = [new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }] });
+await roxy.HumanDesign.Penta.PostAsync(new() { Members = [new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }] });
 
 // Generate Human Design transit overlay - Current planetary activations on a natal bodygraph
-await roxy.HumanDesign.Transit.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, Date = new Date(2026, 5, 23), Time = "12:00:00" });
+await roxy.HumanDesign.Transit.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, Date = new Date(2026, 5, 23), Time = new Time(12, 0, 0) });
 
 // Calculate Human Design type, authority and profile
-await roxy.HumanDesign.Type.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+await roxy.HumanDesign.Type.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
 
 // Calculate the 26 Human Design gate activations
-await roxy.HumanDesign.Gates.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+await roxy.HumanDesign.Gates.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
 
 // Look up a Human Design gate by number
 await roxy.HumanDesign.Gates[34].GetAsync();
 
 // Calculate the defined Human Design channels
-await roxy.HumanDesign.Channels.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+await roxy.HumanDesign.Channels.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
 
 // Calculate the nine Human Design centers
-await roxy.HumanDesign.Centers.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+await roxy.HumanDesign.Centers.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
 
 // Look up a Human Design center by id
 await roxy.HumanDesign.Centers["sacral"].GetAsync();
 
 // Calculate the Human Design profile and line keynotes
-await roxy.HumanDesign.Profile.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+await roxy.HumanDesign.Profile.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
 
 // Calculate Human Design Variables - The four arrows and Color, Tone, Base substructure
-await roxy.HumanDesign.Variables.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "13:00:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
+await roxy.HumanDesign.Variables.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 });
 ```
 
 ---
@@ -425,19 +425,19 @@ Merge upcoming transit aspects, sign ingresses, retrograde stations, new and ful
 
 ```csharp
 // Cross-domain forecast timeline - Transits, ingresses, stations, dasha changes, critical days
-await roxy.Forecast.Timeline.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
+await roxy.Forecast.Timeline.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
 
 // Western astrology forecast - aspects, ingresses, stations, eclipses, moon phases
-await roxy.Forecast.Transits.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0 });
+await roxy.Forecast.Transits.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0 });
 
 // Significant dates - High-significance cross-domain forecast highlights
-await roxy.Forecast.SignificantDates.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 70, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
+await roxy.Forecast.SignificantDates.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 70, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
 
 // Forecast digest - Pre-summarized next 24h, 7d, 30d, and 90d rollups
-await roxy.Forecast.Digest.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = "13:30:00", Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 }, Top = 3 });
+await roxy.Forecast.Digest.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { Double = 5.5 }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 }, Top = 3 });
 
 // Solar return chart - Annual birthday forecast chart for a single subject
-await roxy.Forecast.SolarReturn.PostAsync(new() { Date = new Date(1990, 7, 15), Time = "14:30:00", Year = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = 5.5 } });
+await roxy.Forecast.SolarReturn.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Year = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = 5.5 } });
 ```
 
 ---

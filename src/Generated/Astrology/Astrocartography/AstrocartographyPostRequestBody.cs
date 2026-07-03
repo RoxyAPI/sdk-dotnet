@@ -22,13 +22,7 @@ namespace RoxyApi.Astrology.Astrocartography
         /// <summary>Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West.</summary>
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. &quot;America/New_York&quot;, &quot;Asia/Kolkata&quot;). IANA strings are resolved to the DST-correct offset for the given date, so you can pass `cities[0].timezone` from /location/search directly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,7 +59,7 @@ namespace RoxyApi.Astrology.Astrocartography
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Astrology.Astrocartography.AstrocartographyPostRequestBody.AstrocartographyPostRequestBody_timezone>(global::RoxyApi.Astrology.Astrocartography.AstrocartographyPostRequestBody.AstrocartographyPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -79,7 +73,7 @@ namespace RoxyApi.Astrology.Astrocartography
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Astrology.Astrocartography.AstrocartographyPostRequestBody.AstrocartographyPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

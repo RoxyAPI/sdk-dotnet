@@ -477,6 +477,17 @@ string? RenderValue(JsonObject spec, JsonObject schemaIn, JsonNode? example, int
         return p.Length == 3 && int.TryParse(p[0], out var y) && int.TryParse(p[1], out var m) && int.TryParse(p[2], out var d)
             ? $"new Date({y}, {m}, {d})" : "new Date(1990, 1, 15)";
     }
+    // Kiota types a `format: time` string as Microsoft.Kiota.Abstractions.Time, not string,
+    // so a quoted literal would not compile. Mirror the Date branch: parse HH:MM[:SS] into
+    // the Time(hour, minute, second) constructor (seconds default to 0 when absent).
+    if (type == "string" && format == "time")
+    {
+        var s = example?.GetValue<string>() ?? "14:30:00";
+        var p = s.Split(':');
+        var sec = p.Length > 2 && int.TryParse(p[2], out var se) ? se : 0;
+        return p.Length >= 2 && int.TryParse(p[0], out var h) && int.TryParse(p[1], out var mi)
+            ? $"new Time({h}, {mi}, {sec})" : "new Time(14, 30, 0)";
+    }
     if (type == "string" && format == "date-time")
         return $"DateTimeOffset.Parse({Quote(example?.GetValue<string>() ?? "2026-01-01T00:00:00Z")})";
     if (type == "object" || schema["properties"] is JsonObject)

@@ -34,13 +34,7 @@ namespace RoxyApi.Models
         public List<string> Planets { get; set; }
 #endif
         /// <summary>Time in HH:MM:SS format (24-hour)</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Timezone offset from UTC in decimal hours (NOT minutes format). Examples: New York EST = -5, India IST = 5.5 (NOT 5:30), Tokyo JST = 9. IMPORTANT: Use decimal format (5.5, not 5:30).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,7 +71,7 @@ namespace RoxyApi.Models
                 { "aspectTypes", n => { AspectTypes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "planets", n => { Planets = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.AspectsRequest.AspectsRequest_timezone>(global::RoxyApi.Models.AspectsRequest.AspectsRequest_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -91,7 +85,7 @@ namespace RoxyApi.Models
             writer.WriteCollectionOfPrimitiveValues<string>("aspectTypes", AspectTypes);
             writer.WriteDateValue("date", Date);
             writer.WriteCollectionOfPrimitiveValues<string>("planets", Planets);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.AspectsRequest.AspectsRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

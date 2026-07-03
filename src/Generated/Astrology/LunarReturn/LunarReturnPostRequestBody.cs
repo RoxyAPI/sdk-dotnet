@@ -18,13 +18,7 @@ namespace RoxyApi.Astrology.LunarReturn
         /// <summary>Original birth date in YYYY-MM-DD format. Used to determine natal Moon longitude for the lunar return calculation.</summary>
         public Date? BirthDate { get; set; }
         /// <summary>Original birth time in 24-hour HH:MM:SS format. Determines exact natal Moon position for monthly return timing.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BirthTime { get; set; }
-#nullable restore
-#else
-        public string BirthTime { get; set; }
-#endif
+        public Time? BirthTime { get; set; }
         /// <summary>House system for the lunar return chart. Placidus (default), Whole Sign, Equal, or Koch.</summary>
         public global::RoxyApi.Astrology.LunarReturn.LunarReturnPostRequestBody_houseSystem? HouseSystem { get; set; }
         /// <summary>Latitude of the lunar return location in decimal degrees (-90 to 90). Affects the Ascendant and house cusps of the return chart.</summary>
@@ -68,7 +62,7 @@ namespace RoxyApi.Astrology.LunarReturn
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "birthDate", n => { BirthDate = n.GetDateValue(); } },
-                { "birthTime", n => { BirthTime = n.GetStringValue(); } },
+                { "birthTime", n => { BirthTime = n.GetTimeValue(); } },
                 { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Astrology.LunarReturn.LunarReturnPostRequestBody_houseSystem>(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
@@ -84,7 +78,7 @@ namespace RoxyApi.Astrology.LunarReturn
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("birthDate", BirthDate);
-            writer.WriteStringValue("birthTime", BirthTime);
+            writer.WriteTimeValue("birthTime", BirthTime);
             writer.WriteEnumValue<global::RoxyApi.Astrology.LunarReturn.LunarReturnPostRequestBody_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);

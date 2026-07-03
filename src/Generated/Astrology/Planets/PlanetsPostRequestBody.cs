@@ -22,13 +22,7 @@ namespace RoxyApi.Astrology.Planets
         /// <summary>Observer longitude in decimal degrees (-180 to 180). Used for precise local time conversion. For basic planetary positions, this has minimal impact but ensures accuracy.</summary>
         public double? Longitude { get; set; }
         /// <summary>Time in 24-hour HH:MM:SS format for precise calculations. Moon moves ~13° per day, so time matters for accurate lunar position. Use 12:00:00 (noon) as default if exact time not needed.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST, 5.75 for NPT) OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the chart date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,7 +59,7 @@ namespace RoxyApi.Astrology.Planets
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Astrology.Planets.PlanetsPostRequestBody.PlanetsPostRequestBody_timezone>(global::RoxyApi.Astrology.Planets.PlanetsPostRequestBody.PlanetsPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -79,7 +73,7 @@ namespace RoxyApi.Astrology.Planets
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Astrology.Planets.PlanetsPostRequestBody.PlanetsPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

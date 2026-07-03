@@ -26,13 +26,7 @@ namespace RoxyApi.Models
         /// <summary>Birth location longitude in decimal degrees</summary>
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Timezone offset from UTC in hours. Defaults to 5.5 (IST) for Vedic astrology.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -72,7 +66,7 @@ namespace RoxyApi.Models
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.KPCuspsRequest.KPCuspsRequest_timezone>(global::RoxyApi.Models.KPCuspsRequest.KPCuspsRequest_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -88,7 +82,7 @@ namespace RoxyApi.Models
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.KPCuspsRequest.KPCuspsRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

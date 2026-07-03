@@ -20,13 +20,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
         /// <summary>Original birth date in YYYY-MM-DD format. Used to determine the natal longitude of the selected planet.</summary>
         public Date? BirthDate { get; set; }
         /// <summary>Original birth time in 24-hour HH:MM:SS format. Determines exact natal planet position for return timing.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BirthTime { get; set; }
-#nullable restore
-#else
-        public string BirthTime { get; set; }
-#endif
+        public Time? BirthTime { get; set; }
         /// <summary>House system for the return chart. Placidus (default), Whole Sign, Equal, or Koch.</summary>
         public global::RoxyApi.Astrology.PlanetaryReturns.PlanetaryReturnsPostRequestBody_houseSystem? HouseSystem { get; set; }
         /// <summary>Latitude of the return location in decimal degrees (-90 to 90). Affects house cusps and Ascendant of the return chart.</summary>
@@ -71,7 +65,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
             {
                 { "approximateDate", n => { ApproximateDate = n.GetDateValue(); } },
                 { "birthDate", n => { BirthDate = n.GetDateValue(); } },
-                { "birthTime", n => { BirthTime = n.GetStringValue(); } },
+                { "birthTime", n => { BirthTime = n.GetTimeValue(); } },
                 { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Astrology.PlanetaryReturns.PlanetaryReturnsPostRequestBody_houseSystem>(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
@@ -88,7 +82,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("approximateDate", ApproximateDate);
             writer.WriteDateValue("birthDate", BirthDate);
-            writer.WriteStringValue("birthTime", BirthTime);
+            writer.WriteTimeValue("birthTime", BirthTime);
             writer.WriteEnumValue<global::RoxyApi.Astrology.PlanetaryReturns.PlanetaryReturnsPostRequestBody_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);

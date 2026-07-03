@@ -16,14 +16,8 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, the most common choice for KP astrology. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1 with constant precession rate. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa, matching most traditional Vedic software. Defaults to &quot;kp-newcomb&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody_ayanamsa? Ayanamsa { get; set; }
-        /// <summary>End of the interval range in ISO 8601 format. Always interpreted as local time when a non-zero timezone is provided (Z suffix is ignored).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? EndDatetime { get; set; }
-#nullable restore
-#else
-        public string EndDatetime { get; set; }
-#endif
+        /// <summary>End of the interval range in ISO 8601 (YYYY-MM-DDTHH:MM:SS). Interpreted as local time when a non-zero timezone is provided (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
+        public DateTimeOffset? EndDatetime { get; set; }
         /// <summary>Interval between calculations in minutes (1-1440). Use 1-5 for birth time rectification.</summary>
         public int? IntervalMinutes { get; set; }
         /// <summary>Observer latitude in decimal degrees</summary>
@@ -32,14 +26,8 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         public double? Longitude { get; set; }
         /// <summary>Lunar node type for Rahu and Ketu positions. &quot;mean&quot; uses the smooth mean node (traditional Vedic astrology default). &quot;true&quot; uses the osculating node with perturbation corrections, oscillating up to 1.5 degrees from mean with a 173-day period. Impacts KP sub-lord assignments in narrow boundary cases. Defaults to &quot;mean&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody_nodeType? NodeType { get; set; }
-        /// <summary>Start of the interval range in ISO 8601 format. Always interpreted as local time when a non-zero timezone is provided (Z suffix is ignored).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? StartDatetime { get; set; }
-#nullable restore
-#else
-        public string StartDatetime { get; set; }
-#endif
+        /// <summary>Start of the interval range in ISO 8601 (YYYY-MM-DDTHH:MM:SS). Interpreted as local time when a non-zero timezone is provided (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
+        public DateTimeOffset? StartDatetime { get; set; }
         /// <summary>Timezone offset from UTC in decimal hours. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Output times are also converted to this timezone. Defaults to 5.5 (IST).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -76,12 +64,12 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody_ayanamsa>(); } },
-                { "endDatetime", n => { EndDatetime = n.GetStringValue(); } },
+                { "endDatetime", n => { EndDatetime = n.GetDateTimeOffsetValue(); } },
                 { "intervalMinutes", n => { IntervalMinutes = n.GetIntValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody_nodeType>(); } },
-                { "startDatetime", n => { StartDatetime = n.GetStringValue(); } },
+                { "startDatetime", n => { StartDatetime = n.GetDateTimeOffsetValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody.RulingPlanetsIntervalPostRequestBody_timezone>(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody.RulingPlanetsIntervalPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -93,12 +81,12 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody_ayanamsa>("ayanamsa", Ayanamsa);
-            writer.WriteStringValue("endDatetime", EndDatetime);
+            writer.WriteDateTimeOffsetValue("endDatetime", EndDatetime);
             writer.WriteIntValue("intervalMinutes", IntervalMinutes);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody_nodeType>("nodeType", NodeType);
-            writer.WriteStringValue("startDatetime", StartDatetime);
+            writer.WriteDateTimeOffsetValue("startDatetime", StartDatetime);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody.RulingPlanetsIntervalPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

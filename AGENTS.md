@@ -74,7 +74,7 @@ var city = search!.Cities![0];
 var chart = await roxy.Astrology.NatalChart.PostAsync(new()
 {
     Date = new Date(1990, 1, 15),
-    Time = "14:30:00",
+    Time = new Time(14, 30, 0),
     Latitude = city.Latitude,
     Longitude = city.Longitude,
     Timezone = new() { String = city.Timezone },
@@ -96,7 +96,7 @@ Most valuable endpoints (charts, spreads, calculations) are POST:
 ```csharp
 await roxy.VedicAstrology.BirthChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = "14:30:00",
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
     Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
 });
 
@@ -153,7 +153,7 @@ Responses are fully typed objects, not dictionaries. Discover fields with Intell
 - **Natal chart**: `Planets`, `Houses`, `Aspects`, `Ascendant`, `Midheaven`, `Summary`. Each planet has `Name`, `Sign`, `Degree`, `House`, `IsRetrograde`. The `Planets` list has more than ten entries (classical bodies plus nodes and key points).
 
 ```csharp
-var chart = await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), Time = "14:30:00", Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+var chart = await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 foreach (var p in chart!.Planets!)
     Console.WriteLine($"{p.Name}: {p.Sign} (house {p.House})");
 ```
@@ -202,7 +202,7 @@ Copy the format column exactly.
 | Field | Format | Good | Bad |
 |-------|--------|------|-----|
 | `Date` (and `BirthDate`, `StartDate`, ...) | The `Date` struct from `Microsoft.Kiota.Abstractions` | `new Date(1990, 1, 15)` | `"1990-01-15"`, `DateTime.Now`, `new DateTime(...)` |
-| `Time` | 24-hour string | `"14:30:00"`, `"09:00:00"` | `"2:30 PM"`, `"14:30"` (no seconds) |
+| `Time` | The `Time` struct from `Microsoft.Kiota.Abstractions` | `new Time(14, 30, 0)`, `new Time(9, 0, 0)` | `"14:30:00"` (string), `DateTime.Now`, `new TimeOnly(...)` |
 | `Timezone` | Union wrapper: decimal OR IANA | `new() { Double = 5.5 }`, `new() { Double = -5 }` OR `new() { String = "America/New_York" }` | `5.5`, `"5.5"`, `"+0530"` assigned directly |
 | `Latitude` / `Longitude` | `double` | `40.7128`, `-74.006` | `"40.7128"`, DMS strings |
 | `sign` (horoscope indexer) | Lowercase zodiac name | `["aries"]`, `["scorpio"]` | `["Aries"]`, `["1"]` |

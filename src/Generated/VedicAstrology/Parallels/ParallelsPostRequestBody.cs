@@ -24,13 +24,7 @@ namespace RoxyApi.VedicAstrology.Parallels
         /// <summary>Orb in degrees for parallel/contraparallel detection. Defaults to 1.5°.</summary>
         public double? Orb { get; set; }
         /// <summary>Time in HH:MM:SS format (24-hour). Exact time affects declination values, especially for the fast-moving Moon.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Timezone offset from UTC in hours. Defaults to 5.5 (IST).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -69,7 +63,7 @@ namespace RoxyApi.VedicAstrology.Parallels
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.VedicAstrology.Parallels.ParallelsPostRequestBody.ParallelsPostRequestBody_timezone>(global::RoxyApi.VedicAstrology.Parallels.ParallelsPostRequestBody.ParallelsPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -84,7 +78,7 @@ namespace RoxyApi.VedicAstrology.Parallels
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteDoubleValue("orb", Orb);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Parallels.ParallelsPostRequestBody.ParallelsPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

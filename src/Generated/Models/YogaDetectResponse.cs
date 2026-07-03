@@ -24,7 +24,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Count of yogas where present === true in this chart. Range 0-12.</summary>
         public double? Total { get; set; }
-        /// <summary>Array of 12 detected yogas. Every entry carries a present boolean; filter on present === true for active yogas. Evidence text names the rule that triggered or failed.</summary>
+        /// <summary>Array of 12 detected yogas. Every entry carries a `present` boolean and a `quality` (Positive, Negative, or Both = auspicious, inauspicious, or context-dependent); filter on present === true for active yogas. Evidence text names the rule that triggered or failed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Models.YogaDetectResponse_yogas>? Yogas { get; set; }

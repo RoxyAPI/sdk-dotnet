@@ -24,13 +24,7 @@ namespace RoxyApi.Forecast.SolarReturn
         /// <summary>Longitude of the solar return location in decimal degrees. Sets the local sidereal time, so it drives the Ascendant, Midheaven, and house cusps of the return chart.</summary>
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Pins the exact natal Sun position that defines the solar return moment.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. &quot;America/New_York&quot;, &quot;UTC&quot;). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,7 +65,7 @@ namespace RoxyApi.Forecast.SolarReturn
                 { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Forecast.SolarReturn.SolarReturnPostRequestBody_houseSystem>(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Forecast.SolarReturn.SolarReturnPostRequestBody.SolarReturnPostRequestBody_timezone>(global::RoxyApi.Forecast.SolarReturn.SolarReturnPostRequestBody.SolarReturnPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
                 { "year", n => { Year = n.GetIntValue(); } },
             };
@@ -87,7 +81,7 @@ namespace RoxyApi.Forecast.SolarReturn
             writer.WriteEnumValue<global::RoxyApi.Forecast.SolarReturn.SolarReturnPostRequestBody_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Forecast.SolarReturn.SolarReturnPostRequestBody.SolarReturnPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteIntValue("year", Year);
             writer.WriteAdditionalData(AdditionalData);

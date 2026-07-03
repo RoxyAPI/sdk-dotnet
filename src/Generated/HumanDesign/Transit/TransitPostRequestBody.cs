@@ -26,13 +26,7 @@ namespace RoxyApi.HumanDesign.Transit
         /// <summary>Transit date in YYYY-MM-DD UTC. Optional. Defaults to today in UTC when omitted, giving the just-now transit.</summary>
         public Date? Date { get; set; }
         /// <summary>Transit time in HH:MM:SS UTC. Optional. Defaults to the current UTC time when omitted. Precision matters: the Moon moves through a gate in roughly half a day.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Transit.TransitPostRequestBody"/> and sets the default values.
         /// </summary>
@@ -60,7 +54,7 @@ namespace RoxyApi.HumanDesign.Transit
             {
                 { "birthData", n => { BirthData = n.GetObjectValue<global::RoxyApi.HumanDesign.Transit.TransitPostRequestBody_birthData>(global::RoxyApi.HumanDesign.Transit.TransitPostRequestBody_birthData.CreateFromDiscriminatorValue); } },
                 { "date", n => { Date = n.GetDateValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
             };
         }
         /// <summary>
@@ -72,7 +66,7 @@ namespace RoxyApi.HumanDesign.Transit
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Transit.TransitPostRequestBody_birthData>("birthData", BirthData);
             writer.WriteDateValue("date", Date);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

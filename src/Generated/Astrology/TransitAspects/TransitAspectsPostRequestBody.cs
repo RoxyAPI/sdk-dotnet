@@ -44,13 +44,7 @@ namespace RoxyApi.Astrology.TransitAspects
         /// <summary>Transit date in YYYY-MM-DD format. Defaults to current date if omitted. Use future dates for predictive transit analysis.</summary>
         public Date? TransitDate { get; set; }
         /// <summary>Transit time in HH:MM:SS format. Defaults to 12:00:00 (noon) if omitted.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TransitTime { get; set; }
-#nullable restore
-#else
-        public string TransitTime { get; set; }
-#endif
+        public Time? TransitTime { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody"/> and sets the default values.
         /// </summary>
@@ -81,7 +75,7 @@ namespace RoxyApi.Astrology.TransitAspects
                 { "natalChart", n => { NatalChart = n.GetObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_natalChart>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_natalChart.CreateFromDiscriminatorValue); } },
                 { "planets", n => { Planets = n.GetCollectionOfEnumValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_planets>()?.AsList(); } },
                 { "transitDate", n => { TransitDate = n.GetDateValue(); } },
-                { "transitTime", n => { TransitTime = n.GetStringValue(); } },
+                { "transitTime", n => { TransitTime = n.GetTimeValue(); } },
             };
         }
         /// <summary>
@@ -96,7 +90,7 @@ namespace RoxyApi.Astrology.TransitAspects
             writer.WriteObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_natalChart>("natalChart", NatalChart);
             writer.WriteCollectionOfEnumValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_planets>("planets", Planets);
             writer.WriteDateValue("transitDate", TransitDate);
-            writer.WriteStringValue("transitTime", TransitTime);
+            writer.WriteTimeValue("transitTime", TransitTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

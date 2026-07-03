@@ -22,13 +22,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Basic
         /// <summary>Observer longitude in decimal degrees. Affects local time calculations for sunrise/sunset-dependent panchang elements.</summary>
         public double? Longitude { get; set; }
         /// <summary>Time in HH:MM:SS format (24-hour). Determines the exact Moon and Sun positions for tithi and nakshatra calculation.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Timezone offset from UTC in decimal hours. Defaults to 5.5 (IST).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,7 +59,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Basic
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.VedicAstrology.Panchang.Basic.BasicPostRequestBody.BasicPostRequestBody_timezone>(global::RoxyApi.VedicAstrology.Panchang.Basic.BasicPostRequestBody.BasicPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -79,7 +73,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Basic
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Panchang.Basic.BasicPostRequestBody.BasicPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

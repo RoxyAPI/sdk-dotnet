@@ -105,15 +105,8 @@ namespace RoxyApi.Astrology.MoonPhase.Current
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.MoonPhase.Current.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Time in 24-hour HH:MM:SS format. Defaults to 12:00:00 (noon). Moon moves ~13 degrees per day so time affects phase precision.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("time")]
-            public string? Time { get; set; }
-#nullable restore
-#else
-            [QueryParameter("time")]
-            public string Time { get; set; }
-#endif
+            public Time? Time { get; set; }
             /// <summary>Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. &quot;Asia/Kolkata&quot;). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC).</summary>
             [QueryParameter("timezone")]
             public double? Timezone { get; set; }

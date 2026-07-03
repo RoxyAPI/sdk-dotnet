@@ -18,21 +18,9 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
         /// <summary>Birth date (YYYY-MM-DD) to calculate significators. If provided with birthTime, response includes which houses each ruling planet signifies.</summary>
         public Date? BirthDate { get; set; }
         /// <summary>Birth time (HH:MM:SS) for significator calculation. Required if birthDate is provided.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BirthTime { get; set; }
-#nullable restore
-#else
-        public string BirthTime { get; set; }
-#endif
-        /// <summary>ISO 8601 datetime for ruling planets. Defaults to current time. Always interpreted as local time when a non-zero timezone is provided (Z suffix is ignored).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Datetime { get; set; }
-#nullable restore
-#else
-        public string Datetime { get; set; }
-#endif
+        public Time? BirthTime { get; set; }
+        /// <summary>ISO 8601 datetime (YYYY-MM-DDTHH:MM:SS) for ruling planets. Defaults to current time. Interpreted as local time when a non-zero timezone is provided (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
+        public DateTimeOffset? Datetime { get; set; }
         /// <summary>Observer latitude in decimal degrees</summary>
         public double? Latitude { get; set; }
         /// <summary>Observer longitude in decimal degrees</summary>
@@ -74,8 +62,8 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "birthDate", n => { BirthDate = n.GetDateValue(); } },
-                { "birthTime", n => { BirthTime = n.GetStringValue(); } },
-                { "datetime", n => { Datetime = n.GetStringValue(); } },
+                { "birthTime", n => { BirthTime = n.GetTimeValue(); } },
+                { "datetime", n => { Datetime = n.GetDateTimeOffsetValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanets.RulingPlanetsPostRequestBody_nodeType>(); } },
@@ -90,8 +78,8 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("birthDate", BirthDate);
-            writer.WriteStringValue("birthTime", BirthTime);
-            writer.WriteStringValue("datetime", Datetime);
+            writer.WriteTimeValue("birthTime", BirthTime);
+            writer.WriteDateTimeOffsetValue("datetime", Datetime);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Kp.RulingPlanets.RulingPlanetsPostRequestBody_nodeType>("nodeType", NodeType);

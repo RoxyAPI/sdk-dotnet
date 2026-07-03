@@ -30,13 +30,7 @@ namespace RoxyApi.Astrology.Houses
         /// <summary>Birth location longitude in decimal degrees (-180 to 180). Affects local time and horizon calculations for house cusps.</summary>
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Time is ESSENTIAL for accurate house cusps - even minutes matter. The Ascendant (1st house cusp) changes roughly every 4 minutes. Without accurate time, house placements will be incorrect.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST) OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the chart date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,7 +68,7 @@ namespace RoxyApi.Astrology.Houses
                 { "houseSystem", n => { HouseSystem = n.GetObjectValue<global::RoxyApi.Astrology.Houses.HousesPostRequestBody.HousesPostRequestBody_houseSystem>(global::RoxyApi.Astrology.Houses.HousesPostRequestBody.HousesPostRequestBody_houseSystem.CreateFromDiscriminatorValue); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Astrology.Houses.HousesPostRequestBody.HousesPostRequestBody_timezone>(global::RoxyApi.Astrology.Houses.HousesPostRequestBody.HousesPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -89,7 +83,7 @@ namespace RoxyApi.Astrology.Houses
             writer.WriteObjectValue<global::RoxyApi.Astrology.Houses.HousesPostRequestBody.HousesPostRequestBody_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Astrology.Houses.HousesPostRequestBody.HousesPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

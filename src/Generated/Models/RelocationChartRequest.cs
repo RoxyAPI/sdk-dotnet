@@ -28,13 +28,7 @@ namespace RoxyApi.Models
         /// <summary>New location longitude in decimal degrees (-180 to 180). The relocated Midheaven shifts roughly one degree per degree of longitude moved.</summary>
         public double? RelocationLongitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Combined with the timezone it fixes the exact birth instant, which the relocated angles and houses are recomputed for.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Birth timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. &quot;America/New_York&quot;). Resolved to the DST-correct offset for the birth date. This is the birthplace timezone, not the new location timezone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -75,7 +69,7 @@ namespace RoxyApi.Models
                 { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Models.RelocationChartRequest_houseSystem>(); } },
                 { "relocationLatitude", n => { RelocationLatitude = n.GetDoubleValue(); } },
                 { "relocationLongitude", n => { RelocationLongitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.RelocationChartRequest.RelocationChartRequest_timezone>(global::RoxyApi.Models.RelocationChartRequest.RelocationChartRequest_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -92,7 +86,7 @@ namespace RoxyApi.Models
             writer.WriteEnumValue<global::RoxyApi.Models.RelocationChartRequest_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("relocationLatitude", RelocationLatitude);
             writer.WriteDoubleValue("relocationLongitude", RelocationLongitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.RelocationChartRequest.RelocationChartRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

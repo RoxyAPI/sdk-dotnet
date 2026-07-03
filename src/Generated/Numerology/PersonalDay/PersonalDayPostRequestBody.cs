@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -18,14 +19,8 @@ namespace RoxyApi.Numerology.PersonalDay
         public int? Day { get; set; }
         /// <summary>Birth month (1-12)</summary>
         public int? Month { get; set; }
-        /// <summary>Target date in YYYY-MM-DD format (defaults to today)</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TargetDate { get; set; }
-#nullable restore
-#else
-        public string TargetDate { get; set; }
-#endif
+        /// <summary>Target date in YYYY-MM-DD format. Defaults to today (UTC).</summary>
+        public Date? TargetDate { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.PersonalDay.PersonalDayPostRequestBody"/> and sets the default values.
         /// </summary>
@@ -53,7 +48,7 @@ namespace RoxyApi.Numerology.PersonalDay
             {
                 { "day", n => { Day = n.GetIntValue(); } },
                 { "month", n => { Month = n.GetIntValue(); } },
-                { "targetDate", n => { TargetDate = n.GetStringValue(); } },
+                { "targetDate", n => { TargetDate = n.GetDateValue(); } },
             };
         }
         /// <summary>
@@ -65,7 +60,7 @@ namespace RoxyApi.Numerology.PersonalDay
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("day", Day);
             writer.WriteIntValue("month", Month);
-            writer.WriteStringValue("targetDate", TargetDate);
+            writer.WriteDateValue("targetDate", TargetDate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

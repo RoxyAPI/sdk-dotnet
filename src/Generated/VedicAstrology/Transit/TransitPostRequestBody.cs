@@ -18,13 +18,7 @@ namespace RoxyApi.VedicAstrology.Transit
         /// <summary>Birth date in YYYY-MM-DD format. Used to calculate the natal chart against which transits are analyzed.</summary>
         public Date? BirthDate { get; set; }
         /// <summary>Birth time in HH:MM:SS format (24-hour). Critical for accurate natal Lagna and Placidus house cusps which determine transit house placements.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BirthTime { get; set; }
-#nullable restore
-#else
-        public string BirthTime { get; set; }
-#endif
+        public Time? BirthTime { get; set; }
         /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa - standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody_coordinateSystem? CoordinateSystem { get; set; }
         /// <summary>Observer latitude in decimal degrees. Determines Placidus house cusps for natal chart house assignments.</summary>
@@ -42,13 +36,7 @@ namespace RoxyApi.VedicAstrology.Transit
         /// <summary>Transit date to analyze in YYYY-MM-DD format. Planetary positions on this date are overlaid on the natal chart.</summary>
         public Date? TransitDate { get; set; }
         /// <summary>Transit time in HH:MM:SS format (24-hour). Affects fast-moving planets like Moon. Defaults to noon.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TransitTime { get; set; }
-#nullable restore
-#else
-        public string TransitTime { get; set; }
-#endif
+        public Time? TransitTime { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody"/> and sets the default values.
         /// </summary>
@@ -56,7 +44,6 @@ namespace RoxyApi.VedicAstrology.Transit
         {
             AdditionalData = new Dictionary<string, object>();
             CoordinateSystem = global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody_coordinateSystem.Sidereal;
-            TransitTime = "12:00:00";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -77,13 +64,13 @@ namespace RoxyApi.VedicAstrology.Transit
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "birthDate", n => { BirthDate = n.GetDateValue(); } },
-                { "birthTime", n => { BirthTime = n.GetStringValue(); } },
+                { "birthTime", n => { BirthTime = n.GetTimeValue(); } },
                 { "coordinateSystem", n => { CoordinateSystem = n.GetEnumValue<global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody_coordinateSystem>(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody.TransitPostRequestBody_timezone>(global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody.TransitPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
                 { "transitDate", n => { TransitDate = n.GetDateValue(); } },
-                { "transitTime", n => { TransitTime = n.GetStringValue(); } },
+                { "transitTime", n => { TransitTime = n.GetTimeValue(); } },
             };
         }
         /// <summary>
@@ -94,13 +81,13 @@ namespace RoxyApi.VedicAstrology.Transit
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("birthDate", BirthDate);
-            writer.WriteStringValue("birthTime", BirthTime);
+            writer.WriteTimeValue("birthTime", BirthTime);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody_coordinateSystem>("coordinateSystem", CoordinateSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody.TransitPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteDateValue("transitDate", TransitDate);
-            writer.WriteStringValue("transitTime", TransitTime);
+            writer.WriteTimeValue("transitTime", TransitTime);
             writer.WriteAdditionalData(AdditionalData);
         }
         /// <summary>

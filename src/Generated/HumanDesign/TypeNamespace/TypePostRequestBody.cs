@@ -22,13 +22,7 @@ namespace RoxyApi.HumanDesign.TypeNamespace
         /// <summary>Birth longitude in decimal degrees. Optional and does not affect the bodygraph. Defaults to 0.</summary>
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Precision matters: the profile lines and gate boundaries shift with the exact minute of birth.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. &quot;America/New_York&quot;, &quot;UTC&quot;). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -67,7 +61,7 @@ namespace RoxyApi.HumanDesign.TypeNamespace
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.HumanDesign.TypeNamespace.TypePostRequestBody.TypePostRequestBody_timezone>(global::RoxyApi.HumanDesign.TypeNamespace.TypePostRequestBody.TypePostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -81,7 +75,7 @@ namespace RoxyApi.HumanDesign.TypeNamespace
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.TypeNamespace.TypePostRequestBody.TypePostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

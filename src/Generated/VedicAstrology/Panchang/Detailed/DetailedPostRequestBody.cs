@@ -15,7 +15,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Date in YYYY-MM-DD format.</summary>
+        /// <summary>Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected.</summary>
         public Date? Date { get; set; }
         /// <summary>Observer latitude in decimal degrees. Determines sunrise and sunset times which define day/night boundaries for muhurta calculations.</summary>
         public double? Latitude { get; set; }

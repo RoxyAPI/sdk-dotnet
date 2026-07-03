@@ -30,13 +30,7 @@ namespace RoxyApi.Astrology.Synastry
         public string Name { get; set; }
 #endif
         /// <summary>Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. &quot;America/New_York&quot;, &quot;Asia/Kolkata&quot;). IANA strings are resolved to the DST-correct offset for the given date, so you can pass `cities[0].timezone` from /location/search directly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,7 +68,7 @@ namespace RoxyApi.Astrology.Synastry
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostRequestBody_person2.SynastryPostRequestBody_person2_timezone>(global::RoxyApi.Astrology.Synastry.SynastryPostRequestBody_person2.SynastryPostRequestBody_person2_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -89,7 +83,7 @@ namespace RoxyApi.Astrology.Synastry
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostRequestBody_person2.SynastryPostRequestBody_person2_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

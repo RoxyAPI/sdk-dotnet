@@ -62,7 +62,7 @@ public class RoxyClientTests
         var chart = await roxy.Astrology.NatalChart.PostAsync(new NatalChartRequest
         {
             Date = new Date(1990, 1, 15),
-            Time = "14:30:00",
+            Time = new Time(14, 30, 0),
             Latitude = 28.6139,
             Longitude = 77.209,
             Timezone = new() { Double = 5.5 },
@@ -79,7 +79,7 @@ public class RoxyClientTests
         var chart = await roxy.Astrology.NatalChart.PostAsync(new NatalChartRequest
         {
             Date = new Date(1990, 1, 15),
-            Time = "09:00:00",
+            Time = new Time(9, 0, 0),
             Latitude = 40.7128,
             Longitude = -74.006,
             Timezone = new() { String = "America/New_York" },

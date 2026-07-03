@@ -26,13 +26,7 @@ namespace RoxyApi.Models
         public global::RoxyApi.Models.TransitsRequest_natalChart NatalChart { get; set; }
 #endif
         /// <summary>Transit time in HH:MM:SS format (defaults to current time)</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        public Time? Time { get; set; }
         /// <summary>Transit timezone: decimal hours from UTC OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the transit date. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,7 +62,7 @@ namespace RoxyApi.Models
             {
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "natalChart", n => { NatalChart = n.GetObjectValue<global::RoxyApi.Models.TransitsRequest_natalChart>(global::RoxyApi.Models.TransitsRequest_natalChart.CreateFromDiscriminatorValue); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.TransitsRequest.TransitsRequest_timezone>(global::RoxyApi.Models.TransitsRequest.TransitsRequest_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -81,7 +75,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("date", Date);
             writer.WriteObjectValue<global::RoxyApi.Models.TransitsRequest_natalChart>("natalChart", NatalChart);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.TransitsRequest.TransitsRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

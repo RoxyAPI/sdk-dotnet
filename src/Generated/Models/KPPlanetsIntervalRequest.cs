@@ -16,14 +16,8 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, the most common choice for KP astrology. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1 with constant precession rate. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa, matching most traditional Vedic software. Defaults to &quot;kp-newcomb&quot;.</summary>
         public global::RoxyApi.Models.KPPlanetsIntervalRequest_ayanamsa? Ayanamsa { get; set; }
-        /// <summary>End datetime in ISO 8601 format. Maximum 7 days from start. Always interpreted as local time when a non-zero timezone is provided (Z suffix is ignored).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? EndDatetime { get; set; }
-#nullable restore
-#else
-        public string EndDatetime { get; set; }
-#endif
+        /// <summary>End datetime in ISO 8601 (YYYY-MM-DDTHH:MM:SS). Maximum 7 days from start. Interpreted as local time when a non-zero timezone is provided (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
+        public DateTimeOffset? EndDatetime { get; set; }
         /// <summary>Time between calculations in minutes. Range: 15 (quarter-hourly) to 1440 (daily).</summary>
         public double? IntervalMinutes { get; set; }
         /// <summary>Observer latitude in decimal degrees (for future Lagna calculations)</summary>
@@ -32,14 +26,8 @@ namespace RoxyApi.Models
         public double? Longitude { get; set; }
         /// <summary>Lunar node type for Rahu and Ketu positions. &quot;mean&quot; uses the smooth mean node (traditional Vedic astrology default). &quot;true&quot; uses the osculating node with perturbation corrections, oscillating up to 1.5 degrees from mean with a 173-day period. Impacts KP sub-lord assignments in narrow boundary cases. Defaults to &quot;mean&quot;.</summary>
         public global::RoxyApi.Models.KPPlanetsIntervalRequest_nodeType? NodeType { get; set; }
-        /// <summary>Start datetime in ISO 8601 format. Always interpreted as local time when a non-zero timezone is provided (Z suffix is ignored). With timezone 0, Z suffix is treated as UTC.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? StartDatetime { get; set; }
-#nullable restore
-#else
-        public string StartDatetime { get; set; }
-#endif
+        /// <summary>Start datetime in ISO 8601 (YYYY-MM-DDTHH:MM:SS). Interpreted as local time when a non-zero timezone is provided (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
+        public DateTimeOffset? StartDatetime { get; set; }
         /// <summary>Decimal hours from UTC OR IANA name (e.g. &quot;Asia/Kolkata&quot;). IANA resolved to the DST-correct offset for the startDatetime date. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -76,12 +64,12 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.Models.KPPlanetsIntervalRequest_ayanamsa>(); } },
-                { "endDatetime", n => { EndDatetime = n.GetStringValue(); } },
+                { "endDatetime", n => { EndDatetime = n.GetDateTimeOffsetValue(); } },
                 { "intervalMinutes", n => { IntervalMinutes = n.GetDoubleValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.Models.KPPlanetsIntervalRequest_nodeType>(); } },
-                { "startDatetime", n => { StartDatetime = n.GetStringValue(); } },
+                { "startDatetime", n => { StartDatetime = n.GetDateTimeOffsetValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.KPPlanetsIntervalRequest.KPPlanetsIntervalRequest_timezone>(global::RoxyApi.Models.KPPlanetsIntervalRequest.KPPlanetsIntervalRequest_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -93,12 +81,12 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::RoxyApi.Models.KPPlanetsIntervalRequest_ayanamsa>("ayanamsa", Ayanamsa);
-            writer.WriteStringValue("endDatetime", EndDatetime);
+            writer.WriteDateTimeOffsetValue("endDatetime", EndDatetime);
             writer.WriteDoubleValue("intervalMinutes", IntervalMinutes);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.Models.KPPlanetsIntervalRequest_nodeType>("nodeType", NodeType);
-            writer.WriteStringValue("startDatetime", StartDatetime);
+            writer.WriteDateTimeOffsetValue("startDatetime", StartDatetime);
             writer.WriteObjectValue<global::RoxyApi.Models.KPPlanetsIntervalRequest.KPPlanetsIntervalRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }

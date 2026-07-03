@@ -16,20 +16,14 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Date in YYYY-MM-DD format.</summary>
+        /// <summary>Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected.</summary>
         public Date? Date { get; set; }
         /// <summary>The latitude property</summary>
         public double? Latitude { get; set; }
         /// <summary>The longitude property</summary>
         public double? Longitude { get; set; }
-        /// <summary>Time in 24-hour HH:MM:SS format.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Time { get; set; }
-#nullable restore
-#else
-        public string Time { get; set; }
-#endif
+        /// <summary>Time in 24-hour format. Seconds are optional and default to 00 (14:30 becomes 14:30:00); a single-digit hour is zero-padded. Out-of-range values are rejected.</summary>
+        public Time? Time { get; set; }
         /// <summary>Natal timezone: decimal hours OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the natal date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,7 +60,7 @@ namespace RoxyApi.Models
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "time", n => { Time = n.GetStringValue(); } },
+                { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.TransitsRequest_natalChart.TransitsRequest_natalChart_timezone>(global::RoxyApi.Models.TransitsRequest_natalChart.TransitsRequest_natalChart_timezone.CreateFromDiscriminatorValue); } },
             };
         }
@@ -80,7 +74,7 @@ namespace RoxyApi.Models
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("time", Time);
+            writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.TransitsRequest_natalChart.TransitsRequest_natalChart_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }
