@@ -12,7 +12,7 @@
 
   <PropertyGroup Label="Package">
     <PackageId>RoxyApi.Sdk</PackageId>
-    <Version>0.1.9</Version>
+    <Version>0.1.10</Version>
     <Authors>RoxyAPI</Authors>
     <Company>RoxyAPI</Company>
     <Product>RoxyAPI .NET SDK</Product>

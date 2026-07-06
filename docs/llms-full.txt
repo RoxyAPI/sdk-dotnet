@@ -505,7 +505,7 @@ await roxy.Iching.Trigrams["Heaven"].GetAsync();
 
 ## Crystals and Healing Stones - `roxy.Crystals`
 
-Crystal healing API with 80 healing crystals and gemstones and their spiritual, emotional, and physical properties
+Crystal healing API covering the most popular and widely-searched healing crystals and gemstones, from Amethyst and R...
 
 ```csharp
 // Crystals by Zodiac Sign

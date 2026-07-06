@@ -16,7 +16,7 @@ namespace RoxyApi.Crystals.Pairings
     public partial class PairingsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the RoxyApi.crystals.pairings.item collection</summary>
-        /// <param name="position">URL-safe crystal identifier to find pairings for (e.g., &quot;amethyst&quot;, &quot;rose-quartz&quot;).</param>
+        /// <param name="position">URL-safe crystal identifier to find pairings for, case-insensitive (e.g., &quot;amethyst&quot;, &quot;Amethyst&quot;, &quot;rose-quartz&quot; all resolve).</param>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Pairings.Item.PairingsItemRequestBuilder"/></returns>
         public global::RoxyApi.Crystals.Pairings.Item.PairingsItemRequestBuilder this[string position]
         {

@@ -79,7 +79,7 @@ namespace RoxyApi.Crystals
             get => new global::RoxyApi.Crystals.Zodiac.ZodiacRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the RoxyApi.crystals.item collection</summary>
-        /// <param name="position">URL-safe crystal identifier (e.g., &quot;amethyst&quot;, &quot;rose-quartz&quot;, &quot;black-tourmaline&quot;). Must match an entry in the database.</param>
+        /// <param name="position">URL-safe crystal identifier, case-insensitive (e.g., &quot;amethyst&quot;, &quot;Amethyst&quot;, &quot;rose-quartz&quot; all resolve). Must match an entry in the database.</param>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Item.CrystalsItemRequestBuilder"/></returns>
         public global::RoxyApi.Crystals.Item.CrystalsItemRequestBuilder this[string position]
         {
