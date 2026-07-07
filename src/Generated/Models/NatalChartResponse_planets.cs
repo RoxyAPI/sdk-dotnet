@@ -32,7 +32,7 @@ namespace RoxyApi.Models
         public double? Latitude { get; set; }
         /// <summary>Tropical ecliptic longitude in degrees (0-360).</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet or point name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith).</summary>
+        /// <summary>Planet or point name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). The lunar nodes are the mean node; software using the true node may show node positions up to 1.75 degrees different.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
