@@ -44,7 +44,7 @@ async Task<int> GenerateAsync()
     Console.WriteLine($"Fetching OpenAPI spec from {SpecUrl}");
     using var http = new HttpClient();
     http.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
-    var raw = await http.GetStringAsync(SpecUrl);
+    var raw = await FetchSpecAsync(http);
 
     var spec = JsonNode.Parse(raw)!.AsObject();
     PatchServerUrl(spec);
@@ -62,6 +62,27 @@ async Task<int> GenerateAsync()
     Console.WriteLine("SDK generated.");
 
     return SyncDocs();
+}
+
+// Retry with exponential backoff: a transient upstream error (e.g. a CDN 520)
+// must not fail the daily release run.
+async Task<string> FetchSpecAsync(HttpClient http, int attempts = 5)
+{
+    for (var attempt = 1; ; attempt++)
+    {
+        try
+        {
+            using var res = await http.GetAsync(SpecUrl);
+            res.EnsureSuccessStatusCode();
+            return await res.Content.ReadAsStringAsync();
+        }
+        catch (Exception ex) when (attempt < attempts && ex is HttpRequestException or TaskCanceledException)
+        {
+            var delay = 1 << attempt;
+            Console.WriteLine($"Fetch attempt {attempt}/{attempts} failed ({ex.Message}), retrying in {delay}s");
+            await Task.Delay(TimeSpan.FromSeconds(delay));
+        }
+    }
 }
 
 // Rewrite the relative production server (`/api/v2`) to an absolute URL so the
