@@ -22,6 +22,14 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public List<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows> Arrows { get; set; }
 #endif
+        /// <summary>What the Base layer is. Returned once at the top level rather than repeated on every arrow, since the Base layer is the same concept for all four. No per-Base meaning is returned: every one in circulation traces back to a single origin, so it fails the two-source bar this package holds.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BaseDescription { get; set; }
+#nullable restore
+#else
+        public string BaseDescription { get; set; }
+#endif
         /// <summary>Boundary margin in degrees of ecliptic longitude used for the per-arrow confidence flag, the solar arc over a few minutes of clock time. An activation within this distance of a Color or Tone boundary is flagged low-confidence.</summary>
         public double? ConfidenceMarginDeg { get; set; }
         /// <summary>True only when all four arrows are confident. A single knife-edge arrow makes the whole configuration uncertain.</summary>
@@ -52,6 +60,7 @@ namespace RoxyApi.HumanDesign.Variables
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "arrows", n => { Arrows = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows>(global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "baseDescription", n => { BaseDescription = n.GetStringValue(); } },
                 { "confidenceMarginDeg", n => { ConfidenceMarginDeg = n.GetDoubleValue(); } },
                 { "confident", n => { Confident = n.GetBoolValue(); } },
             };
@@ -64,6 +73,7 @@ namespace RoxyApi.HumanDesign.Variables
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows>("arrows", Arrows);
+            writer.WriteStringValue("baseDescription", BaseDescription);
             writer.WriteDoubleValue("confidenceMarginDeg", ConfidenceMarginDeg);
             writer.WriteBoolValue("confident", Confident);
             writer.WriteAdditionalData(AdditionalData);

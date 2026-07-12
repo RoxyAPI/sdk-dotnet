@@ -16,6 +16,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Human Design gate number from 1 to 64 that this activation falls in.</summary>
         public double? Gate { get; set; }
+        /// <summary>Bodygraph function of the gate: what it does in the center it sits in and the channel it forms. This is NOT the meaning of the I-Ching hexagram that shares its number. They share a number, not a definition.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GateDescription { get; set; }
+#nullable restore
+#else
+        public string GateDescription { get; set; }
+#endif
         /// <summary>Human Design keynote name of the gate, describing its bodygraph function.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -34,6 +42,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #endif
         /// <summary>Line number from 1 to 6 within the gate, setting the line keynote and the profile.</summary>
         public double? Line { get; set; }
+        /// <summary>Meaning of this gate at this specific line, one of 384. The finest interpretive layer in the chart and the one that makes a reading specific rather than generic. This is not the six abstract line archetypes: gate 41 line 3 carries its own meaning that neither the gate keynote nor the line-3 archetype holds alone.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LineMeaning { get; set; }
+#nullable restore
+#else
+        public string LineMeaning { get; set; }
+#endif
         /// <summary>Activating body. One of Sun, Earth, Moon, North Node, South Node, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,6 +57,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string Planet { get; set; }
+#endif
+        /// <summary>What this planetary activation contributes in Human Design specifically, which is not its meaning in western astrology.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetDescription { get; set; }
+#nullable restore
+#else
+        public string PlanetDescription { get; set; }
 #endif
         /// <summary>Chart side. personality is the conscious birth-moment activation, design is the unconscious activation 88 degrees of solar arc before birth.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,10 +100,13 @@ namespace RoxyApi.HumanDesign.Bodygraph
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "gate", n => { Gate = n.GetDoubleValue(); } },
+                { "gateDescription", n => { GateDescription = n.GetStringValue(); } },
                 { "gateName", n => { GateName = n.GetStringValue(); } },
                 { "ichingHexagram", n => { IchingHexagram = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates_ichingHexagram>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates_ichingHexagram.CreateFromDiscriminatorValue); } },
                 { "line", n => { Line = n.GetDoubleValue(); } },
+                { "lineMeaning", n => { LineMeaning = n.GetStringValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetDescription", n => { PlanetDescription = n.GetStringValue(); } },
                 { "side", n => { Side = n.GetStringValue(); } },
             };
         }
@@ -91,10 +118,13 @@ namespace RoxyApi.HumanDesign.Bodygraph
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("gate", Gate);
+            writer.WriteStringValue("gateDescription", GateDescription);
             writer.WriteStringValue("gateName", GateName);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates_ichingHexagram>("ichingHexagram", IchingHexagram);
             writer.WriteDoubleValue("line", Line);
+            writer.WriteStringValue("lineMeaning", LineMeaning);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetDescription", PlanetDescription);
             writer.WriteStringValue("side", Side);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -30,6 +30,22 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string Circuit { get; set; }
 #endif
+        /// <summary>What the circuit family of this channel governs.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CircuitDescription { get; set; }
+#nullable restore
+#else
+        public string CircuitDescription { get; set; }
+#endif
+        /// <summary>What this channel wires between its two centers and the nature of the energy it carries.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>First gate of the channel.</summary>
         public double? GateA { get; set; }
         /// <summary>Second gate of the channel.</summary>
@@ -69,6 +85,8 @@ namespace RoxyApi.HumanDesign.Bodygraph
             {
                 { "centers", n => { Centers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "circuit", n => { Circuit = n.GetStringValue(); } },
+                { "circuitDescription", n => { CircuitDescription = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "gateA", n => { GateA = n.GetDoubleValue(); } },
                 { "gateB", n => { GateB = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -83,6 +101,8 @@ namespace RoxyApi.HumanDesign.Bodygraph
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("centers", Centers);
             writer.WriteStringValue("circuit", Circuit);
+            writer.WriteStringValue("circuitDescription", CircuitDescription);
+            writer.WriteStringValue("description", Description);
             writer.WriteDoubleValue("gateA", GateA);
             writer.WriteDoubleValue("gateB", GateB);
             writer.WriteStringValue("name", Name);

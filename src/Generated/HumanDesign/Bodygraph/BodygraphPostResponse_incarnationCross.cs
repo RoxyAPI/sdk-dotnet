@@ -31,6 +31,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string AngleCode { get; set; }
 #endif
+        /// <summary>The life theme of the cross, synthesized from its four gates and the orientation the angle gives them. The same Sun gate under a different angle is a genuinely different theme: Right Angle is personal destiny, Left Angle is worked out through other people, Juxtaposition is a fixed fate.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>The four cardinal gates of the cross: Personality Sun, Personality Earth, Design Sun, Design Earth.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,6 +82,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             {
                 { "angle", n => { Angle = n.GetStringValue(); } },
                 { "angleCode", n => { AngleCode = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
             };
@@ -87,6 +96,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("angle", Angle);
             writer.WriteStringValue("angleCode", AngleCode);
+            writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfPrimitiveValues<double?>("gates", Gates);
             writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);

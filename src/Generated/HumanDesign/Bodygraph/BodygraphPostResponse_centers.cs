@@ -16,6 +16,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether this is an awareness center. The three awareness centers are Ajna, Solar Plexus, and Spleen.</summary>
         public bool? Awareness { get; set; }
+        /// <summary>The gland, organ, or system this center corresponds to in the body.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Biology { get; set; }
+#nullable restore
+#else
+        public string Biology { get; set; }
+#endif
         /// <summary>Whether the center is defined. A defined center is a consistent source of energy or awareness; an undefined center is open and conditioned by others.</summary>
         public bool? Defined { get; set; }
         /// <summary>Active gate numbers that sit in this center.</summary>
@@ -43,6 +51,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>The conditioning trap of this center when it is open. Returned on every center so a consumer can surface it the moment `defined` is false, which is where the not-self operates.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NotSelfQuestion { get; set; }
+#nullable restore
+#else
+        public string NotSelfQuestion { get; set; }
 #endif
         /// <summary>Theme text describing the center in its current defined or undefined state.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -78,11 +94,13 @@ namespace RoxyApi.HumanDesign.Bodygraph
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "awareness", n => { Awareness = n.GetBoolValue(); } },
+                { "biology", n => { Biology = n.GetStringValue(); } },
                 { "defined", n => { Defined = n.GetBoolValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "motor", n => { Motor = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "notSelfQuestion", n => { NotSelfQuestion = n.GetStringValue(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
             };
         }
@@ -94,11 +112,13 @@ namespace RoxyApi.HumanDesign.Bodygraph
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("awareness", Awareness);
+            writer.WriteStringValue("biology", Biology);
             writer.WriteBoolValue("defined", Defined);
             writer.WriteCollectionOfPrimitiveValues<double?>("gates", Gates);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("motor", Motor);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("notSelfQuestion", NotSelfQuestion);
             writer.WriteStringValue("theme", Theme);
             writer.WriteAdditionalData(AdditionalData);
         }

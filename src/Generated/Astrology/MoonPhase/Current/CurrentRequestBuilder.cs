@@ -107,7 +107,7 @@ namespace RoxyApi.Astrology.MoonPhase.Current
             /// <summary>Time in 24-hour HH:MM:SS format. Defaults to 12:00:00 (noon). Moon moves ~13 degrees per day so time affects phase precision.</summary>
             [QueryParameter("time")]
             public Time? Time { get; set; }
-            /// <summary>Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. &quot;Asia/Kolkata&quot;). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC).</summary>
+            /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours (e.g. -5 for EST, 1 for CET). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC).</summary>
             [QueryParameter("timezone")]
             public double? Timezone { get; set; }
         }

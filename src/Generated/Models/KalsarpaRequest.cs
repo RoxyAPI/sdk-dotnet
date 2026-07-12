@@ -23,7 +23,7 @@ namespace RoxyApi.Models
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Time is CRITICAL for Lagna (Ascendant) calculation and house divisions. It changes every two hours roughly. Even minutes matter for accurate nakshatra pada and divisional chart (D9, D10) calculations. Without exact time, Lagna and house-based predictions will be incorrect.</summary>
         public Time? Time { get; set; }
-        /// <summary>Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. &quot;Asia/Kolkata&quot;, &quot;America/New_York&quot;). IANA strings are resolved to the DST-correct offset for the given date, so you can pass `cities[0].timezone` from /location/search directly. Defaults to 5.5 (IST).</summary>
+        /// <summary>Timezone: IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass `cities[0].timezone` from /location/search directly. Defaults to 5.5.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.KalsarpaRequest.KalsarpaRequest_timezone? Timezone { get; set; }

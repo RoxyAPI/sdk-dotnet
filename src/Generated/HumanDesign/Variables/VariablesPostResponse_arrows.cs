@@ -24,6 +24,22 @@ namespace RoxyApi.HumanDesign.Variables
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Base number from 1 to 5, the finest published subdivision of the wheel. Returned for completeness but treated as informational, since it is finer than most birth times can resolve.</summary>
         public double? Base { get; set; }
+        /// <summary>Name of the Base. Informational only: the Base is finer than any civil birth time can resolve.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BaseName { get; set; }
+#nullable restore
+#else
+        public string BaseName { get; set; }
+#endif
+        /// <summary>Cognition, the strongest sense, read off the Determination Tone. Present on the determination arrow ONLY: no authority supports reading Cognition from the other three arrows, so it is omitted rather than invented.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition? Cognition { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition Cognition { get; set; }
+#endif
         /// <summary>Color number from 1 to 6, the substructure level one octave finer than the line. Color selects the arrow theme, for example the determination family or the motivation.</summary>
         public double? Color { get; set; }
         /// <summary>Name of the Color theme for this arrow, for example a determination family such as Touch, an environment such as Mountains, a perspective such as Personal, or a motivation such as Hope.</summary>
@@ -34,8 +50,24 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string ColorLabel { get; set; }
 #endif
+        /// <summary>Meaning of the Color for THIS arrow. The same Color number means something different under Determination than under Motivation, so this is the reading of colorLabel in context, not a generic gloss.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ColorMeaning { get; set; }
+#nullable restore
+#else
+        public string ColorMeaning { get; set; }
+#endif
         /// <summary>Whether this arrow is far enough from a Color or Tone boundary to be reliable. When false the activation sits on a knife edge where the Color label or the arrow direction could flip with a more precise birth time, and the arrow should not be presented as fact.</summary>
         public bool? Confident { get; set; }
+        /// <summary>What this arrow is and what it governs.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>Arrow direction derived from the Tone. left for tones 1 to 3, right for tones 4 to 6.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,6 +84,14 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string DirectionLabel { get; set; }
 #endif
+        /// <summary>Meaning of the left or right direction for THIS arrow, the reading of directionLabel.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DirectionMeaning { get; set; }
+#nullable restore
+#else
+        public string DirectionMeaning { get; set; }
+#endif
         /// <summary>Stable arrow identifier. One of determination, environment, perspective, motivation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -67,6 +107,14 @@ namespace RoxyApi.HumanDesign.Variables
 #nullable restore
 #else
         public string Layer { get; set; }
+#endif
+        /// <summary>What the layer this arrow belongs to governs, the body side or the mind side.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LayerDescription { get; set; }
+#nullable restore
+#else
+        public string LayerDescription { get; set; }
 #endif
         /// <summary>Arrow name. Determination is the top-left arrow governing the Primary Health System and digestion, Environment the bottom-left arrow, Perspective the bottom-right arrow also called View, and Motivation the top-right arrow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -86,6 +134,14 @@ namespace RoxyApi.HumanDesign.Variables
 #endif
         /// <summary>Tone number from 1 to 6, the substructure level beneath Color. Tone sets the arrow direction: tones 1 to 3 face left, tones 4 to 6 face right.</summary>
         public double? Tone { get; set; }
+        /// <summary>Meaning of the Tone. The six Tones are shared across all four arrows: the arrow does not change the Tone, it changes what the Tone qualifies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ToneMeaning { get; set; }
+#nullable restore
+#else
+        public string ToneMeaning { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows"/> and sets the default values.
         /// </summary>
@@ -113,16 +169,23 @@ namespace RoxyApi.HumanDesign.Variables
             {
                 { "activation", n => { Activation = n.GetObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_activation>(global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_activation.CreateFromDiscriminatorValue); } },
                 { "base", n => { Base = n.GetDoubleValue(); } },
+                { "baseName", n => { BaseName = n.GetStringValue(); } },
+                { "cognition", n => { Cognition = n.GetObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition>(global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition.CreateFromDiscriminatorValue); } },
                 { "color", n => { Color = n.GetDoubleValue(); } },
                 { "colorLabel", n => { ColorLabel = n.GetStringValue(); } },
+                { "colorMeaning", n => { ColorMeaning = n.GetStringValue(); } },
                 { "confident", n => { Confident = n.GetBoolValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "direction", n => { Direction = n.GetStringValue(); } },
                 { "directionLabel", n => { DirectionLabel = n.GetStringValue(); } },
+                { "directionMeaning", n => { DirectionMeaning = n.GetStringValue(); } },
                 { "key", n => { Key = n.GetStringValue(); } },
                 { "layer", n => { Layer = n.GetStringValue(); } },
+                { "layerDescription", n => { LayerDescription = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetStringValue(); } },
                 { "tone", n => { Tone = n.GetDoubleValue(); } },
+                { "toneMeaning", n => { ToneMeaning = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -134,16 +197,23 @@ namespace RoxyApi.HumanDesign.Variables
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_activation>("activation", Activation);
             writer.WriteDoubleValue("base", Base);
+            writer.WriteStringValue("baseName", BaseName);
+            writer.WriteObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition>("cognition", Cognition);
             writer.WriteDoubleValue("color", Color);
             writer.WriteStringValue("colorLabel", ColorLabel);
+            writer.WriteStringValue("colorMeaning", ColorMeaning);
             writer.WriteBoolValue("confident", Confident);
+            writer.WriteStringValue("description", Description);
             writer.WriteStringValue("direction", Direction);
             writer.WriteStringValue("directionLabel", DirectionLabel);
+            writer.WriteStringValue("directionMeaning", DirectionMeaning);
             writer.WriteStringValue("key", Key);
             writer.WriteStringValue("layer", Layer);
+            writer.WriteStringValue("layerDescription", LayerDescription);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("position", Position);
             writer.WriteDoubleValue("tone", Tone);
+            writer.WriteStringValue("toneMeaning", ToneMeaning);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

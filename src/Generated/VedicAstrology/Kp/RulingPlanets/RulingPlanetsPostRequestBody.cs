@@ -27,7 +27,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
         public double? Longitude { get; set; }
         /// <summary>Lunar node type for Rahu and Ketu positions. &quot;mean&quot; uses the smooth mean node (traditional Vedic astrology default). &quot;true&quot; uses the osculating node with perturbation corrections, oscillating up to 1.5 degrees from mean with a 173-day period. Impacts KP sub-lord assignments in narrow boundary cases. Defaults to &quot;mean&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanets.RulingPlanetsPostRequestBody_nodeType? NodeType { get; set; }
-        /// <summary>Timezone: decimal hours from UTC OR IANA name (e.g. &quot;Asia/Kolkata&quot;). IANA resolved to the DST-correct offset based on birthDate or datetime. Defaults to 5.5 (IST).</summary>
+        /// <summary>Timezone: IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC. IANA resolved to the DST-correct offset based on birthDate or datetime. Defaults to 5.5.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanets.RulingPlanetsPostRequestBody.RulingPlanetsPostRequestBody_timezone? Timezone { get; set; }

@@ -14,6 +14,14 @@ namespace RoxyApi.HumanDesign.TypeNamespace
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The aura mechanic of the type: how the energy field itself operates, for example open and enveloping, or closed and repelling.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Aura { get; set; }
+#nullable restore
+#else
+        public string Aura { get; set; }
+#endif
         /// <summary>Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,6 +29,14 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #nullable restore
 #else
         public string Authority { get; set; }
+#endif
+        /// <summary>How the decision is made, the timing it requires, and the characteristic trap. Inner authority is the most actionable output of a Human Design chart.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AuthorityDescription { get; set; }
+#nullable restore
+#else
+        public string AuthorityDescription { get; set; }
 #endif
         /// <summary>The not-self theme that signals being out of alignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,6 +70,14 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #else
         public string Strategy { get; set; }
 #endif
+        /// <summary>How to actually apply the strategy. The strategy field alone is a bare label such as Respond or Inform; this is the operating instruction behind it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StrategyDescription { get; set; }
+#nullable restore
+#else
+        public string StrategyDescription { get; set; }
+#endif
         /// <summary>Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -61,6 +85,14 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #nullable restore
 #else
         public string Type { get; set; }
+#endif
+        /// <summary>What the aura of this type does and how it is designed to engage life. The grounding text for the type label, so a consuming agent does not have to supply the meaning itself.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeDescription { get; set; }
+#nullable restore
+#else
+        public string TypeDescription { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.TypeNamespace.TypePostResponse"/> and sets the default values.
@@ -87,12 +119,16 @@ namespace RoxyApi.HumanDesign.TypeNamespace
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "aura", n => { Aura = n.GetStringValue(); } },
                 { "authority", n => { Authority = n.GetStringValue(); } },
+                { "authorityDescription", n => { AuthorityDescription = n.GetStringValue(); } },
                 { "notSelf", n => { NotSelf = n.GetStringValue(); } },
                 { "profile", n => { Profile = n.GetStringValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
                 { "strategy", n => { Strategy = n.GetStringValue(); } },
+                { "strategyDescription", n => { StrategyDescription = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
+                { "typeDescription", n => { TypeDescription = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -102,12 +138,16 @@ namespace RoxyApi.HumanDesign.TypeNamespace
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("aura", Aura);
             writer.WriteStringValue("authority", Authority);
+            writer.WriteStringValue("authorityDescription", AuthorityDescription);
             writer.WriteStringValue("notSelf", NotSelf);
             writer.WriteStringValue("profile", Profile);
             writer.WriteStringValue("signature", Signature);
             writer.WriteStringValue("strategy", Strategy);
+            writer.WriteStringValue("strategyDescription", StrategyDescription);
             writer.WriteStringValue("type", Type);
+            writer.WriteStringValue("typeDescription", TypeDescription);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

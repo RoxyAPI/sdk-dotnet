@@ -31,7 +31,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Start date for sublord change search (YYYY-MM-DD format)</summary>
         public Date? StartDate { get; set; }
-        /// <summary>Decimal hours from UTC OR IANA name (e.g. &quot;Asia/Kolkata&quot;). IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
+        /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC. IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.KPSublordChangesRequest.KPSublordChangesRequest_timezone? Timezone { get; set; }

@@ -3,7 +3,7 @@
   "info": {
     "title": "RoxyAPI",
     "version": "2.0.0",
-    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 12 domains (astrology, Vedic astrology, human design, forecast, biorhythm, tarot, numerology, crystals, dreams, I-Ching, angel numbers, location), 164\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (MCP)\n\nRoxyAPI has native Model Context Protocol support. Your AI agent auto-discovers all 164\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable (stable \u2014 safe to switch on programmatically).\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 to $699/month.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
+    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 12 domains (astrology, Vedic astrology, human design, forecast, biorhythm, tarot, numerology, crystals, dreams, I-Ching, angel numbers, location), 164\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (Remote MCP)\n\nRoxyAPI ships a Remote MCP server per product over Streamable HTTP, with no local setup and no Docker. Your AI agent auto-discovers all 164\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable (stable \u2014 safe to switch on programmatically).\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 to $699/month.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
     "contact": {
       "name": "RoxyAPI Support",
       "url": "https://roxyapi.com/contact"
@@ -711,11 +711,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           },
           "houseSystem": {
@@ -1229,8 +1228,7 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "description": "Timezone offset from UTC in decimal hours (NOT minutes format). Examples: New York EST = -5, India IST = 5.5 (NOT 5:30), Tokyo JST = 9. IMPORTANT: Use decimal format (5.5, not 5:30).",
@@ -1459,11 +1457,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           }
         },
@@ -1712,8 +1709,7 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 0,
@@ -1755,8 +1751,7 @@
                     "maximum": 14
                   },
                   {
-                    "type": "string",
-                    "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                    "type": "string"
                   }
                 ],
                 "description": "Natal timezone: decimal hours OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the natal date.",
@@ -2423,8 +2418,7 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "description": "Birth timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022). Resolved to the DST-correct offset for the birth date. This is the birthplace timezone, not the new location timezone.",
@@ -2987,11 +2981,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           },
           "houseSystem": {
@@ -3195,11 +3188,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           },
           "houseSystem": {
@@ -3408,11 +3400,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           },
           "houseSystem": {
@@ -3678,11 +3669,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           },
           "targetDate": {
@@ -3866,11 +3856,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           },
           "targetDate": {
@@ -4048,11 +4037,10 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
-            "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
             "example": -5
           },
           "targetDate": {
@@ -5699,12 +5687,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -5971,12 +5958,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -6276,12 +6262,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           },
           "division": {
@@ -6456,12 +6441,11 @@
                     "maximum": 14
                   },
                   {
-                    "type": "string",
-                    "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                    "type": "string"
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -6510,12 +6494,11 @@
                     "maximum": 14
                   },
                   {
-                    "type": "string",
-                    "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                    "type": "string"
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -6749,12 +6732,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -6884,12 +6866,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -7026,12 +7007,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -7149,12 +7129,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -7302,12 +7281,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -7494,8 +7472,7 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
@@ -7670,8 +7647,7 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
@@ -8224,8 +8200,7 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
@@ -8958,12 +8933,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 0,
-            "description": "Decimal hours from UTC OR IANA name (e.g. \u0022Asia/Kolkata\u0022). IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).",
+            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC. IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).",
             "example": 5.5
           },
           "ayanamsa": {
@@ -9107,12 +9081,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 0,
-            "description": "Decimal hours from UTC OR IANA name (e.g. \u0022Asia/Kolkata\u0022). IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).",
+            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC. IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).",
             "example": 5.5
           },
           "ayanamsa": {
@@ -9332,12 +9305,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 0,
-            "description": "Decimal hours from UTC OR IANA name (e.g. \u0022Asia/Kolkata\u0022). IANA resolved to the DST-correct offset for the startDatetime date. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Defaults to 0 (UTC).",
+            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC. IANA resolved to the DST-correct offset for the startDatetime date. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Defaults to 0 (UTC).",
             "example": 5.5
           },
           "ayanamsa": {
@@ -9793,12 +9765,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -10095,12 +10066,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -10253,12 +10223,11 @@
                 "maximum": 14
               },
               {
-                "type": "string",
-                "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                "type": "string"
               }
             ],
             "default": 5.5,
-            "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
             "example": 5.5
           }
         },
@@ -12098,8 +12067,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "description": "Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST, 5.75 for NPT) OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the chart date.",
@@ -12383,10 +12351,10 @@
               ],
               "default": 0,
               "example": 0,
-              "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC)."
+              "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours (e.g. -5 for EST, 1 for CET). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC)."
             },
             "required": false,
-            "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC).",
+            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours (e.g. -5 for EST, 1 for CET). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC).",
             "name": "timezone",
             "in": "query"
           }
@@ -12990,11 +12958,10 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                         "example": -5
                       },
                       "name": {
@@ -13048,11 +13015,10 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                         "example": -5
                       },
                       "name": {
@@ -13526,8 +13492,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "description": "Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST) OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the chart date.",
@@ -14095,11 +14060,10 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                         "example": -5
                       }
                     },
@@ -14802,8 +14766,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "description": "Decimal hours from UTC OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the birthDate. Output datetime is adjusted to this timezone.",
@@ -15471,8 +15434,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "description": "Decimal hours from UTC OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the birthDate. Output datetime is adjusted to this timezone.",
@@ -16131,11 +16093,10 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                         "example": -5
                       }
                     },
@@ -16185,11 +16146,10 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                         "example": -5
                       }
                     },
@@ -16828,11 +16788,10 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                         "example": -5
                       }
                     },
@@ -16882,11 +16841,10 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                         "example": -5
                       }
                     },
@@ -18405,8 +18363,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "description": "Decimal hours from UTC OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the birthDate. Output datetime is adjusted to this timezone.",
@@ -19082,11 +19039,10 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                     "example": -5
                   }
                 },
@@ -19379,8 +19335,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "description": "Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST) OR IANA name (e.g. \u0022America/New_York\u0022). IANA resolved to the DST-correct offset for the birth date.",
@@ -19562,11 +19517,10 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022Asia/Kolkata\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
                     "example": -5
                   }
                 },
@@ -21228,12 +21182,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
                     "example": 5.5
                   }
                 },
@@ -21728,12 +21681,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
                     "example": 5.5
                   }
                 },
@@ -22045,12 +21997,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: decimal hours from UTC (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5 (IST).",
+                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
                     "example": 5.5
                   }
                 },
@@ -22353,8 +22304,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -22698,8 +22648,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -23738,8 +23687,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -23994,8 +23942,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -25626,12 +25573,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: decimal hours from UTC OR IANA name (e.g. \u0022Asia/Kolkata\u0022). IANA resolved to the DST-correct offset based on birthDate or datetime. Defaults to 5.5 (IST).",
+                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC. IANA resolved to the DST-correct offset based on birthDate or datetime. Defaults to 5.5.",
                     "example": 5.5
                   },
                   "datetime": {
@@ -25803,8 +25749,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -26251,8 +26196,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -26562,8 +26506,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 0,
@@ -26796,8 +26739,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 0,
@@ -27048,8 +26990,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -27348,8 +27289,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 0,
@@ -27600,8 +27540,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 5.5,
@@ -27831,8 +27770,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 0,
@@ -28040,8 +27978,7 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
                     "default": 0,
@@ -37325,12 +37262,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "latitude": {
                     "type": "number",
@@ -37371,15 +37307,32 @@
                       "example": "Manifestor",
                       "description": "Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector."
                     },
+                    "typeDescription": {
+                      "type": "string",
+                      "example": "An initiating, impactful aura built to start things and set them in motion. Informing others before acting removes resistance and brings peace.",
+                      "description": "What the aura of this type does and how it is designed to engage life. The grounding text for the type label, so a consuming agent does not have to supply the meaning itself."
+                    },
+                    "aura": {
+                      "type": "string",
+                      "description": "The aura mechanic of the type: how the energy field itself operates, for example open and enveloping, or closed and repelling."
+                    },
                     "strategy": {
                       "type": "string",
                       "example": "Inform",
                       "description": "The aura strategy for engaging life correctly for this type."
                     },
+                    "strategyDescription": {
+                      "type": "string",
+                      "description": "How to actually apply the strategy. The strategy field alone is a bare label such as Respond or Inform; this is the operating instruction behind it."
+                    },
                     "authority": {
                       "type": "string",
                       "example": "Emotional",
                       "description": "Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar."
+                    },
+                    "authorityDescription": {
+                      "type": "string",
+                      "description": "How the decision is made, the timing it requires, and the characteristic trap. Inner authority is the most actionable output of a Human Design chart, so this is the field to lean on when grounding a reading."
                     },
                     "signature": {
                       "type": "string",
@@ -37396,10 +37349,57 @@
                       "example": "5/1",
                       "description": "Profile in conscious/unconscious form from the Personality Sun line over the Design Sun line."
                     },
+                    "profileKeynotes": {
+                      "type": "object",
+                      "properties": {
+                        "personalityLine": {
+                          "type": "number",
+                          "example": 5,
+                          "description": "Line number 1 to 6 of the conscious Personality Sun, the first digit of the profile."
+                        },
+                        "designLine": {
+                          "type": "number",
+                          "example": 1,
+                          "description": "Line number 1 to 6 of the unconscious Design Sun, the second digit of the profile."
+                        },
+                        "personality": {
+                          "type": "string",
+                          "example": "Heretic: a universalizing, practical force others project expectations onto.",
+                          "description": "Keynote of the conscious Personality line. The half of the life role the person is aware of and can speak to."
+                        },
+                        "design": {
+                          "type": "string",
+                          "example": "Investigator: builds a secure foundation through study before acting.",
+                          "description": "Keynote of the unconscious Design line. The half of the life role others see operating in the body, which the person does not directly experience."
+                        }
+                      },
+                      "required": [
+                        "personalityLine",
+                        "designLine",
+                        "personality",
+                        "design"
+                      ],
+                      "description": "The two line keynotes the profile is built from, conscious over unconscious, so the profile is readable without a separate lookup."
+                    },
+                    "profileDescription": {
+                      "type": "string",
+                      "description": "Meaning of the combined profile. A profile is not the sum of its two lines: 6/2 has its own meaning that neither the line 6 nor the line 2 keynote carries alone."
+                    },
                     "definition": {
                       "type": "string",
                       "example": "Split",
                       "description": "Definition type from the number of connected components among defined centers. One of None, Single, Split, Triple Split, Quadruple Split."
+                    },
+                    "definitionDescription": {
+                      "type": "string",
+                      "description": "How energy flows through the defined centers in this configuration, and what the configuration needs. For a split, this is where the bridging gates of other people matter."
+                    },
+                    "sides": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "What the two chart sides are: personality is the conscious mind side, design is the unconscious body side computed 88 degrees of solar arc before birth. Returned once at the top level rather than repeated across all 26 activations."
                     },
                     "incarnationCross": {
                       "type": "object",
@@ -37431,6 +37431,10 @@
                           "type": "string",
                           "example": "Left Angle Cross of the Clarion",
                           "description": "Canonical published name of the incarnation cross, determined by the Personality Sun gate and the angle. Falls back to a name composed from the angle and the four gates if no canonical name exists."
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "The life theme of the cross, synthesized from its four gates and the orientation the angle gives them. The same Sun gate under a different angle is a genuinely different theme: Right Angle is personal destiny, Left Angle is worked out through other people, Juxtaposition is a fixed fate."
                         }
                       },
                       "required": [
@@ -37475,6 +37479,16 @@
                             "type": "string",
                             "description": "Theme text describing the center in its current defined or undefined state."
                           },
+                          "notSelfQuestion": {
+                            "type": "string",
+                            "example": "Is all this talking and doing an attempt to attract attention?",
+                            "description": "The conditioning trap of this center when it is open. Returned on every center so a consumer can surface it the moment \u0060defined\u0060 is false, which is where the not-self operates."
+                          },
+                          "biology": {
+                            "type": "string",
+                            "example": "The adrenal glands.",
+                            "description": "The gland, organ, or system this center corresponds to in the body."
+                          },
                           "gates": {
                             "type": "array",
                             "items": {
@@ -37495,6 +37509,8 @@
                           "motor",
                           "awareness",
                           "theme",
+                          "notSelfQuestion",
+                          "biology",
                           "gates"
                         ]
                       },
@@ -37535,6 +37551,14 @@
                               "sacral"
                             ],
                             "description": "The two centers this channel connects and defines."
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "What this channel wires between its two centers and the nature of the energy it carries."
+                          },
+                          "circuitDescription": {
+                            "type": "string",
+                            "description": "What the circuit family of this channel governs."
                           }
                         },
                         "required": [
@@ -37542,7 +37566,9 @@
                           "gateB",
                           "name",
                           "circuit",
-                          "centers"
+                          "centers",
+                          "description",
+                          "circuitDescription"
                         ]
                       },
                       "description": "The defined channels where both gates are activated."
@@ -37577,6 +37603,18 @@
                             "example": "Shock",
                             "description": "Human Design keynote name of the gate, describing its bodygraph function."
                           },
+                          "gateDescription": {
+                            "type": "string",
+                            "description": "Bodygraph function of the gate: what it does in the center it sits in and the channel it forms. This is NOT the meaning of the I-Ching hexagram that shares its number. They share a number, not a definition."
+                          },
+                          "lineMeaning": {
+                            "type": "string",
+                            "description": "Meaning of this gate at this specific line, one of 384. The finest interpretive layer in the chart and the one that makes a reading specific rather than generic. This is not the six abstract line archetypes: gate 41 line 3 carries its own meaning that neither the gate keynote nor the line-3 archetype holds alone."
+                          },
+                          "planetDescription": {
+                            "type": "string",
+                            "description": "What this planetary activation contributes in Human Design specifically, which is not its meaning in western astrology."
+                          },
                           "ichingHexagram": {
                             "type": "object",
                             "properties": {
@@ -37604,6 +37642,9 @@
                           "gate",
                           "line",
                           "gateName",
+                          "gateDescription",
+                          "lineMeaning",
+                          "planetDescription",
                           "ichingHexagram"
                         ]
                       },
@@ -37612,12 +37653,20 @@
                   },
                   "required": [
                     "type",
+                    "typeDescription",
+                    "aura",
                     "strategy",
+                    "strategyDescription",
                     "authority",
+                    "authorityDescription",
                     "signature",
                     "notSelf",
                     "profile",
+                    "profileKeynotes",
+                    "profileDescription",
                     "definition",
+                    "definitionDescription",
+                    "sides",
                     "incarnationCross",
                     "centers",
                     "channels",
@@ -37754,12 +37803,11 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                        "example": 5.5
+                        "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                        "example": "America/New_York"
                       },
                       "latitude": {
                         "type": "number",
@@ -37808,12 +37856,11 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                        "example": 5.5
+                        "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                        "example": "America/New_York"
                       },
                       "latitude": {
                         "type": "number",
@@ -38154,12 +38201,11 @@
                               "maximum": 14
                             },
                             {
-                              "type": "string",
-                              "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                              "type": "string"
                             }
                           ],
-                          "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                          "example": 5.5
+                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                          "example": "America/New_York"
                         },
                         "latitude": {
                           "type": "number",
@@ -38502,12 +38548,11 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                        "example": 5.5
+                        "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                        "example": "America/New_York"
                       },
                       "latitude": {
                         "type": "number",
@@ -38879,12 +38924,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "latitude": {
                     "type": "number",
@@ -38925,15 +38969,32 @@
                       "example": "Manifestor",
                       "description": "Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector."
                     },
+                    "typeDescription": {
+                      "type": "string",
+                      "example": "An initiating, impactful aura built to start things and set them in motion. Informing others before acting removes resistance and brings peace.",
+                      "description": "What the aura of this type does and how it is designed to engage life. The grounding text for the type label, so a consuming agent does not have to supply the meaning itself."
+                    },
+                    "aura": {
+                      "type": "string",
+                      "description": "The aura mechanic of the type: how the energy field itself operates, for example open and enveloping, or closed and repelling."
+                    },
                     "strategy": {
                       "type": "string",
                       "example": "Inform",
                       "description": "The aura strategy for engaging life correctly for this type."
                     },
+                    "strategyDescription": {
+                      "type": "string",
+                      "description": "How to actually apply the strategy. The strategy field alone is a bare label such as Respond or Inform; this is the operating instruction behind it."
+                    },
                     "authority": {
                       "type": "string",
                       "example": "Emotional",
                       "description": "Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar."
+                    },
+                    "authorityDescription": {
+                      "type": "string",
+                      "description": "How the decision is made, the timing it requires, and the characteristic trap. Inner authority is the most actionable output of a Human Design chart."
                     },
                     "signature": {
                       "type": "string",
@@ -38953,8 +39014,12 @@
                   },
                   "required": [
                     "type",
+                    "typeDescription",
+                    "aura",
                     "strategy",
+                    "strategyDescription",
                     "authority",
+                    "authorityDescription",
                     "signature",
                     "notSelf",
                     "profile"
@@ -39087,12 +39152,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "latitude": {
                     "type": "number",
@@ -39158,6 +39222,18 @@
                             "example": "Shock",
                             "description": "Human Design keynote name of the gate, describing its bodygraph function."
                           },
+                          "gateDescription": {
+                            "type": "string",
+                            "description": "Bodygraph function of the gate: what it does in the center it sits in and the channel it forms. This is NOT the meaning of the I-Ching hexagram that shares its number. They share a number, not a definition."
+                          },
+                          "lineMeaning": {
+                            "type": "string",
+                            "description": "Meaning of this gate at this specific line, one of 384. The finest interpretive layer in the chart and the one that makes a reading specific rather than generic. This is not the six abstract line archetypes: gate 41 line 3 carries its own meaning that neither the gate keynote nor the line-3 archetype holds alone."
+                          },
+                          "planetDescription": {
+                            "type": "string",
+                            "description": "What this planetary activation contributes in Human Design specifically, which is not its meaning in western astrology."
+                          },
                           "ichingHexagram": {
                             "type": "object",
                             "properties": {
@@ -39185,6 +39261,9 @@
                           "gate",
                           "line",
                           "gateName",
+                          "gateDescription",
+                          "lineMeaning",
+                          "planetDescription",
                           "ichingHexagram"
                         ]
                       },
@@ -39220,6 +39299,18 @@
                             "example": "Shock",
                             "description": "Human Design keynote name of the gate, describing its bodygraph function."
                           },
+                          "gateDescription": {
+                            "type": "string",
+                            "description": "Bodygraph function of the gate: what it does in the center it sits in and the channel it forms. This is NOT the meaning of the I-Ching hexagram that shares its number. They share a number, not a definition."
+                          },
+                          "lineMeaning": {
+                            "type": "string",
+                            "description": "Meaning of this gate at this specific line, one of 384. The finest interpretive layer in the chart and the one that makes a reading specific rather than generic. This is not the six abstract line archetypes: gate 41 line 3 carries its own meaning that neither the gate keynote nor the line-3 archetype holds alone."
+                          },
+                          "planetDescription": {
+                            "type": "string",
+                            "description": "What this planetary activation contributes in Human Design specifically, which is not its meaning in western astrology."
+                          },
                           "ichingHexagram": {
                             "type": "object",
                             "properties": {
@@ -39247,6 +39338,9 @@
                           "gate",
                           "line",
                           "gateName",
+                          "gateDescription",
+                          "lineMeaning",
+                          "planetDescription",
                           "ichingHexagram"
                         ]
                       },
@@ -39589,12 +39683,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "latitude": {
                     "type": "number",
@@ -39665,6 +39758,14 @@
                               "sacral"
                             ],
                             "description": "The two centers this channel connects and defines."
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "What this channel wires between its two centers and the nature of the energy it carries."
+                          },
+                          "circuitDescription": {
+                            "type": "string",
+                            "description": "What the circuit family of this channel governs."
                           }
                         },
                         "required": [
@@ -39672,7 +39773,9 @@
                           "gateB",
                           "name",
                           "circuit",
-                          "centers"
+                          "centers",
+                          "description",
+                          "circuitDescription"
                         ]
                       },
                       "description": "The defined channels, where both gates are activated."
@@ -39828,12 +39931,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "latitude": {
                     "type": "number",
@@ -39903,6 +40005,16 @@
                             "type": "string",
                             "description": "Theme text describing the center in its current defined or undefined state."
                           },
+                          "notSelfQuestion": {
+                            "type": "string",
+                            "example": "Is all this talking and doing an attempt to attract attention?",
+                            "description": "The conditioning trap of this center when it is open. Returned on every center so a consumer can surface it the moment \u0060defined\u0060 is false, which is where the not-self operates."
+                          },
+                          "biology": {
+                            "type": "string",
+                            "example": "The adrenal glands.",
+                            "description": "The gland, organ, or system this center corresponds to in the body."
+                          },
                           "gates": {
                             "type": "array",
                             "items": {
@@ -39923,6 +40035,8 @@
                           "motor",
                           "awareness",
                           "theme",
+                          "notSelfQuestion",
+                          "biology",
                           "gates"
                         ]
                       },
@@ -40235,12 +40349,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "latitude": {
                     "type": "number",
@@ -40435,12 +40548,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "latitude": {
                     "type": "number",
@@ -40551,6 +40663,50 @@
                             "example": "Active",
                             "description": "Keynote of the arrow direction for this arrow, for example Active or Passive for Determination, Focused or Peripheral for Perspective."
                           },
+                          "description": {
+                            "type": "string",
+                            "example": "The top left arrow, fed by the design Sun and Earth. It describes how the body is built to take in and break down nourishment, sensation, and information, and it sets the cognitive potential that rests on that intake.",
+                            "description": "What this arrow is and what it governs."
+                          },
+                          "layerDescription": {
+                            "type": "string",
+                            "description": "What the layer this arrow belongs to governs, the body side or the mind side."
+                          },
+                          "colorMeaning": {
+                            "type": "string",
+                            "example": "Touch. Intake governed by contact and physical circumstance. What the body handles, and the state of the space it eats in, decide whether nourishment is absorbed or refused.",
+                            "description": "Meaning of the Color for THIS arrow. The same Color number means something different under Determination than under Motivation, so this is the reading of colorLabel in context, not a generic gloss."
+                          },
+                          "toneMeaning": {
+                            "type": "string",
+                            "description": "Meaning of the Tone. The six Tones are shared across all four arrows: the arrow does not change the Tone, it changes what the Tone qualifies."
+                          },
+                          "directionMeaning": {
+                            "type": "string",
+                            "description": "Meaning of the left or right direction for THIS arrow, the reading of directionLabel."
+                          },
+                          "baseName": {
+                            "type": "string",
+                            "example": "Progressive",
+                            "description": "Name of the Base. Informational only: the Base is finer than any civil birth time can resolve."
+                          },
+                          "cognition": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "example": "Smell"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "description"
+                            ],
+                            "description": "Cognition, the strongest sense, read off the Determination Tone. Present on the determination arrow ONLY: no authority supports reading Cognition from the other three arrows, so it is omitted rather than invented."
+                          },
                           "confident": {
                             "type": "boolean",
                             "example": true,
@@ -40569,6 +40725,12 @@
                           "direction",
                           "colorLabel",
                           "directionLabel",
+                          "description",
+                          "layerDescription",
+                          "colorMeaning",
+                          "toneMeaning",
+                          "directionMeaning",
+                          "baseName",
                           "confident"
                         ]
                       },
@@ -40583,12 +40745,17 @@
                       "type": "number",
                       "example": 0.00274,
                       "description": "Boundary margin in degrees of ecliptic longitude used for the per-arrow confidence flag, the solar arc over a few minutes of clock time. An activation within this distance of a Color or Tone boundary is flagged low-confidence."
+                    },
+                    "baseDescription": {
+                      "type": "string",
+                      "description": "What the Base layer is. Returned once at the top level rather than repeated on every arrow, since the Base layer is the same concept for all four. No per-Base meaning is returned: every one in circulation traces back to a single origin, so it fails the two-source bar this package holds."
                     }
                   },
                   "required": [
                     "arrows",
                     "confident",
-                    "confidenceMarginDeg"
+                    "confidenceMarginDeg",
+                    "baseDescription"
                   ]
                 }
               }
@@ -40721,12 +40888,11 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                        "example": 5.5
+                        "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                        "example": "America/New_York"
                       },
                       "latitude": {
                         "type": "number",
@@ -40860,12 +41026,11 @@
                               "maximum": 14
                             },
                             {
-                              "type": "string",
-                              "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                              "type": "string"
                             }
                           ],
-                          "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                          "example": 5.5
+                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                          "example": "America/New_York"
                         },
                         "latitude": {
                           "type": "number",
@@ -41161,12 +41326,11 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                        "example": 5.5
+                        "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                        "example": "America/New_York"
                       },
                       "latitude": {
                         "type": "number",
@@ -41250,12 +41414,11 @@
                               "maximum": 14
                             },
                             {
-                              "type": "string",
-                              "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                              "type": "string"
                             }
                           ],
-                          "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                          "example": 5.5
+                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                          "example": "America/New_York"
                         },
                         "latitude": {
                           "type": "number",
@@ -41551,12 +41714,11 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                        "example": 5.5
+                        "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                        "example": "America/New_York"
                       },
                       "latitude": {
                         "type": "number",
@@ -41690,12 +41852,11 @@
                               "maximum": 14
                             },
                             {
-                              "type": "string",
-                              "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                              "type": "string"
                             }
                           ],
-                          "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                          "example": 5.5
+                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                          "example": "America/New_York"
                         },
                         "latitude": {
                           "type": "number",
@@ -41991,12 +42152,11 @@
                             "maximum": 14
                           },
                           {
-                            "type": "string",
-                            "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                            "type": "string"
                           }
                         ],
-                        "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                        "example": 5.5
+                        "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                        "example": "America/New_York"
                       },
                       "latitude": {
                         "type": "number",
@@ -42131,12 +42291,11 @@
                               "maximum": 14
                             },
                             {
-                              "type": "string",
-                              "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                              "type": "string"
                             }
                           ],
-                          "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                          "example": 5.5
+                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                          "example": "America/New_York"
                         },
                         "latitude": {
                           "type": "number",
@@ -42534,12 +42693,11 @@
                         "maximum": 14
                       },
                       {
-                        "type": "string",
-                        "pattern": "^[A-Za-z_]\u002B(?:\\/[A-Za-z0-9_\u002B-]\u002B){0,2}$"
+                        "type": "string"
                       }
                     ],
-                    "description": "Decimal hours (e.g. 5.5 for IST, -5 for EST) OR IANA name (e.g. \u0022America/New_York\u0022, \u0022UTC\u0022). IANA is resolved to the DST-correct offset for the request date. Invalid timezones return 400 with a validation error.",
-                    "example": 5.5
+                    "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
+                    "example": "America/New_York"
                   },
                   "houseSystem": {
                     "type": "string",

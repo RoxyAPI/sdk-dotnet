@@ -14,6 +14,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The aura mechanic of the type: how the energy field itself operates, for example open and enveloping, or closed and repelling.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Aura { get; set; }
+#nullable restore
+#else
+        public string Aura { get; set; }
+#endif
         /// <summary>Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,6 +29,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string Authority { get; set; }
+#endif
+        /// <summary>How the decision is made, the timing it requires, and the characteristic trap. Inner authority is the most actionable output of a Human Design chart, so this is the field to lean on when grounding a reading.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AuthorityDescription { get; set; }
+#nullable restore
+#else
+        public string AuthorityDescription { get; set; }
 #endif
         /// <summary>All nine centers with their defined state and active gates.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,6 +61,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string Definition { get; set; }
+#endif
+        /// <summary>How energy flows through the defined centers in this configuration, and what the configuration needs. For a split, this is where the bridging gates of other people matter.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DefinitionDescription { get; set; }
+#nullable restore
+#else
+        public string DefinitionDescription { get; set; }
 #endif
         /// <summary>All 26 activations, 13 Personality and 13 Design.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -78,6 +102,30 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string Profile { get; set; }
 #endif
+        /// <summary>Meaning of the combined profile. A profile is not the sum of its two lines: 6/2 has its own meaning that neither the line 6 nor the line 2 keynote carries alone.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProfileDescription { get; set; }
+#nullable restore
+#else
+        public string ProfileDescription { get; set; }
+#endif
+        /// <summary>The two line keynotes the profile is built from, conscious over unconscious, so the profile is readable without a separate lookup.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes? ProfileKeynotes { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes ProfileKeynotes { get; set; }
+#endif
+        /// <summary>What the two chart sides are: personality is the conscious mind side, design is the unconscious body side computed 88 degrees of solar arc before birth. Returned once at the top level rather than repeated across all 26 activations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides? Sides { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides Sides { get; set; }
+#endif
         /// <summary>The signature feeling of living in alignment with the type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -94,6 +142,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string Strategy { get; set; }
 #endif
+        /// <summary>How to actually apply the strategy. The strategy field alone is a bare label such as Respond or Inform; this is the operating instruction behind it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StrategyDescription { get; set; }
+#nullable restore
+#else
+        public string StrategyDescription { get; set; }
+#endif
         /// <summary>Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -101,6 +157,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string Type { get; set; }
+#endif
+        /// <summary>What the aura of this type does and how it is designed to engage life. The grounding text for the type label, so a consuming agent does not have to supply the meaning itself.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeDescription { get; set; }
+#nullable restore
+#else
+        public string TypeDescription { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse"/> and sets the default values.
@@ -127,17 +191,25 @@ namespace RoxyApi.HumanDesign.Bodygraph
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "aura", n => { Aura = n.GetStringValue(); } },
                 { "authority", n => { Authority = n.GetStringValue(); } },
+                { "authorityDescription", n => { AuthorityDescription = n.GetStringValue(); } },
                 { "centers", n => { Centers = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_centers>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_centers.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "channels", n => { Channels = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "definition", n => { Definition = n.GetStringValue(); } },
+                { "definitionDescription", n => { DefinitionDescription = n.GetStringValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "incarnationCross", n => { IncarnationCross = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross.CreateFromDiscriminatorValue); } },
                 { "notSelf", n => { NotSelf = n.GetStringValue(); } },
                 { "profile", n => { Profile = n.GetStringValue(); } },
+                { "profileDescription", n => { ProfileDescription = n.GetStringValue(); } },
+                { "profileKeynotes", n => { ProfileKeynotes = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes.CreateFromDiscriminatorValue); } },
+                { "sides", n => { Sides = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides.CreateFromDiscriminatorValue); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
                 { "strategy", n => { Strategy = n.GetStringValue(); } },
+                { "strategyDescription", n => { StrategyDescription = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
+                { "typeDescription", n => { TypeDescription = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -147,17 +219,25 @@ namespace RoxyApi.HumanDesign.Bodygraph
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("aura", Aura);
             writer.WriteStringValue("authority", Authority);
+            writer.WriteStringValue("authorityDescription", AuthorityDescription);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_centers>("centers", Centers);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels>("channels", Channels);
             writer.WriteStringValue("definition", Definition);
+            writer.WriteStringValue("definitionDescription", DefinitionDescription);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>("gates", Gates);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>("incarnationCross", IncarnationCross);
             writer.WriteStringValue("notSelf", NotSelf);
             writer.WriteStringValue("profile", Profile);
+            writer.WriteStringValue("profileDescription", ProfileDescription);
+            writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes>("profileKeynotes", ProfileKeynotes);
+            writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides>("sides", Sides);
             writer.WriteStringValue("signature", Signature);
             writer.WriteStringValue("strategy", Strategy);
+            writer.WriteStringValue("strategyDescription", StrategyDescription);
             writer.WriteStringValue("type", Type);
+            writer.WriteStringValue("typeDescription", TypeDescription);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
