@@ -14,9 +14,17 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>What the line statement asks of the querent, read from its position in the hexagram (1 is the hidden beginning, 3 is the exposed threshold, 5 is the ruling line, 6 is past the peak) and from whether the line is yin or yang. This is the meaning behind the image, so a consuming agent does not have to invent one.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Meaning { get; set; }
+#nullable restore
+#else
+        public string Meaning { get; set; }
+#endif
         /// <summary>Line position (1-6, bottom to top). In I-Ching, each hexagram has six lines (yao) read from bottom upward.</summary>
         public double? Position { get; set; }
-        /// <summary>Changing line interpretation text. Applies only when this specific line is a changing line (old yin or old yang) in a casting.</summary>
+        /// <summary>The oracle statement for this line. It applies when this specific line comes up changing (old yin or old yang) in a casting, and it speaks in the concrete imagery of the tradition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Text { get; set; }
@@ -49,6 +57,7 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "meaning", n => { Meaning = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetDoubleValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
             };
@@ -60,6 +69,7 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("meaning", Meaning);
             writer.WriteDoubleValue("position", Position);
             writer.WriteStringValue("text", Text);
             writer.WriteAdditionalData(AdditionalData);

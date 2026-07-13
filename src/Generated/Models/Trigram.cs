@@ -94,7 +94,7 @@ namespace RoxyApi.Models
 #else
         public string Meaning { get; set; }
 #endif
-        /// <summary>Trigram number (1-8) in the traditional I-Ching ordering.</summary>
+        /// <summary>Stable identifier for the trigram, 1 to 8. This is our lookup key, not a canonical sequence: the tradition has several orderings (King Wen, Fu Xi, Earlier and Later Heaven) and they disagree, so do not read ranking or precedence into it.</summary>
         public double? Number { get; set; }
         /// <summary>Pinyin romanization of the Chinese name with tone marks for correct pronunciation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
