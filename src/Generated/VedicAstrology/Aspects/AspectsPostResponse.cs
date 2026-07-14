@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Aspects
 #else
         public List<global::RoxyApi.VedicAstrology.Aspects.AspectsPostResponse_aspectTable> AspectTable { get; set; }
 #endif
-        /// <summary>UTC datetime used for aspect calculation (ISO 8601).</summary>
+        /// <summary>Chart time the aspects were calculated for, echoed back as the local wall clock of the request (ISO 8601, no offset). This is the `date` and `time` you sent, NOT a UTC instant: hold them fixed and vary `timezone` and every longitude moves while this field does not. Combine it with the `timezone` you sent to recover the absolute moment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Datetime { get; set; }

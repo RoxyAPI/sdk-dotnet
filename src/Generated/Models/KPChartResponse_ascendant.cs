@@ -45,6 +45,14 @@ namespace RoxyApi.Models
 #else
         public string Sign { get; set; }
 #endif
+        /// <summary>Ruling planet of the Ascendant sign (the rashi lord). In KP this is the weakest of the four lords, ranked below the star lord and sub lord, but it still sets the broad temperament of the Lagna.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLord { get; set; }
+#nullable restore
+#else
+        public string SignLord { get; set; }
+#endif
         /// <summary>KP star lord of the Ascendant position.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -100,6 +108,7 @@ namespace RoxyApi.Models
                 { "nakshatraLord", n => { NakshatraLord = n.GetStringValue(); } },
                 { "pada", n => { Pada = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLord", n => { SignLord = n.GetStringValue(); } },
                 { "starLord", n => { StarLord = n.GetStringValue(); } },
                 { "subLord", n => { SubLord = n.GetStringValue(); } },
                 { "subSubLord", n => { SubSubLord = n.GetStringValue(); } },
@@ -118,6 +127,7 @@ namespace RoxyApi.Models
             writer.WriteStringValue("nakshatraLord", NakshatraLord);
             writer.WriteDoubleValue("pada", Pada);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLord", SignLord);
             writer.WriteStringValue("starLord", StarLord);
             writer.WriteStringValue("subLord", SubLord);
             writer.WriteStringValue("subSubLord", SubSubLord);

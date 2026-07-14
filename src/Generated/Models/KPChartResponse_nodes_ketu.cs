@@ -17,6 +17,8 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Occupied house number (1-12) based on Placidus cusps.</summary>
         public double? House { get; set; }
+        /// <summary>KP number (1-249) locating Ketu in the 249-division sub-lord scheme. Each of the 249 divisions maps to a unique sign, star lord and sub lord triple, so one integer pins the position precisely enough for KP event timing.</summary>
+        public double? KpNumber { get; set; }
         /// <summary>Sidereal longitude of Ketu (South Node). Always 180 degrees from Rahu.</summary>
         public double? Longitude { get; set; }
         /// <summary>Nakshatra of Ketu.</summary>
@@ -85,6 +87,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "house", n => { House = n.GetDoubleValue(); } },
+                { "kpNumber", n => { KpNumber = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nakshatra", n => { Nakshatra = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
@@ -101,6 +104,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("house", House);
+            writer.WriteDoubleValue("kpNumber", KpNumber);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("nakshatra", Nakshatra);
             writer.WriteStringValue("sign", Sign);
