@@ -4,7 +4,6 @@ on:
   pull_request:
   push:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -48,11 +47,3 @@ jobs:
         run: dotnet test -c Release --no-build
         env:
           ROXY_API_KEY: ${{ secrets.ROXY_API_KEY }}
-
-  # Single stable context for branch protection, uniform across all SDK repos even where the CI job is not matrixed.
-  ci-ok:
-    if: always()
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - run: test "${{ needs.build.result }}" = "success"

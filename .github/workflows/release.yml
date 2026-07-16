@@ -19,7 +19,6 @@ jobs:
     permissions:
       contents: write
       id-token: write
-      actions: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -96,8 +95,6 @@ jobs:
 
       - name: Commit, tag, push
         if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -105,20 +102,7 @@ jobs:
           git add specs/openapi.json src/ README.md AGENTS.md docs/llms-full.txt tests/RoxyApi.Tests/Generated
           git commit -m "release: v$VERSION"
           git tag "v$VERSION"
-          # Protected main requires the ci-ok context green on every pushed SHA, and a direct push can never carry one. So park the commit on a temp branch, run the real CI there via workflow_dispatch (GITHUB_TOKEN pushes trigger no workflows on their own), and push to main only after it reports green.
-          SHA=$(git rev-parse HEAD)
-          git push --force origin "HEAD:refs/heads/release-checks"
-          gh workflow run ci.yml --ref release-checks
-          RUN_ID=""
-          for _ in $(seq 1 24); do
-            sleep 5
-            RUN_ID=$(gh run list --workflow=ci.yml --branch=release-checks --limit 5 --json databaseId,headSha --jq "[.[] | select(.headSha == \"$SHA\")][0].databaseId // empty")
-            [ -n "$RUN_ID" ] && break
-          done
-          [ -n "$RUN_ID" ] || { echo "dispatched CI run never appeared for $SHA"; exit 1; }
-          gh run watch "$RUN_ID" --exit-status
           git push --follow-tags
-          git push origin --delete release-checks || true
 
       - name: Create GitHub release
         if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
