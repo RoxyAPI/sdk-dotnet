@@ -44,7 +44,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Distance from exact aspect in degrees. Tighter orb = stronger influence.</summary>
         public double? Orb { get; set; }
-        /// <summary>Aspect strength percentage (0-100). Based on orb tightness — 100 is exact.</summary>
+        /// <summary>Aspect strength percentage (0-100) based on orb tightness, where 100 is exact.</summary>
         public double? Strength { get; set; }
         /// <summary>Transiting planet forming the aspect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

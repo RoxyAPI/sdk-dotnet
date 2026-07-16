@@ -21,6 +21,8 @@ namespace RoxyApi.HumanDesign.Channels
         public double? Latitude { get; set; }
         /// <summary>Birth longitude in decimal degrees. Optional and does not affect the bodygraph. Defaults to 0.</summary>
         public double? Longitude { get; set; }
+        /// <summary>Lunar node convention for the North and South Node activations. Leave unset (or &quot;true&quot;) for the standard Human Design chart: &quot;true&quot; is the osculating node used by professional Human Design software (HumanDesign.ai, Total Human Design) and is the value RoxyAPI verifies against. Pass &quot;mean&quot; to match a calculator that uses the smoothed mean node (the traditional Western-astrology default, common in free chart tools). The two agree on almost every chart; they diverge by up to ~1.75 degrees only when a node sits on a gate boundary, where the choice can move a node gate and, rarely, change the completed channels and therefore the type, authority, or definition. If another calculator shows a different type, it is likely using the mean node: pass &quot;mean&quot; to match it.</summary>
+        public global::RoxyApi.HumanDesign.Channels.ChannelsPostRequestBody_nodeType? NodeType { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Precision matters: the profile lines and gate boundaries shift with the exact minute of birth.</summary>
         public Time? Time { get; set; }
         /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, &quot;UTC&quot;), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. &quot;-05:00&quot;, &quot;+01:00&quot;). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.</summary>
@@ -39,6 +41,7 @@ namespace RoxyApi.HumanDesign.Channels
             AdditionalData = new Dictionary<string, object>();
             Latitude = 0;
             Longitude = 0;
+            NodeType = global::RoxyApi.HumanDesign.Channels.ChannelsPostRequestBody_nodeType.True;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -61,6 +64,7 @@ namespace RoxyApi.HumanDesign.Channels
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
+                { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.HumanDesign.Channels.ChannelsPostRequestBody_nodeType>(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.HumanDesign.Channels.ChannelsPostRequestBody.ChannelsPostRequestBody_timezone>(global::RoxyApi.HumanDesign.Channels.ChannelsPostRequestBody.ChannelsPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
@@ -75,6 +79,7 @@ namespace RoxyApi.HumanDesign.Channels
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
+            writer.WriteEnumValue<global::RoxyApi.HumanDesign.Channels.ChannelsPostRequestBody_nodeType>("nodeType", NodeType);
             writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Channels.ChannelsPostRequestBody.ChannelsPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
