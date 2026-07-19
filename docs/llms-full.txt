@@ -269,6 +269,73 @@ await roxy.VedicAstrology.Shadbala.PostAsync(new() { Date = new Date(1990, 7, 4)
 
 ---
 
+## Forecast - `roxy.Forecast`
+
+Merge upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm critical days, and...
+
+```csharp
+// Cross-domain forecast timeline - Transits, ingresses, stations, dasha changes, critical days
+await roxy.Forecast.Timeline.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
+
+// Western astrology forecast - aspects, ingresses, stations, eclipses, moon phases
+await roxy.Forecast.Transits.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0 });
+
+// Significant dates - High-significance cross-domain forecast highlights
+await roxy.Forecast.SignificantDates.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 70, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
+
+// Forecast digest - Pre-summarized next 24h, 7d, 30d, and 90d rollups
+await roxy.Forecast.Digest.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 }, Top = 3 });
+
+// Solar return chart - Annual birthday forecast chart for a single subject
+await roxy.Forecast.SolarReturn.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Year = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" } });
+```
+
+---
+
+## Human Design - `roxy.HumanDesign`
+
+Generate the full Human Design bodygraph from a birth moment: type, strategy, inner authority, profile, definition, i...
+
+```csharp
+// Generate full Human Design bodygraph - Type, authority, profile, centers, channels, gates
+await roxy.HumanDesign.Bodygraph.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
+
+// Calculate Human Design connection chart - Two-person composite bodygraph compatibility
+await roxy.HumanDesign.Connection.PostAsync(new() { PersonA = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, PersonB = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 } });
+
+// Calculate Human Design Penta - Small-group BG5 operating system for three to five people
+await roxy.HumanDesign.Penta.PostAsync(new() { Members = [new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }] });
+
+// Generate Human Design transit overlay - Current planetary activations on a natal bodygraph
+await roxy.HumanDesign.Transit.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, Date = new Date(2026, 5, 23), Time = new Time(12, 0, 0) });
+
+// Calculate Human Design type, authority and profile
+await roxy.HumanDesign.Type.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
+
+// Calculate the 26 Human Design gate activations
+await roxy.HumanDesign.Gates.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
+
+// Look up a Human Design gate by number
+await roxy.HumanDesign.Gates[34].GetAsync();
+
+// Calculate the defined Human Design channels
+await roxy.HumanDesign.Channels.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
+
+// Calculate the nine Human Design centers
+await roxy.HumanDesign.Centers.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
+
+// Look up a Human Design center by id
+await roxy.HumanDesign.Centers["sacral"].GetAsync();
+
+// Calculate the Human Design profile and line keynotes
+await roxy.HumanDesign.Profile.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
+
+// Calculate Human Design Variables - The four arrows and Color, Tone, Base substructure
+await roxy.HumanDesign.Variables.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
+```
+
+---
+
 ## Numerology - `roxy.Numerology`
 
 Numerology API to calculate life path, expression, soul urge, personality, and maturity numbers, with Pinnacle and Ch...
@@ -371,73 +438,6 @@ await roxy.Tarot.Spreads.Career.PostAsync(new() { Question = "What do I need to 
 
 // Custom Spread Builder
 await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread", Positions = [new() { Name = "Core Issue", Interpretation = "What is really going on" }], Question = "Optional question", Seed = "optional-seed" });
-```
-
----
-
-## Human Design - `roxy.HumanDesign`
-
-Generate the full Human Design bodygraph from a birth moment: type, strategy, inner authority, profile, definition, i...
-
-```csharp
-// Generate full Human Design bodygraph - Type, authority, profile, centers, channels, gates
-await roxy.HumanDesign.Bodygraph.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
-
-// Calculate Human Design connection chart - Two-person composite bodygraph compatibility
-await roxy.HumanDesign.Connection.PostAsync(new() { PersonA = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, PersonB = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 } });
-
-// Calculate Human Design Penta - Small-group BG5 operating system for three to five people
-await roxy.HumanDesign.Penta.PostAsync(new() { Members = [new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }] });
-
-// Generate Human Design transit overlay - Current planetary activations on a natal bodygraph
-await roxy.HumanDesign.Transit.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, Date = new Date(2026, 5, 23), Time = new Time(12, 0, 0) });
-
-// Calculate Human Design type, authority and profile
-await roxy.HumanDesign.Type.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
-
-// Calculate the 26 Human Design gate activations
-await roxy.HumanDesign.Gates.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
-
-// Look up a Human Design gate by number
-await roxy.HumanDesign.Gates[34].GetAsync();
-
-// Calculate the defined Human Design channels
-await roxy.HumanDesign.Channels.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
-
-// Calculate the nine Human Design centers
-await roxy.HumanDesign.Centers.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
-
-// Look up a Human Design center by id
-await roxy.HumanDesign.Centers["sacral"].GetAsync();
-
-// Calculate the Human Design profile and line keynotes
-await roxy.HumanDesign.Profile.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
-
-// Calculate Human Design Variables - The four arrows and Color, Tone, Base substructure
-await roxy.HumanDesign.Variables.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 });
-```
-
----
-
-## Forecast - `roxy.Forecast`
-
-Merge upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm critical days, and...
-
-```csharp
-// Cross-domain forecast timeline - Transits, ingresses, stations, dasha changes, critical days
-await roxy.Forecast.Timeline.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
-
-// Western astrology forecast - aspects, ingresses, stations, eclipses, moon phases
-await roxy.Forecast.Transits.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0 });
-
-// Significant dates - High-significance cross-domain forecast highlights
-await roxy.Forecast.SignificantDates.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 70, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
-
-// Forecast digest - Pre-summarized next 24h, 7d, 30d, and 90d rollups
-await roxy.Forecast.Digest.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 }, Top = 3 });
-
-// Solar return chart - Annual birthday forecast chart for a single subject
-await roxy.Forecast.SolarReturn.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Year = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" } });
 ```
 
 ---
