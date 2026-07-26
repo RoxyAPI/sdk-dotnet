@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>All 9 Antardasha sub-periods within this Mahadasha, proportional to each planet Vimshottari years. Sorted chronologically.</summary>
+        /// <summary>Antardasha (bhukti) sub-periods within this Mahadasha, proportional to each planet Vimshottari years, sorted chronologically. Nine for any Mahadasha the native lived through in full. FEWER than nine for the first Mahadasha in the chart, because the Vimshottari cycle was already running at birth: the Antardashas that ended before the birth date are not part of the chart, and the one in force at birth starts on the birth date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas>? Antardashas { get; set; }
@@ -22,6 +22,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
 #else
         public List<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas> Antardashas { get; set; }
 #endif
+        /// <summary>Ayanamsa actually applied, in degrees. The precession offset subtracted from the tropical (sayana) longitude to get the sidereal (nirayana) one. Lahiri sits near 23 deg 43 min for a 1990 birth, KP-Newcomb near 23 deg 38 min.</summary>
+        public double? Ayanamsa { get; set; }
+        /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_ayanamsaType? AyanamsaType { get; set; }
         /// <summary>Ruling planet of the requested Mahadasha period.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaLord? MahadashaLord { get; set; }
         /// <summary>Full details of the parent Mahadasha including start/end dates and duration.</summary>
@@ -32,6 +36,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
 #else
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaPeriod MahadashaPeriod { get; set; }
 #endif
+        /// <summary>Sidereal (nirayana) longitude of the birth Moon in degrees, 0 to 360, measured in the ayanamsa frame reported below. This single value determines the birth nakshatra and therefore every dasha start and end date in this response. Compare it against a reference chart to reconcile any date difference at its source.</summary>
+        public double? MoonLongitude { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse"/> and sets the default values.
         /// </summary>
@@ -58,8 +64,11 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "antardashas", n => { Antardashas = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "ayanamsa", n => { Ayanamsa = n.GetDoubleValue(); } },
+                { "ayanamsaType", n => { AyanamsaType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_ayanamsaType>(); } },
                 { "mahadashaLord", n => { MahadashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaLord>(); } },
                 { "mahadashaPeriod", n => { MahadashaPeriod = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaPeriod>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaPeriod.CreateFromDiscriminatorValue); } },
+                { "moonLongitude", n => { MoonLongitude = n.GetDoubleValue(); } },
             };
         }
         /// <summary>
@@ -70,8 +79,11 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas>("antardashas", Antardashas);
+            writer.WriteDoubleValue("ayanamsa", Ayanamsa);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_ayanamsaType>("ayanamsaType", AyanamsaType);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaLord>("mahadashaLord", MahadashaLord);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaPeriod>("mahadashaPeriod", MahadashaPeriod);
+            writer.WriteDoubleValue("moonLongitude", MoonLongitude);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

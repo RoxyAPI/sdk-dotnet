@@ -5,16 +5,18 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.VedicAstrology.Dasha.Major
+namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
 {
     /// <summary>
-    /// Mahadasha (major planetary period) in the 120-year Vimshottari dasha cycle. Start and end dates are determined by Moon nakshatra at birth.
+    /// Sookshma dasha (sookshma antardasha), the fourth level of the Vimshottari dasha hierarchy. Each Pratyantardasha divides into 9 Sookshma periods running roughly 3 to 30 days each, the finest level exposed by this API and the one used for day-level event timing and muhurta style selection.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class MajorPostResponse_mahadashas : IAdditionalDataHolder, IParsable
+    public partial class WithPratyantardashaPostResponse_sookshmaDashas : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Parent Antardasha lord under which this Pratyantardasha runs.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_antardashaLord? AntardashaLord { get; set; }
         /// <summary>Duration of this dasha period in years. Mahadasha durations range from 6 years (Sun) to 20 years (Venus).</summary>
         public double? DurationYears { get; set; }
         /// <summary>End datetime of this dasha period. Adjusted to the requested timezone offset.</summary>
@@ -33,6 +35,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
 #else
         public string Interpretation { get; set; }
 #endif
+        /// <summary>Parent Mahadasha lord under which this Antardasha sub-period runs.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_mahadashaLord? MahadashaLord { get; set; }
         /// <summary>Theoretical start of this period, present ONLY when the birth date truncated it. The Vimshottari cycle is already running when a native is born, so the period in force at birth began earlier: startDate is clipped to the birth moment while this field keeps the real start. Its presence is also why the first period of a chart can contain fewer than 9 sub-periods, the earlier ones having finished before birth. Absent on every period that runs its full length.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -42,7 +46,9 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         public string NominalStartDate { get; set; }
 #endif
         /// <summary>Ruling graha of this Vimshottari dasha period. One of 9 planets in the Ketu-Venus-Sun-Moon-Mars-Rahu-Jupiter-Saturn-Mercury sequence.</summary>
-        public global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas_planet? Planet { get; set; }
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_planet? Planet { get; set; }
+        /// <summary>Parent Pratyantardasha lord under which this Sookshma dasha runs.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_pratyantardashaLord? PratyantardashaLord { get; set; }
         /// <summary>Start datetime of this dasha period. Adjusted to the requested timezone offset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,21 +58,21 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         public string StartDate { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas"/> and sets the default values.
         /// </summary>
-        public MajorPostResponse_mahadashas()
+        public WithPratyantardashaPostResponse_sookshmaDashas()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas();
+            return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,11 +82,14 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "antardashaLord", n => { AntardashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_antardashaLord>(); } },
                 { "durationYears", n => { DurationYears = n.GetDoubleValue(); } },
                 { "endDate", n => { EndDate = n.GetStringValue(); } },
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
+                { "mahadashaLord", n => { MahadashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_mahadashaLord>(); } },
                 { "nominalStartDate", n => { NominalStartDate = n.GetStringValue(); } },
-                { "planet", n => { Planet = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas_planet>(); } },
+                { "planet", n => { Planet = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_planet>(); } },
+                { "pratyantardashaLord", n => { PratyantardashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_pratyantardashaLord>(); } },
                 { "startDate", n => { StartDate = n.GetStringValue(); } },
             };
         }
@@ -91,11 +100,14 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_antardashaLord>("antardashaLord", AntardashaLord);
             writer.WriteDoubleValue("durationYears", DurationYears);
             writer.WriteStringValue("endDate", EndDate);
             writer.WriteStringValue("interpretation", Interpretation);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_mahadashaLord>("mahadashaLord", MahadashaLord);
             writer.WriteStringValue("nominalStartDate", NominalStartDate);
-            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas_planet>("planet", Planet);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_planet>("planet", Planet);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_pratyantardashaLord>("pratyantardashaLord", PratyantardashaLord);
             writer.WriteStringValue("startDate", StartDate);
             writer.WriteAdditionalData(AdditionalData);
         }

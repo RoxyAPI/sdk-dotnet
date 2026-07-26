@@ -6,17 +6,17 @@ using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
+namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class WithMahadashaPostRequestBody : IAdditionalDataHolder, IParsable
+    public partial class WithPratyantardashaPostRequestBody : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Ayanamsa system used to place the birth Moon in its nakshatra, which sets every dasha start and end date. &quot;lahiri&quot; uses Lahiri/Chitrapaksha, the traditional Vedic standard, and is the default. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, matching Krishnamurti Paddhati software. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1. Switching frames shifts every dasha boundary by weeks, so pick the one your reference software uses.</summary>
-        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_ayanamsa? Ayanamsa { get; set; }
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody_ayanamsa? Ayanamsa { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas).</summary>
         public Date? Date { get; set; }
         /// <summary>Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172.</summary>
@@ -28,28 +28,28 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         /// <summary>Timezone: IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass `cities[0].timezone` from /location/search directly. Defaults to 5.5.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone? Timezone { get; set; }
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone? Timezone { get; set; }
 #nullable restore
 #else
-        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone Timezone { get; set; }
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone Timezone { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody"/> and sets the default values.
         /// </summary>
-        public WithMahadashaPostRequestBody()
+        public WithPratyantardashaPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
-            Ayanamsa = global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_ayanamsa.Lahiri;
+            Ayanamsa = global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody_ayanamsa.Lahiri;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody();
+            return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,12 +59,12 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_ayanamsa>(); } },
+                { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody_ayanamsa>(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
-                { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
+                { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,19 +74,19 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_ayanamsa>("ayanamsa", Ayanamsa);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody_ayanamsa>("ayanamsa", Ayanamsa);
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteTimeValue("time", Time);
-            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone>("timezone", Timezone);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="double"/>, <see cref="string"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithMahadashaPostRequestBody_timezone : IComposedTypeWrapper, IParsable
+        public partial class WithPratyantardashaPostRequestBody_timezone : IComposedTypeWrapper, IParsable
         {
             /// <summary>Composed type representation for type <see cref="double"/></summary>
             public double? Double { get; set; }
@@ -101,12 +101,12 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
-            /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone"/></returns>
+            /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone"/></returns>
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone CreateFromDiscriminatorValue(IParseNode parseNode)
+            public static global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone();
+                var result = new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostRequestBody.WithPratyantardashaPostRequestBody_timezone();
                 if(parseNode.GetDoubleValue() is double doubleValue)
                 {
                     result.Double = doubleValue;

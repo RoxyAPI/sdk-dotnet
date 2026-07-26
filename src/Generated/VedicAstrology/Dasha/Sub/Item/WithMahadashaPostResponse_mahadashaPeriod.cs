@@ -33,6 +33,14 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
 #else
         public string Interpretation { get; set; }
 #endif
+        /// <summary>Theoretical start of this period, present ONLY when the birth date truncated it. The Vimshottari cycle is already running when a native is born, so the period in force at birth began earlier: startDate is clipped to the birth moment while this field keeps the real start. Its presence is also why the first period of a chart can contain fewer than 9 sub-periods, the earlier ones having finished before birth. Absent on every period that runs its full length.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NominalStartDate { get; set; }
+#nullable restore
+#else
+        public string NominalStartDate { get; set; }
+#endif
         /// <summary>Ruling graha of this Vimshottari dasha period. One of 9 planets in the Ketu-Venus-Sun-Moon-Mars-Rahu-Jupiter-Saturn-Mercury sequence.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaPeriod_planet? Planet { get; set; }
         /// <summary>Start datetime of this dasha period. Adjusted to the requested timezone offset.</summary>
@@ -71,6 +79,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
                 { "durationYears", n => { DurationYears = n.GetDoubleValue(); } },
                 { "endDate", n => { EndDate = n.GetStringValue(); } },
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
+                { "nominalStartDate", n => { NominalStartDate = n.GetStringValue(); } },
                 { "planet", n => { Planet = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaPeriod_planet>(); } },
                 { "startDate", n => { StartDate = n.GetStringValue(); } },
             };
@@ -85,6 +94,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
             writer.WriteDoubleValue("durationYears", DurationYears);
             writer.WriteStringValue("endDate", EndDate);
             writer.WriteStringValue("interpretation", Interpretation);
+            writer.WriteStringValue("nominalStartDate", NominalStartDate);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_mahadashaPeriod_planet>("planet", Planet);
             writer.WriteStringValue("startDate", StartDate);
             writer.WriteAdditionalData(AdditionalData);

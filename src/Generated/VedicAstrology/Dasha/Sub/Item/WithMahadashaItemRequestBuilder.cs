@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using RoxyApi.Models;
+using RoxyApi.VedicAstrology.Dasha.Sub.Item.Item;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,18 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithMahadashaItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the RoxyApi.vedicAstrology.dasha.sub.item.item collection</summary>
+        /// <param name="position">Antardasha (bhukti) planet name inside that Mahadasha, case-insensitive. Every Mahadasha contains all 9 lords, so a repeat such as saturn/saturn is valid.</param>
+        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaItemRequestBuilder"/></returns>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("antardasha", position);
+                return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaItemRequestBuilder"/> and sets the default values.
         /// </summary>

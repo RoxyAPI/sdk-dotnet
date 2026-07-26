@@ -22,6 +22,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
 #else
         public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_antardasha Antardasha { get; set; }
 #endif
+        /// <summary>Ayanamsa actually applied, in degrees. The precession offset subtracted from the tropical (sayana) longitude to get the sidereal (nirayana) one. Lahiri sits near 23 deg 43 min for a 1990 birth, KP-Newcomb near 23 deg 38 min.</summary>
+        public double? Ayanamsa { get; set; }
+        /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_ayanamsaType? AyanamsaType { get; set; }
         /// <summary>Mahadasha (major planetary period) in the 120-year Vimshottari dasha cycle. Start and end dates are determined by Moon nakshatra at birth.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,6 +34,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
 #else
         public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_mahadasha Mahadasha { get; set; }
 #endif
+        /// <summary>Sidereal (nirayana) longitude of the birth Moon in degrees, 0 to 360, measured in the ayanamsa frame reported below. This single value determines the birth nakshatra and therefore every dasha start and end date in this response. Compare it against a reference chart to reconcile any date difference at its source.</summary>
+        public double? MoonLongitude { get; set; }
         /// <summary>Birth Moon nakshatra number (1-27). This nakshatra determines the starting dasha lord in the Vimshottari 120-year cycle.</summary>
         public int? MoonNakshatra { get; set; }
         /// <summary>Vimshottari dasha lord of the birth nakshatra. This planet rules the first Mahadasha in the native life cycle.</summary>
@@ -74,6 +80,22 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
 #else
         public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInPratyantardasha RemainingInPratyantardasha { get; set; }
 #endif
+        /// <summary>Time remaining in the currently running Sookshma dasha (fourth level). Sookshma periods last days rather than months, so this value turns over quickly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInSookshma? RemainingInSookshma { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInSookshma RemainingInSookshma { get; set; }
+#endif
+        /// <summary>Sookshma dasha (sookshma antardasha), the fourth level of the Vimshottari dasha hierarchy. Each Pratyantardasha divides into 9 Sookshma periods running roughly 3 to 30 days each, the finest level exposed by this API and the one used for day-level event timing and muhurta style selection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_sookshmaDasha? SookshmaDasha { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_sookshmaDasha SookshmaDasha { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse"/> and sets the default values.
         /// </summary>
@@ -100,7 +122,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "antardasha", n => { Antardasha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_antardasha>(global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_antardasha.CreateFromDiscriminatorValue); } },
+                { "ayanamsa", n => { Ayanamsa = n.GetDoubleValue(); } },
+                { "ayanamsaType", n => { AyanamsaType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_ayanamsaType>(); } },
                 { "mahadasha", n => { Mahadasha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_mahadasha>(global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_mahadasha.CreateFromDiscriminatorValue); } },
+                { "moonLongitude", n => { MoonLongitude = n.GetDoubleValue(); } },
                 { "moonNakshatra", n => { MoonNakshatra = n.GetIntValue(); } },
                 { "nakshatraLord", n => { NakshatraLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_nakshatraLord>(); } },
                 { "nakshatraName", n => { NakshatraName = n.GetStringValue(); } },
@@ -108,6 +133,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
                 { "remainingInAntardasha", n => { RemainingInAntardasha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInAntardasha>(global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInAntardasha.CreateFromDiscriminatorValue); } },
                 { "remainingInMahadasha", n => { RemainingInMahadasha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInMahadasha>(global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInMahadasha.CreateFromDiscriminatorValue); } },
                 { "remainingInPratyantardasha", n => { RemainingInPratyantardasha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInPratyantardasha>(global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInPratyantardasha.CreateFromDiscriminatorValue); } },
+                { "remainingInSookshma", n => { RemainingInSookshma = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInSookshma>(global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInSookshma.CreateFromDiscriminatorValue); } },
+                { "sookshmaDasha", n => { SookshmaDasha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_sookshmaDasha>(global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_sookshmaDasha.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -118,7 +145,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_antardasha>("antardasha", Antardasha);
+            writer.WriteDoubleValue("ayanamsa", Ayanamsa);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_ayanamsaType>("ayanamsaType", AyanamsaType);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_mahadasha>("mahadasha", Mahadasha);
+            writer.WriteDoubleValue("moonLongitude", MoonLongitude);
             writer.WriteIntValue("moonNakshatra", MoonNakshatra);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_nakshatraLord>("nakshatraLord", NakshatraLord);
             writer.WriteStringValue("nakshatraName", NakshatraName);
@@ -126,6 +156,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInAntardasha>("remainingInAntardasha", RemainingInAntardasha);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInMahadasha>("remainingInMahadasha", RemainingInMahadasha);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInPratyantardasha>("remainingInPratyantardasha", RemainingInPratyantardasha);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_remainingInSookshma>("remainingInSookshma", RemainingInSookshma);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_sookshmaDasha>("sookshmaDasha", SookshmaDasha);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

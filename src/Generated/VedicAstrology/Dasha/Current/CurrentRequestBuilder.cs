@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
         {
         }
         /// <summary>
-        /// Calculate current Vimshottari Dasha periods (Mahadasha, Antardasha, Pratyantardasha) with remaining time. Accurate dasha calculator API for life phase prediction and planetary period analysis. Returns dasha timeline with start/end dates for each period. Essential for understanding current planetary influences, dasha transitions, and timing events in Vedic astrology. 120-year dasha system based on moon nakshatra at birth.
+        /// Calculate all four running Vimshottari Dasha levels (Mahadasha, Antardasha, Pratyantardasha, Sookshma) with remaining time in each. Accurate dasha calculator API for life phase prediction and planetary period analysis. Returns the dasha timeline with start/end dates for every level, ready for a current DBA readout. Essential for understanding current planetary influences, dasha transitions, and timing events in Vedic astrology. 120-year dasha system based on moon nakshatra at birth, with selectable Lahiri or KP ayanamsa.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate current Vimshottari Dasha periods (Mahadasha, Antardasha, Pratyantardasha) with remaining time. Accurate dasha calculator API for life phase prediction and planetary period analysis. Returns dasha timeline with start/end dates for each period. Essential for understanding current planetary influences, dasha transitions, and timing events in Vedic astrology. 120-year dasha system based on moon nakshatra at birth.
+        /// Calculate all four running Vimshottari Dasha levels (Mahadasha, Antardasha, Pratyantardasha, Sookshma) with remaining time in each. Accurate dasha calculator API for life phase prediction and planetary period analysis. Returns the dasha timeline with start/end dates for every level, ready for a current DBA readout. Essential for understanding current planetary influences, dasha transitions, and timing events in Vedic astrology. 120-year dasha system based on moon nakshatra at birth, with selectable Lahiri or KP ayanamsa.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
             return new global::RoxyApi.VedicAstrology.Dasha.Current.CurrentRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate current Vimshottari Dasha periods (Mahadasha, Antardasha, Pratyantardasha) with remaining time. Accurate dasha calculator API for life phase prediction and planetary period analysis. Returns dasha timeline with start/end dates for each period. Essential for understanding current planetary influences, dasha transitions, and timing events in Vedic astrology. 120-year dasha system based on moon nakshatra at birth.
+        /// Calculate all four running Vimshottari Dasha levels (Mahadasha, Antardasha, Pratyantardasha, Sookshma) with remaining time in each. Accurate dasha calculator API for life phase prediction and planetary period analysis. Returns the dasha timeline with start/end dates for every level, ready for a current DBA readout. Essential for understanding current planetary influences, dasha transitions, and timing events in Vedic astrology. 120-year dasha system based on moon nakshatra at birth, with selectable Lahiri or KP ayanamsa.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CurrentRequestBuilderPostQueryParameters 

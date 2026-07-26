@@ -14,6 +14,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Ayanamsa actually applied, in degrees. The precession offset subtracted from the tropical (sayana) longitude to get the sidereal (nirayana) one. Lahiri sits near 23 deg 43 min for a 1990 birth, KP-Newcomb near 23 deg 38 min.</summary>
+        public double? Ayanamsa { get; set; }
+        /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_ayanamsaType? AyanamsaType { get; set; }
         /// <summary>Remaining balance of the first Mahadasha at birth. Based on Moon degree within the birth nakshatra. partial dasha already elapsed before birth.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,6 +34,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
 #else
         public List<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas> Mahadashas { get; set; }
 #endif
+        /// <summary>Sidereal (nirayana) longitude of the birth Moon in degrees, 0 to 360, measured in the ayanamsa frame reported below. This single value determines the birth nakshatra and therefore every dasha start and end date in this response. Compare it against a reference chart to reconcile any date difference at its source.</summary>
+        public double? MoonLongitude { get; set; }
         /// <summary>Birth Moon nakshatra number (1-27) that determines the Vimshottari starting point.</summary>
         public int? MoonNakshatra { get; set; }
         /// <summary>Dasha lord of the birth nakshatra, rules the first Mahadasha.</summary>
@@ -69,8 +75,11 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "ayanamsa", n => { Ayanamsa = n.GetDoubleValue(); } },
+                { "ayanamsaType", n => { AyanamsaType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_ayanamsaType>(); } },
                 { "birthDashaBalance", n => { BirthDashaBalance = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_birthDashaBalance>(global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_birthDashaBalance.CreateFromDiscriminatorValue); } },
                 { "mahadashas", n => { Mahadashas = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas>(global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "moonLongitude", n => { MoonLongitude = n.GetDoubleValue(); } },
                 { "moonNakshatra", n => { MoonNakshatra = n.GetIntValue(); } },
                 { "nakshatraLord", n => { NakshatraLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_nakshatraLord>(); } },
                 { "nakshatraName", n => { NakshatraName = n.GetStringValue(); } },
@@ -84,8 +93,11 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteDoubleValue("ayanamsa", Ayanamsa);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_ayanamsaType>("ayanamsaType", AyanamsaType);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_birthDashaBalance>("birthDashaBalance", BirthDashaBalance);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_mahadashas>("mahadashas", Mahadashas);
+            writer.WriteDoubleValue("moonLongitude", MoonLongitude);
             writer.WriteIntValue("moonNakshatra", MoonNakshatra);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse_nakshatraLord>("nakshatraLord", NakshatraLord);
             writer.WriteStringValue("nakshatraName", NakshatraName);

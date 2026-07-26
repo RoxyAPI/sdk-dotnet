@@ -53,6 +53,8 @@ internal static class MethodReferenceExamples
         await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+        await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+        await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.Panchang.Basic.PostAsync(new() { Date = new Date(2025, 12, 17), Time = new Time(12, 0, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.Panchang.Detailed.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.Panchang.Choghadiya.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });

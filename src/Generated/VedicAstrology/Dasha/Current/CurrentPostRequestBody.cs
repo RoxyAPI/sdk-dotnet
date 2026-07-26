@@ -15,6 +15,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Ayanamsa system used to place the birth Moon in its nakshatra, which sets every dasha start and end date. &quot;lahiri&quot; uses Lahiri/Chitrapaksha, the traditional Vedic standard, and is the default. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, matching Krishnamurti Paddhati software. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1. Switching frames shifts every dasha boundary by weeks, so pick the one your reference software uses.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_ayanamsa? Ayanamsa { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas).</summary>
         public Date? Date { get; set; }
         /// <summary>Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172.</summary>
@@ -37,6 +39,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
         public CurrentPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
+            Ayanamsa = global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_ayanamsa.Lahiri;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,6 +59,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_ayanamsa>(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
@@ -70,6 +74,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_ayanamsa>("ayanamsa", Ayanamsa);
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
