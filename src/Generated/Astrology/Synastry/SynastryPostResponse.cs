@@ -32,7 +32,7 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public List<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_interAspects> InterAspects { get; set; }
 #endif
-        /// <summary>Person 1 chart highlights: Ascendant, Sun sign, and Moon sign.</summary>
+        /// <summary>Person 1 chart highlights: Ascendant, Sun sign, Moon sign, and plotting positions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1? Person1 { get; set; }
@@ -40,7 +40,7 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1 Person1 { get; set; }
 #endif
-        /// <summary>Person 2 chart highlights: Ascendant, Sun sign, and Moon sign.</summary>
+        /// <summary>Person 2 chart highlights: Ascendant, Sun sign, Moon sign, and plotting positions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2? Person2 { get; set; }

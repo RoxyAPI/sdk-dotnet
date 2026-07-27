@@ -24,6 +24,14 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar.Item.Item
 #endif
         /// <summary>Calendar month for this lunar calendar.</summary>
         public double? Month { get; set; }
+        /// <summary>Month name, localized to the requested language. Saves the caller a lookup table when labelling a calendar heading, since the numeric month alone cannot be rendered without one.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MonthName { get; set; }
+#nullable restore
+#else
+        public string MonthName { get; set; }
+#endif
         /// <summary>Calendar year for this lunar calendar.</summary>
         public double? Year { get; set; }
         /// <summary>
@@ -53,6 +61,7 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar.Item.Item
             {
                 { "calendar", n => { Calendar = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.MoonPhase.Calendar.Item.Item.WithMonthGetResponse_calendar>(global::RoxyApi.Astrology.MoonPhase.Calendar.Item.Item.WithMonthGetResponse_calendar.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "month", n => { Month = n.GetDoubleValue(); } },
+                { "monthName", n => { MonthName = n.GetStringValue(); } },
                 { "year", n => { Year = n.GetDoubleValue(); } },
             };
         }
@@ -65,6 +74,7 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar.Item.Item
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.MoonPhase.Calendar.Item.Item.WithMonthGetResponse_calendar>("calendar", Calendar);
             writer.WriteDoubleValue("month", Month);
+            writer.WriteStringValue("monthName", MonthName);
             writer.WriteDoubleValue("year", Year);
             writer.WriteAdditionalData(AdditionalData);
         }

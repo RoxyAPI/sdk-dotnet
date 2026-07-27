@@ -14,6 +14,14 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Actionable guidance for the month as a whole, derived from the Mercury house activation for this sign. Distinct from the per-week advice inside weekByWeek: this is the single takeaway for the month.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Advice { get; set; }
+#nullable restore
+#else
+        public string Advice { get; set; }
+#endif
         /// <summary>Monthly career and professional outlook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -135,6 +143,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "advice", n => { Advice = n.GetStringValue(); } },
                 { "career", n => { Career = n.GetStringValue(); } },
                 { "compatibleSigns", n => { CompatibleSigns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "finance", n => { Finance = n.GetStringValue(); } },
@@ -156,6 +165,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("advice", Advice);
             writer.WriteStringValue("career", Career);
             writer.WriteCollectionOfPrimitiveValues<string>("compatibleSigns", CompatibleSigns);
             writer.WriteStringValue("finance", Finance);

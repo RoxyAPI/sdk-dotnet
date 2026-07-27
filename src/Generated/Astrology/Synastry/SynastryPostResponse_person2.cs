@@ -8,14 +8,14 @@ using System;
 namespace RoxyApi.Astrology.Synastry
 {
     /// <summary>
-    /// Person 2 chart highlights: Ascendant, Sun sign, and Moon sign.
+    /// Person 2 chart highlights: Ascendant, Sun sign, Moon sign, and plotting positions.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SynastryPostResponse_person2 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Ascendant position for person 2.</summary>
+        /// <summary>Ascendant position for person 2. Determines first house cusp and outward personality.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_ascendant? Ascendant { get; set; }
@@ -23,7 +23,7 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_ascendant Ascendant { get; set; }
 #endif
-        /// <summary>Moon sign of this person.</summary>
+        /// <summary>Moon sign of this person. Emotional nature and inner needs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MoonSign { get; set; }
@@ -39,7 +39,15 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Sun sign of this person.</summary>
+        /// <summary>Planet positions for person 2, enough to render this side of a dual wheel without a second request. Per-planet interpretations are not repeated here; call the natal chart endpoint for an individual reading.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_planets>? Planets { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_planets> Planets { get; set; }
+#endif
+        /// <summary>Sun sign (zodiac sign) of this person. Core identity and ego expression.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SunSign { get; set; }
@@ -75,6 +83,7 @@ namespace RoxyApi.Astrology.Synastry
                 { "ascendant", n => { Ascendant = n.GetObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_ascendant>(global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_ascendant.CreateFromDiscriminatorValue); } },
                 { "moonSign", n => { MoonSign = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "planets", n => { Planets = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_planets>(global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_planets.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sunSign", n => { SunSign = n.GetStringValue(); } },
             };
         }
@@ -88,6 +97,7 @@ namespace RoxyApi.Astrology.Synastry
             writer.WriteObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_ascendant>("ascendant", Ascendant);
             writer.WriteStringValue("moonSign", MoonSign);
             writer.WriteStringValue("name", Name);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_planets>("planets", Planets);
             writer.WriteStringValue("sunSign", SunSign);
             writer.WriteAdditionalData(AdditionalData);
         }
