@@ -28,6 +28,14 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
         public double? Ayanamsa { get; set; }
         /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_ayanamsaType? AyanamsaType { get; set; }
+        /// <summary>What each house MEANS, keyed by house number 1 to 12, in the requested language. Turns a house list into words without the client writing any interpretation copy: for a period signifying houses 2, 7 and 8, join houseThemes for those keys to render the &quot;nature&quot; line of a KP dasha table. Sent once per response rather than repeated on every period, so look the houses up from signifiedHouses or strongHouses. Localized by the lang query, like every other interpretation field.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_houseThemes? HouseThemes { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_houseThemes HouseThemes { get; set; }
+#endif
         /// <summary>Ruling planet of the requested Mahadasha period.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_mahadashaLord? MahadashaLord { get; set; }
         /// <summary>Sidereal (nirayana) longitude of the birth Moon in degrees, 0 to 360, measured in the ayanamsa frame reported below. This single value determines the birth nakshatra and therefore every dasha start and end date in this response. Compare it against a reference chart to reconcile any date difference at its source.</summary>
@@ -69,6 +77,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
                 { "antardashaPeriod", n => { AntardashaPeriod = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_antardashaPeriod>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_antardashaPeriod.CreateFromDiscriminatorValue); } },
                 { "ayanamsa", n => { Ayanamsa = n.GetDoubleValue(); } },
                 { "ayanamsaType", n => { AyanamsaType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_ayanamsaType>(); } },
+                { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_houseThemes>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_houseThemes.CreateFromDiscriminatorValue); } },
                 { "mahadashaLord", n => { MahadashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_mahadashaLord>(); } },
                 { "moonLongitude", n => { MoonLongitude = n.GetDoubleValue(); } },
                 { "pratyantardashas", n => { Pratyantardashas = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_pratyantardashas>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_pratyantardashas.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -85,6 +94,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_antardashaPeriod>("antardashaPeriod", AntardashaPeriod);
             writer.WriteDoubleValue("ayanamsa", Ayanamsa);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_ayanamsaType>("ayanamsaType", AyanamsaType);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_houseThemes>("houseThemes", HouseThemes);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_mahadashaLord>("mahadashaLord", MahadashaLord);
             writer.WriteDoubleValue("moonLongitude", MoonLongitude);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse_pratyantardashas>("pratyantardashas", Pratyantardashas);

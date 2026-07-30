@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
 {
     /// <summary>
-    /// Sookshma dasha (sookshma antardasha), the fourth level of the Vimshottari dasha hierarchy. Each Pratyantardasha divides into 9 Sookshma periods running roughly 3 to 30 days each, the finest level exposed by this API and the one used for day-level event timing and muhurta style selection.
+    /// Sookshma dasha (sookshma antardasha), the fourth level of the Vimshottari dasha hierarchy. Each Pratyantardasha divides into 9 Sookshma periods running roughly 3 to 30 days each, used for day-level event timing and muhurta style selection.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPratyantardashaPostResponse_sookshmaDashas : IAdditionalDataHolder, IParsable
@@ -49,6 +49,14 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_planet? Planet { get; set; }
         /// <summary>Parent Pratyantardasha lord under which this Sookshma dasha runs.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_pratyantardashaLord? PratyantardashaLord { get; set; }
+        /// <summary>KP significators of this period lord, read from the Placidus birth chart in the requested ayanamsa. Present only when the request sets &quot;significators&quot;: true.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_significators? Significators { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_significators Significators { get; set; }
+#endif
         /// <summary>Start datetime of this dasha period. Adjusted to the requested timezone offset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -90,6 +98,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
                 { "nominalStartDate", n => { NominalStartDate = n.GetStringValue(); } },
                 { "planet", n => { Planet = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_planet>(); } },
                 { "pratyantardashaLord", n => { PratyantardashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_pratyantardashaLord>(); } },
+                { "significators", n => { Significators = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_significators>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_significators.CreateFromDiscriminatorValue); } },
                 { "startDate", n => { StartDate = n.GetStringValue(); } },
             };
         }
@@ -108,6 +117,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
             writer.WriteStringValue("nominalStartDate", NominalStartDate);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_planet>("planet", Planet);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_pratyantardashaLord>("pratyantardashaLord", PratyantardashaLord);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_sookshmaDashas_significators>("significators", Significators);
             writer.WriteStringValue("startDate", StartDate);
             writer.WriteAdditionalData(AdditionalData);
         }

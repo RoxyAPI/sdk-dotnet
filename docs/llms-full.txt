@@ -155,20 +155,23 @@ await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1
 // Monthly Ephemeris - Daily sidereal planetary positions for a month
 await roxy.VedicAstrology.PlanetaryPositions.Monthly.PostAsync(new() { Year = 2026, Month = 2 });
 
-// Get current Mahadasha, Antardasha, Pratyantardasha, Sookshma - Dasha Calculator API
-await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+// Get current Mahadasha, Antardasha, Pratyantardasha, Sookshma, Prana - Dasha Calculator API
+await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
 
 // Get all 9 Mahadasha periods (120-year cycle)
-await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
 
 // Get all Antardashas (sub-periods) for a specific Mahadasha
-await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
 
 // Get all Pratyantardashas (antara periods) for a Mahadasha and Antardasha
-await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
 
 // Get all Sookshma dashas for a Mahadasha, Antardasha and Pratyantardasha
-await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
+
+// Get all Prana dashas for a Mahadasha, Antardasha, Pratyantardasha and Sookshma
+await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"]["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
 
 // Get basic Panchang - Tithi Nakshatra Yoga Karana Calculator
 await roxy.VedicAstrology.Panchang.Basic.PostAsync(new() { Date = new Date(2025, 12, 17), Time = new Time(12, 0, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });

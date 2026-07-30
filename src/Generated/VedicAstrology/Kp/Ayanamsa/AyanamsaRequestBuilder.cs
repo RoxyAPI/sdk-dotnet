@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
         {
         }
         /// <summary>
-        /// Get real-time KP-Newcomb ayanamsa value calculated using Newcomb precession theory - no preset tables. Returns precise ayanamsa for any date based on IAU modern precession standards. Essential for accurate KP chart calculations and research. Formula: A = 16.90709×(Year/10000) - 0.757371×(Year/1000)² - 6.92416, B = (Month-1 + Date/30)×1.1574074/1000. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
+        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any date, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the date you ask for instead of the calendar year. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.KPAyanamsaResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.KPAyanamsaResponse>(requestInfo, global::RoxyApi.Models.KPAyanamsaResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get real-time KP-Newcomb ayanamsa value calculated using Newcomb precession theory - no preset tables. Returns precise ayanamsa for any date based on IAU modern precession standards. Essential for accurate KP chart calculations and research. Formula: A = 16.90709×(Year/10000) - 0.757371×(Year/1000)² - 6.92416, B = (Month-1 + Date/30)×1.1574074/1000. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
+        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any date, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the date you ask for instead of the calendar year. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
             return new global::RoxyApi.VedicAstrology.Kp.Ayanamsa.AyanamsaRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get real-time KP-Newcomb ayanamsa value calculated using Newcomb precession theory - no preset tables. Returns precise ayanamsa for any date based on IAU modern precession standards. Essential for accurate KP chart calculations and research. Formula: A = 16.90709×(Year/10000) - 0.757371×(Year/1000)² - 6.92416, B = (Month-1 + Date/30)×1.1574074/1000. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
+        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any date, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the date you ask for instead of the calendar year. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class AyanamsaRequestBuilderGetQueryParameters 

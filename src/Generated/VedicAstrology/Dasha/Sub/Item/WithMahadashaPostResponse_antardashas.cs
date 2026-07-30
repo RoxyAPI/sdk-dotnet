@@ -45,6 +45,14 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
 #endif
         /// <summary>Ruling graha of this Vimshottari dasha period. One of 9 planets in the Ketu-Venus-Sun-Moon-Mars-Rahu-Jupiter-Saturn-Mercury sequence.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_planet? Planet { get; set; }
+        /// <summary>KP significators of this period lord, read from the Placidus birth chart in the requested ayanamsa. Present only when the request sets &quot;significators&quot;: true.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_significators? Significators { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_significators Significators { get; set; }
+#endif
         /// <summary>Start datetime of this dasha period. Adjusted to the requested timezone offset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,6 +92,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
                 { "mahadashaLord", n => { MahadashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_mahadashaLord>(); } },
                 { "nominalStartDate", n => { NominalStartDate = n.GetStringValue(); } },
                 { "planet", n => { Planet = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_planet>(); } },
+                { "significators", n => { Significators = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_significators>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_significators.CreateFromDiscriminatorValue); } },
                 { "startDate", n => { StartDate = n.GetStringValue(); } },
             };
         }
@@ -100,6 +109,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_mahadashaLord>("mahadashaLord", MahadashaLord);
             writer.WriteStringValue("nominalStartDate", NominalStartDate);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_planet>("planet", Planet);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse_antardashas_significators>("significators", Significators);
             writer.WriteStringValue("startDate", StartDate);
             writer.WriteAdditionalData(AdditionalData);
         }

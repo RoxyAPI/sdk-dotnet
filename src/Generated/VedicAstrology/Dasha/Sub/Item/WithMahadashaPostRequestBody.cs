@@ -23,6 +23,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees. Affects local time calculations and ayanamsha adjustments. Example: Delhi 77.2090, Mumbai 72.8777, Kathmandu 85.3240.</summary>
         public double? Longitude { get; set; }
+        /// <summary>Lunar node type for Rahu and Ketu, used ONLY when &quot;significators&quot; is true. Dasha dates themselves come from the Moon and never move with this field. &quot;mean&quot; uses the smooth mean node (traditional default). &quot;true&quot; uses the osculating node, which swings up to 1.5 degrees either side of mean over a 173-day cycle and can therefore change which house or star a node falls in. Defaults to &quot;mean&quot;.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_nodeType? NodeType { get; set; }
+        /// <summary>Set true to attach the KP significators of each period lord: its star lord, sub lord, occupied house, the houses it signifies at levels L1 to L4, and a strength grade. Off by default, so responses stay exactly as they are for clients that only need dates. Requires the birth latitude and longitude, since significators are read off a Placidus house chart, and uses the same ayanamsa frame selected above.</summary>
+        public bool? Significators { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Time is CRITICAL for Lagna (Ascendant) calculation and house divisions. It changes every two hours roughly. Even minutes matter for accurate nakshatra pada and divisional chart (D9, D10) calculations. Without exact time, Lagna and house-based predictions will be incorrect.</summary>
         public Time? Time { get; set; }
         /// <summary>Timezone: IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass `cities[0].timezone` from /location/search directly. Defaults to 5.5.</summary>
@@ -40,6 +44,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         {
             AdditionalData = new Dictionary<string, object>();
             Ayanamsa = global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_ayanamsa.Lahiri;
+            NodeType = global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_nodeType.Mean;
+            Significators = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -63,6 +69,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
+                { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_nodeType>(); } },
+                { "significators", n => { Significators = n.GetBoolValue(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone.CreateFromDiscriminatorValue); } },
             };
@@ -78,6 +86,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody_nodeType>("nodeType", NodeType);
+            writer.WriteBoolValue("significators", Significators);
             writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostRequestBody.WithMahadashaPostRequestBody_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);

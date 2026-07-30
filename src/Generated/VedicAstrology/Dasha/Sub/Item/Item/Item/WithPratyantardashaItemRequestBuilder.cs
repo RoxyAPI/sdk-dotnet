@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using RoxyApi.Models;
+using RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,18 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPratyantardashaItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the RoxyApi.vedicAstrology.dasha.sub.item.item.item.item collection</summary>
+        /// <param name="position">Sookshma dasha planet name inside that Pratyantardasha, case-insensitive. Every full period contains all 9 lords, so a repeat such as saturn/saturn/saturn/saturn is valid.</param>
+        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item.WithSookshmaItemRequestBuilder"/></returns>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item.WithSookshmaItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("sookshma", position);
+                return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item.WithSookshmaItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaItemRequestBuilder"/> and sets the default values.
         /// </summary>

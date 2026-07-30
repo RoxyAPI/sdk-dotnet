@@ -15,37 +15,37 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Level 1 (strongest signification). Houses influenced because this planet sits in the nakshatra (star) of a planet occupying those houses. For Rahu and Ketu, also includes L1 houses from agent planets (conjoined, aspecting, sign lord).</summary>
+        /// <summary>Level 1, the strongest signification (grade A). Houses influenced because this planet sits in the nakshatra (star) of a planet occupying those houses. For Rahu and Ketu, also includes the L1 houses of their agent planets (conjoined, aspecting, sign lord).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<double?>? L1 { get; set; }
+        public List<int?>? L1 { get; set; }
 #nullable restore
 #else
-        public List<double?> L1 { get; set; }
+        public List<int?> L1 { get; set; }
 #endif
-        /// <summary>Level 2. The house this planet physically occupies in the chart. For Rahu and Ketu, also includes houses occupied by agent planets (conjoined, aspecting, sign lord).</summary>
+        /// <summary>Level 2 (grade B). The house this planet physically occupies. For Rahu and Ketu, also includes houses occupied by their agent planets.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<double?>? L2 { get; set; }
+        public List<int?>? L2 { get; set; }
 #nullable restore
 #else
-        public List<double?> L2 { get; set; }
+        public List<int?> L2 { get; set; }
 #endif
-        /// <summary>Level 3. Houses influenced because this planet sits in the nakshatra of the sign lord (owner) of those houses. For Rahu and Ketu, also includes L3 houses from agent planets.</summary>
+        /// <summary>Level 3 (grade C). Houses influenced because this planet sits in the nakshatra of the sign lord (owner) of those houses. For Rahu and Ketu, also includes the L3 houses of their agent planets.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<double?>? L3 { get; set; }
+        public List<int?>? L3 { get; set; }
 #nullable restore
 #else
-        public List<double?> L3 { get; set; }
+        public List<int?> L3 { get; set; }
 #endif
-        /// <summary>Level 4 (weakest signification). Houses this planet rules by zodiac sign ownership. For Sun through Saturn, can be up to 2 houses. For Rahu and Ketu, includes houses owned by agent planets (conjoined, aspecting, sign lord).</summary>
+        /// <summary>Level 4, the weakest signification (grade D). Houses this planet rules by zodiac sign ownership, up to 2 for Sun through Saturn and 3 where a sign is intercepted. Rahu and Ketu own no sign, so their L4 comes entirely from their agent planets.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<double?>? L4 { get; set; }
+        public List<int?>? L4 { get; set; }
 #nullable restore
 #else
-        public List<double?> L4 { get; set; }
+        public List<int?> L4 { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_intervals_moonSublordSignifies"/> and sets the default values.
@@ -72,10 +72,10 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "L1", n => { L1 = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
-                { "L2", n => { L2 = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
-                { "L3", n => { L3 = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
-                { "L4", n => { L4 = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
+                { "L1", n => { L1 = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
+                { "L2", n => { L2 = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
+                { "L3", n => { L3 = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
+                { "L4", n => { L4 = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -85,10 +85,10 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<double?>("L1", L1);
-            writer.WriteCollectionOfPrimitiveValues<double?>("L2", L2);
-            writer.WriteCollectionOfPrimitiveValues<double?>("L3", L3);
-            writer.WriteCollectionOfPrimitiveValues<double?>("L4", L4);
+            writer.WriteCollectionOfPrimitiveValues<int?>("L1", L1);
+            writer.WriteCollectionOfPrimitiveValues<int?>("L2", L2);
+            writer.WriteCollectionOfPrimitiveValues<int?>("L3", L3);
+            writer.WriteCollectionOfPrimitiveValues<int?>("L4", L4);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
