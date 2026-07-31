@@ -32,6 +32,14 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Bhava (house) number 1-12. House 1 is the Lagna (Ascendant), house 7 the partnership axis, house 10 the career axis.</summary>
         public int? Number { get; set; }
+        /// <summary>Significations of the bhava as short keywords, the compact form of description. Bhava 1 covers self, body and vitality; 2 wealth and speech; 7 marriage and partnership; 10 career and status. Suited to chart labels, table cells and legends where the full classical description is too long, and identical to the houseThemes map returned by the Vimshottari dasha and KP chart routes. Localized by the lang query parameter.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Themes { get; set; }
+#nullable restore
+#else
+        public List<string> Themes { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.BirthChartResponse_houses"/> and sets the default values.
         /// </summary>
@@ -60,6 +68,7 @@ namespace RoxyApi.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "number", n => { Number = n.GetIntValue(); } },
+                { "themes", n => { Themes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -72,6 +81,7 @@ namespace RoxyApi.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("number", Number);
+            writer.WriteCollectionOfPrimitiveValues<string>("themes", Themes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

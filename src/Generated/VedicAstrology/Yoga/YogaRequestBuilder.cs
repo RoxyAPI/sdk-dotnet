@@ -53,7 +53,7 @@ namespace RoxyApi.VedicAstrology.Yoga
         {
         }
         /// <summary>
-        /// Browse the 300+ entry Vedic planetary-yoga glossary. Returns id and name for every cataloged yoga (Raja, Dhana, Pancha Mahapurusha, Nabhasa, Chandra-Mangala, and more). This is a dictionary lookup, not chart-driven detection: it does not inspect a birth chart. Use GET /yoga/{id} for the full glossary entry, or POST /yoga/detect to run the 12 classical detection rules against a specific kundli. Ideal for yoga-browser UIs, search, and progressive data loading.
+        /// Browse the 300+ entry Vedic planetary-yoga glossary. Returns id and name for every cataloged yoga (Raja, Dhana, Pancha Mahapurusha, Nabhasa, Chandra-Mangala, and more). This is a dictionary lookup, not chart-driven detection: it does not inspect a birth chart. Use GET /yoga/{id} for the full glossary entry, or POST /yoga/detect to run all 44 detection rules against a specific kundli. Ideal for yoga-browser UIs, search, and progressive data loading.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Yoga.YogaGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -84,7 +84,7 @@ namespace RoxyApi.VedicAstrology.Yoga
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Yoga.YogaGetResponse>(requestInfo, global::RoxyApi.VedicAstrology.Yoga.YogaGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Browse the 300+ entry Vedic planetary-yoga glossary. Returns id and name for every cataloged yoga (Raja, Dhana, Pancha Mahapurusha, Nabhasa, Chandra-Mangala, and more). This is a dictionary lookup, not chart-driven detection: it does not inspect a birth chart. Use GET /yoga/{id} for the full glossary entry, or POST /yoga/detect to run the 12 classical detection rules against a specific kundli. Ideal for yoga-browser UIs, search, and progressive data loading.
+        /// Browse the 300+ entry Vedic planetary-yoga glossary. Returns id and name for every cataloged yoga (Raja, Dhana, Pancha Mahapurusha, Nabhasa, Chandra-Mangala, and more). This is a dictionary lookup, not chart-driven detection: it does not inspect a birth chart. Use GET /yoga/{id} for the full glossary entry, or POST /yoga/detect to run all 44 detection rules against a specific kundli. Ideal for yoga-browser UIs, search, and progressive data loading.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -112,7 +112,7 @@ namespace RoxyApi.VedicAstrology.Yoga
             return new global::RoxyApi.VedicAstrology.Yoga.YogaRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Browse the 300+ entry Vedic planetary-yoga glossary. Returns id and name for every cataloged yoga (Raja, Dhana, Pancha Mahapurusha, Nabhasa, Chandra-Mangala, and more). This is a dictionary lookup, not chart-driven detection: it does not inspect a birth chart. Use GET /yoga/{id} for the full glossary entry, or POST /yoga/detect to run the 12 classical detection rules against a specific kundli. Ideal for yoga-browser UIs, search, and progressive data loading.
+        /// Browse the 300+ entry Vedic planetary-yoga glossary. Returns id and name for every cataloged yoga (Raja, Dhana, Pancha Mahapurusha, Nabhasa, Chandra-Mangala, and more). This is a dictionary lookup, not chart-driven detection: it does not inspect a birth chart. Use GET /yoga/{id} for the full glossary entry, or POST /yoga/detect to run all 44 detection rules against a specific kundli. Ideal for yoga-browser UIs, search, and progressive data loading.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class YogaRequestBuilderGetQueryParameters 

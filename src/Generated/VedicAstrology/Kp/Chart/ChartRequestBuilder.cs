@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Kp.Chart
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ChartRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/chart{?lang*}", pathParameters)
+        public ChartRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/chart{?focus*,lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Kp.Chart
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ChartRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/chart{?lang*}", rawUrl)
+        public ChartRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/chart{?focus*,lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -103,6 +103,9 @@ namespace RoxyApi.VedicAstrology.Kp.Chart
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ChartRequestBuilderPostQueryParameters 
         {
+            /// <summary>Which signification vocabulary the houseThemes map returns. &quot;general&quot; gives the classical bhava significations (self, wealth, siblings, home, and so on). &quot;finance&quot; gives the money reading of the same twelve bhavas, so house 2 returns income and savings, 5 speculation and risk appetite, 8 sudden money and leverage, 11 gains and profits, and 12 expenses and capital outflow. Use &quot;finance&quot; for wealth, income, business and market timing questions in Krishnamurti Paddhati, where the significator house groups 2, 6, 10, 11 for earned income and 5, 8, 11 for speculation are read against a running dasha. Defaults to &quot;general&quot;.</summary>
+            [QueryParameter("focus")]
+            public global::RoxyApi.VedicAstrology.Kp.Chart.PostFocusQueryParameterType? Focus { get; set; }
             /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.VedicAstrology.Kp.Chart.PostLangQueryParameterType? Lang { get; set; }

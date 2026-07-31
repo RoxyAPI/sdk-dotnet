@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
 #else
         public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_commonHouses CommonHouses { get; set; }
 #endif
-        /// <summary>What each house MEANS, keyed by house number 1 to 12, in the requested language. Turns a house list into words without the client writing any interpretation copy: for a period signifying houses 2, 7 and 8, join houseThemes for those keys to render the &quot;nature&quot; line of a KP dasha table. Sent once per response rather than repeated on every period, so look the houses up from signifiedHouses or strongHouses. Localized by the lang query, like every other interpretation field.</summary>
+        /// <summary>Significations of each of the twelve bhavas (houses), keyed by house number 1 to 12, as short keywords. Bhava 1 is the Lagna (self, body, vitality), 2 wealth and speech, 4 home and mother, 7 marriage and partnership, 10 career and status, 11 gains. Use it to label the house numbers returned elsewhere in the response: a Vimshottari dasha period signifying houses 2, 7 and 8, or a KP significator carrying houses 11 and 6, becomes readable text without a separate lookup call. Returned once per response rather than repeated per period, and localized by the lang query parameter alongside every other interpretation field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostResponse_houseThemes? HouseThemes { get; set; }

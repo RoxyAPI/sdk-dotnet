@@ -14,7 +14,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Brief classical formation rule. Identifies the planetary placement, lordship, dignity, or aspect pattern required for the yoga to form.</summary>
+        /// <summary>Brief classical formation rule. Identifies the planetary placement, lordship, dignity, aspect pattern, sign modality, or whole-chart bhava distribution required for the yoga to form.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Human-readable rationale naming the specific rule that triggered or failed the detection, including planetary positions, dignity, kendrādhipati status, lordship, or malefic drishti.</summary>
+        /// <summary>Human-readable rationale naming the specific rule that triggered or failed the detection, including planetary positions, dignity, kendradhipati status, lordship, malefic drishti, sign modality, or whole-chart bhava distribution. For a Nabhasa yoga that matched its own rule but was outranked, this names the precedence norm that silenced it, for example that an Akriti yoga outranks Asraya or that any other Nabhasa family suppresses Sankhya.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Evidence { get; set; }
@@ -46,7 +46,7 @@ namespace RoxyApi.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>True if every classical condition for the yoga is satisfied by the given chart. False if any rule fails, including &quot;almost-present&quot; cases where dignity is met but kendra/aspect is not.</summary>
+        /// <summary>True if every classical condition for the yoga is satisfied by the given chart. False if any rule fails, including &quot;almost-present&quot; cases where dignity is met but kendra/aspect is not, and Nabhasa cases where the yoga matched its own rule but a stronger family outranked it under the classical precedence norms. Read `evidence` to tell those apart.</summary>
         public bool? Present { get; set; }
         /// <summary>Overall nature. Auspicious yogas (Pancha Mahapurusha, Gajakesari) bestow benefits; inauspicious yogas (Kemadruma) indicate challenges; Both denotes context-dependent effects.</summary>
         public global::RoxyApi.Models.BirthChartResponse_yogas_quality? Quality { get; set; }

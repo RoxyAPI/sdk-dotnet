@@ -30,6 +30,14 @@ namespace RoxyApi.Models
 #else
         public List<global::RoxyApi.Models.KPChartResponse_cusps> Cusps { get; set; }
 #endif
+        /// <summary>Significations of each of the twelve bhavas (houses), keyed by house number 1 to 12, as short keywords. Bhava 1 is the Lagna (self, body, vitality), 2 wealth and speech, 4 home and mother, 7 marriage and partnership, 10 career and status, 11 gains. Use it to label the house numbers returned elsewhere in the response: a Vimshottari dasha period signifying houses 2, 7 and 8, or a KP significator carrying houses 11 and 6, becomes readable text without a separate lookup call. Returned once per response rather than repeated per period, and localized by the lang query parameter alongside every other interpretation field.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.KPChartResponse_houseThemes? HouseThemes { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.KPChartResponse_houseThemes HouseThemes { get; set; }
+#endif
         /// <summary>Chart metadata including birth data, ayanamsa, and house system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -89,6 +97,7 @@ namespace RoxyApi.Models
             {
                 { "ascendant", n => { Ascendant = n.GetObjectValue<global::RoxyApi.Models.KPChartResponse_ascendant>(global::RoxyApi.Models.KPChartResponse_ascendant.CreateFromDiscriminatorValue); } },
                 { "cusps", n => { Cusps = n.GetCollectionOfObjectValues<global::RoxyApi.Models.KPChartResponse_cusps>(global::RoxyApi.Models.KPChartResponse_cusps.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.Models.KPChartResponse_houseThemes>(global::RoxyApi.Models.KPChartResponse_houseThemes.CreateFromDiscriminatorValue); } },
                 { "meta", n => { Meta = n.GetObjectValue<global::RoxyApi.Models.KPChartResponse_meta>(global::RoxyApi.Models.KPChartResponse_meta.CreateFromDiscriminatorValue); } },
                 { "nodes", n => { Nodes = n.GetObjectValue<global::RoxyApi.Models.KPChartResponse_nodes>(global::RoxyApi.Models.KPChartResponse_nodes.CreateFromDiscriminatorValue); } },
                 { "planets", n => { Planets = n.GetCollectionOfObjectValues<global::RoxyApi.Models.KPChartResponse_planets>(global::RoxyApi.Models.KPChartResponse_planets.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -104,6 +113,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.Models.KPChartResponse_ascendant>("ascendant", Ascendant);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.KPChartResponse_cusps>("cusps", Cusps);
+            writer.WriteObjectValue<global::RoxyApi.Models.KPChartResponse_houseThemes>("houseThemes", HouseThemes);
             writer.WriteObjectValue<global::RoxyApi.Models.KPChartResponse_meta>("meta", Meta);
             writer.WriteObjectValue<global::RoxyApi.Models.KPChartResponse_nodes>("nodes", Nodes);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.KPChartResponse_planets>("planets", Planets);

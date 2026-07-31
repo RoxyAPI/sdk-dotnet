@@ -22,9 +22,9 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.YogaDetectResponse_birthDetails BirthDetails { get; set; }
 #endif
-        /// <summary>Count of yogas where present === true in this chart. Range 0-12.</summary>
+        /// <summary>Count of yogas where present === true in this chart. Range 0-44, though real charts sit in the low single digits: the Nabhasa families are mutually constrained by the precedence norms, and most shape yogas are rare.</summary>
         public double? Total { get; set; }
-        /// <summary>Array of 12 detected yogas. Every entry carries a `present` boolean and a `quality` (Positive, Negative, or Both = auspicious, inauspicious, or context-dependent); filter on present === true for active yogas. Evidence text names the rule that triggered or failed.</summary>
+        /// <summary>Array of 44 detected yogas, always the full set so a caller can render absent verdicts too. Every entry carries a `present` boolean and a `quality` (Positive, Negative, or Both = auspicious, inauspicious, or context-dependent); filter on present === true for active yogas. Evidence text names the rule that triggered or failed, or the precedence norm that outranked it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Models.YogaDetectResponse_yogas>? Yogas { get; set; }

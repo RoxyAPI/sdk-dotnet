@@ -34,9 +34,9 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
         {
         }
         /// <summary>
-        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 12 classical detection-grade yogas (Gajakesari, Pancha Mahapurusha, etc.) call POST /yoga/detect with birth data.
+        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Models.YogaDetail"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse?> GetAsync(Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Yoga.Item.YogaItemRequestBuilder.YogaItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.YogaDetail?> GetAsync(Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Yoga.Item.YogaItemRequestBuilder.YogaItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse> GetAsync(Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Yoga.Item.YogaItemRequestBuilder.YogaItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.YogaDetail> GetAsync(Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Yoga.Item.YogaItemRequestBuilder.YogaItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -64,10 +64,10 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
                 { "429", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },
                 { "500", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse>(requestInfo, global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::RoxyApi.Models.YogaDetail>(requestInfo, global::RoxyApi.Models.YogaDetail.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 12 classical detection-grade yogas (Gajakesari, Pancha Mahapurusha, etc.) call POST /yoga/detect with birth data.
+        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -95,7 +95,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
             return new global::RoxyApi.VedicAstrology.Yoga.Item.YogaItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 12 classical detection-grade yogas (Gajakesari, Pancha Mahapurusha, etc.) call POST /yoga/detect with birth data.
+        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class YogaItemRequestBuilderGetQueryParameters 

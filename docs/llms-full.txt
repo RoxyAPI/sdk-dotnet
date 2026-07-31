@@ -274,6 +274,18 @@ await roxy.VedicAstrology.Ashtakavarga.PostAsync(new() { Date = new Date(1990, 7
 
 // Get Shadbala (six-fold planetary strength) analysis - Shadbala Calculator API
 await roxy.VedicAstrology.Shadbala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// List all 17 avastha states - Planetary State Reference
+await roxy.VedicAstrology.Avasthas.GetAsync();
+
+// Get avastha by ID - Planetary State Detail
+await roxy.VedicAstrology.Avasthas["dipta"].GetAsync();
+
+// Get the twelve Arudha padas - Arudha Lagna Calculator API
+await roxy.VedicAstrology.Arudha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get Chara Karakas including Atmakaraka - Jaimini Karaka Calculator API
+await roxy.VedicAstrology.CharaKarakas.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 ```
 
 ---

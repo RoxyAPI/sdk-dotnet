@@ -2,9 +2,12 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using RoxyApi.VedicAstrology.Arudha;
 using RoxyApi.VedicAstrology.Ashtakavarga;
 using RoxyApi.VedicAstrology.Aspects;
+using RoxyApi.VedicAstrology.Avasthas;
 using RoxyApi.VedicAstrology.BirthChart;
+using RoxyApi.VedicAstrology.CharaKarakas;
 using RoxyApi.VedicAstrology.Compatibility;
 using RoxyApi.VedicAstrology.Dasha;
 using RoxyApi.VedicAstrology.DivisionalChart;
@@ -33,6 +36,11 @@ namespace RoxyApi.VedicAstrology
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class VedicAstrologyRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The arudha property</summary>
+        public global::RoxyApi.VedicAstrology.Arudha.ArudhaRequestBuilder Arudha
+        {
+            get => new global::RoxyApi.VedicAstrology.Arudha.ArudhaRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The ashtakavarga property</summary>
         public global::RoxyApi.VedicAstrology.Ashtakavarga.AshtakavargaRequestBuilder Ashtakavarga
         {
@@ -43,10 +51,20 @@ namespace RoxyApi.VedicAstrology
         {
             get => new global::RoxyApi.VedicAstrology.Aspects.AspectsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The avasthas property</summary>
+        public global::RoxyApi.VedicAstrology.Avasthas.AvasthasRequestBuilder Avasthas
+        {
+            get => new global::RoxyApi.VedicAstrology.Avasthas.AvasthasRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The birthChart property</summary>
         public global::RoxyApi.VedicAstrology.BirthChart.BirthChartRequestBuilder BirthChart
         {
             get => new global::RoxyApi.VedicAstrology.BirthChart.BirthChartRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The charaKarakas property</summary>
+        public global::RoxyApi.VedicAstrology.CharaKarakas.CharaKarakasRequestBuilder CharaKarakas
+        {
+            get => new global::RoxyApi.VedicAstrology.CharaKarakas.CharaKarakasRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The compatibility property</summary>
         public global::RoxyApi.VedicAstrology.Compatibility.CompatibilityRequestBuilder Compatibility

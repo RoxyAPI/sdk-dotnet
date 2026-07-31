@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
 {
     /// <summary>
-    /// How firmly this lord is tied to the houses it signifies, on the KP A to D significator grading.
+    /// How firmly this lord is tied to the houses it signifies, on the KP A to D significator grading. Reproducible from the significator levels alone, in two steps. STEP 1, per house keep only the strongest level: a planet routinely reaches the same house at more than one level, for example its star lord occupies house 11 and it also owns house 11, and KP cites a significator by its best connection, so that house counts once at grade A. This is why signifiedHouses is shorter than the four level arrays concatenated, and omitting it is what makes a hand calculation disagree. STEP 2, average the surviving weights: each house contributes 100, 75, 50 or 25 for grade A, B, C or D, and the mean is the score. Worked example, a lord signifying house 11 at level 1, house 6 at level 2 and house 2 at level 4 scores (100 + 75 + 25) / 3 = 66.7, which lands in band B because the band edges are the midpoints 87.5, 62.5 and 37.5. The score says how firmly the lord is connected, never whether the houses are favourable, which depends on the matter being judged.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithMahadashaPostResponse_antardashas_significators_strength : IAdditionalDataHolder, IParsable

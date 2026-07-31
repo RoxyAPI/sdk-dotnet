@@ -5,16 +5,16 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.VedicAstrology.Yoga.Item
+namespace RoxyApi.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class YogaGetResponse : IAdditionalDataHolder, IParsable
+    public partial class YogaDetail : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Brief formation rule describing which planets must be in which houses or signs for this yoga to form in a birth chart.</summary>
+        /// <summary>Brief classical formation rule. Identifies the planetary placement, lordship, dignity, aspect pattern, sign modality, or whole-chart bhava distribution required for the yoga to form.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Unique yoga identifier in lowercase kebab-case. Use this to fetch yoga details via GET /yogas/:id.</summary>
+        /// <summary>Glossary id (lowercase, kebab-case) matching an entry in the 300-entry planetary-yoga catalog. Use with GET /yoga/{id} to retrieve the full glossary text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>Traditional Sanskrit name of the planetary yoga combination as referenced in classical Vedic astrology texts.</summary>
+        /// <summary>Classical Sanskrit name of the yoga as referenced in BPHS (Brihat Parashara Hora Shastra), Phaladeepika, and B.V. Raman *Three Hundred Important Combinations*.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -38,9 +38,9 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Overall nature of the yoga. Positive yogas (Raj Yoga, Gajakesari) bestow benefits. Negative yogas (Kemadruma, Kaal Sarp) indicate challenges. Both means the yoga has mixed effects depending on chart context.</summary>
-        public global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse_quality? Quality { get; set; }
-        /// <summary>Detailed prediction of the effects and life outcomes when this yoga is present in a horoscope. Covers personality traits, career, wealth, relationships, and spiritual tendencies.</summary>
+        /// <summary>Overall nature. Auspicious yogas (Pancha Mahapurusha, Gajakesari) bestow benefits; inauspicious yogas (Kemadruma) indicate challenges; Both denotes context-dependent effects.</summary>
+        public global::RoxyApi.Models.YogaDetail_quality? Quality { get; set; }
+        /// <summary>Classical phala (life-effect) description of the yoga when present, sourced from the parashari and phaladeepika tradition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Result { get; set; }
@@ -49,21 +49,21 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
         public string Result { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.Models.YogaDetail"/> and sets the default values.
         /// </summary>
-        public YogaGetResponse()
+        public YogaDetail()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Models.YogaDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.Models.YogaDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse();
+            return new global::RoxyApi.Models.YogaDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,7 +76,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "quality", n => { Quality = n.GetEnumValue<global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse_quality>(); } },
+                { "quality", n => { Quality = n.GetEnumValue<global::RoxyApi.Models.YogaDetail_quality>(); } },
                 { "result", n => { Result = n.GetStringValue(); } },
             };
         }
@@ -90,7 +90,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Yoga.Item.YogaGetResponse_quality>("quality", Quality);
+            writer.WriteEnumValue<global::RoxyApi.Models.YogaDetail_quality>("quality", Quality);
             writer.WriteStringValue("result", Result);
             writer.WriteAdditionalData(AdditionalData);
         }

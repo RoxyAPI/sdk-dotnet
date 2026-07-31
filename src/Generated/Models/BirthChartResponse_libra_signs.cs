@@ -16,6 +16,8 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Baladi avastha, the planetary age-state set by the graha degree within its sign: Bala (infant), Kumara (child), Yuva (adult, strongest results), Vriddha (old), Mrita (dead, weakest). Bands run forward in odd signs and reversed in even signs. D1 birth chart only.</summary>
         public global::RoxyApi.Models.BirthChartResponse_libra_signs_awastha? Awastha { get; set; }
+        /// <summary>Deeptadi avastha, the dispositional state of the graha, one of nine: Dipta (exalted, blazing), Svastha (own sign, healthy), Pramudita (great friend sign, delighted), Shanta (friendly sign, at peace), Dina (neutral sign, helpless), Duhkhita (enemy sign, sorrowful), Khala (great enemy sign, harsh), Vikala (joined by a natural malefic, disabled), Kopa (eclipsed by the Sun, enraged). Where more than one applies the more severe is returned, so combustion outranks a malefic conjunction, which outranks the sign reading. Present for the seven classical grahas on the D1 chart; Rahu, Ketu and the Lagna are omitted.</summary>
+        public global::RoxyApi.Models.BirthChartResponse_libra_signs_deeptadi? Deeptadi { get; set; }
         /// <summary>Planet (graha) placed in this sign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -28,6 +30,8 @@ namespace RoxyApi.Models
         public int? House { get; set; }
         /// <summary>True if planet is in retrograde motion (appears to move backward). Retrograde planets have altered significations.</summary>
         public bool? IsRetrograde { get; set; }
+        /// <summary>Jagradadi avastha, the waking state of the graha set by its sign dignity: Jagrat (awake, own sign or exaltation, full results), Swapna (dreaming, a friendly or neutral sign, medium results), Sushupti (sleeping, an enemy sign or debilitation, no results). Present for the seven classical grahas on the D1 chart; Rahu, Ketu and the Lagna own no sign and are omitted.</summary>
+        public global::RoxyApi.Models.BirthChartResponse_libra_signs_jagradadi? Jagradadi { get; set; }
         /// <summary>Sidereal longitude in degrees (0-360) using Lahiri ayanamsa.</summary>
         public double? Longitude { get; set; }
         /// <summary>The nakshatra property</summary>
@@ -64,9 +68,11 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "awastha", n => { Awastha = n.GetEnumValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_awastha>(); } },
+                { "deeptadi", n => { Deeptadi = n.GetEnumValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_deeptadi>(); } },
                 { "graha", n => { Graha = n.GetStringValue(); } },
                 { "house", n => { House = n.GetIntValue(); } },
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
+                { "jagradadi", n => { Jagradadi = n.GetEnumValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_jagradadi>(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nakshatra", n => { Nakshatra = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_nakshatra>(global::RoxyApi.Models.BirthChartResponse_libra_signs_nakshatra.CreateFromDiscriminatorValue); } },
             };
@@ -79,9 +85,11 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_awastha>("awastha", Awastha);
+            writer.WriteEnumValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_deeptadi>("deeptadi", Deeptadi);
             writer.WriteStringValue("graha", Graha);
             writer.WriteIntValue("house", House);
             writer.WriteBoolValue("isRetrograde", IsRetrograde);
+            writer.WriteEnumValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_jagradadi>("jagradadi", Jagradadi);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_libra_signs_nakshatra>("nakshatra", Nakshatra);
             writer.WriteAdditionalData(AdditionalData);
