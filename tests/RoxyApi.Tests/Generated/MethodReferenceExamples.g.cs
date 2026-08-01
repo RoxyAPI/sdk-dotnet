@@ -17,7 +17,7 @@ internal static class MethodReferenceExamples
         await roxy.Astrology.PlanetMeanings["sun"].GetAsync();
         await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
         await roxy.Astrology.Planets.PostAsync(new() { Date = new Date(2025, 12, 18), Time = new Time(12, 0, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
-        await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = new Time(12, 0, 0); c.QueryParameters.Timezone = "0"; });
+        await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = new Time(12, 0, 0); c.QueryParameters.Timezone = "America/New_York"; });
         await roxy.Astrology.MoonPhase.Upcoming.GetAsync(c => { c.QueryParameters.StartDate = new Date(2025, 12, 18); c.QueryParameters.Count = 8; });
         await roxy.Astrology.MoonPhase.Calendar[2026][3].GetAsync();
         await roxy.Astrology.Synastry.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 }, Name = "Alex" } });
@@ -66,7 +66,7 @@ internal static class MethodReferenceExamples
         await roxy.VedicAstrology.Yoga.GetAsync();
         await roxy.VedicAstrology.Yoga["gajakesari"].GetAsync();
         await roxy.VedicAstrology.Yoga.Detect.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
-        await roxy.VedicAstrology.Kp.Ayanamsa.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 26); c.QueryParameters.Time = new Time(9, 0, 0); c.QueryParameters.Timezone = "5.5"; });
+        await roxy.VedicAstrology.Kp.Ayanamsa.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 26); c.QueryParameters.Time = new Time(9, 0, 0); c.QueryParameters.Timezone = "Asia/Kolkata"; });
         await roxy.VedicAstrology.Kp.Planets.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
         await roxy.VedicAstrology.Kp.Cusps.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
         await roxy.VedicAstrology.Kp.Chart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });

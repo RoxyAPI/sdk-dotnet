@@ -13339,7 +13339,7 @@
           {
             "schema": {
               "type": "string",
-              "example": 0,
+              "example": "America/New_York",
               "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022). IANA resolved to the DST-correct offset for the given date. Defaults to 0 (UTC)."
             },
             "required": false,
@@ -30926,7 +30926,7 @@
           {
             "schema": {
               "type": "string",
-              "example": 5.5,
+              "example": "Asia/Kolkata",
               "description": "IANA name (e.g. \u0022Asia/Kolkata\u0022, \u0022America/New_York\u0022), decimal hours (e.g. 5.5 for IST, -5 for EST), or a fixed UTC offset (e.g. \u0022\u002B05:30\u0022). IANA resolved to the DST-correct offset for the given date. Applies to the time field above. Defaults to 0 (UTC)."
             },
             "required": false,
@@ -35658,18 +35658,9 @@
                           "description": "Birth time in 24-hour HH:MM:SS format. Precision matters for the natal positions the transit aspects are measured against."
                         },
                         "timezone": {
-                          "anyOf": [
-                            {
-                              "type": "number",
-                              "minimum": -14,
-                              "maximum": 14
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ],
-                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
-                          "example": "America/New_York"
+                          "type": "number",
+                          "example": -4,
+                          "description": "Decimal UTC offset the forecast was computed with, resolved from whatever the request sent. An IANA name is resolved to the DST-correct offset for the birth date, so this is the literal number applied, never the name."
                         },
                         "latitude": {
                           "type": "number",
@@ -36046,18 +36037,9 @@
                           "description": "Birth time in 24-hour HH:MM:SS format. Precision matters for the natal positions the transit aspects are measured against."
                         },
                         "timezone": {
-                          "anyOf": [
-                            {
-                              "type": "number",
-                              "minimum": -14,
-                              "maximum": 14
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ],
-                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
-                          "example": "America/New_York"
+                          "type": "number",
+                          "example": -4,
+                          "description": "Decimal UTC offset the forecast was computed with, resolved from whatever the request sent. An IANA name is resolved to the DST-correct offset for the birth date, so this is the literal number applied, never the name."
                         },
                         "latitude": {
                           "type": "number",
@@ -36484,18 +36466,9 @@
                           "description": "Birth time in 24-hour HH:MM:SS format. Precision matters for the natal positions the transit aspects are measured against."
                         },
                         "timezone": {
-                          "anyOf": [
-                            {
-                              "type": "number",
-                              "minimum": -14,
-                              "maximum": 14
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ],
-                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
-                          "example": "America/New_York"
+                          "type": "number",
+                          "example": -4,
+                          "description": "Decimal UTC offset the forecast was computed with, resolved from whatever the request sent. An IANA name is resolved to the DST-correct offset for the birth date, so this is the literal number applied, never the name."
                         },
                         "latitude": {
                           "type": "number",
@@ -36923,18 +36896,9 @@
                           "description": "Birth time in 24-hour HH:MM:SS format. Precision matters for the natal positions the transit aspects are measured against."
                         },
                         "timezone": {
-                          "anyOf": [
-                            {
-                              "type": "number",
-                              "minimum": -14,
-                              "maximum": 14
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ],
-                          "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, \u0022UTC\u0022), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. \u0022-05:00\u0022, \u0022\u002B01:00\u0022). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.",
-                          "example": "America/New_York"
+                          "type": "number",
+                          "example": -4,
+                          "description": "Decimal UTC offset the forecast was computed with, resolved from whatever the request sent. An IANA name is resolved to the DST-correct offset for the birth date, so this is the literal number applied, never the name."
                         },
                         "latitude": {
                           "type": "number",
