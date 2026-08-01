@@ -41,10 +41,7 @@ int Usage()
 
 async Task<int> GenerateAsync()
 {
-    Console.WriteLine($"Fetching OpenAPI spec from {SpecUrl}");
-    using var http = new HttpClient();
-    http.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
-    var raw = await FetchSpecAsync(http);
+    var raw = await LoadSpecAsync();
 
     var spec = JsonNode.Parse(raw)!.AsObject();
     PatchServerUrl(spec);
@@ -62,6 +59,22 @@ async Task<int> GenerateAsync()
     Console.WriteLine("SDK generated.");
 
     return SyncDocs();
+}
+
+// Read the spec from disk when ROXYAPI_SPEC_FILE is set, fetch it otherwise. Reading from a file
+// keeps generation offline and byte-reproducible, which is what the CI drift check relies on.
+async Task<string> LoadSpecAsync()
+{
+    var file = Environment.GetEnvironmentVariable("ROXYAPI_SPEC_FILE");
+    if (!string.IsNullOrEmpty(file))
+    {
+        Console.WriteLine($"Reading OpenAPI spec from {file} (offline, ROXYAPI_SPEC_FILE)");
+        return await File.ReadAllTextAsync(file);
+    }
+    Console.WriteLine($"Fetching OpenAPI spec from {SpecUrl}");
+    using var http = new HttpClient();
+    http.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
+    return await FetchSpecAsync(http);
 }
 
 // Retry with exponential backoff: a transient upstream error (e.g. a CDN 520)
@@ -488,12 +501,12 @@ string? RenderValue(JsonObject spec, JsonObject schemaIn, JsonNode? example, int
     }
 
     var schema = Deref(spec, schemaIn);
-    var type = schema["type"]?.GetValue<string>();
+    var type = TypeOf(schema);
     var format = schema["format"]?.GetValue<string>();
 
     if (type == "string" && format == "date")
     {
-        var s = example?.GetValue<string>() ?? "1990-01-15";
+        var s = ExampleText(example) ?? "1990-01-15";
         var p = s.Split('-');
         return p.Length == 3 && int.TryParse(p[0], out var y) && int.TryParse(p[1], out var m) && int.TryParse(p[2], out var d)
             ? $"new Date({y}, {m}, {d})" : "new Date(1990, 1, 15)";
@@ -503,14 +516,14 @@ string? RenderValue(JsonObject spec, JsonObject schemaIn, JsonNode? example, int
     // the Time(hour, minute, second) constructor (seconds default to 0 when absent).
     if (type == "string" && format == "time")
     {
-        var s = example?.GetValue<string>() ?? "14:30:00";
+        var s = ExampleText(example) ?? "14:30:00";
         var p = s.Split(':');
         var sec = p.Length > 2 && int.TryParse(p[2], out var se) ? se : 0;
         return p.Length >= 2 && int.TryParse(p[0], out var h) && int.TryParse(p[1], out var mi)
             ? $"new Time({h}, {mi}, {sec})" : "new Time(14, 30, 0)";
     }
     if (type == "string" && format == "date-time")
-        return $"DateTimeOffset.Parse({Quote(example?.GetValue<string>() ?? "2026-01-01T00:00:00Z")})";
+        return $"DateTimeOffset.Parse({Quote(ExampleText(example) ?? "2026-01-01T00:00:00Z")})";
     if (type == "object" || schema["properties"] is JsonObject)
         return RenderObject(spec, schema, depth);
     if (type == "array" && schema["items"] is JsonObject items)
@@ -523,7 +536,7 @@ string? RenderValue(JsonObject spec, JsonObject schemaIn, JsonNode? example, int
         return example is JsonValue num && num.TryGetValue<double>(out var d2) ? FormatNumber(d2) : (type == "integer" ? "0" : "0.0");
     if (type == "boolean")
         return example is JsonValue b && b.TryGetValue<bool>(out var bb) ? (bb ? "true" : "false") : "false";
-    return Quote(example?.GetValue<string>() ?? "string");
+    return Quote(ExampleText(example) ?? "string");
 }
 
 // Render a path or query parameter value. Path indexers and query properties are typed
@@ -575,6 +588,16 @@ JsonNode? ParamExample(JsonObject spec, JsonObject param)
     return param["schema"] is JsonObject s ? ExampleOf(spec, s) : null;
 }
 
+// Read a spec `example` as text, whatever JSON type it actually carries. An example is not
+// guaranteed to match the `type` its own schema declares, and reading one through the declared type
+// would throw on a mismatch. A mismatched scalar renders as its literal text (5.5 -> "5.5", which
+// the wire accepts); a non-scalar yields null so the caller falls back to its own default.
+string? ExampleText(JsonNode? example) => example is JsonValue v ? v.ToString() : null;
+
+// Same hazard as ExampleText for the `type` keyword itself: this spec is OpenAPI 3.1, where
+// `type` may legally be an array (`["string", "null"]`). Only a plain string names one type.
+string? TypeOf(JsonObject schema) => schema["type"] is JsonValue t ? t.ToString() : null;
+
 // Enum-like = a direct enum, or an anyOf/oneOf whose branches are enums (e.g. houseSystem).
 // Kiota generates a dedicated enum type for these; we cannot name its members from an example.
 bool IsEnumLike(JsonObject spec, JsonObject schema)
@@ -588,7 +611,7 @@ bool IsEnumLike(JsonObject spec, JsonObject schema)
 bool IsNumberStringUnion(JsonObject spec, JsonObject schema)
 {
     if ((schema["anyOf"] ?? schema["oneOf"]) is not JsonArray arr) return false;
-    var types = arr.Select(x => Deref(spec, (JsonObject)x!)["type"]?.GetValue<string>()).ToHashSet();
+    var types = arr.Select(x => TypeOf(Deref(spec, (JsonObject)x!))).ToHashSet();
     return types.Contains("string") && (types.Contains("number") || types.Contains("integer"));
 }
 

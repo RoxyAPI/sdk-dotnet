@@ -26,7 +26,12 @@ jobs:
           dotnet tool install --global Microsoft.OpenApi.Kiota --version 1.32.2
           echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
 
+      # Hermetic: regenerates from the committed spec, so this verifies that the committed
+      # generated code still reproduces from it, with no network dependency. Refreshing the
+      # spec itself is the release workflow's job.
       - name: Codegen drift check
+        env:
+          ROXYAPI_SPEC_FILE: specs/openapi.json
         run: |
           dotnet run --project tools/RoxyDevTools -- generate
           git diff --exit-code -- specs/openapi.json src/Generated \
