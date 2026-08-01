@@ -22,6 +22,16 @@ namespace RoxyApi.Models
 #else
         public string EndDatetime { get; set; }
 #endif
+        /// <summary>Which signification vocabulary produced the houseThemes keywords in this response, echoing the focus query parameter. Always present, and &quot;general&quot; when the parameter was omitted. Read it to label a rendered house legend, or to tell two cached responses apart when only one asked for the finance lens.</summary>
+        public global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_focus? Focus { get; set; }
+        /// <summary>Significations of each of the twelve bhavas (houses), keyed by house number 1 to 12, as short keywords. Bhava 1 is the Lagna (self, body, vitality), 2 wealth and speech, 4 home and mother, 7 marriage and partnership, 10 career and status, 11 gains. Use it to label the house numbers returned elsewhere in the response: a Vimshottari dasha period signifying houses 2, 7 and 8, or a KP significator carrying houses 11 and 6, becomes readable text without a separate lookup call. Returned once per response rather than repeated per period, and localized by the lang query parameter alongside every other interpretation field.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_houseThemes? HouseThemes { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_houseThemes HouseThemes { get; set; }
+#endif
         /// <summary>Time gap between consecutive ruling planet calculations in minutes.</summary>
         public double? IntervalMinutes { get; set; }
         /// <summary>Ruling planets with significators at each interval</summary>
@@ -76,6 +86,8 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "endDatetime", n => { EndDatetime = n.GetStringValue(); } },
+                { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_focus>(); } },
+                { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_houseThemes>(global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_houseThemes.CreateFromDiscriminatorValue); } },
                 { "intervalMinutes", n => { IntervalMinutes = n.GetDoubleValue(); } },
                 { "intervals", n => { Intervals = n.GetCollectionOfObjectValues<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_intervals>(global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_intervals.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "location", n => { Location = n.GetObjectValue<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_location>(global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_location.CreateFromDiscriminatorValue); } },
@@ -91,6 +103,8 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endDatetime", EndDatetime);
+            writer.WriteEnumValue<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_focus>("focus", Focus);
+            writer.WriteObjectValue<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_houseThemes>("houseThemes", HouseThemes);
             writer.WriteDoubleValue("intervalMinutes", IntervalMinutes);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_intervals>("intervals", Intervals);
             writer.WriteObjectValue<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse_location>("location", Location);

@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CuspsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/cusps", pathParameters)
+        public CuspsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/cusps{?focus*,lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CuspsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/cusps", rawUrl)
+        public CuspsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/cusps{?focus*,lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Models.KPCuspsResponse?> PostAsync(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.KPCuspsResponse?> PostAsync(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder.CuspsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Models.KPCuspsResponse> PostAsync(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.KPCuspsResponse> PostAsync(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder.CuspsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,11 +74,11 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder.CuspsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KPCuspsRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder.CuspsRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,19 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
         public global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Calculate unequal Placidus house cusps with ruling sign-lord, nakshatra-lord, and sub-lord for each cusp. Dynamic KP-Newcomb or custom ayanamsa support. Used in KP horary astrology, cusp sub-lord analysis, and birth chart rectification. Returns all 12 house cusps with KP sub-division details. SEO: Placidus house cusps API, KP cusp calculator, house cusps star sub lord, KP horary cusps
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class CuspsRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Which signification vocabulary the houseThemes map returns. &quot;general&quot; gives the classical bhava significations (self, wealth, siblings, home, and so on). &quot;finance&quot; gives the money reading of the same twelve bhavas, so house 2 returns income and savings, 5 speculation and risk appetite, 8 sudden money and leverage, 11 gains and profits, and 12 expenses and capital outflow. Use &quot;finance&quot; for wealth, income, business and market timing questions in Krishnamurti Paddhati, where the significator house groups 2, 6, 10, 11 for earned income and 5, 8, 11 for speculation are read against a running dasha. Defaults to &quot;general&quot;.</summary>
+            [QueryParameter("focus")]
+            public global::RoxyApi.VedicAstrology.Kp.Cusps.PostFocusQueryParameterType? Focus { get; set; }
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Kp.Cusps.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

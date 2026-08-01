@@ -18,8 +18,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_antardashaLord? AntardashaLord { get; set; }
         /// <summary>Ayanamsa actually applied, in degrees. The precession offset subtracted from the tropical (sayana) longitude to get the sidereal (nirayana) one. Lahiri sits near 23 deg 43 min for a 1990 birth, KP-Newcomb near 23 deg 38 min.</summary>
         public double? Ayanamsa { get; set; }
-        /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it.</summary>
+        /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot; or &quot;custom&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it. When it reads &quot;custom&quot; the ayanamsa field above carries the exact value you supplied.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_ayanamsaType? AyanamsaType { get; set; }
+        /// <summary>Which signification vocabulary produced the houseThemes keywords in this response, echoing the focus query parameter. Always present, and &quot;general&quot; when the parameter was omitted. Read it to label a rendered house legend, or to tell two cached responses apart when only one asked for the finance lens.</summary>
+        public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_focus? Focus { get; set; }
         /// <summary>Significations of each of the twelve bhavas (houses), keyed by house number 1 to 12, as short keywords. Bhava 1 is the Lagna (self, body, vitality), 2 wealth and speech, 4 home and mother, 7 marriage and partnership, 10 career and status, 11 gains. Use it to label the house numbers returned elsewhere in the response: a Vimshottari dasha period signifying houses 2, 7 and 8, or a KP significator carrying houses 11 and 6, becomes readable text without a separate lookup call. Returned once per response rather than repeated per period, and localized by the lang query parameter alongside every other interpretation field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -78,6 +80,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
                 { "antardashaLord", n => { AntardashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_antardashaLord>(); } },
                 { "ayanamsa", n => { Ayanamsa = n.GetDoubleValue(); } },
                 { "ayanamsaType", n => { AyanamsaType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_ayanamsaType>(); } },
+                { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_focus>(); } },
                 { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_houseThemes>(global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_houseThemes.CreateFromDiscriminatorValue); } },
                 { "mahadashaLord", n => { MahadashaLord = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_mahadashaLord>(); } },
                 { "moonLongitude", n => { MoonLongitude = n.GetDoubleValue(); } },
@@ -96,6 +99,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_antardashaLord>("antardashaLord", AntardashaLord);
             writer.WriteDoubleValue("ayanamsa", Ayanamsa);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_ayanamsaType>("ayanamsaType", AyanamsaType);
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_focus>("focus", Focus);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_houseThemes>("houseThemes", HouseThemes);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.WithPratyantardashaPostResponse_mahadashaLord>("mahadashaLord", MahadashaLord);
             writer.WriteDoubleValue("moonLongitude", MoonLongitude);

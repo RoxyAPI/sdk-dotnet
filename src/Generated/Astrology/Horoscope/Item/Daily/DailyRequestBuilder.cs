@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DailyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/daily{?date*,lang*}", pathParameters)
+        public DailyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/daily{?date*,lang*,timezone*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DailyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/daily{?date*,lang*}", rawUrl)
+        public DailyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/daily{?date*,lang*,timezone*}", rawUrl)
         {
         }
         /// <summary>
-        /// Get the daily horoscope for any zodiac sign. Forecast is generated from real-time planetary transits using whole-sign house positions, so every sign receives unique content. Returns love, career, health, finance, overview with active transits, Moon sign, Moon phase, energy rating, lucky number, lucky color, and compatible signs. Supports date parameter for editorial scheduling. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.
+        /// Get the daily horoscope for any zodiac sign. Forecast is generated from real-time planetary transits using whole-sign house positions, so every sign receives unique content. Returns love, career, health, finance, overview with active transits, Moon sign, Moon phase, energy rating, lucky number, lucky color, and compatible signs. Content is fixed for a given date and rolls over at midnight, by default UTC. Pass date for editorial scheduling, or timezone to roll over on a local clock. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
             return await RequestAdapter.SendAsync<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse>(requestInfo, global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get the daily horoscope for any zodiac sign. Forecast is generated from real-time planetary transits using whole-sign house positions, so every sign receives unique content. Returns love, career, health, finance, overview with active transits, Moon sign, Moon phase, energy rating, lucky number, lucky color, and compatible signs. Supports date parameter for editorial scheduling. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.
+        /// Get the daily horoscope for any zodiac sign. Forecast is generated from real-time planetary transits using whole-sign house positions, so every sign receives unique content. Returns love, career, health, finance, overview with active transits, Moon sign, Moon phase, energy rating, lucky number, lucky color, and compatible signs. Content is fixed for a given date and rolls over at midnight, by default UTC. Pass date for editorial scheduling, or timezone to roll over on a local clock. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,17 +93,27 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
             return new global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get the daily horoscope for any zodiac sign. Forecast is generated from real-time planetary transits using whole-sign house positions, so every sign receives unique content. Returns love, career, health, finance, overview with active transits, Moon sign, Moon phase, energy rating, lucky number, lucky color, and compatible signs. Supports date parameter for editorial scheduling. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.
+        /// Get the daily horoscope for any zodiac sign. Forecast is generated from real-time planetary transits using whole-sign house positions, so every sign receives unique content. Returns love, career, health, finance, overview with active transits, Moon sign, Moon phase, energy rating, lucky number, lucky color, and compatible signs. Content is fixed for a given date and rolls over at midnight, by default UTC. Pass date for editorial scheduling, or timezone to roll over on a local clock. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DailyRequestBuilderGetQueryParameters 
         {
-            /// <summary>Forecast date in YYYY-MM-DD format. Defaults to today. Supports future and past dates for editorial scheduling.</summary>
+            /// <summary>Forecast date in YYYY-MM-DD format. Past and future dates are both supported, for editorial scheduling and backfill. Defaults to the current period in the timezone parameter.</summary>
             [QueryParameter("date")]
             public Date? Date { get; set; }
             /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.Horoscope.Item.Daily.GetLangQueryParameterType? Lang { get; set; }
+            /// <summary>Selects which period counts as current when date is omitted. Defaults to UTC, so the forecast rolls over at 00:00 UTC on each day. Pass the timezone of the end user to roll over on their local clock instead. Ignored when date is set. Accepts an IANA name (e.g. &quot;America/New_York&quot;), decimal hours (e.g. 5.5 for IST), or a fixed UTC offset (e.g. &quot;-05:00&quot;).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("timezone")]
+            public string? Timezone { get; set; }
+#nullable restore
+#else
+            [QueryParameter("timezone")]
+            public string Timezone { get; set; }
+#endif
         }
     }
 }

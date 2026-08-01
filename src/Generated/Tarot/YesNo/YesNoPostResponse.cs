@@ -40,6 +40,14 @@ namespace RoxyApi.Tarot.YesNo
 #else
         public string Question { get; set; }
 #endif
+        /// <summary>The seed used for this draw, echoed back when one was supplied. Present only if the request carried a seed. Makes a cached or forwarded response self describing, so a reading can be reproduced or shared without the original request beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Seed { get; set; }
+#nullable restore
+#else
+        public string Seed { get; set; }
+#endif
         /// <summary>Confidence level of the answer. Strong = Major Arcana card drawn (powerful, definitive cosmic energy). Qualified = Minor Arcana card drawn (nuanced, situational guidance).</summary>
         public global::RoxyApi.Tarot.YesNo.YesNoPostResponse_strength? Strength { get; set; }
         /// <summary>
@@ -71,6 +79,7 @@ namespace RoxyApi.Tarot.YesNo
                 { "card", n => { Card = n.GetObjectValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_card>(global::RoxyApi.Tarot.YesNo.YesNoPostResponse_card.CreateFromDiscriminatorValue); } },
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
                 { "question", n => { Question = n.GetStringValue(); } },
+                { "seed", n => { Seed = n.GetStringValue(); } },
                 { "strength", n => { Strength = n.GetEnumValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_strength>(); } },
             };
         }
@@ -85,6 +94,7 @@ namespace RoxyApi.Tarot.YesNo
             writer.WriteObjectValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_card>("card", Card);
             writer.WriteStringValue("interpretation", Interpretation);
             writer.WriteStringValue("question", Question);
+            writer.WriteStringValue("seed", Seed);
             writer.WriteEnumValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_strength>("strength", Strength);
             writer.WriteAdditionalData(AdditionalData);
         }

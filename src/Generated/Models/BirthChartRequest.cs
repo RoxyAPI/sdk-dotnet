@@ -15,6 +15,8 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Set true to include a localized meaning and one-sentence classical interpretation beside each graha avastha state, under avasthaInfo on that graha in meta. Defaults to false, so an existing integration is byte-identical until it opts in. Saves a second call to GET /avasthas and the client-side join that would otherwise be needed to turn Yuva or Swapna into readable text.</summary>
+        public bool? AvasthaInfo { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas).</summary>
         public Date? Date { get; set; }
         /// <summary>Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172.</summary>
@@ -37,6 +39,7 @@ namespace RoxyApi.Models
         public BirthChartRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            AvasthaInfo = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,6 +59,7 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "avasthaInfo", n => { AvasthaInfo = n.GetBoolValue(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
@@ -70,6 +74,7 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("avasthaInfo", AvasthaInfo);
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);

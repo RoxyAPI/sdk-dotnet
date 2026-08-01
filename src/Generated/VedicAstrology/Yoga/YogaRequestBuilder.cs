@@ -41,7 +41,7 @@ namespace RoxyApi.VedicAstrology.Yoga
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public YogaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/yoga{?lang*}", pathParameters)
+        public YogaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/yoga{?family*,lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace RoxyApi.VedicAstrology.Yoga
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public YogaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/yoga{?lang*}", rawUrl)
+        public YogaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/yoga{?family*,lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -117,6 +117,9 @@ namespace RoxyApi.VedicAstrology.Yoga
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class YogaRequestBuilderGetQueryParameters 
         {
+            /// <summary>Filter the catalog to one Nabhasa family: asraya (3), dala (2), akriti (20) or sankhya (7). Omit for the full catalog. `classical` is accepted but matches nothing here, because it is a detection-verdict value for single-combination yogas rather than a catalog grouping.</summary>
+            [QueryParameter("family")]
+            public global::RoxyApi.VedicAstrology.Yoga.GetFamilyQueryParameterType? Family { get; set; }
             /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.VedicAstrology.Yoga.GetLangQueryParameterType? Lang { get; set; }

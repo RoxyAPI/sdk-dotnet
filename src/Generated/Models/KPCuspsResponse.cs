@@ -24,6 +24,8 @@ namespace RoxyApi.Models
 #else
         public List<global::RoxyApi.Models.KPCuspsResponse_cusps> Cusps { get; set; }
 #endif
+        /// <summary>Which signification vocabulary produced the houseThemes keywords in this response, echoing the focus query parameter. Always present, and &quot;general&quot; when the parameter was omitted. Read it to label a rendered house legend, or to tell two cached responses apart when only one asked for the finance lens.</summary>
+        public global::RoxyApi.Models.KPCuspsResponse_focus? Focus { get; set; }
         /// <summary>House system used for calculations</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,6 +33,14 @@ namespace RoxyApi.Models
 #nullable restore
 #else
         public string HouseSystem { get; set; }
+#endif
+        /// <summary>Significations of each of the twelve bhavas (houses), keyed by house number 1 to 12, as short keywords. Bhava 1 is the Lagna (self, body, vitality), 2 wealth and speech, 4 home and mother, 7 marriage and partnership, 10 career and status, 11 gains. Use it to label the house numbers returned elsewhere in the response: a Vimshottari dasha period signifying houses 2, 7 and 8, or a KP significator carrying houses 11 and 6, becomes readable text without a separate lookup call. Returned once per response rather than repeated per period, and localized by the lang query parameter alongside every other interpretation field.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.KPCuspsResponse_houseThemes? HouseThemes { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.KPCuspsResponse_houseThemes HouseThemes { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.KPCuspsResponse"/> and sets the default values.
@@ -59,7 +69,9 @@ namespace RoxyApi.Models
             {
                 { "ayanamsa", n => { Ayanamsa = n.GetDoubleValue(); } },
                 { "cusps", n => { Cusps = n.GetCollectionOfObjectValues<global::RoxyApi.Models.KPCuspsResponse_cusps>(global::RoxyApi.Models.KPCuspsResponse_cusps.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.Models.KPCuspsResponse_focus>(); } },
                 { "houseSystem", n => { HouseSystem = n.GetStringValue(); } },
+                { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.Models.KPCuspsResponse_houseThemes>(global::RoxyApi.Models.KPCuspsResponse_houseThemes.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -71,7 +83,9 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("ayanamsa", Ayanamsa);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.KPCuspsResponse_cusps>("cusps", Cusps);
+            writer.WriteEnumValue<global::RoxyApi.Models.KPCuspsResponse_focus>("focus", Focus);
             writer.WriteStringValue("houseSystem", HouseSystem);
+            writer.WriteObjectValue<global::RoxyApi.Models.KPCuspsResponse_houseThemes>("houseThemes", HouseThemes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

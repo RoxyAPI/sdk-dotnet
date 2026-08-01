@@ -14,9 +14,9 @@ namespace RoxyApi.VedicAstrology.Yoga
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Total count of planetary yogas in the database. Includes Raj Yogas, Dhan Yogas, Pancha Mahapurusha Yogas, Nabhasa Yogas, and more.</summary>
+        /// <summary>Number of yogas in this response, which is the filtered count when `family` is supplied and the full catalog size otherwise. Includes Raj Yogas, Dhan Yogas, Pancha Mahapurusha Yogas, Nabhasa Yogas, and more.</summary>
         public double? Total { get; set; }
-        /// <summary>Array of all planetary yogas with basic identifiers. Use GET /yogas/:id for formation rules, effects, and quality classification.</summary>
+        /// <summary>Array of planetary yogas with basic identifiers, narrowed by `family` when that filter is supplied. Use GET /yoga/{id} for formation rules, effects, and quality classification.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.VedicAstrology.Yoga.YogaGetResponse_yogas>? Yogas { get; set; }

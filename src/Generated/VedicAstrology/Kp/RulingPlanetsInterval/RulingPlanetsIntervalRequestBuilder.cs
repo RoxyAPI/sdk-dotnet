@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RulingPlanetsIntervalRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ruling-planets-interval", pathParameters)
+        public RulingPlanetsIntervalRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ruling-planets-interval{?focus*,lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RulingPlanetsIntervalRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ruling-planets-interval", rawUrl)
+        public RulingPlanetsIntervalRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ruling-planets-interval{?focus*,lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse?> PostAsync(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse?> PostAsync(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalRequestBuilder.RulingPlanetsIntervalRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse> PostAsync(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.KPRulingPlanetsIntervalResponse> PostAsync(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalRequestBuilder.RulingPlanetsIntervalRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,11 +74,11 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalRequestBuilder.RulingPlanetsIntervalRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalRequestBuilder.RulingPlanetsIntervalRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,19 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Calculate ruling planets and their KP significators at regular time intervals using Krishnamurti Paddhati prashna (horary) astrology. For each interval, a full Placidus house chart is erected and significators are computed using the 4-level KP hierarchy: Level 1 (strongest) planets in star of house occupant, Level 2 occupants, Level 3 planets in star of house owner, Level 4 house owner. Returns Day Lord (sunrise-based Hindu Vara), Moon Sign/Star/Sub/Sub-Sub Lords, Lagna Sign/Star/Sub/Sub-Sub Lords, unique ruling planets set, and per-ruling-planet house significations. No birth data needed, significators come from each moments sky chart. Use for birth time rectification, muhurta selection, and KP horary number analysis.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class RulingPlanetsIntervalRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Which signification vocabulary the houseThemes map returns. &quot;general&quot; gives the classical bhava significations (self, wealth, siblings, home, and so on). &quot;finance&quot; gives the money reading of the same twelve bhavas, so house 2 returns income and savings, 5 speculation and risk appetite, 8 sudden money and leverage, 11 gains and profits, and 12 expenses and capital outflow. Use &quot;finance&quot; for wealth, income, business and market timing questions in Krishnamurti Paddhati, where the significator house groups 2, 6, 10, 11 for earned income and 5, 8, 11 for speculation are read against a running dasha. Defaults to &quot;general&quot;.</summary>
+            [QueryParameter("focus")]
+            public global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.PostFocusQueryParameterType? Focus { get; set; }
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

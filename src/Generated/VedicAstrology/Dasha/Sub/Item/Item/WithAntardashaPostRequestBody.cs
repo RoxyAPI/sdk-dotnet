@@ -15,8 +15,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Ayanamsa system used to place the birth Moon in its nakshatra, which sets every dasha start and end date. &quot;lahiri&quot; uses Lahiri/Chitrapaksha, the traditional Vedic standard, and is the default. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, matching Krishnamurti Paddhati software. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1. Switching frames shifts every dasha boundary by weeks, so pick the one your reference software uses.</summary>
+        /// <summary>Ayanamsa system used to place the birth Moon in its nakshatra, which sets every dasha start and end date. &quot;lahiri&quot; uses Lahiri/Chitrapaksha, the traditional Vedic standard, and is the default. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, matching Krishnamurti Paddhati software. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1. &quot;custom&quot; takes your own value in degrees via ayanamsaValue, for reconciling exactly against a specific reference program. Switching frames shifts every dasha boundary by weeks, so pick the one your reference software uses.</summary>
         public global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostRequestBody_ayanamsa? Ayanamsa { get; set; }
+        /// <summary>Custom ayanamsa value in degrees. When provided, overrides the computed ayanamsa from the selected type. Use for testing with specific ayanamsa values or matching a particular reference source.</summary>
+        public double? AyanamsaValue { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas).</summary>
         public Date? Date { get; set; }
         /// <summary>Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172.</summary>
@@ -66,6 +68,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostRequestBody_ayanamsa>(); } },
+                { "ayanamsaValue", n => { AyanamsaValue = n.GetDoubleValue(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
@@ -83,6 +86,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostRequestBody_ayanamsa>("ayanamsa", Ayanamsa);
+            writer.WriteDoubleValue("ayanamsaValue", AyanamsaValue);
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);

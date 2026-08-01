@@ -49,7 +49,7 @@ await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), 
 await roxy.Astrology.Planets.PostAsync(new() { Date = new Date(2025, 12, 18), Time = new Time(12, 0, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
 // Get current moon phase - Lunar phase calculator with zodiac sign
-await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = new Time(12, 0, 0); c.QueryParameters.Timezone = 0; });
+await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = new Time(12, 0, 0); c.QueryParameters.Timezone = "0"; });
 
 // Get upcoming moon phases - Next new moon, full moon, quarters
 await roxy.Astrology.MoonPhase.Upcoming.GetAsync(c => { c.QueryParameters.StartDate = new Date(2025, 12, 18); c.QueryParameters.Count = 8; });
@@ -88,13 +88,13 @@ await roxy.Astrology.CompositeChart.PostAsync(new() { Person1 = new() { Date = n
 await roxy.Astrology.CompatibilityScore.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
 
 // Daily horoscope by zodiac sign - Transit-based forecast with house activations
-await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 4, 3));
+await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
 
 // Weekly horoscope by zodiac sign - 7-day transit forecast
-await roxy.Astrology.Horoscope["aries"].Weekly.GetAsync();
+await roxy.Astrology.Horoscope["aries"].Weekly.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
 
 // Monthly horoscope by zodiac sign - 30-day transit forecast with key dates
-await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync();
+await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
 
 // Planetary Return Chart - Saturn return, Jupiter return, and inner planet cycles
 await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
@@ -138,7 +138,7 @@ Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional ch
 
 ```csharp
 // Get birth chart (D1 Rashi chart) - Kundli Calculator API
-await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AvasthaInfo = true });
 
 // Get Navamsa chart (D9) - Marriage Compatibility Calculator
 await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
@@ -156,22 +156,22 @@ await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1
 await roxy.VedicAstrology.PlanetaryPositions.Monthly.PostAsync(new() { Year = 2026, Month = 2 });
 
 // Get current Mahadasha, Antardasha, Pratyantardasha, Sookshma, Prana - Dasha Calculator API
-await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
+await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
 
 // Get all 9 Mahadasha periods (120-year cycle)
-await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
+await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
 
 // Get all Antardashas (sub-periods) for a specific Mahadasha
-await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
+await roxy.VedicAstrology.Dasha.Sub["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
 
 // Get all Pratyantardashas (antara periods) for a Mahadasha and Antardasha
-await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
+await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
 
 // Get all Sookshma dashas for a Mahadasha, Antardasha and Pratyantardasha
-await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
+await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
 
 // Get all Prana dashas for a Mahadasha, Antardasha, Pratyantardasha and Sookshma
-await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"]["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Significators = false });
+await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"]["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
 
 // Get basic Panchang - Tithi Nakshatra Yoga Karana Calculator
 await roxy.VedicAstrology.Panchang.Basic.PostAsync(new() { Date = new Date(2025, 12, 17), Time = new Time(12, 0, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
@@ -204,7 +204,7 @@ await roxy.VedicAstrology.Yoga["gajakesari"].GetAsync();
 await roxy.VedicAstrology.Yoga.Detect.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
 // Get KP-Newcomb ayanamsa - Dynamic daily calculation
-await roxy.VedicAstrology.Kp.Ayanamsa.GetAsync(c => c.QueryParameters.Date = new Date(2025, 12, 26));
+await roxy.VedicAstrology.Kp.Ayanamsa.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 26); c.QueryParameters.Time = new Time(9, 0, 0); c.QueryParameters.Timezone = "5.5"; });
 
 // Get KP planetary positions with sub-lords
 await roxy.VedicAstrology.Kp.Planets.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });

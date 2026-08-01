@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WeeklyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/weekly{?lang*}", pathParameters)
+        public WeeklyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/weekly{?date*,lang*,timezone*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WeeklyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/weekly{?lang*}", rawUrl)
+        public WeeklyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/weekly{?date*,lang*,timezone*}", rawUrl)
         {
         }
         /// <summary>
-        /// Get weekly horoscope for any zodiac sign. Forecast covers a full 7-day period based on planetary transits with house-based content unique to each sign, with love, career, health, finance guidance plus lucky days, lucky numbers, and compatible signs. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.
+        /// Get weekly horoscope for any zodiac sign. Forecast covers a full Monday to Sunday period based on planetary transits with house-based content unique to each sign, with love, career, health, finance guidance plus lucky days, lucky numbers, and compatible signs. Pass any date inside a week to retrieve that week, or timezone to roll over on a local clock. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
             return await RequestAdapter.SendAsync<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse>(requestInfo, global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get weekly horoscope for any zodiac sign. Forecast covers a full 7-day period based on planetary transits with house-based content unique to each sign, with love, career, health, finance guidance plus lucky days, lucky numbers, and compatible signs. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.
+        /// Get weekly horoscope for any zodiac sign. Forecast covers a full Monday to Sunday period based on planetary transits with house-based content unique to each sign, with love, career, health, finance guidance plus lucky days, lucky numbers, and compatible signs. Pass any date inside a week to retrieve that week, or timezone to roll over on a local clock. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,14 +93,27 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
             return new global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get weekly horoscope for any zodiac sign. Forecast covers a full 7-day period based on planetary transits with house-based content unique to each sign, with love, career, health, finance guidance plus lucky days, lucky numbers, and compatible signs. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.
+        /// Get weekly horoscope for any zodiac sign. Forecast covers a full Monday to Sunday period based on planetary transits with house-based content unique to each sign, with love, career, health, finance guidance plus lucky days, lucky numbers, and compatible signs. Pass any date inside a week to retrieve that week, or timezone to roll over on a local clock. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WeeklyRequestBuilderGetQueryParameters 
         {
+            /// <summary>Any date inside the target week, in YYYY-MM-DD format. The forecast covers the Monday to Sunday week containing it. Defaults to the current period in the timezone parameter.</summary>
+            [QueryParameter("date")]
+            public Date? Date { get; set; }
             /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.Horoscope.Item.Weekly.GetLangQueryParameterType? Lang { get; set; }
+            /// <summary>Selects which period counts as current when date is omitted. Defaults to UTC, so the forecast rolls over at 00:00 UTC on each Monday. Pass the timezone of the end user to roll over on their local clock instead. Ignored when date is set. Accepts an IANA name (e.g. &quot;America/New_York&quot;), decimal hours (e.g. 5.5 for IST), or a fixed UTC offset (e.g. &quot;-05:00&quot;).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("timezone")]
+            public string? Timezone { get; set; }
+#nullable restore
+#else
+            [QueryParameter("timezone")]
+            public string Timezone { get; set; }
+#endif
         }
     }
 }

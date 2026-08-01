@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MonthlyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/monthly{?lang*}", pathParameters)
+        public MonthlyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/monthly{?date*,lang*,timezone*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MonthlyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/monthly{?lang*}", rawUrl)
+        public MonthlyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/astrology/horoscope/{sign}/monthly{?date*,lang*,timezone*}", rawUrl)
         {
         }
         /// <summary>
-        /// Get monthly horoscope for any zodiac sign with sign-specific week-by-week breakdown and real lunar phase key dates. Based on planetary transits with house activations unique to each sign, covering love, career, health, and finance for the entire month. Key dates include actual New Moon, Full Moon, and retrograde dates from ephemeris calculations. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.
+        /// Get monthly horoscope for any zodiac sign with sign-specific week-by-week breakdown and real lunar phase key dates. Based on planetary transits with house activations unique to each sign, covering love, career, health, and finance for the entire month. Key dates include actual New Moon, Full Moon, and retrograde dates from ephemeris calculations. Pass any date inside a month to retrieve that month, or timezone to roll over on a local clock. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
             return await RequestAdapter.SendAsync<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse>(requestInfo, global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get monthly horoscope for any zodiac sign with sign-specific week-by-week breakdown and real lunar phase key dates. Based on planetary transits with house activations unique to each sign, covering love, career, health, and finance for the entire month. Key dates include actual New Moon, Full Moon, and retrograde dates from ephemeris calculations. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.
+        /// Get monthly horoscope for any zodiac sign with sign-specific week-by-week breakdown and real lunar phase key dates. Based on planetary transits with house activations unique to each sign, covering love, career, health, and finance for the entire month. Key dates include actual New Moon, Full Moon, and retrograde dates from ephemeris calculations. Pass any date inside a month to retrieve that month, or timezone to roll over on a local clock. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,14 +93,27 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
             return new global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get monthly horoscope for any zodiac sign with sign-specific week-by-week breakdown and real lunar phase key dates. Based on planetary transits with house activations unique to each sign, covering love, career, health, and finance for the entire month. Key dates include actual New Moon, Full Moon, and retrograde dates from ephemeris calculations. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.
+        /// Get monthly horoscope for any zodiac sign with sign-specific week-by-week breakdown and real lunar phase key dates. Based on planetary transits with house activations unique to each sign, covering love, career, health, and finance for the entire month. Key dates include actual New Moon, Full Moon, and retrograde dates from ephemeris calculations. Pass any date inside a month to retrieve that month, or timezone to roll over on a local clock. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MonthlyRequestBuilderGetQueryParameters 
         {
+            /// <summary>Any date inside the target month, in YYYY-MM-DD format. The forecast covers the whole calendar month containing it. Defaults to the current period in the timezone parameter.</summary>
+            [QueryParameter("date")]
+            public Date? Date { get; set; }
             /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.Horoscope.Item.Monthly.GetLangQueryParameterType? Lang { get; set; }
+            /// <summary>Selects which period counts as current when date is omitted. Defaults to UTC, so the forecast rolls over at 00:00 UTC on the 1st. Pass the timezone of the end user to roll over on their local clock instead. Ignored when date is set. Accepts an IANA name (e.g. &quot;America/New_York&quot;), decimal hours (e.g. 5.5 for IST), or a fixed UTC offset (e.g. &quot;-05:00&quot;).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("timezone")]
+            public string? Timezone { get; set; }
+#nullable restore
+#else
+            [QueryParameter("timezone")]
+            public string Timezone { get; set; }
+#endif
         }
     }
 }

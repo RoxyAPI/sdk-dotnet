@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AyanamsaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ayanamsa{?date*}", pathParameters)
+        public AyanamsaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ayanamsa{?date*,time*,timezone*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AyanamsaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ayanamsa{?date*}", rawUrl)
+        public AyanamsaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/kp/ayanamsa{?date*,time*,timezone*}", rawUrl)
         {
         }
         /// <summary>
-        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any date, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the date you ask for instead of the calendar year. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
+        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any instant, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the exact moment you ask for instead of the calendar year. Supply date alone for midnight UTC, or add time and timezone to pin a birth moment exactly. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.KPAyanamsaResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.KPAyanamsaResponse>(requestInfo, global::RoxyApi.Models.KPAyanamsaResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any date, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the date you ask for instead of the calendar year. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
+        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any instant, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the exact moment you ask for instead of the calendar year. Supply date alone for midnight UTC, or add time and timezone to pin a birth moment exactly. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
             return new global::RoxyApi.VedicAstrology.Kp.Ayanamsa.AyanamsaRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any date, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the date you ask for instead of the calendar year. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
+        /// Get the KP-Newcomb (Krishnamurti) ayanamsa for any instant, computed continuously from Newcomb precession theory rather than looked up in a preset table, so it tracks the exact moment you ask for instead of the calendar year. Supply date alone for midnight UTC, or add time and timezone to pin a birth moment exactly. This is the precession offset subtracted from a tropical longitude to obtain the sidereal one, and it is what makes a KP chart reproduce the reference software your practitioners already use. Returns the same value every KP endpoint applies internally. KP Newcomb ayanamsa API, dynamic ayanamsa calculator, Krishnamurti ayanamsa today, current KP ayanamsa
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class AyanamsaRequestBuilderGetQueryParameters 
@@ -101,6 +101,19 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
             /// <summary>Date for ayanamsa calculation in YYYY-MM-DD format. Defaults to today if not provided. Ayanamsa changes by ~0.01 degrees per month due to the precession of Earth.</summary>
             [QueryParameter("date")]
             public Date? Date { get; set; }
+            /// <summary>Time of day in 24-hour HH:MM:SS format, interpreted in the timezone below. Omit for midnight UTC. The ayanamsa moves about 0.14 arcseconds across a day, so supplying the time matters only when reconciling a chart against reference software to the arcsecond.</summary>
+            [QueryParameter("time")]
+            public Time? Time { get; set; }
+            /// <summary>IANA name (e.g. &quot;Asia/Kolkata&quot;, &quot;America/New_York&quot;), decimal hours (e.g. 5.5 for IST, -5 for EST), or a fixed UTC offset (e.g. &quot;+05:30&quot;). IANA resolved to the DST-correct offset for the given date. Applies to the time field above. Defaults to 0 (UTC).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("timezone")]
+            public string? Timezone { get; set; }
+#nullable restore
+#else
+            [QueryParameter("timezone")]
+            public string Timezone { get; set; }
+#endif
         }
     }
 }

@@ -30,6 +30,8 @@ namespace RoxyApi.Models
 #else
         public string Evidence { get; set; }
 #endif
+        /// <summary>Classical grouping, ALWAYS present on a detection verdict: one of the four Nabhasa families (asraya, dala, akriti, sankhya) or classical for the twelve single-combination yogas such as Gajakesari and the Pancha Mahapurusha. Group the verdict list on this key to render a Nabhasa result the way the tradition arranges it. Never translated, so grouping works identically under any lang.</summary>
+        public global::RoxyApi.Models.YogaDetectResponse_yogas_family? Family { get; set; }
         /// <summary>Glossary id (lowercase, kebab-case) matching an entry in the 300-entry planetary-yoga catalog. Use with GET /yoga/{id} to retrieve the full glossary text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -46,7 +48,7 @@ namespace RoxyApi.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>True if every classical condition for the yoga is satisfied by the given chart. False if any rule fails, including &quot;almost-present&quot; cases where dignity is met but kendra/aspect is not, and Nabhasa cases where the yoga matched its own rule but a stronger family outranked it under the classical precedence norms. Read `evidence` to tell those apart.</summary>
+        /// <summary>True if every classical condition for the yoga is satisfied by the given chart. False means one of TWO different things: the rule failed, or the rule held and a stronger family outranked it. Read `suppressedBy` to tell those apart, which is exact and locale-independent; `evidence` says the same thing in English prose.</summary>
         public bool? Present { get; set; }
         /// <summary>Overall nature. Auspicious yogas (Pancha Mahapurusha, Gajakesari) bestow benefits; inauspicious yogas (Kemadruma) indicate challenges; Both denotes context-dependent effects.</summary>
         public global::RoxyApi.Models.YogaDetectResponse_yogas_quality? Quality { get; set; }
@@ -58,6 +60,8 @@ namespace RoxyApi.Models
 #else
         public string Result { get; set; }
 #endif
+        /// <summary>Set ONLY when this yoga matched its own classical rule and was then silenced by a higher-ranking family, so `present` is false for a reason a practitioner reads very differently from a failed rule. Names the family that took precedence, under the four classical norms: Akriti outranks Asraya, and Akriti, Asraya and Dala each outrank Sankhya. Absent means the rule genuinely did not hold.</summary>
+        public global::RoxyApi.Models.YogaDetectResponse_yogas_suppressedBy? SuppressedBy { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.YogaDetectResponse_yogas"/> and sets the default values.
         /// </summary>
@@ -85,11 +89,13 @@ namespace RoxyApi.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "evidence", n => { Evidence = n.GetStringValue(); } },
+                { "family", n => { Family = n.GetEnumValue<global::RoxyApi.Models.YogaDetectResponse_yogas_family>(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "present", n => { Present = n.GetBoolValue(); } },
                 { "quality", n => { Quality = n.GetEnumValue<global::RoxyApi.Models.YogaDetectResponse_yogas_quality>(); } },
                 { "result", n => { Result = n.GetStringValue(); } },
+                { "suppressedBy", n => { SuppressedBy = n.GetEnumValue<global::RoxyApi.Models.YogaDetectResponse_yogas_suppressedBy>(); } },
             };
         }
         /// <summary>
@@ -101,11 +107,13 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("evidence", Evidence);
+            writer.WriteEnumValue<global::RoxyApi.Models.YogaDetectResponse_yogas_family>("family", Family);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("present", Present);
             writer.WriteEnumValue<global::RoxyApi.Models.YogaDetectResponse_yogas_quality>("quality", Quality);
             writer.WriteStringValue("result", Result);
+            writer.WriteEnumValue<global::RoxyApi.Models.YogaDetectResponse_yogas_suppressedBy>("suppressedBy", SuppressedBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

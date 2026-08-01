@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
 {
-    /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it.</summary>
+    /// <summary>Ayanamsa system used, echoing the request field. One of &quot;lahiri&quot;, &quot;kp-newcomb&quot;, &quot;kp-old&quot; or &quot;custom&quot;. Echoed so a client can confirm which frame produced these dates without re-deriving it. When it reads &quot;custom&quot; the ayanamsa field above carries the exact value you supplied.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WithMahadashaPostResponse_ayanamsaType
     {
@@ -18,6 +18,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         [EnumMember(Value = "lahiri")]
         #pragma warning disable CS1591
         Lahiri,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "custom")]
+        #pragma warning disable CS1591
+        Custom,
         #pragma warning restore CS1591
     }
 }

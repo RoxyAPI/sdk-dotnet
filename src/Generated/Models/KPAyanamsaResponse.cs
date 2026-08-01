@@ -40,6 +40,14 @@ namespace RoxyApi.Models
 #else
         public string Formula { get; set; }
 #endif
+        /// <summary>The exact UTC instant the value was computed for, after applying the time and timezone. Echoed so a client reconciling to the arcsecond can confirm the moment rather than infer it from the date alone. Equals midnight UTC of the date when no time was supplied.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Instant { get; set; }
+#nullable restore
+#else
+        public string Instant { get; set; }
+#endif
         /// <summary>Ayanamsa type identifier</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,6 +85,7 @@ namespace RoxyApi.Models
                 { "calculated", n => { Calculated = n.GetStringValue(); } },
                 { "date", n => { Date = n.GetStringValue(); } },
                 { "formula", n => { Formula = n.GetStringValue(); } },
+                { "instant", n => { Instant = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -91,6 +100,7 @@ namespace RoxyApi.Models
             writer.WriteStringValue("calculated", Calculated);
             writer.WriteStringValue("date", Date);
             writer.WriteStringValue("formula", Formula);
+            writer.WriteStringValue("instant", Instant);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

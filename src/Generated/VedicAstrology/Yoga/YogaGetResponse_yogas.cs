@@ -14,7 +14,9 @@ namespace RoxyApi.VedicAstrology.Yoga
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Unique yoga identifier in lowercase kebab-case. Use this to fetch full details via GET /yogas/:id.</summary>
+        /// <summary>Nabhasa family, present only on the 32 Nabhasa distribution yogas and absent on every other catalog row. Never translated, so it groups identically under any lang.</summary>
+        public global::RoxyApi.VedicAstrology.Yoga.YogaGetResponse_yogas_family? Family { get; set; }
+        /// <summary>Unique yoga identifier in lowercase kebab-case. Use this to fetch full details via GET /yoga/{id}.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -55,6 +57,7 @@ namespace RoxyApi.VedicAstrology.Yoga
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "family", n => { Family = n.GetEnumValue<global::RoxyApi.VedicAstrology.Yoga.YogaGetResponse_yogas_family>(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
             };
@@ -66,6 +69,7 @@ namespace RoxyApi.VedicAstrology.Yoga
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Yoga.YogaGetResponse_yogas_family>("family", Family);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);

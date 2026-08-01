@@ -30,6 +30,16 @@ namespace RoxyApi.Models
 #else
         public string DayLord { get; set; }
 #endif
+        /// <summary>Which signification vocabulary produced the houseThemes keywords in this response, echoing the focus query parameter. Always present, and &quot;general&quot; when the parameter was omitted. Read it to label a rendered house legend, or to tell two cached responses apart when only one asked for the finance lens.</summary>
+        public global::RoxyApi.Models.KPRulingPlanetsResponse_focus? Focus { get; set; }
+        /// <summary>Significations of each of the twelve bhavas (houses), keyed by house number 1 to 12, as short keywords. Bhava 1 is the Lagna (self, body, vitality), 2 wealth and speech, 4 home and mother, 7 marriage and partnership, 10 career and status, 11 gains. Use it to label the house numbers returned elsewhere in the response: a Vimshottari dasha period signifying houses 2, 7 and 8, or a KP significator carrying houses 11 and 6, becomes readable text without a separate lookup call. Returned once per response rather than repeated per period, and localized by the lang query parameter alongside every other interpretation field.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.KPRulingPlanetsResponse_houseThemes? HouseThemes { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.KPRulingPlanetsResponse_houseThemes HouseThemes { get; set; }
+#endif
         /// <summary>Lord of the rising zodiac sign (Ascendant)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -145,6 +155,8 @@ namespace RoxyApi.Models
             {
                 { "datetime", n => { Datetime = n.GetStringValue(); } },
                 { "dayLord", n => { DayLord = n.GetStringValue(); } },
+                { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.Models.KPRulingPlanetsResponse_focus>(); } },
+                { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.Models.KPRulingPlanetsResponse_houseThemes>(global::RoxyApi.Models.KPRulingPlanetsResponse_houseThemes.CreateFromDiscriminatorValue); } },
                 { "lagnaSignLord", n => { LagnaSignLord = n.GetStringValue(); } },
                 { "lagnaStarLord", n => { LagnaStarLord = n.GetStringValue(); } },
                 { "lagnaSubSublord", n => { LagnaSubSublord = n.GetStringValue(); } },
@@ -167,6 +179,8 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("datetime", Datetime);
             writer.WriteStringValue("dayLord", DayLord);
+            writer.WriteEnumValue<global::RoxyApi.Models.KPRulingPlanetsResponse_focus>("focus", Focus);
+            writer.WriteObjectValue<global::RoxyApi.Models.KPRulingPlanetsResponse_houseThemes>("houseThemes", HouseThemes);
             writer.WriteStringValue("lagnaSignLord", LagnaSignLord);
             writer.WriteStringValue("lagnaStarLord", LagnaStarLord);
             writer.WriteStringValue("lagnaSublord", LagnaSublord);

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
 {
-    /// <summary>Ayanamsa system used to place the birth Moon in its nakshatra, which sets every dasha start and end date. &quot;lahiri&quot; uses Lahiri/Chitrapaksha, the traditional Vedic standard, and is the default. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, matching Krishnamurti Paddhati software. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1. Switching frames shifts every dasha boundary by weeks, so pick the one your reference software uses.</summary>
+    /// <summary>Ayanamsa system used to place the birth Moon in its nakshatra, which sets every dasha start and end date. &quot;lahiri&quot; uses Lahiri/Chitrapaksha, the traditional Vedic standard, and is the default. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, matching Krishnamurti Paddhati software. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1. &quot;custom&quot; takes your own value in degrees via ayanamsaValue, for reconciling exactly against a specific reference program. Switching frames shifts every dasha boundary by weeks, so pick the one your reference software uses.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WithPratyantardashaPostRequestBody_ayanamsa
     {
@@ -18,6 +18,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item
         [EnumMember(Value = "lahiri")]
         #pragma warning disable CS1591
         Lahiri,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "custom")]
+        #pragma warning disable CS1591
+        Custom,
         #pragma warning restore CS1591
     }
 }

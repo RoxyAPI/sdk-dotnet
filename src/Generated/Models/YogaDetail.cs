@@ -22,6 +22,8 @@ namespace RoxyApi.Models
 #else
         public string Description { get; set; }
 #endif
+        /// <summary>Nabhasa family this yoga belongs to, present only on the 32 Nabhasa distribution yogas: asraya (3, sign modality), dala (2, benefic or malefic kendra tenancy), akriti (20, bhava shape) and sankhya (7, count of occupied rasis). Absent on every other glossary row, which is most of the catalog, since those are single-combination yogas outside the Nabhasa scheme. Group or filter the catalog on this key; it is never translated.</summary>
+        public global::RoxyApi.Models.YogaDetail_family? Family { get; set; }
         /// <summary>Glossary id (lowercase, kebab-case) matching an entry in the 300-entry planetary-yoga catalog. Use with GET /yoga/{id} to retrieve the full glossary text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,6 +76,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
+                { "family", n => { Family = n.GetEnumValue<global::RoxyApi.Models.YogaDetail_family>(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "quality", n => { Quality = n.GetEnumValue<global::RoxyApi.Models.YogaDetail_quality>(); } },
@@ -88,6 +91,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
+            writer.WriteEnumValue<global::RoxyApi.Models.YogaDetail_family>("family", Family);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteEnumValue<global::RoxyApi.Models.YogaDetail_quality>("quality", Quality);
