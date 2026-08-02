@@ -38,6 +38,14 @@ namespace RoxyApi.Models
 #else
         public List<string> Exceptions { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.ManglikResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.ManglikResponse_frame Frame { get; set; }
+#endif
         /// <summary>Whether Manglik dosha (Kuja dosha) is present based on Mars placement from Lagna</summary>
         public bool? Present { get; set; }
         /// <summary>Traditional Vedic remedies for Manglik dosha mitigation based on severity level</summary>
@@ -78,6 +86,7 @@ namespace RoxyApi.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "effects", n => { Effects = n.GetObjectValue<global::RoxyApi.Models.ManglikResponse_effects>(global::RoxyApi.Models.ManglikResponse_effects.CreateFromDiscriminatorValue); } },
                 { "exceptions", n => { Exceptions = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.ManglikResponse_frame>(global::RoxyApi.Models.ManglikResponse_frame.CreateFromDiscriminatorValue); } },
                 { "present", n => { Present = n.GetBoolValue(); } },
                 { "remedies", n => { Remedies = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "severity", n => { Severity = n.GetEnumValue<global::RoxyApi.Models.ManglikResponse_severity>(); } },
@@ -93,6 +102,7 @@ namespace RoxyApi.Models
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<global::RoxyApi.Models.ManglikResponse_effects>("effects", Effects);
             writer.WriteCollectionOfPrimitiveValues<string>("exceptions", Exceptions);
+            writer.WriteObjectValue<global::RoxyApi.Models.ManglikResponse_frame>("frame", Frame);
             writer.WriteBoolValue("present", Present);
             writer.WriteCollectionOfPrimitiveValues<string>("remedies", Remedies);
             writer.WriteEnumValue<global::RoxyApi.Models.ManglikResponse_severity>("severity", Severity);

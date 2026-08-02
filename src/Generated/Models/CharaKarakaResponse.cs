@@ -31,6 +31,14 @@ namespace RoxyApi.Models
 #else
         public string Darakaraka { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.CharaKarakaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.CharaKarakaResponse_frame Frame { get; set; }
+#endif
         /// <summary>Karaka offices in descending rank, Atmakaraka first. Eight entries in the eight-karaka scheme, seven in the seven-karaka scheme.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,6 +76,7 @@ namespace RoxyApi.Models
             {
                 { "atmakaraka", n => { Atmakaraka = n.GetStringValue(); } },
                 { "darakaraka", n => { Darakaraka = n.GetStringValue(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.CharaKarakaResponse_frame>(global::RoxyApi.Models.CharaKarakaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "karakas", n => { Karakas = n.GetCollectionOfObjectValues<global::RoxyApi.Models.CharaKarakaResponse_karakas>(global::RoxyApi.Models.CharaKarakaResponse_karakas.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "scheme", n => { Scheme = n.GetEnumValue<global::RoxyApi.Models.CharaKarakaResponse_scheme>(); } },
             };
@@ -81,6 +90,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("atmakaraka", Atmakaraka);
             writer.WriteStringValue("darakaraka", Darakaraka);
+            writer.WriteObjectValue<global::RoxyApi.Models.CharaKarakaResponse_frame>("frame", Frame);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.CharaKarakaResponse_karakas>("karakas", Karakas);
             writer.WriteEnumValue<global::RoxyApi.Models.CharaKarakaResponse_scheme>("scheme", Scheme);
             writer.WriteAdditionalData(AdditionalData);

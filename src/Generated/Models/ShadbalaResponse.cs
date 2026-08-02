@@ -15,6 +15,22 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Localized name and one-line meaning for each of the six Shadbala components, keyed by the same field names each planet entry uses. Join it to render a readable strength breakdown in any of the eight supported languages instead of showing six untranslated Sanskrit terms.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.ShadbalaResponse_balaThemes? BalaThemes { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.ShadbalaResponse_balaThemes BalaThemes { get; set; }
+#endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.ShadbalaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.ShadbalaResponse_frame Frame { get; set; }
+#endif
         /// <summary>Shadbala analysis for all 7 classical planets. Ordered: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn. Each entry contains all 6 strength components, total strength in virupas and Rupas, Ishta/Kashta Phala, minimum required threshold, strength ratio, and relative rank.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -48,6 +64,8 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "balaThemes", n => { BalaThemes = n.GetObjectValue<global::RoxyApi.Models.ShadbalaResponse_balaThemes>(global::RoxyApi.Models.ShadbalaResponse_balaThemes.CreateFromDiscriminatorValue); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.ShadbalaResponse_frame>(global::RoxyApi.Models.ShadbalaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "planets", n => { Planets = n.GetCollectionOfObjectValues<global::RoxyApi.Models.ShadbalaResponse_planets>(global::RoxyApi.Models.ShadbalaResponse_planets.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -58,6 +76,8 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::RoxyApi.Models.ShadbalaResponse_balaThemes>("balaThemes", BalaThemes);
+            writer.WriteObjectValue<global::RoxyApi.Models.ShadbalaResponse_frame>("frame", Frame);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.ShadbalaResponse_planets>("planets", Planets);
             writer.WriteAdditionalData(AdditionalData);
         }

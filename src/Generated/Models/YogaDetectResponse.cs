@@ -22,6 +22,14 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.YogaDetectResponse_birthDetails BirthDetails { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.YogaDetectResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.YogaDetectResponse_frame Frame { get; set; }
+#endif
         /// <summary>Count of yogas where present === true in this chart. Range 0-44, though real charts sit in the low single digits: the Nabhasa families are mutually constrained by the precedence norms, and most shape yogas are rare.</summary>
         public double? Total { get; set; }
         /// <summary>Array of 44 detected yogas, always the full set so a caller can render absent verdicts too. Every entry carries a `present` boolean and a `quality` (Positive, Negative, or Both = auspicious, inauspicious, or context-dependent); filter on present === true for active yogas. Evidence text names the rule that triggered or failed, or the precedence norm that outranked it.</summary>
@@ -58,6 +66,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "birthDetails", n => { BirthDetails = n.GetObjectValue<global::RoxyApi.Models.YogaDetectResponse_birthDetails>(global::RoxyApi.Models.YogaDetectResponse_birthDetails.CreateFromDiscriminatorValue); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.YogaDetectResponse_frame>(global::RoxyApi.Models.YogaDetectResponse_frame.CreateFromDiscriminatorValue); } },
                 { "total", n => { Total = n.GetDoubleValue(); } },
                 { "yogas", n => { Yogas = n.GetCollectionOfObjectValues<global::RoxyApi.Models.YogaDetectResponse_yogas>(global::RoxyApi.Models.YogaDetectResponse_yogas.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -70,6 +79,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.Models.YogaDetectResponse_birthDetails>("birthDetails", BirthDetails);
+            writer.WriteObjectValue<global::RoxyApi.Models.YogaDetectResponse_frame>("frame", Frame);
             writer.WriteDoubleValue("total", Total);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.YogaDetectResponse_yogas>("yogas", Yogas);
             writer.WriteAdditionalData(AdditionalData);

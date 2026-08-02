@@ -30,6 +30,14 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.DivisionalChartResponse_division Division { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.DivisionalChartResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.DivisionalChartResponse_frame Frame { get; set; }
+#endif
         /// <summary>Planets that are Vargottama (same sign in D1 and this divisional chart). Vargottama planets deliver strong, consistent results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,6 +73,7 @@ namespace RoxyApi.Models
             {
                 { "chart", n => { Chart = n.GetObjectValue<global::RoxyApi.Models.DivisionalChartResponse_chart>(global::RoxyApi.Models.DivisionalChartResponse_chart.CreateFromDiscriminatorValue); } },
                 { "division", n => { Division = n.GetObjectValue<global::RoxyApi.Models.DivisionalChartResponse_division>(global::RoxyApi.Models.DivisionalChartResponse_division.CreateFromDiscriminatorValue); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.DivisionalChartResponse_frame>(global::RoxyApi.Models.DivisionalChartResponse_frame.CreateFromDiscriminatorValue); } },
                 { "vargottama", n => { Vargottama = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -77,6 +86,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.Models.DivisionalChartResponse_chart>("chart", Chart);
             writer.WriteObjectValue<global::RoxyApi.Models.DivisionalChartResponse_division>("division", Division);
+            writer.WriteObjectValue<global::RoxyApi.Models.DivisionalChartResponse_frame>("frame", Frame);
             writer.WriteCollectionOfPrimitiveValues<string>("vargottama", Vargottama);
             writer.WriteAdditionalData(AdditionalData);
         }

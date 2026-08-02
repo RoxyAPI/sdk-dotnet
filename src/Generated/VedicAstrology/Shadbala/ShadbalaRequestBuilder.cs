@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Shadbala
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ShadbalaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/shadbala", pathParameters)
+        public ShadbalaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/shadbala{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Shadbala
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ShadbalaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/shadbala", rawUrl)
+        public ShadbalaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/shadbala{?lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Shadbala
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Models.ShadbalaResponse?> PostAsync(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.ShadbalaResponse?> PostAsync(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Shadbala.ShadbalaRequestBuilder.ShadbalaRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Models.ShadbalaResponse> PostAsync(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.ShadbalaResponse> PostAsync(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Shadbala.ShadbalaRequestBuilder.ShadbalaRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,11 +74,11 @@ namespace RoxyApi.VedicAstrology.Shadbala
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Shadbala.ShadbalaRequestBuilder.ShadbalaRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ShadbalaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Shadbala.ShadbalaRequestBuilder.ShadbalaRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.Shadbala
         public global::RoxyApi.VedicAstrology.Shadbala.ShadbalaRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Shadbala.ShadbalaRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Calculate complete Shadbala (six-fold planetary strength) per Brihat Parashara Hora Shastra (BPHS) and BV Raman Graha and Bhava Balas. Returns all 6 strength components (Sthana Bala, Dig Bala, Kala Bala, Chesta Bala, Naisargika Bala, Drik Bala) plus Ishta Phala, Kashta Phala, strength ratio, and relative ranking for all 7 classical planets. Essential for evaluating planetary strength in Vedic birth chart analysis, dasha prediction, transit interpretation, and yoga assessment. Shadbala calculator API, planetary strength Vedic astrology, graha bala, Ishta Kashta Phala.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ShadbalaRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Shadbala.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

@@ -25,6 +25,14 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Which signification vocabulary produced the houseThemes keywords in this response, echoing the focus query parameter. Always present, and &quot;general&quot; when the parameter was omitted. Read it to label a rendered house legend, or to tell two cached responses apart when only one asked for the finance lens.</summary>
         public global::RoxyApi.Models.BhavaBalaResponse_focus? Focus { get; set; }
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.BhavaBalaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.BhavaBalaResponse_frame Frame { get; set; }
+#endif
         /// <summary>House frame the bhavas were built on. Always sripati: Bhava Bala is defined on unequal bhava madhyas, not on whole signs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,6 +76,7 @@ namespace RoxyApi.Models
             {
                 { "bhavas", n => { Bhavas = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BhavaBalaResponse_bhavas>(global::RoxyApi.Models.BhavaBalaResponse_bhavas.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.Models.BhavaBalaResponse_focus>(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.BhavaBalaResponse_frame>(global::RoxyApi.Models.BhavaBalaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "houseSystem", n => { HouseSystem = n.GetStringValue(); } },
                 { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.Models.BhavaBalaResponse_houseThemes>(global::RoxyApi.Models.BhavaBalaResponse_houseThemes.CreateFromDiscriminatorValue); } },
             };
@@ -81,6 +90,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BhavaBalaResponse_bhavas>("bhavas", Bhavas);
             writer.WriteEnumValue<global::RoxyApi.Models.BhavaBalaResponse_focus>("focus", Focus);
+            writer.WriteObjectValue<global::RoxyApi.Models.BhavaBalaResponse_frame>("frame", Frame);
             writer.WriteStringValue("houseSystem", HouseSystem);
             writer.WriteObjectValue<global::RoxyApi.Models.BhavaBalaResponse_houseThemes>("houseThemes", HouseThemes);
             writer.WriteAdditionalData(AdditionalData);

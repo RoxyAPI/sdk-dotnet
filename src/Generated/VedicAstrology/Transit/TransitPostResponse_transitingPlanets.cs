@@ -22,6 +22,14 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public List<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal> AspectsToNatal { get; set; }
 #endif
+        /// <summary>Gochara Kaksha: the ashtakavarga-qualified reading of this transit. The sign says where a graha is, this says whether the exact stretch it currently occupies is one its own Bhinnashtakavarga supports, which is the classical way of refining a transit verdict from sign-level to under four degrees.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha? Kaksha { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha Kaksha { get; set; }
+#endif
         /// <summary>Current sidereal longitude of the transiting planet.</summary>
         public double? Longitude { get; set; }
         /// <summary>Transiting planet name.</summary>
@@ -68,6 +76,7 @@ namespace RoxyApi.VedicAstrology.Transit
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "aspectsToNatal", n => { AspectsToNatal = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "kaksha", n => { Kaksha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha.CreateFromDiscriminatorValue); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "natalHouse", n => { NatalHouse = n.GetDoubleValue(); } },
@@ -82,6 +91,7 @@ namespace RoxyApi.VedicAstrology.Transit
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal>("aspectsToNatal", AspectsToNatal);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha>("kaksha", Kaksha);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
             writer.WriteDoubleValue("natalHouse", NatalHouse);

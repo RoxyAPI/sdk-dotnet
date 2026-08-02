@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
         {
         }
         /// <summary>
-        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
+        /// Look up the dictionary entry for a specific named yoga from the 301-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.YogaDetail"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.YogaDetail>(requestInfo, global::RoxyApi.Models.YogaDetail.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
+        /// Look up the dictionary entry for a specific named yoga from the 301-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -95,7 +95,7 @@ namespace RoxyApi.VedicAstrology.Yoga.Item
             return new global::RoxyApi.VedicAstrology.Yoga.Item.YogaItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Look up the dictionary entry for a specific named yoga from the 300-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
+        /// Look up the dictionary entry for a specific named yoga from the 301-entry Vedic planetary-yoga glossary. Returns formation conditions, life results, and quality classification (Positive/Negative/Both). This is a glossary lookup against the static catalog; it does NOT analyze a birth chart. For chart-driven present/absent verdicts on the 44 detection-grade yogas (Gajakesari, the Pancha Mahapurusha set, and all 32 Nabhasa distribution yogas) call POST /yoga/detect with birth data.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class YogaItemRequestBuilderGetQueryParameters 

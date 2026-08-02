@@ -594,9 +594,21 @@ JsonNode? ParamExample(JsonObject spec, JsonObject param)
 // the wire accepts); a non-scalar yields null so the caller falls back to its own default.
 string? ExampleText(JsonNode? example) => example is JsonValue v ? v.ToString() : null;
 
-// Same hazard as ExampleText for the `type` keyword itself: this spec is OpenAPI 3.1, where
-// `type` may legally be an array (`["string", "null"]`). Only a plain string names one type.
-string? TypeOf(JsonObject schema) => schema["type"] is JsonValue t ? t.ToString() : null;
+// The `type` keyword in OpenAPI 3.1 is either a plain string or an ARRAY, because that is how 3.1
+// spells nullability: `["number", "null"]` where 3.0 wrote `type: "number", nullable: true`.
+//
+// This returned null for the array form until 2026-08-03, which was harmless only for as long as the
+// served document never actually emitted one. When the API switched to the 3.1 serializer, 82 fields
+// became arrays overnight and every one of them fell through to the string branch of RenderValue, so
+// the compiled example guard emitted `Orb = "1"` into a `double?` and 15 call sites stopped compiling.
+// The `null` member carries no rendering information, so a nullable scalar IS its remaining member.
+string? TypeOf(JsonObject schema) => schema["type"] switch
+{
+    JsonValue t => t.ToString(),
+    JsonArray a when a.Where(x => x?.GetValue<string>() != "null").Take(2).Count() == 1 =>
+        a.First(x => x?.GetValue<string>() != "null")!.GetValue<string>(),
+    _ => null,
+};
 
 // Enum-like = a direct enum, or an anyOf/oneOf whose branches are enums (e.g. houseSystem).
 // Kiota generates a dedicated enum type for these; we cannot name its members from an example.

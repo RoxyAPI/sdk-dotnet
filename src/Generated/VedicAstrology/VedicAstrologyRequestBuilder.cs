@@ -15,6 +15,7 @@ using RoxyApi.VedicAstrology.Dasha;
 using RoxyApi.VedicAstrology.DivisionalChart;
 using RoxyApi.VedicAstrology.Dosha;
 using RoxyApi.VedicAstrology.EclipticCrossings;
+using RoxyApi.VedicAstrology.Heliacal;
 using RoxyApi.VedicAstrology.Kp;
 using RoxyApi.VedicAstrology.Nakshatras;
 using RoxyApi.VedicAstrology.Navamsa;
@@ -102,6 +103,11 @@ namespace RoxyApi.VedicAstrology
         public global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder EclipticCrossings
         {
             get => new global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The heliacal property</summary>
+        public global::RoxyApi.VedicAstrology.Heliacal.HeliacalRequestBuilder Heliacal
+        {
+            get => new global::RoxyApi.VedicAstrology.Heliacal.HeliacalRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The kp property</summary>
         public global::RoxyApi.VedicAstrology.Kp.KpRequestBuilder Kp

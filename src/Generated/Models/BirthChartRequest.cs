@@ -17,12 +17,18 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Set true to include a localized meaning and one-sentence classical interpretation beside each graha avastha state, under avasthaInfo on that graha in meta. Defaults to false, so an existing integration is byte-identical until it opts in. Saves a second call to GET /avasthas and the client-side join that would otherwise be needed to turn Yuva or Swapna into readable text.</summary>
         public bool? AvasthaInfo { get; set; }
+        /// <summary>Sidereal frame (ayanamsa) the chart is cast in. &quot;lahiri&quot; is Lahiri/Chitrapaksha, the traditional Vedic standard used by most software, and is the default. &quot;raman&quot; is the B.V. Raman ayanamsa from Hindu Predictive Astrology, about 1.45 degrees below Lahiri. &quot;kp-newcomb&quot; and &quot;kp-old&quot; are the two Krishnamurti Paddhati frames. &quot;custom&quot; takes your own value in degrees via ayanamsaValue, for reconciling exactly against a specific reference program. The frame rotates the whole zodiac, so a graha sitting within 1.45 degrees of a boundary can change rashi or nakshatra when you switch: pick the one your reference software uses and keep it.</summary>
+        public global::RoxyApi.Models.BirthChartRequest_ayanamsa? Ayanamsa { get; set; }
+        /// <summary>Custom ayanamsa value in degrees. When provided, overrides the computed ayanamsa from the selected type. Use for testing with specific ayanamsa values or matching a particular reference source.</summary>
+        public double? AyanamsaValue { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas).</summary>
         public Date? Date { get; set; }
         /// <summary>Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172.</summary>
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees. Affects local time calculations and ayanamsha adjustments. Example: Delhi 77.2090, Mumbai 72.8777, Kathmandu 85.3240.</summary>
         public double? Longitude { get; set; }
+        /// <summary>Set true to also return Uranus, Neptune and Pluto, under the Sanskrit names Arun, Varun and Yam that Indian software prints for them. They arrive in a separate modernPlanets array, NOT inside meta, because classical Jyotish is defined over nine grahas: the moderns rule no sign, so they have no dignity, avastha, combustion or aspect strength and it would be fabrication to report one. Each carries longitude, rashi, degree in sign, nakshatra with pada and lord, and retrograde status. Defaults to false, so an existing integration is byte-identical until it opts in.</summary>
+        public bool? ModernPlanets { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Time is CRITICAL for Lagna (Ascendant) calculation and house divisions. It changes every two hours roughly. Even minutes matter for accurate nakshatra pada and divisional chart (D9, D10) calculations. Without exact time, Lagna and house-based predictions will be incorrect.</summary>
         public Time? Time { get; set; }
         /// <summary>Timezone: IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the DST-correct offset for the given date, so you can pass `cities[0].timezone` from /location/search directly. Defaults to 5.5.</summary>
@@ -40,6 +46,8 @@ namespace RoxyApi.Models
         {
             AdditionalData = new Dictionary<string, object>();
             AvasthaInfo = false;
+            Ayanamsa = global::RoxyApi.Models.BirthChartRequest_ayanamsa.Lahiri;
+            ModernPlanets = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -60,9 +68,12 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "avasthaInfo", n => { AvasthaInfo = n.GetBoolValue(); } },
+                { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.Models.BirthChartRequest_ayanamsa>(); } },
+                { "ayanamsaValue", n => { AyanamsaValue = n.GetDoubleValue(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
+                { "modernPlanets", n => { ModernPlanets = n.GetBoolValue(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.BirthChartRequest.BirthChartRequest_timezone>(global::RoxyApi.Models.BirthChartRequest.BirthChartRequest_timezone.CreateFromDiscriminatorValue); } },
             };
@@ -75,9 +86,12 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("avasthaInfo", AvasthaInfo);
+            writer.WriteEnumValue<global::RoxyApi.Models.BirthChartRequest_ayanamsa>("ayanamsa", Ayanamsa);
+            writer.WriteDoubleValue("ayanamsaValue", AyanamsaValue);
             writer.WriteDateValue("date", Date);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
+            writer.WriteBoolValue("modernPlanets", ModernPlanets);
             writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartRequest.BirthChartRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);

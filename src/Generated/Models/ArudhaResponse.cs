@@ -23,6 +23,14 @@ namespace RoxyApi.Models
 #else
         public string ArudhaLagna { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.ArudhaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.ArudhaResponse_frame Frame { get; set; }
+#endif
         /// <summary>Zodiac sign of the Ascendant (Lagna), which anchors the twelve bhavas the padas are derived from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -73,6 +81,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "arudhaLagna", n => { ArudhaLagna = n.GetStringValue(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.ArudhaResponse_frame>(global::RoxyApi.Models.ArudhaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "lagnaRashi", n => { LagnaRashi = n.GetStringValue(); } },
                 { "padas", n => { Padas = n.GetCollectionOfObjectValues<global::RoxyApi.Models.ArudhaResponse_padas>(global::RoxyApi.Models.ArudhaResponse_padas.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "upapada", n => { Upapada = n.GetStringValue(); } },
@@ -86,6 +95,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("arudhaLagna", ArudhaLagna);
+            writer.WriteObjectValue<global::RoxyApi.Models.ArudhaResponse_frame>("frame", Frame);
             writer.WriteStringValue("lagnaRashi", LagnaRashi);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.ArudhaResponse_padas>("padas", Padas);
             writer.WriteStringValue("upapada", Upapada);

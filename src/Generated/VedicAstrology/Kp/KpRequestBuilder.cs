@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions;
 using RoxyApi.VedicAstrology.Kp.Ayanamsa;
 using RoxyApi.VedicAstrology.Kp.Chart;
 using RoxyApi.VedicAstrology.Kp.Cusps;
+using RoxyApi.VedicAstrology.Kp.Horary;
 using RoxyApi.VedicAstrology.Kp.Planets;
 using RoxyApi.VedicAstrology.Kp.PlanetsInterval;
 using RoxyApi.VedicAstrology.Kp.RasiChanges;
@@ -37,6 +38,11 @@ namespace RoxyApi.VedicAstrology.Kp
         public global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder Cusps
         {
             get => new global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The horary property</summary>
+        public global::RoxyApi.VedicAstrology.Kp.Horary.HoraryRequestBuilder Horary
+        {
+            get => new global::RoxyApi.VedicAstrology.Kp.Horary.HoraryRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The planets property</summary>
         public global::RoxyApi.VedicAstrology.Kp.Planets.PlanetsRequestBuilder Planets

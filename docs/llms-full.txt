@@ -138,19 +138,19 @@ Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional ch
 
 ```csharp
 // Get birth chart (D1 Rashi chart) - Kundli Calculator API
-await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AvasthaInfo = true });
+await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, AvasthaInfo = true, ModernPlanets = true });
 
 // Get Navamsa chart (D9) - Marriage Compatibility Calculator
-await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Navamsa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get divisional chart (Varga) - D2 to D60 Calculator
-await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Division = 10 });
+await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Division = 10 });
 
 // Calculate compatibility score - Gun Milan API (Ashtakoot Matching)
-await roxy.VedicAstrology.Compatibility.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } } });
+await roxy.VedicAstrology.Compatibility.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, AyanamsaValue = 24 });
 
 // Get planetary positions - Graha Positions API
-await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Monthly Ephemeris - Daily sidereal planetary positions for a month
 await roxy.VedicAstrology.PlanetaryPositions.Monthly.PostAsync(new() { Year = 2026, Month = 2 });
@@ -186,13 +186,13 @@ await roxy.VedicAstrology.Panchang.Choghadiya.PostAsync(new() { Date = new Date(
 await roxy.VedicAstrology.Panchang.Hora.PostAsync(new() { Date = new Date(2026, 2, 3), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
 
 // Check Manglik Dosha - Mangal Dosha Calculator API
-await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Check Kalsarpa Dosha - Kalsarpa Yoga Calculator API
-await roxy.VedicAstrology.Dosha.Kalsarpa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dosha.Kalsarpa.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Check Sadhesati - Sade Sati Calculator API (Saturn Transit)
-await roxy.VedicAstrology.Dosha.Sadhesati.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Dosha.Sadhesati.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // List all planetary yogas - 300+ Vedic Yoga Glossary
 await roxy.VedicAstrology.Yoga.GetAsync();
@@ -201,7 +201,7 @@ await roxy.VedicAstrology.Yoga.GetAsync();
 await roxy.VedicAstrology.Yoga["gajakesari"].GetAsync();
 
 // Detect classical Vedic yogas in a birth chart
-await roxy.VedicAstrology.Yoga.Detect.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Yoga.Detect.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get KP-Newcomb ayanamsa - Dynamic daily calculation
 await roxy.VedicAstrology.Kp.Ayanamsa.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 26); c.QueryParameters.Time = new Time(9, 0, 0); c.QueryParameters.Timezone = "Asia/Kolkata"; });
@@ -229,6 +229,9 @@ await roxy.VedicAstrology.Kp.RasiChanges.PostAsync(new() { Planet = "Sun", Start
 
 // Get KP planets at time intervals
 await roxy.VedicAstrology.Kp.PlanetsInterval.PostAsync(new() { StartDatetime = DateTimeOffset.Parse("2025-01-15T00:00:00Z"), EndDatetime = DateTimeOffset.Parse("2025-01-15T23:59:00Z"), IntervalMinutes = 60, Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Cast a KP horary (Prashna) chart from a number 1-249 - KP Horary API
+await roxy.VedicAstrology.Kp.Horary.PostAsync(new() { HoraryNumber = 108, Date = new Date(2026, 3, 8), Time = new Time(14, 30, 0), Latitude = 19.076, Longitude = 72.8777, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get planetary aspects (Drishti) - Mutual aspects between all planets
 await roxy.VedicAstrology.Aspects.PostAsync(new() { Date = new Date(2026, 2, 3), Time = new Time(12, 0, 0), Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
@@ -267,13 +270,13 @@ await roxy.VedicAstrology.Nakshatras.GetAsync();
 await roxy.VedicAstrology.Nakshatras["ashwini"].GetAsync();
 
 // Get upagraha (sub-planet) positions - Upagraha Calculator API
-await roxy.VedicAstrology.Upagraha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Upagraha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get Ashtakavarga (planetary strength) analysis - Ashtakavarga Calculator API
-await roxy.VedicAstrology.Ashtakavarga.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Ashtakavarga.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get Shadbala (six-fold planetary strength) analysis - Shadbala Calculator API
-await roxy.VedicAstrology.Shadbala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Shadbala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // List all 17 avastha states - Planetary State Reference
 await roxy.VedicAstrology.Avasthas.GetAsync();
@@ -282,16 +285,19 @@ await roxy.VedicAstrology.Avasthas.GetAsync();
 await roxy.VedicAstrology.Avasthas["dipta"].GetAsync();
 
 // Get the twelve Arudha padas - Arudha Lagna Calculator API
-await roxy.VedicAstrology.Arudha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Arudha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get Chara Karakas including Atmakaraka - Jaimini Karaka Calculator API
-await roxy.VedicAstrology.CharaKarakas.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.CharaKarakas.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get Bhava Bala (house strength) for all twelve houses - Bhava Bala Calculator API
-await roxy.VedicAstrology.BhavaBala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.BhavaBala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
 // Get the Bhav Chalit (Chalit Kundli) cusp-based house chart - Bhav Chalit API
-await roxy.VedicAstrology.BhavChalit.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.BhavChalit.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+
+// Heliacal rising and setting (udaya and asta) - Graha Asta Calculator API
+await roxy.VedicAstrology.Heliacal.PostAsync(new() { Date = new Date(2026, 7, 25), Latitude = 19.076, Longitude = 72.8777, Timezone = new() { Double = 5.5 } });
 ```
 
 ---

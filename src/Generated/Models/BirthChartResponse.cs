@@ -54,6 +54,14 @@ namespace RoxyApi.Models
 #else
         public List<global::RoxyApi.Models.BirthChartResponse_combustion> Combustion { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.BirthChartResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.BirthChartResponse_frame Frame { get; set; }
+#endif
         /// <summary>The gemini property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -101,6 +109,14 @@ namespace RoxyApi.Models
 #nullable restore
 #else
         public global::RoxyApi.Models.BirthChartResponse_meta Meta { get; set; }
+#endif
+        /// <summary>Uranus, Neptune and Pluto, present only when modernPlanets true was sent. Deliberately separate from meta and deliberately without dignity, avastha, combustion or aspect fields: those are constructs of the nine-graha system and the modern planets rule no sign, so no classical value exists for them. Order is always Uranus, Neptune, Pluto.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Models.BirthChartResponse_modernPlanets>? ModernPlanets { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Models.BirthChartResponse_modernPlanets> ModernPlanets { get; set; }
 #endif
         /// <summary>The pisces property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -188,12 +204,14 @@ namespace RoxyApi.Models
                 { "cancer", n => { Cancer = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_cancer>(global::RoxyApi.Models.BirthChartResponse_cancer.CreateFromDiscriminatorValue); } },
                 { "capricorn", n => { Capricorn = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_capricorn>(global::RoxyApi.Models.BirthChartResponse_capricorn.CreateFromDiscriminatorValue); } },
                 { "combustion", n => { Combustion = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_combustion>(global::RoxyApi.Models.BirthChartResponse_combustion.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_frame>(global::RoxyApi.Models.BirthChartResponse_frame.CreateFromDiscriminatorValue); } },
                 { "gemini", n => { Gemini = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_gemini>(global::RoxyApi.Models.BirthChartResponse_gemini.CreateFromDiscriminatorValue); } },
                 { "houses", n => { Houses = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_houses>(global::RoxyApi.Models.BirthChartResponse_houses.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "interpretations", n => { Interpretations = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_interpretations>(global::RoxyApi.Models.BirthChartResponse_interpretations.CreateFromDiscriminatorValue); } },
                 { "leo", n => { Leo = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_leo>(global::RoxyApi.Models.BirthChartResponse_leo.CreateFromDiscriminatorValue); } },
                 { "libra", n => { Libra = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_libra>(global::RoxyApi.Models.BirthChartResponse_libra.CreateFromDiscriminatorValue); } },
                 { "meta", n => { Meta = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_meta>(global::RoxyApi.Models.BirthChartResponse_meta.CreateFromDiscriminatorValue); } },
+                { "modernPlanets", n => { ModernPlanets = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_modernPlanets>(global::RoxyApi.Models.BirthChartResponse_modernPlanets.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "pisces", n => { Pisces = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_pisces>(global::RoxyApi.Models.BirthChartResponse_pisces.CreateFromDiscriminatorValue); } },
                 { "planetaryWar", n => { PlanetaryWar = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_planetaryWar>(global::RoxyApi.Models.BirthChartResponse_planetaryWar.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sagittarius", n => { Sagittarius = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_sagittarius>(global::RoxyApi.Models.BirthChartResponse_sagittarius.CreateFromDiscriminatorValue); } },
@@ -215,12 +233,14 @@ namespace RoxyApi.Models
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_cancer>("cancer", Cancer);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_capricorn>("capricorn", Capricorn);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_combustion>("combustion", Combustion);
+            writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_frame>("frame", Frame);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_gemini>("gemini", Gemini);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_houses>("houses", Houses);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_interpretations>("interpretations", Interpretations);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_leo>("leo", Leo);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_libra>("libra", Libra);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_meta>("meta", Meta);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_modernPlanets>("modernPlanets", ModernPlanets);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_pisces>("pisces", Pisces);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_planetaryWar>("planetaryWar", PlanetaryWar);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_sagittarius>("sagittarius", Sagittarius);

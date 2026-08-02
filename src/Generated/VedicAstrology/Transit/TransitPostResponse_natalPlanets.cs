@@ -18,7 +18,7 @@ namespace RoxyApi.VedicAstrology.Transit
         public double? House { get; set; }
         /// <summary>Sidereal longitude in degrees (0-360) using Lahiri ayanamsa.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet name (Sun through Ketu plus Lagna).</summary>
+        /// <summary>Graha name, Sun through Ketu. The Lagna is not one of these entries; it is a house frame rather than a body, and the natal house numbers on every entry are counted from it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

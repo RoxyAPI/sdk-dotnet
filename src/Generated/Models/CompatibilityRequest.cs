@@ -14,6 +14,10 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Sidereal frame (ayanamsa) the chart is cast in. &quot;lahiri&quot; is Lahiri/Chitrapaksha, the traditional Vedic standard used by most software, and is the default. &quot;raman&quot; is the B.V. Raman ayanamsa from Hindu Predictive Astrology, about 1.45 degrees below Lahiri. &quot;kp-newcomb&quot; and &quot;kp-old&quot; are the two Krishnamurti Paddhati frames. &quot;custom&quot; takes your own value in degrees via ayanamsaValue, for reconciling exactly against a specific reference program. The frame rotates the whole zodiac, so a graha sitting within 1.45 degrees of a boundary can change rashi or nakshatra when you switch: pick the one your reference software uses and keep it.</summary>
+        public global::RoxyApi.Models.CompatibilityRequest_ayanamsa? Ayanamsa { get; set; }
+        /// <summary>Custom ayanamsa value in degrees. When provided, overrides the computed ayanamsa from the selected type. Use for testing with specific ayanamsa values or matching a particular reference source.</summary>
+        public double? AyanamsaValue { get; set; }
         /// <summary>Birth data of the first person (typically the boy/groom in traditional Ashtakoot matching). Date, time, and location determine Moon nakshatra for koota scoring.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -36,6 +40,7 @@ namespace RoxyApi.Models
         public CompatibilityRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            Ayanamsa = global::RoxyApi.Models.CompatibilityRequest_ayanamsa.Lahiri;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -55,6 +60,8 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.Models.CompatibilityRequest_ayanamsa>(); } },
+                { "ayanamsaValue", n => { AyanamsaValue = n.GetDoubleValue(); } },
                 { "person1", n => { Person1 = n.GetObjectValue<global::RoxyApi.Models.CompatibilityRequest_person1>(global::RoxyApi.Models.CompatibilityRequest_person1.CreateFromDiscriminatorValue); } },
                 { "person2", n => { Person2 = n.GetObjectValue<global::RoxyApi.Models.CompatibilityRequest_person2>(global::RoxyApi.Models.CompatibilityRequest_person2.CreateFromDiscriminatorValue); } },
             };
@@ -66,6 +73,8 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::RoxyApi.Models.CompatibilityRequest_ayanamsa>("ayanamsa", Ayanamsa);
+            writer.WriteDoubleValue("ayanamsaValue", AyanamsaValue);
             writer.WriteObjectValue<global::RoxyApi.Models.CompatibilityRequest_person1>("person1", Person1);
             writer.WriteObjectValue<global::RoxyApi.Models.CompatibilityRequest_person2>("person2", Person2);
             writer.WriteAdditionalData(AdditionalData);

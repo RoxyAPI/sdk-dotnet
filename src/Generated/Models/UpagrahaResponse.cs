@@ -15,6 +15,14 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.UpagrahaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.UpagrahaResponse_frame Frame { get; set; }
+#endif
         /// <summary>Sun-longitude-based upagrahas (Dhuma group). Pure arithmetic from the Sun sidereal position. Dhuma = Sun + 133d20m, then each derived from the previous.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,6 +64,7 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.UpagrahaResponse_frame>(global::RoxyApi.Models.UpagrahaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "sunBased", n => { SunBased = n.GetCollectionOfObjectValues<global::RoxyApi.Models.UpagrahaResponse_sunBased>(global::RoxyApi.Models.UpagrahaResponse_sunBased.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "timeBased", n => { TimeBased = n.GetCollectionOfObjectValues<global::RoxyApi.Models.UpagrahaResponse_timeBased>(global::RoxyApi.Models.UpagrahaResponse_timeBased.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -67,6 +76,7 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::RoxyApi.Models.UpagrahaResponse_frame>("frame", Frame);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.UpagrahaResponse_sunBased>("sunBased", SunBased);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.UpagrahaResponse_timeBased>("timeBased", TimeBased);
             writer.WriteAdditionalData(AdditionalData);

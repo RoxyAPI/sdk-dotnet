@@ -27,6 +27,14 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Which signification vocabulary produced the houseThemes keywords in this response, echoing the focus query parameter. Always present, and &quot;general&quot; when the parameter was omitted. Read it to label a rendered house legend, or to tell two cached responses apart when only one asked for the finance lens.</summary>
         public global::RoxyApi.Models.BhavChalitResponse_focus? Focus { get; set; }
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.BhavChalitResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.BhavChalitResponse_frame Frame { get; set; }
+#endif
         /// <summary>All nine grahas with both their Chalit bhava and their whole-sign Rashi house, plus a moved flag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -83,6 +91,7 @@ namespace RoxyApi.Models
                 { "ascendant", n => { Ascendant = n.GetDoubleValue(); } },
                 { "bhavas", n => { Bhavas = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BhavChalitResponse_bhavas>(global::RoxyApi.Models.BhavChalitResponse_bhavas.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.Models.BhavChalitResponse_focus>(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.BhavChalitResponse_frame>(global::RoxyApi.Models.BhavChalitResponse_frame.CreateFromDiscriminatorValue); } },
                 { "grahas", n => { Grahas = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BhavChalitResponse_grahas>(global::RoxyApi.Models.BhavChalitResponse_grahas.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "houseSystem", n => { HouseSystem = n.GetStringValue(); } },
                 { "houseThemes", n => { HouseThemes = n.GetObjectValue<global::RoxyApi.Models.BhavChalitResponse_houseThemes>(global::RoxyApi.Models.BhavChalitResponse_houseThemes.CreateFromDiscriminatorValue); } },
@@ -100,6 +109,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("ascendant", Ascendant);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BhavChalitResponse_bhavas>("bhavas", Bhavas);
             writer.WriteEnumValue<global::RoxyApi.Models.BhavChalitResponse_focus>("focus", Focus);
+            writer.WriteObjectValue<global::RoxyApi.Models.BhavChalitResponse_frame>("frame", Frame);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BhavChalitResponse_grahas>("grahas", Grahas);
             writer.WriteStringValue("houseSystem", HouseSystem);
             writer.WriteObjectValue<global::RoxyApi.Models.BhavChalitResponse_houseThemes>("houseThemes", HouseThemes);

@@ -30,6 +30,14 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.SadhesatiResponse_effects Effects { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.SadhesatiResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.SadhesatiResponse_frame Frame { get; set; }
+#endif
         /// <summary>Whether Sade Sati is currently active, Saturn transiting 12th, 1st, or 2nd house from natal Moon</summary>
         public bool? Present { get; set; }
         /// <summary>Traditional Vedic remedies for Shani Sade Sati including Shani mantras, donations, and worship</summary>
@@ -77,6 +85,7 @@ namespace RoxyApi.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "effects", n => { Effects = n.GetObjectValue<global::RoxyApi.Models.SadhesatiResponse_effects>(global::RoxyApi.Models.SadhesatiResponse_effects.CreateFromDiscriminatorValue); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.SadhesatiResponse_frame>(global::RoxyApi.Models.SadhesatiResponse_frame.CreateFromDiscriminatorValue); } },
                 { "present", n => { Present = n.GetBoolValue(); } },
                 { "remedies", n => { Remedies = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "severity", n => { Severity = n.GetEnumValue<global::RoxyApi.Models.SadhesatiResponse_severity>(); } },
@@ -92,6 +101,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<global::RoxyApi.Models.SadhesatiResponse_effects>("effects", Effects);
+            writer.WriteObjectValue<global::RoxyApi.Models.SadhesatiResponse_frame>("frame", Frame);
             writer.WriteBoolValue("present", Present);
             writer.WriteCollectionOfPrimitiveValues<string>("remedies", Remedies);
             writer.WriteEnumValue<global::RoxyApi.Models.SadhesatiResponse_severity>("severity", Severity);

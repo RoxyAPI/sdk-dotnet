@@ -22,6 +22,14 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.NavamsaResponse_chart Chart { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.NavamsaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.NavamsaResponse_frame Frame { get; set; }
+#endif
         /// <summary>Planets that are Vargottama (same sign in D1 and D9)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,6 +72,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "chart", n => { Chart = n.GetObjectValue<global::RoxyApi.Models.NavamsaResponse_chart>(global::RoxyApi.Models.NavamsaResponse_chart.CreateFromDiscriminatorValue); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.NavamsaResponse_frame>(global::RoxyApi.Models.NavamsaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "vargottama", n => { Vargottama = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "vargottamaExplanation", n => { VargottamaExplanation = n.GetStringValue(); } },
             };
@@ -76,6 +85,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.Models.NavamsaResponse_chart>("chart", Chart);
+            writer.WriteObjectValue<global::RoxyApi.Models.NavamsaResponse_frame>("frame", Frame);
             writer.WriteCollectionOfPrimitiveValues<string>("vargottama", Vargottama);
             writer.WriteStringValue("vargottamaExplanation", VargottamaExplanation);
             writer.WriteAdditionalData(AdditionalData);

@@ -23,6 +23,14 @@ namespace RoxyApi.Models
 #else
         public List<global::RoxyApi.Models.AshtakavargaResponse_bhinnashtakavarga> Bhinnashtakavarga { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.AshtakavargaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.AshtakavargaResponse_frame Frame { get; set; }
+#endif
         /// <summary>Reduced Bhinnashtakavarga after two-step Shodhana (purification) per BPHS Ch. 67-68. Step 1: Trikona Shodhana subtracts minimum bindu among trine groups (1-5-9, 2-6-10, 3-7-11, 4-8-12). Step 2: Ekadipati Shodhana adjusts dual-lordship sign pairs (Mars: Aries/Scorpio, Venus: Taurus/Libra, Mercury: Gemini/Virgo, Jupiter: Sagittarius/Pisces, Saturn: Capricorn/Aquarius). Used as input for Shodhya Pinda planetary strength.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -89,6 +97,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "bhinnashtakavarga", n => { Bhinnashtakavarga = n.GetCollectionOfObjectValues<global::RoxyApi.Models.AshtakavargaResponse_bhinnashtakavarga>(global::RoxyApi.Models.AshtakavargaResponse_bhinnashtakavarga.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.AshtakavargaResponse_frame>(global::RoxyApi.Models.AshtakavargaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "reducedBhinnashtakavarga", n => { ReducedBhinnashtakavarga = n.GetCollectionOfObjectValues<global::RoxyApi.Models.AshtakavargaResponse_reducedBhinnashtakavarga>(global::RoxyApi.Models.AshtakavargaResponse_reducedBhinnashtakavarga.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "reducedSarvashtakavarga", n => { ReducedSarvashtakavarga = n.GetObjectValue<global::RoxyApi.Models.AshtakavargaResponse_reducedSarvashtakavarga>(global::RoxyApi.Models.AshtakavargaResponse_reducedSarvashtakavarga.CreateFromDiscriminatorValue); } },
                 { "sarvashtakavarga", n => { Sarvashtakavarga = n.GetObjectValue<global::RoxyApi.Models.AshtakavargaResponse_sarvashtakavarga>(global::RoxyApi.Models.AshtakavargaResponse_sarvashtakavarga.CreateFromDiscriminatorValue); } },
@@ -104,6 +113,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.AshtakavargaResponse_bhinnashtakavarga>("bhinnashtakavarga", Bhinnashtakavarga);
+            writer.WriteObjectValue<global::RoxyApi.Models.AshtakavargaResponse_frame>("frame", Frame);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.AshtakavargaResponse_reducedBhinnashtakavarga>("reducedBhinnashtakavarga", ReducedBhinnashtakavarga);
             writer.WriteObjectValue<global::RoxyApi.Models.AshtakavargaResponse_reducedSarvashtakavarga>("reducedSarvashtakavarga", ReducedSarvashtakavarga);
             writer.WriteObjectValue<global::RoxyApi.Models.AshtakavargaResponse_sarvashtakavarga>("sarvashtakavarga", Sarvashtakavarga);

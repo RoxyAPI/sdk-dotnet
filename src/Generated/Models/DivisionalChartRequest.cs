@@ -15,6 +15,10 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Sidereal frame (ayanamsa) the chart is cast in. &quot;lahiri&quot; is Lahiri/Chitrapaksha, the traditional Vedic standard used by most software, and is the default. &quot;raman&quot; is the B.V. Raman ayanamsa from Hindu Predictive Astrology, about 1.45 degrees below Lahiri. &quot;kp-newcomb&quot; and &quot;kp-old&quot; are the two Krishnamurti Paddhati frames. &quot;custom&quot; takes your own value in degrees via ayanamsaValue, for reconciling exactly against a specific reference program. The frame rotates the whole zodiac, so a graha sitting within 1.45 degrees of a boundary can change rashi or nakshatra when you switch: pick the one your reference software uses and keep it.</summary>
+        public global::RoxyApi.Models.DivisionalChartRequest_ayanamsa? Ayanamsa { get; set; }
+        /// <summary>Custom ayanamsa value in degrees. When provided, overrides the computed ayanamsa from the selected type. Use for testing with specific ayanamsa values or matching a particular reference source.</summary>
+        public double? AyanamsaValue { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas).</summary>
         public Date? Date { get; set; }
         /// <summary>Divisional chart number. Each division reveals a specific life area. Supported: 2 (Hora, wealth), 3 (Drekkana, siblings), 4 (Chaturthamsa, property), 7 (Saptamsa, children), 9 (Navamsa, marriage), 10 (Dasamsa, career), 12 (Dwadasamsa, parents), 16 (Shodasamsa, vehicles), 20 (Vimsamsa, spirituality), 24 (Chaturvimsamsa, education), 27 (Bhamsa, strength), 30 (Trimsamsa, misfortunes), 40 (Khavedamsa, merit), 45 (Akshavedamsa, character), 60 (Shashtiamsa, past life karma).</summary>
@@ -39,6 +43,7 @@ namespace RoxyApi.Models
         public DivisionalChartRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            Ayanamsa = global::RoxyApi.Models.DivisionalChartRequest_ayanamsa.Lahiri;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -58,6 +63,8 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.Models.DivisionalChartRequest_ayanamsa>(); } },
+                { "ayanamsaValue", n => { AyanamsaValue = n.GetDoubleValue(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "division", n => { Division = n.GetIntValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
@@ -73,6 +80,8 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::RoxyApi.Models.DivisionalChartRequest_ayanamsa>("ayanamsa", Ayanamsa);
+            writer.WriteDoubleValue("ayanamsaValue", AyanamsaValue);
             writer.WriteDateValue("date", Date);
             writer.WriteIntValue("division", Division);
             writer.WriteDoubleValue("latitude", Latitude);

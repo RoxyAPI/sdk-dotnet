@@ -30,6 +30,14 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.KalsarpaResponse_effects Effects { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.KalsarpaResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.KalsarpaResponse_frame Frame { get; set; }
+#endif
         /// <summary>Whether Kalsarpa dosha (Kalsarpa yoga) is present, all planets hemmed between Rahu-Ketu axis</summary>
         public bool? Present { get; set; }
         /// <summary>Traditional Vedic remedies for Kalsarpa dosha including puja, mantras, and spiritual practices</summary>
@@ -77,6 +85,7 @@ namespace RoxyApi.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "effects", n => { Effects = n.GetObjectValue<global::RoxyApi.Models.KalsarpaResponse_effects>(global::RoxyApi.Models.KalsarpaResponse_effects.CreateFromDiscriminatorValue); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.KalsarpaResponse_frame>(global::RoxyApi.Models.KalsarpaResponse_frame.CreateFromDiscriminatorValue); } },
                 { "present", n => { Present = n.GetBoolValue(); } },
                 { "remedies", n => { Remedies = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "severity", n => { Severity = n.GetEnumValue<global::RoxyApi.Models.KalsarpaResponse_severity>(); } },
@@ -92,6 +101,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<global::RoxyApi.Models.KalsarpaResponse_effects>("effects", Effects);
+            writer.WriteObjectValue<global::RoxyApi.Models.KalsarpaResponse_frame>("frame", Frame);
             writer.WriteBoolValue("present", Present);
             writer.WriteCollectionOfPrimitiveValues<string>("remedies", Remedies);
             writer.WriteEnumValue<global::RoxyApi.Models.KalsarpaResponse_severity>("severity", Severity);

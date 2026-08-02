@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Dosha.Manglik
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ManglikRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/manglik", pathParameters)
+        public ManglikRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/manglik{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Dosha.Manglik
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ManglikRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/manglik", rawUrl)
+        public ManglikRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/manglik{?lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Dosha.Manglik
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Models.ManglikResponse?> PostAsync(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.ManglikResponse?> PostAsync(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Manglik.ManglikRequestBuilder.ManglikRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Models.ManglikResponse> PostAsync(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.ManglikResponse> PostAsync(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Manglik.ManglikRequestBuilder.ManglikRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,11 +74,11 @@ namespace RoxyApi.VedicAstrology.Dosha.Manglik
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Manglik.ManglikRequestBuilder.ManglikRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.ManglikRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Manglik.ManglikRequestBuilder.ManglikRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.Dosha.Manglik
         public global::RoxyApi.VedicAstrology.Dosha.Manglik.ManglikRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Dosha.Manglik.ManglikRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Detect Manglik dosha (Kuja dosha, Mars dosha) based on Mars position in inauspicious houses (1, 2, 4, 7, 8, 12) from Lagna. Accurate mangal dosha calculator for matrimonial compatibility checks in Vedic astrology. Returns severity levels (Mild/Moderate/Severe) and cancellation factors. Essential for kundli matching for marriage, manglik compatibility, and marriage astrology in matrimonial sites. Includes exceptions that reduce manglik dosha effects.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ManglikRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Dosha.Manglik.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

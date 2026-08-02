@@ -46,7 +46,7 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public string TransitDatetime { get; set; }
 #endif
-        /// <summary>Current planetary positions overlaid on the natal chart with house placements and aspects.</summary>
+        /// <summary>Current planetary positions overlaid on the natal chart with house placements, aspects, and the Gochara Kaksha verdict for each graha.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets>? TransitingPlanets { get; set; }

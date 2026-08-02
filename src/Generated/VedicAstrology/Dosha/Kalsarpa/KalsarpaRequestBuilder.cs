@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Dosha.Kalsarpa
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public KalsarpaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/kalsarpa", pathParameters)
+        public KalsarpaRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/kalsarpa{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Dosha.Kalsarpa
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public KalsarpaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/kalsarpa", rawUrl)
+        public KalsarpaRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/kalsarpa{?lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Dosha.Kalsarpa
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Models.KalsarpaResponse?> PostAsync(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.KalsarpaResponse?> PostAsync(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Kalsarpa.KalsarpaRequestBuilder.KalsarpaRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Models.KalsarpaResponse> PostAsync(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.KalsarpaResponse> PostAsync(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Kalsarpa.KalsarpaRequestBuilder.KalsarpaRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,11 +74,11 @@ namespace RoxyApi.VedicAstrology.Dosha.Kalsarpa
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Kalsarpa.KalsarpaRequestBuilder.KalsarpaRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.KalsarpaRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Kalsarpa.KalsarpaRequestBuilder.KalsarpaRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.Dosha.Kalsarpa
         public global::RoxyApi.VedicAstrology.Dosha.Kalsarpa.KalsarpaRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Dosha.Kalsarpa.KalsarpaRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Detect Kalsarpa dosha (Kalsarpa yoga) when all 7 planets are hemmed between Rahu-Ketu axis. Accurate kalsarpa dosha calculator identifying 12 types (Ananta, Kulik, Vasuki, Shankhapala, Padma, Mahapadma, Takshak, Karkotak, Shankhachud, Ghatak, Vishdhar, Sheshnag). Returns severity and effects based on Rahu house position. Essential for Vedic astrology dosha analysis, birth chart evaluation, and matrimonial compatibility. Considered significant dosha affecting life obstacles and spiritual growth.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class KalsarpaRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Dosha.Kalsarpa.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

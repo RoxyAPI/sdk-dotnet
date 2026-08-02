@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Dosha.Sadhesati
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SadhesatiRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/sadhesati", pathParameters)
+        public SadhesatiRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/sadhesati{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Dosha.Sadhesati
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SadhesatiRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/sadhesati", rawUrl)
+        public SadhesatiRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/dosha/sadhesati{?lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Dosha.Sadhesati
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Models.SadhesatiResponse?> PostAsync(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.SadhesatiResponse?> PostAsync(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Sadhesati.SadhesatiRequestBuilder.SadhesatiRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Models.SadhesatiResponse> PostAsync(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Models.SadhesatiResponse> PostAsync(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Sadhesati.SadhesatiRequestBuilder.SadhesatiRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,11 +74,11 @@ namespace RoxyApi.VedicAstrology.Dosha.Sadhesati
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Sadhesati.SadhesatiRequestBuilder.SadhesatiRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.Models.SadhesatiRequest body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Dosha.Sadhesati.SadhesatiRequestBuilder.SadhesatiRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.Dosha.Sadhesati
         public global::RoxyApi.VedicAstrology.Dosha.Sadhesati.SadhesatiRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Dosha.Sadhesati.SadhesatiRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Calculate Sadhesati (Sade Sati) periods when Saturn transits 12th, 1st, and 2nd houses from natal Moon. Accurate sade sati calculator with current status and phase identification (Rising/Peak/Setting). Shani sadhesati 7.5 year period tracker. Returns Saturn transit dates and effects on life. Essential for Saturn transit analysis, sadhesati remedies timing, and understanding challenging Saturn periods in Vedic astrology. Important for timing major life decisions.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class SadhesatiRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Dosha.Sadhesati.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

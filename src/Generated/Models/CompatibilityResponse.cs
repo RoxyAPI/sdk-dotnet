@@ -38,6 +38,14 @@ namespace RoxyApi.Models
 #else
         public List<string> Doshas { get; set; }
 #endif
+        /// <summary>The sidereal frame this response was computed in, so a cached or forwarded payload is self describing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.CompatibilityResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.CompatibilityResponse_frame Frame { get; set; }
+#endif
         /// <summary>True when percentage &gt;= 50% (18/36 minimum). Based on the traditional Ashtakoot Gun Milan threshold used by Vedic astrologers for kundli matching.</summary>
         public bool? IsCompatible { get; set; }
         /// <summary>Maximum possible Guna Milan score (always 36). The 36 points are distributed across 8 kootas (matching categories).</summary>
@@ -82,6 +90,7 @@ namespace RoxyApi.Models
                 { "breakdown", n => { Breakdown = n.GetCollectionOfObjectValues<global::RoxyApi.Models.CompatibilityResponse_breakdown>(global::RoxyApi.Models.CompatibilityResponse_breakdown.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "doshaCancellations", n => { DoshaCancellations = n.GetCollectionOfObjectValues<global::RoxyApi.Models.CompatibilityResponse_doshaCancellations>(global::RoxyApi.Models.CompatibilityResponse_doshaCancellations.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "doshas", n => { Doshas = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.CompatibilityResponse_frame>(global::RoxyApi.Models.CompatibilityResponse_frame.CreateFromDiscriminatorValue); } },
                 { "isCompatible", n => { IsCompatible = n.GetBoolValue(); } },
                 { "maxScore", n => { MaxScore = n.GetDoubleValue(); } },
                 { "percentage", n => { Percentage = n.GetDoubleValue(); } },
@@ -99,6 +108,7 @@ namespace RoxyApi.Models
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.CompatibilityResponse_breakdown>("breakdown", Breakdown);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.CompatibilityResponse_doshaCancellations>("doshaCancellations", DoshaCancellations);
             writer.WriteCollectionOfPrimitiveValues<string>("doshas", Doshas);
+            writer.WriteObjectValue<global::RoxyApi.Models.CompatibilityResponse_frame>("frame", Frame);
             writer.WriteBoolValue("isCompatible", IsCompatible);
             writer.WriteDoubleValue("maxScore", MaxScore);
             writer.WriteDoubleValue("percentage", Percentage);
