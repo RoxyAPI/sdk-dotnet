@@ -14,7 +14,7 @@ namespace RoxyApi.Tarot.Spreads.CelticCross
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The question property</summary>
+        /// <summary>Optional querent question to focus the Celtic Cross. It is echoed back on the reading and gives the ten positions their context. Omit for a general reading of the situation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Question { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Tarot.Spreads.CelticCross
 #else
         public string Question { get; set; }
 #endif
-        /// <summary>The seed property</summary>
+        /// <summary>Optional seed for reproducible results. The same seed always draws the same ten cards into the same Celtic Cross positions, which is what lets a reading be shared or re-rendered. Omit for a random draw.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Seed { get; set; }

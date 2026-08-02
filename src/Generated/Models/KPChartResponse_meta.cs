@@ -17,7 +17,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>KP Newcomb ayanamsa value in degrees. Precession correction applied to convert tropical to sidereal positions.</summary>
         public double? Ayanamsa { get; set; }
-        /// <summary>Ayanamsa system used (KP Newcomb).</summary>
+        /// <summary>Ayanamsa system used, echoing the ayanamsa field of the request: &quot;kp-newcomb&quot;, &quot;kp-old&quot;, &quot;lahiri&quot;, &quot;raman&quot; or &quot;custom&quot;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AyanamsaType { get; set; }

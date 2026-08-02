@@ -14,7 +14,7 @@ namespace RoxyApi.Usage
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The email property</summary>
+        /// <summary>Billing email the subscription is registered under.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Email { get; set; }
@@ -22,9 +22,9 @@ namespace RoxyApi.Usage
 #else
         public string Email { get; set; }
 #endif
-        /// <summary>The endDate property</summary>
+        /// <summary>ISO 8601 timestamp when the current billing period ends. A renewal extends this date in place. API access survives a cancelled or suspended status until this moment passes.</summary>
         public DateTimeOffset? EndDate { get; set; }
-        /// <summary>The plan property</summary>
+        /// <summary>Name of the subscription plan the API key belongs to. One flat plan covers every domain and the Remote MCP servers, so this is a quota tier, never a per product entitlement.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Plan { get; set; }
@@ -32,11 +32,11 @@ namespace RoxyApi.Usage
 #else
         public string Plan { get; set; }
 #endif
-        /// <summary>The remainingThisMonth property</summary>
+        /// <summary>Requests left before the monthly allowance is exhausted, floored at zero. Equal to requestsPerMonth minus usedThisMonth.</summary>
         public double? RemainingThisMonth { get; set; }
-        /// <summary>The requestsPerMonth property</summary>
+        /// <summary>Monthly request allowance for the plan. One request, API or MCP, equals one unit: there is no credit weighting and no per domain fee.</summary>
         public double? RequestsPerMonth { get; set; }
-        /// <summary>The status property</summary>
+        /// <summary>Subscription lifecycle state. Values: active, cancelled (no longer renewing but usable until endDate), suspended (payment failed, usable until endDate), expired (past endDate), pending (checkout started, payment not captured).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Status { get; set; }
@@ -44,7 +44,7 @@ namespace RoxyApi.Usage
 #else
         public string Status { get; set; }
 #endif
-        /// <summary>The usedThisMonth property</summary>
+        /// <summary>Billable requests counted against the current calendar month. Read from the same counter the rate limiter enforces on, so it never reports a rosier number than the limit that will 429 you. Cached responses still count.</summary>
         public double? UsedThisMonth { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Usage.UsageGetResponse"/> and sets the default values.

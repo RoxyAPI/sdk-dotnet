@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The date property</summary>
+        /// <summary>Birth date the kundli was cast for, YYYY-MM-DD, echoed back from the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Date { get; set; }
@@ -23,11 +23,11 @@ namespace RoxyApi.Models
 #else
         public string Date { get; set; }
 #endif
-        /// <summary>The latitude property</summary>
+        /// <summary>Birth latitude in decimal degrees, echoed back from the request. Feeds the local sidereal time behind the Lagna.</summary>
         public double? Latitude { get; set; }
-        /// <summary>The longitude property</summary>
+        /// <summary>Birth longitude in decimal degrees, echoed back from the request. East is positive, west is negative.</summary>
         public double? Longitude { get; set; }
-        /// <summary>The time property</summary>
+        /// <summary>Birth time the kundli was cast for, 24-hour HH:MM:SS, echoed back from the request. Lagna moves roughly one rashi every two hours, so this is what pins the bhava-dependent yogas.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Time { get; set; }
@@ -35,7 +35,7 @@ namespace RoxyApi.Models
 #else
         public string Time { get; set; }
 #endif
-        /// <summary>The timezone property</summary>
+        /// <summary>Numeric UTC offset in decimal hours that the chart engine actually consumed. An IANA name sent on the request is resolved to its DST-correct offset upstream, so this is always a number.</summary>
         public double? Timezone { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.YogaDetectResponse_birthDetails"/> and sets the default values.

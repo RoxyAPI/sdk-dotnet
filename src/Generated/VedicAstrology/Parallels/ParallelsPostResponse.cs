@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Parallels
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>UTC datetime used for declination calculation (ISO 8601).</summary>
+        /// <summary>Datetime used for the declination calculation, echoed as the local civil date and time supplied in the request (YYYY-MM-DDTHH:MM:SS). The timezone field of the request is what converts it to the instant the declinations are computed for.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Datetime { get; set; }

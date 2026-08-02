@@ -18,9 +18,9 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected.</summary>
         public Date? Date { get; set; }
-        /// <summary>The latitude property</summary>
+        /// <summary>Natal birth latitude in decimal degrees, positive north. Sets the local sidereal time behind the natal Ascendant and house cusps that the transits are measured against.</summary>
         public double? Latitude { get; set; }
-        /// <summary>The longitude property</summary>
+        /// <summary>Natal birth longitude in decimal degrees, positive east and negative west. Example: New York -74.0060, London -0.1276, Sydney 151.2093.</summary>
         public double? Longitude { get; set; }
         /// <summary>Time in 24-hour format. Seconds are optional and default to 00 (14:30 becomes 14:30:00); a single-digit hour is zero-padded. Out-of-range values are rejected.</summary>
         public Time? Time { get; set; }

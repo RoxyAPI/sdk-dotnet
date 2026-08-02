@@ -47,7 +47,7 @@ namespace RoxyApi.Models
 #else
         public string Summary { get; set; }
 #endif
-        /// <summary>How long this transit influence lasts based on the transiting planet speed.</summary>
+        /// <summary>How long this transit influence lasts, localized. The bucket follows the speed of the transiting body: a few hours for the Moon, a few days for the Sun, Mercury, Venus and Mars, one to two weeks for Jupiter, several weeks for Saturn, and an extended period for Uranus, Neptune and Pluto.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Timing { get; set; }

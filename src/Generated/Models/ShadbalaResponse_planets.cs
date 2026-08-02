@@ -15,11 +15,11 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Chesta Bala (Motional Strength) in virupas. Based on planetary motion and retrogression. Retrograde planets score higher. Sun uses Ayana Chesta Bala (declination arc), Moon uses elongation from Sun. Other planets use Sheeghrochcha (mean anomaly) from Surya Siddhanta elements. Range 0 to 60.</summary>
+        /// <summary>Chesta Bala (Motional Strength) in virupas. Based on planetary motion, so a retrograde graha scores higher because it is closer to Earth and working hardest. The Sun uses its Ayana Bala and the Moon its elongation from the Sun, per BPHS. Mars, Mercury, Jupiter, Venus and Saturn use the Sheeghra Kendra, the arc between the sheeghrochcha and the mean of the true and mean longitudes, with the roles of the mean Sun and the graha swapped for Mercury and Venus. Range 0 to 60.</summary>
         public double? ChestaBala { get; set; }
         /// <summary>Dig Bala (Directional Strength) in virupas. Based on angular distance from the planets directional strength house. Sun and Mars are strong at MC (10th), Moon and Venus at IC (4th), Mercury and Jupiter at ASC (1st), Saturn at DSC (7th). Range 0 to 60.</summary>
         public double? DigBala { get; set; }
-        /// <summary>Drik Bala (Aspectual Strength) in virupas. Strength gained or lost from aspects received by other planets. Benefic aspects (Jupiter, Venus) add strength, malefic aspects (Sun, Mars, Saturn) reduce it. Can be negative when malefic aspects dominate. Uses Sputa Drishti with Vishesha (special) aspects for Mars, Jupiter, and Saturn.</summary>
+        /// <summary>Drik Bala (Aspectual Strength) in virupas. Strength gained or lost from the aspects a graha receives. Benefic aspects add strength and malefic aspects reduce it, so this value is negative when malefics dominate. Mercury counts as benefic or malefic by the company it keeps in its own sign, decided by count with the nearest graha breaking a tie, and the Moon by its paksha. Uses the graded Sputa Drishti curve of BPHS Ch. 26 with the Vishesha (special) aspects of Mars, Jupiter and Saturn applied at their precise DEGREE ranges rather than by whole sign.</summary>
         public double? DrikBala { get; set; }
         /// <summary>Ishta Phala (auspicious strength) in virupas. Derived from Uchcha Bala and Chesta Bala: sqrt(ucchaBala * chestaBala). Indicates the planets capacity to produce favorable results during its dasha and transit periods.</summary>
         public double? IshtaPhala { get; set; }

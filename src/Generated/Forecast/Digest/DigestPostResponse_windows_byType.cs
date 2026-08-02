@@ -15,19 +15,19 @@ namespace RoxyApi.Forecast.Digest
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The criticalDay property</summary>
+        /// <summary>Number of events in this window of this event type. Absent when the type did not occur, so a zero is never written.</summary>
         public double? CriticalDay { get; set; }
-        /// <summary>The dashaChange property</summary>
+        /// <summary>Number of events in this window of this event type. Absent when the type did not occur, so a zero is never written.</summary>
         public double? DashaChange { get; set; }
-        /// <summary>The eclipse property</summary>
+        /// <summary>Number of events in this window of this event type. Absent when the type did not occur, so a zero is never written.</summary>
         public double? Eclipse { get; set; }
-        /// <summary>The lunarPhase property</summary>
+        /// <summary>Number of events in this window of this event type. Absent when the type did not occur, so a zero is never written.</summary>
         public double? LunarPhase { get; set; }
-        /// <summary>The retrogradeStation property</summary>
+        /// <summary>Number of events in this window of this event type. Absent when the type did not occur, so a zero is never written.</summary>
         public double? RetrogradeStation { get; set; }
-        /// <summary>The signIngress property</summary>
+        /// <summary>Number of events in this window of this event type. Absent when the type did not occur, so a zero is never written.</summary>
         public double? SignIngress { get; set; }
-        /// <summary>The transitAspect property</summary>
+        /// <summary>Number of events in this window of this event type. Absent when the type did not occur, so a zero is never written.</summary>
         public double? TransitAspect { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Forecast.Digest.DigestPostResponse_windows_byType"/> and sets the default values.

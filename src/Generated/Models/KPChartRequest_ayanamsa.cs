@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Models
 {
-    /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula (most common for KP). &quot;kp-old&quot; uses the Krishnamurti original table. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa matching most traditional Vedic software. &quot;custom&quot; allows providing your own value via ayanamsaValue. Defaults to &quot;kp-newcomb&quot;.</summary>
+    /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula (most common for KP). &quot;kp-old&quot; uses the Krishnamurti original table. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa matching most traditional Vedic software. &quot;raman&quot; uses the B.V. Raman ayanamsa, about 1.45 degrees below Lahiri. &quot;custom&quot; allows providing your own value via ayanamsaValue. Defaults to &quot;kp-newcomb&quot;.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum KPChartRequest_ayanamsa
     {
@@ -18,6 +18,10 @@ namespace RoxyApi.Models
         [EnumMember(Value = "lahiri")]
         #pragma warning disable CS1591
         Lahiri,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "raman")]
+        #pragma warning disable CS1591
+        Raman,
         #pragma warning restore CS1591
         [EnumMember(Value = "custom")]
         #pragma warning disable CS1591

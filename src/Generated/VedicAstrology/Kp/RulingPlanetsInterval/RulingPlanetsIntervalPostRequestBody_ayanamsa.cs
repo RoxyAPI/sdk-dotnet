@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
 {
-    /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, the most common choice for KP astrology. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1 with constant precession rate. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa, matching most traditional Vedic software. Defaults to &quot;kp-newcomb&quot;.</summary>
+    /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, the most common choice for KP astrology. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1 with constant precession rate. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa, matching most traditional Vedic software. &quot;raman&quot; uses the B.V. Raman ayanamsa from Hindu Predictive Astrology, a recognised traditional school that sits about 1.45 degrees below Lahiri. Defaults to &quot;kp-newcomb&quot;.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum RulingPlanetsIntervalPostRequestBody_ayanamsa
     {
@@ -18,6 +18,10 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         [EnumMember(Value = "lahiri")]
         #pragma warning disable CS1591
         Lahiri,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "raman")]
+        #pragma warning disable CS1591
+        Raman,
         #pragma warning restore CS1591
     }
 }

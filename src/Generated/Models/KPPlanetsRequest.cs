@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula (most common for KP). &quot;kp-old&quot; uses the Krishnamurti original table. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa matching most traditional Vedic software. &quot;custom&quot; allows providing your own value via ayanamsaValue. Defaults to &quot;kp-newcomb&quot;.</summary>
+        /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula (most common for KP). &quot;kp-old&quot; uses the Krishnamurti original table. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa matching most traditional Vedic software. &quot;raman&quot; uses the B.V. Raman ayanamsa, about 1.45 degrees below Lahiri. &quot;custom&quot; allows providing your own value via ayanamsaValue. Defaults to &quot;kp-newcomb&quot;.</summary>
         public global::RoxyApi.Models.KPPlanetsRequest_ayanamsa? Ayanamsa { get; set; }
         /// <summary>Custom ayanamsa value in degrees. When provided, overrides the computed ayanamsa from the selected type. Use for testing with specific ayanamsa values or matching a particular reference source.</summary>
         public double? AyanamsaValue { get; set; }

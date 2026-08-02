@@ -46,7 +46,7 @@ namespace RoxyApi.Tarot.Spreads.ThreeCard
 #else
         public string Spread { get; set; }
 #endif
-        /// <summary>AI-generated narrative connecting all cards in the spread into a cohesive reading.</summary>
+        /// <summary>Narrative summary that connects the cards drawn across the spread positions into one cohesive reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Summary { get; set; }

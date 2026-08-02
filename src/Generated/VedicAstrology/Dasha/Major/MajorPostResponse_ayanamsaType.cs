@@ -19,6 +19,10 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         #pragma warning disable CS1591
         Lahiri,
         #pragma warning restore CS1591
+        [EnumMember(Value = "raman")]
+        #pragma warning disable CS1591
+        Raman,
+        #pragma warning restore CS1591
         [EnumMember(Value = "custom")]
         #pragma warning disable CS1591
         Custom,

@@ -15,11 +15,11 @@ namespace RoxyApi.Forecast.Digest
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The biorhythm property</summary>
+        /// <summary>Number of events in this window produced by this forecast domain. Absent when the domain contributed nothing, so a zero is never written.</summary>
         public double? Biorhythm { get; set; }
-        /// <summary>The vedic property</summary>
+        /// <summary>Number of events in this window produced by this forecast domain. Absent when the domain contributed nothing, so a zero is never written.</summary>
         public double? Vedic { get; set; }
-        /// <summary>The western property</summary>
+        /// <summary>Number of events in this window produced by this forecast domain. Absent when the domain contributed nothing, so a zero is never written.</summary>
         public double? Western { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Forecast.Digest.DigestPostResponse_windows_byDomain"/> and sets the default values.

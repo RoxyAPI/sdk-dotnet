@@ -23,7 +23,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
 #else
         public string Current { get; set; }
 #endif
-        /// <summary>End time of the current hora in UTC.</summary>
+        /// <summary>End time of the current hora, as local civil time in the requested timezone offset. Day horas and night horas have different lengths, so a hora is only approximately 60 minutes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? End { get; set; }
@@ -33,7 +33,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
 #endif
         /// <summary>Hora number within the day sequence (1-24).</summary>
         public double? Number { get; set; }
-        /// <summary>Start time of the current hora in UTC.</summary>
+        /// <summary>Start time of the current hora, as local civil time in the requested timezone offset. The first hora of any day begins at local sunrise, so this equals the sunrise field when the hora number is 1.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Start { get; set; }

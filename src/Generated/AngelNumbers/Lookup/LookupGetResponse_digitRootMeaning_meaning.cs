@@ -15,7 +15,7 @@ namespace RoxyApi.AngelNumbers.Lookup
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The career property</summary>
+        /// <summary>Career and vocation guidance for the root digit. Money and finances are returned separately in the money field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Career { get; set; }
@@ -23,7 +23,7 @@ namespace RoxyApi.AngelNumbers.Lookup
 #else
         public string Career { get; set; }
 #endif
-        /// <summary>The love property</summary>
+        /// <summary>Love and relationship interpretation of the root digit, for singles, couples, and those healing from past relationships.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Love { get; set; }
@@ -31,7 +31,7 @@ namespace RoxyApi.AngelNumbers.Lookup
 #else
         public string Love { get; set; }
 #endif
-        /// <summary>The money property</summary>
+        /// <summary>Money, finances, and material abundance guidance for the root digit, kept distinct from career.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Money { get; set; }
@@ -39,7 +39,7 @@ namespace RoxyApi.AngelNumbers.Lookup
 #else
         public string Money { get; set; }
 #endif
-        /// <summary>The spiritual property</summary>
+        /// <summary>Spiritual interpretation of the root digit, covering divine guidance, higher purpose, and metaphysical significance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Spiritual { get; set; }
@@ -47,7 +47,7 @@ namespace RoxyApi.AngelNumbers.Lookup
 #else
         public string Spiritual { get; set; }
 #endif
-        /// <summary>The twinFlame property</summary>
+        /// <summary>Twin flame interpretation of the root digit, covering union, separation, and spiritual growth.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TwinFlame { get; set; }

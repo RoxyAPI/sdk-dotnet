@@ -74,7 +74,7 @@ namespace RoxyApi.Crystals.Item
 #else
         public string ImageUrl { get; set; }
 #endif
-        /// <summary>Five to nine keywords capturing the core healing properties and spiritual themes of this crystal. Null when keyword data is unavailable.</summary>
+        /// <summary>Keywords capturing the core healing properties and spiritual themes of this crystal. The count varies by stone, from a single keyword up to twenty. Null when keyword data is unavailable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Keywords { get; set; }

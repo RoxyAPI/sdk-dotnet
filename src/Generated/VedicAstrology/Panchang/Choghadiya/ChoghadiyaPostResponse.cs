@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Choghadiya
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The date property</summary>
+        /// <summary>Calendar date the choghadiya muhurta table was computed for, YYYY-MM-DD, echoed back from the request. The day periods run from that date sunrise to its sunset, and the night periods run on to the next sunrise.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Date { get; set; }

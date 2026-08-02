@@ -15,7 +15,7 @@ namespace RoxyApi.HumanDesign.Variables
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The description property</summary>
+        /// <summary>How this Cognition discriminates what is correct for the body, and the conditions that sharpen it. Renderable as the Cognition paragraph of a Variables or Primary Health System report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -23,7 +23,7 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The label property</summary>
+        /// <summary>Name of the Cognition, the strongest sense. One of six read off the Determination Tone: Smell, Taste, Outer Vision, Inner Vision, Feeling, Touch.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Label { get; set; }

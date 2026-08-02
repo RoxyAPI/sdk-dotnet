@@ -23,13 +23,21 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
 #else
         public string Lord { get; set; }
 #endif
-        /// <summary>Hindu weekday name. Vara begins at local sunrise, not midnight.</summary>
+        /// <summary>Weekday name in English. Vara begins at local sunrise, not at midnight, so a time before sunrise belongs to the previous vara.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Vara name transliterated from Sanskrit: Ravivara, Somavara, Mangalavara, Budhavara, Guruvara, Shukravara, Shanivara. Use this rather than name for a Jyotish-facing reading, since it is the form the classical texts use and it does not change with the lang parameter.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SanskritName { get; set; }
+#nullable restore
+#else
+        public string SanskritName { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Panchang.Detailed.DetailedPostResponse_vara"/> and sets the default values.
@@ -58,6 +66,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
             {
                 { "lord", n => { Lord = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "sanskritName", n => { SanskritName = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -69,6 +78,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("lord", Lord);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("sanskritName", SanskritName);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

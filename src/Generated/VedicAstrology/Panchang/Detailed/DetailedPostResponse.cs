@@ -190,7 +190,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
 #else
         public global::RoxyApi.VedicAstrology.Panchang.Detailed.DetailedPostResponse_sunNakshatra SunNakshatra { get; set; }
 #endif
-        /// <summary>Local sunrise time in UTC. Marks the start of the Hindu day.</summary>
+        /// <summary>Local sunrise in the requested timezone as YYYY-MM-DDTHH:MM:SS, with no zone suffix. Marks the start of the Hindu day.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sunrise { get; set; }
@@ -198,7 +198,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
 #else
         public string Sunrise { get; set; }
 #endif
-        /// <summary>Local sunset time in UTC. Marks the transition to night muhurtas.</summary>
+        /// <summary>Local sunset in the requested timezone as YYYY-MM-DDTHH:MM:SS, with no zone suffix. Marks the transition to night muhurtas.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sunset { get; set; }

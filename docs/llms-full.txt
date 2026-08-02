@@ -286,6 +286,12 @@ await roxy.VedicAstrology.Arudha.PostAsync(new() { Date = new Date(1990, 7, 4), 
 
 // Get Chara Karakas including Atmakaraka - Jaimini Karaka Calculator API
 await roxy.VedicAstrology.CharaKarakas.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get Bhava Bala (house strength) for all twelve houses - Bhava Bala Calculator API
+await roxy.VedicAstrology.BhavaBala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+
+// Get the Bhav Chalit (Chalit Kundli) cusp-based house chart - Bhav Chalit API
+await roxy.VedicAstrology.BhavChalit.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 ```
 
 ---
@@ -443,22 +449,22 @@ await roxy.Tarot.Draw.PostAsync(new() { Count = 3, Seed = "user123-2025-12-27", 
 await roxy.Tarot.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 
 // Get yes/no answer to your question
-await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I accept the job offer?", Seed = "optional-seed" });
+await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I accept the job offer?", Seed = "reading-2f9c1a" });
 
 // Three-Card Spread: Past, Present, Future
-await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "What do I need to know about my career?", Seed = "optional-seed" });
+await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "What do I need to know about my career?", Seed = "reading-2f9c1a" });
 
 // Celtic Cross Spread (10 cards)
-await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I know about this situation?", Seed = "optional-seed" });
+await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I know about this situation?", Seed = "reading-2f9c1a" });
 
 // Love Spread (5 cards)
-await roxy.Tarot.Spreads.Love.PostAsync(new() { Question = "What do I need to know about my relationship?", Seed = "optional-seed" });
+await roxy.Tarot.Spreads.Love.PostAsync(new() { Question = "What do I need to know about my relationship?", Seed = "reading-2f9c1a" });
 
 // Career Spread (7 cards)
-await roxy.Tarot.Spreads.Career.PostAsync(new() { Question = "What do I need to know about my career path?", Seed = "optional-seed" });
+await roxy.Tarot.Spreads.Career.PostAsync(new() { Question = "What do I need to know about my career path?", Seed = "reading-2f9c1a" });
 
 // Custom Spread Builder
-await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread", Positions = [new() { Name = "Core Issue", Interpretation = "What is really going on" }], Question = "Optional question", Seed = "optional-seed" });
+await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread", Positions = [new() { Name = "Core Issue", Interpretation = "What is really going on" }], Question = "How do I move forward with this project?", Seed = "reading-2f9c1a" });
 ```
 
 ---

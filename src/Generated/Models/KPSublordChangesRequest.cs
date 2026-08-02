@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, the most common choice for KP astrology. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1 with constant precession rate. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa, matching most traditional Vedic software. Defaults to &quot;kp-newcomb&quot;.</summary>
+        /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, the most common choice for KP astrology. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1 with constant precession rate. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa, matching most traditional Vedic software. &quot;raman&quot; uses the B.V. Raman ayanamsa from Hindu Predictive Astrology, a recognised traditional school that sits about 1.45 degrees below Lahiri. Defaults to &quot;kp-newcomb&quot;.</summary>
         public global::RoxyApi.Models.KPSublordChangesRequest_ayanamsa? Ayanamsa { get; set; }
         /// <summary>End date for sublord change search (YYYY-MM-DD format)</summary>
         public Date? EndDate { get; set; }

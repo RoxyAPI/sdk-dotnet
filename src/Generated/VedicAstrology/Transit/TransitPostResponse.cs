@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Transit
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Birth datetime used for the natal chart (UTC ISO 8601).</summary>
+        /// <summary>Birth datetime used for the natal chart, echoed as the local civil date and time supplied in the request (YYYY-MM-DDTHH:MM:SS). Combine it with the timezone field to recover the UTC instant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? BirthDatetime { get; set; }
@@ -38,7 +38,7 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public List<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_natalPlanets> NatalPlanets { get; set; }
 #endif
-        /// <summary>Transit datetime being analyzed (UTC ISO 8601).</summary>
+        /// <summary>Transit datetime being analyzed, echoed as the local civil date and time supplied in the request (YYYY-MM-DDTHH:MM:SS). Gochar positions are computed for this moment and overlaid on the natal chart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TransitDatetime { get; set; }

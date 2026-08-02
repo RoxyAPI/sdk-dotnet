@@ -94,6 +94,8 @@ internal static class MethodReferenceExamples
         await roxy.VedicAstrology.Avasthas["dipta"].GetAsync();
         await roxy.VedicAstrology.Arudha.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.VedicAstrology.CharaKarakas.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+        await roxy.VedicAstrology.BhavaBala.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
+        await roxy.VedicAstrology.BhavChalit.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
         await roxy.Forecast.Timeline.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
         await roxy.Forecast.Transits.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 0 });
         await roxy.Forecast.SignificantDates.PostAsync(new() { BirthData = new() { Date = new Date(1990, 7, 15), Time = new Time(13, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0 }, StartDate = new Date(2026, 6, 1), EndDate = new Date(2026, 8, 30), MinSignificance = 70, DomainWeights = new() { Western = 1.5, Vedic = 1.5, Biorhythm = 1.5 } });
@@ -135,12 +137,12 @@ internal static class MethodReferenceExamples
         await roxy.Tarot.Cards["fool"].GetAsync();
         await roxy.Tarot.Draw.PostAsync(new() { Count = 3, Seed = "user123-2025-12-27", AllowReversals = true, AllowDuplicates = false });
         await roxy.Tarot.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
-        await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I accept the job offer?", Seed = "optional-seed" });
-        await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "What do I need to know about my career?", Seed = "optional-seed" });
-        await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I know about this situation?", Seed = "optional-seed" });
-        await roxy.Tarot.Spreads.Love.PostAsync(new() { Question = "What do I need to know about my relationship?", Seed = "optional-seed" });
-        await roxy.Tarot.Spreads.Career.PostAsync(new() { Question = "What do I need to know about my career path?", Seed = "optional-seed" });
-        await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread", Positions = [new() { Name = "Core Issue", Interpretation = "What is really going on" }], Question = "Optional question", Seed = "optional-seed" });
+        await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I accept the job offer?", Seed = "reading-2f9c1a" });
+        await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "What do I need to know about my career?", Seed = "reading-2f9c1a" });
+        await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I know about this situation?", Seed = "reading-2f9c1a" });
+        await roxy.Tarot.Spreads.Love.PostAsync(new() { Question = "What do I need to know about my relationship?", Seed = "reading-2f9c1a" });
+        await roxy.Tarot.Spreads.Career.PostAsync(new() { Question = "What do I need to know about my career path?", Seed = "reading-2f9c1a" });
+        await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread", Positions = [new() { Name = "Core Issue", Interpretation = "What is really going on" }], Question = "How do I move forward with this project?", Seed = "reading-2f9c1a" });
         await roxy.Biorhythm.Reading.PostAsync(new() { BirthDate = new Date(1990, 7, 15), TargetDate = new Date(2026, 4, 10) });
         await roxy.Biorhythm.Forecast.PostAsync(new() { BirthDate = new Date(1990, 7, 15), StartDate = new Date(2026, 4, 1), EndDate = new Date(2026, 4, 30) });
         await roxy.Biorhythm.CriticalDays.PostAsync(new() { BirthDate = new Date(1990, 7, 15), StartDate = new Date(2026, 4, 1), EndDate = new Date(2026, 6, 30) });

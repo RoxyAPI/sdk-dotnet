@@ -6,6 +6,8 @@ using RoxyApi.VedicAstrology.Arudha;
 using RoxyApi.VedicAstrology.Ashtakavarga;
 using RoxyApi.VedicAstrology.Aspects;
 using RoxyApi.VedicAstrology.Avasthas;
+using RoxyApi.VedicAstrology.BhavChalit;
+using RoxyApi.VedicAstrology.BhavaBala;
 using RoxyApi.VedicAstrology.BirthChart;
 using RoxyApi.VedicAstrology.CharaKarakas;
 using RoxyApi.VedicAstrology.Compatibility;
@@ -55,6 +57,16 @@ namespace RoxyApi.VedicAstrology
         public global::RoxyApi.VedicAstrology.Avasthas.AvasthasRequestBuilder Avasthas
         {
             get => new global::RoxyApi.VedicAstrology.Avasthas.AvasthasRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The bhavaBala property</summary>
+        public global::RoxyApi.VedicAstrology.BhavaBala.BhavaBalaRequestBuilder BhavaBala
+        {
+            get => new global::RoxyApi.VedicAstrology.BhavaBala.BhavaBalaRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The bhavChalit property</summary>
+        public global::RoxyApi.VedicAstrology.BhavChalit.BhavChalitRequestBuilder BhavChalit
+        {
+            get => new global::RoxyApi.VedicAstrology.BhavChalit.BhavChalitRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The birthChart property</summary>
         public global::RoxyApi.VedicAstrology.BirthChart.BirthChartRequestBuilder BirthChart

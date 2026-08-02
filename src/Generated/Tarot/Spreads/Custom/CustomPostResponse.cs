@@ -46,14 +46,6 @@ namespace RoxyApi.Tarot.Spreads.Custom
 #else
         public string Spread { get; set; }
 #endif
-        /// <summary>AI-generated narrative connecting all cards in the spread into a cohesive reading.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Summary { get; set; }
-#nullable restore
-#else
-        public string Summary { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Tarot.Spreads.Custom.CustomPostResponse"/> and sets the default values.
         /// </summary>
@@ -83,7 +75,6 @@ namespace RoxyApi.Tarot.Spreads.Custom
                 { "question", n => { Question = n.GetStringValue(); } },
                 { "seed", n => { Seed = n.GetStringValue(); } },
                 { "spread", n => { Spread = n.GetStringValue(); } },
-                { "summary", n => { Summary = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -97,7 +88,6 @@ namespace RoxyApi.Tarot.Spreads.Custom
             writer.WriteStringValue("question", Question);
             writer.WriteStringValue("seed", Seed);
             writer.WriteStringValue("spread", Spread);
-            writer.WriteStringValue("summary", Summary);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

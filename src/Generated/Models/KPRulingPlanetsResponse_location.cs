@@ -15,11 +15,11 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The latitude property</summary>
+        /// <summary>Observer latitude in decimal degrees, echoed back from the request. Sets the local sidereal time behind the KP ascendant and therefore the Lagna sublord.</summary>
         public double? Latitude { get; set; }
-        /// <summary>The longitude property</summary>
+        /// <summary>Observer longitude in decimal degrees, echoed back from the request. East is positive, west is negative.</summary>
         public double? Longitude { get; set; }
-        /// <summary>The timezone property</summary>
+        /// <summary>Numeric UTC offset in decimal hours the calculation consumed. An IANA name sent on the request is resolved to its DST-correct offset upstream, so this is always a number.</summary>
         public double? Timezone { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.KPRulingPlanetsResponse_location"/> and sets the default values.
