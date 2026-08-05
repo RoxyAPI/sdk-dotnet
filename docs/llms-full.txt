@@ -194,7 +194,7 @@ await roxy.VedicAstrology.Dosha.Kalsarpa.PostAsync(new() { Date = new Date(1990,
 // Check Sadhesati - Sade Sati Calculator API (Saturn Transit)
 await roxy.VedicAstrology.Dosha.Sadhesati.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
-// List all planetary yogas - 300+ Vedic Yoga Glossary
+// List all planetary yogas - 301 entry Vedic Yoga Glossary
 await roxy.VedicAstrology.Yoga.GetAsync();
 
 // Get yoga details by ID - Vedic Yoga Glossary Entry

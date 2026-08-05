@@ -32,7 +32,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Classical grouping, ALWAYS present on a detection verdict: one of the four Nabhasa families (asraya, dala, akriti, sankhya) or classical for the twelve single-combination yogas such as Gajakesari and the Pancha Mahapurusha. Group the verdict list on this key to render a Nabhasa result the way the tradition arranges it. Never translated, so grouping works identically under any lang.</summary>
         public global::RoxyApi.Models.YogaDetectResponse_yogas_family? Family { get; set; }
-        /// <summary>Glossary id (lowercase, kebab-case) matching an entry in the 300-entry planetary-yoga catalog. Use with GET /yoga/{id} to retrieve the full glossary text.</summary>
+        /// <summary>Glossary id (lowercase, kebab-case) matching an entry in the 301-entry planetary-yoga catalog. Use with GET /yoga/{id} to retrieve the full glossary text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }

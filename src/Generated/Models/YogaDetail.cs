@@ -24,7 +24,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Nabhasa family this yoga belongs to, present only on the 32 Nabhasa distribution yogas: asraya (3, sign modality), dala (2, benefic or malefic kendra tenancy), akriti (20, bhava shape) and sankhya (7, count of occupied rasis). Absent on every other glossary row, which is most of the catalog, since those are single-combination yogas outside the Nabhasa scheme. Group or filter the catalog on this key; it is never translated.</summary>
         public global::RoxyApi.Models.YogaDetail_family? Family { get; set; }
-        /// <summary>Glossary id (lowercase, kebab-case) matching an entry in the 300-entry planetary-yoga catalog. Use with GET /yoga/{id} to retrieve the full glossary text.</summary>
+        /// <summary>Glossary id (lowercase, kebab-case) matching an entry in the 301-entry planetary-yoga catalog. Use with GET /yoga/{id} to retrieve the full glossary text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
