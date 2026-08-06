@@ -304,7 +304,7 @@ await roxy.VedicAstrology.Heliacal.PostAsync(new() { Date = new Date(2026, 7, 25
 
 ## Forecast - `roxy.Forecast`
 
-Merge upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm critical days, and...
+Forecast API that merges upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm...
 
 ```csharp
 // Cross-domain forecast timeline - Transits, ingresses, stations, dasha changes, critical days
@@ -625,7 +625,7 @@ await roxy.AngelNumbers.Daily.PostAsync(new() { Seed = "user123", Date = new Dat
 
 ## Location and Timezone - `roxy.Location`
 
-City search and geocoding API with 23,000+ cities across 240+ countries, returning latitude, longitude, IANA timezone...
+Location and timezone API with city search and geocoding across 23,000+ cities in 240+ countries, returning latitude,...
 
 ```csharp
 // Search cities worldwide - Geocoding autocomplete with coordinates and timezone
