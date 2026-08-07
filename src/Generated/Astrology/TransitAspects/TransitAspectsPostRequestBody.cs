@@ -23,6 +23,8 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_aspectTypes?> AspectTypes { get; set; }
 #endif
+        /// <summary>House system used to divide the natal chart into 12 houses. Every house number in the response is read against these natal cusps, for the natal bodies and the transiting bodies alike. Placidus (default) is time sensitive and the most widely used in Western astrology. Whole Sign assigns one sign per house. Equal divides into 30 degree segments from the Ascendant. Koch emphasizes higher latitudes. Quadrant systems fall back to Whole Sign above the polar circle.</summary>
+        public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_houseSystem? HouseSystem { get; set; }
         /// <summary>Minimum aspect strength threshold (0-100). Higher values return only tighter, more potent aspects. Useful for filtering out wide-orb aspects.</summary>
         public double? MinStrength { get; set; }
         /// <summary>Natal chart birth details (date, time, location, timezone). Used to calculate natal planetary positions that transits are compared against.</summary>
@@ -51,6 +53,7 @@ namespace RoxyApi.Astrology.TransitAspects
         public TransitAspectsPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
+            HouseSystem = global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_houseSystem.Placidus;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -71,6 +74,7 @@ namespace RoxyApi.Astrology.TransitAspects
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "aspectTypes", n => { AspectTypes = n.GetCollectionOfEnumValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_aspectTypes>()?.AsList(); } },
+                { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_houseSystem>(); } },
                 { "minStrength", n => { MinStrength = n.GetDoubleValue(); } },
                 { "natalChart", n => { NatalChart = n.GetObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_natalChart>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_natalChart.CreateFromDiscriminatorValue); } },
                 { "planets", n => { Planets = n.GetCollectionOfEnumValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_planets>()?.AsList(); } },
@@ -86,6 +90,7 @@ namespace RoxyApi.Astrology.TransitAspects
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_aspectTypes>("aspectTypes", AspectTypes);
+            writer.WriteEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("minStrength", MinStrength);
             writer.WriteObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_natalChart>("natalChart", NatalChart);
             writer.WriteCollectionOfEnumValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody_planets>("planets", Planets);

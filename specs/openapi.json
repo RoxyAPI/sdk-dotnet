@@ -17570,6 +17570,18 @@
                     "maximum": 100,
                     "example": 50,
                     "description": "Minimum aspect strength threshold (0-100). Higher values return only tighter, more potent aspects. Useful for filtering out wide-orb aspects."
+                  },
+                  "houseSystem": {
+                    "type": "string",
+                    "enum": [
+                      "placidus",
+                      "whole-sign",
+                      "equal",
+                      "koch"
+                    ],
+                    "default": "placidus",
+                    "example": "placidus",
+                    "description": "House system used to divide the natal chart into 12 houses. Every house number in the response is read against these natal cusps, for the natal bodies and the transiting bodies alike. Placidus (default) is time sensitive and the most widely used in Western astrology. Whole Sign assigns one sign per house. Equal divides into 30 degree segments from the Ascendant. Koch emphasizes higher latitudes. Quadrant systems fall back to Whole Sign above the polar circle."
                   }
                 },
                 "required": [
@@ -17591,6 +17603,17 @@
                       "type": "string",
                       "example": "2026-02-03 12:00:00",
                       "description": "Date and time of the transit calculation."
+                    },
+                    "houseSystem": {
+                      "type": "string",
+                      "enum": [
+                        "placidus",
+                        "whole-sign",
+                        "equal",
+                        "koch"
+                      ],
+                      "example": "placidus",
+                      "description": "House system actually used for the natal cusps behind every house number in this response. Differs from the requested system only above the polar circle, where quadrant systems fall back to Whole Sign."
                     },
                     "transitPlanets": {
                       "type": "array",
@@ -17646,8 +17669,8 @@
                             "type": "integer",
                             "minimum": 1,
                             "maximum": 12,
-                            "example": 7,
-                            "description": "House placement (1-12). Determined by the selected house system and birth location."
+                            "example": 10,
+                            "description": "Natal house (1-12) this transiting body is currently passing through, read against the natal house cusps. This is the life area the transit activates, so it is driven by the natal birth time and location rather than by the transit moment."
                           },
                           "speed": {
                             "type": "number",
@@ -17671,7 +17694,7 @@
                           "isRetrograde"
                         ]
                       },
-                      "description": "Current transiting positions in the tropical zodiac. All 14 celestial bodies: the 10 classical planets (Sun through Pluto), the lunar nodes, Chiron, and Black Moon Lilith."
+                      "description": "Current transiting positions in the tropical zodiac, each placed in the natal house it is passing through. All 14 celestial bodies: the 10 classical planets (Sun through Pluto), the lunar nodes, Chiron, and Black Moon Lilith."
                     },
                     "natalPlanets": {
                       "type": "array",
@@ -17752,7 +17775,7 @@
                           "isRetrograde"
                         ]
                       },
-                      "description": "Natal (birth chart) planetary positions used as the baseline for transit aspect comparison."
+                      "description": "Natal (birth chart) planetary positions used as the baseline for transit aspect comparison, each placed in its natal house."
                     },
                     "aspects": {
                       "type": "array",
@@ -18071,6 +18094,7 @@
                   },
                   "required": [
                     "transitDate",
+                    "houseSystem",
                     "transitPlanets",
                     "natalPlanets",
                     "aspects",

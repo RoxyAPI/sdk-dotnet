@@ -16,7 +16,7 @@ namespace RoxyApi.Astrology.TransitAspects
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree within the zodiac sign (0-29.999). Indicates how far the planet has progressed through the sign.</summary>
         public double? Degree { get; set; }
-        /// <summary>House placement (1-12). Determined by the selected house system and birth location.</summary>
+        /// <summary>Natal house (1-12) this transiting body is currently passing through, read against the natal house cusps. This is the life area the transit activates, so it is driven by the natal birth time and location rather than by the transit moment.</summary>
         public int? House { get; set; }
         /// <summary>Whether the planet appears to move backward from Earth perspective. Retrograde periods signal review and introspection.</summary>
         public bool? IsRetrograde { get; set; }

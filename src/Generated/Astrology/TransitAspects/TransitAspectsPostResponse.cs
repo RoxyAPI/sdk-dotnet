@@ -22,7 +22,9 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects> Aspects { get; set; }
 #endif
-        /// <summary>Natal (birth chart) planetary positions used as the baseline for transit aspect comparison.</summary>
+        /// <summary>House system actually used for the natal cusps behind every house number in this response. Differs from the requested system only above the polar circle, where quadrant systems fall back to Whole Sign.</summary>
+        public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houseSystem? HouseSystem { get; set; }
+        /// <summary>Natal (birth chart) planetary positions used as the baseline for transit aspect comparison, each placed in its natal house.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets>? NatalPlanets { get; set; }
@@ -46,7 +48,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public string TransitDate { get; set; }
 #endif
-        /// <summary>Current transiting positions in the tropical zodiac. All 14 celestial bodies: the 10 classical planets (Sun through Pluto), the lunar nodes, Chiron, and Black Moon Lilith.</summary>
+        /// <summary>Current transiting positions in the tropical zodiac, each placed in the natal house it is passing through. All 14 celestial bodies: the 10 classical planets (Sun through Pluto), the lunar nodes, Chiron, and Black Moon Lilith.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_transitPlanets>? TransitPlanets { get; set; }
@@ -80,6 +82,7 @@ namespace RoxyApi.Astrology.TransitAspects
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "aspects", n => { Aspects = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houseSystem>(); } },
                 { "natalPlanets", n => { NatalPlanets = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "summary", n => { Summary = n.GetObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary.CreateFromDiscriminatorValue); } },
                 { "transitDate", n => { TransitDate = n.GetStringValue(); } },
@@ -94,6 +97,7 @@ namespace RoxyApi.Astrology.TransitAspects
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects>("aspects", Aspects);
+            writer.WriteEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houseSystem>("houseSystem", HouseSystem);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets>("natalPlanets", NatalPlanets);
             writer.WriteObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary>("summary", Summary);
             writer.WriteStringValue("transitDate", TransitDate);
