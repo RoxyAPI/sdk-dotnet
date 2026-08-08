@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
 #else
         public string Datetime { get; set; }
 #endif
-        /// <summary>Zodiac sign the planet is leaving (previous rashi).</summary>
+        /// <summary>Zodiac sign the planet is leaving (previous rashi). Always English. Use fromSignLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FromSign { get; set; }
@@ -38,15 +38,31 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
 #else
         public string FromSign { get; set; }
 #endif
+        /// <summary>Name of the sign being left, in the requested language, for display. Present only when lang is set to a language other than English.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FromSignLocalized { get; set; }
+#nullable restore
+#else
+        public string FromSignLocalized { get; set; }
+#endif
         /// <summary>Whether the planet is in retrograde motion (vakri) at the time of sign change. A retrograde ingress means the planet is moving backward into the previous sign, which carries different astrological significance than a direct (forward) ingress. Rahu and Ketu are always retrograde.</summary>
         public bool? IsRetrograde { get; set; }
-        /// <summary>Planet that changes sign (rashi) during this month. One of the Navagraha: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu.</summary>
+        /// <summary>Planet that changes sign (rashi) during this month. One of the Navagraha: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
 #nullable restore
 #else
         public string Planet { get; set; }
+#endif
+        /// <summary>Planet name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat planet exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
 #endif
         /// <summary>Time of the sign change (HH:MM, 24-hour). Adjusted to requested timezone. Precise to ~1 minute via binary search.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,13 +72,21 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
 #else
         public string Time { get; set; }
 #endif
-        /// <summary>Zodiac sign the planet is entering (new rashi transit).</summary>
+        /// <summary>Zodiac sign the planet is entering (new rashi transit). Always English. Use toSignLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ToSign { get; set; }
 #nullable restore
 #else
         public string ToSign { get; set; }
+#endif
+        /// <summary>Name of the sign being entered, in the requested language, for display. Present only when lang is set to a language other than English.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ToSignLocalized { get; set; }
+#nullable restore
+#else
+        public string ToSignLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_transitEvents"/> and sets the default values.
@@ -92,10 +116,13 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
                 { "date", n => { Date = n.GetStringValue(); } },
                 { "datetime", n => { Datetime = n.GetStringValue(); } },
                 { "fromSign", n => { FromSign = n.GetStringValue(); } },
+                { "fromSignLocalized", n => { FromSignLocalized = n.GetStringValue(); } },
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "time", n => { Time = n.GetStringValue(); } },
                 { "toSign", n => { ToSign = n.GetStringValue(); } },
+                { "toSignLocalized", n => { ToSignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -108,10 +135,13 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
             writer.WriteStringValue("date", Date);
             writer.WriteStringValue("datetime", Datetime);
             writer.WriteStringValue("fromSign", FromSign);
+            writer.WriteStringValue("fromSignLocalized", FromSignLocalized);
             writer.WriteBoolValue("isRetrograde", IsRetrograde);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("time", Time);
             writer.WriteStringValue("toSign", ToSign);
+            writer.WriteStringValue("toSignLocalized", ToSignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

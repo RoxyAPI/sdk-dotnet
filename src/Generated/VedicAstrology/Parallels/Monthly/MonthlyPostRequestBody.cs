@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Parallels.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Month number (1-12) for parallel analysis.</summary>
+        /// <summary>Month number (1-12) for parallel analysis. Defaults to the current month (UTC).</summary>
         public int? Month { get; set; }
         /// <summary>Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -24,7 +24,7 @@ namespace RoxyApi.VedicAstrology.Parallels.Monthly
 #else
         public global::RoxyApi.VedicAstrology.Parallels.Monthly.MonthlyPostRequestBody.MonthlyPostRequestBody_timezone Timezone { get; set; }
 #endif
-        /// <summary>Year for monthly parallel analysis (1900-2100).</summary>
+        /// <summary>Year for monthly parallel analysis (1900-2100). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Parallels.Monthly.MonthlyPostRequestBody"/> and sets the default values.

@@ -16,13 +16,21 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>House this body occupied in the birthplace chart (1-12).</summary>
         public double? NatalHouse { get; set; }
-        /// <summary>Body that occupies a different house after relocation.</summary>
+        /// <summary>Body that occupies a different house after relocation. Always English, whatever the lang parameter says. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
 #nullable restore
 #else
         public string Planet { get; set; }
+#endif
+        /// <summary>Body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
 #endif
         /// <summary>House this body occupies in the relocated chart (1-12).</summary>
         public double? RelocatedHouse { get; set; }
@@ -53,6 +61,7 @@ namespace RoxyApi.Models
             {
                 { "natalHouse", n => { NatalHouse = n.GetDoubleValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "relocatedHouse", n => { RelocatedHouse = n.GetDoubleValue(); } },
             };
         }
@@ -65,6 +74,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("natalHouse", NatalHouse);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteDoubleValue("relocatedHouse", RelocatedHouse);
             writer.WriteAdditionalData(AdditionalData);
         }

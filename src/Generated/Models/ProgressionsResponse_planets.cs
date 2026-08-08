@@ -30,7 +30,7 @@ namespace RoxyApi.Models
         public bool? IsRetrograde { get; set; }
         /// <summary>Progressed tropical ecliptic longitude in degrees (0 to 360).</summary>
         public double? Longitude { get; set; }
-        /// <summary>Body name in canonical English. One of the 10 classical planets, the lunar nodes, Chiron, or Black Moon Lilith.</summary>
+        /// <summary>Body name in canonical English. One of the 10 classical planets, the lunar nodes, Chiron, or Black Moon Lilith. Unchanged by the lang parameter, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -38,13 +38,29 @@ namespace RoxyApi.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Tropical zodiac sign the progressed body falls in.</summary>
+        /// <summary>Body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
+#endif
+        /// <summary>Tropical zodiac sign the progressed body falls in. Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>Daily motion of the body at the progressed instant in degrees per day. Negative values indicate retrograde motion.</summary>
         public double? Speed { get; set; }
@@ -79,7 +95,9 @@ namespace RoxyApi.Models
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
                 { "speed", n => { Speed = n.GetDoubleValue(); } },
             };
         }
@@ -96,7 +114,9 @@ namespace RoxyApi.Models
             writer.WriteBoolValue("isRetrograde", IsRetrograde);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteDoubleValue("speed", Speed);
             writer.WriteAdditionalData(AdditionalData);
         }

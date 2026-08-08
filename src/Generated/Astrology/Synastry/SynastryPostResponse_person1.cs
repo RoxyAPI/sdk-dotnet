@@ -23,13 +23,21 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant Ascendant { get; set; }
 #endif
-        /// <summary>Moon sign of this person. Emotional nature and inner needs.</summary>
+        /// <summary>Moon sign of this person. Emotional nature and inner needs. Always English, whatever the lang parameter says. Use moonSignLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MoonSign { get; set; }
 #nullable restore
 #else
         public string MoonSign { get; set; }
+#endif
+        /// <summary>Moon sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MoonSignLocalized { get; set; }
+#nullable restore
+#else
+        public string MoonSignLocalized { get; set; }
 #endif
         /// <summary>Display name if provided in the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,13 +55,21 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public List<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets> Planets { get; set; }
 #endif
-        /// <summary>Sun sign (zodiac sign) of this person. Core identity and ego expression.</summary>
+        /// <summary>Sun sign (zodiac sign) of this person. Core identity and ego expression. Always English, whatever the lang parameter says. Use sunSignLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SunSign { get; set; }
 #nullable restore
 #else
         public string SunSign { get; set; }
+#endif
+        /// <summary>Sun sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SunSignLocalized { get; set; }
+#nullable restore
+#else
+        public string SunSignLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1"/> and sets the default values.
@@ -82,9 +98,11 @@ namespace RoxyApi.Astrology.Synastry
             {
                 { "ascendant", n => { Ascendant = n.GetObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant>(global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant.CreateFromDiscriminatorValue); } },
                 { "moonSign", n => { MoonSign = n.GetStringValue(); } },
+                { "moonSignLocalized", n => { MoonSignLocalized = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "planets", n => { Planets = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets>(global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sunSign", n => { SunSign = n.GetStringValue(); } },
+                { "sunSignLocalized", n => { SunSignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -96,9 +114,11 @@ namespace RoxyApi.Astrology.Synastry
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant>("ascendant", Ascendant);
             writer.WriteStringValue("moonSign", MoonSign);
+            writer.WriteStringValue("moonSignLocalized", MoonSignLocalized);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets>("planets", Planets);
             writer.WriteStringValue("sunSign", SunSign);
+            writer.WriteStringValue("sunSignLocalized", SunSignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

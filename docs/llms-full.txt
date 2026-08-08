@@ -48,6 +48,9 @@ await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), 
 // Get planetary positions - Ephemeris calculator for all planets
 await roxy.Astrology.Planets.PostAsync(new() { Date = new Date(2025, 12, 18), Time = new Time(12, 0, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 
+// Monthly Ephemeris - Daily tropical planetary positions for a month
+await roxy.Astrology.Planets.Monthly.PostAsync(new() { Year = 2026, Month = 8 });
+
 // Get current moon phase - Lunar phase calculator with zodiac sign
 await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = new Time(12, 0, 0); c.QueryParameters.Timezone = "America/New_York"; });
 

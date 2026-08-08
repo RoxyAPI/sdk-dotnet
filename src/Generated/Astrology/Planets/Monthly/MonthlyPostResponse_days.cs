@@ -5,50 +5,47 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.Astrology.Synastry
+namespace RoxyApi.Astrology.Planets.Monthly
 {
-    /// <summary>
-    /// Ascendant position for person 1. Determines first house cusp and outward personality.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SynastryPostResponse_person1_ascendant : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class MonthlyPostResponse_days : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Degree within the Ascendant sign (0-29.999).</summary>
-        public double? Degree { get; set; }
-        /// <summary>Ascendant (rising sign) of this person. Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
+        /// <summary>Date in YYYY-MM-DD format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Sign { get; set; }
+        public string? Date { get; set; }
 #nullable restore
 #else
-        public string Sign { get; set; }
+        public string Date { get; set; }
 #endif
-        /// <summary>Ascendant sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+        /// <summary>Tropical positions of all 14 Western bodies on this date at noon UTC.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SignLocalized { get; set; }
+        public List<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions>? Positions { get; set; }
 #nullable restore
 #else
-        public string SignLocalized { get; set; }
+        public List<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions> Positions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days"/> and sets the default values.
         /// </summary>
-        public SynastryPostResponse_person1_ascendant()
+        public MonthlyPostResponse_days()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_ascendant();
+            return new global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,9 +55,8 @@ namespace RoxyApi.Astrology.Synastry
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "degree", n => { Degree = n.GetDoubleValue(); } },
-                { "sign", n => { Sign = n.GetStringValue(); } },
-                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
+                { "date", n => { Date = n.GetStringValue(); } },
+                { "positions", n => { Positions = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions>(global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -70,9 +66,8 @@ namespace RoxyApi.Astrology.Synastry
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("degree", Degree);
-            writer.WriteStringValue("sign", Sign);
-            writer.WriteStringValue("signLocalized", SignLocalized);
+            writer.WriteStringValue("date", Date);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions>("positions", Positions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

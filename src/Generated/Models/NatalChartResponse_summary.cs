@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Most represented element in the chart (Fire, Earth, Air, Water).</summary>
+        /// <summary>Most represented element in the chart (Fire, Earth, Air, Water). Always English, whatever the lang parameter says. Use dominantElementLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DominantElement { get; set; }
@@ -23,13 +23,29 @@ namespace RoxyApi.Models
 #else
         public string DominantElement { get; set; }
 #endif
-        /// <summary>Most represented modality in the chart (Cardinal, Fixed, Mutable).</summary>
+        /// <summary>Element name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DominantElementLocalized { get; set; }
+#nullable restore
+#else
+        public string DominantElementLocalized { get; set; }
+#endif
+        /// <summary>Most represented modality in the chart (Cardinal, Fixed, Mutable). Always English, whatever the lang parameter says. Use dominantModalityLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DominantModality { get; set; }
 #nullable restore
 #else
         public string DominantModality { get; set; }
+#endif
+        /// <summary>Modality name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DominantModalityLocalized { get; set; }
+#nullable restore
+#else
+        public string DominantModalityLocalized { get; set; }
 #endif
         /// <summary>Count of planets in each element. Shows elemental emphasis in the personality.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,13 +63,21 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.NatalChartResponse_summary_modalityDistribution ModalityDistribution { get; set; }
 #endif
-        /// <summary>Planets in retrograde motion at the time of birth.</summary>
+        /// <summary>Planets in retrograde motion at the time of birth. Always English, whatever the lang parameter says. Use retrogradePlanetsLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? RetrogradePlanets { get; set; }
 #nullable restore
 #else
         public List<string> RetrogradePlanets { get; set; }
+#endif
+        /// <summary>The same retrograde bodies in the requested language, for display only. Index aligned with retrogradePlanets, so entry n of one names entry n of the other. Present only when lang is set to a language other than English, since in English it would repeat retrogradePlanets exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? RetrogradePlanetsLocalized { get; set; }
+#nullable restore
+#else
+        public List<string> RetrogradePlanetsLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.NatalChartResponse_summary"/> and sets the default values.
@@ -81,10 +105,13 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "dominantElement", n => { DominantElement = n.GetStringValue(); } },
+                { "dominantElementLocalized", n => { DominantElementLocalized = n.GetStringValue(); } },
                 { "dominantModality", n => { DominantModality = n.GetStringValue(); } },
+                { "dominantModalityLocalized", n => { DominantModalityLocalized = n.GetStringValue(); } },
                 { "elementDistribution", n => { ElementDistribution = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_summary_elementDistribution>(global::RoxyApi.Models.NatalChartResponse_summary_elementDistribution.CreateFromDiscriminatorValue); } },
                 { "modalityDistribution", n => { ModalityDistribution = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_summary_modalityDistribution>(global::RoxyApi.Models.NatalChartResponse_summary_modalityDistribution.CreateFromDiscriminatorValue); } },
                 { "retrogradePlanets", n => { RetrogradePlanets = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "retrogradePlanetsLocalized", n => { RetrogradePlanetsLocalized = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -95,10 +122,13 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("dominantElement", DominantElement);
+            writer.WriteStringValue("dominantElementLocalized", DominantElementLocalized);
             writer.WriteStringValue("dominantModality", DominantModality);
+            writer.WriteStringValue("dominantModalityLocalized", DominantModalityLocalized);
             writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_summary_elementDistribution>("elementDistribution", ElementDistribution);
             writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_summary_modalityDistribution>("modalityDistribution", ModalityDistribution);
             writer.WriteCollectionOfPrimitiveValues<string>("retrogradePlanets", RetrogradePlanets);
+            writer.WriteCollectionOfPrimitiveValues<string>("retrogradePlanetsLocalized", RetrogradePlanetsLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

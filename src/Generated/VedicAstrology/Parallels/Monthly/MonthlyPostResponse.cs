@@ -22,9 +22,9 @@ namespace RoxyApi.VedicAstrology.Parallels.Monthly
 #else
         public List<global::RoxyApi.VedicAstrology.Parallels.Monthly.MonthlyPostResponse_events> Events { get; set; }
 #endif
-        /// <summary>Month of the parallel analysis.</summary>
+        /// <summary>Month of the parallel analysis. Echoes the month that was requested, or the current UTC month when it was omitted.</summary>
         public double? Month { get; set; }
-        /// <summary>Year of the parallel analysis.</summary>
+        /// <summary>Year of the parallel analysis. Echoes the year that was requested, or the current UTC year when it was omitted.</summary>
         public double? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Parallels.Monthly.MonthlyPostResponse"/> and sets the default values.

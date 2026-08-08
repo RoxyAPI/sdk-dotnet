@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.Synastry
 #endif
         /// <summary>Distance from exact aspect in degrees. Tighter orb means stronger influence.</summary>
         public double? Orb { get; set; }
-        /// <summary>Planet from person 1 chart.</summary>
+        /// <summary>Planet from person 1 chart. Always English, whatever the lang parameter says. Use planet1Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet1 { get; set; }
@@ -42,7 +42,15 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public string Planet1 { get; set; }
 #endif
-        /// <summary>Planet from person 2 chart.</summary>
+        /// <summary>Person 1 planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet1Localized { get; set; }
+#nullable restore
+#else
+        public string Planet1Localized { get; set; }
+#endif
+        /// <summary>Planet from person 2 chart. Always English, whatever the lang parameter says. Use planet2Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet2 { get; set; }
@@ -50,15 +58,31 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public string Planet2 { get; set; }
 #endif
+        /// <summary>Person 2 planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet2Localized { get; set; }
+#nullable restore
+#else
+        public string Planet2Localized { get; set; }
+#endif
         /// <summary>Aspect strength percentage (0-100) based on orb tightness.</summary>
         public double? Strength { get; set; }
-        /// <summary>Aspect type (CONJUNCTION, OPPOSITION, TRINE, SQUARE, SEXTILE, etc.).</summary>
+        /// <summary>Aspect type (CONJUNCTION, OPPOSITION, TRINE, SQUARE, SEXTILE, etc.). Always English, whatever the lang parameter says. Use typeLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }
 #nullable restore
 #else
         public string Type { get; set; }
+#endif
+        /// <summary>Aspect type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeLocalized { get; set; }
+#nullable restore
+#else
+        public string TypeLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_interAspects"/> and sets the default values.
@@ -90,9 +114,12 @@ namespace RoxyApi.Astrology.Synastry
                 { "meaning", n => { Meaning = n.GetObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_interAspects_meaning>(global::RoxyApi.Astrology.Synastry.SynastryPostResponse_interAspects_meaning.CreateFromDiscriminatorValue); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "planet1", n => { Planet1 = n.GetStringValue(); } },
+                { "planet1Localized", n => { Planet1Localized = n.GetStringValue(); } },
                 { "planet2", n => { Planet2 = n.GetStringValue(); } },
+                { "planet2Localized", n => { Planet2Localized = n.GetStringValue(); } },
                 { "strength", n => { Strength = n.GetDoubleValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
+                { "typeLocalized", n => { TypeLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -107,9 +134,12 @@ namespace RoxyApi.Astrology.Synastry
             writer.WriteObjectValue<global::RoxyApi.Astrology.Synastry.SynastryPostResponse_interAspects_meaning>("meaning", Meaning);
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteStringValue("planet1", Planet1);
+            writer.WriteStringValue("planet1Localized", Planet1Localized);
             writer.WriteStringValue("planet2", Planet2);
+            writer.WriteStringValue("planet2Localized", Planet2Localized);
             writer.WriteDoubleValue("strength", Strength);
             writer.WriteStringValue("type", Type);
+            writer.WriteStringValue("typeLocalized", TypeLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

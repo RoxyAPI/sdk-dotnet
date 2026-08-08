@@ -17,13 +17,21 @@ namespace RoxyApi.Astrology.Synastry
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree within the Ascendant sign (0-29.999).</summary>
         public double? Degree { get; set; }
-        /// <summary>Ascendant (rising sign) of this person.</summary>
+        /// <summary>Ascendant (rising sign) of this person. Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Ascendant sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_ascendant"/> and sets the default values.
@@ -52,6 +60,7 @@ namespace RoxyApi.Astrology.Synastry
             {
                 { "degree", n => { Degree = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -63,6 +72,7 @@ namespace RoxyApi.Astrology.Synastry
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("degree", Degree);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

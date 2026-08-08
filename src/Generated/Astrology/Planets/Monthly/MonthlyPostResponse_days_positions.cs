@@ -5,40 +5,38 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.Astrology.Synastry
+namespace RoxyApi.Astrology.Planets.Monthly
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class SynastryPostResponse_person1_planets : IAdditionalDataHolder, IParsable
+    public partial class MonthlyPostResponse_days_positions : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Degree within the sign (0-29.999).</summary>
-        public double? Degree { get; set; }
-        /// <summary>House this planet occupies in the person 1 chart (1-12).</summary>
-        public double? House { get; set; }
-        /// <summary>True when the planet is retrograde at this moment.</summary>
+        /// <summary>Degrees traversed within the current sign (0-30). Useful for precise transit tracking and for printing a position as sign plus degree.</summary>
+        public double? DegreeInSign { get; set; }
+        /// <summary>Whether the body is in apparent retrograde motion on this date. The lunar nodes are always retrograde and Black Moon Lilith is always direct.</summary>
         public bool? IsRetrograde { get; set; }
-        /// <summary>Ecliptic longitude in degrees (0-360) measured from 0 Aries. This is the value a wheel plots.</summary>
+        /// <summary>Tropical ecliptic longitude in degrees (0-360), measured from the vernal equinox. This is the Western zodiac, not the sidereal one, so the two differ by the ayanamsa of roughly 24 degrees.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet or point name. Matches the names used in interAspects. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
+        /// <summary>Body name, one of the 14 bodies Western astrology reads: Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Planet { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Planet { get; set; }
 #endif
-        /// <summary>Planet or point name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+        /// <summary>Body name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat planet exactly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NameLocalized { get; set; }
+        public string? PlanetLocalized { get; set; }
 #nullable restore
 #else
-        public string NameLocalized { get; set; }
+        public string PlanetLocalized { get; set; }
 #endif
-        /// <summary>Zodiac sign containing the planet. Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
+        /// <summary>Tropical zodiac sign the body occupies on this date. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
@@ -46,7 +44,7 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public string Sign { get; set; }
 #endif
-        /// <summary>Zodiac sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+        /// <summary>Zodiac sign name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat sign exactly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SignLocalized { get; set; }
@@ -55,21 +53,21 @@ namespace RoxyApi.Astrology.Synastry
         public string SignLocalized { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions"/> and sets the default values.
         /// </summary>
-        public SynastryPostResponse_person1_planets()
+        public MonthlyPostResponse_days_positions()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person1_planets();
+            return new global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days_positions();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,12 +77,11 @@ namespace RoxyApi.Astrology.Synastry
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "degree", n => { Degree = n.GetDoubleValue(); } },
-                { "house", n => { House = n.GetDoubleValue(); } },
+                { "degreeInSign", n => { DegreeInSign = n.GetDoubleValue(); } },
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
+                { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
                 { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
@@ -96,12 +93,11 @@ namespace RoxyApi.Astrology.Synastry
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("degree", Degree);
-            writer.WriteDoubleValue("house", House);
+            writer.WriteDoubleValue("degreeInSign", DegreeInSign);
             writer.WriteBoolValue("isRetrograde", IsRetrograde);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("nameLocalized", NameLocalized);
+            writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("sign", Sign);
             writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);

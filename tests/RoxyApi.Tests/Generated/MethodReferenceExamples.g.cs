@@ -17,6 +17,7 @@ internal static class MethodReferenceExamples
         await roxy.Astrology.PlanetMeanings["sun"].GetAsync();
         await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
         await roxy.Astrology.Planets.PostAsync(new() { Date = new Date(2025, 12, 18), Time = new Time(12, 0, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+        await roxy.Astrology.Planets.Monthly.PostAsync(new() { Year = 2026, Month = 8 });
         await roxy.Astrology.MoonPhase.Current.GetAsync(c => { c.QueryParameters.Date = new Date(2025, 12, 18); c.QueryParameters.Time = new Time(12, 0, 0); c.QueryParameters.Timezone = "America/New_York"; });
         await roxy.Astrology.MoonPhase.Upcoming.GetAsync(c => { c.QueryParameters.StartDate = new Date(2025, 12, 18); c.QueryParameters.Count = 8; });
         await roxy.Astrology.MoonPhase.Calendar[2026][3].GetAsync();

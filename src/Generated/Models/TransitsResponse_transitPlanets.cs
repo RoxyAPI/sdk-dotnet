@@ -22,7 +22,7 @@ namespace RoxyApi.Models
         public double? Latitude { get; set; }
         /// <summary>Tropical ecliptic longitude in degrees (0-360). Primary coordinate for sign and aspect calculation.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). The lunar nodes are the mean node; software using the true node may show node positions up to 1.75 degrees different.</summary>
+        /// <summary>Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees. The lunar nodes are the mean node; software using the true node may show node positions up to 1.75 degrees different.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -30,13 +30,29 @@ namespace RoxyApi.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Tropical zodiac sign the planet currently occupies. Changes when longitude crosses a 30-degree boundary.</summary>
+        /// <summary>Planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
+#endif
+        /// <summary>Tropical zodiac sign the planet currently occupies. Changes when longitude crosses a 30-degree boundary. Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>Daily motion in degrees per day. Negative values indicate retrograde motion.</summary>
         public double? Speed { get; set; }
@@ -70,7 +86,9 @@ namespace RoxyApi.Models
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
                 { "speed", n => { Speed = n.GetDoubleValue(); } },
             };
         }
@@ -86,7 +104,9 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteDoubleValue("speed", Speed);
             writer.WriteAdditionalData(AdditionalData);
         }

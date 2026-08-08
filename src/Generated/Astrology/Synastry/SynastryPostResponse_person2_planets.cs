@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Synastry
         public bool? IsRetrograde { get; set; }
         /// <summary>Ecliptic longitude in degrees (0-360) measured from 0 Aries. This is the value a wheel plots.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet or point name. Matches the names used in interAspects.</summary>
+        /// <summary>Planet or point name. Matches the names used in interAspects. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -30,13 +30,29 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Zodiac sign containing the planet.</summary>
+        /// <summary>Planet or point name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
+#endif
+        /// <summary>Zodiac sign containing the planet. Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Synastry.SynastryPostResponse_person2_planets"/> and sets the default values.
@@ -68,7 +84,9 @@ namespace RoxyApi.Astrology.Synastry
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -83,7 +101,9 @@ namespace RoxyApi.Astrology.Synastry
             writer.WriteBoolValue("isRetrograde", IsRetrograde);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

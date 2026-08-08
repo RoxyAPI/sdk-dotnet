@@ -36,7 +36,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Distance from exact aspect in degrees. Tighter orb means stronger influence.</summary>
         public double? Orb { get; set; }
-        /// <summary>First planet in the aspect pair.</summary>
+        /// <summary>First planet in the aspect pair. Always English, whatever the lang parameter says. Use planet1Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet1 { get; set; }
@@ -44,7 +44,15 @@ namespace RoxyApi.Models
 #else
         public string Planet1 { get; set; }
 #endif
-        /// <summary>Second planet in the aspect pair.</summary>
+        /// <summary>First planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet1Localized { get; set; }
+#nullable restore
+#else
+        public string Planet1Localized { get; set; }
+#endif
+        /// <summary>Second planet in the aspect pair. Always English, whatever the lang parameter says. Use planet2Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet2 { get; set; }
@@ -52,15 +60,31 @@ namespace RoxyApi.Models
 #else
         public string Planet2 { get; set; }
 #endif
+        /// <summary>Second planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet2Localized { get; set; }
+#nullable restore
+#else
+        public string Planet2Localized { get; set; }
+#endif
         /// <summary>Aspect strength (0-100) based on orb tightness.</summary>
         public double? Strength { get; set; }
-        /// <summary>Aspect type (CONJUNCTION, OPPOSITION, TRINE, SQUARE, SEXTILE, etc.).</summary>
+        /// <summary>Aspect type (CONJUNCTION, OPPOSITION, TRINE, SQUARE, SEXTILE, etc.). Always English, whatever the lang parameter says. Use typeLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }
 #nullable restore
 #else
         public string Type { get; set; }
+#endif
+        /// <summary>Aspect type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeLocalized { get; set; }
+#nullable restore
+#else
+        public string TypeLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.AspectsResponse_aspects"/> and sets the default values.
@@ -93,9 +117,12 @@ namespace RoxyApi.Models
                 { "meaning", n => { Meaning = n.GetObjectValue<global::RoxyApi.Models.AspectsResponse_aspects_meaning>(global::RoxyApi.Models.AspectsResponse_aspects_meaning.CreateFromDiscriminatorValue); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "planet1", n => { Planet1 = n.GetStringValue(); } },
+                { "planet1Localized", n => { Planet1Localized = n.GetStringValue(); } },
                 { "planet2", n => { Planet2 = n.GetStringValue(); } },
+                { "planet2Localized", n => { Planet2Localized = n.GetStringValue(); } },
                 { "strength", n => { Strength = n.GetDoubleValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
+                { "typeLocalized", n => { TypeLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -111,9 +138,12 @@ namespace RoxyApi.Models
             writer.WriteObjectValue<global::RoxyApi.Models.AspectsResponse_aspects_meaning>("meaning", Meaning);
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteStringValue("planet1", Planet1);
+            writer.WriteStringValue("planet1Localized", Planet1Localized);
             writer.WriteStringValue("planet2", Planet2);
+            writer.WriteStringValue("planet2Localized", Planet2Localized);
             writer.WriteDoubleValue("strength", Strength);
             writer.WriteStringValue("type", Type);
+            writer.WriteStringValue("typeLocalized", TypeLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

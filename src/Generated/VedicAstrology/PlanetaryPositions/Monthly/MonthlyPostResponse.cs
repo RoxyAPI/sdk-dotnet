@@ -22,9 +22,9 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
 #else
         public List<global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostResponse_days> Days { get; set; }
 #endif
-        /// <summary>Month of the ephemeris.</summary>
+        /// <summary>Month of the ephemeris. Echoes the month that was requested, or the current UTC month when it was omitted.</summary>
         public double? Month { get; set; }
-        /// <summary>Year of the ephemeris.</summary>
+        /// <summary>Year of the ephemeris. Echoes the year that was requested, or the current UTC year when it was omitted.</summary>
         public double? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostResponse"/> and sets the default values.

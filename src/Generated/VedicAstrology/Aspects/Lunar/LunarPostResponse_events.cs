@@ -44,13 +44,21 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
         public double? MoonLongitude { get; set; }
         /// <summary>Angular distance from exact lunar aspect in degrees. Smaller orb = stronger Moon influence.</summary>
         public double? Orb { get; set; }
-        /// <summary>Planet that the Moon forms an aspect with.</summary>
+        /// <summary>Planet that the Moon forms an aspect with. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
 #nullable restore
 #else
         public string Planet { get; set; }
+#endif
+        /// <summary>Planet name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat planet exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
 #endif
         /// <summary>Sidereal longitude of the aspected planet at the time of aspect.</summary>
         public double? PlanetLongitude { get; set; }
@@ -94,6 +102,7 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
                 { "moonLongitude", n => { MoonLongitude = n.GetDoubleValue(); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "planetLongitude", n => { PlanetLongitude = n.GetDoubleValue(); } },
                 { "time", n => { Time = n.GetStringValue(); } },
             };
@@ -112,6 +121,7 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
             writer.WriteDoubleValue("moonLongitude", MoonLongitude);
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteDoubleValue("planetLongitude", PlanetLongitude);
             writer.WriteStringValue("time", Time);
             writer.WriteAdditionalData(AdditionalData);

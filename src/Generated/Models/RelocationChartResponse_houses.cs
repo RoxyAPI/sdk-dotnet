@@ -28,6 +28,14 @@ namespace RoxyApi.Models
 #else
         public string Sign { get; set; }
 #endif
+        /// <summary>Zodiac sign name on this cusp in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.RelocationChartResponse_houses"/> and sets the default values.
         /// </summary>
@@ -57,6 +65,7 @@ namespace RoxyApi.Models
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "number", n => { Number = n.GetIntValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -70,6 +79,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteIntValue("number", Number);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

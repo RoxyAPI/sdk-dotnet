@@ -5,7 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.VedicAstrology.Aspects.Monthly
+namespace RoxyApi.Astrology.Planets.Monthly
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
@@ -14,22 +14,20 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>All planetary aspect events detected during the month, sorted chronologically by closest approach date.</summary>
+        /// <summary>Daily planetary position entries for the entire month.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse_events>? Events { get; set; }
+        public List<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days>? Days { get; set; }
 #nullable restore
 #else
-        public List<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse_events> Events { get; set; }
+        public List<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days> Days { get; set; }
 #endif
-        /// <summary>Month of the aspect analysis. Echoes the month that was requested, or the current UTC month when it was omitted.</summary>
+        /// <summary>Month of the ephemeris. Echoes the month that was requested, or the current UTC month when it was omitted.</summary>
         public double? Month { get; set; }
-        /// <summary>Timezone offset from UTC in hours that the event dates and times are reported in. Echoes the requested timezone.</summary>
-        public double? Timezone { get; set; }
-        /// <summary>Year of the aspect analysis. Echoes the year that was requested, or the current UTC year when it was omitted.</summary>
+        /// <summary>Year of the ephemeris. Echoes the year that was requested, or the current UTC year when it was omitted.</summary>
         public double? Year { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse"/> and sets the default values.
         /// </summary>
         public MonthlyPostResponse()
         {
@@ -38,12 +36,12 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse();
+            return new global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,9 +51,8 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "events", n => { Events = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse_events>(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse_events.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "days", n => { Days = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days>(global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "month", n => { Month = n.GetDoubleValue(); } },
-                { "timezone", n => { Timezone = n.GetDoubleValue(); } },
                 { "year", n => { Year = n.GetDoubleValue(); } },
             };
         }
@@ -66,9 +63,8 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse_events>("events", Events);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostResponse_days>("days", Days);
             writer.WriteDoubleValue("month", Month);
-            writer.WriteDoubleValue("timezone", Timezone);
             writer.WriteDoubleValue("year", Year);
             writer.WriteAdditionalData(AdditionalData);
         }

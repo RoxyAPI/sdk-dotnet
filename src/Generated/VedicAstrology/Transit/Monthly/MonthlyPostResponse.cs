@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Month of the monthly transit analysis.</summary>
+        /// <summary>Month of the monthly transit analysis. Echoes the month that was requested, or the current UTC month when it was omitted.</summary>
         public double? Month { get; set; }
         /// <summary>Planetary positions at the beginning of the month (day 1, 00:00 UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -24,6 +24,8 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
 #else
         public List<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_startingPositions> StartingPositions { get; set; }
 #endif
+        /// <summary>Timezone offset from UTC in hours that the event dates and times are reported in. Echoes the requested timezone.</summary>
+        public double? Timezone { get; set; }
         /// <summary>All sign change events during the month, sorted chronologically. Moon changes sign roughly every 2.25 days, Sun once a month, slow planets less frequently.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -32,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
 #else
         public List<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_transitEvents> TransitEvents { get; set; }
 #endif
-        /// <summary>Year of the monthly transit analysis.</summary>
+        /// <summary>Year of the monthly transit analysis. Echoes the year that was requested, or the current UTC year when it was omitted.</summary>
         public double? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse"/> and sets the default values.
@@ -61,6 +63,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
             {
                 { "month", n => { Month = n.GetDoubleValue(); } },
                 { "startingPositions", n => { StartingPositions = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_startingPositions>(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_startingPositions.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "timezone", n => { Timezone = n.GetDoubleValue(); } },
                 { "transitEvents", n => { TransitEvents = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_transitEvents>(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_transitEvents.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "year", n => { Year = n.GetDoubleValue(); } },
             };
@@ -74,6 +77,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("month", Month);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_startingPositions>("startingPositions", StartingPositions);
+            writer.WriteDoubleValue("timezone", Timezone);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_transitEvents>("transitEvents", TransitEvents);
             writer.WriteDoubleValue("year", Year);
             writer.WriteAdditionalData(AdditionalData);

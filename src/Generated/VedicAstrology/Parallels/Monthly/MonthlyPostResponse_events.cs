@@ -36,7 +36,7 @@ namespace RoxyApi.VedicAstrology.Parallels.Monthly
         public double? Dec2 { get; set; }
         /// <summary>Declination difference from exact parallel/contraparallel in degrees. Smaller = stronger.</summary>
         public double? Orb { get; set; }
-        /// <summary>First planet in the parallel or contraparallel pair.</summary>
+        /// <summary>First planet in the parallel or contraparallel pair. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planet1Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet1 { get; set; }
@@ -44,13 +44,29 @@ namespace RoxyApi.VedicAstrology.Parallels.Monthly
 #else
         public string Planet1 { get; set; }
 #endif
-        /// <summary>Second planet in the pair.</summary>
+        /// <summary>First planet name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat planet1 exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet1Localized { get; set; }
+#nullable restore
+#else
+        public string Planet1Localized { get; set; }
+#endif
+        /// <summary>Second planet in the pair. Always English, whatever the lang parameter says. Use planet2Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet2 { get; set; }
 #nullable restore
 #else
         public string Planet2 { get; set; }
+#endif
+        /// <summary>Second planet name in the requested language, for display. Present only when lang is set to a language other than English.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet2Localized { get; set; }
+#nullable restore
+#else
+        public string Planet2Localized { get; set; }
 #endif
         /// <summary>Time of closest declination match (HH:MM, 24-hour). Adjusted to requested timezone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -93,7 +109,9 @@ namespace RoxyApi.VedicAstrology.Parallels.Monthly
                 { "dec2", n => { Dec2 = n.GetDoubleValue(); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "planet1", n => { Planet1 = n.GetStringValue(); } },
+                { "planet1Localized", n => { Planet1Localized = n.GetStringValue(); } },
                 { "planet2", n => { Planet2 = n.GetStringValue(); } },
+                { "planet2Localized", n => { Planet2Localized = n.GetStringValue(); } },
                 { "time", n => { Time = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::RoxyApi.VedicAstrology.Parallels.Monthly.MonthlyPostResponse_events_type>(); } },
             };
@@ -111,7 +129,9 @@ namespace RoxyApi.VedicAstrology.Parallels.Monthly
             writer.WriteDoubleValue("dec2", Dec2);
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteStringValue("planet1", Planet1);
+            writer.WriteStringValue("planet1Localized", Planet1Localized);
             writer.WriteStringValue("planet2", Planet2);
+            writer.WriteStringValue("planet2Localized", Planet2Localized);
             writer.WriteStringValue("time", Time);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Parallels.Monthly.MonthlyPostResponse_events_type>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

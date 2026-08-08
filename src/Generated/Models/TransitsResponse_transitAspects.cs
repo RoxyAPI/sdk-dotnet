@@ -26,13 +26,21 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Whether the transiting planet is moving toward exactitude (applying) or away from it (separating). Applying aspects grow stronger.</summary>
         public bool? IsApplying { get; set; }
-        /// <summary>Natal planet being aspected.</summary>
+        /// <summary>Natal planet being aspected. Always English, whatever the lang parameter says. Use natalPlanetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NatalPlanet { get; set; }
 #nullable restore
 #else
         public string NatalPlanet { get; set; }
+#endif
+        /// <summary>Natal planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NatalPlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string NatalPlanetLocalized { get; set; }
 #endif
         /// <summary>Aspect nature: harmonious (trine, sextile), challenging (square, opposition), or neutral (conjunction).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,7 +54,7 @@ namespace RoxyApi.Models
         public double? Orb { get; set; }
         /// <summary>Aspect strength percentage (0-100) based on orb tightness, where 100 is exact.</summary>
         public double? Strength { get; set; }
-        /// <summary>Transiting planet forming the aspect.</summary>
+        /// <summary>Transiting planet forming the aspect. Always English, whatever the lang parameter says. Use transitPlanetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TransitPlanet { get; set; }
@@ -54,13 +62,29 @@ namespace RoxyApi.Models
 #else
         public string TransitPlanet { get; set; }
 #endif
-        /// <summary>Aspect type (CONJUNCTION, OPPOSITION, TRINE, SQUARE, SEXTILE, etc.).</summary>
+        /// <summary>Transiting planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TransitPlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string TransitPlanetLocalized { get; set; }
+#endif
+        /// <summary>Aspect type (CONJUNCTION, OPPOSITION, TRINE, SQUARE, SEXTILE, etc.). Always English, whatever the lang parameter says. Use typeLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }
 #nullable restore
 #else
         public string Type { get; set; }
+#endif
+        /// <summary>Aspect type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeLocalized { get; set; }
+#nullable restore
+#else
+        public string TypeLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.TransitsResponse_transitAspects"/> and sets the default values.
@@ -91,11 +115,14 @@ namespace RoxyApi.Models
                 { "interpretation", n => { Interpretation = n.GetObjectValue<global::RoxyApi.Models.TransitsResponse_transitAspects_interpretation>(global::RoxyApi.Models.TransitsResponse_transitAspects_interpretation.CreateFromDiscriminatorValue); } },
                 { "isApplying", n => { IsApplying = n.GetBoolValue(); } },
                 { "natalPlanet", n => { NatalPlanet = n.GetStringValue(); } },
+                { "natalPlanetLocalized", n => { NatalPlanetLocalized = n.GetStringValue(); } },
                 { "nature", n => { Nature = n.GetStringValue(); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "strength", n => { Strength = n.GetDoubleValue(); } },
                 { "transitPlanet", n => { TransitPlanet = n.GetStringValue(); } },
+                { "transitPlanetLocalized", n => { TransitPlanetLocalized = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
+                { "typeLocalized", n => { TypeLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -109,11 +136,14 @@ namespace RoxyApi.Models
             writer.WriteObjectValue<global::RoxyApi.Models.TransitsResponse_transitAspects_interpretation>("interpretation", Interpretation);
             writer.WriteBoolValue("isApplying", IsApplying);
             writer.WriteStringValue("natalPlanet", NatalPlanet);
+            writer.WriteStringValue("natalPlanetLocalized", NatalPlanetLocalized);
             writer.WriteStringValue("nature", Nature);
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteDoubleValue("strength", Strength);
             writer.WriteStringValue("transitPlanet", TransitPlanet);
+            writer.WriteStringValue("transitPlanetLocalized", TransitPlanetLocalized);
             writer.WriteStringValue("type", Type);
+            writer.WriteStringValue("typeLocalized", TypeLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

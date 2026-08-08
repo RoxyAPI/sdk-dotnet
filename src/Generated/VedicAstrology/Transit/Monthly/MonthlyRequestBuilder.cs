@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MonthlyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/transit/monthly", pathParameters)
+        public MonthlyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/transit/monthly{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MonthlyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/transit/monthly", rawUrl)
+        public MonthlyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/transit/monthly{?lang*}", rawUrl)
         {
         }
         /// <summary>
-        /// Get all planetary sign (rashi) changes for a given month. Shows when each planet transitions from one zodiac sign to another. Covers all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Includes starting positions at the beginning of the month. Essential for transit prediction, monthly horoscope generation, and muhurta planning. Monthly planetary transit API, gochar calendar, rashi parivartan dates.
+        /// Get all planetary sign (rashi) changes for a given month. Shows when each planet transitions from one zodiac sign to another. Covers all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Includes starting positions at the beginning of the month. Omit year and month to get the month in progress, so a published gochar calendar stays current without a redeploy. Essential for transit prediction, monthly horoscope generation, and muhurta planning. Monthly planetary transit API, gochar calendar, rashi parivartan dates.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse> PostAsync(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse> PostAsync(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -67,18 +67,18 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get all planetary sign (rashi) changes for a given month. Shows when each planet transitions from one zodiac sign to another. Covers all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Includes starting positions at the beginning of the month. Essential for transit prediction, monthly horoscope generation, and muhurta planning. Monthly planetary transit API, gochar calendar, rashi parivartan dates.
+        /// Get all planetary sign (rashi) changes for a given month. Shows when each planet transitions from one zodiac sign to another. Covers all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Includes starting positions at the beginning of the month. Omit year and month to get the month in progress, so a published gochar calendar stays current without a redeploy. Essential for transit prediction, monthly horoscope generation, and muhurta planning. Monthly planetary transit API, gochar calendar, rashi parivartan dates.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
         public global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Get all planetary sign (rashi) changes for a given month. Shows when each planet transitions from one zodiac sign to another. Covers all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Includes starting positions at the beginning of the month. Omit year and month to get the month in progress, so a published gochar calendar stays current without a redeploy. Essential for transit prediction, monthly horoscope generation, and muhurta planning. Monthly planetary transit API, gochar calendar, rashi parivartan dates.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class MonthlyRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Transit.Monthly.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

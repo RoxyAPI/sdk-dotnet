@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MonthlyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/monthly", pathParameters)
+        public MonthlyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/monthly{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MonthlyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/monthly", rawUrl)
+        public MonthlyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/monthly{?lang*}", rawUrl)
         {
         }
         /// <summary>
-        /// Calculate all planetary aspect events (excluding Moon) for a given month. Detects 22 aspect types. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of closest approach using ternary search refinement. Uses degree-based aspect methodology on sidereal positions (Lahiri ayanamsa). For Moon-specific aspects, use the /aspects/lunar endpoint. Essential for transit timing, muhurta selection, and monthly astrological forecasting. Monthly planetary aspects API, graha drishti calendar, mutual aspect ephemeris, minor aspects.
+        /// Calculate all planetary aspect events (excluding Moon) for a given month. Detects 22 aspect types. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of closest approach using ternary search refinement. Uses degree-based aspect methodology on sidereal positions (Lahiri ayanamsa). Omit year and month to get the month in progress, so a published aspect calendar stays current without a redeploy. For Moon-specific aspects, use the /aspects/lunar endpoint. Essential for transit timing, muhurta selection, and monthly astrological forecasting. Monthly planetary aspects API, graha drishti calendar, mutual aspect ephemeris, minor aspects.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -67,18 +67,18 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate all planetary aspect events (excluding Moon) for a given month. Detects 22 aspect types. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of closest approach using ternary search refinement. Uses degree-based aspect methodology on sidereal positions (Lahiri ayanamsa). For Moon-specific aspects, use the /aspects/lunar endpoint. Essential for transit timing, muhurta selection, and monthly astrological forecasting. Monthly planetary aspects API, graha drishti calendar, mutual aspect ephemeris, minor aspects.
+        /// Calculate all planetary aspect events (excluding Moon) for a given month. Detects 22 aspect types. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of closest approach using ternary search refinement. Uses degree-based aspect methodology on sidereal positions (Lahiri ayanamsa). Omit year and month to get the month in progress, so a published aspect calendar stays current without a redeploy. For Moon-specific aspects, use the /aspects/lunar endpoint. Essential for transit timing, muhurta selection, and monthly astrological forecasting. Monthly planetary aspects API, graha drishti calendar, mutual aspect ephemeris, minor aspects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyRequestBuilder.MonthlyRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         public global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Calculate all planetary aspect events (excluding Moon) for a given month. Detects 22 aspect types. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of closest approach using ternary search refinement. Uses degree-based aspect methodology on sidereal positions (Lahiri ayanamsa). Omit year and month to get the month in progress, so a published aspect calendar stays current without a redeploy. For Moon-specific aspects, use the /aspects/lunar endpoint. Essential for transit timing, muhurta selection, and monthly astrological forecasting. Monthly planetary aspects API, graha drishti calendar, mutual aspect ephemeris, minor aspects.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class MonthlyRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Aspects.Monthly.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LunarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/lunar", pathParameters)
+        public LunarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/lunar{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LunarRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/lunar", rawUrl)
+        public LunarRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/aspects/lunar{?lang*}", rawUrl)
         {
         }
         /// <summary>
-        /// Track all lunar aspect events for a given month including major and minor aspects. The Moon traverses approximately 13 degrees per day, forming 22 aspect types with each planet. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of each Moon aspect event with ternary search refinement to the minute. Essential for muhurta selection, daily panchang analysis, and chandra gochar predictions. Monthly lunar aspects API, Moon transit calendar, chandra drishti ephemeris, minor lunar aspects.
+        /// Track all lunar aspect events for a given month including major and minor aspects. The Moon traverses approximately 13 degrees per day, forming 22 aspect types with each planet. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of each Moon aspect event with ternary search refinement to the minute. Omit year and month to get the month in progress, so a published lunar calendar stays current without a redeploy. Essential for muhurta selection, daily panchang analysis, and chandra gochar predictions. Monthly lunar aspects API, Moon transit calendar, chandra drishti ephemeris, minor lunar aspects.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarRequestBuilder.LunarRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse> PostAsync(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarRequestBuilder.LunarRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -67,18 +67,18 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Track all lunar aspect events for a given month including major and minor aspects. The Moon traverses approximately 13 degrees per day, forming 22 aspect types with each planet. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of each Moon aspect event with ternary search refinement to the minute. Essential for muhurta selection, daily panchang analysis, and chandra gochar predictions. Monthly lunar aspects API, Moon transit calendar, chandra drishti ephemeris, minor lunar aspects.
+        /// Track all lunar aspect events for a given month including major and minor aspects. The Moon traverses approximately 13 degrees per day, forming 22 aspect types with each planet. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of each Moon aspect event with ternary search refinement to the minute. Omit year and month to get the month in progress, so a published lunar calendar stays current without a redeploy. Essential for muhurta selection, daily panchang analysis, and chandra gochar predictions. Monthly lunar aspects API, Moon transit calendar, chandra drishti ephemeris, minor lunar aspects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarRequestBuilder.LunarRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarRequestBuilder.LunarRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
         public global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Track all lunar aspect events for a given month including major and minor aspects. The Moon traverses approximately 13 degrees per day, forming 22 aspect types with each planet. 5 major (conjunction, opposition, trine, square, sextile) and 17 minor (vigintile, semi-sextile, undecile, semi-quintile, novile, semi-square, septile, quintile, binovile, centile, biseptile, tredecile, sesqui-square, bi-quintile, quincunx, triseptile, quadranovile). Returns exact date and time of each Moon aspect event with ternary search refinement to the minute. Omit year and month to get the month in progress, so a published lunar calendar stays current without a redeploy. Essential for muhurta selection, daily panchang analysis, and chandra gochar predictions. Monthly lunar aspects API, Moon transit calendar, chandra drishti ephemeris, minor lunar aspects.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class LunarRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.Aspects.Lunar.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

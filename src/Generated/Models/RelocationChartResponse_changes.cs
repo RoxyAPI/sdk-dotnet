@@ -15,13 +15,21 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Bodies within three degrees of a relocated angle (Ascendant, Imum Coeli, Descendant, or Midheaven), where their influence is strongest at this location.</summary>
+        /// <summary>Bodies within three degrees of a relocated angle (Ascendant, Imum Coeli, Descendant, or Midheaven), where their influence is strongest at this location. Always English, whatever the lang parameter says. Use angularPlanetsLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? AngularPlanets { get; set; }
 #nullable restore
 #else
         public List<string> AngularPlanets { get; set; }
+#endif
+        /// <summary>The same angular bodies in the requested language, for display only. Index aligned with angularPlanets. Present only when lang is set to a language other than English.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AngularPlanetsLocalized { get; set; }
+#nullable restore
+#else
+        public List<string> AngularPlanetsLocalized { get; set; }
 #endif
         /// <summary>Whether the Ascendant sign differs between the birthplace chart and the relocated chart.</summary>
         public bool? AscendantSignChanged { get; set; }
@@ -69,6 +77,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "angularPlanets", n => { AngularPlanets = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "angularPlanetsLocalized", n => { AngularPlanetsLocalized = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "ascendantSignChanged", n => { AscendantSignChanged = n.GetBoolValue(); } },
                 { "direction", n => { Direction = n.GetStringValue(); } },
                 { "distanceKm", n => { DistanceKm = n.GetDoubleValue(); } },
@@ -83,6 +92,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("angularPlanets", AngularPlanets);
+            writer.WriteCollectionOfPrimitiveValues<string>("angularPlanetsLocalized", AngularPlanetsLocalized);
             writer.WriteBoolValue("ascendantSignChanged", AscendantSignChanged);
             writer.WriteStringValue("direction", Direction);
             writer.WriteDoubleValue("distanceKm", DistanceKm);

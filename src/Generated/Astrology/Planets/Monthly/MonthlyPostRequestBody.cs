@@ -5,7 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
+namespace RoxyApi.Astrology.Planets.Monthly
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
@@ -14,29 +14,26 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa - standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
-        public global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody_coordinateSystem? CoordinateSystem { get; set; }
-        /// <summary>Month number (1-12) for ephemeris. Defaults to the current month (UTC).</summary>
+        /// <summary>Month number (1-12) for the ephemeris. Defaults to the current month (UTC).</summary>
         public int? Month { get; set; }
-        /// <summary>Year for monthly ephemeris (1900-2100). Defaults to the current year (UTC).</summary>
+        /// <summary>Year for the monthly ephemeris (1900-2100). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostRequestBody"/> and sets the default values.
         /// </summary>
         public MonthlyPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
-            CoordinateSystem = global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody_coordinateSystem.Sidereal;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody();
+            return new global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +43,6 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "coordinateSystem", n => { CoordinateSystem = n.GetEnumValue<global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody_coordinateSystem>(); } },
                 { "month", n => { Month = n.GetIntValue(); } },
                 { "year", n => { Year = n.GetIntValue(); } },
             };
@@ -58,7 +54,6 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostRequestBody_coordinateSystem>("coordinateSystem", CoordinateSystem);
             writer.WriteIntValue("month", Month);
             writer.WriteIntValue("year", Year);
             writer.WriteAdditionalData(AdditionalData);

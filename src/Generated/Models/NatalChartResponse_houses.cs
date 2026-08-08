@@ -20,13 +20,21 @@ namespace RoxyApi.Models
         public double? Longitude { get; set; }
         /// <summary>House number (1-12).</summary>
         public double? Number { get; set; }
-        /// <summary>Zodiac sign on this house cusp.</summary>
+        /// <summary>Zodiac sign on this house cusp. Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name on this cusp in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.NatalChartResponse_houses"/> and sets the default values.
@@ -57,6 +65,7 @@ namespace RoxyApi.Models
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "number", n => { Number = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -70,6 +79,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteDoubleValue("number", Number);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

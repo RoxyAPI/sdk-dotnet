@@ -16,7 +16,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Sidereal longitude at the start of the month.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet (graha) name. One of the 9 Navagraha used in Vedic transit (Gochar) analysis.</summary>
+        /// <summary>Planet (graha) name. One of the 9 Navagraha used in Vedic transit (Gochar) analysis. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
@@ -24,13 +24,29 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
 #else
         public string Planet { get; set; }
 #endif
-        /// <summary>Zodiac sign (rashi) the planet occupies at the start of the month.</summary>
+        /// <summary>Planet name in the requested language, for display. Present only when lang is set to a language other than English.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
+#endif
+        /// <summary>Zodiac sign (rashi) the planet occupies at the start of the month. Always English. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name in the requested language, for display. Present only when lang is set to a language other than English.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostResponse_startingPositions"/> and sets the default values.
@@ -59,7 +75,9 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
             {
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -71,7 +89,9 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

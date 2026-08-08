@@ -20,7 +20,7 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
         public bool? IsRetrograde { get; set; }
         /// <summary>Sidereal ecliptic longitude in degrees (0-360) using Lahiri ayanamsa.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet name, one of the Navagraha (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu).</summary>
+        /// <summary>Planet name, one of the Navagraha (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
@@ -28,13 +28,29 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
 #else
         public string Planet { get; set; }
 #endif
-        /// <summary>Zodiac sign (rashi) the planet occupies on this date.</summary>
+        /// <summary>Planet name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat planet exactly. Rahu and Ketu are rendered as the lunar nodes they are, so Spanish returns Nodo Norte and Nodo Sur while Hindi returns their Sanskrit names.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
+#endif
+        /// <summary>Zodiac sign (rashi) the planet occupies on this date. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat sign exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostResponse_days_positions"/> and sets the default values.
@@ -65,7 +81,9 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -79,7 +97,9 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
             writer.WriteBoolValue("isRetrograde", IsRetrograde);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

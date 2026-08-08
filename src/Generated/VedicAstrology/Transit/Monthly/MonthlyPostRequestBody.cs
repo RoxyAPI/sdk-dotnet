@@ -16,7 +16,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa - standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody_coordinateSystem? CoordinateSystem { get; set; }
-        /// <summary>Month number (1-12) for transit analysis.</summary>
+        /// <summary>Month number (1-12) for transit analysis. Defaults to the current month (UTC).</summary>
         public int? Month { get; set; }
         /// <summary>Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -26,7 +26,7 @@ namespace RoxyApi.VedicAstrology.Transit.Monthly
 #else
         public global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody.MonthlyPostRequestBody_timezone Timezone { get; set; }
 #endif
-        /// <summary>Year for monthly transit analysis (1900-2100).</summary>
+        /// <summary>Year for monthly transit analysis (1900-2100). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Transit.Monthly.MonthlyPostRequestBody"/> and sets the default values.

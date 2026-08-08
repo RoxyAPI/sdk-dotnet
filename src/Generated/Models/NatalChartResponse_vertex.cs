@@ -27,6 +27,14 @@ namespace RoxyApi.Models
 #else
         public string Sign { get; set; }
 #endif
+        /// <summary>Vertex sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.NatalChartResponse_vertex"/> and sets the default values.
         /// </summary>
@@ -55,6 +63,7 @@ namespace RoxyApi.Models
                 { "degree", n => { Degree = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,6 +76,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("degree", Degree);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

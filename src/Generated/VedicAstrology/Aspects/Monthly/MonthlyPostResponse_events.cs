@@ -42,7 +42,7 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
         public double? Distance { get; set; }
         /// <summary>Angular distance from exact aspect in degrees at closest approach. Smaller orb indicates a more powerful aspect.</summary>
         public double? Orb { get; set; }
-        /// <summary>First planet forming the aspect. One of the Navagraha, Sun through Ketu.</summary>
+        /// <summary>First planet forming the aspect. One of the Navagraha, Sun through Ketu. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planet1Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet1 { get; set; }
@@ -50,15 +50,31 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
 #else
         public string Planet1 { get; set; }
 #endif
+        /// <summary>First planet name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat planet1 exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet1Localized { get; set; }
+#nullable restore
+#else
+        public string Planet1Localized { get; set; }
+#endif
         /// <summary>Sidereal longitude of the first planet at time of aspect (Lahiri ayanamsa).</summary>
         public double? Planet1Longitude { get; set; }
-        /// <summary>Second planet forming the aspect.</summary>
+        /// <summary>Second planet forming the aspect. Always English, whatever the lang parameter says. Use planet2Localized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet2 { get; set; }
 #nullable restore
 #else
         public string Planet2 { get; set; }
+#endif
+        /// <summary>Second planet name in the requested language, for display. Present only when lang is set to a language other than English.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet2Localized { get; set; }
+#nullable restore
+#else
+        public string Planet2Localized { get; set; }
 #endif
         /// <summary>Sidereal longitude of the second planet at time of aspect.</summary>
         public double? Planet2Longitude { get; set; }
@@ -101,8 +117,10 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
                 { "distance", n => { Distance = n.GetDoubleValue(); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "planet1", n => { Planet1 = n.GetStringValue(); } },
+                { "planet1Localized", n => { Planet1Localized = n.GetStringValue(); } },
                 { "planet1Longitude", n => { Planet1Longitude = n.GetDoubleValue(); } },
                 { "planet2", n => { Planet2 = n.GetStringValue(); } },
+                { "planet2Localized", n => { Planet2Localized = n.GetStringValue(); } },
                 { "planet2Longitude", n => { Planet2Longitude = n.GetDoubleValue(); } },
                 { "time", n => { Time = n.GetStringValue(); } },
             };
@@ -120,8 +138,10 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
             writer.WriteDoubleValue("distance", Distance);
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteStringValue("planet1", Planet1);
+            writer.WriteStringValue("planet1Localized", Planet1Localized);
             writer.WriteDoubleValue("planet1Longitude", Planet1Longitude);
             writer.WriteStringValue("planet2", Planet2);
+            writer.WriteStringValue("planet2Localized", Planet2Localized);
             writer.WriteDoubleValue("planet2Longitude", Planet2Longitude);
             writer.WriteStringValue("time", Time);
             writer.WriteAdditionalData(AdditionalData);

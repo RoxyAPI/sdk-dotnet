@@ -22,11 +22,11 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
 #else
         public List<global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse_events> Events { get; set; }
 #endif
-        /// <summary>Month of the lunar aspect analysis.</summary>
+        /// <summary>Month of the lunar aspect analysis. Echoes the month that was requested, or the current UTC month when it was omitted.</summary>
         public double? Month { get; set; }
         /// <summary>Timezone offset from UTC in hours that the event dates and times are reported in. Echoes the requested timezone.</summary>
         public double? Timezone { get; set; }
-        /// <summary>Year of the lunar aspect analysis.</summary>
+        /// <summary>Year of the lunar aspect analysis. Echoes the year that was requested, or the current UTC year when it was omitted.</summary>
         public double? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostResponse"/> and sets the default values.
