@@ -14,13 +14,21 @@ namespace RoxyApi.HumanDesign.Penta
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal.</summary>
+        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal. Always English, whatever the lang parameter says. Use circuitLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Circuit { get; set; }
 #nullable restore
 #else
         public string Circuit { get; set; }
+#endif
+        /// <summary>Circuit family name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CircuitLocalized { get; set; }
+#nullable restore
+#else
+        public string CircuitLocalized { get; set; }
 #endif
         /// <summary>Whether the channel is a defined Strength: both of its gates are present somewhere in the group, so the function it governs has no gap.</summary>
         public bool? Defined { get; set; }
@@ -46,13 +54,21 @@ namespace RoxyApi.HumanDesign.Penta
 #endif
         /// <summary>Whether this is the 2/14 Channel of the Beat, the material core of the Penta vortex: gate 2 the direction for resources, gate 14 the resources themselves.</summary>
         public bool? IsCore { get; set; }
-        /// <summary>Name of the Penta channel. One of The Alpha, Inspiration, The Prodigal, Rhythm, The Beat, Discovery.</summary>
+        /// <summary>Name of the Penta channel. One of The Alpha, Inspiration, The Prodigal, Rhythm, The Beat, Discovery. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Penta channel name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Position of the channel in the Penta. upper channels run from the G Center to the Throat and carry the leadership and how-the-group-presents roles. lower channels run from the G Center to the Sacral and carry the managed, generative, resource roles.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -88,6 +104,7 @@ namespace RoxyApi.HumanDesign.Penta
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "circuit", n => { Circuit = n.GetStringValue(); } },
+                { "circuitLocalized", n => { CircuitLocalized = n.GetStringValue(); } },
                 { "defined", n => { Defined = n.GetBoolValue(); } },
                 { "gateA", n => { GateA = n.GetDoubleValue(); } },
                 { "gateAHeldBy", n => { GateAHeldBy = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
@@ -95,6 +112,7 @@ namespace RoxyApi.HumanDesign.Penta
                 { "gateBHeldBy", n => { GateBHeldBy = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "isCore", n => { IsCore = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetStringValue(); } },
             };
         }
@@ -106,6 +124,7 @@ namespace RoxyApi.HumanDesign.Penta
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("circuit", Circuit);
+            writer.WriteStringValue("circuitLocalized", CircuitLocalized);
             writer.WriteBoolValue("defined", Defined);
             writer.WriteDoubleValue("gateA", GateA);
             writer.WriteCollectionOfPrimitiveValues<double?>("gateAHeldBy", GateAHeldBy);
@@ -113,6 +132,7 @@ namespace RoxyApi.HumanDesign.Penta
             writer.WriteCollectionOfPrimitiveValues<double?>("gateBHeldBy", GateBHeldBy);
             writer.WriteBoolValue("isCore", IsCore);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("position", Position);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -22,7 +22,7 @@ namespace RoxyApi.HumanDesign.Connection
 #else
         public List<string> Centers { get; set; }
 #endif
-        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal.</summary>
+        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal. Always English, whatever the lang parameter says. Use circuitLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Circuit { get; set; }
@@ -30,7 +30,15 @@ namespace RoxyApi.HumanDesign.Connection
 #else
         public string Circuit { get; set; }
 #endif
-        /// <summary>Connection dynamic for this channel. Electromagnetic means each person holds one of the two gates and the channel completes only together, the classic point of attraction. Dominance means one person holds both gates and the other holds neither, a one-way conditioning. Compromise means one person holds both gates and the other holds a single hanging gate. Companionship means both people independently hold both gates, a shared and familiar frequency.</summary>
+        /// <summary>Circuit family name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CircuitLocalized { get; set; }
+#nullable restore
+#else
+        public string CircuitLocalized { get; set; }
+#endif
+        /// <summary>Connection dynamic for this channel. Electromagnetic means each person holds one of the two gates and the channel completes only together, the classic point of attraction. Dominance means one person holds both gates and the other holds neither, a one-way conditioning. Compromise means one person holds both gates and the other holds a single hanging gate. Companionship means both people independently hold both gates, a shared and familiar frequency. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use dynamicLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Dynamic { get; set; }
@@ -38,17 +46,33 @@ namespace RoxyApi.HumanDesign.Connection
 #else
         public string Dynamic { get; set; }
 #endif
+        /// <summary>Connection dynamic name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DynamicLocalized { get; set; }
+#nullable restore
+#else
+        public string DynamicLocalized { get; set; }
+#endif
         /// <summary>First gate of the channel.</summary>
         public double? GateA { get; set; }
         /// <summary>Second gate of the channel.</summary>
         public double? GateB { get; set; }
-        /// <summary>Name of the channel whose connection dynamic is reported.</summary>
+        /// <summary>Name of the channel whose connection dynamic is reported. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Channel name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Which of the channel two gates person A holds, from one to both.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -93,10 +117,13 @@ namespace RoxyApi.HumanDesign.Connection
             {
                 { "centers", n => { Centers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "circuit", n => { Circuit = n.GetStringValue(); } },
+                { "circuitLocalized", n => { CircuitLocalized = n.GetStringValue(); } },
                 { "dynamic", n => { Dynamic = n.GetStringValue(); } },
+                { "dynamicLocalized", n => { DynamicLocalized = n.GetStringValue(); } },
                 { "gateA", n => { GateA = n.GetDoubleValue(); } },
                 { "gateB", n => { GateB = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "personAGates", n => { PersonAGates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "personBGates", n => { PersonBGates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
             };
@@ -110,10 +137,13 @@ namespace RoxyApi.HumanDesign.Connection
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("centers", Centers);
             writer.WriteStringValue("circuit", Circuit);
+            writer.WriteStringValue("circuitLocalized", CircuitLocalized);
             writer.WriteStringValue("dynamic", Dynamic);
+            writer.WriteStringValue("dynamicLocalized", DynamicLocalized);
             writer.WriteDoubleValue("gateA", GateA);
             writer.WriteDoubleValue("gateB", GateB);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteCollectionOfPrimitiveValues<double?>("personAGates", PersonAGates);
             writer.WriteCollectionOfPrimitiveValues<double?>("personBGates", PersonBGates);
             writer.WriteAdditionalData(AdditionalData);

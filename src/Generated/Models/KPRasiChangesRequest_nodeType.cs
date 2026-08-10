@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Models
 {
-    /// <summary>Lunar node type for Rahu and Ketu positions. &quot;mean&quot; uses the smooth mean node (traditional Vedic astrology default). &quot;true&quot; uses the osculating node with perturbation corrections, oscillating up to 1.5 degrees from mean with a 173-day period. Impacts KP sub-lord assignments in narrow boundary cases. Defaults to &quot;mean&quot;.</summary>
+    /// <summary>Lunar node convention. &quot;mean&quot; is the smoothed average node, which always moves retrograde; &quot;true&quot; is the osculating node, which tracks the real perturbed node, oscillates up to about 1.5 degrees either side of the mean on a 173-day cycle, and can briefly turn direct. Neither is more correct and they almost always fall in the same sign. Applies to the Rahu and Ketu positions. Mean is the traditional Vedic default and what printed panchangs use; the choice can move a KP sub-lord in narrow boundary cases, where a span can be as small as 0.5 degrees. Defaults to &quot;mean&quot;.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum KPRasiChangesRequest_nodeType
     {

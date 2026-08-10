@@ -18,13 +18,21 @@ namespace RoxyApi.HumanDesign.Penta
         public bool? Filled { get; set; }
         /// <summary>Penta gate number. One of 1, 2, 5, 7, 8, 13, 14, 15, 29, 31, 33, 46.</summary>
         public double? Gate { get; set; }
-        /// <summary>Human Design keynote name of the gate, describing the role it brings to the group.</summary>
+        /// <summary>Human Design keynote name of the gate, describing the role it brings to the group. Always English, whatever the lang parameter says. Use gateNameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? GateName { get; set; }
 #nullable restore
 #else
         public string GateName { get; set; }
+#endif
+        /// <summary>Gate keynote name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GateNameLocalized { get; set; }
+#nullable restore
+#else
+        public string GateNameLocalized { get; set; }
 #endif
         /// <summary>Zero-based indices of the members whose chart holds this gate. Empty when the gate is a gap.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -62,6 +70,7 @@ namespace RoxyApi.HumanDesign.Penta
                 { "filled", n => { Filled = n.GetBoolValue(); } },
                 { "gate", n => { Gate = n.GetDoubleValue(); } },
                 { "gateName", n => { GateName = n.GetStringValue(); } },
+                { "gateNameLocalized", n => { GateNameLocalized = n.GetStringValue(); } },
                 { "heldBy", n => { HeldBy = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
             };
         }
@@ -75,6 +84,7 @@ namespace RoxyApi.HumanDesign.Penta
             writer.WriteBoolValue("filled", Filled);
             writer.WriteDoubleValue("gate", Gate);
             writer.WriteStringValue("gateName", GateName);
+            writer.WriteStringValue("gateNameLocalized", GateNameLocalized);
             writer.WriteCollectionOfPrimitiveValues<double?>("heldBy", HeldBy);
             writer.WriteAdditionalData(AdditionalData);
         }

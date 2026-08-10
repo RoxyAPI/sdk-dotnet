@@ -25,6 +25,8 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.TransitsRequest_natalChart NatalChart { get; set; }
 #endif
+        /// <summary>Lunar node convention. &quot;mean&quot; is the smoothed average node, which always moves retrograde; &quot;true&quot; is the osculating node, which tracks the real perturbed node, oscillates up to about 1.5 degrees either side of the mean on a 173-day cycle, and can briefly turn direct. Neither is more correct and they almost always fall in the same sign. Applies to the North and South Node. True is what most Western software reports (Astrolabe, Cafe Astrology, TimePassages), which is why it is the default here; astro-seek and the Steven Forrest evolutionary school use mean, so pass &quot;mean&quot; to match those. Nothing else in the chart changes, and the two agree on the sign except when the node sits within about 1.8 degrees of a cusp. Defaults to &quot;true&quot;.</summary>
+        public global::RoxyApi.Models.TransitsRequest_nodeType? NodeType { get; set; }
         /// <summary>Transit time in HH:MM:SS format (defaults to current time)</summary>
         public Time? Time { get; set; }
         /// <summary>Transit timezone: decimal hours from UTC OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the transit date. Defaults to 0 (UTC).</summary>
@@ -41,6 +43,7 @@ namespace RoxyApi.Models
         public TransitsRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            NodeType = global::RoxyApi.Models.TransitsRequest_nodeType.True;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -62,6 +65,7 @@ namespace RoxyApi.Models
             {
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "natalChart", n => { NatalChart = n.GetObjectValue<global::RoxyApi.Models.TransitsRequest_natalChart>(global::RoxyApi.Models.TransitsRequest_natalChart.CreateFromDiscriminatorValue); } },
+                { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.Models.TransitsRequest_nodeType>(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.TransitsRequest.TransitsRequest_timezone>(global::RoxyApi.Models.TransitsRequest.TransitsRequest_timezone.CreateFromDiscriminatorValue); } },
             };
@@ -75,6 +79,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("date", Date);
             writer.WriteObjectValue<global::RoxyApi.Models.TransitsRequest_natalChart>("natalChart", NatalChart);
+            writer.WriteEnumValue<global::RoxyApi.Models.TransitsRequest_nodeType>("nodeType", NodeType);
             writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.TransitsRequest.TransitsRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);

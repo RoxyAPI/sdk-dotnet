@@ -46,8 +46,16 @@ namespace RoxyApi.Astrology.Signs.Item
 #else
         public global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_description Description { get; set; }
 #endif
-        /// <summary>Elemental classification: Fire, Earth, Air, or Water. Determines temperament and compatibility group.</summary>
+        /// <summary>Elemental classification: fire, earth, air, or water. Determines temperament and compatibility group. Always one of these four English literals, whatever the lang parameter says, so it stays safe to compare against in code. Use elementLocalized for anything a reader sees.</summary>
         public global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_element? Element { get; set; }
+        /// <summary>Element name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ElementLocalized { get; set; }
+#nullable restore
+#else
+        public string ElementLocalized { get; set; }
+#endif
         /// <summary>Notable people born under this zodiac sign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -80,8 +88,16 @@ namespace RoxyApi.Astrology.Signs.Item
 #else
         public List<string> Keywords { get; set; }
 #endif
-        /// <summary>Quality/modality: Cardinal (initiating), Fixed (sustaining), or Mutable (adapting).</summary>
+        /// <summary>Quality/modality: cardinal (initiating), fixed (sustaining), or mutable (adapting). Always one of these three English literals, whatever the lang parameter says, so it stays safe to compare against in code. Use modalityLocalized for anything a reader sees.</summary>
         public global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_modality? Modality { get; set; }
+        /// <summary>Modality name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ModalityLocalized { get; set; }
+#nullable restore
+#else
+        public string ModalityLocalized { get; set; }
+#endif
         /// <summary>Signature motto or tagline for this sign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,13 +114,21 @@ namespace RoxyApi.Astrology.Signs.Item
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Traditional ruling planet that governs this sign.</summary>
+        /// <summary>Traditional ruling planet that governs this sign. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use rulingPlanetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RulingPlanet { get; set; }
 #nullable restore
 #else
         public string RulingPlanet { get; set; }
+#endif
+        /// <summary>Ruling planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RulingPlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string RulingPlanetLocalized { get; set; }
 #endif
         /// <summary>Key strengths and lovable qualities of this sign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -168,14 +192,17 @@ namespace RoxyApi.Astrology.Signs.Item
                 { "dates", n => { Dates = n.GetObjectValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_dates>(global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_dates.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetObjectValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_description>(global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_description.CreateFromDiscriminatorValue); } },
                 { "element", n => { Element = n.GetEnumValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_element>(); } },
+                { "elementLocalized", n => { ElementLocalized = n.GetStringValue(); } },
                 { "famous", n => { Famous = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "gifts", n => { Gifts = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "keywords", n => { Keywords = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "modality", n => { Modality = n.GetEnumValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_modality>(); } },
+                { "modalityLocalized", n => { ModalityLocalized = n.GetStringValue(); } },
                 { "motto", n => { Motto = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "rulingPlanet", n => { RulingPlanet = n.GetStringValue(); } },
+                { "rulingPlanetLocalized", n => { RulingPlanetLocalized = n.GetStringValue(); } },
                 { "strengths", n => { Strengths = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "symbol", n => { Symbol = n.GetStringValue(); } },
                 { "symbolName", n => { SymbolName = n.GetStringValue(); } },
@@ -194,14 +221,17 @@ namespace RoxyApi.Astrology.Signs.Item
             writer.WriteObjectValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_dates>("dates", Dates);
             writer.WriteObjectValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_description>("description", Description);
             writer.WriteEnumValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_element>("element", Element);
+            writer.WriteStringValue("elementLocalized", ElementLocalized);
             writer.WriteCollectionOfPrimitiveValues<string>("famous", Famous);
             writer.WriteStringValue("gifts", Gifts);
             writer.WriteStringValue("id", Id);
             writer.WriteCollectionOfPrimitiveValues<string>("keywords", Keywords);
             writer.WriteEnumValue<global::RoxyApi.Astrology.Signs.Item.SignsGetResponse_modality>("modality", Modality);
+            writer.WriteStringValue("modalityLocalized", ModalityLocalized);
             writer.WriteStringValue("motto", Motto);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("rulingPlanet", RulingPlanet);
+            writer.WriteStringValue("rulingPlanetLocalized", RulingPlanetLocalized);
             writer.WriteCollectionOfPrimitiveValues<string>("strengths", Strengths);
             writer.WriteStringValue("symbol", Symbol);
             writer.WriteStringValue("symbolName", SymbolName);

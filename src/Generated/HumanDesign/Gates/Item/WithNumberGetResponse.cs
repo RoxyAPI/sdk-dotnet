@@ -22,13 +22,21 @@ namespace RoxyApi.HumanDesign.Gates.Item
 #else
         public string Center { get; set; }
 #endif
-        /// <summary>Display name of the center.</summary>
+        /// <summary>Display name of the center. Always English, whatever the lang parameter says. Use centerNameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CenterName { get; set; }
 #nullable restore
 #else
         public string CenterName { get; set; }
+#endif
+        /// <summary>Center name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CenterNameLocalized { get; set; }
+#nullable restore
+#else
+        public string CenterNameLocalized { get; set; }
 #endif
         /// <summary>Gates that form a channel with this gate, with the channel name for each.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,13 +54,21 @@ namespace RoxyApi.HumanDesign.Gates.Item
 #else
         public global::RoxyApi.HumanDesign.Gates.Item.WithNumberGetResponse_ichingHexagram IchingHexagram { get; set; }
 #endif
-        /// <summary>Human Design keynote name of the gate.</summary>
+        /// <summary>Human Design keynote name of the gate. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Gate keynote name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Gate number from 1 to 64.</summary>
         public double? Number { get; set; }
@@ -83,9 +99,11 @@ namespace RoxyApi.HumanDesign.Gates.Item
             {
                 { "center", n => { Center = n.GetStringValue(); } },
                 { "centerName", n => { CenterName = n.GetStringValue(); } },
+                { "centerNameLocalized", n => { CenterNameLocalized = n.GetStringValue(); } },
                 { "channelPartners", n => { ChannelPartners = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Gates.Item.WithNumberGetResponse_channelPartners>(global::RoxyApi.HumanDesign.Gates.Item.WithNumberGetResponse_channelPartners.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "ichingHexagram", n => { IchingHexagram = n.GetObjectValue<global::RoxyApi.HumanDesign.Gates.Item.WithNumberGetResponse_ichingHexagram>(global::RoxyApi.HumanDesign.Gates.Item.WithNumberGetResponse_ichingHexagram.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "number", n => { Number = n.GetDoubleValue(); } },
             };
         }
@@ -98,9 +116,11 @@ namespace RoxyApi.HumanDesign.Gates.Item
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("center", Center);
             writer.WriteStringValue("centerName", CenterName);
+            writer.WriteStringValue("centerNameLocalized", CenterNameLocalized);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Gates.Item.WithNumberGetResponse_channelPartners>("channelPartners", ChannelPartners);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Gates.Item.WithNumberGetResponse_ichingHexagram>("ichingHexagram", IchingHexagram);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteDoubleValue("number", Number);
             writer.WriteAdditionalData(AdditionalData);
         }

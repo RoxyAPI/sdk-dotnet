@@ -22,6 +22,14 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public string BirthDatetime { get; set; }
 #endif
+        /// <summary>The zodiac frame every longitude in this response was computed in, so a cached or forwarded payload is self describing. Sidereal requests report the Lahiri ayanamsa, read at the birth instant; the transit positions use the same named frame resolved at their own instant, which moves by about 50 arcseconds a year. A tropical request reports &quot;tropical&quot; with 0 degrees subtracted, which is the one case a Vedic table can otherwise be rendered in the wrong zodiac with nothing on screen saying so.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_frame? Frame { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_frame Frame { get; set; }
+#endif
         /// <summary>Highlighted transits from slow-moving planets (Jupiter, Saturn, Rahu, Ketu), most impactful for Gochar analysis.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -80,6 +88,7 @@ namespace RoxyApi.VedicAstrology.Transit
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "birthDatetime", n => { BirthDatetime = n.GetStringValue(); } },
+                { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_frame>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_frame.CreateFromDiscriminatorValue); } },
                 { "keyTransits", n => { KeyTransits = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_keyTransits>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_keyTransits.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "natalPlanets", n => { NatalPlanets = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_natalPlanets>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_natalPlanets.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "transitDatetime", n => { TransitDatetime = n.GetStringValue(); } },
@@ -94,6 +103,7 @@ namespace RoxyApi.VedicAstrology.Transit
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("birthDatetime", BirthDatetime);
+            writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_frame>("frame", Frame);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_keyTransits>("keyTransits", KeyTransits);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_natalPlanets>("natalPlanets", NatalPlanets);
             writer.WriteStringValue("transitDatetime", TransitDatetime);

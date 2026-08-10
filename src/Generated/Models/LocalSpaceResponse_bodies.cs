@@ -44,13 +44,21 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.LocalSpaceResponse_bodies_line Line { get; set; }
 #endif
-        /// <summary>Body name (Sun, Moon, Mercury through Pluto, plus North Node, Chiron, or Black Moon Lilith when requested). Localized when a translation exists.</summary>
+        /// <summary>Body name (Sun, Moon, Mercury through Pluto, plus North Node, Chiron, or Black Moon Lilith when requested). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
 #nullable restore
 #else
         public string Planet { get; set; }
+#endif
+        /// <summary>Body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
 #endif
         /// <summary>Unicode astronomical symbol for this body.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -92,6 +100,7 @@ namespace RoxyApi.Models
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
                 { "line", n => { Line = n.GetObjectValue<global::RoxyApi.Models.LocalSpaceResponse_bodies_line>(global::RoxyApi.Models.LocalSpaceResponse_bodies_line.CreateFromDiscriminatorValue); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "symbol", n => { Symbol = n.GetStringValue(); } },
             };
         }
@@ -109,6 +118,7 @@ namespace RoxyApi.Models
             writer.WriteStringValue("interpretation", Interpretation);
             writer.WriteObjectValue<global::RoxyApi.Models.LocalSpaceResponse_bodies_line>("line", Line);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("symbol", Symbol);
             writer.WriteAdditionalData(AdditionalData);
         }

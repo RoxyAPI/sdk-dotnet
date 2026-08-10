@@ -14,6 +14,14 @@ namespace RoxyApi.Astrology.TransitAspects
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The natal Ascendant (rising sign): the eastern horizon at birth, and the left-hand horizon a chart wheel is oriented to. Reported alongside the cusps because the two are not the same longitude in every house system: Whole Sign puts the first cusp at 0 degrees of the rising sign, which can sit most of a sign away from the Ascendant itself.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_ascendant? Ascendant { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_ascendant Ascendant { get; set; }
+#endif
         /// <summary>Transit-to-natal aspects with interpretations, strength ratings, and guidance. Each aspect represents a transiting planet forming a geometric angle to a natal planet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,6 +29,14 @@ namespace RoxyApi.Astrology.TransitAspects
 #nullable restore
 #else
         public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects> Aspects { get; set; }
+#endif
+        /// <summary>The twelve NATAL house cusps that every house number in this response is read against, in the house system named by houseSystem. Same shape as the natal-chart houses array, so a bi-wheel can be drawn with real house sectors from this one response instead of pairing it with a second call.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houses>? Houses { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houses> Houses { get; set; }
 #endif
         /// <summary>House system actually used for the natal cusps behind every house number in this response. Differs from the requested system only above the polar circle, where quadrant systems fall back to Whole Sign.</summary>
         public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houseSystem? HouseSystem { get; set; }
@@ -81,8 +97,10 @@ namespace RoxyApi.Astrology.TransitAspects
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "ascendant", n => { Ascendant = n.GetObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_ascendant>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_ascendant.CreateFromDiscriminatorValue); } },
                 { "aspects", n => { Aspects = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houseSystem>(); } },
+                { "houses", n => { Houses = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houses>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houses.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "natalPlanets", n => { NatalPlanets = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "summary", n => { Summary = n.GetObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary.CreateFromDiscriminatorValue); } },
                 { "transitDate", n => { TransitDate = n.GetStringValue(); } },
@@ -96,7 +114,9 @@ namespace RoxyApi.Astrology.TransitAspects
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_ascendant>("ascendant", Ascendant);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects>("aspects", Aspects);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houses>("houses", Houses);
             writer.WriteEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_houseSystem>("houseSystem", HouseSystem);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets>("natalPlanets", NatalPlanets);
             writer.WriteObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary>("summary", Summary);

@@ -32,13 +32,21 @@ namespace RoxyApi.Models
         public double? Latitude { get; set; }
         /// <summary>Absolute tropical ecliptic longitude of the asteroid in degrees (0 to 360).</summary>
         public double? Longitude { get; set; }
-        /// <summary>Display name of the asteroid, localized to the requested language.</summary>
+        /// <summary>Name of the asteroid: Ceres, Pallas, Juno, or Vesta. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Asteroid name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Tropical zodiac sign the asteroid falls in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,6 +90,7 @@ namespace RoxyApi.Models
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
                 { "speed", n => { Speed = n.GetDoubleValue(); } },
             };
@@ -100,6 +109,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("sign", Sign);
             writer.WriteDoubleValue("speed", Speed);
             writer.WriteAdditionalData(AdditionalData);

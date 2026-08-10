@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Transit
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Notable aspects to natal planets from this slow-moving transiting planet.</summary>
+        /// <summary>Notable degree-based angular aspects to natal planets from this slow-moving transiting planet, in Western vocabulary.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Aspects { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public List<string> Aspects { get; set; }
 #endif
-        /// <summary>Human-readable transit summary.</summary>
+        /// <summary>Human-readable transit summary, naming the rashi being transited and both house readings: from the Lagna, then from the natal Moon.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -30,7 +30,17 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Natal house being transited by this slow planet.</summary>
+        /// <summary>Graha drishti this slow-moving transiting graha casts on the natal grahas, the Vedic reading. Empty for Rahu and Ketu, which cast none.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Drishti { get; set; }
+#nullable restore
+#else
+        public List<string> Drishti { get; set; }
+#endif
+        /// <summary>House being transited by this slow graha counted from the natal Moon sign (Janma Rashi), the classical Gochara reference. Mirrors houseFromMoon on the matching transitingPlanets entry.</summary>
+        public double? HouseFromMoon { get; set; }
+        /// <summary>Natal house being transited by this slow graha, counted whole-sign from the Lagna. Mirrors natalHouse on the matching transitingPlanets entry.</summary>
         public double? NatalHouse { get; set; }
         /// <summary>Slow-moving planet (Jupiter, Saturn, Rahu, Ketu) forming a significant transit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,6 +77,8 @@ namespace RoxyApi.VedicAstrology.Transit
             {
                 { "aspects", n => { Aspects = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
+                { "drishti", n => { Drishti = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "houseFromMoon", n => { HouseFromMoon = n.GetDoubleValue(); } },
                 { "natalHouse", n => { NatalHouse = n.GetDoubleValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
             };
@@ -80,6 +92,8 @@ namespace RoxyApi.VedicAstrology.Transit
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("aspects", Aspects);
             writer.WriteStringValue("description", Description);
+            writer.WriteCollectionOfPrimitiveValues<string>("drishti", Drishti);
+            writer.WriteDoubleValue("houseFromMoon", HouseFromMoon);
             writer.WriteDoubleValue("natalHouse", NatalHouse);
             writer.WriteStringValue("planet", Planet);
             writer.WriteAdditionalData(AdditionalData);

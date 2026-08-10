@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Transit
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Aspect type: conjunction, opposition, trine, square, or sextile.</summary>
+        /// <summary>Degree-based angular aspect between the two longitudes: conjunction, opposition, trine, square, or sextile. This is the Western aspect vocabulary and it is offered for charts read that way. Parashari jyotish has no sextile, square or trine, so for the Vedic reading use drishtiToNatal, which reports graha drishti by house count.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AspectType { get; set; }

@@ -48,13 +48,21 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.AstrocartographyResponse_lines_mc Mc { get; set; }
 #endif
-        /// <summary>Celestial body this set of planetary lines belongs to.</summary>
+        /// <summary>Celestial body this set of planetary lines belongs to. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
 #nullable restore
 #else
         public string Planet { get; set; }
+#endif
+        /// <summary>Body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
 #endif
         /// <summary>Equatorial right ascension of the body in degrees (0 to 360), the basis for every line.</summary>
         public double? RightAscension { get; set; }
@@ -97,6 +105,7 @@ namespace RoxyApi.Models
                 { "ic", n => { Ic = n.GetObjectValue<global::RoxyApi.Models.AstrocartographyResponse_lines_ic>(global::RoxyApi.Models.AstrocartographyResponse_lines_ic.CreateFromDiscriminatorValue); } },
                 { "mc", n => { Mc = n.GetObjectValue<global::RoxyApi.Models.AstrocartographyResponse_lines_mc>(global::RoxyApi.Models.AstrocartographyResponse_lines_mc.CreateFromDiscriminatorValue); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "rightAscension", n => { RightAscension = n.GetDoubleValue(); } },
                 { "symbol", n => { Symbol = n.GetStringValue(); } },
             };
@@ -114,6 +123,7 @@ namespace RoxyApi.Models
             writer.WriteObjectValue<global::RoxyApi.Models.AstrocartographyResponse_lines_ic>("ic", Ic);
             writer.WriteObjectValue<global::RoxyApi.Models.AstrocartographyResponse_lines_mc>("mc", Mc);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteDoubleValue("rightAscension", RightAscension);
             writer.WriteStringValue("symbol", Symbol);
             writer.WriteAdditionalData(AdditionalData);

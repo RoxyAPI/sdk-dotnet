@@ -22,7 +22,7 @@ namespace RoxyApi.HumanDesign.Transit
 #else
         public List<string> Centers { get; set; }
 #endif
-        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal.</summary>
+        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal. Always English, whatever the lang parameter says. Use circuitLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Circuit { get; set; }
@@ -30,11 +30,19 @@ namespace RoxyApi.HumanDesign.Transit
 #else
         public string Circuit { get; set; }
 #endif
+        /// <summary>Circuit family name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CircuitLocalized { get; set; }
+#nullable restore
+#else
+        public string CircuitLocalized { get; set; }
+#endif
         /// <summary>First gate of the completed channel.</summary>
         public double? GateA { get; set; }
         /// <summary>Second gate of the completed channel.</summary>
         public double? GateB { get; set; }
-        /// <summary>How the transit completes the channel. personal means the natal chart already holds one gate and the transit supplies the other, the classic electromagnetic completion. educational means both gates are open in the natal chart and the transit supplies both at once.</summary>
+        /// <summary>How the transit completes the channel. personal means the natal chart already holds one gate and the transit supplies the other, the classic electromagnetic completion. educational means both gates are open in the natal chart and the transit supplies both at once. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use kindLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Kind { get; set; }
@@ -42,13 +50,29 @@ namespace RoxyApi.HumanDesign.Transit
 #else
         public string Kind { get; set; }
 #endif
-        /// <summary>Name of the channel the transit temporarily completes.</summary>
+        /// <summary>Completion kind name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? KindLocalized { get; set; }
+#nullable restore
+#else
+        public string KindLocalized { get; set; }
+#endif
+        /// <summary>Name of the channel the transit temporarily completes. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Channel name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Gate or gates of this channel the natal chart already holds. Empty for an educational channel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -93,10 +117,13 @@ namespace RoxyApi.HumanDesign.Transit
             {
                 { "centers", n => { Centers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "circuit", n => { Circuit = n.GetStringValue(); } },
+                { "circuitLocalized", n => { CircuitLocalized = n.GetStringValue(); } },
                 { "gateA", n => { GateA = n.GetDoubleValue(); } },
                 { "gateB", n => { GateB = n.GetDoubleValue(); } },
                 { "kind", n => { Kind = n.GetStringValue(); } },
+                { "kindLocalized", n => { KindLocalized = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "natalGates", n => { NatalGates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "transitGates", n => { TransitGates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
             };
@@ -110,10 +137,13 @@ namespace RoxyApi.HumanDesign.Transit
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("centers", Centers);
             writer.WriteStringValue("circuit", Circuit);
+            writer.WriteStringValue("circuitLocalized", CircuitLocalized);
             writer.WriteDoubleValue("gateA", GateA);
             writer.WriteDoubleValue("gateB", GateB);
             writer.WriteStringValue("kind", Kind);
+            writer.WriteStringValue("kindLocalized", KindLocalized);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteCollectionOfPrimitiveValues<double?>("natalGates", NatalGates);
             writer.WriteCollectionOfPrimitiveValues<double?>("transitGates", TransitGates);
             writer.WriteAdditionalData(AdditionalData);

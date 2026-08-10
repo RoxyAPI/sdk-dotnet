@@ -26,7 +26,7 @@ namespace RoxyApi.Location.Countries.Item
         public double? Limit { get; set; }
         /// <summary>Number of cities skipped. Use with limit for pagination.</summary>
         public double? Offset { get; set; }
-        /// <summary>Total number of cities available for this country.</summary>
+        /// <summary>Total number of places available for this country across all pages.</summary>
         public double? Total { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Location.Countries.Item.WithIso2GetResponse"/> and sets the default values.

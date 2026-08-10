@@ -24,7 +24,7 @@ namespace RoxyApi.Models
 #else
         public string Formula { get; set; }
 #endif
-        /// <summary>Stable machine identifier for the lot (fortune, spirit, eros, necessity, courage, victory, nemesis). Use this for lookups; the name field carries the localized display label.</summary>
+        /// <summary>Stable machine identifier for the lot (fortune, spirit, eros, necessity, courage, victory, nemesis). Use this for lookups.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -42,13 +42,21 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Absolute tropical ecliptic longitude of the lot in degrees (0 to 360).</summary>
         public double? Longitude { get; set; }
-        /// <summary>Display name of the lot, localized to the requested language.</summary>
+        /// <summary>Name of the lot. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Lot name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Tropical zodiac sign the lot falls in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -89,6 +97,7 @@ namespace RoxyApi.Models
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
             };
         }
@@ -105,6 +114,7 @@ namespace RoxyApi.Models
             writer.WriteStringValue("interpretation", Interpretation);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("sign", Sign);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -34,7 +34,7 @@ namespace RoxyApi.Location.Search
         {
         }
         /// <summary>
-        /// City autocomplete and geocoding search across 23,000+ locations in 240+ countries, including deep coverage of Indian tier-2 and tier-3 cities. Returns geographic coordinates (latitude, longitude), IANA timezone, and DST-aware UTC offset for each match. Built for birth chart location pickers, horoscope apps, event scheduling, and any feature requiring place-to-coordinates resolution. Partial name matching with intelligent ranking: exact prefix matches first, then sorted by population for relevance. Common alternate names like Bombay, Calcutta, Madras, and Banaras transparently resolve to their canonical entries.
+        /// Turn a place name into coordinates, an IANA timezone and a DST-aware UTC offset, across 235,000+ cities and towns in 240+ countries. Coverage reaches rural towns of a few hundred people and every administrative seat, so a birthplace outside a major metro resolves as reliably as a capital. Matching is case-insensitive, accent-insensitive and partial, so ber matches Berlin, Bern and Bergen, native scripts are transliterated, and historic names resolve to the current place, so bombay returns Mumbai and peking returns Beijing. Results are ordered by match quality first and population second, so an exactly named small town is never buried under a larger city that merely shares its opening letters. Built for birth chart location pickers, horoscope apps, event scheduling, and any feature that needs place-to-coordinates resolution.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Location.Search.SearchGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Location.Search
             return await RequestAdapter.SendAsync<global::RoxyApi.Location.Search.SearchGetResponse>(requestInfo, global::RoxyApi.Location.Search.SearchGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// City autocomplete and geocoding search across 23,000+ locations in 240+ countries, including deep coverage of Indian tier-2 and tier-3 cities. Returns geographic coordinates (latitude, longitude), IANA timezone, and DST-aware UTC offset for each match. Built for birth chart location pickers, horoscope apps, event scheduling, and any feature requiring place-to-coordinates resolution. Partial name matching with intelligent ranking: exact prefix matches first, then sorted by population for relevance. Common alternate names like Bombay, Calcutta, Madras, and Banaras transparently resolve to their canonical entries.
+        /// Turn a place name into coordinates, an IANA timezone and a DST-aware UTC offset, across 235,000+ cities and towns in 240+ countries. Coverage reaches rural towns of a few hundred people and every administrative seat, so a birthplace outside a major metro resolves as reliably as a capital. Matching is case-insensitive, accent-insensitive and partial, so ber matches Berlin, Bern and Bergen, native scripts are transliterated, and historic names resolve to the current place, so bombay returns Mumbai and peking returns Beijing. Results are ordered by match quality first and population second, so an exactly named small town is never buried under a larger city that merely shares its opening letters. Built for birth chart location pickers, horoscope apps, event scheduling, and any feature that needs place-to-coordinates resolution.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace RoxyApi.Location.Search
             return new global::RoxyApi.Location.Search.SearchRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// City autocomplete and geocoding search across 23,000+ locations in 240+ countries, including deep coverage of Indian tier-2 and tier-3 cities. Returns geographic coordinates (latitude, longitude), IANA timezone, and DST-aware UTC offset for each match. Built for birth chart location pickers, horoscope apps, event scheduling, and any feature requiring place-to-coordinates resolution. Partial name matching with intelligent ranking: exact prefix matches first, then sorted by population for relevance. Common alternate names like Bombay, Calcutta, Madras, and Banaras transparently resolve to their canonical entries.
+        /// Turn a place name into coordinates, an IANA timezone and a DST-aware UTC offset, across 235,000+ cities and towns in 240+ countries. Coverage reaches rural towns of a few hundred people and every administrative seat, so a birthplace outside a major metro resolves as reliably as a capital. Matching is case-insensitive, accent-insensitive and partial, so ber matches Berlin, Bern and Bergen, native scripts are transliterated, and historic names resolve to the current place, so bombay returns Mumbai and peking returns Beijing. Results are ordered by match quality first and population second, so an exactly named small town is never buried under a larger city that merely shares its opening letters. Built for birth chart location pickers, horoscope apps, event scheduling, and any feature that needs place-to-coordinates resolution.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SearchRequestBuilderGetQueryParameters 
@@ -104,7 +104,7 @@ namespace RoxyApi.Location.Search
             /// <summary>Number of items to skip for pagination. Default 0.</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
-            /// <summary>City name to search for. Accepts bare city (&quot;berlin&quot;), city plus country (&quot;berlin germany&quot;), or comma-qualified (&quot;berlin, germany&quot;, &quot;springfield, illinois&quot;) for disambiguation. Matches against city name, province/state, or combined &quot;city country&quot; queries. Case-insensitive with partial matching (e.g. &quot;ber&quot; matches Berlin, Bern, Bergen).</summary>
+            /// <summary>Place to search for, written the way a person would. Accepts a bare city (berlin), a city plus country (berlin germany), a comma-qualified place (richfield, utah), a fully qualified place (richfield, utah, united states), or a historic name (bombay, peking, constantinople). Commas are optional, and a qualifier the dataset spells differently, such as USA for United States, still resolves. Matched against city name, alternate names, state or province, and country. Add the state or country whenever the name is common, since that is what separates the six Springfields, and Richfield, Utah from Richfield, Minnesota.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("q")]

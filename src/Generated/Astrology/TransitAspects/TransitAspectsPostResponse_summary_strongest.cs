@@ -45,6 +45,14 @@ namespace RoxyApi.Astrology.TransitAspects
 #endif
         /// <summary>Aspect strength percentage (0-100). Based on orb tightness relative to the allowed maximum.</summary>
         public double? Strength { get; set; }
+        /// <summary>Rich interpretation of the transit aspect: narrative summary, timing, impact assessment, practical guidance, and keywords.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_transitInterpretation? TransitInterpretation { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_transitInterpretation TransitInterpretation { get; set; }
+#endif
         /// <summary>Aspect type. Major: conjunction (0), opposition (180), trine (120), square (90), sextile (60). Minor: semi-sextile, quincunx, semi-square, sesquiquadrate.</summary>
         public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_type? Type { get; set; }
         /// <summary>Aspect type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
@@ -89,6 +97,7 @@ namespace RoxyApi.Astrology.TransitAspects
                 { "planet2", n => { Planet2 = n.GetEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_planet2>(); } },
                 { "planet2Localized", n => { Planet2Localized = n.GetStringValue(); } },
                 { "strength", n => { Strength = n.GetDoubleValue(); } },
+                { "transitInterpretation", n => { TransitInterpretation = n.GetObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_transitInterpretation>(global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_transitInterpretation.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_type>(); } },
                 { "typeLocalized", n => { TypeLocalized = n.GetStringValue(); } },
             };
@@ -109,6 +118,7 @@ namespace RoxyApi.Astrology.TransitAspects
             writer.WriteEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_planet2>("planet2", Planet2);
             writer.WriteStringValue("planet2Localized", Planet2Localized);
             writer.WriteDoubleValue("strength", Strength);
+            writer.WriteObjectValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_transitInterpretation>("transitInterpretation", TransitInterpretation);
             writer.WriteEnumValue<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest_type>("type", Type);
             writer.WriteStringValue("typeLocalized", TypeLocalized);
             writer.WriteAdditionalData(AdditionalData);

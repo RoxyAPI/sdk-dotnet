@@ -22,7 +22,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string Aura { get; set; }
 #endif
-        /// <summary>Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar.</summary>
+        /// <summary>Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use authorityLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Authority { get; set; }
@@ -37,6 +37,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string AuthorityDescription { get; set; }
+#endif
+        /// <summary>Inner authority name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AuthorityLocalized { get; set; }
+#nullable restore
+#else
+        public string AuthorityLocalized { get; set; }
 #endif
         /// <summary>All nine centers with their defined state and active gates.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,7 +62,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public List<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels> Channels { get; set; }
 #endif
-        /// <summary>Definition type from the number of connected components among defined centers. One of None, Single, Split, Triple Split, Quadruple Split.</summary>
+        /// <summary>Definition type from the number of connected components among defined centers. One of None, Single, Split, Triple Split, Quadruple Split. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use definitionLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Definition { get; set; }
@@ -69,6 +77,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string DefinitionDescription { get; set; }
+#endif
+        /// <summary>Definition type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DefinitionLocalized { get; set; }
+#nullable restore
+#else
+        public string DefinitionLocalized { get; set; }
 #endif
         /// <summary>All 26 activations, 13 Personality and 13 Design.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -86,13 +102,21 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross IncarnationCross { get; set; }
 #endif
-        /// <summary>The not-self theme, the recurring feeling that signals being out of alignment.</summary>
+        /// <summary>The not-self theme, the recurring feeling that signals being out of alignment. Always English, whatever the lang parameter says. Use notSelfLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NotSelf { get; set; }
 #nullable restore
 #else
         public string NotSelf { get; set; }
+#endif
+        /// <summary>Not-self theme name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NotSelfLocalized { get; set; }
+#nullable restore
+#else
+        public string NotSelfLocalized { get; set; }
 #endif
         /// <summary>Profile in conscious/unconscious form from the Personality Sun line over the Design Sun line.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -126,7 +150,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides Sides { get; set; }
 #endif
-        /// <summary>The signature feeling of living in alignment with the type.</summary>
+        /// <summary>The signature feeling of living in alignment with the type. Always English, whatever the lang parameter says. Use signatureLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Signature { get; set; }
@@ -134,7 +158,15 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string Signature { get; set; }
 #endif
-        /// <summary>The aura strategy for engaging life correctly for this type.</summary>
+        /// <summary>Signature theme name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignatureLocalized { get; set; }
+#nullable restore
+#else
+        public string SignatureLocalized { get; set; }
+#endif
+        /// <summary>The aura strategy for engaging life correctly for this type. Always English, whatever the lang parameter says. Use strategyLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Strategy { get; set; }
@@ -150,7 +182,15 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string StrategyDescription { get; set; }
 #endif
-        /// <summary>Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector.</summary>
+        /// <summary>Strategy name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StrategyLocalized { get; set; }
+#nullable restore
+#else
+        public string StrategyLocalized { get; set; }
+#endif
+        /// <summary>Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use typeLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }
@@ -165,6 +205,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string TypeDescription { get; set; }
+#endif
+        /// <summary>Energy type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeLocalized { get; set; }
+#nullable restore
+#else
+        public string TypeLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse"/> and sets the default values.
@@ -194,22 +242,28 @@ namespace RoxyApi.HumanDesign.Bodygraph
                 { "aura", n => { Aura = n.GetStringValue(); } },
                 { "authority", n => { Authority = n.GetStringValue(); } },
                 { "authorityDescription", n => { AuthorityDescription = n.GetStringValue(); } },
+                { "authorityLocalized", n => { AuthorityLocalized = n.GetStringValue(); } },
                 { "centers", n => { Centers = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_centers>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_centers.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "channels", n => { Channels = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "definition", n => { Definition = n.GetStringValue(); } },
                 { "definitionDescription", n => { DefinitionDescription = n.GetStringValue(); } },
+                { "definitionLocalized", n => { DefinitionLocalized = n.GetStringValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "incarnationCross", n => { IncarnationCross = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross.CreateFromDiscriminatorValue); } },
                 { "notSelf", n => { NotSelf = n.GetStringValue(); } },
+                { "notSelfLocalized", n => { NotSelfLocalized = n.GetStringValue(); } },
                 { "profile", n => { Profile = n.GetStringValue(); } },
                 { "profileDescription", n => { ProfileDescription = n.GetStringValue(); } },
                 { "profileKeynotes", n => { ProfileKeynotes = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes.CreateFromDiscriminatorValue); } },
                 { "sides", n => { Sides = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides.CreateFromDiscriminatorValue); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
+                { "signatureLocalized", n => { SignatureLocalized = n.GetStringValue(); } },
                 { "strategy", n => { Strategy = n.GetStringValue(); } },
                 { "strategyDescription", n => { StrategyDescription = n.GetStringValue(); } },
+                { "strategyLocalized", n => { StrategyLocalized = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
                 { "typeDescription", n => { TypeDescription = n.GetStringValue(); } },
+                { "typeLocalized", n => { TypeLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -222,22 +276,28 @@ namespace RoxyApi.HumanDesign.Bodygraph
             writer.WriteStringValue("aura", Aura);
             writer.WriteStringValue("authority", Authority);
             writer.WriteStringValue("authorityDescription", AuthorityDescription);
+            writer.WriteStringValue("authorityLocalized", AuthorityLocalized);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_centers>("centers", Centers);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels>("channels", Channels);
             writer.WriteStringValue("definition", Definition);
             writer.WriteStringValue("definitionDescription", DefinitionDescription);
+            writer.WriteStringValue("definitionLocalized", DefinitionLocalized);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>("gates", Gates);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>("incarnationCross", IncarnationCross);
             writer.WriteStringValue("notSelf", NotSelf);
+            writer.WriteStringValue("notSelfLocalized", NotSelfLocalized);
             writer.WriteStringValue("profile", Profile);
             writer.WriteStringValue("profileDescription", ProfileDescription);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_profileKeynotes>("profileKeynotes", ProfileKeynotes);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_sides>("sides", Sides);
             writer.WriteStringValue("signature", Signature);
+            writer.WriteStringValue("signatureLocalized", SignatureLocalized);
             writer.WriteStringValue("strategy", Strategy);
             writer.WriteStringValue("strategyDescription", StrategyDescription);
+            writer.WriteStringValue("strategyLocalized", StrategyLocalized);
             writer.WriteStringValue("type", Type);
             writer.WriteStringValue("typeDescription", TypeDescription);
+            writer.WriteStringValue("typeLocalized", TypeLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

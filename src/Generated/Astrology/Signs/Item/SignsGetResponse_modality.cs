@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Astrology.Signs.Item
 {
-    /// <summary>Quality/modality: Cardinal (initiating), Fixed (sustaining), or Mutable (adapting).</summary>
+    /// <summary>Quality/modality: cardinal (initiating), fixed (sustaining), or mutable (adapting). Always one of these three English literals, whatever the lang parameter says, so it stays safe to compare against in code. Use modalityLocalized for anything a reader sees.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum SignsGetResponse_modality
     {

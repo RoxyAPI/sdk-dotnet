@@ -30,8 +30,16 @@ namespace RoxyApi.Astrology.Signs
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Elemental classification: Fire, Earth, Air, or Water.</summary>
+        /// <summary>Elemental classification: fire, earth, air, or water. Always one of these four English literals, whatever the lang parameter says, so it stays safe to compare against in code. Use elementLocalized for anything a reader sees.</summary>
         public global::RoxyApi.Astrology.Signs.Signs_element? Element { get; set; }
+        /// <summary>Element name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ElementLocalized { get; set; }
+#nullable restore
+#else
+        public string ElementLocalized { get; set; }
+#endif
         /// <summary>Lowercase sign identifier (e.g., aries, taurus, gemini).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,6 +92,7 @@ namespace RoxyApi.Astrology.Signs
                 { "dates", n => { Dates = n.GetObjectValue<global::RoxyApi.Astrology.Signs.Signs_dates>(global::RoxyApi.Astrology.Signs.Signs_dates.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "element", n => { Element = n.GetEnumValue<global::RoxyApi.Astrology.Signs.Signs_element>(); } },
+                { "elementLocalized", n => { ElementLocalized = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "symbol", n => { Symbol = n.GetStringValue(); } },
@@ -99,6 +108,7 @@ namespace RoxyApi.Astrology.Signs
             writer.WriteObjectValue<global::RoxyApi.Astrology.Signs.Signs_dates>("dates", Dates);
             writer.WriteStringValue("description", Description);
             writer.WriteEnumValue<global::RoxyApi.Astrology.Signs.Signs_element>("element", Element);
+            writer.WriteStringValue("elementLocalized", ElementLocalized);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("symbol", Symbol);

@@ -14,7 +14,7 @@ namespace RoxyApi.HumanDesign.Transit
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Transiting body whose current position lands on this gate. One of Sun, Earth, Moon, North Node, South Node, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.</summary>
+        /// <summary>Transiting body whose current position lands on this gate. One of Sun, Earth, Moon, North Node, South Node, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto. Always English, whatever the lang parameter says, so it stays safe to compare against in code and to key a glyph table on. Use bodyLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Body { get; set; }
@@ -22,15 +22,31 @@ namespace RoxyApi.HumanDesign.Transit
 #else
         public string Body { get; set; }
 #endif
+        /// <summary>Transiting body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BodyLocalized { get; set; }
+#nullable restore
+#else
+        public string BodyLocalized { get; set; }
+#endif
         /// <summary>Human Design gate number from 1 to 64 this transiting body currently sits in.</summary>
         public double? Gate { get; set; }
-        /// <summary>Human Design keynote name of the gate the transiting body activates.</summary>
+        /// <summary>Human Design keynote name of the gate the transiting body activates. Always English, whatever the lang parameter says. Use gateNameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? GateName { get; set; }
 #nullable restore
 #else
         public string GateName { get; set; }
+#endif
+        /// <summary>Gate keynote name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GateNameLocalized { get; set; }
+#nullable restore
+#else
+        public string GateNameLocalized { get; set; }
 #endif
         /// <summary>Cross-reference to the I-Ching hexagram that shares this gate number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,8 +84,10 @@ namespace RoxyApi.HumanDesign.Transit
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "body", n => { Body = n.GetStringValue(); } },
+                { "bodyLocalized", n => { BodyLocalized = n.GetStringValue(); } },
                 { "gate", n => { Gate = n.GetDoubleValue(); } },
                 { "gateName", n => { GateName = n.GetStringValue(); } },
+                { "gateNameLocalized", n => { GateNameLocalized = n.GetStringValue(); } },
                 { "ichingHexagram", n => { IchingHexagram = n.GetObjectValue<global::RoxyApi.HumanDesign.Transit.TransitPostResponse_activations_ichingHexagram>(global::RoxyApi.HumanDesign.Transit.TransitPostResponse_activations_ichingHexagram.CreateFromDiscriminatorValue); } },
                 { "line", n => { Line = n.GetDoubleValue(); } },
             };
@@ -82,8 +100,10 @@ namespace RoxyApi.HumanDesign.Transit
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("body", Body);
+            writer.WriteStringValue("bodyLocalized", BodyLocalized);
             writer.WriteDoubleValue("gate", Gate);
             writer.WriteStringValue("gateName", GateName);
+            writer.WriteStringValue("gateNameLocalized", GateNameLocalized);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Transit.TransitPostResponse_activations_ichingHexagram>("ichingHexagram", IchingHexagram);
             writer.WriteDoubleValue("line", Line);
             writer.WriteAdditionalData(AdditionalData);

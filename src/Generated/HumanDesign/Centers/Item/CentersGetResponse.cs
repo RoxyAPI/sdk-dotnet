@@ -34,13 +34,21 @@ namespace RoxyApi.HumanDesign.Centers.Item
 #endif
         /// <summary>Whether this is a motor center.</summary>
         public bool? Motor { get; set; }
-        /// <summary>Display name of the center.</summary>
+        /// <summary>Display name of the center. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Center name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>What this center means when undefined and open: a place of conditioning and learning.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,6 +88,7 @@ namespace RoxyApi.HumanDesign.Centers.Item
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "motor", n => { Motor = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "undefinedMeaning", n => { UndefinedMeaning = n.GetStringValue(); } },
             };
         }
@@ -95,6 +104,7 @@ namespace RoxyApi.HumanDesign.Centers.Item
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("motor", Motor);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("undefinedMeaning", UndefinedMeaning);
             writer.WriteAdditionalData(AdditionalData);
         }

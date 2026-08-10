@@ -43,9 +43,9 @@ namespace RoxyApi.Location.Search
         public double? Latitude { get; set; }
         /// <summary>Geographic longitude in decimal degrees (-180 to 180). Pass directly to astrology, horoscope, and panchang API endpoints alongside latitude.</summary>
         public double? Longitude { get; set; }
-        /// <summary>City population estimate from geographic databases. Larger cities rank higher in search results, ensuring major metropolitan areas appear first in autocomplete suggestions.</summary>
+        /// <summary>Population estimate for the place. Breaks ties between results of equal match quality, so among several places matching equally well the largest leads. It never outranks a better match, which is why a small town still wins when its name is typed exactly. May be 0 for a hamlet or administrative seat that carries no published figure.</summary>
         public double? Population { get; set; }
-        /// <summary>State, province, canton, or administrative region. Helps disambiguate cities with the same name across regions (e.g. Springfield IL vs Springfield MO).</summary>
+        /// <summary>State, province, canton, or administrative region. Show it whenever more than one result comes back: it is what separates Richfield, Utah from Richfield, Minnesota, and the six US Springfields from each other. Empty for the small number of places with no administrative division recorded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Province { get; set; }
@@ -53,7 +53,7 @@ namespace RoxyApi.Location.Search
 #else
         public string Province { get; set; }
 #endif
-        /// <summary>IANA timezone identifier following the tz database standard (e.g. Europe/Berlin, America/New_York, Asia/Tokyo). Use with JavaScript Date, Luxon, day.js, or any date library for accurate local time conversion.</summary>
+        /// <summary>IANA timezone identifier following the tz database standard (e.g. Europe/Berlin, America/New_York, Asia/Tokyo). Always present. Pass THIS, not the numeric offset, into any chart or panchang request for a past date: the calculation endpoints resolve it to the offset that was actually in force on that date, including historical daylight saving. Also works directly with JavaScript Date, Luxon, day.js, or any date library.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Timezone { get; set; }
@@ -61,7 +61,7 @@ namespace RoxyApi.Location.Search
 #else
         public string Timezone { get; set; }
 #endif
-        /// <summary>Current UTC offset in decimal hours, automatically adjusted for daylight saving time. Pass directly as the timezone parameter in astrology API endpoints. Examples: 1 for CET, 2 for CEST, -5 for EST, 5.5 for IST, 5.75 for Nepal.</summary>
+        /// <summary>UTC offset in decimal hours for TODAY at this place, already adjusted for daylight saving. Convenient for displaying local time now. For a birth date or any past date use the `timezone` field instead, since the offset in force then may differ. Examples: 1 for CET, 2 for CEST, -5 for EST, 5.5 for IST, 5.75 for Nepal.</summary>
         public double? UtcOffset { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Location.Search.SearchGetResponse_cities"/> and sets the default values.

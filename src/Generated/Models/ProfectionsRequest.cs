@@ -23,6 +23,8 @@ namespace RoxyApi.Models
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West.</summary>
         public double? Longitude { get; set; }
+        /// <summary>Lunar node convention. &quot;mean&quot; is the smoothed average node, which always moves retrograde; &quot;true&quot; is the osculating node, which tracks the real perturbed node, oscillates up to about 1.5 degrees either side of the mean on a 173-day cycle, and can briefly turn direct. Neither is more correct and they almost always fall in the same sign. Applies to the North and South Node. True is what most Western software reports (Astrolabe, Cafe Astrology, TimePassages), which is why it is the default here; astro-seek and the Steven Forrest evolutionary school use mean, so pass &quot;mean&quot; to match those. Nothing else in the chart changes, and the two agree on the sign except when the node sits within about 1.8 degrees of a cusp. Defaults to &quot;true&quot;.</summary>
+        public global::RoxyApi.Models.ProfectionsRequest_nodeType? NodeType { get; set; }
         /// <summary>Date whose profection year you want, in YYYY-MM-DD format. The completed whole years from the birth date to this date select the profected house and sign. Must fall on or after the birth date.</summary>
         public Date? TargetDate { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown.</summary>
@@ -42,6 +44,7 @@ namespace RoxyApi.Models
         {
             AdditionalData = new Dictionary<string, object>();
             HouseSystem = global::RoxyApi.Models.ProfectionsRequest_houseSystem.Placidus;
+            NodeType = global::RoxyApi.Models.ProfectionsRequest_nodeType.True;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -65,6 +68,7 @@ namespace RoxyApi.Models
                 { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Models.ProfectionsRequest_houseSystem>(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
+                { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.Models.ProfectionsRequest_nodeType>(); } },
                 { "targetDate", n => { TargetDate = n.GetDateValue(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.ProfectionsRequest.ProfectionsRequest_timezone>(global::RoxyApi.Models.ProfectionsRequest.ProfectionsRequest_timezone.CreateFromDiscriminatorValue); } },
@@ -81,6 +85,7 @@ namespace RoxyApi.Models
             writer.WriteEnumValue<global::RoxyApi.Models.ProfectionsRequest_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
+            writer.WriteEnumValue<global::RoxyApi.Models.ProfectionsRequest_nodeType>("nodeType", NodeType);
             writer.WriteDateValue("targetDate", TargetDate);
             writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Models.ProfectionsRequest.ProfectionsRequest_timezone>("timezone", Timezone);

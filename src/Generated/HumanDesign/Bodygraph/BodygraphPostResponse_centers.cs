@@ -44,13 +44,21 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #endif
         /// <summary>Whether this is a motor center (energy source). The four motors are Heart, Sacral, Solar Plexus, and Root.</summary>
         public bool? Motor { get; set; }
-        /// <summary>Display name of the center.</summary>
+        /// <summary>Display name of the center. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Center name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>The conditioning trap of this center when it is open. Returned on every center so a consumer can surface it the moment `defined` is false, which is where the not-self operates.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -100,6 +108,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "motor", n => { Motor = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "notSelfQuestion", n => { NotSelfQuestion = n.GetStringValue(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
             };
@@ -118,6 +127,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("motor", Motor);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("notSelfQuestion", NotSelfQuestion);
             writer.WriteStringValue("theme", Theme);
             writer.WriteAdditionalData(AdditionalData);

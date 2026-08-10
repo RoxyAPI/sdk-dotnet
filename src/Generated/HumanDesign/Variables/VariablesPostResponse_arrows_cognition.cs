@@ -23,13 +23,21 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Name of the Cognition, the strongest sense. One of six read off the Determination Tone: Smell, Taste, Outer Vision, Inner Vision, Feeling, Touch.</summary>
+        /// <summary>Name of the Cognition, the strongest sense. One of six read off the Determination Tone: Smell, Taste, Outer Vision, Inner Vision, Feeling, Touch. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use labelLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Label { get; set; }
 #nullable restore
 #else
         public string Label { get; set; }
+#endif
+        /// <summary>Cognition name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LabelLocalized { get; set; }
+#nullable restore
+#else
+        public string LabelLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition"/> and sets the default values.
@@ -58,6 +66,7 @@ namespace RoxyApi.HumanDesign.Variables
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
+                { "labelLocalized", n => { LabelLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -69,6 +78,7 @@ namespace RoxyApi.HumanDesign.Variables
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("label", Label);
+            writer.WriteStringValue("labelLocalized", LabelLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

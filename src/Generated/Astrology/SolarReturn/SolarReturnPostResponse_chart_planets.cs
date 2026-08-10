@@ -24,7 +24,7 @@ namespace RoxyApi.Astrology.SolarReturn
         public double? Latitude { get; set; }
         /// <summary>Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee).</summary>
+        /// <summary>Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request `nodeType`, which defaults to the true (osculating) node; pass &quot;mean&quot; for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected.</summary>
         public global::RoxyApi.Astrology.SolarReturn.SolarReturnPostResponse_chart_planets_name? Name { get; set; }
         /// <summary>Tropical zodiac sign this planet occupies. Determined by 30-degree divisions of ecliptic longitude.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

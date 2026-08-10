@@ -44,7 +44,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #endif
         /// <summary>Aspect strength percentage (0-100). Based on orb tightness relative to the allowed maximum.</summary>
         public double? Strength { get; set; }
-        /// <summary>The transitInterpretation property</summary>
+        /// <summary>Rich interpretation of the transit aspect: narrative summary, timing, impact assessment, practical guidance, and keywords.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_aspects_transitInterpretation? TransitInterpretation { get; set; }

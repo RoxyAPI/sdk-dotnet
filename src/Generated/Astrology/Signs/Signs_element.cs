@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Astrology.Signs
 {
-    /// <summary>Elemental classification: Fire, Earth, Air, or Water.</summary>
+    /// <summary>Elemental classification: fire, earth, air, or water. Always one of these four English literals, whatever the lang parameter says, so it stays safe to compare against in code. Use elementLocalized for anything a reader sees.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum Signs_element
     {

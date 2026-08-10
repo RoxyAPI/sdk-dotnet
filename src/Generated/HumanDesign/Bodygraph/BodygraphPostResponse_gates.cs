@@ -24,13 +24,21 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string GateDescription { get; set; }
 #endif
-        /// <summary>Human Design keynote name of the gate, describing its bodygraph function.</summary>
+        /// <summary>Human Design keynote name of the gate, describing its bodygraph function. Always English, whatever the lang parameter says. Use gateNameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? GateName { get; set; }
 #nullable restore
 #else
         public string GateName { get; set; }
+#endif
+        /// <summary>Gate keynote name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GateNameLocalized { get; set; }
+#nullable restore
+#else
+        public string GateNameLocalized { get; set; }
 #endif
         /// <summary>Cross-reference to the I-Ching hexagram that shares this gate number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -50,7 +58,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string LineMeaning { get; set; }
 #endif
-        /// <summary>Activating body. One of Sun, Earth, Moon, North Node, South Node, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.</summary>
+        /// <summary>Activating body. One of Sun, Earth, Moon, North Node, South Node, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto. Always English, whatever the lang parameter says, so it stays safe to compare against in code and to key a glyph table on. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
@@ -65,6 +73,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string PlanetDescription { get; set; }
+#endif
+        /// <summary>Activating body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
 #endif
         /// <summary>Chart side. personality is the conscious birth-moment activation, design is the unconscious activation 88 degrees of solar arc before birth.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -102,11 +118,13 @@ namespace RoxyApi.HumanDesign.Bodygraph
                 { "gate", n => { Gate = n.GetDoubleValue(); } },
                 { "gateDescription", n => { GateDescription = n.GetStringValue(); } },
                 { "gateName", n => { GateName = n.GetStringValue(); } },
+                { "gateNameLocalized", n => { GateNameLocalized = n.GetStringValue(); } },
                 { "ichingHexagram", n => { IchingHexagram = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates_ichingHexagram>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates_ichingHexagram.CreateFromDiscriminatorValue); } },
                 { "line", n => { Line = n.GetDoubleValue(); } },
                 { "lineMeaning", n => { LineMeaning = n.GetStringValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
                 { "planetDescription", n => { PlanetDescription = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "side", n => { Side = n.GetStringValue(); } },
             };
         }
@@ -120,11 +138,13 @@ namespace RoxyApi.HumanDesign.Bodygraph
             writer.WriteDoubleValue("gate", Gate);
             writer.WriteStringValue("gateDescription", GateDescription);
             writer.WriteStringValue("gateName", GateName);
+            writer.WriteStringValue("gateNameLocalized", GateNameLocalized);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates_ichingHexagram>("ichingHexagram", IchingHexagram);
             writer.WriteDoubleValue("line", Line);
             writer.WriteStringValue("lineMeaning", LineMeaning);
             writer.WriteStringValue("planet", Planet);
             writer.WriteStringValue("planetDescription", PlanetDescription);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("side", Side);
             writer.WriteAdditionalData(AdditionalData);
         }

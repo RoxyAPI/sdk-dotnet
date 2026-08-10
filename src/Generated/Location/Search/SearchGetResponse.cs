@@ -14,7 +14,7 @@ namespace RoxyApi.Location.Search
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>City results for the current page, sorted by relevance (prefix match first) then population.</summary>
+        /// <summary>Matching places for the current page, best match first. Ordered by match quality, then population within equal quality: an exact name beats a qualified name such as richfield, utah, which beats a name merely starting with the query, which beats an incidental match on state or country. Take the first entry when total is 1, otherwise disambiguate on province and country.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Location.Search.SearchGetResponse_cities>? Cities { get; set; }
@@ -24,9 +24,9 @@ namespace RoxyApi.Location.Search
 #endif
         /// <summary>Page size used for this response.</summary>
         public double? Limit { get; set; }
-        /// <summary>Number of cities skipped. Use with limit for pagination.</summary>
+        /// <summary>Number of places skipped. Use with limit to page through results.</summary>
         public double? Offset { get; set; }
-        /// <summary>Total number of cities matching the search query.</summary>
+        /// <summary>Number of places matching the query across all pages, not the number returned in this response. Greater than 1 means the name is ambiguous, so show province and country and let the user confirm before using the result for a chart.</summary>
         public double? Total { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Location.Search.SearchGetResponse"/> and sets the default values.

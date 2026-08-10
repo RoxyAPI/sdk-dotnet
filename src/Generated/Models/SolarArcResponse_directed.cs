@@ -26,13 +26,21 @@ namespace RoxyApi.Models
 #else
         public string Interpretation { get; set; }
 #endif
-        /// <summary>Name of the directed point, localized to the requested language. This covers the planets and the two angles, the Ascendant and the Midheaven, alike.</summary>
+        /// <summary>Name of the directed point, covering the planets and the two angles, the Ascendant and the Midheaven, alike. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Directed point name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Absolute tropical ecliptic longitude of the point in the natal chart, in degrees (0 to 360).</summary>
         public double? NatalLongitude { get; set; }
@@ -73,6 +81,7 @@ namespace RoxyApi.Models
                 { "directedLongitude", n => { DirectedLongitude = n.GetDoubleValue(); } },
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "natalLongitude", n => { NatalLongitude = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
             };
@@ -88,6 +97,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("directedLongitude", DirectedLongitude);
             writer.WriteStringValue("interpretation", Interpretation);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteDoubleValue("natalLongitude", NatalLongitude);
             writer.WriteStringValue("sign", Sign);
             writer.WriteAdditionalData(AdditionalData);

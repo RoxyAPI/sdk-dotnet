@@ -16,13 +16,21 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Angular separation in degrees between the star and the natal point. Smaller means a tighter, stronger contact.</summary>
         public double? Orb { get; set; }
-        /// <summary>Natal point conjunct this star: a planet name, or the chart angles MC and ASC. Planet names are localized to the requested language.</summary>
+        /// <summary>Natal point conjunct this star: a planet name, or the chart angles MC and ASC. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use pointLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Point { get; set; }
 #nullable restore
 #else
         public string Point { get; set; }
+#endif
+        /// <summary>Natal point name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PointLocalized { get; set; }
+#nullable restore
+#else
+        public string PointLocalized { get; set; }
 #endif
         /// <summary>Tropical ecliptic longitude of the natal point in degrees (0-360).</summary>
         public double? PointLongitude { get; set; }
@@ -53,6 +61,7 @@ namespace RoxyApi.Models
             {
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "point", n => { Point = n.GetStringValue(); } },
+                { "pointLocalized", n => { PointLocalized = n.GetStringValue(); } },
                 { "pointLongitude", n => { PointLongitude = n.GetDoubleValue(); } },
             };
         }
@@ -65,6 +74,7 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteStringValue("point", Point);
+            writer.WriteStringValue("pointLocalized", PointLocalized);
             writer.WriteDoubleValue("pointLongitude", PointLongitude);
             writer.WriteAdditionalData(AdditionalData);
         }

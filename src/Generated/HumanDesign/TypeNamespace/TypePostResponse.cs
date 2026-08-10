@@ -22,7 +22,7 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #else
         public string Aura { get; set; }
 #endif
-        /// <summary>Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar.</summary>
+        /// <summary>Inner authority for decision making. One of Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, Lunar. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use authorityLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Authority { get; set; }
@@ -38,13 +38,29 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #else
         public string AuthorityDescription { get; set; }
 #endif
-        /// <summary>The not-self theme that signals being out of alignment.</summary>
+        /// <summary>Inner authority name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AuthorityLocalized { get; set; }
+#nullable restore
+#else
+        public string AuthorityLocalized { get; set; }
+#endif
+        /// <summary>The not-self theme that signals being out of alignment. Always English, whatever the lang parameter says. Use notSelfLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NotSelf { get; set; }
 #nullable restore
 #else
         public string NotSelf { get; set; }
+#endif
+        /// <summary>Not-self theme name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NotSelfLocalized { get; set; }
+#nullable restore
+#else
+        public string NotSelfLocalized { get; set; }
 #endif
         /// <summary>Profile from the Personality Sun line over the Design Sun line.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,7 +70,7 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #else
         public string Profile { get; set; }
 #endif
-        /// <summary>The signature feeling of living in alignment.</summary>
+        /// <summary>The signature feeling of living in alignment. Always English, whatever the lang parameter says. Use signatureLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Signature { get; set; }
@@ -62,7 +78,15 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #else
         public string Signature { get; set; }
 #endif
-        /// <summary>The aura strategy for engaging life correctly for this type.</summary>
+        /// <summary>Signature theme name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignatureLocalized { get; set; }
+#nullable restore
+#else
+        public string SignatureLocalized { get; set; }
+#endif
+        /// <summary>The aura strategy for engaging life correctly for this type. Always English, whatever the lang parameter says. Use strategyLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Strategy { get; set; }
@@ -78,7 +102,15 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #else
         public string StrategyDescription { get; set; }
 #endif
-        /// <summary>Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector.</summary>
+        /// <summary>Strategy name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StrategyLocalized { get; set; }
+#nullable restore
+#else
+        public string StrategyLocalized { get; set; }
+#endif
+        /// <summary>Human Design energy type. One of Manifestor, Generator, Manifesting Generator, Projector, Reflector. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use typeLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }
@@ -93,6 +125,14 @@ namespace RoxyApi.HumanDesign.TypeNamespace
 #nullable restore
 #else
         public string TypeDescription { get; set; }
+#endif
+        /// <summary>Energy type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeLocalized { get; set; }
+#nullable restore
+#else
+        public string TypeLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.TypeNamespace.TypePostResponse"/> and sets the default values.
@@ -122,13 +162,18 @@ namespace RoxyApi.HumanDesign.TypeNamespace
                 { "aura", n => { Aura = n.GetStringValue(); } },
                 { "authority", n => { Authority = n.GetStringValue(); } },
                 { "authorityDescription", n => { AuthorityDescription = n.GetStringValue(); } },
+                { "authorityLocalized", n => { AuthorityLocalized = n.GetStringValue(); } },
                 { "notSelf", n => { NotSelf = n.GetStringValue(); } },
+                { "notSelfLocalized", n => { NotSelfLocalized = n.GetStringValue(); } },
                 { "profile", n => { Profile = n.GetStringValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
+                { "signatureLocalized", n => { SignatureLocalized = n.GetStringValue(); } },
                 { "strategy", n => { Strategy = n.GetStringValue(); } },
                 { "strategyDescription", n => { StrategyDescription = n.GetStringValue(); } },
+                { "strategyLocalized", n => { StrategyLocalized = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
                 { "typeDescription", n => { TypeDescription = n.GetStringValue(); } },
+                { "typeLocalized", n => { TypeLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -141,13 +186,18 @@ namespace RoxyApi.HumanDesign.TypeNamespace
             writer.WriteStringValue("aura", Aura);
             writer.WriteStringValue("authority", Authority);
             writer.WriteStringValue("authorityDescription", AuthorityDescription);
+            writer.WriteStringValue("authorityLocalized", AuthorityLocalized);
             writer.WriteStringValue("notSelf", NotSelf);
+            writer.WriteStringValue("notSelfLocalized", NotSelfLocalized);
             writer.WriteStringValue("profile", Profile);
             writer.WriteStringValue("signature", Signature);
+            writer.WriteStringValue("signatureLocalized", SignatureLocalized);
             writer.WriteStringValue("strategy", Strategy);
             writer.WriteStringValue("strategyDescription", StrategyDescription);
+            writer.WriteStringValue("strategyLocalized", StrategyLocalized);
             writer.WriteStringValue("type", Type);
             writer.WriteStringValue("typeDescription", TypeDescription);
+            writer.WriteStringValue("typeLocalized", TypeLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

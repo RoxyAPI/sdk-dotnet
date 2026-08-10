@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Transit
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Aspects formed between this transiting planet and natal planets.</summary>
+        /// <summary>Degree-based angular aspects between this transiting graha and the natal grahas. Western vocabulary, kept for callers who read a chart that way; drishtiToNatal is the Vedic answer to the same question.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal>? AspectsToNatal { get; set; }
@@ -22,6 +22,16 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public List<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal> AspectsToNatal { get; set; }
 #endif
+        /// <summary>Graha drishti cast by this transiting graha onto the natal grahas, the Vedic reading of transit-to-natal aspects. Rahu and Ketu cast none. Empty when this graha reaches no occupied natal sign.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_drishtiToNatal>? DrishtiToNatal { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_drishtiToNatal> DrishtiToNatal { get; set; }
+#endif
+        /// <summary>Which house this graha is transiting counted from the natal Moon sign (Janma Rashi), 1-12 whole-sign and counted inclusively, so the Moon sign itself is 1. This is the number classical Gochara is reckoned in: Phaladeepika chapter 26 opens by saying that of all the Lagnas only the Moon Lagna matters for transit results, and the Vedha and Ashtakavarga transit rules are counted from the Moon throughout. The reference sign is the sign of the Moon entry in natalPlanets, so a client can label the column without a second request.</summary>
+        public double? HouseFromMoon { get; set; }
         /// <summary>Gochara Kaksha: the ashtakavarga-qualified reading of this transit. The sign says where a graha is, this says whether the exact stretch it currently occupies is one its own Bhinnashtakavarga supports, which is the classical way of refining a transit verdict from sign-level to under four degrees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -40,7 +50,7 @@ namespace RoxyApi.VedicAstrology.Transit
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Which natal house (whole-sign bhava from the Lagna) this planet is currently transiting through. Key for Gochar predictions.</summary>
+        /// <summary>Which natal house (whole-sign bhava counted from the Lagna) this graha is currently transiting through. This is the Lagna reading of the transit, which is what a transit chart drawn over the birth chart shows. For the house classical Gochara is judged from, read houseFromMoon instead.</summary>
         public double? NatalHouse { get; set; }
         /// <summary>Current zodiac sign of the transiting planet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,6 +86,8 @@ namespace RoxyApi.VedicAstrology.Transit
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "aspectsToNatal", n => { AspectsToNatal = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "drishtiToNatal", n => { DrishtiToNatal = n.GetCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_drishtiToNatal>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_drishtiToNatal.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "houseFromMoon", n => { HouseFromMoon = n.GetDoubleValue(); } },
                 { "kaksha", n => { Kaksha = n.GetObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha>(global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha.CreateFromDiscriminatorValue); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -91,6 +103,8 @@ namespace RoxyApi.VedicAstrology.Transit
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_aspectsToNatal>("aspectsToNatal", AspectsToNatal);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_drishtiToNatal>("drishtiToNatal", DrishtiToNatal);
+            writer.WriteDoubleValue("houseFromMoon", HouseFromMoon);
             writer.WriteObjectValue<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse_transitingPlanets_kaksha>("kaksha", Kaksha);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);

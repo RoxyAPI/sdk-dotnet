@@ -15,7 +15,7 @@ namespace RoxyApi.Location.Countries
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Number of searchable cities available for this country. Useful for showing coverage in UI or deciding whether to offer city search for a given country.</summary>
+        /// <summary>Number of searchable places in this country, including small towns and administrative seats. Useful for showing coverage in a UI or sizing a dependent city dropdown.</summary>
         public double? CityCount { get; set; }
         /// <summary>ISO 3166-1 alpha-2 country code. Use as the identifier when fetching cities for a specific country via the /countries/{iso2} endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

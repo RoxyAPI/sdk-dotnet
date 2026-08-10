@@ -32,13 +32,21 @@ namespace RoxyApi.HumanDesign.Connection
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>Display name of the center.</summary>
+        /// <summary>Display name of the center. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Center name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_centers"/> and sets the default values.
@@ -69,6 +77,7 @@ namespace RoxyApi.HumanDesign.Connection
                 { "definedBy", n => { DefinedBy = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -82,6 +91,7 @@ namespace RoxyApi.HumanDesign.Connection
             writer.WriteCollectionOfPrimitiveValues<string>("definedBy", DefinedBy);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

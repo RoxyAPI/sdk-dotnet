@@ -22,7 +22,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public List<string> Centers { get; set; }
 #endif
-        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal.</summary>
+        /// <summary>Circuit family of the channel. One of Individual, Collective, Tribal. Always English, whatever the lang parameter says. Use circuitLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Circuit { get; set; }
@@ -38,6 +38,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string CircuitDescription { get; set; }
 #endif
+        /// <summary>Circuit family name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CircuitLocalized { get; set; }
+#nullable restore
+#else
+        public string CircuitLocalized { get; set; }
+#endif
         /// <summary>What this channel wires between its two centers and the nature of the energy it carries.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,13 +58,21 @@ namespace RoxyApi.HumanDesign.Bodygraph
         public double? GateA { get; set; }
         /// <summary>Second gate of the channel.</summary>
         public double? GateB { get; set; }
-        /// <summary>Name of the defined channel.</summary>
+        /// <summary>Name of the defined channel. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Channel name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_channels"/> and sets the default values.
@@ -86,10 +102,12 @@ namespace RoxyApi.HumanDesign.Bodygraph
                 { "centers", n => { Centers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "circuit", n => { Circuit = n.GetStringValue(); } },
                 { "circuitDescription", n => { CircuitDescription = n.GetStringValue(); } },
+                { "circuitLocalized", n => { CircuitLocalized = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "gateA", n => { GateA = n.GetDoubleValue(); } },
                 { "gateB", n => { GateB = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -102,10 +120,12 @@ namespace RoxyApi.HumanDesign.Bodygraph
             writer.WriteCollectionOfPrimitiveValues<string>("centers", Centers);
             writer.WriteStringValue("circuit", Circuit);
             writer.WriteStringValue("circuitDescription", CircuitDescription);
+            writer.WriteStringValue("circuitLocalized", CircuitLocalized);
             writer.WriteStringValue("description", Description);
             writer.WriteDoubleValue("gateA", GateA);
             writer.WriteDoubleValue("gateB", GateB);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

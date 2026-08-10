@@ -40,7 +40,7 @@ namespace RoxyApi.VedicAstrology.Transit
         {
         }
         /// <summary>
-        /// Analyze planetary transits (Gochar) over natal chart positions. Returns transiting planets with their natal house positions, aspects to natal planets, and highlights key transits from slow-moving planets (Jupiter, Saturn, Rahu, Ketu). Essential for timing predictions, event forecasting, and understanding current planetary influences. Transit analysis API, gochar calculator, vedic transit predictions.
+        /// Analyze planetary transits (Gochar) over natal chart positions. Each transiting graha comes back with TWO whole-sign house numbers, because the two readings answer different questions: houseFromMoon is counted from the natal Moon sign (Janma Rashi), which is the reference classical Gochara uses, and natalHouse is counted from the Lagna. Also returns graha drishti onto the natal grahas (7th for every graha, plus Mars 4th and 8th, Jupiter 5th and 9th, Saturn 3rd and 10th), degree-based angular aspects with orbs, the Gochara Kaksha verdict, and highlighted transits from the slow-moving grahas (Jupiter, Saturn, Rahu, Ketu). Essential for timing predictions, event forecasting, and understanding current planetary influences. Transit analysis API, gochar calculator, vedic transit predictions, Chandra Lagna gochara, graha drishti.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Transit.TransitPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -73,7 +73,7 @@ namespace RoxyApi.VedicAstrology.Transit
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Transit.TransitPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Transit.TransitPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Analyze planetary transits (Gochar) over natal chart positions. Returns transiting planets with their natal house positions, aspects to natal planets, and highlights key transits from slow-moving planets (Jupiter, Saturn, Rahu, Ketu). Essential for timing predictions, event forecasting, and understanding current planetary influences. Transit analysis API, gochar calculator, vedic transit predictions.
+        /// Analyze planetary transits (Gochar) over natal chart positions. Each transiting graha comes back with TWO whole-sign house numbers, because the two readings answer different questions: houseFromMoon is counted from the natal Moon sign (Janma Rashi), which is the reference classical Gochara uses, and natalHouse is counted from the Lagna. Also returns graha drishti onto the natal grahas (7th for every graha, plus Mars 4th and 8th, Jupiter 5th and 9th, Saturn 3rd and 10th), degree-based angular aspects with orbs, the Gochara Kaksha verdict, and highlighted transits from the slow-moving grahas (Jupiter, Saturn, Rahu, Ketu). Essential for timing predictions, event forecasting, and understanding current planetary influences. Transit analysis API, gochar calculator, vedic transit predictions, Chandra Lagna gochara, graha drishti.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

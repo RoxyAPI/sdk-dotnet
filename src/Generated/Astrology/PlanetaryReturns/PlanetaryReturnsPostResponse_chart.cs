@@ -49,7 +49,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
 #else
         public global::RoxyApi.Astrology.PlanetaryReturns.PlanetaryReturnsPostResponse_chart_partOfFortune PartOfFortune { get; set; }
 #endif
-        /// <summary>All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node), Chiron, and Black Moon Lilith.</summary>
+        /// <summary>All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested `nodeType` convention), Chiron, and Black Moon Lilith.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Astrology.PlanetaryReturns.PlanetaryReturnsPostResponse_chart_planets>? Planets { get; set; }

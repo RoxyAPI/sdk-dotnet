@@ -14,13 +14,21 @@ namespace RoxyApi.HumanDesign.Gates.Item
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Name of the shared channel.</summary>
+        /// <summary>Name of the shared channel. Always English, whatever the lang parameter says. Use channelLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Channel { get; set; }
 #nullable restore
 #else
         public string Channel { get; set; }
+#endif
+        /// <summary>Channel name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ChannelLocalized { get; set; }
+#nullable restore
+#else
+        public string ChannelLocalized { get; set; }
 #endif
         /// <summary>Partner gate number.</summary>
         public double? Gate { get; set; }
@@ -50,6 +58,7 @@ namespace RoxyApi.HumanDesign.Gates.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "channel", n => { Channel = n.GetStringValue(); } },
+                { "channelLocalized", n => { ChannelLocalized = n.GetStringValue(); } },
                 { "gate", n => { Gate = n.GetDoubleValue(); } },
             };
         }
@@ -61,6 +70,7 @@ namespace RoxyApi.HumanDesign.Gates.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("channel", Channel);
+            writer.WriteStringValue("channelLocalized", ChannelLocalized);
             writer.WriteDoubleValue("gate", Gate);
             writer.WriteAdditionalData(AdditionalData);
         }

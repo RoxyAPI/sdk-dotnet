@@ -15,7 +15,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Cross angle. One of Right Angle, Juxtaposition, Left Angle.</summary>
+        /// <summary>Cross angle. One of Right Angle, Juxtaposition, Left Angle. Always English, whatever the lang parameter says. Use angleLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Angle { get; set; }
@@ -30,6 +30,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public string AngleCode { get; set; }
+#endif
+        /// <summary>Cross angle name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AngleLocalized { get; set; }
+#nullable restore
+#else
+        public string AngleLocalized { get; set; }
 #endif
         /// <summary>The life theme of the cross, synthesized from its four gates and the orientation the angle gives them. The same Sun gate under a different angle is a genuinely different theme: Right Angle is personal destiny, Left Angle is worked out through other people, Juxtaposition is a fixed fate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,6 +90,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             {
                 { "angle", n => { Angle = n.GetStringValue(); } },
                 { "angleCode", n => { AngleCode = n.GetStringValue(); } },
+                { "angleLocalized", n => { AngleLocalized = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -96,6 +105,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("angle", Angle);
             writer.WriteStringValue("angleCode", AngleCode);
+            writer.WriteStringValue("angleLocalized", AngleLocalized);
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfPrimitiveValues<double?>("gates", Gates);
             writer.WriteStringValue("name", Name);

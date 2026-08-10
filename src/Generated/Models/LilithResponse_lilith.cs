@@ -50,13 +50,15 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Daily motion in degrees per day. The mean apogee is always positive (direct); the true apogee can be negative (retrograde).</summary>
         public double? Speed { get; set; }
-        /// <summary>Which lunar apogee this entry describes, localized to the requested language. The mean variant is the smoothed average apogee; the true variant is the instantaneous osculating apogee.</summary>
+        /// <summary>Which lunar apogee this entry describes. The mean variant is the smoothed average apogee; the true variant is the instantaneous osculating apogee. Always one of these two English literals, whatever the lang parameter says, so it stays safe to compare against in code. Use variantLocalized for anything a reader sees.</summary>
+        public global::RoxyApi.Models.LilithResponse_lilith_variant? Variant { get; set; }
+        /// <summary>Apogee variant label in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Variant { get; set; }
+        public string? VariantLocalized { get; set; }
 #nullable restore
 #else
-        public string Variant { get; set; }
+        public string VariantLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.LilithResponse_lilith"/> and sets the default values.
@@ -92,7 +94,8 @@ namespace RoxyApi.Models
                 { "note", n => { Note = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
                 { "speed", n => { Speed = n.GetDoubleValue(); } },
-                { "variant", n => { Variant = n.GetStringValue(); } },
+                { "variant", n => { Variant = n.GetEnumValue<global::RoxyApi.Models.LilithResponse_lilith_variant>(); } },
+                { "variantLocalized", n => { VariantLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -111,7 +114,8 @@ namespace RoxyApi.Models
             writer.WriteStringValue("note", Note);
             writer.WriteStringValue("sign", Sign);
             writer.WriteDoubleValue("speed", Speed);
-            writer.WriteStringValue("variant", Variant);
+            writer.WriteEnumValue<global::RoxyApi.Models.LilithResponse_lilith_variant>("variant", Variant);
+            writer.WriteStringValue("variantLocalized", VariantLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

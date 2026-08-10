@@ -30,13 +30,21 @@ namespace RoxyApi.HumanDesign.Connection
 #else
         public List<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_channels> Channels { get; set; }
 #endif
-        /// <summary>Definition of the combined connection bodygraph from connected components among its defined centers. One of None, Single, Split, Triple Split, Quadruple Split.</summary>
+        /// <summary>Definition of the combined connection bodygraph from connected components among its defined centers. One of None, Single, Split, Triple Split, Quadruple Split. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use combinedDefinitionLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CombinedDefinition { get; set; }
 #nullable restore
 #else
         public string CombinedDefinition { get; set; }
+#endif
+        /// <summary>Combined definition name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CombinedDefinitionLocalized { get; set; }
+#nullable restore
+#else
+        public string CombinedDefinitionLocalized { get; set; }
 #endif
         /// <summary>Count of each connection dynamic across all connected channels.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,6 +84,7 @@ namespace RoxyApi.HumanDesign.Connection
                 { "centers", n => { Centers = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_centers>(global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_centers.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "channels", n => { Channels = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_channels>(global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_channels.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "combinedDefinition", n => { CombinedDefinition = n.GetStringValue(); } },
+                { "combinedDefinitionLocalized", n => { CombinedDefinitionLocalized = n.GetStringValue(); } },
                 { "summary", n => { Summary = n.GetObjectValue<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_summary>(global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_summary.CreateFromDiscriminatorValue); } },
                 { "totalChannels", n => { TotalChannels = n.GetDoubleValue(); } },
             };
@@ -90,6 +99,7 @@ namespace RoxyApi.HumanDesign.Connection
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_centers>("centers", Centers);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_channels>("channels", Channels);
             writer.WriteStringValue("combinedDefinition", CombinedDefinition);
+            writer.WriteStringValue("combinedDefinitionLocalized", CombinedDefinitionLocalized);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_summary>("summary", Summary);
             writer.WriteDoubleValue("totalChannels", TotalChannels);
             writer.WriteAdditionalData(AdditionalData);

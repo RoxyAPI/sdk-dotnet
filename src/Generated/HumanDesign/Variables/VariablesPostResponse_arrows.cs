@@ -24,13 +24,21 @@ namespace RoxyApi.HumanDesign.Variables
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Base number from 1 to 5, the finest published subdivision of the wheel. Returned for completeness but treated as informational, since it is finer than most birth times can resolve.</summary>
         public double? Base { get; set; }
-        /// <summary>Name of the Base. Informational only: the Base is finer than any civil birth time can resolve.</summary>
+        /// <summary>Name of the Base. Informational only: the Base is finer than any civil birth time can resolve. Always English, whatever the lang parameter says. Use baseNameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? BaseName { get; set; }
 #nullable restore
 #else
         public string BaseName { get; set; }
+#endif
+        /// <summary>Base name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BaseNameLocalized { get; set; }
+#nullable restore
+#else
+        public string BaseNameLocalized { get; set; }
 #endif
         /// <summary>Cognition, the strongest sense, read off the Determination Tone. Present on the determination arrow ONLY: no authority supports reading Cognition from the other three arrows, so it is omitted rather than invented.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,13 +50,21 @@ namespace RoxyApi.HumanDesign.Variables
 #endif
         /// <summary>Color number from 1 to 6, the substructure level one octave finer than the line. Color selects the arrow theme, for example the determination family or the motivation.</summary>
         public double? Color { get; set; }
-        /// <summary>Name of the Color theme for this arrow, for example a determination family such as Touch, an environment such as Mountains, a perspective such as Personal, or a motivation such as Hope.</summary>
+        /// <summary>Name of the Color theme for this arrow, for example a determination family such as Touch, an environment such as Mountains, a perspective such as Personal, or a motivation such as Hope. Always English, whatever the lang parameter says. Use colorLabelLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ColorLabel { get; set; }
 #nullable restore
 #else
         public string ColorLabel { get; set; }
+#endif
+        /// <summary>Color theme name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ColorLabelLocalized { get; set; }
+#nullable restore
+#else
+        public string ColorLabelLocalized { get; set; }
 #endif
         /// <summary>Meaning of the Color for THIS arrow. The same Color number means something different under Determination than under Motivation, so this is the reading of colorLabel in context, not a generic gloss.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,13 +92,21 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string Direction { get; set; }
 #endif
-        /// <summary>Keynote of the arrow direction for this arrow, for example Active or Passive for Determination, Focused or Peripheral for Perspective.</summary>
+        /// <summary>Keynote of the arrow direction for this arrow, for example Active or Passive for Determination, Focused or Peripheral for Perspective. Always English, whatever the lang parameter says. Use directionLabelLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DirectionLabel { get; set; }
 #nullable restore
 #else
         public string DirectionLabel { get; set; }
+#endif
+        /// <summary>Arrow direction keynote in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DirectionLabelLocalized { get; set; }
+#nullable restore
+#else
+        public string DirectionLabelLocalized { get; set; }
 #endif
         /// <summary>Meaning of the left or right direction for THIS arrow, the reading of directionLabel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -100,7 +124,7 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string Key { get; set; }
 #endif
-        /// <summary>Which half of the advanced layer the arrow belongs to. Primary Health System covers the body-side Determination and Environment arrows, Rave Psychology covers the mind-side Perspective and Motivation arrows.</summary>
+        /// <summary>Which half of the advanced layer the arrow belongs to. Primary Health System covers the body-side Determination and Environment arrows, Rave Psychology covers the mind-side Perspective and Motivation arrows. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use layerLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Layer { get; set; }
@@ -116,7 +140,15 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string LayerDescription { get; set; }
 #endif
-        /// <summary>Arrow name. Determination is the top-left arrow governing the Primary Health System and digestion, Environment the bottom-left arrow, Perspective the bottom-right arrow also called View, and Motivation the top-right arrow.</summary>
+        /// <summary>Layer name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LayerLocalized { get; set; }
+#nullable restore
+#else
+        public string LayerLocalized { get; set; }
+#endif
+        /// <summary>Arrow name. Determination is the top-left arrow governing the Primary Health System and digestion, Environment the bottom-left arrow, Perspective the bottom-right arrow also called View, and Motivation the top-right arrow. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -124,13 +156,29 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Position of the arrow at the head of the bodygraph. One of Top left, Bottom left, Top right, Bottom right.</summary>
+        /// <summary>Arrow name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
+#endif
+        /// <summary>Position of the arrow at the head of the bodygraph. One of Top left, Bottom left, Top right, Bottom right. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use positionLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Position { get; set; }
 #nullable restore
 #else
         public string Position { get; set; }
+#endif
+        /// <summary>Arrow position name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PositionLocalized { get; set; }
+#nullable restore
+#else
+        public string PositionLocalized { get; set; }
 #endif
         /// <summary>Tone number from 1 to 6, the substructure level beneath Color. Tone sets the arrow direction: tones 1 to 3 face left, tones 4 to 6 face right.</summary>
         public double? Tone { get; set; }
@@ -170,20 +218,26 @@ namespace RoxyApi.HumanDesign.Variables
                 { "activation", n => { Activation = n.GetObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_activation>(global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_activation.CreateFromDiscriminatorValue); } },
                 { "base", n => { Base = n.GetDoubleValue(); } },
                 { "baseName", n => { BaseName = n.GetStringValue(); } },
+                { "baseNameLocalized", n => { BaseNameLocalized = n.GetStringValue(); } },
                 { "cognition", n => { Cognition = n.GetObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition>(global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition.CreateFromDiscriminatorValue); } },
                 { "color", n => { Color = n.GetDoubleValue(); } },
                 { "colorLabel", n => { ColorLabel = n.GetStringValue(); } },
+                { "colorLabelLocalized", n => { ColorLabelLocalized = n.GetStringValue(); } },
                 { "colorMeaning", n => { ColorMeaning = n.GetStringValue(); } },
                 { "confident", n => { Confident = n.GetBoolValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "direction", n => { Direction = n.GetStringValue(); } },
                 { "directionLabel", n => { DirectionLabel = n.GetStringValue(); } },
+                { "directionLabelLocalized", n => { DirectionLabelLocalized = n.GetStringValue(); } },
                 { "directionMeaning", n => { DirectionMeaning = n.GetStringValue(); } },
                 { "key", n => { Key = n.GetStringValue(); } },
                 { "layer", n => { Layer = n.GetStringValue(); } },
                 { "layerDescription", n => { LayerDescription = n.GetStringValue(); } },
+                { "layerLocalized", n => { LayerLocalized = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetStringValue(); } },
+                { "positionLocalized", n => { PositionLocalized = n.GetStringValue(); } },
                 { "tone", n => { Tone = n.GetDoubleValue(); } },
                 { "toneMeaning", n => { ToneMeaning = n.GetStringValue(); } },
             };
@@ -198,20 +252,26 @@ namespace RoxyApi.HumanDesign.Variables
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_activation>("activation", Activation);
             writer.WriteDoubleValue("base", Base);
             writer.WriteStringValue("baseName", BaseName);
+            writer.WriteStringValue("baseNameLocalized", BaseNameLocalized);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Variables.VariablesPostResponse_arrows_cognition>("cognition", Cognition);
             writer.WriteDoubleValue("color", Color);
             writer.WriteStringValue("colorLabel", ColorLabel);
+            writer.WriteStringValue("colorLabelLocalized", ColorLabelLocalized);
             writer.WriteStringValue("colorMeaning", ColorMeaning);
             writer.WriteBoolValue("confident", Confident);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("direction", Direction);
             writer.WriteStringValue("directionLabel", DirectionLabel);
+            writer.WriteStringValue("directionLabelLocalized", DirectionLabelLocalized);
             writer.WriteStringValue("directionMeaning", DirectionMeaning);
             writer.WriteStringValue("key", Key);
             writer.WriteStringValue("layer", Layer);
             writer.WriteStringValue("layerDescription", LayerDescription);
+            writer.WriteStringValue("layerLocalized", LayerLocalized);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("position", Position);
+            writer.WriteStringValue("positionLocalized", PositionLocalized);
             writer.WriteDoubleValue("tone", Tone);
             writer.WriteStringValue("toneMeaning", ToneMeaning);
             writer.WriteAdditionalData(AdditionalData);

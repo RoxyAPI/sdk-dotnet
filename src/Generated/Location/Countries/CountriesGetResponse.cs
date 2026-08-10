@@ -26,7 +26,7 @@ namespace RoxyApi.Location.Countries
         public double? Limit { get; set; }
         /// <summary>Number of countries skipped. Use with limit for pagination.</summary>
         public double? Offset { get; set; }
-        /// <summary>Total number of countries available.</summary>
+        /// <summary>Total number of countries with at least one place in the dataset.</summary>
         public double? Total { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Location.Countries.CountriesGetResponse"/> and sets the default values.
