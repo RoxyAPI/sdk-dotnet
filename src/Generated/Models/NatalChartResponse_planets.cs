@@ -16,6 +16,8 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree within the zodiac sign (0-29.999).</summary>
         public double? Degree { get; set; }
+        /// <summary>Essential dignity of this body in the sign it occupies: domicile (the sign it rules, its strongest placement), exaltation (honoured and amplified), detriment (opposite its rulership, where it struggles), fall (opposite its exaltation, where it is weakened), or peregrine (in none of its own dignity signs). Absent for the lunar nodes, Chiron and Black Moon Lilith, which rule no sign and therefore hold no dignity at all, so an absent field and peregrine are different answers. Derived by sign only, so triplicity, bounds and face are not considered. Always English, whatever the lang parameter says, so it stays safe to compare against in code. The four dignity signs behind it are published per body by GET /planet-meanings/{id}.</summary>
+        public global::RoxyApi.Models.NatalChartResponse_planets_dignity? Dignity { get; set; }
         /// <summary>House placement (1-12) based on the selected house system.</summary>
         public double? House { get; set; }
         /// <summary>Planet-in-sign-in-house interpretation. Narrative analysis of what this placement means in the natal chart.</summary>
@@ -92,6 +94,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "degree", n => { Degree = n.GetDoubleValue(); } },
+                { "dignity", n => { Dignity = n.GetEnumValue<global::RoxyApi.Models.NatalChartResponse_planets_dignity>(); } },
                 { "house", n => { House = n.GetDoubleValue(); } },
                 { "interpretation", n => { Interpretation = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_planets_interpretation>(global::RoxyApi.Models.NatalChartResponse_planets_interpretation.CreateFromDiscriminatorValue); } },
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
@@ -112,6 +115,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("degree", Degree);
+            writer.WriteEnumValue<global::RoxyApi.Models.NatalChartResponse_planets_dignity>("dignity", Dignity);
             writer.WriteDoubleValue("house", House);
             writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_planets_interpretation>("interpretation", Interpretation);
             writer.WriteBoolValue("isRetrograde", IsRetrograde);

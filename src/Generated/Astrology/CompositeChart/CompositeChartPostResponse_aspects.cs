@@ -16,7 +16,7 @@ namespace RoxyApi.Astrology.CompositeChart
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Exact angular separation that defines this aspect type in degrees.</summary>
         public double? Angle { get; set; }
-        /// <summary>Aspect nature. Harmonious (trine, sextile) flows easily. Challenging (square, opposition) creates tension and growth. Neutral (conjunction) blends energies.</summary>
+        /// <summary>Aspect nature. Harmonious (trine, sextile) flows easily. Challenging (square, opposition) creates tension and growth. Neutral (conjunction) blends energies. Always English, whatever the lang parameter says: it is an identifier consumers switch and style on. Use interpretationLocalized for anything a reader sees.</summary>
         public global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_interpretation? Interpretation { get; set; }
         /// <summary>Whether the aspect is applying (planets moving toward exact) or separating (moving apart). Applying aspects grow stronger.</summary>
         public bool? IsApplying { get; set; }

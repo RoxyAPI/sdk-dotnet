@@ -39,7 +39,7 @@ namespace RoxyApi.Astrology.Synastry
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Aspect nature classification.</summary>
+        /// <summary>How this aspect type is characterised in its reference card, in the requested language, exactly like the name, description and keywords beside it. Branch on the aspect-level interpretation field instead, which is always English.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Nature { get; set; }

@@ -16,7 +16,15 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Exact angle of this aspect type in degrees.</summary>
         public double? Angle { get; set; }
-        /// <summary>Aspect nature: harmonious, challenging, or neutral.</summary>
+        /// <summary>Narrative interpretation of this aspect for this chart. The reference description of the aspect TYPE is not repeated per row, use GET or POST /astrology/aspects for that card.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.NatalChartResponse_aspects_aspectInterpretation? AspectInterpretation { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.NatalChartResponse_aspects_aspectInterpretation AspectInterpretation { get; set; }
+#endif
+        /// <summary>Aspect nature: harmonious, challenging, or neutral. Always English, whatever the lang parameter says, because it is an identifier to compare and style on. Read aspectInterpretation for the sentence a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Interpretation { get; set; }
@@ -104,6 +112,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "angle", n => { Angle = n.GetDoubleValue(); } },
+                { "aspectInterpretation", n => { AspectInterpretation = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_aspects_aspectInterpretation>(global::RoxyApi.Models.NatalChartResponse_aspects_aspectInterpretation.CreateFromDiscriminatorValue); } },
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
                 { "isApplying", n => { IsApplying = n.GetBoolValue(); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
@@ -124,6 +133,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("angle", Angle);
+            writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_aspects_aspectInterpretation>("aspectInterpretation", AspectInterpretation);
             writer.WriteStringValue("interpretation", Interpretation);
             writer.WriteBoolValue("isApplying", IsApplying);
             writer.WriteDoubleValue("orb", Orb);

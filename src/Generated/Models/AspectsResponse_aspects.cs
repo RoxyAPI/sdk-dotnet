@@ -16,7 +16,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Exact angle defining this aspect type in degrees.</summary>
         public double? Angle { get; set; }
-        /// <summary>Aspect nature: harmonious, challenging, or neutral.</summary>
+        /// <summary>Aspect nature for this pair: harmonious, challenging, or neutral. Always English, whatever the lang parameter says, because it is an identifier to compare and style on. This is the field to branch on; meaning.nature is the reference card characterisation of the aspect type and is translated for display.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Interpretation { get; set; }
