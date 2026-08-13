@@ -659,6 +659,9 @@ await roxy.Usage.GetAsync();
 List the response languages accepted by the `lang` query parameter on every i18n-aware endpoint
 
 ```csharp
+// Get field labels for a language
+await roxy.Languages.FieldLabels.GetAsync();
+
 // List supported response languages
 await roxy.Languages.GetAsync();
 ```

@@ -186,6 +186,7 @@ internal static class MethodReferenceExamples
         await roxy.Location.Countries.GetAsync(c => { c.QueryParameters.Limit = 50; c.QueryParameters.Offset = 0; });
         await roxy.Location.Countries["DE"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
         await roxy.Usage.GetAsync();
+        await roxy.Languages.FieldLabels.GetAsync();
         await roxy.Languages.GetAsync();
     }
 }

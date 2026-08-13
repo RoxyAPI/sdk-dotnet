@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using RoxyApi.Languages.FieldLabels;
 using RoxyApi.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,11 @@ namespace RoxyApi.Languages
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LanguagesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The fieldLabels property</summary>
+        public global::RoxyApi.Languages.FieldLabels.FieldLabelsRequestBuilder FieldLabels
+        {
+            get => new global::RoxyApi.Languages.FieldLabels.FieldLabelsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Languages.LanguagesRequestBuilder"/> and sets the default values.
         /// </summary>
