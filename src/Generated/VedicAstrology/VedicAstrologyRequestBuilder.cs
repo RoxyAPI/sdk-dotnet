@@ -11,6 +11,7 @@ using RoxyApi.VedicAstrology.BhavaBala;
 using RoxyApi.VedicAstrology.BirthChart;
 using RoxyApi.VedicAstrology.CharaKarakas;
 using RoxyApi.VedicAstrology.Compatibility;
+using RoxyApi.VedicAstrology.Daily;
 using RoxyApi.VedicAstrology.Dasha;
 using RoxyApi.VedicAstrology.DivisionalChart;
 using RoxyApi.VedicAstrology.Dosha;
@@ -83,6 +84,11 @@ namespace RoxyApi.VedicAstrology
         public global::RoxyApi.VedicAstrology.Compatibility.CompatibilityRequestBuilder Compatibility
         {
             get => new global::RoxyApi.VedicAstrology.Compatibility.CompatibilityRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The daily property</summary>
+        public global::RoxyApi.VedicAstrology.Daily.DailyRequestBuilder Daily
+        {
+            get => new global::RoxyApi.VedicAstrology.Daily.DailyRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The dasha property</summary>
         public global::RoxyApi.VedicAstrology.Dasha.DashaRequestBuilder Dasha

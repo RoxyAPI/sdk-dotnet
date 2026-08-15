@@ -17,6 +17,8 @@ namespace RoxyApi.Astrology.PlanetaryReturns
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree within the Vertex sign (0-29.999).</summary>
         public double? Degree { get; set; }
+        /// <summary>House containing this point, resolved against the same cusps as `planets[].house` and using the requested house system. Read this field rather than inferring a house from the sign: the two disagree whenever a house spans more than one sign, which is most of the time outside Whole Sign.</summary>
+        public int? House { get; set; }
         /// <summary>Absolute ecliptic longitude of the Vertex (0-360).</summary>
         public double? Longitude { get; set; }
         /// <summary>Zodiac sign holding the Vertex.</summary>
@@ -53,6 +55,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "degree", n => { Degree = n.GetDoubleValue(); } },
+                { "house", n => { House = n.GetIntValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
             };
@@ -65,6 +68,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("degree", Degree);
+            writer.WriteIntValue("house", House);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("sign", Sign);
             writer.WriteAdditionalData(AdditionalData);

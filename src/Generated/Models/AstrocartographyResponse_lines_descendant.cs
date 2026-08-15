@@ -17,7 +17,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Absolute latitude in degrees beyond which the body never crosses the horizon, so the line has no points past it. Null when the line spans the full sampled range.</summary>
         public double? CircumpolarBeyond { get; set; }
-        /// <summary>Plain language meaning of this rising or setting planetary line for relocation, suitable for chart reports and AI agents.</summary>
+        /// <summary>Plain language meaning of this setting (Descendant) planetary line for relocation, suitable for chart reports and AI agents.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Interpretation { get; set; }
@@ -25,7 +25,7 @@ namespace RoxyApi.Models
 #else
         public string Interpretation { get; set; }
 #endif
-        /// <summary>Sampled geographic points tracing this rising or setting line from 70 South to 70 North. Join them in latitude order to draw the curved planetary line on a world map.</summary>
+        /// <summary>Sampled geographic points tracing this setting line from 70 South to 70 North. Join them in latitude order to draw the curved planetary line on a world map.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Models.AstrocartographyResponse_lines_descendant_points>? Points { get; set; }

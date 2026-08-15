@@ -17,6 +17,8 @@ namespace RoxyApi.Forecast.SolarReturn
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree within the Part of Fortune sign (0-29.999).</summary>
         public double? Degree { get; set; }
+        /// <summary>House containing this point, resolved against the same cusps as `planets[].house` and using the requested house system. Read this field rather than inferring a house from the sign: the two disagree whenever a house spans more than one sign, which is most of the time outside Whole Sign.</summary>
+        public int? House { get; set; }
         /// <summary>Absolute ecliptic longitude of the Part of Fortune (0-360).</summary>
         public double? Longitude { get; set; }
         /// <summary>Chart sect used for the calculation. Day (diurnal) when the Sun is above the horizon, night (nocturnal) when below. Day charts use Ascendant plus Moon minus Sun, night charts use Ascendant plus Sun minus Moon.</summary>
@@ -55,6 +57,7 @@ namespace RoxyApi.Forecast.SolarReturn
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "degree", n => { Degree = n.GetDoubleValue(); } },
+                { "house", n => { House = n.GetIntValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "sect", n => { Sect = n.GetEnumValue<global::RoxyApi.Forecast.SolarReturn.SolarReturnPostResponse_chart_partOfFortune_sect>(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
@@ -68,6 +71,7 @@ namespace RoxyApi.Forecast.SolarReturn
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("degree", Degree);
+            writer.WriteIntValue("house", House);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.Forecast.SolarReturn.SolarReturnPostResponse_chart_partOfFortune_sect>("sect", Sect);
             writer.WriteStringValue("sign", Sign);

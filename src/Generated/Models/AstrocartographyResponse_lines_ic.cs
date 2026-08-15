@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Plain language meaning of this meridian planetary line for relocation, suitable for chart reports and AI agents.</summary>
+        /// <summary>Plain language meaning of this Imum Coeli planetary line for relocation, suitable for chart reports and AI agents.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Interpretation { get; set; }
@@ -23,7 +23,7 @@ namespace RoxyApi.Models
 #else
         public string Interpretation { get; set; }
 #endif
-        /// <summary>Constant geographic longitude of this vertical meridian line in decimal degrees. The body culminates (MC) or anti-culminates (IC) along it, so plot it as a straight north to south line.</summary>
+        /// <summary>Constant geographic longitude of this vertical meridian line in decimal degrees. The body anti-culminates (IC) along it, so plot it as a straight north to south line.</summary>
         public double? Longitude { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.AstrocartographyResponse_lines_ic"/> and sets the default values.

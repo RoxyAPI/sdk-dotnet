@@ -16,7 +16,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Geographic latitude of this sampled point in decimal degrees.</summary>
         public double? Latitude { get; set; }
-        /// <summary>Geographic longitude in decimal degrees where the body sits exactly on the horizon at this latitude.</summary>
+        /// <summary>Geographic longitude in decimal degrees where the body sits exactly on the eastern (rising) horizon at this latitude.</summary>
         public double? Longitude { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.AstrocartographyResponse_lines_ascendant_points"/> and sets the default values.

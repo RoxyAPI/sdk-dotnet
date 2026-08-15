@@ -176,6 +176,9 @@ await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"].PostAsync(new() {
 // Get all Prana dashas for a Mahadasha, Antardasha, Pratyantardasha and Sookshma
 await roxy.VedicAstrology.Dasha.Sub["Saturn"]["Venus"]["Rahu"]["Jupiter"].PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
 
+// Daily Reading - Composed Gochara, Panchanga and Dasha for one native on one day
+await roxy.VedicAstrology.Daily.PostAsync(new() { BirthDate = new Date(1984, 11, 3), BirthTime = new Time(1, 35, 0), Latitude = 28.8944, Longitude = 76.5894, Timezone = new() { Double = 5.5 }, Date = new Date(2026, 6, 21) });
+
 // Get basic Panchang - Tithi Nakshatra Yoga Karana Calculator
 await roxy.VedicAstrology.Panchang.Basic.PostAsync(new() { Date = new Date(2025, 12, 17), Time = new Time(12, 0, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });
 
