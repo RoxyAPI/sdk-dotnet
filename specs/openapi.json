@@ -20592,7 +20592,7 @@
           "Western Astrology"
         ],
         "summary": "Composite Chart - Midpoint relationship chart with interpretations",
-        "description": "Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.",
+        "description": "Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Uses the midpoint method: planets, angles and house cusps are each the midpoint of the two natal values, so the Ascendant always sits on the first cusp. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.",
         "security": [
           {
             "apiKey": []
@@ -21044,7 +21044,7 @@
                           "longitude"
                         ]
                       },
-                      "description": "Composite house cusps. Each house represents shared life areas in the relationship."
+                      "description": "Composite house cusps, each the midpoint of the two natal cusps. Each house represents shared life areas in the relationship."
                     },
                     "compositeAscendant": {
                       "type": "object",
@@ -47711,12 +47711,17 @@
                               "planet": {
                                 "type": "string",
                                 "example": "Sun",
-                                "description": "Activating body whose substructure feeds this arrow. Determination and Motivation come from the Sun, Environment and Perspective from the North Node."
+                                "description": "Activating body whose substructure feeds this arrow. Determination and Motivation come from the Sun, Environment and Perspective from the North Node. Always English, whatever the lang parameter says, so it stays safe to compare against in code and to key a glyph table on. Use planetLocalized for anything a reader sees."
+                              },
+                              "planetLocalized": {
+                                "type": "string",
+                                "example": "Sol",
+                                "description": "Activating body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it."
                               },
                               "side": {
                                 "type": "string",
                                 "example": "design",
-                                "description": "Chart side of the activation. Determination and Environment come from the design side, Perspective and Motivation from the personality side."
+                                "description": "Chart side of the activation. Determination and Environment come from the design side, Perspective and Motivation from the personality side. Always English, whatever the lang parameter says, so it stays safe to compare against in code."
                               }
                             },
                             "required": [

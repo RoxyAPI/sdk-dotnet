@@ -15,7 +15,7 @@ namespace RoxyApi.HumanDesign.Variables
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Activating body whose substructure feeds this arrow. Determination and Motivation come from the Sun, Environment and Perspective from the North Node.</summary>
+        /// <summary>Activating body whose substructure feeds this arrow. Determination and Motivation come from the Sun, Environment and Perspective from the North Node. Always English, whatever the lang parameter says, so it stays safe to compare against in code and to key a glyph table on. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
@@ -23,7 +23,15 @@ namespace RoxyApi.HumanDesign.Variables
 #else
         public string Planet { get; set; }
 #endif
-        /// <summary>Chart side of the activation. Determination and Environment come from the design side, Perspective and Motivation from the personality side.</summary>
+        /// <summary>Activating body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
+#endif
+        /// <summary>Chart side of the activation. Determination and Environment come from the design side, Perspective and Motivation from the personality side. Always English, whatever the lang parameter says, so it stays safe to compare against in code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Side { get; set; }
@@ -57,6 +65,7 @@ namespace RoxyApi.HumanDesign.Variables
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "side", n => { Side = n.GetStringValue(); } },
             };
         }
@@ -68,6 +77,7 @@ namespace RoxyApi.HumanDesign.Variables
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("side", Side);
             writer.WriteAdditionalData(AdditionalData);
         }

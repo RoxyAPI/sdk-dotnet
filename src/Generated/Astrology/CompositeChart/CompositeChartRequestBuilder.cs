@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.CompositeChart
         {
         }
         /// <summary>
-        /// Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.
+        /// Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Uses the midpoint method: planets, angles and house cusps are each the midpoint of the two natal values, so the Ascendant always sits on the first cusp. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Astrology.CompositeChart
             return await RequestAdapter.SendAsync<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse>(requestInfo, global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.
+        /// Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Uses the midpoint method: planets, angles and house cusps are each the midpoint of the two natal values, so the Ascendant always sits on the first cusp. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Astrology.CompositeChart
             return new global::RoxyApi.Astrology.CompositeChart.CompositeChartRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.
+        /// Generate a composite chart by calculating midpoints between two natal charts. The composite chart represents the relationship as a single entity, showing its core identity, emotional bond, communication style, and growth direction. Uses the midpoint method: planets, angles and house cusps are each the midpoint of the two natal values, so the Ascendant always sits on the first cusp. Returns composite planetary positions, house cusps, Ascendant, Midheaven, aspects, and relationship interpretation. Composite chart API, midpoint chart calculator, relationship astrology, couple chart analysis.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CompositeChartRequestBuilderPostQueryParameters 

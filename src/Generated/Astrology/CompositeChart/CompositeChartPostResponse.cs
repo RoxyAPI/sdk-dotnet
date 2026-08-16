@@ -30,7 +30,7 @@ namespace RoxyApi.Astrology.CompositeChart
 #else
         public global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_compositeAscendant CompositeAscendant { get; set; }
 #endif
-        /// <summary>Composite house cusps. Each house represents shared life areas in the relationship.</summary>
+        /// <summary>Composite house cusps, each the midpoint of the two natal cusps. Each house represents shared life areas in the relationship.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_compositeHouses>? CompositeHouses { get; set; }
