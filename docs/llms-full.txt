@@ -69,11 +69,17 @@ await roxy.Astrology.Houses.PostAsync(new() { Date = new Date(1990, 7, 15), Time
 // Calculate planetary aspects - Aspect finder for any date and time
 await roxy.Astrology.Aspects.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Timezone = new() { Double = -5 }, Planets = ["Sun"], AspectTypes = ["CONJUNCTION"] });
 
+// Monthly Aspects - Tropical aspect calendar for an entire month
+await roxy.Astrology.Aspects.Monthly.PostAsync(new() { Year = 2026, Month = 3, Timezone = new() { Double = -5 } });
+
 // Detect aspect patterns - Grand Trine, Kite, T-Square, Grand Cross, Yod, Mystic Rectangle, Stellium
 await roxy.Astrology.AspectPatterns.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => { c.QueryParameters.StrictOrbs = "false"; c.QueryParameters.Include = ""; });
 
 // Calculate planetary transits - Current transits with natal chart comparison
 await roxy.Astrology.Transits.PostAsync(new() { Date = new Date(2025, 12, 19), Time = new Time(12, 0, 0), Timezone = new() { Double = 0 } });
+
+// Monthly Transits - Tropical sign ingresses for an entire month
+await roxy.Astrology.Transits.Monthly.PostAsync(new() { Year = 2026, Month = 3, Timezone = new() { Double = -5 } });
 
 // Transit Aspects - Detailed transit-to-natal aspect analysis with interpretations
 await roxy.Astrology.TransitAspects.PostAsync(new() { NatalChart = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, TransitDate = new Date(2026, 2, 3), TransitTime = new Time(12, 0, 0), MinStrength = 50 });

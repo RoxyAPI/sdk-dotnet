@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using RoxyApi.Astrology.Transits.Monthly;
 using RoxyApi.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,11 @@ namespace RoxyApi.Astrology.Transits
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TransitsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The monthly property</summary>
+        public global::RoxyApi.Astrology.Transits.Monthly.MonthlyRequestBuilder Monthly
+        {
+            get => new global::RoxyApi.Astrology.Transits.Monthly.MonthlyRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Transits.TransitsRequestBuilder"/> and sets the default values.
         /// </summary>
