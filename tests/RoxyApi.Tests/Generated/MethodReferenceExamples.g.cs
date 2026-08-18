@@ -29,6 +29,8 @@ internal static class MethodReferenceExamples
         await roxy.Astrology.Transits.PostAsync(new() { Date = new Date(2025, 12, 19), Time = new Time(12, 0, 0), Timezone = new() { Double = 0 } });
         await roxy.Astrology.Transits.Monthly.PostAsync(new() { Year = 2026, Month = 3, Timezone = new() { Double = -5 } });
         await roxy.Astrology.TransitAspects.PostAsync(new() { NatalChart = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, TransitDate = new Date(2026, 2, 3), TransitTime = new Time(12, 0, 0), MinStrength = 50 });
+        await roxy.Astrology.Parallels.Monthly.PostAsync(new() { Year = 2026, Month = 3, Timezone = new() { Double = -5 }, Orb = 1.5 });
+        await roxy.Astrology.EclipticCrossings.PostAsync(new() { Year = 2026, Timezone = new() { Double = -5 } });
         await roxy.Astrology.SolarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ReturnYear = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
         await roxy.Astrology.LunarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ReturnDate = new Date(2026, 2, 12), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
         await roxy.Astrology.CompositeChart.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });

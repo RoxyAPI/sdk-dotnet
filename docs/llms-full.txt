@@ -84,6 +84,12 @@ await roxy.Astrology.Transits.Monthly.PostAsync(new() { Year = 2026, Month = 3, 
 // Transit Aspects - Detailed transit-to-natal aspect analysis with interpretations
 await roxy.Astrology.TransitAspects.PostAsync(new() { NatalChart = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, TransitDate = new Date(2026, 2, 3), TransitTime = new Time(12, 0, 0), MinStrength = 50 });
 
+// Monthly Parallels - Declination contacts for an entire month
+await roxy.Astrology.Parallels.Monthly.PostAsync(new() { Year = 2026, Month = 3, Timezone = new() { Double = -5 }, Orb = 1.5 });
+
+// Ecliptic Crossings - Node passages for a whole year
+await roxy.Astrology.EclipticCrossings.PostAsync(new() { Year = 2026, Timezone = new() { Double = -5 } });
+
 // Solar Return Chart - Annual birthday forecast with relocated chart
 await roxy.Astrology.SolarReturn.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ReturnYear = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
 

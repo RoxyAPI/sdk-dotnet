@@ -19,7 +19,7 @@ namespace RoxyApi.Astrology.PlanetMeanings
     public partial class PlanetMeaningsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the RoxyApi.astrology.planetMeanings.item collection</summary>
-        /// <param name="position">Planet ID (lowercase, e.g., sun, moon, mercury) or display name (case-insensitive, e.g., Sun, MOON).</param>
+        /// <param name="position">Planet ID (lowercase, e.g., sun, moon, mercury) or display name (case-insensitive, e.g., Sun, MOON). Spaces, hyphens and underscores are interchangeable, so the two lunar nodes answer to north-node and south-node as well as to their ids north node and south node, and Black Moon Lilith answers to black-moon-lilith as well as to lilith.</param>
         /// <returns>A <see cref="global::RoxyApi.Astrology.PlanetMeanings.Item.PlanetMeaningsItemRequestBuilder"/></returns>
         public global::RoxyApi.Astrology.PlanetMeanings.Item.PlanetMeaningsItemRequestBuilder this[string position]
         {

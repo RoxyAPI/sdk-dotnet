@@ -16,7 +16,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether this card belongs to the Major Arcana (22 trump cards representing major life themes) or Minor Arcana (56 suit cards for daily situations).</summary>
         public global::RoxyApi.Models.BasicCard_arcana? Arcana { get; set; }
-        /// <summary>Unique card identifier in kebab-case (e.g. fool, ace-of-cups, queen-of-swords).</summary>
+        /// <summary>Unique card identifier in kebab-case, with no leading article on Major Arcana (e.g. fool, star, ace-of-cups, queen-of-swords). This is the canonical form, whatever spelling was requested.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }

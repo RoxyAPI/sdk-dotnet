@@ -9,6 +9,7 @@ using RoxyApi.Astrology.Asteroids;
 using RoxyApi.Astrology.Astrocartography;
 using RoxyApi.Astrology.CompatibilityScore;
 using RoxyApi.Astrology.CompositeChart;
+using RoxyApi.Astrology.EclipticCrossings;
 using RoxyApi.Astrology.FixedStars;
 using RoxyApi.Astrology.Horoscope;
 using RoxyApi.Astrology.Houses;
@@ -17,6 +18,7 @@ using RoxyApi.Astrology.LocalSpace;
 using RoxyApi.Astrology.LunarReturn;
 using RoxyApi.Astrology.MoonPhase;
 using RoxyApi.Astrology.NatalChart;
+using RoxyApi.Astrology.Parallels;
 using RoxyApi.Astrology.PlanetMeanings;
 using RoxyApi.Astrology.PlanetaryReturns;
 using RoxyApi.Astrology.Planets;
@@ -76,6 +78,11 @@ namespace RoxyApi.Astrology
         {
             get => new global::RoxyApi.Astrology.CompositeChart.CompositeChartRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The eclipticCrossings property</summary>
+        public global::RoxyApi.Astrology.EclipticCrossings.EclipticCrossingsRequestBuilder EclipticCrossings
+        {
+            get => new global::RoxyApi.Astrology.EclipticCrossings.EclipticCrossingsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The fixedStars property</summary>
         public global::RoxyApi.Astrology.FixedStars.FixedStarsRequestBuilder FixedStars
         {
@@ -115,6 +122,11 @@ namespace RoxyApi.Astrology
         public global::RoxyApi.Astrology.NatalChart.NatalChartRequestBuilder NatalChart
         {
             get => new global::RoxyApi.Astrology.NatalChart.NatalChartRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The parallels property</summary>
+        public global::RoxyApi.Astrology.Parallels.ParallelsRequestBuilder Parallels
+        {
+            get => new global::RoxyApi.Astrology.Parallels.ParallelsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The planetaryReturns property</summary>
         public global::RoxyApi.Astrology.PlanetaryReturns.PlanetaryReturnsRequestBuilder PlanetaryReturns

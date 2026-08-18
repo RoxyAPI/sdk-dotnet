@@ -19,7 +19,7 @@ namespace RoxyApi.Tarot.Cards
     public partial class CardsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the RoxyApi.tarot.cards.item collection</summary>
-        /// <param name="position">Unique card identifier in kebab-case. Major arcana: &quot;fool&quot;, &quot;magician&quot;, &quot;death&quot;, etc. Minor arcana: &quot;ace-of-cups&quot;, &quot;seven-of-wands&quot;, &quot;queen-of-swords&quot;, &quot;king-of-pentacles&quot;, etc.</param>
+        /// <param name="position">Card identifier. Major arcana: &quot;fool&quot;, &quot;magician&quot;, &quot;death&quot;. Minor arcana: &quot;ace-of-cups&quot;, &quot;seven-of-wands&quot;, &quot;queen-of-swords&quot;, &quot;king-of-pentacles&quot;. Casing and separators are flexible, so &quot;Fool&quot; and &quot;ACE_OF_CUPS&quot; both resolve, and a leading definite article is optional, so &quot;the-star&quot; resolves to &quot;star&quot;. The canonical form, and the one every response echoes, is kebab-case with no article.</param>
         /// <returns>A <see cref="global::RoxyApi.Tarot.Cards.Item.CardsItemRequestBuilder"/></returns>
         public global::RoxyApi.Tarot.Cards.Item.CardsItemRequestBuilder this[string position]
         {
