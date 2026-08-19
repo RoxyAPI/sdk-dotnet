@@ -40,14 +40,8 @@ namespace RoxyApi.Biorhythm.Daily
 #endif
         /// <summary>Overall energy score from 1 to 10.</summary>
         public double? EnergyRating { get; set; }
-        /// <summary>Summary phase. One of: high_energy, mixed, recovery, critical.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? OverallPhase { get; set; }
-#nullable restore
-#else
-        public string OverallPhase { get; set; }
-#endif
+        /// <summary>Summary phase across every cycle for the day. One of: high_energy, mixed, recovery, critical.</summary>
+        public global::RoxyApi.Biorhythm.Daily.DailyPostResponse_overallPhase? OverallPhase { get; set; }
         /// <summary>The quickRead property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -101,7 +95,7 @@ namespace RoxyApi.Biorhythm.Daily
                 { "dailyMessage", n => { DailyMessage = n.GetStringValue(); } },
                 { "date", n => { Date = n.GetStringValue(); } },
                 { "energyRating", n => { EnergyRating = n.GetDoubleValue(); } },
-                { "overallPhase", n => { OverallPhase = n.GetStringValue(); } },
+                { "overallPhase", n => { OverallPhase = n.GetEnumValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_overallPhase>(); } },
                 { "quickRead", n => { QuickRead = n.GetObjectValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_quickRead>(global::RoxyApi.Biorhythm.Daily.DailyPostResponse_quickRead.CreateFromDiscriminatorValue); } },
                 { "seed", n => { Seed = n.GetStringValue(); } },
                 { "spotlight", n => { Spotlight = n.GetObjectValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight>(global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight.CreateFromDiscriminatorValue); } },
@@ -118,7 +112,7 @@ namespace RoxyApi.Biorhythm.Daily
             writer.WriteStringValue("dailyMessage", DailyMessage);
             writer.WriteStringValue("date", Date);
             writer.WriteDoubleValue("energyRating", EnergyRating);
-            writer.WriteStringValue("overallPhase", OverallPhase);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_overallPhase>("overallPhase", OverallPhase);
             writer.WriteObjectValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_quickRead>("quickRead", QuickRead);
             writer.WriteStringValue("seed", Seed);
             writer.WriteObjectValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight>("spotlight", Spotlight);

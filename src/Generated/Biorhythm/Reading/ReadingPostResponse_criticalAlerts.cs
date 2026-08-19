@@ -23,29 +23,11 @@ namespace RoxyApi.Biorhythm.Reading
         public string Advisory { get; set; }
 #endif
         /// <summary>Which cycle is at or near zero crossing.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Cycle { get; set; }
-#nullable restore
-#else
-        public string Cycle { get; set; }
-#endif
+        public global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_cycle? Cycle { get; set; }
         /// <summary>Whether the cycle is rising through zero (ascending) or falling through zero (descending).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Direction { get; set; }
-#nullable restore
-#else
-        public string Direction { get; set; }
-#endif
-        /// <summary>Alert type. zero_crossing when a cycle crosses zero, approaching_critical when within 1 day of zero.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
-#endif
+        public global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_direction? Direction { get; set; }
+        /// <summary>Alert type. One of: zero_crossing. Raised once for the whole critical band, when the cycle sits within 9 points of zero in either direction.</summary>
+        public global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_type? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts"/> and sets the default values.
         /// </summary>
@@ -72,9 +54,9 @@ namespace RoxyApi.Biorhythm.Reading
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "advisory", n => { Advisory = n.GetStringValue(); } },
-                { "cycle", n => { Cycle = n.GetStringValue(); } },
-                { "direction", n => { Direction = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
+                { "cycle", n => { Cycle = n.GetEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_cycle>(); } },
+                { "direction", n => { Direction = n.GetEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_direction>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_type>(); } },
             };
         }
         /// <summary>
@@ -85,9 +67,9 @@ namespace RoxyApi.Biorhythm.Reading
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("advisory", Advisory);
-            writer.WriteStringValue("cycle", Cycle);
-            writer.WriteStringValue("direction", Direction);
-            writer.WriteStringValue("type", Type);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_cycle>("cycle", Cycle);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_direction>("direction", Direction);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_criticalAlerts_type>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

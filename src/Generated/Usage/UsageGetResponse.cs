@@ -22,7 +22,7 @@ namespace RoxyApi.Usage
 #else
         public string Email { get; set; }
 #endif
-        /// <summary>ISO 8601 timestamp when the current billing period ends. A renewal extends this date in place. API access survives a cancelled or suspended status until this moment passes.</summary>
+        /// <summary>ISO 8601 timestamp when the current billing period ends. A renewal extends this date in place. API access survives a cancelled or suspended status until this moment passes. This is a BILLING date, not a quota date: the monthly allowance resets on the 1st of each month independently of it.</summary>
         public DateTimeOffset? EndDate { get; set; }
         /// <summary>Name of the subscription plan the API key belongs to. One flat plan covers every domain and the Remote MCP servers, so this is a quota tier, never a per product entitlement.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,7 +32,7 @@ namespace RoxyApi.Usage
 #else
         public string Plan { get; set; }
 #endif
-        /// <summary>Requests left before the monthly allowance is exhausted, floored at zero. Equal to requestsPerMonth minus usedThisMonth.</summary>
+        /// <summary>Requests left before the monthly allowance is exhausted, floored at zero. Equal to requestsPerMonth minus usedThisMonth. Refills at the calendar month rollover, whose exact instant every API response carries as a Unix timestamp in the X-RateLimit-Reset header.</summary>
         public double? RemainingThisMonth { get; set; }
         /// <summary>Monthly request allowance for the plan. One request, API or MCP, equals one unit: there is no credit weighting and no per domain fee.</summary>
         public double? RequestsPerMonth { get; set; }
@@ -44,7 +44,7 @@ namespace RoxyApi.Usage
 #else
         public string Status { get; set; }
 #endif
-        /// <summary>Billable requests counted against the current calendar month. Read from the same counter the rate limiter enforces on, so it never reports a rosier number than the limit that will 429 you. Cached responses still count.</summary>
+        /// <summary>Billable requests counted against the current calendar month. The quota window is the UTC calendar month and resets on the 1st at 12:00 AM UTC, never on your renewal date, so an annual plan refills every month and a plan bought mid month still refills on the 1st. Read from the same counter the rate limiter enforces on, so it never reports a rosier number than the limit that will 429 you. Cached responses still count.</summary>
         public double? UsedThisMonth { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Usage.UsageGetResponse"/> and sets the default values.

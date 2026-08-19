@@ -22,14 +22,8 @@ namespace RoxyApi.Biorhythm.CriticalDays
 #else
         public string Advisory { get; set; }
 #endif
-        /// <summary>Which primary cycle crosses zero on this date.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Cycle { get; set; }
-#nullable restore
-#else
-        public string Cycle { get; set; }
-#endif
+        /// <summary>Which primary cycle crosses zero on this date. One of: physical, emotional, intellectual. Only the three primary cycles are scanned; the secondary and composite cycles are not.</summary>
+        public global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_cycle? Cycle { get; set; }
         /// <summary>Date of the zero crossing (YYYY-MM-DD).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,23 +33,11 @@ namespace RoxyApi.Biorhythm.CriticalDays
         public string Date { get; set; }
 #endif
         /// <summary>Whether the cycle is rising through zero (ascending) or falling through zero (descending).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Direction { get; set; }
-#nullable restore
-#else
-        public string Direction { get; set; }
-#endif
+        public global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_direction? Direction { get; set; }
         /// <summary>Cycle period in days.</summary>
         public double? Period { get; set; }
-        /// <summary>How many primary cycles are critical on this date. single, double, or triple.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Severity { get; set; }
-#nullable restore
-#else
-        public string Severity { get; set; }
-#endif
+        /// <summary>How many primary cycles are critical on this date. One of: single, double, triple.</summary>
+        public global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_severity? Severity { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays"/> and sets the default values.
         /// </summary>
@@ -82,11 +64,11 @@ namespace RoxyApi.Biorhythm.CriticalDays
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "advisory", n => { Advisory = n.GetStringValue(); } },
-                { "cycle", n => { Cycle = n.GetStringValue(); } },
+                { "cycle", n => { Cycle = n.GetEnumValue<global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_cycle>(); } },
                 { "date", n => { Date = n.GetStringValue(); } },
-                { "direction", n => { Direction = n.GetStringValue(); } },
+                { "direction", n => { Direction = n.GetEnumValue<global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_direction>(); } },
                 { "period", n => { Period = n.GetDoubleValue(); } },
-                { "severity", n => { Severity = n.GetStringValue(); } },
+                { "severity", n => { Severity = n.GetEnumValue<global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_severity>(); } },
             };
         }
         /// <summary>
@@ -97,11 +79,11 @@ namespace RoxyApi.Biorhythm.CriticalDays
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("advisory", Advisory);
-            writer.WriteStringValue("cycle", Cycle);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_cycle>("cycle", Cycle);
             writer.WriteStringValue("date", Date);
-            writer.WriteStringValue("direction", Direction);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_direction>("direction", Direction);
             writer.WriteDoubleValue("period", Period);
-            writer.WriteStringValue("severity", Severity);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.CriticalDays.CriticalDaysPostResponse_criticalDays_severity>("severity", Severity);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

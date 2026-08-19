@@ -14,14 +14,8 @@ namespace RoxyApi.Biorhythm.Daily
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Which primary cycle is featured as the daily spotlight.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Cycle { get; set; }
-#nullable restore
-#else
-        public string Cycle { get; set; }
-#endif
+        /// <summary>Which primary cycle is featured as the daily spotlight. One of: physical, emotional, intellectual.</summary>
+        public global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight_cycle? Cycle { get; set; }
         /// <summary>Personalized message about the spotlight cycle and what it means for today.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,13 +25,7 @@ namespace RoxyApi.Biorhythm.Daily
         public string Message { get; set; }
 #endif
         /// <summary>Current phase of the spotlight cycle.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Phase { get; set; }
-#nullable restore
-#else
-        public string Phase { get; set; }
-#endif
+        public global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight_phase? Phase { get; set; }
         /// <summary>Current value of the spotlight cycle (-100 to 100).</summary>
         public double? Value { get; set; }
         /// <summary>
@@ -65,9 +53,9 @@ namespace RoxyApi.Biorhythm.Daily
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cycle", n => { Cycle = n.GetStringValue(); } },
+                { "cycle", n => { Cycle = n.GetEnumValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight_cycle>(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
-                { "phase", n => { Phase = n.GetStringValue(); } },
+                { "phase", n => { Phase = n.GetEnumValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight_phase>(); } },
                 { "value", n => { Value = n.GetDoubleValue(); } },
             };
         }
@@ -78,9 +66,9 @@ namespace RoxyApi.Biorhythm.Daily
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("cycle", Cycle);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight_cycle>("cycle", Cycle);
             writer.WriteStringValue("message", Message);
-            writer.WriteStringValue("phase", Phase);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.Daily.DailyPostResponse_spotlight_phase>("phase", Phase);
             writer.WriteDoubleValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -58,14 +58,8 @@ namespace RoxyApi.Biorhythm.Reading
 #else
         public string Interpretation { get; set; }
 #endif
-        /// <summary>Summary phase label. One of: high_energy, mixed, recovery, critical.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? OverallPhase { get; set; }
-#nullable restore
-#else
-        public string OverallPhase { get; set; }
-#endif
+        /// <summary>Summary phase across every cycle for the day. One of: high_energy, mixed, recovery, critical.</summary>
+        public global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_overallPhase? OverallPhase { get; set; }
         /// <summary>Date this reading is for (YYYY-MM-DD).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -106,7 +100,7 @@ namespace RoxyApi.Biorhythm.Reading
                 { "daysSinceBirth", n => { DaysSinceBirth = n.GetDoubleValue(); } },
                 { "energyRating", n => { EnergyRating = n.GetDoubleValue(); } },
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
-                { "overallPhase", n => { OverallPhase = n.GetStringValue(); } },
+                { "overallPhase", n => { OverallPhase = n.GetEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_overallPhase>(); } },
                 { "targetDate", n => { TargetDate = n.GetStringValue(); } },
             };
         }
@@ -124,7 +118,7 @@ namespace RoxyApi.Biorhythm.Reading
             writer.WriteDoubleValue("daysSinceBirth", DaysSinceBirth);
             writer.WriteDoubleValue("energyRating", EnergyRating);
             writer.WriteStringValue("interpretation", Interpretation);
-            writer.WriteStringValue("overallPhase", OverallPhase);
+            writer.WriteEnumValue<global::RoxyApi.Biorhythm.Reading.ReadingPostResponse_overallPhase>("overallPhase", OverallPhase);
             writer.WriteStringValue("targetDate", TargetDate);
             writer.WriteAdditionalData(AdditionalData);
         }

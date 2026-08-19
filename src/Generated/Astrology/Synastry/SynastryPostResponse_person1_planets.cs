@@ -16,8 +16,10 @@ namespace RoxyApi.Astrology.Synastry
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree within the sign (0-29.999).</summary>
         public double? Degree { get; set; }
-        /// <summary>House this planet occupies in the person 1 chart (1-12).</summary>
+        /// <summary>House this planet occupies in the person 1 chart (1-12). This is the placement in this person OWN chart. For the house overlay a synastry reading is built on, read houseInOtherChart.</summary>
         public double? House { get; set; }
+        /// <summary>Which of person 2 houses this planet of person 1 falls into (1-12), counted on that person cusps in the same house system. This is the house OVERLAY, the half of synastry the inter-aspects do not cover: an aspect says two bodies are in relationship, an overlay says which area of the other person life this body lands in. Both people get their own overlay, so person 2 planets carry the reverse reading.</summary>
+        public double? HouseInOtherChart { get; set; }
         /// <summary>True when the planet is retrograde at this moment.</summary>
         public bool? IsRetrograde { get; set; }
         /// <summary>Ecliptic longitude in degrees (0-360) measured from 0 Aries. This is the value a wheel plots.</summary>
@@ -81,6 +83,7 @@ namespace RoxyApi.Astrology.Synastry
             {
                 { "degree", n => { Degree = n.GetDoubleValue(); } },
                 { "house", n => { House = n.GetDoubleValue(); } },
+                { "houseInOtherChart", n => { HouseInOtherChart = n.GetDoubleValue(); } },
                 { "isRetrograde", n => { IsRetrograde = n.GetBoolValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -98,6 +101,7 @@ namespace RoxyApi.Astrology.Synastry
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("degree", Degree);
             writer.WriteDoubleValue("house", House);
+            writer.WriteDoubleValue("houseInOtherChart", HouseInOtherChart);
             writer.WriteBoolValue("isRetrograde", IsRetrograde);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("name", Name);
