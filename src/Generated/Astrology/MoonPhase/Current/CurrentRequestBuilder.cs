@@ -101,7 +101,7 @@ namespace RoxyApi.Astrology.MoonPhase.Current
             /// <summary>Date in YYYY-MM-DD format. Defaults to today if omitted.</summary>
             [QueryParameter("date")]
             public Date? Date { get; set; }
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.MoonPhase.Current.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Time in 24-hour HH:MM:SS format. Defaults to 12:00:00 (noon). Moon moves ~13 degrees per day so time affects phase precision.</summary>

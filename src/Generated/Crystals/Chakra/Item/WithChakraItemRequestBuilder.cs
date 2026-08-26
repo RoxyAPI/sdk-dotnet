@@ -34,7 +34,7 @@ namespace RoxyApi.Crystals.Chakra.Item
         {
         }
         /// <summary>
-        /// Get healing crystals and gemstones that resonate with a specific chakra energy center. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Supports all 7 primary chakras: Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown. Essential for crystal grid building, chakra balancing, and energy healing applications.
+        /// Get healing crystals and gemstones that resonate with a specific chakra energy center. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Supports all 7 primary chakras: Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown. Essential for crystal grid building, chakra balancing, and energy healing applications.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Chakra.Item.WithChakraGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Crystals.Chakra.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.Crystals.Chakra.Item.WithChakraGetResponse>(requestInfo, global::RoxyApi.Crystals.Chakra.Item.WithChakraGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get healing crystals and gemstones that resonate with a specific chakra energy center. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Supports all 7 primary chakras: Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown. Essential for crystal grid building, chakra balancing, and energy healing applications.
+        /// Get healing crystals and gemstones that resonate with a specific chakra energy center. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Supports all 7 primary chakras: Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown. Essential for crystal grid building, chakra balancing, and energy healing applications.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,12 +93,12 @@ namespace RoxyApi.Crystals.Chakra.Item
             return new global::RoxyApi.Crystals.Chakra.Item.WithChakraItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get healing crystals and gemstones that resonate with a specific chakra energy center. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Supports all 7 primary chakras: Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown. Essential for crystal grid building, chakra balancing, and energy healing applications.
+        /// Get healing crystals and gemstones that resonate with a specific chakra energy center. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Supports all 7 primary chakras: Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown. Essential for crystal grid building, chakra balancing, and energy healing applications.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithChakraItemRequestBuilderGetQueryParameters 
         {
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Crystals.Chakra.Item.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Maximum items to return per page. Range: 1-30, default 20.</summary>

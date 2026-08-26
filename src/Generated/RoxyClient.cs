@@ -9,8 +9,10 @@ using Microsoft.Kiota.Serialization.Text;
 using RoxyApi.AngelNumbers;
 using RoxyApi.Astrology;
 using RoxyApi.Biorhythm;
+using RoxyApi.ChineseAstrology;
 using RoxyApi.Crystals;
 using RoxyApi.Dreams;
+using RoxyApi.FengShui;
 using RoxyApi.Forecast;
 using RoxyApi.HumanDesign;
 using RoxyApi.Iching;
@@ -47,6 +49,11 @@ namespace RoxyApi
         {
             get => new global::RoxyApi.Biorhythm.BiorhythmRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The chineseAstrology property</summary>
+        public global::RoxyApi.ChineseAstrology.ChineseAstrologyRequestBuilder ChineseAstrology
+        {
+            get => new global::RoxyApi.ChineseAstrology.ChineseAstrologyRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The crystals property</summary>
         public global::RoxyApi.Crystals.CrystalsRequestBuilder Crystals
         {
@@ -56,6 +63,11 @@ namespace RoxyApi
         public global::RoxyApi.Dreams.DreamsRequestBuilder Dreams
         {
             get => new global::RoxyApi.Dreams.DreamsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The fengShui property</summary>
+        public global::RoxyApi.FengShui.FengShuiRequestBuilder FengShui
+        {
+            get => new global::RoxyApi.FengShui.FengShuiRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The forecast property</summary>
         public global::RoxyApi.Forecast.ForecastRequestBuilder Forecast

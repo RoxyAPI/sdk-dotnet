@@ -112,7 +112,7 @@ namespace RoxyApi.Astrology.Signs
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SignsRequestBuilderGetQueryParameters 
         {
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.Signs.GetLangQueryParameterType? Lang { get; set; }
         }

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Shadbala
 {
-    /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+    /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostLangQueryParameterType
     {
@@ -38,6 +38,14 @@ namespace RoxyApi.VedicAstrology.Shadbala
         [EnumMember(Value = "ru")]
         #pragma warning disable CS1591
         Ru,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "zh-Hans")]
+        #pragma warning disable CS1591
+        ZhHans,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "zh-Hant")]
+        #pragma warning disable CS1591
+        ZhHant,
         #pragma warning restore CS1591
     }
 }

@@ -187,7 +187,7 @@ namespace RoxyApi.Crystals
             /// <summary>Filter by elemental association, case-insensitive. Valid values: Earth, Water, Fire, Air, Storm.</summary>
             [QueryParameter("element")]
             public global::RoxyApi.Crystals.GetElementQueryParameterType? Element { get; set; }
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Crystals.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Maximum items to return per page. Range: 1-100, default 20.</summary>

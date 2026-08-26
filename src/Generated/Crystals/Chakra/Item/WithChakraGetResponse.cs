@@ -22,7 +22,7 @@ namespace RoxyApi.Crystals.Chakra.Item
 #else
         public string Chakra { get; set; }
 #endif
-        /// <summary>Crystal summaries for this chakra. Call /crystals/:id for full healing properties.</summary>
+        /// <summary>Crystal summaries for this chakra. Call /crystals/{id} for full healing properties.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Crystals.Chakra.Item.WithChakraGetResponse_crystals>? Crystals { get; set; }

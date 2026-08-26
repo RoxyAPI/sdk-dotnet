@@ -106,7 +106,7 @@ namespace RoxyApi.VedicAstrology.Daily
             /// <summary>Which signification vocabulary the houseThemes map returns. &quot;general&quot; gives the classical bhava significations (self, wealth, siblings, home, and so on). &quot;finance&quot; gives the money reading of the same twelve bhavas, so house 2 returns income and savings, 5 speculation and risk appetite, 8 sudden money and leverage, 11 gains and profits, and 12 expenses and capital outflow. Use &quot;finance&quot; for wealth, income, business and market timing questions in Krishnamurti Paddhati, where the significator house groups 2, 6, 10, 11 for earned income and 5, 8, 11 for speculation are read against a running dasha. Defaults to &quot;general&quot;.</summary>
             [QueryParameter("focus")]
             public global::RoxyApi.VedicAstrology.Daily.PostFocusQueryParameterType? Focus { get; set; }
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.VedicAstrology.Daily.PostLangQueryParameterType? Lang { get; set; }
         }

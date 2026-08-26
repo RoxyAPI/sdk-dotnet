@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Astrology.TransitAspects
 {
     /// <summary>
-    /// Statistical summary of all transit aspects. The harmonious-to-challenging ratio reveals the overall transit weather — whether the current period favors ease or demands effort.
+    /// Statistical summary of all transit aspects. The harmonious-to-challenging ratio reveals the overall transit weather, meaning whether the current period favors ease or demands effort.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TransitAspectsPostResponse_summary : IAdditionalDataHolder, IParsable
@@ -27,9 +27,9 @@ namespace RoxyApi.Astrology.TransitAspects
         public double? Challenging { get; set; }
         /// <summary>Count of harmonious aspects (trine, sextile). These transits bring ease, flow, and opportunity.</summary>
         public double? Harmonious { get; set; }
-        /// <summary>Count of neutral aspects (conjunction, minor aspects). Conjunctions blend energies — the outcome depends on the planets involved.</summary>
+        /// <summary>Count of neutral aspects (conjunction, minor aspects). Conjunctions blend energies, so the outcome depends on the planets involved.</summary>
         public double? Neutral { get; set; }
-        /// <summary>The tightest aspect by orb. This is the most potent transit currently active — the one most likely to be felt.</summary>
+        /// <summary>The tightest aspect by orb. This is the most potent transit currently active, and the one most likely to be felt.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary_strongest? Strongest { get; set; }

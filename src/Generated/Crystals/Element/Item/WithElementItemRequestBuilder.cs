@@ -34,7 +34,7 @@ namespace RoxyApi.Crystals.Element.Item
         {
         }
         /// <summary>
-        /// Get healing crystals and gemstones associated with a specific natural element. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Supports five elements: Earth, Water, Fire, Air, and Storm. Essential for elemental crystal selection, nature-based healing, and element-themed crystal grid applications.
+        /// Get healing crystals and gemstones associated with a specific natural element. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Supports five elements: Earth, Water, Fire, Air, and Storm. Essential for elemental crystal selection, nature-based healing, and element-themed crystal grid applications.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Element.Item.WithElementGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Crystals.Element.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.Crystals.Element.Item.WithElementGetResponse>(requestInfo, global::RoxyApi.Crystals.Element.Item.WithElementGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get healing crystals and gemstones associated with a specific natural element. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Supports five elements: Earth, Water, Fire, Air, and Storm. Essential for elemental crystal selection, nature-based healing, and element-themed crystal grid applications.
+        /// Get healing crystals and gemstones associated with a specific natural element. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Supports five elements: Earth, Water, Fire, Air, and Storm. Essential for elemental crystal selection, nature-based healing, and element-themed crystal grid applications.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,12 +93,12 @@ namespace RoxyApi.Crystals.Element.Item
             return new global::RoxyApi.Crystals.Element.Item.WithElementItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get healing crystals and gemstones associated with a specific natural element. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Supports five elements: Earth, Water, Fire, Air, and Storm. Essential for elemental crystal selection, nature-based healing, and element-themed crystal grid applications.
+        /// Get healing crystals and gemstones associated with a specific natural element. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Supports five elements: Earth, Water, Fire, Air, and Storm. Essential for elemental crystal selection, nature-based healing, and element-themed crystal grid applications.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithElementItemRequestBuilderGetQueryParameters 
         {
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Crystals.Element.Item.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Maximum items to return per page. Range: 1-30, default 20.</summary>

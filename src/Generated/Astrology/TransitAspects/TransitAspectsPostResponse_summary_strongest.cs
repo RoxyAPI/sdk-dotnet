@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Astrology.TransitAspects
 {
     /// <summary>
-    /// The tightest aspect by orb. This is the most potent transit currently active — the one most likely to be felt.
+    /// The tightest aspect by orb. This is the most potent transit currently active, and the one most likely to be felt.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TransitAspectsPostResponse_summary_strongest : IAdditionalDataHolder, IParsable

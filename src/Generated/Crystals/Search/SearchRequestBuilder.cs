@@ -34,7 +34,7 @@ namespace RoxyApi.Crystals.Search
         {
         }
         /// <summary>
-        /// Search for healing crystals by keyword or name. Matches against crystal names, healing keywords, descriptions, and spiritual/emotional/physical meaning fields. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Useful for building crystal search bars, keyword-based recommendation features, and healing property lookups.
+        /// Search for healing crystals by keyword or name. Matches against crystal names, healing keywords, descriptions, and spiritual/emotional/physical meaning fields. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Useful for building crystal search bars, keyword-based recommendation features, and healing property lookups.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Search.SearchGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Crystals.Search
             return await RequestAdapter.SendAsync<global::RoxyApi.Crystals.Search.SearchGetResponse>(requestInfo, global::RoxyApi.Crystals.Search.SearchGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Search for healing crystals by keyword or name. Matches against crystal names, healing keywords, descriptions, and spiritual/emotional/physical meaning fields. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Useful for building crystal search bars, keyword-based recommendation features, and healing property lookups.
+        /// Search for healing crystals by keyword or name. Matches against crystal names, healing keywords, descriptions, and spiritual/emotional/physical meaning fields. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Useful for building crystal search bars, keyword-based recommendation features, and healing property lookups.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,12 +93,12 @@ namespace RoxyApi.Crystals.Search
             return new global::RoxyApi.Crystals.Search.SearchRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Search for healing crystals by keyword or name. Matches against crystal names, healing keywords, descriptions, and spiritual/emotional/physical meaning fields. Returns summary data for each crystal. Use the /crystals/:id detail endpoint for full healing properties. Useful for building crystal search bars, keyword-based recommendation features, and healing property lookups.
+        /// Search for healing crystals by keyword or name. Matches against crystal names, healing keywords, descriptions, and spiritual/emotional/physical meaning fields. Returns summary data for each crystal. Use the /crystals/{id} detail endpoint for full healing properties. Useful for building crystal search bars, keyword-based recommendation features, and healing property lookups.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SearchRequestBuilderGetQueryParameters 
         {
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Crystals.Search.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Maximum items to return per page. Range: 1-50, default 20.</summary>

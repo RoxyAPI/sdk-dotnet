@@ -15,7 +15,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Key life themes activated during this return cycle. Focus areas vary by planet — Jupiter brings expansion, Saturn brings structure and responsibility.</summary>
+        /// <summary>Key life themes activated during this return cycle. Focus areas vary by planet: Jupiter brings expansion, Saturn brings structure and responsibility.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? KeyThemes { get; set; }

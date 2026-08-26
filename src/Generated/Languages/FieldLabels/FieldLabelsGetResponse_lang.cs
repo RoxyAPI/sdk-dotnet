@@ -39,5 +39,13 @@ namespace RoxyApi.Languages.FieldLabels
         #pragma warning disable CS1591
         Ru,
         #pragma warning restore CS1591
+        [EnumMember(Value = "zh-Hans")]
+        #pragma warning disable CS1591
+        ZhHans,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "zh-Hant")]
+        #pragma warning disable CS1591
+        ZhHant,
+        #pragma warning restore CS1591
     }
 }

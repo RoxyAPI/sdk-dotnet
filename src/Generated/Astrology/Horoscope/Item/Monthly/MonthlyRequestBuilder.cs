@@ -101,7 +101,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
             /// <summary>Any date inside the target month, in YYYY-MM-DD format. The forecast covers the whole calendar month containing it. Defaults to the current period in the timezone parameter.</summary>
             [QueryParameter("date")]
             public Date? Date { get; set; }
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.Horoscope.Item.Monthly.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Selects which period counts as current when date is omitted. Defaults to UTC, so the forecast rolls over at 00:00 UTC on the 1st. Pass the timezone of the end user to roll over on their local clock instead. Ignored when date is set. Accepts an IANA name (e.g. &quot;America/New_York&quot;), decimal hours (e.g. 5.5 for IST), or a fixed UTC offset (e.g. &quot;-05:00&quot;).</summary>

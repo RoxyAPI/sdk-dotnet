@@ -387,6 +387,103 @@ await roxy.HumanDesign.Variables.PostAsync(new() { Date = new Date(1990, 7, 15),
 
 ---
 
+## Chinese Astrology - `roxy.ChineseAstrology`
+
+Calculate BaZi Four Pillars charts, Chinese zodiac signs, and the Chinese lunisolar calendar from any birth moment: y...
+
+```csharp
+// Generate BaZi chart - Four Pillars of Destiny calculator API
+await roxy.ChineseAstrology.Bazi.Chart.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 116.4 });
+
+// Calculate luck pillars - BaZi Da Yun ten-year cycle API
+await roxy.ChineseAstrology.Bazi.LuckPillars.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 116.4, Count = 8, AnnualFromYear = 2026, AnnualYears = 10 });
+
+// Calculate Day Master strength - BaZi favorable element API
+await roxy.ChineseAstrology.Bazi.DayMaster.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 116.4 });
+
+// Calculate BaZi compatibility - Four Pillars matchmaking API
+await roxy.ChineseAstrology.Bazi.Compatibility.PostAsync(new() { PersonA = new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 116.4 }, PersonB = new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 116.4 } });
+
+// Calculate BaZi annual forecast - Liu Nian yearly pillar API
+await roxy.ChineseAstrology.Bazi.AnnualForecast.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 116.4, Year = 2026 });
+
+// List the 12 Chinese zodiac animals - Sheng Xiao sign catalogue
+await roxy.ChineseAstrology.Zodiac.Animals.GetAsync(c => { c.QueryParameters.Limit = 12; c.QueryParameters.Offset = 0; });
+
+// Get one Chinese zodiac animal - Full sign profile with compatibility partners
+await roxy.ChineseAstrology.Zodiac.Animals["rat"].GetAsync();
+
+// Find the Chinese zodiac animal for a birth date - Sheng Xiao calculator
+await roxy.ChineseAstrology.Zodiac.Sign.PostAsync(new() { Date = new Date(1990, 6, 15) });
+
+// Chinese zodiac compatibility - Trine, six harmony, clash and harm analysis
+await roxy.ChineseAstrology.Zodiac.Compatibility["rat"]["dragon"].GetAsync();
+
+// Daily Chinese zodiac reading - Day pillar forecast by animal sign
+await roxy.ChineseAstrology.Zodiac["rat"].Daily.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
+
+// List the 24 solar terms - Jie Qi calendar API with exact instants
+await roxy.ChineseAstrology.Calendar.SolarTerms[2026].GetAsync();
+
+// Convert lunar and Gregorian dates - Chinese lunisolar calendar API
+await roxy.ChineseAstrology.Calendar.LunarDate.PostAsync(new() { Date = new Date(1990, 6, 15), LunarYear = 1990, LunarMonth = 5, LunarDay = 23, IsLeapMonth = false });
+
+// Get the almanac for a day - Tong Shu API with day officers and mansions
+await roxy.ChineseAstrology.Calendar.Day["1990-06-15"].GetAsync();
+
+// Get a month of almanac days - Chinese calendar month view API
+await roxy.ChineseAstrology.Calendar.Monthly.GetAsync(c => { c.QueryParameters.Year = 1990; c.QueryParameters.Month = 6; });
+
+// Find auspicious days - Chinese date selection API for weddings and openings
+await roxy.ChineseAstrology.Calendar.AuspiciousDays.PostAsync(new() { StartDate = new Date(2026, 3, 1), EndDate = new Date(2026, 4, 30) });
+
+// List the five elements - Wu Xing API with generating and controlling cycles
+await roxy.ChineseAstrology.Elements.GetAsync(c => { c.QueryParameters.Limit = 5; c.QueryParameters.Offset = 0; });
+```
+
+---
+
+## Feng Shui - `roxy.FengShui`
+
+Compute classical feng shui from one API: Xuan Kong flying star natal charts for any of the nine periods and 24 mount...
+
+```csharp
+// Calculate Kua number - Feng shui personal direction calculator API
+await roxy.FengShui.Kua.PostAsync(new() { Date = new Date(1985, 7, 15) });
+
+// Look up a Kua number - Eight Mansions reference API
+await roxy.FengShui.Kua[8].GetAsync();
+
+// Generate Eight Mansions map - Ba Zhai lucky direction API
+await roxy.FengShui.EightMansions.PostAsync(new() { Kua = 6, Date = new Date(1985, 7, 15) });
+
+// Generate flying star natal chart - Xuan Kong Fei Xing API
+await roxy.FengShui.FlyingStars.Natal.PostAsync(new() { Period = 9, FacingDegrees = 180 });
+
+// Annual flying stars - Yearly feng shui star chart API
+await roxy.FengShui.FlyingStars.Annual[2026].GetAsync();
+
+// Monthly flying stars - Month by month feng shui overlay API
+await roxy.FengShui.FlyingStars.Monthly.GetAsync(c => { c.QueryParameters.Year = 2026; c.QueryParameters.Month = 1; });
+
+// List the nine flying stars - Xuan Kong star reference API
+await roxy.FengShui.FlyingStars.Stars.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Annual afflictions - Tai Sui, San Sha and Five Yellow API
+await roxy.FengShui.Afflictions[2026].GetAsync();
+
+// List Bagua sectors - Feng shui bagua map API
+await roxy.FengShui.Bagua.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Look up a Bagua sector - Life area reference API
+await roxy.FengShui.Bagua["wealth"].GetAsync();
+
+// List the nine periods - San Yuan period table API
+await roxy.FengShui.Periods.GetAsync(c => c.QueryParameters.Date = new Date(2026, 8, 23));
+```
+
+---
+
 ## Numerology - `roxy.Numerology`
 
 Numerology API to calculate life path, expression, soul urge, personality, and maturity numbers, with Pinnacle and Ch...

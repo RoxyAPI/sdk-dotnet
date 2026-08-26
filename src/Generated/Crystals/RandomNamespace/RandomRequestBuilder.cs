@@ -34,7 +34,7 @@ namespace RoxyApi.Crystals.RandomNamespace
         {
         }
         /// <summary>
-        /// Get a randomly selected healing crystal as a discovery teaser. Returns a different crystal on each request (non-deterministic). Use the /crystals/:id detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for crystal discovery features, surprise crystal picks, crystal roulette games, and exploration widgets. For a deterministic daily crystal that is the same for all users on a given date, use the /daily endpoint instead.
+        /// Get a randomly selected healing crystal as a discovery teaser. Returns a different crystal on each request (non-deterministic). Use the /crystals/{id} detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for crystal discovery features, surprise crystal picks, crystal roulette games, and exploration widgets. For a deterministic daily crystal that is the same for all users on a given date, use the /daily endpoint instead.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Crystals.RandomNamespace.RandomGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Crystals.RandomNamespace
             return await RequestAdapter.SendAsync<global::RoxyApi.Crystals.RandomNamespace.RandomGetResponse>(requestInfo, global::RoxyApi.Crystals.RandomNamespace.RandomGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get a randomly selected healing crystal as a discovery teaser. Returns a different crystal on each request (non-deterministic). Use the /crystals/:id detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for crystal discovery features, surprise crystal picks, crystal roulette games, and exploration widgets. For a deterministic daily crystal that is the same for all users on a given date, use the /daily endpoint instead.
+        /// Get a randomly selected healing crystal as a discovery teaser. Returns a different crystal on each request (non-deterministic). Use the /crystals/{id} detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for crystal discovery features, surprise crystal picks, crystal roulette games, and exploration widgets. For a deterministic daily crystal that is the same for all users on a given date, use the /daily endpoint instead.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,12 +93,12 @@ namespace RoxyApi.Crystals.RandomNamespace
             return new global::RoxyApi.Crystals.RandomNamespace.RandomRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get a randomly selected healing crystal as a discovery teaser. Returns a different crystal on each request (non-deterministic). Use the /crystals/:id detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for crystal discovery features, surprise crystal picks, crystal roulette games, and exploration widgets. For a deterministic daily crystal that is the same for all users on a given date, use the /daily endpoint instead.
+        /// Get a randomly selected healing crystal as a discovery teaser. Returns a different crystal on each request (non-deterministic). Use the /crystals/{id} detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for crystal discovery features, surprise crystal picks, crystal roulette games, and exploration widgets. For a deterministic daily crystal that is the same for all users on a given date, use the /daily endpoint instead.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RandomRequestBuilderGetQueryParameters 
         {
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Crystals.RandomNamespace.GetLangQueryParameterType? Lang { get; set; }
         }

@@ -38,7 +38,7 @@ namespace RoxyApi.Crystals.RandomNamespace
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>URL-safe identifier. Call /crystals/:id for full healing properties.</summary>
+        /// <summary>URL-safe identifier. Call /crystals/{id} for full healing properties.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }

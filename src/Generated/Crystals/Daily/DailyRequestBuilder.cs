@@ -34,7 +34,7 @@ namespace RoxyApi.Crystals.Daily
         {
         }
         /// <summary>
-        /// Get the crystal of the day as a discovery teaser. Returns a deterministic crystal based on the current date (or a provided seed date), ensuring all users see the same crystal for any given day. Use the /crystals/:id detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for daily guidance features, push notifications, wellness app widgets, and crystal journal integrations.
+        /// Get the crystal of the day as a discovery teaser. Returns a deterministic crystal based on the current date (or a provided seed date), ensuring all users see the same crystal for any given day. Use the /crystals/{id} detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for daily guidance features, push notifications, wellness app widgets, and crystal journal integrations.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Daily.DailyPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Crystals.Daily
             return await RequestAdapter.SendAsync<global::RoxyApi.Crystals.Daily.DailyPostResponse>(requestInfo, global::RoxyApi.Crystals.Daily.DailyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get the crystal of the day as a discovery teaser. Returns a deterministic crystal based on the current date (or a provided seed date), ensuring all users see the same crystal for any given day. Use the /crystals/:id detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for daily guidance features, push notifications, wellness app widgets, and crystal journal integrations.
+        /// Get the crystal of the day as a discovery teaser. Returns a deterministic crystal based on the current date (or a provided seed date), ensuring all users see the same crystal for any given day. Use the /crystals/{id} detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for daily guidance features, push notifications, wellness app widgets, and crystal journal integrations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,12 +98,12 @@ namespace RoxyApi.Crystals.Daily
             return new global::RoxyApi.Crystals.Daily.DailyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get the crystal of the day as a discovery teaser. Returns a deterministic crystal based on the current date (or a provided seed date), ensuring all users see the same crystal for any given day. Use the /crystals/:id detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for daily guidance features, push notifications, wellness app widgets, and crystal journal integrations.
+        /// Get the crystal of the day as a discovery teaser. Returns a deterministic crystal based on the current date (or a provided seed date), ensuring all users see the same crystal for any given day. Use the /crystals/{id} detail endpoint for complete spiritual, emotional, and physical healing properties. Perfect for daily guidance features, push notifications, wellness app widgets, and crystal journal integrations.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DailyRequestBuilderPostQueryParameters 
         {
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Crystals.Daily.PostLangQueryParameterType? Lang { get; set; }
         }

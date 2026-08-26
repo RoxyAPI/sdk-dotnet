@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.TransitAspects
         {
         }
         /// <summary>
-        /// Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Supports planet and aspect-type filtering. More detailed than the /transits endpoint — includes AI-friendly interpretation fields. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.
+        /// Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Supports planet and aspect-type filtering. More detailed than the /transits endpoint, adding AI-friendly interpretation fields. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Astrology.TransitAspects
             return await RequestAdapter.SendAsync<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse>(requestInfo, global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Supports planet and aspect-type filtering. More detailed than the /transits endpoint — includes AI-friendly interpretation fields. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.
+        /// Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Supports planet and aspect-type filtering. More detailed than the /transits endpoint, adding AI-friendly interpretation fields. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,12 +98,12 @@ namespace RoxyApi.Astrology.TransitAspects
             return new global::RoxyApi.Astrology.TransitAspects.TransitAspectsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Supports planet and aspect-type filtering. More detailed than the /transits endpoint — includes AI-friendly interpretation fields. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.
+        /// Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Supports planet and aspect-type filtering. More detailed than the /transits endpoint, adding AI-friendly interpretation fields. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class TransitAspectsRequestBuilderPostQueryParameters 
         {
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.TransitAspects.PostLangQueryParameterType? Lang { get; set; }
         }

@@ -101,7 +101,7 @@ namespace RoxyApi.AngelNumbers.Lookup
             /// <summary>Where the number was seen. When supplied, the response adds a contextNote tailoring the reading to the sighting: clock (a glanced time), receipt (a purchase), license-plate (in transit), phone (a call or notification), address (a home or place), price (a total or amount).</summary>
             [QueryParameter("context")]
             public global::RoxyApi.AngelNumbers.Lookup.GetContextQueryParameterType? Context { get; set; }
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.AngelNumbers.Lookup.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Number sequence to analyze (1-8 digits). Can be any number the user has encountered: clock times (1111), addresses (717), receipts (888), license plates (4444), or any repeating pattern.</summary>

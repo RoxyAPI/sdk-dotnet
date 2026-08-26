@@ -23,7 +23,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public string Guidance { get; set; }
 #endif
-        /// <summary>Strength and nature of this transit effect — constructive, challenging, or neutral.</summary>
+        /// <summary>Strength and nature of this transit effect: constructive, challenging, or neutral.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Impact { get; set; }

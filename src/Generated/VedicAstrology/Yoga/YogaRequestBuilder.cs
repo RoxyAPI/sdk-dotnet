@@ -120,7 +120,7 @@ namespace RoxyApi.VedicAstrology.Yoga
             /// <summary>Filter the catalog to one Nabhasa family: asraya (3), dala (2), akriti (20) or sankhya (7). Omit for the full catalog. `classical` is accepted but matches nothing here, because it is a detection-verdict value for single-combination yogas rather than a catalog grouping.</summary>
             [QueryParameter("family")]
             public global::RoxyApi.VedicAstrology.Yoga.GetFamilyQueryParameterType? Family { get; set; }
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.VedicAstrology.Yoga.GetLangQueryParameterType? Lang { get; set; }
         }

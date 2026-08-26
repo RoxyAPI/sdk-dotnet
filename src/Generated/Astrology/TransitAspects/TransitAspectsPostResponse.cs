@@ -48,7 +48,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public List<global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_natalPlanets> NatalPlanets { get; set; }
 #endif
-        /// <summary>Statistical summary of all transit aspects. The harmonious-to-challenging ratio reveals the overall transit weather — whether the current period favors ease or demands effort.</summary>
+        /// <summary>Statistical summary of all transit aspects. The harmonious-to-challenging ratio reveals the overall transit weather, meaning whether the current period favors ease or demands effort.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostResponse_summary? Summary { get; set; }

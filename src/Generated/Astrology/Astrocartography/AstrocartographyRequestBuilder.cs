@@ -113,7 +113,7 @@ namespace RoxyApi.Astrology.Astrocartography
             [QueryParameter("include")]
             public string Include { get; set; }
 #endif
-            /// <summary>Response language (ISO 639-1). Supported: en, tr, de, es, hi, pt, fr, ru. Defaults to en. Languages without translations yet return English.</summary>
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.Astrocartography.PostLangQueryParameterType? Lang { get; set; }
         }
