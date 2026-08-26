@@ -11,7 +11,7 @@ The .NET SDK for astrology, Vedic astrology, numerology, tarot, and more.
 
 One API key. Fully typed. Verified against NASA JPL Horizons.
 
-The fastest way to add natal charts, daily horoscopes, synastry, Vedic kundli, tarot spreads, numerology, human design bodygraphs, and transit forecasts to ASP.NET Core, Blazor, MAUI, Unity, and AI agents. 12+ domains behind a single [Roxy](https://roxyapi.com) subscription, interpretations in eight languages, generated from the OpenAPI spec so new endpoints appear the day they ship.
+The fastest way to add natal charts, daily horoscopes, synastry, Vedic kundli, tarot spreads, numerology, human design bodygraphs, and transit forecasts to ASP.NET Core, Blazor, MAUI, Unity, and AI agents. 14+ domains behind a single [Roxy](https://roxyapi.com) subscription, interpretations in 10+ languages, generated from the OpenAPI spec so new endpoints appear the day they ship.
 
 ## Install
 
@@ -270,7 +270,62 @@ var timeline = await roxy.Forecast.Timeline.PostAsync(new()
 // timeline.Count, timeline.Events[0].Date, timeline.Events[0].Domain, timeline.Events[0].Significance
 ```
 
-### 7. Biorhythm API (daily check-in, forecast, compatibility)
+### 7. Chinese astrology API (BaZi four pillars, zodiac sign)
+
+BaZi (Four Pillars of Destiny), the twelve-animal zodiac, and the lunisolar calendar with its almanac. The school splits that make two calculators disagree are typed request parameters with named defaults, echoed back in a `conventions` object on every response, so a chart can be reproduced rather than guessed at. The zodiac routes answer the high-volume consumer questions; BaZi and the almanac are where an app goes deeper.
+
+```csharp
+// BaZi Four Pillars. The anchor call: the rest of the domain reads off these four pillars.
+// Timezone takes the IANA name, resolved to the DST-correct offset for the birth date.
+var bazi = await roxy.ChineseAstrology.Bazi.Chart.PostAsync(new()
+{
+    Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0),
+    Timezone = new() { String = "America/New_York" },
+});
+// bazi.Pillars[n].Position ("year" | "month" | "day" | "hour"), .Stem.Element, .Branch.Animal
+// bazi.Pillars[n].TenGod.Name, .HiddenStems, .NaYin
+// bazi.DayMaster.Element, bazi.ZodiacAnimal, bazi.FiveElements, bazi.Conventions, bazi.Summary
+
+// Chinese zodiac sign. Defaults YearBoundary to "lunar-new-year", the folk rule people mean
+// when they say which animal they are. Pass "li-chun" to match the classical BaZi boundary.
+var sign = await roxy.ChineseAstrology.Zodiac.Sign.PostAsync(new()
+{
+    Date = new Date(1990, 7, 4),
+});
+// sign.Animal.Name ("Horse"), sign.Animal.Element ("Fire"), sign.Animal.Polarity
+// sign.Element is the YEAR STEM element ("Metal"), not the element of the animal
+// sign.YearPillar, sign.Interpretation
+```
+
+### 8. Feng shui API (Kua number, flying star chart)
+
+Kua numbers with the full Eight Mansions map ranked best to worst, Xuan Kong flying star natal charts for any of the nine periods and 24 mountains, annual and monthly star plates, and the four annual afflictions with exact degree spans. Chinese years resolve at Li Chun, computed astronomically rather than assumed, so the annual charts change over on the real boundary.
+
+```csharp
+// Kua number: one birth date and a gender gives the personal directions everything else reads off.
+// Gender is required. The enums live with their request bodies:
+// using RoxyApi.FengShui.Kua; and using RoxyApi.FengShui.FlyingStars.Natal;
+var kua = await roxy.FengShui.Kua.PostAsync(new()
+{
+    Date = new Date(1990, 7, 4),
+    Gender = KuaPostRequestBody_gender.Female,
+});
+// kua.Kua (8), kua.Group ("east" | "west"), kua.Trigram.English ("Mountain")
+// kua.Sectors[n].Direction, .StarName, .Nature ("auspicious" | "inauspicious"), .Rank, .Domain
+
+// Flying star natal chart. Period plus facing gives the nine palaces with base, mountain
+// and water stars. Send Facing (a mountain id like "bing" or a compass label like "S2")
+// or FacingDegrees, not neither.
+var chart = await roxy.FengShui.FlyingStars.Natal.PostAsync(new()
+{
+    Period = 9, Facing = NatalPostRequestBody_facing.S2,
+});
+// chart.Facing.Label ("S2"), chart.Sitting.Label, chart.Structure.Name
+// chart.Palaces[n].Palace, .Base, .Mountain, .Water, .Reading
+// chart.MountainCenterStar, chart.WaterCenterStar, chart.Straddling
+```
+
+### 9. Biorhythm API (daily check-in, forecast, compatibility)
 
 Zero competition domain. Steady search volume with the top Google result being a static calculator page. Pure land-grab for wellness, productivity, sports, and couples apps.
 
@@ -285,7 +340,7 @@ var forecast = await roxy.Biorhythm.Forecast.PostAsync(new()
 });
 ```
 
-### 8. I Ching API (cast a reading, 64-hexagram catalog)
+### 10. I Ching API (cast a reading, 64-hexagram catalog)
 
 Meditation apps, decision-making tools, and wisdom chatbots. `i ching API` and `hexagram API` are the keywords.
 
@@ -298,7 +353,7 @@ var reading = await roxy.Iching.Cast.GetAsync(c => c.QueryParameters.Seed = "use
 var hexagrams = await roxy.Iching.Hexagrams.GetAsync();
 ```
 
-### 9. Crystals API (by zodiac, by chakra, birthstone)
+### 11. Crystals API (by zodiac, by chakra, birthstone)
 
 Crystal retail and metaphysical shops use these to build "crystals for [sign]" and "[chakra] chakra stones" pages.
 
@@ -313,7 +368,7 @@ var byChakra = await roxy.Crystals.Chakra["Heart"].GetAsync();
 var birthstone = await roxy.Crystals.Birthstone[4].GetAsync();
 ```
 
-### 10. Dream interpretation API (symbol dictionary, search)
+### 12. Dream interpretation API (symbol dictionary, search)
 
 Thousands of dream symbols. `dream meaning` is among the highest-volume spiritual searches on Google. Journal apps, AI therapy chatbots, and self-discovery products are the buyers.
 
@@ -326,7 +381,7 @@ var symbol = await roxy.Dreams.Symbols["snake"].GetAsync();
 var results = await roxy.Dreams.Symbols.GetAsync(c => c.QueryParameters.Q = "water");
 ```
 
-### 11. Angel Numbers API (111, 222, 333 meanings plus universal lookup)
+### 13. Angel Numbers API (111, 222, 333 meanings plus universal lookup)
 
 Gen Z spiritual-tok fuel. `111 meaning`, `222 meaning`, `333 angel number` are evergreen viral queries with massive shareability.
 
@@ -378,7 +433,7 @@ var roxy = new RoxyClient(adapter);
 
 ## Multi-language responses
 
-Interpretations and editorial text are available in eight languages: English (`en`), Turkish (`tr`), German (`de`), Spanish (`es`), French (`fr`), Hindi (`hi`), Portuguese (`pt`), Russian (`ru`). Pass `Lang` on any supported endpoint through the query configuration:
+Interpretations and editorial text are available in 10 languages: English (`en`), Turkish (`tr`), German (`de`), Spanish (`es`), French (`fr`), Hindi (`hi`), Portuguese (`pt`), Russian (`ru`), Chinese Simplified (`zh-Hans`), Chinese Traditional (`zh-Hant`). Pass `Lang` on any supported endpoint through the query configuration:
 
 ```csharp
 var card = await roxy.Tarot.Daily.PostAsync(
@@ -386,7 +441,7 @@ var card = await roxy.Tarot.Daily.PostAsync(
     c => c.QueryParameters.Lang = "es");
 ```
 
-Supported: astrology, Vedic astrology, numerology, tarot, biorhythm, I Ching, crystals, angel numbers. English-only: dreams, location. Untranslated fields fall back to English. Call `roxy.Languages.GetAsync()` for the live list.
+Supported: astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, numerology, tarot, biorhythm, I Ching, crystals, angel numbers. English-only: dreams, location. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on Chinese astrology and feng shui; every other domain answers those codes in English per field. Untranslated fields fall back to English. Call `roxy.Languages.GetAsync()` for the live list.
 
 ## Error handling
 

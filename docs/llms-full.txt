@@ -19,7 +19,7 @@ How the calls below map to the API:
 - **`Timezone` is a union:** `new() { Double = -5 }` (decimal offset) or `new() { String = "America/New_York" }` (IANA name, resolved to the DST-correct offset).
 - **Every call is async and throws `RoxyError` on a 4xx or 5xx.** Capture the result directly: `var chart = await roxy.Astrology.NatalChart.PostAsync(new() { ... });`
 
-**Multi-language responses.** Interpretations are available in eight languages: en, tr, de, es, fr, hi, pt, ru. Add `c => c.QueryParameters.Lang = "es"` to any supported endpoint. Supported: astrology, vedicAstrology, numerology, tarot, biorhythm, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. Untranslated fields fall back to English.
+**Multi-language responses.** Interpretations are available in 10 languages: en, tr, de, es, fr, hi, pt, ru, zh-Hans, zh-Hant. Add `c => c.QueryParameters.Lang = "es"` to any supported endpoint. Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, fengShui, numerology, tarot, biorhythm, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. The two Chinese scripts currently ship on chineseAstrology and fengShui. Untranslated fields fall back to English.
 
 ---
 

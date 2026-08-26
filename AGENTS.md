@@ -1,6 +1,6 @@
 # RoxyApi .NET SDK - Agent Guide
 
-.NET SDK for RoxyAPI. 12+ domains (Western astrology, Vedic astrology, numerology, tarot, human design, forecast, biorhythm, I Ching, crystals, dreams, angel numbers, location) plus utility namespaces (usage, languages). One API key, fully typed, generated from the OpenAPI spec.
+.NET SDK for RoxyAPI. 14+ domains (Western astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, numerology, tarot, biorhythm, I Ching, crystals, dreams, angel numbers, location) plus utility namespaces (usage, languages). One API key, fully typed, generated from the OpenAPI spec.
 
 > Before writing code with this SDK, read `docs/llms-full.txt` in this package for the complete method reference with one example per endpoint.
 
@@ -115,7 +115,7 @@ await roxy.Tarot.Daily.PostAsync(new() { Date = new Date(2026, 4, 22) }, c => c.
 await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 15 }, c => c.QueryParameters.Lang = "hi");
 ```
 
-Supported: astrology, vedicAstrology, numerology, tarot, biorhythm, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. Call `roxy.Languages.GetAsync()` for the live list.
+Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, fengShui, numerology, tarot, biorhythm, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on chineseAstrology and fengShui; every other domain answers those codes in English per field. Call `roxy.Languages.GetAsync()` for the live list.
 
 ### Error handling
 
@@ -162,7 +162,7 @@ foreach (var p in chart!.Planets!)
 
 ## Common tasks
 
-Ordered by domain priority (Western, Vedic, Numerology, Tarot, Human Design, Forecast, Biorhythm, I Ching, Crystals, Dreams, Angel Numbers, Location).
+Ordered by domain priority (Western, Vedic, Forecast, Human Design, Chinese Astrology, Feng Shui, Numerology, Tarot, Biorhythm, I Ching, Crystals, Dreams, Angel Numbers, Location).
 
 | Task | Code |
 |------|------|
