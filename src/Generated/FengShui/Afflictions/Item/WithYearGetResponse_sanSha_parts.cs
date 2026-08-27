@@ -46,7 +46,7 @@ namespace RoxyApi.FengShui.Afflictions.Item
 #else
         public global::RoxyApi.FengShui.Afflictions.Item.WithYearGetResponse_sanSha_parts_mountain Mountain { get; set; }
 #endif
-        /// <summary>Display name of the part. Always English, whatever the lang parameter says.</summary>
+        /// <summary>Display name of the part, translated in place when lang is set. Display copy, never a comparison key: branch on id instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

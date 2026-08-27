@@ -31,6 +31,14 @@ namespace RoxyApi.FengShui.Afflictions.Item
 #else
         public string Direction { get; set; }
 #endif
+        /// <summary>Stable machine key for the affliction: taiSui, suiPo, sanSha or fiveYellow. Always English, identical in every language, and the field to branch on. Use this rather than name, which is display copy and does translate.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
+        public string Id { get; set; }
+#endif
         /// <summary>What the affliction does and the standing rule for handling it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,7 +55,7 @@ namespace RoxyApi.FengShui.Afflictions.Item
 #else
         public global::RoxyApi.FengShui.Afflictions.Item.WithYearGetResponse_suiPo_mountain Mountain { get; set; }
 #endif
-        /// <summary>Display name of the affliction. Always English, whatever the lang parameter says, so it stays safe to compare against in code.</summary>
+        /// <summary>Display name of the affliction, translated in place when lang is set (Tai Sui in English, 太岁 under zh-Hans). Display copy, never a comparison key: branch on id instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -90,6 +98,7 @@ namespace RoxyApi.FengShui.Afflictions.Item
             {
                 { "chinese", n => { Chinese = n.GetStringValue(); } },
                 { "direction", n => { Direction = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
                 { "meaning", n => { Meaning = n.GetStringValue(); } },
                 { "mountain", n => { Mountain = n.GetObjectValue<global::RoxyApi.FengShui.Afflictions.Item.WithYearGetResponse_suiPo_mountain>(global::RoxyApi.FengShui.Afflictions.Item.WithYearGetResponse_suiPo_mountain.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -105,6 +114,7 @@ namespace RoxyApi.FengShui.Afflictions.Item
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("chinese", Chinese);
             writer.WriteStringValue("direction", Direction);
+            writer.WriteStringValue("id", Id);
             writer.WriteStringValue("meaning", Meaning);
             writer.WriteObjectValue<global::RoxyApi.FengShui.Afflictions.Item.WithYearGetResponse_suiPo_mountain>("mountain", Mountain);
             writer.WriteStringValue("name", Name);

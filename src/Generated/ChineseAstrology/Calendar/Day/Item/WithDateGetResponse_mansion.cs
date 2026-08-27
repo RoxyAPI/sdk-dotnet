@@ -14,13 +14,21 @@ namespace RoxyApi.ChineseAstrology.Calendar.Day.Item
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Animal emblem of the mansion, the third character of its full Chinese name.</summary>
+        /// <summary>Animal emblem of the mansion, the third character of its full Chinese name. English and canonical, identical in every language, matching how clashAnimal behaves on the same response. The translation is in animalLocalized.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Animal { get; set; }
 #nullable restore
 #else
         public string Animal { get; set; }
+#endif
+        /// <summary>Animal emblem in the requested language. Absent when lang is en, and absent when a language has no entry, so a caller falls back to animal.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AnimalLocalized { get; set; }
+#nullable restore
+#else
+        public string AnimalLocalized { get; set; }
 #endif
         /// <summary>The mansion in Chinese. A data field, identical in every language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,13 +38,21 @@ namespace RoxyApi.ChineseAstrology.Calendar.Day.Item
 #else
         public string Chinese { get; set; }
 #endif
-        /// <summary>English display name of the mansion.</summary>
+        /// <summary>English display name of the mansion. Canonical, identical in every language. The translation is in nameLocalized. Note the mansion has no string id: number is the stable 1 to 28 key, because five of the 28 share a pinyin spelling.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Display name of the mansion in the requested language. Absent when lang is en, and absent when a language has no entry for this mansion, so a caller falls back to name rather than rendering a blank.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Mansion number, 1 to 28, counted from the Horn. This is the identifier: three mansions share the pinyin wei and two share bi, so there is no unique pinyin key.</summary>
         public double? Number { get; set; }
@@ -90,8 +106,10 @@ namespace RoxyApi.ChineseAstrology.Calendar.Day.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "animal", n => { Animal = n.GetStringValue(); } },
+                { "animalLocalized", n => { AnimalLocalized = n.GetStringValue(); } },
                 { "chinese", n => { Chinese = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "number", n => { Number = n.GetDoubleValue(); } },
                 { "palace", n => { Palace = n.GetStringValue(); } },
                 { "pinyin", n => { Pinyin = n.GetStringValue(); } },
@@ -106,8 +124,10 @@ namespace RoxyApi.ChineseAstrology.Calendar.Day.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("animal", Animal);
+            writer.WriteStringValue("animalLocalized", AnimalLocalized);
             writer.WriteStringValue("chinese", Chinese);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteDoubleValue("number", Number);
             writer.WriteStringValue("palace", Palace);
             writer.WriteStringValue("pinyin", Pinyin);

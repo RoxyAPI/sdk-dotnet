@@ -38,7 +38,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.Monthly
 #else
         public string Meaning { get; set; }
 #endif
-        /// <summary>English display name of the officer.</summary>
+        /// <summary>English display name of the officer. Canonical, identical in every language, so it stays safe to compare against in code. The translation is in nameLocalized.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

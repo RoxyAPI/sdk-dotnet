@@ -38,7 +38,7 @@ namespace RoxyApi.FengShui.FlyingStars.Natal
 #else
         public string Meaning { get; set; }
 #endif
-        /// <summary>Display name of the structure. Always English, whatever the lang parameter says.</summary>
+        /// <summary>Display name of the structure, TRANSLATED IN PLACE under the lang parameter. Switch on structure.id, which is the stable machine value in every language. Unlike the star and formation names beside it, this field has no nameLocalized sibling.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

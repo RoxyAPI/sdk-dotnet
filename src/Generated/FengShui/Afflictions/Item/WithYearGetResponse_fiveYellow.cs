@@ -23,6 +23,14 @@ namespace RoxyApi.FengShui.Afflictions.Item
 #else
         public string Chinese { get; set; }
 #endif
+        /// <summary>Stable machine key for the affliction: taiSui, suiPo, sanSha or fiveYellow. Always English, identical in every language, and the field to branch on. Use this rather than name, which is display copy and does translate.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
+        public string Id { get; set; }
+#endif
         /// <summary>What the affliction does and the standing rule for handling it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +39,7 @@ namespace RoxyApi.FengShui.Afflictions.Item
 #else
         public string Meaning { get; set; }
 #endif
-        /// <summary>Display name of the affliction. Always English, whatever the lang parameter says, so it stays safe to compare against in code.</summary>
+        /// <summary>Display name of the affliction, translated in place when lang is set (Tai Sui in English, 太岁 under zh-Hans). Display copy, never a comparison key: branch on id instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -91,6 +99,7 @@ namespace RoxyApi.FengShui.Afflictions.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "chinese", n => { Chinese = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
                 { "meaning", n => { Meaning = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "palace", n => { Palace = n.GetStringValue(); } },
@@ -107,6 +116,7 @@ namespace RoxyApi.FengShui.Afflictions.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("chinese", Chinese);
+            writer.WriteStringValue("id", Id);
             writer.WriteStringValue("meaning", Meaning);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("palace", Palace);
