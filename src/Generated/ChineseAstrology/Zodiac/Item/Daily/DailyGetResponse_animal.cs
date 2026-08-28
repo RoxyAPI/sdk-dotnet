@@ -23,7 +23,7 @@ namespace RoxyApi.ChineseAstrology.Zodiac.Item.Daily
 #else
         public string Branch { get; set; }
 #endif
-        /// <summary>Simplified Chinese character for the animal.</summary>
+        /// <summary>Traditional hanzi character for the animal. Identical under every lang.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Chinese { get; set; }

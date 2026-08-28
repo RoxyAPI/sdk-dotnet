@@ -38,7 +38,7 @@ namespace RoxyApi.ChineseAstrology.Zodiac.Compatibility.Item.Item
 #else
         public string Relationship { get; set; }
 #endif
-        /// <summary>Classical name of the relation in simplified Chinese.</summary>
+        /// <summary>Classical name of the relation in traditional hanzi. Identical under every lang.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RelationshipChinese { get; set; }

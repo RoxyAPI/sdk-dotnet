@@ -23,7 +23,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.Chart
 #else
         public string Category { get; set; }
 #endif
-        /// <summary>The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response.</summary>
+        /// <summary>The relation in traditional hanzi. Identical under every lang.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Chinese { get; set; }

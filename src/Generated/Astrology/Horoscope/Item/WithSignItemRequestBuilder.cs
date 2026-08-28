@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions;
 using RoxyApi.Astrology.Horoscope.Item.Daily;
 using RoxyApi.Astrology.Horoscope.Item.Monthly;
 using RoxyApi.Astrology.Horoscope.Item.Weekly;
+using RoxyApi.Astrology.Horoscope.Item.Yearly;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -31,6 +32,11 @@ namespace RoxyApi.Astrology.Horoscope.Item
         public global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyRequestBuilder Weekly
         {
             get => new global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The yearly property</summary>
+        public global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyRequestBuilder Yearly
+        {
+            get => new global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Horoscope.Item.WithSignItemRequestBuilder"/> and sets the default values.

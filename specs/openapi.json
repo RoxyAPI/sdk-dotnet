@@ -3,7 +3,7 @@
   "info": {
     "title": "RoxyAPI",
     "version": "2.0.0",
-    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 14 domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Numerology, Tarot Reading, Biorhythm, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 209\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (Remote MCP)\n\nRoxyAPI ships a Remote MCP server per product over Streamable HTTP, with no local setup and no Docker. Your AI agent auto-discovers all 209\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable and stable, so it is the one safe to switch on programmatically.\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060, \u0060X-RateLimit-Reset\u0060 (Unix timestamp, seconds). Quotas reset on the 1st of every calendar month at 12:00 AM UTC, not on your renewal date.\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 per month for 50K requests, up to 3M requests, with custom volume above that.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
+    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 14 domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Numerology, Tarot Reading, Biorhythm, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 210\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (Remote MCP)\n\nRoxyAPI ships a Remote MCP server per product over Streamable HTTP, with no local setup and no Docker. Your AI agent auto-discovers all 210\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable and stable, so it is the one safe to switch on programmatically.\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060, \u0060X-RateLimit-Reset\u0060 (Unix timestamp, seconds). Quotas reset on the 1st of every calendar month at 12:00 AM UTC, not on your renewal date.\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 per month for 50K requests, up to 3M requests, with custom volume above that.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart) - first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs) - guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp) - connect AI agents\n- [Starter apps](https://roxyapi.com/starters) - clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq) - common questions\n- [Contact](https://roxyapi.com/contact) - support and API key recovery\n",
     "contact": {
       "name": "RoxyAPI Support",
       "url": "https://roxyapi.com/contact"
@@ -31,7 +31,7 @@
   "tags": [
     {
       "name": "Western Astrology",
-      "description": "Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, aspect-pattern detection (Grand Trine, T-Square, Yod), astrocartography planetary lines, relocation charts, and local space maps for location based astrology, plus classical and professional points like fixed star conjunctions, Arabic lots, the asteroid goddesses (Ceres, Pallas, Juno, Vesta), mean and true Black Moon Lilith, and timing techniques like secondary progressions, solar arc directions, and annual profections. Built for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes with a date parameter for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
+      "description": "Western astrology API for natal birth charts, daily, weekly, monthly, and yearly horoscopes with unique content per sign and the dated sky events behind every reading, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, aspect-pattern detection (Grand Trine, T-Square, Yod), astrocartography planetary lines, relocation charts, and local space maps for location based astrology, plus classical and professional points like fixed star conjunctions, Arabic lots, the asteroid goddesses (Ceres, Pallas, Juno, Vesta), mean and true Black Moon Lilith, and timing techniques like secondary progressions, solar arc directions, and annual profections. Built for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes by date or by year for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
     },
     {
       "name": "Vedic Astrology",
@@ -23345,8 +23345,8 @@
         "tags": [
           "Western Astrology"
         ],
-        "summary": "Daily horoscope by zodiac sign - Transit-based forecast with house activations",
-        "description": "Get the daily horoscope for any zodiac sign. Forecast is generated from real-time planetary transits using whole-sign house positions, so every sign receives unique content. Returns love, career, health, finance, overview with active transits, Moon sign, Moon phase, energy rating, lucky number, lucky color, and compatible signs. Content is fixed for a given date and rolls over at midnight, by default UTC. Pass date for editorial scheduling, or timezone to roll over on a local clock. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.",
+        "summary": "Daily horoscope by zodiac sign - Transit-based editorial columns",
+        "description": "A publish-ready column for any zodiac sign, built from the dated transits over it and returned with those events for fact-checking. The reading names the aspects, sign ingresses, lunations and retrograde stations driving it and reads each into the whole-sign houses of that sign, so every sign gets different content rather than one blurb reused twelve times. Alongside the column come overview, love, career, health, finance and advice, the active transits, Moon sign and phase, an energy rating, lucky number and color, and compatible signs. No language model is involved, so a given sign and date always returns the same text and a piece scheduled months ahead is the piece that runs. Content rolls over at midnight, by default UTC. Pass date for editorial scheduling, or timezone to roll over on a local clock. Available in eight languages. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.",
         "security": [
           {
             "apiKey": []
@@ -23474,15 +23474,110 @@
                       "example": "Mercury in your fourth house turns attention to family conversations and household planning. Important discussions about home life go well.",
                       "description": "Actionable daily advice based on the dominant transit energy."
                     },
+                    "column": {
+                      "type": "string",
+                      "example": "Mercury trines Jupiter today. Your twelfth house of solitude and inner reflection takes the weight of it. The working mind is set against the impulse to expand here. A talent that costs nothing tends to get spent on nothing in particular. Alongside that, the Sun forms a semi-square to Uranus today, sitting in your first house. Between the will and the break in the pattern, the difference is the whole story. Acting early is what this angle rewards, since the cost of waiting compounds quietly. Start with a plain account of what is actually wanted. Your first house of identity and self-expression is held by Neptune in Aries, and the first impression gets made before anything has been explained. If only one thing gets done, make it the quiet hour taken deliberately rather than stolen.",
+                      "description": "The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 120 to 180 words. The six section fields are the same reading split by topic, so render either shape and never both. Deterministic: the same sign and period always returns the same column."
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "aspect",
+                              "sign-ingress",
+                              "retrograde-station",
+                              "lunar-phase",
+                              "eclipse",
+                              "solar-season"
+                            ],
+                            "example": "aspect",
+                            "description": "Kind of event. aspect is an exact angle between two moving bodies, sign-ingress a body entering a new sign, retrograde-station a body turning retrograde or direct, lunar-phase one of the four quarters, eclipse a solar or lunar eclipse, and solar-season the Sun entering a sign."
+                          },
+                          "at": {
+                            "type": "string",
+                            "example": "2026-04-03T11:27:57Z",
+                            "description": "Exact instant the event perfects, UTC, to the second. Verifiable against NASA JPL Horizons for a position event and against the US Naval Observatory for a lunar phase or eclipse."
+                          },
+                          "bodies": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "example": [
+                              "Mercury",
+                              "Jupiter"
+                            ],
+                            "description": "Bodies involved, canonical English regardless of the requested language so the value stays safe to switch on. Two entries for an aspect, faster body first. One entry for an ingress, a station, a lunar phase, or an eclipse."
+                          },
+                          "aspect": {
+                            "type": "string",
+                            "example": "trine",
+                            "description": "Angle formed, on aspect events only: conjunction, sextile, square, trine, opposition, semi-sextile, quincunx, semi-square, or sesquiquadrate."
+                          },
+                          "sign": {
+                            "type": "string",
+                            "example": "libra",
+                            "description": "Sign the event falls in, lowercase, where it has exactly one. Absent for an aspect whose two bodies stand in different signs."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 12,
+                            "description": "Whole-sign house the event falls in, counted from the queried sign, 1 to 12. This is what turns one global sky event into a statement about this reader."
+                          },
+                          "through": {
+                            "type": "string",
+                            "example": "2026-04-11T02:28:12Z",
+                            "description": "End of the window this event holds open, UTC, given only where a bounded window is a real fact about it: the orb span of an aspect, the sign span of an ingress or a season, the retrograde span of a station. Absent for a lunar phase or an eclipse, which are instants and not spans."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "at",
+                          "bodies",
+                          "house"
+                        ]
+                      },
+                      "example": [
+                        {
+                          "type": "aspect",
+                          "at": "2026-04-03T11:27:57Z",
+                          "bodies": [
+                            "Mercury",
+                            "Jupiter"
+                          ],
+                          "aspect": "trine",
+                          "house": 12,
+                          "through": "2026-04-11T02:28:12Z"
+                        },
+                        {
+                          "type": "aspect",
+                          "at": "2026-04-03T15:18:11Z",
+                          "bodies": [
+                            "Sun",
+                            "Uranus"
+                          ],
+                          "aspect": "semi-square",
+                          "house": 1,
+                          "through": "2026-04-05T18:24:14Z"
+                        }
+                      ],
+                      "description": "The dated astronomical events this reading is built on, earliest first. Every field in every row can be checked against an independent authority, so a column can be fact-checked before it is published. Empty on a period in which nothing exact happens, where the reading falls back to the standing positions instead."
+                    },
                     "luckyNumber": {
                       "type": "number",
-                      "example": 7,
-                      "description": "Lucky number for the day."
+                      "example": 8,
+                      "description": "Lucky number for the day, 1 to 9, from the traditional planetary number correspondence applied to the planet that governs this sign today. Not a random draw and not a function of the date."
                     },
                     "luckyColor": {
                       "type": "string",
-                      "example": "Gold",
-                      "description": "Lucky color for the day, derived from the sign element."
+                      "example": "Red",
+                      "description": "Lucky color for the day, drawn from the three colors of the sign element and selected by the planet governing the reading."
                     },
                     "compatibleSigns": {
                       "type": "array",
@@ -23514,15 +23609,15 @@
                     },
                     "moonPhase": {
                       "type": "string",
-                      "example": "Waxing Gibbous Moon",
+                      "example": "Waning Gibbous Moon",
                       "description": "Current lunar phase (New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, Waning Crescent)."
                     },
                     "energyRating": {
                       "type": "number",
                       "minimum": 1,
                       "maximum": 10,
-                      "example": 7,
-                      "description": "Overall energy intensity for this sign today (1-10). Higher when more transits activate this sign directly. Useful for content widgets and visual indicators."
+                      "example": 6,
+                      "description": "Overall energy for this sign today (1-10). Derived from how many aspects are in force between the planets, how tight they are, whether they are harmonious or challenging, and which houses they fall in for this sign, so a busy day rates higher than a quiet one and a harmonious day higher than a hostile one of the same weight. Useful for content widgets and visual indicators."
                     }
                   },
                   "required": [
@@ -23534,6 +23629,8 @@
                     "health",
                     "finance",
                     "advice",
+                    "column",
+                    "events",
                     "luckyNumber",
                     "luckyColor",
                     "compatibleSigns",
@@ -23613,8 +23710,8 @@
         "tags": [
           "Western Astrology"
         ],
-        "summary": "Weekly horoscope by zodiac sign - 7-day transit forecast",
-        "description": "Get weekly horoscope for any zodiac sign. Forecast covers a full Monday to Sunday period based on planetary transits with house-based content unique to each sign, with love, career, health, finance guidance plus lucky days, lucky numbers, and compatible signs. Pass any date inside a week to retrieve that week, or timezone to roll over on a local clock. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.",
+        "summary": "Weekly horoscope by zodiac sign - Seven-day editorial column",
+        "description": "A Monday to Sunday column for any zodiac sign, naming the transits that perfect during the week and the days they fall on. Each event is read into the whole-sign houses of that sign, so content is unique per sign, and the dated events come back beside the prose so an editor can check a piece before it runs. Alongside the column come overview, love, career, health, finance and advice, plus lucky days, lucky numbers and compatible signs. No language model is involved, so the same sign and week always returns the same text. Pass any date inside a week to retrieve that week, or timezone to roll over on a local clock. Available in eight languages. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.",
         "security": [
           {
             "apiKey": []
@@ -23742,17 +23839,111 @@
                       "example": "Mercury in your fourth house turns attention to family conversations and household planning. Important discussions about home life go well.",
                       "description": "Actionable weekly guidance based on transit patterns."
                     },
+                    "column": {
+                      "type": "string",
+                      "example": "Your second house carries the main event here, and Venus forms a semi-sextile to Neptune on Wednesday. Between the sense of what is worth having and the pull toward what is not literal, the difference is the whole story. Small corrections are all this angle asks for, and small corrections are all it takes. There is more, and it is that the Full Moon falls in Libra on Thursday. Read it in your seventh house of partnerships and relationships, where the terms of a shared thing get set, with somebody else in the room. Whatever was set going earlier is fully lit at this point, including the parts nobody planned. The useful move is toward the terms said out loud before anyone agrees to them. There is more, and it is that Mercury trines Jupiter on Friday. This is your twelfth house, where the private half of a matter sits, out of view and mostly unspoken. Put the working mind beside the impulse to expand and neither reads the same afterwards. Support of this kind arrives quietly and gets mistaken for the ordinary state of things. Nothing else in your twelfth house works without the quiet hour taken deliberately rather than stolen.\n\nIn the same stretch, Venus forms a semi-sextile to Saturn on Saturday, sitting in your second house. Adjacent things rarely understand each other, and the gap shows in the detail rather than the outline. Alongside that, the Sun squares Jupiter on Sunday, felt through your first house of identity and self-expression. A square announces itself, so nothing about the difficulty arrives as a surprise. Your first house asks for a plain account of what is actually wanted. The short version: an honest figure rather than a comfortable one.",
+                      "description": "The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 250 to 450 words. The six section fields are the same reading split by topic, so render either shape and never both. Deterministic: the same sign and period always returns the same column."
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "aspect",
+                              "sign-ingress",
+                              "retrograde-station",
+                              "lunar-phase",
+                              "eclipse",
+                              "solar-season"
+                            ],
+                            "example": "aspect",
+                            "description": "Kind of event. aspect is an exact angle between two moving bodies, sign-ingress a body entering a new sign, retrograde-station a body turning retrograde or direct, lunar-phase one of the four quarters, eclipse a solar or lunar eclipse, and solar-season the Sun entering a sign."
+                          },
+                          "at": {
+                            "type": "string",
+                            "example": "2026-04-03T11:27:57Z",
+                            "description": "Exact instant the event perfects, UTC, to the second. Verifiable against NASA JPL Horizons for a position event and against the US Naval Observatory for a lunar phase or eclipse."
+                          },
+                          "bodies": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "example": [
+                              "Mercury",
+                              "Jupiter"
+                            ],
+                            "description": "Bodies involved, canonical English regardless of the requested language so the value stays safe to switch on. Two entries for an aspect, faster body first. One entry for an ingress, a station, a lunar phase, or an eclipse."
+                          },
+                          "aspect": {
+                            "type": "string",
+                            "example": "trine",
+                            "description": "Angle formed, on aspect events only: conjunction, sextile, square, trine, opposition, semi-sextile, quincunx, semi-square, or sesquiquadrate."
+                          },
+                          "sign": {
+                            "type": "string",
+                            "example": "libra",
+                            "description": "Sign the event falls in, lowercase, where it has exactly one. Absent for an aspect whose two bodies stand in different signs."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 12,
+                            "description": "Whole-sign house the event falls in, counted from the queried sign, 1 to 12. This is what turns one global sky event into a statement about this reader."
+                          },
+                          "through": {
+                            "type": "string",
+                            "example": "2026-04-11T02:28:12Z",
+                            "description": "End of the window this event holds open, UTC, given only where a bounded window is a real fact about it: the orb span of an aspect, the sign span of an ingress or a season, the retrograde span of a station. Absent for a lunar phase or an eclipse, which are instants and not spans."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "at",
+                          "bodies",
+                          "house"
+                        ]
+                      },
+                      "example": [
+                        {
+                          "type": "sign-ingress",
+                          "at": "2026-04-01T02:50:42Z",
+                          "bodies": [
+                            "Moon"
+                          ],
+                          "sign": "libra",
+                          "house": 7,
+                          "through": "2026-04-03T12:10:48Z"
+                        },
+                        {
+                          "type": "aspect",
+                          "at": "2026-04-01T11:21:57Z",
+                          "bodies": [
+                            "Venus",
+                            "Neptune"
+                          ],
+                          "aspect": "semi-sextile",
+                          "house": 2,
+                          "through": "2026-04-03T23:43:57Z"
+                        }
+                      ],
+                      "description": "The dated astronomical events this reading is built on, earliest first. Every field in every row can be checked against an independent authority, so a column can be fact-checked before it is published. Empty on a period in which nothing exact happens, where the reading falls back to the standing positions instead."
+                    },
                     "luckyDays": {
                       "type": "array",
                       "items": {
                         "type": "string"
                       },
                       "example": [
-                        "Wednesday",
-                        "Friday",
-                        "Sunday"
+                        "Saturday",
+                        "Sunday",
+                        "Friday"
                       ],
-                      "description": "Favorable days this week, based on planetary rulership."
+                      "description": "The three most favorable days this week, from the planetary rulers of the seven weekdays, ranked by how strongly each of those planets stands for this sign."
                     },
                     "luckyNumbers": {
                       "type": "array",
@@ -23760,11 +23951,11 @@
                         "type": "number"
                       },
                       "example": [
+                        8,
                         1,
-                        4,
-                        8
+                        6
                       ],
-                      "description": "Lucky numbers for the week."
+                      "description": "Three lucky numbers for the week, each 1 to 9 and all distinct, from the traditional planetary number correspondence applied to the three planets that govern this sign this week."
                     },
                     "compatibleSigns": {
                       "type": "array",
@@ -23788,6 +23979,8 @@
                     "health",
                     "finance",
                     "advice",
+                    "column",
+                    "events",
                     "luckyDays",
                     "luckyNumbers",
                     "compatibleSigns"
@@ -23863,8 +24056,8 @@
         "tags": [
           "Western Astrology"
         ],
-        "summary": "Monthly horoscope by zodiac sign - 30-day transit forecast with key dates",
-        "description": "Get monthly horoscope for any zodiac sign with sign-specific week-by-week breakdown and real lunar phase key dates. Based on planetary transits with house activations unique to each sign, covering love, career, health, and finance for the entire month. Key dates include actual New Moon, Full Moon, and retrograde dates from ephemeris calculations. Pass any date inside a month to retrieve that month, or timezone to roll over on a local clock. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.",
+        "summary": "Monthly horoscope by zodiac sign - Editorial column with key dates",
+        "description": "A month-long column for any zodiac sign, plus a week-by-week breakdown and dated key dates a calendar page renders directly. The column names every aspect, ingress, lunation and station of the month and reads each into the whole-sign houses of that sign, and those events come back beside the prose with their exact instants, so a piece can be checked against NASA JPL Horizons or the US Naval Observatory before it runs. Key dates are the real New Moon, Full Moon and retrograde instants, never approximations. Alongside the column come overview, love, career, health, finance and advice. Pass any date inside a month to retrieve that month, or timezone to roll over on a local clock. Available in eight languages. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.",
         "security": [
           {
             "apiKey": []
@@ -23992,6 +24185,98 @@
                       "example": "Mercury in your fourth house turns attention to family conversations and household planning. Important discussions about home life go well.",
                       "description": "Actionable guidance for the month as a whole, derived from the Mercury house activation for this sign. Distinct from the per-week advice inside weekByWeek: this is the single takeaway for the month."
                     },
+                    "column": {
+                      "type": "string",
+                      "example": "Mars leaves Pisces on the 9th, and it lands in your twelfth house of solitude and inner reflection. The change is long enough to plan around and short enough to wait out. There is more, and it is that Mars meets Neptune on the 13th. The first impression gets made before anything has been explained, which is what your first house is for. Neither the drive nor the pull toward what is not literal is the whole of what is happening. The two act as one thing here, and neither is easy to see on its own. If one thing gets done in your first house, make it a plain account of what is actually wanted. Because Mars sextiles Pluto on the 16th, your first house is the part that moves. Direction is what this contact rewards, since the capacity is present and sitting idle.\n\nThen Mercury meets Neptune on the 17th, and it registers in your first house of identity and self-expression. A single impulse comes out of the pair, and it is felt as one thing rather than two. Alongside that, the New Moon falls in Aries on the 17th, at the level of your first house. Nothing has surfaced yet, which is the correct condition for a beginning and not a sign of delay. Next to that, Mercury sextiles Pluto on the 18th, felt through your first house. The working mind is set against the pressure underneath here. An opportunity left alone at this angle does not turn into a problem, it simply expires.\n\nAlongside that, Mars meets Saturn on the 19th, played out in your first house. Fusion is the whole point, and what starts here starts with both of them behind it. A second thread runs through this, and Mercury meets Saturn on the 20th, sitting in your first house. Whichever of the two is weaker stops being noticed, because the blend runs that close. Watch your first house for this one, because Mercury meets Mars on the 20th. The one wants to name a thing accurately and be understood. The other wants to act now and have the matter settled. Objectivity is scarce at this angle, because neither half stands far enough back to be looked at.\n\nInside your third house of communication and learning, Venus sextiles Neptune on the 26th. Help of this size is modest, and modest help is the kind that actually gets used. If one thing gets done in your third house, make it the thing written out plainly and sent to the person who can act on it. Then Mars forms a semi-square to Uranus on the 29th, so the effect shows in your first house. Acting early is what this angle rewards, since the cost of waiting compounds quietly. Whatever else happens, do not let go of the quiet hour taken deliberately rather than stolen.",
+                      "description": "The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 400 to 700 words. The six section fields are the same reading split by topic, so render either shape and never both. Deterministic: the same sign and period always returns the same column."
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "aspect",
+                              "sign-ingress",
+                              "retrograde-station",
+                              "lunar-phase",
+                              "eclipse",
+                              "solar-season"
+                            ],
+                            "example": "aspect",
+                            "description": "Kind of event. aspect is an exact angle between two moving bodies, sign-ingress a body entering a new sign, retrograde-station a body turning retrograde or direct, lunar-phase one of the four quarters, eclipse a solar or lunar eclipse, and solar-season the Sun entering a sign."
+                          },
+                          "at": {
+                            "type": "string",
+                            "example": "2026-04-03T11:27:57Z",
+                            "description": "Exact instant the event perfects, UTC, to the second. Verifiable against NASA JPL Horizons for a position event and against the US Naval Observatory for a lunar phase or eclipse."
+                          },
+                          "bodies": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "example": [
+                              "Mercury",
+                              "Jupiter"
+                            ],
+                            "description": "Bodies involved, canonical English regardless of the requested language so the value stays safe to switch on. Two entries for an aspect, faster body first. One entry for an ingress, a station, a lunar phase, or an eclipse."
+                          },
+                          "aspect": {
+                            "type": "string",
+                            "example": "trine",
+                            "description": "Angle formed, on aspect events only: conjunction, sextile, square, trine, opposition, semi-sextile, quincunx, semi-square, or sesquiquadrate."
+                          },
+                          "sign": {
+                            "type": "string",
+                            "example": "libra",
+                            "description": "Sign the event falls in, lowercase, where it has exactly one. Absent for an aspect whose two bodies stand in different signs."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 12,
+                            "description": "Whole-sign house the event falls in, counted from the queried sign, 1 to 12. This is what turns one global sky event into a statement about this reader."
+                          },
+                          "through": {
+                            "type": "string",
+                            "example": "2026-04-11T02:28:12Z",
+                            "description": "End of the window this event holds open, UTC, given only where a bounded window is a real fact about it: the orb span of an aspect, the sign span of an ingress or a season, the retrograde span of a station. Absent for a lunar phase or an eclipse, which are instants and not spans."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "at",
+                          "bodies",
+                          "house"
+                        ]
+                      },
+                      "example": [
+                        {
+                          "type": "lunar-phase",
+                          "at": "2026-04-02T02:12:37Z",
+                          "bodies": [
+                            "Moon"
+                          ],
+                          "sign": "libra",
+                          "house": 7
+                        },
+                        {
+                          "type": "sign-ingress",
+                          "at": "2026-04-09T19:36:28Z",
+                          "bodies": [
+                            "Mars"
+                          ],
+                          "sign": "aries",
+                          "house": 1,
+                          "through": "2026-05-18T22:26:00Z"
+                        }
+                      ],
+                      "description": "The dated astronomical events this reading is built on, earliest first. Every field in every row can be checked against an independent authority, so a column can be fact-checked before it is published. Empty on a period in which nothing exact happens, where the reading falls back to the standing positions instead."
+                    },
                     "weekByWeek": {
                       "type": "array",
                       "items": {
@@ -24050,17 +24335,17 @@
                         "type": "number"
                       },
                       "example": [
-                        1,
-                        4,
                         8,
-                        12
+                        7,
+                        2,
+                        1
                       ],
-                      "description": "Lucky numbers for the month."
+                      "description": "Four lucky numbers for the month, each 1 to 9 and all distinct, from the traditional planetary number correspondence applied to the four planets that govern this sign this month."
                     },
                     "luckyColor": {
                       "type": "string",
-                      "example": "Gold",
-                      "description": "Lucky color for the month."
+                      "example": "Red",
+                      "description": "Lucky color for the month, drawn from the three colors of the sign element and selected by the planet governing the reading."
                     },
                     "compatibleSigns": {
                       "type": "array",
@@ -24084,8 +24369,727 @@
                     "health",
                     "finance",
                     "advice",
+                    "column",
+                    "events",
                     "weekByWeek",
                     "keyDates",
+                    "luckyNumbers",
+                    "luckyColor",
+                    "compatibleSigns"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/astrology/horoscope/{sign}/yearly": {
+      "get": {
+        "operationId": "getYearlyHoroscope",
+        "tags": [
+          "Western Astrology"
+        ],
+        "summary": "Yearly horoscope by zodiac sign - Year ahead forecast with themes, key periods, eclipses and retrogrades",
+        "description": "Get the year ahead for any zodiac sign, as a long-form column plus the structured arrays a year-ahead page is built from: the slow-body themes that set the backdrop, a dated key period for each of the twelve houses, the best month for love, career, health and finance, and every eclipse and every retrograde and direct station with the house it falls in for this sign. Love, career, health, finance and advice cover the whole year, and the dated events behind the copy come back beside it so an editor can check the piece before it runs. Omit the year for the one in progress, or pass any year from 1900 to 2100 to build an archive or a forecast ahead of time. Yearly horoscope API, year ahead astrology, annual zodiac forecast, eclipse and retrograde calendar.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "aries",
+                "taurus",
+                "gemini",
+                "cancer",
+                "leo",
+                "virgo",
+                "libra",
+                "scorpio",
+                "sagittarius",
+                "capricorn",
+                "aquarius",
+                "pisces"
+              ],
+              "description": "Zodiac sign, case-insensitive (e.g., aries, Aries, ARIES all work).",
+              "example": "aries"
+            },
+            "required": true,
+            "description": "Zodiac sign, case-insensitive (e.g., aries, Aries, ARIES all work).",
+            "name": "sign",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru",
+                "zh-Hans",
+                "zh-Hant"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English."
+            },
+            "required": false,
+            "description": "Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.",
+            "name": "lang",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "example": 2026,
+              "description": "Calendar year to forecast, 1900 to 2100. Defaults to the current year in the timezone parameter."
+            },
+            "required": false,
+            "description": "Calendar year to forecast, 1900 to 2100. Defaults to the current year in the timezone parameter.",
+            "name": "year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "America/New_York",
+              "description": "Selects which year counts as current when year is omitted. Defaults to UTC, so the forecast rolls over at 00:00 UTC on January 1. Pass the timezone of the end user to roll over on their local clock instead. Ignored when year is set. Accepts an IANA name (e.g. \u0022America/New_York\u0022), decimal hours (e.g. 5.5 for IST), or a fixed UTC offset (e.g. \u0022-05:00\u0022)."
+            },
+            "required": false,
+            "description": "Selects which year counts as current when year is omitted. Defaults to UTC, so the forecast rolls over at 00:00 UTC on January 1. Pass the timezone of the end user to roll over on their local clock instead. Ignored when year is set. Accepts an IANA name (e.g. \u0022America/New_York\u0022), decimal hours (e.g. 5.5 for IST), or a fixed UTC offset (e.g. \u0022-05:00\u0022).",
+            "name": "timezone",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Yearly horoscope retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sign": {
+                      "type": "string",
+                      "example": "Aries",
+                      "description": "Zodiac sign for this horoscope."
+                    },
+                    "year": {
+                      "type": "integer",
+                      "example": 2026,
+                      "description": "Calendar year this forecast covers. Echoes the year requested, or the current year when it was omitted."
+                    },
+                    "overview": {
+                      "type": "string",
+                      "example": "Look to your first house of identity and self-expression, where the first impression gets made before anything has been explained. Neptune turns retrograde in July. Forward motion is not what this stretch is for, and forcing it spends the effort twice.",
+                      "description": "Yearly overview, led by the single event with the most weight for this sign across the whole year."
+                    },
+                    "love": {
+                      "type": "string",
+                      "example": "A solar eclipse falls in Leo in August, felt through your fifth house of romance, creativity, and joy. The disc is covered completely. Acceleration is the whole signature here, and what gets accelerated is whatever was already moving.",
+                      "description": "Yearly love and relationship outlook."
+                    },
+                    "career": {
+                      "type": "string",
+                      "example": "Mars trines Uranus in January, felt through your tenth house of career and public image. Whatever the drive starts, the break in the pattern answers for. Smooth running gets noticed only when it stops, which is the standing problem with this angle.",
+                      "description": "Yearly career and professional outlook."
+                    },
+                    "health": {
+                      "type": "string",
+                      "example": "Neptune turns direct in December, with your first house of identity and self-expression taking it. What was held gets released here, though the backlog clears more slowly than the turn suggests.",
+                      "description": "Yearly health, energy, and wellness outlook."
+                    },
+                    "finance": {
+                      "type": "string",
+                      "example": "Mars forms a semi-sextile to Neptune in May. Your second house is where earnings and belongings get counted, and their worth gets decided. Put the drive beside the pull toward what is not literal and neither reads the same afterwards. The two have almost nothing in common, and the mismatch registers as a small steady irritation.",
+                      "description": "Yearly financial outlook."
+                    },
+                    "advice": {
+                      "type": "string",
+                      "example": "Neptune turns retrograde in July, so the effect shows in your first house of identity and self-expression. Translated into something doable, this comes to a plain account of what is actually wanted.",
+                      "description": "The single takeaway for the year, drawn from the event that leads it rather than stated in general terms."
+                    },
+                    "column": {
+                      "type": "string",
+                      "example": "One thing outranks the rest here: Neptune leaves Pisces in January, reaching your twelfth house. A move this rare resets the terms of an area instead of shading them. Running with that, a solar eclipse falls in Aquarius in February, at the level of your eleventh house of friendships and future goals. A ring of light stays visible all the way around the covered disc. Acceleration is the whole signature here, and what gets accelerated is whatever was already moving. If one thing gets done in your eleventh house, make it the request put to the people who can actually answer it. A second thread runs through this, and Saturn meets Neptune in February, in your first house of identity and self-expression, where the first impression gets made before anything has been explained. Put the limit beside the pull toward what is not literal and neither reads the same afterwards. Fusion is the whole point, and what starts here starts with both of them behind it. Start with a plain account of what is actually wanted.\n\nAfter that, the Sun leaves Pisces in March, with your twelfth house of solitude and inner reflection taking it. A season opens at this point, and it is the frame everything else gets read against. There is more, and it is that Saturn sextiles Pluto in March, sitting in your first house. An opportunity left alone at this angle does not turn into a problem, it simply expires. Next to that, Mars meets Neptune in April, and it registers in your first house. Objectivity is scarce at this angle, because neither half stands far enough back to be looked at.\n\nInside your first house, Neptune turns retrograde in July. Forward motion is not what this stretch is for, and forcing it spends the effort twice. In the same stretch, Uranus sextiles Neptune in July. That reaches your third house, where messages travel, and the short trip matters more than the long one. Visibility is the difference between this angle and an easier one, and the offer is on show. The useful move is toward the thing written out plainly and sent to the person who can act on it. Underneath that, Jupiter trines Neptune in July, and it registers in your fifth house of romance, creativity, and joy. Support of this kind arrives quietly and gets mistaken for the ordinary state of things. Going without the risk taken in the open instead of rehearsed in private costs more in your fifth house than it saves anywhere else.\n\nPartway through that, Neptune sextiles Pluto in July, played out in your first house. The opening is real and it closes again unless somebody uses it. While that is still running, Saturn turns retrograde in July, arriving in your first house. Watch your fifth house for this one, because a solar eclipse falls in Leo in August. The disc is covered completely.\n\nBecause Mars trines Neptune in October, your fifth house is the part that moves. The ease here is real and largely unearned, which is why it so often goes unused. A second thread runs through this, and Saturn turns direct in December, at the level of your first house. Motion resumes from where it actually stopped, which is rarely where it was meant to have reached. Inside your first house, Neptune turns direct in December. What was held gets released here, though the backlog clears more slowly than the turn suggests. What is fixed here is Venus in Capricorn, landing in your tenth house of career and public image, over affection, taste, money spent on pleasure, and the terms people agree to. Get to the quiet hour taken deliberately rather than stolen, and the rest of your twelfth house follows.",
+                      "description": "The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 600 to 900 words. The six section fields are the same reading split by topic, so render either shape and never both. Deterministic: the same sign and period always returns the same column."
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "aspect",
+                              "sign-ingress",
+                              "retrograde-station",
+                              "lunar-phase",
+                              "eclipse",
+                              "solar-season"
+                            ],
+                            "example": "aspect",
+                            "description": "Kind of event. aspect is an exact angle between two moving bodies, sign-ingress a body entering a new sign, retrograde-station a body turning retrograde or direct, lunar-phase one of the four quarters, eclipse a solar or lunar eclipse, and solar-season the Sun entering a sign."
+                          },
+                          "at": {
+                            "type": "string",
+                            "example": "2026-04-03T11:27:57Z",
+                            "description": "Exact instant the event perfects, UTC, to the second. Verifiable against NASA JPL Horizons for a position event and against the US Naval Observatory for a lunar phase or eclipse."
+                          },
+                          "bodies": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "example": [
+                              "Mercury",
+                              "Jupiter"
+                            ],
+                            "description": "Bodies involved, canonical English regardless of the requested language so the value stays safe to switch on. Two entries for an aspect, faster body first. One entry for an ingress, a station, a lunar phase, or an eclipse."
+                          },
+                          "aspect": {
+                            "type": "string",
+                            "example": "trine",
+                            "description": "Angle formed, on aspect events only: conjunction, sextile, square, trine, opposition, semi-sextile, quincunx, semi-square, or sesquiquadrate."
+                          },
+                          "sign": {
+                            "type": "string",
+                            "example": "libra",
+                            "description": "Sign the event falls in, lowercase, where it has exactly one. Absent for an aspect whose two bodies stand in different signs."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 12,
+                            "description": "Whole-sign house the event falls in, counted from the queried sign, 1 to 12. This is what turns one global sky event into a statement about this reader."
+                          },
+                          "through": {
+                            "type": "string",
+                            "example": "2026-04-11T02:28:12Z",
+                            "description": "End of the window this event holds open, UTC, given only where a bounded window is a real fact about it: the orb span of an aspect, the sign span of an ingress or a season, the retrograde span of a station. Absent for a lunar phase or an eclipse, which are instants and not spans."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "at",
+                          "bodies",
+                          "house"
+                        ]
+                      },
+                      "example": [
+                        {
+                          "type": "aspect",
+                          "at": "2026-01-20T05:55:10Z",
+                          "bodies": [
+                            "Mars",
+                            "Uranus"
+                          ],
+                          "aspect": "trine",
+                          "house": 10,
+                          "through": "2026-01-30T09:22:47Z"
+                        },
+                        {
+                          "type": "sign-ingress",
+                          "at": "2026-01-26T14:30:39Z",
+                          "bodies": [
+                            "Neptune"
+                          ],
+                          "sign": "aries",
+                          "house": 1,
+                          "through": "2038-05-21T23:49:04Z"
+                        }
+                      ],
+                      "description": "The dated astronomical events this reading is built on, earliest first. Every field in every row can be checked against an independent authority, so a column can be fact-checked before it is published. Empty on a period in which nothing exact happens, where the reading falls back to the standing positions instead."
+                    },
+                    "themes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "body": {
+                            "type": "string",
+                            "example": "Saturn",
+                            "description": "The slow-moving body holding this theme, canonical English regardless of the requested language: Jupiter, Saturn, Uranus, Neptune, or Pluto."
+                          },
+                          "sign": {
+                            "type": "string",
+                            "example": "aries",
+                            "description": "Sign the body occupies through this stretch, lowercase. Checkable against NASA JPL Horizons for any date inside from and to."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 1,
+                            "description": "Whole-sign house that sign is for this sign, 1 to 12."
+                          },
+                          "theme": {
+                            "type": "string",
+                            "example": "identity and self-expression",
+                            "description": "What that house governs, so the placement reads as a life area rather than a coordinate."
+                          },
+                          "from": {
+                            "type": "string",
+                            "example": "2026-02-14",
+                            "description": "First date of the stretch inside this year, in UTC (YYYY-MM-DD). January 1 when the body was already there when the year opened, otherwise the date it arrived."
+                          },
+                          "to": {
+                            "type": "string",
+                            "example": "2026-12-31",
+                            "description": "Last date of the stretch inside this year, in UTC (YYYY-MM-DD). December 31 when the body is still there when the year closes, otherwise the date it leaves."
+                          }
+                        },
+                        "required": [
+                          "body",
+                          "sign",
+                          "house",
+                          "theme",
+                          "from",
+                          "to"
+                        ]
+                      },
+                      "example": [
+                        {
+                          "body": "Jupiter",
+                          "sign": "cancer",
+                          "house": 4,
+                          "theme": "home and emotional foundations",
+                          "from": "2026-01-01",
+                          "to": "2026-06-30"
+                        },
+                        {
+                          "body": "Jupiter",
+                          "sign": "leo",
+                          "house": 5,
+                          "theme": "romance, creativity, and joy",
+                          "from": "2026-06-30",
+                          "to": "2026-12-31"
+                        },
+                        {
+                          "body": "Saturn",
+                          "sign": "aries",
+                          "house": 1,
+                          "theme": "identity and self-expression",
+                          "from": "2026-02-14",
+                          "to": "2026-12-31"
+                        }
+                      ],
+                      "description": "The backdrop of the year: which whole-sign house each slow-moving body occupies for this sign, Jupiter first and Pluto last. One row per unbroken stretch, so a body that stays put is a single row spanning the year and a body that changes sign is two rows with the exact date between them. Dates are the part of the stretch that falls inside this year; the full span of a change that happens inside the year is in the events array. Use it for the year-at-a-glance panel a year-ahead page opens with."
+                    },
+                    "eclipses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "type": "string",
+                            "example": "2026-02-17",
+                            "description": "Date of the eclipse peak in UTC (YYYY-MM-DD). The exact instant is in the events array."
+                          },
+                          "kind": {
+                            "type": "string",
+                            "example": "annular",
+                            "description": "Eclipse kind: total, annular, partial, or penumbral."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 11,
+                            "description": "Whole-sign house the eclipse falls in for this sign, 1 to 12."
+                          },
+                          "theme": {
+                            "type": "string",
+                            "example": "friendships and future goals",
+                            "description": "What that house governs, so the eclipse reads as a life area rather than a coordinate."
+                          }
+                        },
+                        "required": [
+                          "date",
+                          "kind",
+                          "house",
+                          "theme"
+                        ]
+                      },
+                      "description": "Every solar and lunar eclipse of the year, with the house each one falls in for this sign. Usually four to six, and the dates match the published eclipse canon."
+                    },
+                    "retrogrades": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "type": "string",
+                            "example": "2026-02-26",
+                            "description": "Date the body turns, in UTC (YYYY-MM-DD). The exact instant is in the events array."
+                          },
+                          "body": {
+                            "type": "string",
+                            "example": "Mercury",
+                            "description": "Body making the station, canonical English."
+                          },
+                          "direction": {
+                            "type": "string",
+                            "example": "retrograde",
+                            "description": "Which way it turns: retrograde when apparent motion reverses, direct when it resumes."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 12,
+                            "description": "Whole-sign house the station falls in for this sign, 1 to 12."
+                          },
+                          "theme": {
+                            "type": "string",
+                            "example": "solitude and inner reflection",
+                            "description": "What that house governs, so the station reads as a life area rather than a coordinate."
+                          }
+                        },
+                        "required": [
+                          "date",
+                          "body",
+                          "direction",
+                          "house",
+                          "theme"
+                        ]
+                      },
+                      "description": "Every retrograde and direct station of the year, in order, with the house each falls in for this sign. Drives review windows and the not-yet warnings a yearly column is bought for."
+                    },
+                    "keyPeriods": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "from": {
+                            "type": "string",
+                            "example": "2026-01-23",
+                            "description": "Date the period opens, in UTC (YYYY-MM-DD). Always inside the year requested: this is the day the body enters the sign."
+                          },
+                          "to": {
+                            "type": "string",
+                            "example": "2026-03-02",
+                            "description": "Date the period closes, in UTC (YYYY-MM-DD), which is the day the body leaves that sign. A period that opens late in the year closes in the next one, by at most about three months, so a reader knows what they are still in on January 1."
+                          },
+                          "body": {
+                            "type": "string",
+                            "example": "Mars",
+                            "description": "Body driving the period, canonical English regardless of the requested language: Mercury, Venus, or Mars. The slower bodies are in the themes array instead, because a stretch measured in years is a backdrop rather than a date to circle."
+                          },
+                          "house": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12,
+                            "example": 11,
+                            "description": "Whole-sign house the period activates for this sign, 1 to 12. Unique within the array: each house appears at most once."
+                          },
+                          "focus": {
+                            "type": "string",
+                            "example": "friendships and future goals",
+                            "description": "The life area that period is about, from the house it activates."
+                          }
+                        },
+                        "required": [
+                          "from",
+                          "to",
+                          "body",
+                          "house",
+                          "focus"
+                        ]
+                      },
+                      "example": [
+                        {
+                          "from": "2026-01-23",
+                          "to": "2026-03-02",
+                          "body": "Mars",
+                          "house": 11,
+                          "focus": "friendships and future goals"
+                        },
+                        {
+                          "from": "2026-08-06",
+                          "to": "2026-09-10",
+                          "body": "Venus",
+                          "house": 7,
+                          "focus": "partnerships and relationships"
+                        },
+                        {
+                          "from": "2026-11-25",
+                          "to": "2027-02-21",
+                          "body": "Mars",
+                          "house": 6,
+                          "focus": "health and daily routines"
+                        }
+                      ],
+                      "description": "The year as a calendar of life areas: for each whole-sign house, the single dated stretch that most strongly activates it, ordered by start date. Twelve rows in a full year, one per house, so every life area gets a date range and none is named twice. Periods overlap freely, because more than one body is always moving. Use it for the dates-to-circle panel of a year-ahead page."
+                    },
+                    "bestPeriods": {
+                      "type": "object",
+                      "properties": {
+                        "love": {
+                          "type": "object",
+                          "properties": {
+                            "from": {
+                              "type": "string",
+                              "example": "2026-08-01",
+                              "description": "First day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "to": {
+                              "type": "string",
+                              "example": "2026-08-31",
+                              "description": "Last day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "count": {
+                              "type": "integer",
+                              "example": 9,
+                              "description": "How many exact harmonious aspects fell in that month and reached this area. This is the measurement the month was chosen on, and every aspect behind it can be checked against NASA JPL Horizons."
+                            }
+                          },
+                          "required": [
+                            "from",
+                            "to",
+                            "count"
+                          ],
+                          "example": {
+                            "from": "2026-08-01",
+                            "to": "2026-08-31",
+                            "count": 9
+                          },
+                          "description": "Best month for romance and partnership. Absent only if the whole year carries no harmonious aspect reaching this area."
+                        },
+                        "career": {
+                          "type": "object",
+                          "properties": {
+                            "from": {
+                              "type": "string",
+                              "example": "2026-01-01",
+                              "description": "First day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "to": {
+                              "type": "string",
+                              "example": "2026-01-31",
+                              "description": "Last day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "count": {
+                              "type": "integer",
+                              "example": 12,
+                              "description": "How many exact harmonious aspects fell in that month and reached this area. This is the measurement the month was chosen on, and every aspect behind it can be checked against NASA JPL Horizons."
+                            }
+                          },
+                          "required": [
+                            "from",
+                            "to",
+                            "count"
+                          ],
+                          "example": {
+                            "from": "2026-01-01",
+                            "to": "2026-01-31",
+                            "count": 12
+                          },
+                          "description": "Best month for career, work and reputation. Absent only if the whole year carries no harmonious aspect reaching this area."
+                        },
+                        "health": {
+                          "type": "object",
+                          "properties": {
+                            "from": {
+                              "type": "string",
+                              "example": "2026-01-01",
+                              "description": "First day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "to": {
+                              "type": "string",
+                              "example": "2026-01-31",
+                              "description": "Last day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "count": {
+                              "type": "integer",
+                              "example": 9,
+                              "description": "How many exact harmonious aspects fell in that month and reached this area. This is the measurement the month was chosen on, and every aspect behind it can be checked against NASA JPL Horizons."
+                            }
+                          },
+                          "required": [
+                            "from",
+                            "to",
+                            "count"
+                          ],
+                          "example": {
+                            "from": "2026-01-01",
+                            "to": "2026-01-31",
+                            "count": 9
+                          },
+                          "description": "Best month for health. Absent only if the whole year carries no harmonious aspect reaching this area."
+                        },
+                        "finance": {
+                          "type": "object",
+                          "properties": {
+                            "from": {
+                              "type": "string",
+                              "example": "2026-01-01",
+                              "description": "First day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "to": {
+                              "type": "string",
+                              "example": "2026-01-31",
+                              "description": "Last day of the month, in UTC (YYYY-MM-DD)."
+                            },
+                            "count": {
+                              "type": "integer",
+                              "example": 5,
+                              "description": "How many exact harmonious aspects fell in that month and reached this area. This is the measurement the month was chosen on, and every aspect behind it can be checked against NASA JPL Horizons."
+                            }
+                          },
+                          "required": [
+                            "from",
+                            "to",
+                            "count"
+                          ],
+                          "example": {
+                            "from": "2026-01-01",
+                            "to": "2026-01-31",
+                            "count": 5
+                          },
+                          "description": "Best month for finance. Absent only if the whole year carries no harmonious aspect reaching this area."
+                        }
+                      },
+                      "example": {
+                        "love": {
+                          "from": "2026-08-01",
+                          "to": "2026-08-31",
+                          "count": 9
+                        },
+                        "career": {
+                          "from": "2026-01-01",
+                          "to": "2026-01-31",
+                          "count": 12
+                        },
+                        "health": {
+                          "from": "2026-01-01",
+                          "to": "2026-01-31",
+                          "count": 9
+                        },
+                        "finance": {
+                          "from": "2026-01-01",
+                          "to": "2026-01-31",
+                          "count": 5
+                        }
+                      },
+                      "description": "The easiest month of the year for each of the four topic sections, by how many exact harmonious aspects (sextiles and trines) fall in that month and land in the houses that govern the area for this sign. An area is omitted only in the rare year that carries no harmonious aspect for it at all, so treat each key as optional. Use it for the best-months-for panel, and read the count as the evidence behind the word best."
+                    },
+                    "luckyNumbers": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "example": [
+                        9,
+                        1,
+                        6,
+                        5
+                      ],
+                      "description": "Four lucky numbers for the year, each 1 to 9 and all distinct, from the traditional planetary number correspondence applied to the four planets that govern this sign this year."
+                    },
+                    "luckyColor": {
+                      "type": "string",
+                      "example": "Red",
+                      "description": "Lucky color for the year, drawn from the three colors of the sign element and selected by the planet governing the reading."
+                    },
+                    "compatibleSigns": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "Leo",
+                        "Sagittarius",
+                        "Gemini"
+                      ],
+                      "description": "Most compatible zodiac signs for this sign. Trine partners (same element) followed by a sextile partner (complementary element)."
+                    }
+                  },
+                  "required": [
+                    "sign",
+                    "year",
+                    "overview",
+                    "love",
+                    "career",
+                    "health",
+                    "finance",
+                    "advice",
+                    "column",
+                    "events",
+                    "themes",
+                    "eclipses",
+                    "retrogrades",
+                    "keyPeriods",
+                    "bestPeriods",
                     "luckyNumbers",
                     "luckyColor",
                     "compatibleSigns"
@@ -49592,7 +50596,7 @@
                               "chinese": {
                                 "type": "string",
                                 "example": "\u52AB\u8CA1",
-                                "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                "description": "The relation in traditional hanzi. Identical under every lang."
                               },
                               "pinyin": {
                                 "type": "string",
@@ -49694,7 +50698,7 @@
                                     "chinese": {
                                       "type": "string",
                                       "example": "\u52AB\u8CA1",
-                                      "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                      "description": "The relation in traditional hanzi. Identical under every lang."
                                     },
                                     "pinyin": {
                                       "type": "string",
@@ -50448,7 +51452,7 @@
                               "chinese": {
                                 "type": "string",
                                 "example": "\u52AB\u8CA1",
-                                "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                "description": "The relation in traditional hanzi. Identical under every lang."
                               },
                               "pinyin": {
                                 "type": "string",
@@ -50553,7 +51557,7 @@
                               "chinese": {
                                 "type": "string",
                                 "example": "\u52AB\u8CA1",
-                                "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                "description": "The relation in traditional hanzi. Identical under every lang."
                               },
                               "pinyin": {
                                 "type": "string",
@@ -51546,7 +52550,7 @@
                                   "chinese": {
                                     "type": "string",
                                     "example": "\u52AB\u8CA1",
-                                    "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                    "description": "The relation in traditional hanzi. Identical under every lang."
                                   },
                                   "pinyin": {
                                     "type": "string",
@@ -51648,7 +52652,7 @@
                                         "chinese": {
                                           "type": "string",
                                           "example": "\u52AB\u8CA1",
-                                          "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                          "description": "The relation in traditional hanzi. Identical under every lang."
                                         },
                                         "pinyin": {
                                           "type": "string",
@@ -51960,7 +52964,7 @@
                                   "chinese": {
                                     "type": "string",
                                     "example": "\u52AB\u8CA1",
-                                    "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                    "description": "The relation in traditional hanzi. Identical under every lang."
                                   },
                                   "pinyin": {
                                     "type": "string",
@@ -52062,7 +53066,7 @@
                                         "chinese": {
                                           "type": "string",
                                           "example": "\u52AB\u8CA1",
-                                          "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                                          "description": "The relation in traditional hanzi. Identical under every lang."
                                         },
                                         "pinyin": {
                                           "type": "string",
@@ -52814,7 +53818,7 @@
                         "chinese": {
                           "type": "string",
                           "example": "\u52AB\u8CA1",
-                          "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                          "description": "The relation in traditional hanzi. Identical under every lang."
                         },
                         "pinyin": {
                           "type": "string",
@@ -52863,7 +53867,7 @@
                         "chinese": {
                           "type": "string",
                           "example": "\u52AB\u8CA1",
-                          "description": "The relation in simplified hanzi. Identical under every lang; the traditional forms arrive through the zh-Hant response."
+                          "description": "The relation in traditional hanzi. Identical under every lang."
                         },
                         "pinyin": {
                           "type": "string",
@@ -53192,7 +54196,7 @@
                           "chinese": {
                             "type": "string",
                             "example": "\u9F20",
-                            "description": "Simplified Chinese character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
+                            "description": "Traditional hanzi character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
                           },
                           "pinyin": {
                             "type": "string",
@@ -53410,7 +54414,7 @@
                     "chinese": {
                       "type": "string",
                       "example": "\u9F20",
-                      "description": "Simplified Chinese character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
+                      "description": "Traditional hanzi character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
                     },
                     "pinyin": {
                       "type": "string",
@@ -53585,7 +54589,7 @@
                         "chinese": {
                           "type": "string",
                           "example": "\u99AC",
-                          "description": "Simplified Chinese character for the related animal."
+                          "description": "Traditional hanzi character for the related animal."
                         },
                         "pinyin": {
                           "type": "string",
@@ -53633,7 +54637,7 @@
                         "chinese": {
                           "type": "string",
                           "example": "\u99AC",
-                          "description": "Simplified Chinese character for the related animal."
+                          "description": "Traditional hanzi character for the related animal."
                         },
                         "pinyin": {
                           "type": "string",
@@ -53670,7 +54674,7 @@
                         "chinese": {
                           "type": "string",
                           "example": "\u99AC",
-                          "description": "Simplified Chinese character for the related animal."
+                          "description": "Traditional hanzi character for the related animal."
                         },
                         "pinyin": {
                           "type": "string",
@@ -53928,7 +54932,7 @@
                         "chinese": {
                           "type": "string",
                           "example": "\u9F20",
-                          "description": "Simplified Chinese character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
+                          "description": "Traditional hanzi character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
                         },
                         "pinyin": {
                           "type": "string",
@@ -54229,7 +55233,7 @@
                             "chinese": {
                               "type": "string",
                               "example": "\u9F20",
-                              "description": "Simplified Chinese character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
+                              "description": "Traditional hanzi character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
                             },
                             "pinyin": {
                               "type": "string",
@@ -54288,7 +55292,7 @@
                             "chinese": {
                               "type": "string",
                               "example": "\u9F20",
-                              "description": "Simplified Chinese character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
+                              "description": "Traditional hanzi character for the animal itself, not for its Earthly Branch. Data rather than a translation, so it is identical under every lang."
                             },
                             "pinyin": {
                               "type": "string",
@@ -54351,7 +55355,7 @@
                     "relationshipChinese": {
                       "type": "string",
                       "example": "\u4E09\u5408",
-                      "description": "Classical name of the relation in simplified Chinese."
+                      "description": "Classical name of the relation in traditional hanzi. Identical under every lang."
                     },
                     "relationshipPinyin": {
                       "type": "string",
@@ -54603,7 +55607,7 @@
                         "chinese": {
                           "type": "string",
                           "example": "\u9F20",
-                          "description": "Simplified Chinese character for the animal."
+                          "description": "Traditional hanzi character for the animal. Identical under every lang."
                         },
                         "pinyin": {
                           "type": "string",

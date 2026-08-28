@@ -38,6 +38,7 @@ internal static class MethodReferenceExamples
         await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
         await roxy.Astrology.Horoscope["aries"].Weekly.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
         await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
+        await roxy.Astrology.Horoscope["aries"].Yearly.GetAsync(c => { c.QueryParameters.Year = 2026; c.QueryParameters.Timezone = "America/New_York"; });
         await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
         await roxy.Astrology.Astrocartography.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, c => c.QueryParameters.Include = "chiron");
         await roxy.Astrology.RelocationChart.PostAsync(new() { Date = new Date(1961, 8, 4), Time = new Time(19, 24, 0), Timezone = new() { Double = -10 }, BirthLatitude = 21.3069, BirthLongitude = -157.8583, RelocationLatitude = 40.7167, RelocationLongitude = -74.006 });

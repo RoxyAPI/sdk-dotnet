@@ -30,6 +30,14 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Career { get; set; }
 #endif
+        /// <summary>The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 400 to 700 words. The six section fields are the same reading split by topic, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Column { get; set; }
+#nullable restore
+#else
+        public string Column { get; set; }
+#endif
         /// <summary>Most compatible zodiac signs for this sign. Trine partners (same element) followed by a sextile partner (complementary element).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -37,6 +45,14 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #nullable restore
 #else
         public List<string> CompatibleSigns { get; set; }
+#endif
+        /// <summary>The dated astronomical events this reading is built on, earliest first. Every field in every row can be checked against an independent authority, so a column can be fact-checked before it is published. Empty on a period in which nothing exact happens, where the reading falls back to the standing positions instead.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_events>? Events { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_events> Events { get; set; }
 #endif
         /// <summary>Monthly financial outlook and guidance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -70,7 +86,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Love { get; set; }
 #endif
-        /// <summary>Lucky color for the month.</summary>
+        /// <summary>Lucky color for the month, drawn from the three colors of the sign element and selected by the planet governing the reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LuckyColor { get; set; }
@@ -78,7 +94,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string LuckyColor { get; set; }
 #endif
-        /// <summary>Lucky numbers for the month.</summary>
+        /// <summary>Four lucky numbers for the month, each 1 to 9 and all distinct, from the traditional planetary number correspondence applied to the four planets that govern this sign this month.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<double?>? LuckyNumbers { get; set; }
@@ -145,7 +161,9 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
             {
                 { "advice", n => { Advice = n.GetStringValue(); } },
                 { "career", n => { Career = n.GetStringValue(); } },
+                { "column", n => { Column = n.GetStringValue(); } },
                 { "compatibleSigns", n => { CompatibleSigns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "events", n => { Events = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_events>(global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_events.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "finance", n => { Finance = n.GetStringValue(); } },
                 { "health", n => { Health = n.GetStringValue(); } },
                 { "keyDates", n => { KeyDates = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_keyDates>(global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_keyDates.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -167,7 +185,9 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("advice", Advice);
             writer.WriteStringValue("career", Career);
+            writer.WriteStringValue("column", Column);
             writer.WriteCollectionOfPrimitiveValues<string>("compatibleSigns", CompatibleSigns);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_events>("events", Events);
             writer.WriteStringValue("finance", Finance);
             writer.WriteStringValue("health", Health);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_keyDates>("keyDates", KeyDates);

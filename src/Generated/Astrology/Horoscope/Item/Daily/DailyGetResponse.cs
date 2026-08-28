@@ -38,6 +38,14 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Career { get; set; }
 #endif
+        /// <summary>The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 120 to 180 words. The six section fields are the same reading split by topic, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Column { get; set; }
+#nullable restore
+#else
+        public string Column { get; set; }
+#endif
         /// <summary>Most compatible zodiac signs for this sign. Trine partners (same element) followed by a sextile partner (complementary element). Use for compatibility widgets, dating app onboarding, and horoscope cards.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -54,8 +62,16 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Date { get; set; }
 #endif
-        /// <summary>Overall energy intensity for this sign today (1-10). Higher when more transits activate this sign directly. Useful for content widgets and visual indicators.</summary>
+        /// <summary>Overall energy for this sign today (1-10). Derived from how many aspects are in force between the planets, how tight they are, whether they are harmonious or challenging, and which houses they fall in for this sign, so a busy day rates higher than a quiet one and a harmonious day higher than a hostile one of the same weight. Useful for content widgets and visual indicators.</summary>
         public double? EnergyRating { get; set; }
+        /// <summary>The dated astronomical events this reading is built on, earliest first. Every field in every row can be checked against an independent authority, so a column can be fact-checked before it is published. Empty on a period in which nothing exact happens, where the reading falls back to the standing positions instead.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events>? Events { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events> Events { get; set; }
+#endif
         /// <summary>Financial outlook and money-related guidance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -80,7 +96,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Love { get; set; }
 #endif
-        /// <summary>Lucky color for the day, derived from the sign element.</summary>
+        /// <summary>Lucky color for the day, drawn from the three colors of the sign element and selected by the planet governing the reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LuckyColor { get; set; }
@@ -88,7 +104,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string LuckyColor { get; set; }
 #endif
-        /// <summary>Lucky number for the day.</summary>
+        /// <summary>Lucky number for the day, 1 to 9, from the traditional planetary number correspondence applied to the planet that governs this sign today. Not a random draw and not a function of the date.</summary>
         public double? LuckyNumber { get; set; }
         /// <summary>Current lunar phase (New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, Waning Crescent).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -150,9 +166,11 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
                 { "activeTransits", n => { ActiveTransits = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "advice", n => { Advice = n.GetStringValue(); } },
                 { "career", n => { Career = n.GetStringValue(); } },
+                { "column", n => { Column = n.GetStringValue(); } },
                 { "compatibleSigns", n => { CompatibleSigns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "date", n => { Date = n.GetStringValue(); } },
                 { "energyRating", n => { EnergyRating = n.GetDoubleValue(); } },
+                { "events", n => { Events = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events>(global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "finance", n => { Finance = n.GetStringValue(); } },
                 { "health", n => { Health = n.GetStringValue(); } },
                 { "love", n => { Love = n.GetStringValue(); } },
@@ -174,9 +192,11 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
             writer.WriteCollectionOfPrimitiveValues<string>("activeTransits", ActiveTransits);
             writer.WriteStringValue("advice", Advice);
             writer.WriteStringValue("career", Career);
+            writer.WriteStringValue("column", Column);
             writer.WriteCollectionOfPrimitiveValues<string>("compatibleSigns", CompatibleSigns);
             writer.WriteStringValue("date", Date);
             writer.WriteDoubleValue("energyRating", EnergyRating);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events>("events", Events);
             writer.WriteStringValue("finance", Finance);
             writer.WriteStringValue("health", Health);
             writer.WriteStringValue("love", Love);

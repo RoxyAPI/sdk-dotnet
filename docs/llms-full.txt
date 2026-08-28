@@ -27,7 +27,7 @@ How the calls below map to the API:
 <!-- BEGIN:METHODS -->
 ## Western Astrology - `roxy.Astrology`
 
-Western astrology API for natal birth charts, daily, weekly, and monthly horoscopes with unique content per sign, syn...
+Western astrology API for natal birth charts, daily, weekly, monthly, and yearly horoscopes with unique content per s...
 
 ```csharp
 // Get all zodiac signs - Complete zodiac signs list with dates and elements
@@ -102,14 +102,17 @@ await roxy.Astrology.CompositeChart.PostAsync(new() { Person1 = new() { Date = n
 // Compatibility Score. Relationship compatibility analysis with category breakdown
 await roxy.Astrology.CompatibilityScore.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
 
-// Daily horoscope by zodiac sign - Transit-based forecast with house activations
+// Daily horoscope by zodiac sign - Transit-based editorial columns
 await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
 
-// Weekly horoscope by zodiac sign - 7-day transit forecast
+// Weekly horoscope by zodiac sign - Seven-day editorial column
 await roxy.Astrology.Horoscope["aries"].Weekly.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
 
-// Monthly horoscope by zodiac sign - 30-day transit forecast with key dates
+// Monthly horoscope by zodiac sign - Editorial column with key dates
 await roxy.Astrology.Horoscope["aries"].Monthly.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
+
+// Yearly horoscope by zodiac sign - Year ahead forecast with themes, key periods, eclipses and retrogrades
+await roxy.Astrology.Horoscope["aries"].Yearly.GetAsync(c => { c.QueryParameters.Year = 2026; c.QueryParameters.Timezone = "America/New_York"; });
 
 // Planetary Return Chart - Saturn return, Jupiter return, and inner planet cycles
 await roxy.Astrology.PlanetaryReturns.PostAsync(new() { BirthDate = new Date(1990, 7, 15), BirthTime = new Time(14, 30, 0), ApproximateDate = new Date(2026, 8, 15), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
