@@ -23610,7 +23610,7 @@
                     "moonPhase": {
                       "type": "string",
                       "example": "Waning Gibbous Moon",
-                      "description": "Current lunar phase (New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, Waning Crescent)."
+                      "description": "Display name of the current lunar phase, one of the eight standard phases from New Moon through Waning Crescent. Translates in place with the lang parameter, like the moonSign beside it, so render it directly."
                     },
                     "energyRating": {
                       "type": "number",

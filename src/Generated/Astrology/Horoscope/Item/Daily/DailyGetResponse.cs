@@ -106,7 +106,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #endif
         /// <summary>Lucky number for the day, 1 to 9, from the traditional planetary number correspondence applied to the planet that governs this sign today. Not a random draw and not a function of the date.</summary>
         public double? LuckyNumber { get; set; }
-        /// <summary>Current lunar phase (New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, Waning Crescent).</summary>
+        /// <summary>Display name of the current lunar phase, one of the eight standard phases from New Moon through Waning Crescent. Translates in place with the lang parameter, like the moonSign beside it, so render it directly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MoonPhase { get; set; }
