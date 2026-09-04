@@ -1,6 +1,6 @@
 # RoxyApi .NET SDK - Agent Guide
 
-.NET SDK for RoxyAPI. 14+ domains (Western astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, numerology, tarot, biorhythm, I Ching, crystals, dreams, angel numbers, location) plus utility namespaces (usage, languages). One API key, fully typed, generated from the OpenAPI spec.
+.NET SDK for RoxyAPI. 18+ domains (Western astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, Mesoamerican astrology, Vastu, numerology, Kabbalah, tarot, biorhythm, Ayurveda, I Ching, crystals, dreams, angel numbers, location) plus utility namespaces (usage, languages). One API key, fully typed, generated from the OpenAPI spec.
 
 > Before writing code with this SDK, read `docs/llms-full.txt` in this package for the complete method reference with one example per endpoint.
 

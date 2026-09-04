@@ -11,7 +11,7 @@ The .NET SDK for astrology, Vedic astrology, numerology, tarot, and more.
 
 One API key. Fully typed. Verified against NASA JPL Horizons.
 
-The fastest way to add natal charts, daily horoscopes, synastry, Vedic kundli, tarot spreads, numerology, human design bodygraphs, and transit forecasts to ASP.NET Core, Blazor, MAUI, Unity, and AI agents. 14+ domains behind a single [Roxy](https://roxyapi.com) subscription, interpretations in 10+ languages, generated from the OpenAPI spec so new endpoints appear the day they ship.
+The fastest way to add natal charts, daily horoscopes, synastry, Vedic kundli, tarot spreads, numerology, human design bodygraphs, and transit forecasts to ASP.NET Core, Blazor, MAUI, Unity, and AI agents. 18+ domains behind a single [Roxy](https://roxyapi.com) subscription, interpretations in 10+ languages, generated from the OpenAPI spec so new endpoints appear the day they ship.
 
 ## Install
 
