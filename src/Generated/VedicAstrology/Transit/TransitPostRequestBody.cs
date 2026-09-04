@@ -19,7 +19,7 @@ namespace RoxyApi.VedicAstrology.Transit
         public Date? BirthDate { get; set; }
         /// <summary>Birth time in HH:MM:SS format (24-hour). Critical for accurate natal Lagna and Placidus house cusps which determine transit house placements.</summary>
         public Time? BirthTime { get; set; }
-        /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa - standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
+        /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa, the standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Transit.TransitPostRequestBody_coordinateSystem? CoordinateSystem { get; set; }
         /// <summary>Observer latitude in decimal degrees. Determines Placidus house cusps for natal chart house assignments.</summary>
         public double? Latitude { get; set; }

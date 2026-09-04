@@ -29,7 +29,7 @@ namespace RoxyApi.Astrology.Houses
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees (-180 to 180). Affects local time and horizon calculations for house cusps.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Birth time in 24-hour HH:MM:SS format. Time is ESSENTIAL for accurate house cusps - even minutes matter. The Ascendant (1st house cusp) changes roughly every 4 minutes. Without accurate time, house placements will be incorrect.</summary>
+        /// <summary>Birth time in 24-hour HH:MM:SS format. Time is ESSENTIAL for accurate house cusps, and even minutes matter. The Ascendant (1st house cusp) changes roughly every 4 minutes. Without accurate time, house placements will be incorrect.</summary>
         public Time? Time { get; set; }
         /// <summary>Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST) OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the chart date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

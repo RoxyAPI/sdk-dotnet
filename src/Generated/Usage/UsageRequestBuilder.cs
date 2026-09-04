@@ -34,7 +34,7 @@ namespace RoxyApi.Usage
         {
         }
         /// <summary>
-        /// Returns current usage and plan limits for your subscription.
+        /// Returns the live quota position for the API key on the request: plan name, billable requests used in the current UTC calendar month, the monthly allowance, and how many requests remain. It also returns the subscription status, billing email and the date the current billing period ends, so a dashboard can show quota and renewal together. Poll it to drive usage meters, low balance warnings, and upgrade prompts before a 429 ever happens.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Usage.UsageGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Usage
             return await RequestAdapter.SendAsync<global::RoxyApi.Usage.UsageGetResponse>(requestInfo, global::RoxyApi.Usage.UsageGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns current usage and plan limits for your subscription.
+        /// Returns the live quota position for the API key on the request: plan name, billable requests used in the current UTC calendar month, the monthly allowance, and how many requests remain. It also returns the subscription status, billing email and the date the current billing period ends, so a dashboard can show quota and renewal together. Poll it to drive usage meters, low balance warnings, and upgrade prompts before a 429 ever happens.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

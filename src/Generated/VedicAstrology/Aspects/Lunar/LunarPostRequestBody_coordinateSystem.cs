@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Aspects.Lunar
 {
-    /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa - standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
+    /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa, the standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum LunarPostRequestBody_coordinateSystem
     {

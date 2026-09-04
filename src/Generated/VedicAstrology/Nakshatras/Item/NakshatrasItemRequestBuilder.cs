@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Nakshatras.Item
         {
         }
         /// <summary>
-        /// Get detailed information for a single nakshatra (lunar mansion) by its ID slug. Returns name, zodiac range, ruling planet, presiding deity, symbol, personality characteristics, and traditional remedies including mantras, gemstones, and rituals.
+        /// Get detailed information for a single nakshatra (lunar mansion) by its ID slug, one of the 27 nakshatras of Vedic astrology. Returns name, zodiac range, ruling planet, presiding deity, symbol, personality characteristics, and traditional remedies including mantras, gemstones, and rituals.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.NakshatraResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Nakshatras.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.NakshatraResponse>(requestInfo, global::RoxyApi.Models.NakshatraResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get detailed information for a single nakshatra (lunar mansion) by its ID slug. Returns name, zodiac range, ruling planet, presiding deity, symbol, personality characteristics, and traditional remedies including mantras, gemstones, and rituals.
+        /// Get detailed information for a single nakshatra (lunar mansion) by its ID slug, one of the 27 nakshatras of Vedic astrology. Returns name, zodiac range, ruling planet, presiding deity, symbol, personality characteristics, and traditional remedies including mantras, gemstones, and rituals.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -95,7 +95,7 @@ namespace RoxyApi.VedicAstrology.Nakshatras.Item
             return new global::RoxyApi.VedicAstrology.Nakshatras.Item.NakshatrasItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get detailed information for a single nakshatra (lunar mansion) by its ID slug. Returns name, zodiac range, ruling planet, presiding deity, symbol, personality characteristics, and traditional remedies including mantras, gemstones, and rituals.
+        /// Get detailed information for a single nakshatra (lunar mansion) by its ID slug, one of the 27 nakshatras of Vedic astrology. Returns name, zodiac range, ruling planet, presiding deity, symbol, personality characteristics, and traditional remedies including mantras, gemstones, and rituals.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class NakshatrasItemRequestBuilderGetQueryParameters 

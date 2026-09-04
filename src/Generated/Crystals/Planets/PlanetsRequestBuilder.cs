@@ -22,7 +22,7 @@ namespace RoxyApi.Crystals.Planets
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PlanetsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/planets", pathParameters)
+        public PlanetsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/planets{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.Crystals.Planets
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PlanetsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/planets", rawUrl)
+        public PlanetsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/planets{?lang*}", rawUrl)
         {
         }
         /// <summary>
-        /// List all unique planetary associations available in the database. Use these values with the planet filter on GET /crystals to find crystals by ruling planet. Essential reference endpoint for astrology app builders who want to recommend crystals based on planetary placements in a birth chart.
+        /// List all unique planetary associations available in the database. Use these values with the planet filter on GET /crystals to find crystals by ruling planet. Essential reference endpoint for astrology app builders who want to recommend crystals based on planetary placements in a birth chart. The values are filter identifiers and stay in English under every lang, so a translated picker still submits a planet the filter accepts.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Planets.PlanetsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -46,11 +46,11 @@ namespace RoxyApi.Crystals.Planets
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Crystals.Planets.PlanetsGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Crystals.Planets.PlanetsGetResponse?> GetAsync(Action<RequestConfiguration<global::RoxyApi.Crystals.Planets.PlanetsRequestBuilder.PlanetsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Crystals.Planets.PlanetsGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Crystals.Planets.PlanetsGetResponse> GetAsync(Action<RequestConfiguration<global::RoxyApi.Crystals.Planets.PlanetsRequestBuilder.PlanetsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -65,17 +65,17 @@ namespace RoxyApi.Crystals.Planets
             return await RequestAdapter.SendAsync<global::RoxyApi.Crystals.Planets.PlanetsGetResponse>(requestInfo, global::RoxyApi.Crystals.Planets.PlanetsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List all unique planetary associations available in the database. Use these values with the planet filter on GET /crystals to find crystals by ruling planet. Essential reference endpoint for astrology app builders who want to recommend crystals based on planetary placements in a birth chart.
+        /// List all unique planetary associations available in the database. Use these values with the planet filter on GET /crystals to find crystals by ruling planet. Essential reference endpoint for astrology app builders who want to recommend crystals based on planetary placements in a birth chart. The values are filter identifiers and stay in English under every lang, so a translated picker still submits a planet the filter accepts.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::RoxyApi.Crystals.Planets.PlanetsRequestBuilder.PlanetsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::RoxyApi.Crystals.Planets.PlanetsRequestBuilder.PlanetsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -91,6 +91,16 @@ namespace RoxyApi.Crystals.Planets
         public global::RoxyApi.Crystals.Planets.PlanetsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.Crystals.Planets.PlanetsRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// List all unique planetary associations available in the database. Use these values with the planet filter on GET /crystals to find crystals by ruling planet. Essential reference endpoint for astrology app builders who want to recommend crystals based on planetary placements in a birth chart. The values are filter identifiers and stay in English under every lang, so a translated picker still submits a planet the filter accepts.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class PlanetsRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.Crystals.Planets.GetLangQueryParameterType? Lang { get; set; }
         }
     }
 }

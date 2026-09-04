@@ -47,7 +47,7 @@ namespace RoxyApi.Location.Countries
         {
         }
         /// <summary>
-        /// Returns every country with ISO 3166-1 alpha-2 and alpha-3 codes, plus the number of searchable cities per country. Use this endpoint to build country dropdown menus, regional filters, or to check city coverage before querying. Sorted alphabetically by country name. Covers Europe, Americas, Asia, Middle East, Africa, and Oceania.
+        /// Returns every country with ISO 3166-1 alpha-2 and alpha-3 codes, plus the number of searchable cities per country. Use this endpoint to build country dropdown menus, regional filters, or to check city coverage before querying a birth location. Countries are sorted alphabetically by name. Covers Europe, Americas, Asia, Middle East, Africa, and Oceania.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Location.Countries.CountriesGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -78,7 +78,7 @@ namespace RoxyApi.Location.Countries
             return await RequestAdapter.SendAsync<global::RoxyApi.Location.Countries.CountriesGetResponse>(requestInfo, global::RoxyApi.Location.Countries.CountriesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns every country with ISO 3166-1 alpha-2 and alpha-3 codes, plus the number of searchable cities per country. Use this endpoint to build country dropdown menus, regional filters, or to check city coverage before querying. Sorted alphabetically by country name. Covers Europe, Americas, Asia, Middle East, Africa, and Oceania.
+        /// Returns every country with ISO 3166-1 alpha-2 and alpha-3 codes, plus the number of searchable cities per country. Use this endpoint to build country dropdown menus, regional filters, or to check city coverage before querying a birth location. Countries are sorted alphabetically by name. Covers Europe, Americas, Asia, Middle East, Africa, and Oceania.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +106,7 @@ namespace RoxyApi.Location.Countries
             return new global::RoxyApi.Location.Countries.CountriesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns every country with ISO 3166-1 alpha-2 and alpha-3 codes, plus the number of searchable cities per country. Use this endpoint to build country dropdown menus, regional filters, or to check city coverage before querying. Sorted alphabetically by country name. Covers Europe, Americas, Asia, Middle East, Africa, and Oceania.
+        /// Returns every country with ISO 3166-1 alpha-2 and alpha-3 codes, plus the number of searchable cities per country. Use this endpoint to build country dropdown menus, regional filters, or to check city coverage before querying a birth location. Countries are sorted alphabetically by name. Covers Europe, Americas, Asia, Middle East, Africa, and Oceania.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CountriesRequestBuilderGetQueryParameters 

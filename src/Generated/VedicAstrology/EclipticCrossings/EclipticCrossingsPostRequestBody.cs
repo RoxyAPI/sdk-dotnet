@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa - standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
+        /// <summary>Coordinate system for longitude output. &quot;sidereal&quot; (Nirayana) uses Lahiri ayanamsa, the standard for Vedic astrology. &quot;tropical&quot; (Sayana) uses raw ecliptic longitude matching Western astrology. Defaults to &quot;sidereal&quot;.</summary>
         public global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody_coordinateSystem? CoordinateSystem { get; set; }
         /// <summary>Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

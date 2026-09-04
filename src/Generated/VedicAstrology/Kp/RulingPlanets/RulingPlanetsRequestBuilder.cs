@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
         {
         }
         /// <summary>
-        /// Calculate the 5 ruling planets at any moment using Krishnamurti Paddhati horary astrology. Returns Day Lord, Moon Sign/Star/Sub Lord, Lagna Sign/Star/Sub Lord. Optionally provide birth data (birthDate, birthTime) to include significators showing which houses each ruling planet signifies in the birth chart - essential for KP prediction.
+        /// Calculate the 5 ruling planets at any moment using Krishnamurti Paddhati horary astrology. Returns Day Lord, Moon Sign/Star/Sub Lord, Lagna Sign/Star/Sub Lord. Optionally provide birth data (birthDate, birthTime) to include significators showing which houses each ruling planet signifies in the birth chart, which is essential for KP prediction.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.KPRulingPlanetsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.KPRulingPlanetsResponse>(requestInfo, global::RoxyApi.Models.KPRulingPlanetsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate the 5 ruling planets at any moment using Krishnamurti Paddhati horary astrology. Returns Day Lord, Moon Sign/Star/Sub Lord, Lagna Sign/Star/Sub Lord. Optionally provide birth data (birthDate, birthTime) to include significators showing which houses each ruling planet signifies in the birth chart - essential for KP prediction.
+        /// Calculate the 5 ruling planets at any moment using Krishnamurti Paddhati horary astrology. Returns Day Lord, Moon Sign/Star/Sub Lord, Lagna Sign/Star/Sub Lord. Optionally provide birth data (birthDate, birthTime) to include significators showing which houses each ruling planet signifies in the birth chart, which is essential for KP prediction.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
             return new global::RoxyApi.VedicAstrology.Kp.RulingPlanets.RulingPlanetsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate the 5 ruling planets at any moment using Krishnamurti Paddhati horary astrology. Returns Day Lord, Moon Sign/Star/Sub Lord, Lagna Sign/Star/Sub Lord. Optionally provide birth data (birthDate, birthTime) to include significators showing which houses each ruling planet signifies in the birth chart - essential for KP prediction.
+        /// Calculate the 5 ruling planets at any moment using Krishnamurti Paddhati horary astrology. Returns Day Lord, Moon Sign/Star/Sub Lord, Lagna Sign/Star/Sub Lord. Optionally provide birth data (birthDate, birthTime) to include significators showing which houses each ruling planet signifies in the birth chart, which is essential for KP prediction.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RulingPlanetsRequestBuilderPostQueryParameters 

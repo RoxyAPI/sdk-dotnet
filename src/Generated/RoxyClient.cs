@@ -8,6 +8,7 @@ using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
 using RoxyApi.AngelNumbers;
 using RoxyApi.Astrology;
+using RoxyApi.Ayurveda;
 using RoxyApi.Biorhythm;
 using RoxyApi.ChineseAstrology;
 using RoxyApi.Crystals;
@@ -16,11 +17,14 @@ using RoxyApi.FengShui;
 using RoxyApi.Forecast;
 using RoxyApi.HumanDesign;
 using RoxyApi.Iching;
+using RoxyApi.Kabbalah;
 using RoxyApi.Languages;
 using RoxyApi.Location;
+using RoxyApi.MesoamericanAstrology;
 using RoxyApi.Numerology;
 using RoxyApi.Tarot;
 using RoxyApi.Usage;
+using RoxyApi.Vastu;
 using RoxyApi.VedicAstrology;
 using System.Collections.Generic;
 using System.IO;
@@ -43,6 +47,11 @@ namespace RoxyApi
         public global::RoxyApi.Astrology.AstrologyRequestBuilder Astrology
         {
             get => new global::RoxyApi.Astrology.AstrologyRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The ayurveda property</summary>
+        public global::RoxyApi.Ayurveda.AyurvedaRequestBuilder Ayurveda
+        {
+            get => new global::RoxyApi.Ayurveda.AyurvedaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The biorhythm property</summary>
         public global::RoxyApi.Biorhythm.BiorhythmRequestBuilder Biorhythm
@@ -84,6 +93,11 @@ namespace RoxyApi
         {
             get => new global::RoxyApi.Iching.IchingRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The kabbalah property</summary>
+        public global::RoxyApi.Kabbalah.KabbalahRequestBuilder Kabbalah
+        {
+            get => new global::RoxyApi.Kabbalah.KabbalahRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The languages property</summary>
         public global::RoxyApi.Languages.LanguagesRequestBuilder Languages
         {
@@ -93,6 +107,11 @@ namespace RoxyApi
         public global::RoxyApi.Location.LocationRequestBuilder Location
         {
             get => new global::RoxyApi.Location.LocationRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The mesoamericanAstrology property</summary>
+        public global::RoxyApi.MesoamericanAstrology.MesoamericanAstrologyRequestBuilder MesoamericanAstrology
+        {
+            get => new global::RoxyApi.MesoamericanAstrology.MesoamericanAstrologyRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The numerology property</summary>
         public global::RoxyApi.Numerology.NumerologyRequestBuilder Numerology
@@ -108,6 +127,11 @@ namespace RoxyApi
         public global::RoxyApi.Usage.UsageRequestBuilder Usage
         {
             get => new global::RoxyApi.Usage.UsageRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The vastu property</summary>
+        public global::RoxyApi.Vastu.VastuRequestBuilder Vastu
+        {
+            get => new global::RoxyApi.Vastu.VastuRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The vedicAstrology property</summary>
         public global::RoxyApi.VedicAstrology.VedicAstrologyRequestBuilder VedicAstrology

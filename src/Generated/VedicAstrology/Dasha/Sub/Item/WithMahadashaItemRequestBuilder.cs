@@ -47,7 +47,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
         {
         }
         /// <summary>
-        /// Returns 9 Antardasha sub-periods within a Mahadasha. Each Mahadasha is divided into 9 proportional sub-periods.
+        /// Returns the 9 Antardasha sub periods inside a chosen Mahadasha, each proportional to the Vimshottari years of its lord. Every period carries its ruling graha, exact start and end dates, and the houses it signifies, alongside the parent Mahadasha it sits in. Use it to narrow a multi year Mahadasha down to the months that matter for event prediction, muhurta selection, and dasha timeline UIs.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -80,7 +80,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns 9 Antardasha sub-periods within a Mahadasha. Each Mahadasha is divided into 9 proportional sub-periods.
+        /// Returns the 9 Antardasha sub periods inside a chosen Mahadasha, each proportional to the Vimshottari years of its lord. Every period carries its ruling graha, exact start and end dates, and the houses it signifies, alongside the parent Mahadasha it sits in. Use it to narrow a multi year Mahadasha down to the months that matter for event prediction, muhurta selection, and dasha timeline UIs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -111,7 +111,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item
             return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.WithMahadashaItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns 9 Antardasha sub-periods within a Mahadasha. Each Mahadasha is divided into 9 proportional sub-periods.
+        /// Returns the 9 Antardasha sub periods inside a chosen Mahadasha, each proportional to the Vimshottari years of its lord. Every period carries its ruling graha, exact start and end dates, and the houses it signifies, alongside the parent Mahadasha it sits in. Use it to narrow a multi year Mahadasha down to the months that matter for event prediction, muhurta selection, and dasha timeline UIs.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithMahadashaItemRequestBuilderPostQueryParameters 

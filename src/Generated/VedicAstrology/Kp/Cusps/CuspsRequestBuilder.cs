@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
         {
         }
         /// <summary>
-        /// Calculate unequal Placidus house cusps with ruling sign-lord, nakshatra-lord, and sub-lord for each cusp. Dynamic KP-Newcomb or custom ayanamsa support. Used in KP horary astrology, cusp sub-lord analysis, and birth chart rectification. Returns all 12 house cusps with KP sub-division details. SEO: Placidus house cusps API, KP cusp calculator, house cusps star sub lord, KP horary cusps
+        /// Calculate unequal Placidus house cusps with ruling sign-lord, nakshatra-lord, and sub-lord for each cusp. Dynamic KP-Newcomb or custom ayanamsa support. Used in KP horary astrology, cusp sub-lord analysis, and birth chart rectification. Returns all 12 house cusps with KP sub-division details. Use it as a Placidus house cusp calculator that also carries the star lord and sub lord of each cusp, which is what Krishnamurti Paddhati horary work reads first.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.KPCuspsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.KPCuspsResponse>(requestInfo, global::RoxyApi.Models.KPCuspsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate unequal Placidus house cusps with ruling sign-lord, nakshatra-lord, and sub-lord for each cusp. Dynamic KP-Newcomb or custom ayanamsa support. Used in KP horary astrology, cusp sub-lord analysis, and birth chart rectification. Returns all 12 house cusps with KP sub-division details. SEO: Placidus house cusps API, KP cusp calculator, house cusps star sub lord, KP horary cusps
+        /// Calculate unequal Placidus house cusps with ruling sign-lord, nakshatra-lord, and sub-lord for each cusp. Dynamic KP-Newcomb or custom ayanamsa support. Used in KP horary astrology, cusp sub-lord analysis, and birth chart rectification. Returns all 12 house cusps with KP sub-division details. Use it as a Placidus house cusp calculator that also carries the star lord and sub lord of each cusp, which is what Krishnamurti Paddhati horary work reads first.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.Kp.Cusps
             return new global::RoxyApi.VedicAstrology.Kp.Cusps.CuspsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate unequal Placidus house cusps with ruling sign-lord, nakshatra-lord, and sub-lord for each cusp. Dynamic KP-Newcomb or custom ayanamsa support. Used in KP horary astrology, cusp sub-lord analysis, and birth chart rectification. Returns all 12 house cusps with KP sub-division details. SEO: Placidus house cusps API, KP cusp calculator, house cusps star sub lord, KP horary cusps
+        /// Calculate unequal Placidus house cusps with ruling sign-lord, nakshatra-lord, and sub-lord for each cusp. Dynamic KP-Newcomb or custom ayanamsa support. Used in KP horary astrology, cusp sub-lord analysis, and birth chart rectification. Returns all 12 house cusps with KP sub-division details. Use it as a Placidus house cusp calculator that also carries the star lord and sub lord of each cusp, which is what Krishnamurti Paddhati horary work reads first.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CuspsRequestBuilderPostQueryParameters 

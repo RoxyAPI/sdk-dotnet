@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace RoxyApi.Models
 {
+    /// <summary>
+    /// Every graha keyed by its English name: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu, plus Lagna for the Ascendant. Read a placement straight off the key you want, such as `response.Sun`, and iterate the keys to render a full navagraha table.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class PlanetaryPositionsResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

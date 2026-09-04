@@ -40,7 +40,7 @@ namespace RoxyApi.Iching.Daily
         {
         }
         /// <summary>
-        /// Receive a daily I-Ching hexagram for guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same hexagram on the same day - perfect for &quot;Hexagram of the Day&quot; features in oracle apps, meditation platforms, and daily wisdom tools. Returns the hexagram with judgment, image, and interpretations for love, career, decisions, and practical advice based on ancient Chinese wisdom from the Book of Changes.
+        /// Receive a daily I-Ching hexagram for guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same hexagram on the same day, perfect for &quot;Hexagram of the Day&quot; features in oracle apps, meditation platforms, and daily wisdom tools. Returns the hexagram with judgment, image, and interpretations for love, career, decisions, and practical advice based on ancient Chinese wisdom from the Book of Changes.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Iching.Daily.DailyPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -73,7 +73,7 @@ namespace RoxyApi.Iching.Daily
             return await RequestAdapter.SendAsync<global::RoxyApi.Iching.Daily.DailyPostResponse>(requestInfo, global::RoxyApi.Iching.Daily.DailyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Receive a daily I-Ching hexagram for guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same hexagram on the same day - perfect for &quot;Hexagram of the Day&quot; features in oracle apps, meditation platforms, and daily wisdom tools. Returns the hexagram with judgment, image, and interpretations for love, career, decisions, and practical advice based on ancient Chinese wisdom from the Book of Changes.
+        /// Receive a daily I-Ching hexagram for guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same hexagram on the same day, perfect for &quot;Hexagram of the Day&quot; features in oracle apps, meditation platforms, and daily wisdom tools. Returns the hexagram with judgment, image, and interpretations for love, career, decisions, and practical advice based on ancient Chinese wisdom from the Book of Changes.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -104,7 +104,7 @@ namespace RoxyApi.Iching.Daily
             return new global::RoxyApi.Iching.Daily.DailyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Receive a daily I-Ching hexagram for guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same hexagram on the same day - perfect for &quot;Hexagram of the Day&quot; features in oracle apps, meditation platforms, and daily wisdom tools. Returns the hexagram with judgment, image, and interpretations for love, career, decisions, and practical advice based on ancient Chinese wisdom from the Book of Changes.
+        /// Receive a daily I-Ching hexagram for guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same hexagram on the same day, perfect for &quot;Hexagram of the Day&quot; features in oracle apps, meditation platforms, and daily wisdom tools. Returns the hexagram with judgment, image, and interpretations for love, career, decisions, and practical advice based on ancient Chinese wisdom from the Book of Changes.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DailyRequestBuilderPostQueryParameters 

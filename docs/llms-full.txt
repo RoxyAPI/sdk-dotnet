@@ -99,7 +99,7 @@ await roxy.Astrology.LunarReturn.PostAsync(new() { BirthDate = new Date(1990, 7,
 // Composite Chart - Midpoint relationship chart with interpretations
 await roxy.Astrology.CompositeChart.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
 
-// Compatibility Score. Relationship compatibility analysis with category breakdown
+// Compatibility score - Relationship compatibility API
 await roxy.Astrology.CompatibilityScore.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } } });
 
 // Daily horoscope by zodiac sign - Transit-based editorial columns
@@ -487,6 +487,106 @@ await roxy.FengShui.Periods.GetAsync(c => c.QueryParameters.Date = new Date(2026
 
 ---
 
+## Mesoamerican Astrology - `roxy.MesoamericanAstrology`
+
+Calculate Mayan astrology day signs, the Tzolkin sacred round, the Haab year, the full Long Count and the Aztec tonal...
+
+```csharp
+// Mayan day sign for a date - Tzolkin calculator API
+await roxy.MesoamericanAstrology.Mayan.Tzolkin.PostAsync(new() { Date = new Date(2012, 12, 21) });
+
+// Generate a Mayan chart - Tzolkin, Haab and Long Count calculator API
+await roxy.MesoamericanAstrology.Mayan.Chart.PostAsync(new() { Date = new Date(2012, 12, 21) });
+
+// Convert a Maya Long Count - Long Count calendar converter API
+await roxy.MesoamericanAstrology.Mayan.LongCount.Convert.PostAsync(new() { Date = new Date(2012, 12, 21), LongCount = "13.0.0.0.0" });
+
+// Daily Mayan energy reading - Tzolkin day sign of the day API
+await roxy.MesoamericanAstrology.Mayan.Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 9, 2));
+
+// Monthly Tzolkin calendar grid - Maya calendar month API
+await roxy.MesoamericanAstrology.Mayan.Calendar.Monthly.GetAsync(c => { c.QueryParameters.Year = 2026; c.QueryParameters.Month = 9; });
+
+// Mayan nawal compatibility - Tzolkin pair analysis API
+await roxy.MesoamericanAstrology.Mayan.Compatibility.PostAsync(new() { PersonA = new() { Date = new Date(2012, 12, 21) }, PersonB = new() { Date = new Date(2012, 12, 21) } });
+
+// List the 20 Mayan day signs - Tzolkin nawal catalogue API
+await roxy.MesoamericanAstrology.Mayan.DaySigns.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get one Mayan day sign - Nawal profile API
+await roxy.MesoamericanAstrology.Mayan.DaySigns["imix"].GetAsync();
+
+// List the 20 Mayan trecenas - Tzolkin thirteen day period API
+await roxy.MesoamericanAstrology.Mayan.Trecenas.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get one Mayan trecena - Thirteen day period profile API
+await roxy.MesoamericanAstrology.Mayan.Trecenas[1].GetAsync();
+
+// List the 19 Haab periods - Maya solar calendar month API
+await roxy.MesoamericanAstrology.Mayan.HaabMonths.GetAsync(c => { c.QueryParameters.Limit = 19; c.QueryParameters.Offset = 0; });
+
+// Get one Haab period - Maya solar calendar month profile API
+await roxy.MesoamericanAstrology.Mayan.HaabMonths["pop"].GetAsync();
+
+// Aztec day sign for a date - Tonalpohualli calculator API
+await roxy.MesoamericanAstrology.Aztec.Tonalpohualli.PostAsync(new() { Date = new Date(2012, 12, 21) });
+
+// Daily Aztec energy reading - Tonalpohualli day sign of the day API
+await roxy.MesoamericanAstrology.Aztec.Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 9, 2));
+
+// List the 20 Aztec day signs - Tonalpohualli sign catalogue API
+await roxy.MesoamericanAstrology.Aztec.DaySigns.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get one Aztec day sign - Tonalpohualli sign profile API
+await roxy.MesoamericanAstrology.Aztec.DaySigns["cipactli"].GetAsync();
+
+// List the 20 Aztec trecenas - Tonalpohualli thirteen day period API
+await roxy.MesoamericanAstrology.Aztec.Trecenas.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+
+// Get one Aztec trecena - Tonalpohualli period profile API
+await roxy.MesoamericanAstrology.Aztec.Trecenas[1].GetAsync();
+```
+
+---
+
+## Vastu - `roxy.Vastu`
+
+Vastu Shastra API for directional home and plot analysis: entrance padas with the classical effect of each of the 32...
+
+```csharp
+// Calculate entrance pada - Vastu main door direction API
+await roxy.Vastu.Entrance.PostAsync(new() { Plot = new() { Width = 30, Depth = 40, Polygon = [new() { X = 15, Y = 0 }] }, FacingDegrees = 15, DoorPosition = 0.4 });
+
+// Generate Vastu Purusha Mandala - 81 pada and 64 pada grid API
+await roxy.Vastu.Mandala.PostAsync(new() { Plot = new() { Width = 30, Depth = 40, Polygon = [new() { X = 15, Y = 0 }] } });
+
+// Analyse a plot - Vastu land and site assessment API
+await roxy.Vastu.Plot.PostAsync(new() { Plot = new() { Width = 30, Depth = 40, Polygon = [new() { X = 15, Y = 0 }] }, FacingDegrees = 15 });
+
+// Calculate Ayadi shadvarga - Vastu proportion and yoni calculator API
+await roxy.Vastu.Ayadi.PostAsync(new() { Length = 11, Breadth = 11, Perimeter = 11, Circumference = 11, HastaInches = 18 });
+
+// Check room placement - Vastu room direction compliance API
+await roxy.Vastu.Rooms.PostAsync(new() { Plot = new() { Width = 30, Depth = 40, Polygon = [new() { X = 15, Y = 0 }] }, FacingDegrees = 15, Rooms = [new() { Polygon = [new() { X = 15, Y = 0 }] }] });
+
+// Find griha pravesh dates - Vastu house warming muhurta API
+await roxy.Vastu.Timing.GrihaPravesh.PostAsync(new() { StartDate = new Date(2027, 1, 20), EndDate = new Date(2027, 3, 20), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { String = "America/New_York" } });
+
+// List the eight directions - Vastu dikpala and direction reference API
+await roxy.Vastu.Directions.GetAsync(c => { c.QueryParameters.Limit = 8; c.QueryParameters.Offset = 0; });
+
+// Look up one direction - Vastu dikpala reference API
+await roxy.Vastu.Directions["Northeast"].GetAsync();
+
+// List the 45 devatas - Vastu Purusha Mandala reference API
+await roxy.Vastu.Devatas.GetAsync(c => { c.QueryParameters.Limit = 45; c.QueryParameters.Offset = 0; });
+
+// Look up one devata - Vastu mandala devata reference API
+await roxy.Vastu.Devatas["jayanta"].GetAsync();
+```
+
+---
+
 ## Numerology - `roxy.Numerology`
 
 Numerology API to calculate life path, expression, soul urge, personality, and maturity numbers, with Pinnacle and Ch...
@@ -555,39 +655,83 @@ await roxy.Numerology.BusinessName.PostAsync(new() { Name = "Ford" });
 
 ---
 
+## Kabbalah - `roxy.Kabbalah`
+
+Kabbalah API for gematria, the 72 names, the Tree of Life and the Hebrew birthday, from one key
+
+```csharp
+// Calculate gematria - Hebrew gematria calculator API with every spelling shown
+await roxy.Kabbalah.Gematria.PostAsync(new() { Text = "Sarah", TextHebrew = "שלום", Ciphers = ["mispar-hechrachi"], IncludeMatches = true, LatinCiphers = false });
+
+// List gematria ciphers - gematria methods API with provenance on every row
+await roxy.Kabbalah.Ciphers.GetAsync();
+
+// Generate a name profile - Kabbalah name numerology API with the spelling shown
+await roxy.Kabbalah.NameProfile.PostAsync(new() { Name = "Sarah", NameHebrew = "שרה" });
+
+// Generate a birth profile - Hebrew birthday and birth angel API
+await roxy.Kabbalah.BirthProfile.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, AfterSunset = false });
+
+// List the 72 names - Shem HaMephorash API derived from the verses
+await roxy.Kabbalah.Names.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; c.QueryParameters.Longitude = 131.18; });
+
+// Get one of the 72 names - 72 names of God API by index
+await roxy.Kabbalah.Names[27].GetAsync();
+
+// Get the Tree of Life - sephirot and 22 paths API with typed school variants
+await roxy.Kabbalah.Tree.GetAsync();
+
+// Get one sephirah - sefirot meaning API with the paths that touch it
+await roxy.Kabbalah.Sephirot["tiferet"].GetAsync();
+
+// List the Hebrew letters - Hebrew alphabet API with the Sefer Yetzirah attributions
+await roxy.Kabbalah.Letters.GetAsync();
+
+// Get one Hebrew letter - Hebrew letter meaning API
+await roxy.Kabbalah.Letters["shin"].GetAsync();
+
+// Compare two names - gematria name compatibility API with every component published
+await roxy.Kabbalah.Compatibility.PostAsync(new() { FirstName = "Sarah", FirstNameHebrew = "שרה", SecondName = "David", SecondNameHebrew = "דוד" });
+
+// Get the sephirah of the day - Omer count API with the sephirot pairing
+await roxy.Kabbalah.Daily.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 4); c.QueryParameters.Timezone = "Asia/Jerusalem"; c.QueryParameters.AfterSunset = "false"; });
+```
+
+---
+
 ## Tarot - `roxy.Tarot`
 
 Tarot reading API with the complete 78-card Rider-Waite-Smith deck and card meanings for love, career, health, and sp...
 
 ```csharp
-// List all 78 tarot cards
+// List all 78 tarot cards - Tarot deck catalog API
 await roxy.Tarot.Cards.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; c.QueryParameters.Number = 1; });
 
-// Get detailed tarot card information
+// Get tarot card by id - Tarot card meaning API
 await roxy.Tarot.Cards["fool"].GetAsync();
 
-// Draw random tarot cards with reproducible results
+// Draw tarot cards - Seeded tarot draw API
 await roxy.Tarot.Draw.PostAsync(new() { Count = 3, Seed = "user123-2025-12-27", AllowReversals = true, AllowDuplicates = false });
 
-// Get daily tarot card reading
+// Daily tarot card - Card of the day API
 await roxy.Tarot.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 
-// Get yes/no answer to your question
+// Yes or no answer - Yes no tarot reading API
 await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I accept the job offer?", Seed = "reading-2f9c1a" });
 
-// Three-Card Spread: Past, Present, Future
+// Three card spread, past present future - Tarot spread API
 await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "What do I need to know about my career?", Seed = "reading-2f9c1a" });
 
-// Celtic Cross Spread (10 cards)
+// Celtic Cross spread, 10 cards - Tarot spread API
 await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I know about this situation?", Seed = "reading-2f9c1a" });
 
-// Love Spread (5 cards)
+// Love spread, 5 cards - Relationship tarot reading API
 await roxy.Tarot.Spreads.Love.PostAsync(new() { Question = "What do I need to know about my relationship?", Seed = "reading-2f9c1a" });
 
-// Career Spread (7 cards)
+// Career spread, 7 cards - Career tarot reading API
 await roxy.Tarot.Spreads.Career.PostAsync(new() { Question = "What do I need to know about my career path?", Seed = "reading-2f9c1a" });
 
-// Custom Spread Builder
+// Custom spread builder - Configurable tarot spread API
 await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread", Positions = [new() { Name = "Core Issue", Interpretation = "What is really going on" }], Question = "How do I move forward with this project?", Seed = "reading-2f9c1a" });
 ```
 
@@ -619,36 +763,68 @@ await roxy.Biorhythm.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2
 
 ---
 
+## Ayurveda - `roxy.Ayurveda`
+
+Ayurveda API for dosha profiles, the dinacharya daily routine and the ritucharya seasonal regimen, with a verse cited...
+
+```csharp
+// Ayurvedic constitution from a birth chart - Dosha profile API
+await roxy.Ayurveda.Constitution.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
+
+// Dinacharya daily routine - Brahma muhurta and dosha clock API
+await roxy.Ayurveda.Dinacharya.PostAsync(new() { Date = new Date(2026, 6, 21), Latitude = 51.5074, Longitude = -0.1278, Timezone = new() { String = "Europe/London" } });
+
+// Ayurveda seasonal regimen - Ritucharya and ritu resolution API
+await roxy.Ayurveda.Ritucharya.PostAsync(new() { Date = new Date(2026, 3, 1) });
+
+// Daily Ayurveda reading - Dosha clock and brahma muhurta by location API
+await roxy.Ayurveda.Daily.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 6, 21); c.QueryParameters.Latitude = 51.5074; c.QueryParameters.Longitude = -0.1278; c.QueryParameters.Timezone = "Europe/London"; });
+
+// List the three doshas - Dosha catalogue API
+await roxy.Ayurveda.Doshas.GetAsync(c => { c.QueryParameters.Limit = 3; c.QueryParameters.Offset = 0; });
+
+// Get one dosha - Vata pitta kapha profile API
+await roxy.Ayurveda.Doshas["vata"].GetAsync();
+
+// List the six tastes - Ayurveda rasa and dosha matrix API
+await roxy.Ayurveda.Tastes.GetAsync(c => { c.QueryParameters.Limit = 6; c.QueryParameters.Offset = 0; });
+
+// List the twenty qualities - Ayurveda guna pairs API
+await roxy.Ayurveda.Qualities.GetAsync(c => { c.QueryParameters.Limit = 10; c.QueryParameters.Offset = 0; });
+```
+
+---
+
 ## I-Ching - `roxy.Iching`
 
 I-Ching oracle API with all 64 hexagrams, 384 changing lines, 8 trigrams, and modern interpretations for love, career...
 
 ```csharp
-// Get daily I-Ching hexagram
+// Daily hexagram - Daily I-Ching oracle API
 await roxy.Iching.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 
-// Cast daily I-Ching reading with changing lines
+// Cast daily reading with changing lines - I-Ching divination API
 await roxy.Iching.Daily.Cast.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 
-// List all 64 hexagrams
+// List all 64 hexagrams - I-Ching hexagram catalog API
 await roxy.Iching.Hexagrams.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Get a random hexagram
+// Random hexagram - I-Ching hexagram picker API
 await roxy.Iching.Hexagrams.Random.GetAsync();
 
-// Lookup hexagram by line pattern
+// Lookup hexagram by line pattern - I-Ching binary lookup API
 await roxy.Iching.Hexagrams.Lookup.GetAsync(c => c.QueryParameters.Lines = "111111");
 
-// Get hexagram by number
+// Get hexagram by number - I-Ching hexagram detail API
 await roxy.Iching.Hexagrams[1].GetAsync();
 
-// Cast an I-Ching reading
+// Cast an I-Ching reading - Hexagram divination API
 await roxy.Iching.Cast.GetAsync(c => c.QueryParameters.Seed = "user123-question1");
 
-// List all 8 trigrams
+// List all 8 trigrams - Bagua trigram catalog API
 await roxy.Iching.Trigrams.GetAsync();
 
-// Get trigram by number or name
+// Get trigram by number or name - Bagua trigram detail API
 await roxy.Iching.Trigrams["Heaven"].GetAsync();
 ```
 
@@ -659,40 +835,40 @@ await roxy.Iching.Trigrams["Heaven"].GetAsync();
 Crystal healing API covering the most popular and widely-searched healing crystals and gemstones, from Amethyst and R...
 
 ```csharp
-// Crystals by Zodiac Sign
+// Crystals by zodiac sign - Zodiac birthstone API
 await roxy.Crystals.Zodiac["pisces"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Crystals by Chakra
+// Crystals by chakra - Chakra healing stones API
 await roxy.Crystals.Chakra["Heart"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Crystals by Element
+// Crystals by element - Elemental crystal lookup API
 await roxy.Crystals.Element["Water"].GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Birthstone Crystals by Month
+// Birthstones by month - Birthstone lookup API
 await roxy.Crystals.Birthstone[2].GetAsync();
 
-// Search Crystals
+// Search crystals - Crystal search API
 await roxy.Crystals.Search.GetAsync(c => { c.QueryParameters.Q = "love"; c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Crystal Pairings
+// Crystal pairings - Crystal combination API
 await roxy.Crystals.Pairings["amethyst"].GetAsync();
 
-// Daily Crystal
+// Daily crystal - Crystal of the day API
 await roxy.Crystals.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 
-// Random Crystal
+// Random crystal - Crystal discovery API
 await roxy.Crystals.Random.GetAsync();
 
-// List Crystal Colors
+// List crystal colors - Crystal color filter API
 await roxy.Crystals.Colors.GetAsync();
 
-// List Crystal Planets
+// List crystal planets - Planetary ruler filter API
 await roxy.Crystals.Planets.GetAsync();
 
-// List All Crystals
+// List all crystals - Crystal healing database API
 await roxy.Crystals.GetAsync(c => { c.QueryParameters.Color = "pink"; c.QueryParameters.Planet = "Venus"; c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Get Crystal Healing Properties
+// Get crystal by id - Crystal healing properties API
 await roxy.Crystals["amethyst"].GetAsync();
 ```
 
@@ -703,19 +879,19 @@ await roxy.Crystals["amethyst"].GetAsync();
 Dream interpretation API with a 2,000+ symbol dream dictionary and psychological meanings covering animals, objects,...
 
 ```csharp
-// List and search dream symbols
+// List and search dream symbols - Dream dictionary API
 await roxy.Dreams.Symbols.GetAsync(c => { c.QueryParameters.Q = "water"; c.QueryParameters.Letter = "a"; c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Get random dream symbols
+// Random dream symbols - Dream symbol discovery API
 await roxy.Dreams.Symbols.Random.GetAsync(c => c.QueryParameters.Count = 1);
 
-// Get symbol counts by letter
+// Symbol counts by letter - Dream dictionary index API
 await roxy.Dreams.Symbols.Letters.GetAsync();
 
-// Get dream symbol details
+// Get dream symbol by id - Dream interpretation API
 await roxy.Dreams.Symbols["snake"].GetAsync();
 
-// Get daily dream symbol
+// Daily dream symbol - Dream symbol of the day API
 await roxy.Dreams.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 ```
 
@@ -726,16 +902,16 @@ await roxy.Dreams.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026
 Angel numbers API with meanings for 111, 222, 333, 444, 555, 666, 777, 888, 999, 1111, and 75+ sequences covering eve...
 
 ```csharp
-// List All Angel Numbers
+// List all angel numbers - Angel number catalog API
 await roxy.AngelNumbers.Numbers.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
 
-// Get Angel Number Meaning
+// Get angel number meaning - Angel number lookup API
 await roxy.AngelNumbers.Numbers["444"].GetAsync();
 
-// Analyze Any Number Sequence
+// Analyze any number sequence - Angel number analysis API
 await roxy.AngelNumbers.Lookup.GetAsync(c => c.QueryParameters.Number = "1234");
 
-// Daily Angel Number
+// Daily angel number - Angel number of the day API
 await roxy.AngelNumbers.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 ```
 

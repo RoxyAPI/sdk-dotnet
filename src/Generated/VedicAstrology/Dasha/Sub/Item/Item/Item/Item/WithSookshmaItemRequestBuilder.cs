@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item
         {
         }
         /// <summary>
-        /// Prana dasha API. Returns the 9 Prana periods inside a chosen Sookshma dasha, the fifth and finest level of the Vimshottari dasha hierarchy. Completes the full vimshottari drill down from the 120-year cycle to hour level timing, typically 20 minutes to 4 days per period depending on the parent Mahadasha. Built for five column dasha drill down tables, muhurta selection, and pinpointing the trigger moment inside an event window already found at the Sookshma level.
+        /// Prana dasha API for Vedic astrology. Returns the 9 Prana periods inside a chosen Sookshma dasha, the fifth and finest level of the Vimshottari dasha hierarchy. Completes the full vimshottari drill down from the 120-year cycle to hour level timing, typically 20 minutes to 4 days per period depending on the parent Mahadasha. Built for five column dasha drill down tables, muhurta selection, and pinpointing the trigger moment inside an event window already found at the Sookshma level.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item.WithSookshmaPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item.WithSookshmaPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item.WithSookshmaPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Prana dasha API. Returns the 9 Prana periods inside a chosen Sookshma dasha, the fifth and finest level of the Vimshottari dasha hierarchy. Completes the full vimshottari drill down from the 120-year cycle to hour level timing, typically 20 minutes to 4 days per period depending on the parent Mahadasha. Built for five column dasha drill down tables, muhurta selection, and pinpointing the trigger moment inside an event window already found at the Sookshma level.
+        /// Prana dasha API for Vedic astrology. Returns the 9 Prana periods inside a chosen Sookshma dasha, the fifth and finest level of the Vimshottari dasha hierarchy. Completes the full vimshottari drill down from the 120-year cycle to hour level timing, typically 20 minutes to 4 days per period depending on the parent Mahadasha. Built for five column dasha drill down tables, muhurta selection, and pinpointing the trigger moment inside an event window already found at the Sookshma level.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item
             return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.Item.Item.WithSookshmaItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Prana dasha API. Returns the 9 Prana periods inside a chosen Sookshma dasha, the fifth and finest level of the Vimshottari dasha hierarchy. Completes the full vimshottari drill down from the 120-year cycle to hour level timing, typically 20 minutes to 4 days per period depending on the parent Mahadasha. Built for five column dasha drill down tables, muhurta selection, and pinpointing the trigger moment inside an event window already found at the Sookshma level.
+        /// Prana dasha API for Vedic astrology. Returns the 9 Prana periods inside a chosen Sookshma dasha, the fifth and finest level of the Vimshottari dasha hierarchy. Completes the full vimshottari drill down from the 120-year cycle to hour level timing, typically 20 minutes to 4 days per period depending on the parent Mahadasha. Built for five column dasha drill down tables, muhurta selection, and pinpointing the trigger moment inside an event window already found at the Sookshma level.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithSookshmaItemRequestBuilderPostQueryParameters 

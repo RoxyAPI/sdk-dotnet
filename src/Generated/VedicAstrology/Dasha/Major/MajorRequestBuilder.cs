@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
         {
         }
         /// <summary>
-        /// Returns complete Vimshottari Dasha cycle starting from birth. Shows all major planetary periods from birth through 120 years.
+        /// Returns the complete Vimshottari dasha cycle from birth, all 9 Mahadasha periods across the full 120 year span. Each period carries its ruling graha, exact start and end dates, and the houses it signifies, with the birth dasha balance and Moon nakshatra that anchor the sequence. This is the top level timeline a Vedic astrology report opens with, and the entry point for drilling into Antardasha and finer sub periods.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Dasha.Major.MajorPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns complete Vimshottari Dasha cycle starting from birth. Shows all major planetary periods from birth through 120 years.
+        /// Returns the complete Vimshottari dasha cycle from birth, all 9 Mahadasha periods across the full 120 year span. Each period carries its ruling graha, exact start and end dates, and the houses it signifies, with the birth dasha balance and Moon nakshatra that anchor the sequence. This is the top level timeline a Vedic astrology report opens with, and the entry point for drilling into Antardasha and finer sub periods.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Major
             return new global::RoxyApi.VedicAstrology.Dasha.Major.MajorRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns complete Vimshottari Dasha cycle starting from birth. Shows all major planetary periods from birth through 120 years.
+        /// Returns the complete Vimshottari dasha cycle from birth, all 9 Mahadasha periods across the full 120 year span. Each period carries its ruling graha, exact start and end dates, and the houses it signifies, with the birth dasha balance and Moon nakshatra that anchor the sequence. This is the top level timeline a Vedic astrology report opens with, and the entry point for drilling into Antardasha and finer sub periods.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MajorRequestBuilderPostQueryParameters 

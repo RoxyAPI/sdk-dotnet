@@ -34,7 +34,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.Monthly
         {
         }
         /// <summary>
-        /// Return every day of one Gregorian month with its lunisolar date, its three pillars, its day officer, its lunar mansion and its clash animal, plus the solar terms that fall inside the month. This is the month view a calendar widget renders in one call rather than thirty one. Omit the year and month to get the month in progress. Built for calendar UIs, almanac pages, and planning tools that show a whole month at a glance.
+        /// Return every day of one Gregorian month of the Chinese almanac with its lunisolar date, its three pillars, its day officer, its lunar mansion and its clash animal, plus the solar terms that fall inside the month. This is the month view a calendar widget renders in one call rather than thirty one. Omit the year and month to get the month in progress. Built for calendar UIs, almanac pages, and planning tools that show a whole month at a glance.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.ChineseAstrology.Calendar.Monthly.MonthlyGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.Monthly
             return await RequestAdapter.SendAsync<global::RoxyApi.ChineseAstrology.Calendar.Monthly.MonthlyGetResponse>(requestInfo, global::RoxyApi.ChineseAstrology.Calendar.Monthly.MonthlyGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Return every day of one Gregorian month with its lunisolar date, its three pillars, its day officer, its lunar mansion and its clash animal, plus the solar terms that fall inside the month. This is the month view a calendar widget renders in one call rather than thirty one. Omit the year and month to get the month in progress. Built for calendar UIs, almanac pages, and planning tools that show a whole month at a glance.
+        /// Return every day of one Gregorian month of the Chinese almanac with its lunisolar date, its three pillars, its day officer, its lunar mansion and its clash animal, plus the solar terms that fall inside the month. This is the month view a calendar widget renders in one call rather than thirty one. Omit the year and month to get the month in progress. Built for calendar UIs, almanac pages, and planning tools that show a whole month at a glance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.Monthly
             return new global::RoxyApi.ChineseAstrology.Calendar.Monthly.MonthlyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Return every day of one Gregorian month with its lunisolar date, its three pillars, its day officer, its lunar mansion and its clash animal, plus the solar terms that fall inside the month. This is the month view a calendar widget renders in one call rather than thirty one. Omit the year and month to get the month in progress. Built for calendar UIs, almanac pages, and planning tools that show a whole month at a glance.
+        /// Return every day of one Gregorian month of the Chinese almanac with its lunisolar date, its three pillars, its day officer, its lunar mansion and its clash animal, plus the solar terms that fall inside the month. This is the month view a calendar widget renders in one call rather than thirty one. Omit the year and month to get the month in progress. Built for calendar UIs, almanac pages, and planning tools that show a whole month at a glance.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MonthlyRequestBuilderGetQueryParameters 

@@ -22,7 +22,7 @@ namespace RoxyApi.Crystals.Colors
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ColorsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/colors", pathParameters)
+        public ColorsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/colors{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace RoxyApi.Crystals.Colors
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ColorsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/colors", rawUrl)
+        public ColorsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/crystals/colors{?lang*}", rawUrl)
         {
         }
         /// <summary>
-        /// List all unique crystal colors available in the database. Use these values with the color filter on GET /crystals to find crystals by color. Essential reference endpoint for building color-based crystal browsing, visual crystal pickers, and filtering UI.
+        /// List all unique crystal colors available in the database. Use these values with the color filter on GET /crystals to find crystals by color. Essential reference endpoint for building color-based browsing of healing stones, visual crystal pickers, and filtering UI. The values are filter identifiers and stay in English under every lang, so a translated picker still submits a color the filter accepts.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Crystals.Colors.ColorsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -46,11 +46,11 @@ namespace RoxyApi.Crystals.Colors
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.Crystals.Colors.ColorsGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Crystals.Colors.ColorsGetResponse?> GetAsync(Action<RequestConfiguration<global::RoxyApi.Crystals.Colors.ColorsRequestBuilder.ColorsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.Crystals.Colors.ColorsGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.Crystals.Colors.ColorsGetResponse> GetAsync(Action<RequestConfiguration<global::RoxyApi.Crystals.Colors.ColorsRequestBuilder.ColorsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -65,17 +65,17 @@ namespace RoxyApi.Crystals.Colors
             return await RequestAdapter.SendAsync<global::RoxyApi.Crystals.Colors.ColorsGetResponse>(requestInfo, global::RoxyApi.Crystals.Colors.ColorsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List all unique crystal colors available in the database. Use these values with the color filter on GET /crystals to find crystals by color. Essential reference endpoint for building color-based crystal browsing, visual crystal pickers, and filtering UI.
+        /// List all unique crystal colors available in the database. Use these values with the color filter on GET /crystals to find crystals by color. Essential reference endpoint for building color-based browsing of healing stones, visual crystal pickers, and filtering UI. The values are filter identifiers and stay in English under every lang, so a translated picker still submits a color the filter accepts.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::RoxyApi.Crystals.Colors.ColorsRequestBuilder.ColorsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::RoxyApi.Crystals.Colors.ColorsRequestBuilder.ColorsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -91,6 +91,16 @@ namespace RoxyApi.Crystals.Colors
         public global::RoxyApi.Crystals.Colors.ColorsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.Crystals.Colors.ColorsRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// List all unique crystal colors available in the database. Use these values with the color filter on GET /crystals to find crystals by color. Essential reference endpoint for building color-based browsing of healing stones, visual crystal pickers, and filtering UI. The values are filter identifiers and stay in English under every lang, so a translated picker still submits a color the filter accepts.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ColorsRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.Crystals.Colors.GetLangQueryParameterType? Lang { get; set; }
         }
     }
 }

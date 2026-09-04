@@ -47,7 +47,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
         {
         }
         /// <summary>
-        /// Pratyantardasha calculator API. Returns the 9 Pratyantardasha (antara) periods inside a chosen Antardasha, the third level of the Vimshottari dasha hierarchy. Use it to drill from a Mahadasha into month level timing for event prediction, muhurta selection, and dasha timeline UIs. Each period is proportional to the Vimshottari years of its lord.
+        /// Pratyantardasha calculator API for Vedic astrology. Returns the 9 Pratyantardasha (antara) periods inside a chosen Antardasha, the third level of the Vimshottari dasha hierarchy. Use it to drill from a Mahadasha into month level timing for event prediction, muhurta selection, and dasha timeline UIs. Each period is proportional to the Vimshottari years of its lord.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -80,7 +80,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Pratyantardasha calculator API. Returns the 9 Pratyantardasha (antara) periods inside a chosen Antardasha, the third level of the Vimshottari dasha hierarchy. Use it to drill from a Mahadasha into month level timing for event prediction, muhurta selection, and dasha timeline UIs. Each period is proportional to the Vimshottari years of its lord.
+        /// Pratyantardasha calculator API for Vedic astrology. Returns the 9 Pratyantardasha (antara) periods inside a chosen Antardasha, the third level of the Vimshottari dasha hierarchy. Use it to drill from a Mahadasha into month level timing for event prediction, muhurta selection, and dasha timeline UIs. Each period is proportional to the Vimshottari years of its lord.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -111,7 +111,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Sub.Item.Item
             return new global::RoxyApi.VedicAstrology.Dasha.Sub.Item.Item.WithAntardashaItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Pratyantardasha calculator API. Returns the 9 Pratyantardasha (antara) periods inside a chosen Antardasha, the third level of the Vimshottari dasha hierarchy. Use it to drill from a Mahadasha into month level timing for event prediction, muhurta selection, and dasha timeline UIs. Each period is proportional to the Vimshottari years of its lord.
+        /// Pratyantardasha calculator API for Vedic astrology. Returns the 9 Pratyantardasha (antara) periods inside a chosen Antardasha, the third level of the Vimshottari dasha hierarchy. Use it to drill from a Mahadasha into month level timing for event prediction, muhurta selection, and dasha timeline UIs. Each period is proportional to the Vimshottari years of its lord.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithAntardashaItemRequestBuilderPostQueryParameters 

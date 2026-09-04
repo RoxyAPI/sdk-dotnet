@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Kp.Chart
         {
         }
         /// <summary>
-        /// Generate authentic Krishnamurti Paddhati birth charts with Placidus house cusps, star-lord and sub-lord calculations. Supports custom ayanamsa and dynamic KP-Newcomb ayanamsa calculation. Returns complete chart with all 9 planets (Sun through Ketu), Ascendant, 12 Placidus house cusps, nakshatra details, star-lords, sub-lords, and KP horary numbers (1-249). Perfect for KP astrology software, horary prediction apps, and event timing analysis. SEO: KP astrology chart API, Placidus house cusps planets, Krishnamurti Paddhati chart generator, KP birth chart calculator
+        /// Generate authentic Krishnamurti Paddhati birth charts with Placidus house cusps, star-lord and sub-lord calculations. Supports custom ayanamsa and dynamic KP-Newcomb ayanamsa calculation. Returns complete chart with all 9 planets (Sun through Ketu), Ascendant, 12 Placidus house cusps, nakshatra details, star-lords, sub-lords, and KP horary numbers (1-249). Perfect for KP astrology software, horary prediction apps, and event timing analysis. One call is a complete Krishnamurti Paddhati chart generator, returning the Placidus cusps and the planets with their sub lords together.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.KPChartResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Kp.Chart
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.KPChartResponse>(requestInfo, global::RoxyApi.Models.KPChartResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Generate authentic Krishnamurti Paddhati birth charts with Placidus house cusps, star-lord and sub-lord calculations. Supports custom ayanamsa and dynamic KP-Newcomb ayanamsa calculation. Returns complete chart with all 9 planets (Sun through Ketu), Ascendant, 12 Placidus house cusps, nakshatra details, star-lords, sub-lords, and KP horary numbers (1-249). Perfect for KP astrology software, horary prediction apps, and event timing analysis. SEO: KP astrology chart API, Placidus house cusps planets, Krishnamurti Paddhati chart generator, KP birth chart calculator
+        /// Generate authentic Krishnamurti Paddhati birth charts with Placidus house cusps, star-lord and sub-lord calculations. Supports custom ayanamsa and dynamic KP-Newcomb ayanamsa calculation. Returns complete chart with all 9 planets (Sun through Ketu), Ascendant, 12 Placidus house cusps, nakshatra details, star-lords, sub-lords, and KP horary numbers (1-249). Perfect for KP astrology software, horary prediction apps, and event timing analysis. One call is a complete Krishnamurti Paddhati chart generator, returning the Placidus cusps and the planets with their sub lords together.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.Kp.Chart
             return new global::RoxyApi.VedicAstrology.Kp.Chart.ChartRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Generate authentic Krishnamurti Paddhati birth charts with Placidus house cusps, star-lord and sub-lord calculations. Supports custom ayanamsa and dynamic KP-Newcomb ayanamsa calculation. Returns complete chart with all 9 planets (Sun through Ketu), Ascendant, 12 Placidus house cusps, nakshatra details, star-lords, sub-lords, and KP horary numbers (1-249). Perfect for KP astrology software, horary prediction apps, and event timing analysis. SEO: KP astrology chart API, Placidus house cusps planets, Krishnamurti Paddhati chart generator, KP birth chart calculator
+        /// Generate authentic Krishnamurti Paddhati birth charts with Placidus house cusps, star-lord and sub-lord calculations. Supports custom ayanamsa and dynamic KP-Newcomb ayanamsa calculation. Returns complete chart with all 9 planets (Sun through Ketu), Ascendant, 12 Placidus house cusps, nakshatra details, star-lords, sub-lords, and KP horary numbers (1-249). Perfect for KP astrology software, horary prediction apps, and event timing analysis. One call is a complete Krishnamurti Paddhati chart generator, returning the Placidus cusps and the planets with their sub lords together.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ChartRequestBuilderPostQueryParameters 

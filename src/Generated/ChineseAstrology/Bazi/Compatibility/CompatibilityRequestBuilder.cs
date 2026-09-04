@@ -34,7 +34,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.Compatibility
         {
         }
         /// <summary>
-        /// Compare two BaZi charts pillar by pillar. Returns both resolved charts, how the two Day Masters stand to each other on the five-phase cycle, and every combination, clash, harm and punishment that crosses between them, each naming the two positions it joins. A tallied score summarises the balance and the interaction list behind it is returned in full, so a caller that disagrees with the weighting can recompute its own. Built for matchmaking products, relationship features, and agents that need a defensible two-chart reading.
+        /// Compare two BaZi charts pillar by pillar, the Chinese astrology reading of how two people match. Returns both resolved charts, how the two Day Masters stand to each other on the five-phase cycle, and every combination, clash, harm and punishment that crosses between them, each naming the two positions it joins. A tallied score summarises the balance and the interaction list behind it is returned in full, so a caller that disagrees with the weighting can recompute its own. Built for matchmaking products, relationship features, and agents that need a defensible two-chart reading.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.ChineseAstrology.Bazi.Compatibility.CompatibilityPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.Compatibility
             return await RequestAdapter.SendAsync<global::RoxyApi.ChineseAstrology.Bazi.Compatibility.CompatibilityPostResponse>(requestInfo, global::RoxyApi.ChineseAstrology.Bazi.Compatibility.CompatibilityPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Compare two BaZi charts pillar by pillar. Returns both resolved charts, how the two Day Masters stand to each other on the five-phase cycle, and every combination, clash, harm and punishment that crosses between them, each naming the two positions it joins. A tallied score summarises the balance and the interaction list behind it is returned in full, so a caller that disagrees with the weighting can recompute its own. Built for matchmaking products, relationship features, and agents that need a defensible two-chart reading.
+        /// Compare two BaZi charts pillar by pillar, the Chinese astrology reading of how two people match. Returns both resolved charts, how the two Day Masters stand to each other on the five-phase cycle, and every combination, clash, harm and punishment that crosses between them, each naming the two positions it joins. A tallied score summarises the balance and the interaction list behind it is returned in full, so a caller that disagrees with the weighting can recompute its own. Built for matchmaking products, relationship features, and agents that need a defensible two-chart reading.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.Compatibility
             return new global::RoxyApi.ChineseAstrology.Bazi.Compatibility.CompatibilityRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Compare two BaZi charts pillar by pillar. Returns both resolved charts, how the two Day Masters stand to each other on the five-phase cycle, and every combination, clash, harm and punishment that crosses between them, each naming the two positions it joins. A tallied score summarises the balance and the interaction list behind it is returned in full, so a caller that disagrees with the weighting can recompute its own. Built for matchmaking products, relationship features, and agents that need a defensible two-chart reading.
+        /// Compare two BaZi charts pillar by pillar, the Chinese astrology reading of how two people match. Returns both resolved charts, how the two Day Masters stand to each other on the five-phase cycle, and every combination, clash, harm and punishment that crosses between them, each naming the two positions it joins. A tallied score summarises the balance and the interaction list behind it is returned in full, so a caller that disagrees with the weighting can recompute its own. Built for matchmaking products, relationship features, and agents that need a defensible two-chart reading.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CompatibilityRequestBuilderPostQueryParameters 

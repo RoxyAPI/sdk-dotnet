@@ -34,7 +34,7 @@ namespace RoxyApi.Dreams.Symbols.Letters
         {
         }
         /// <summary>
-        /// Get the count of dream symbols available for each letter A-Z. Build alphabetical dream dictionary navigation to help users browse dream interpretations by letter - from abandonment dreams to zodiac dreams. See how many dream meanings exist for each starting letter.
+        /// Get the count of dream symbols available for each letter A-Z. Build alphabetical dream dictionary navigation to help users browse dream interpretations by letter, from abandonment dreams to zodiac dreams. See how many dream meanings exist for each starting letter.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Dreams.Symbols.Letters.LettersGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Dreams.Symbols.Letters
             return await RequestAdapter.SendAsync<global::RoxyApi.Dreams.Symbols.Letters.LettersGetResponse>(requestInfo, global::RoxyApi.Dreams.Symbols.Letters.LettersGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get the count of dream symbols available for each letter A-Z. Build alphabetical dream dictionary navigation to help users browse dream interpretations by letter - from abandonment dreams to zodiac dreams. See how many dream meanings exist for each starting letter.
+        /// Get the count of dream symbols available for each letter A-Z. Build alphabetical dream dictionary navigation to help users browse dream interpretations by letter, from abandonment dreams to zodiac dreams. See how many dream meanings exist for each starting letter.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -40,7 +40,7 @@ namespace RoxyApi.Languages
         {
         }
         /// <summary>
-        /// Returns the language codes accepted by the `lang` query parameter on every i18n-aware endpoint. Use this to populate language pickers, validate user input before calling chart or reading endpoints, or auto-detect available locales in agent integrations. Codes follow ISO 639-1. Endpoints without a translation for the requested language fall back to English silently.
+        /// Returns the language codes accepted by the `lang` query parameter on every i18n-aware endpoint. Use this to populate language pickers, validate user input before calling chart or reading endpoints, or auto-detect which languages an agent integration can offer. Codes follow ISO 639-1. Endpoints without a translation for the requested language fall back to English silently.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Languages.LanguagesGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -71,7 +71,7 @@ namespace RoxyApi.Languages
             return await RequestAdapter.SendAsync<global::RoxyApi.Languages.LanguagesGetResponse>(requestInfo, global::RoxyApi.Languages.LanguagesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the language codes accepted by the `lang` query parameter on every i18n-aware endpoint. Use this to populate language pickers, validate user input before calling chart or reading endpoints, or auto-detect available locales in agent integrations. Codes follow ISO 639-1. Endpoints without a translation for the requested language fall back to English silently.
+        /// Returns the language codes accepted by the `lang` query parameter on every i18n-aware endpoint. Use this to populate language pickers, validate user input before calling chart or reading endpoints, or auto-detect which languages an agent integration can offer. Codes follow ISO 639-1. Endpoints without a translation for the requested language fall back to English silently.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

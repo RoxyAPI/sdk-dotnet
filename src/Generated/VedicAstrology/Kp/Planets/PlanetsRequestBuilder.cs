@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Kp.Planets
         {
         }
         /// <summary>
-        /// Get planetary positions with detailed KP star-lord and sub-lord calculations for precise event timing and significator analysis. Returns all 9 planets (Sun through Ketu) with nakshatra, star-lord, sub-lord, and KP horary numbers (1-249). Essential for KP astrology software, significator analysis, and event prediction. KP planet positions API, star lord sub lord calculator, KP significator API, Krishnamurti Paddhati planets
+        /// Get planetary positions with detailed KP star-lord and sub-lord calculations for precise event timing and significator analysis. Returns all 9 planets (Sun through Ketu) with nakshatra, star-lord, sub-lord, and KP horary numbers (1-249). Essential for KP astrology software, significator analysis, and event prediction. Use it as a star lord and sub lord calculator wherever Krishnamurti Paddhati planet positions drive the reading.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.KPPlanetsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Kp.Planets
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.KPPlanetsResponse>(requestInfo, global::RoxyApi.Models.KPPlanetsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get planetary positions with detailed KP star-lord and sub-lord calculations for precise event timing and significator analysis. Returns all 9 planets (Sun through Ketu) with nakshatra, star-lord, sub-lord, and KP horary numbers (1-249). Essential for KP astrology software, significator analysis, and event prediction. KP planet positions API, star lord sub lord calculator, KP significator API, Krishnamurti Paddhati planets
+        /// Get planetary positions with detailed KP star-lord and sub-lord calculations for precise event timing and significator analysis. Returns all 9 planets (Sun through Ketu) with nakshatra, star-lord, sub-lord, and KP horary numbers (1-249). Essential for KP astrology software, significator analysis, and event prediction. Use it as a star lord and sub lord calculator wherever Krishnamurti Paddhati planet positions drive the reading.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -22,7 +22,7 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.HousesResponse_ascendant Ascendant { get; set; }
 #endif
-        /// <summary>Side-by-side house cusp comparison across all four systems (Placidus, Whole Sign, Equal, Koch). Only included when houseSystem is set to &quot;all&quot;. Useful for educational tools and system comparison.</summary>
+        /// <summary>Side-by-side house cusp comparison keyed by house system id: placidus, whole-sign, equal, koch. Only included when houseSystem is set to &quot;all&quot;. Useful for educational tools and system comparison.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.HousesResponse_comparison? Comparison { get; set; }

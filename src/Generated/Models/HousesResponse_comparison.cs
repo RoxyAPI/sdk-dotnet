@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Models
 {
     /// <summary>
-    /// Side-by-side house cusp comparison across all four systems (Placidus, Whole Sign, Equal, Koch). Only included when houseSystem is set to &quot;all&quot;. Useful for educational tools and system comparison.
+    /// Side-by-side house cusp comparison keyed by house system id: placidus, whole-sign, equal, koch. Only included when houseSystem is set to &quot;all&quot;. Useful for educational tools and system comparison.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class HousesResponse_comparison : IAdditionalDataHolder, IParsable
