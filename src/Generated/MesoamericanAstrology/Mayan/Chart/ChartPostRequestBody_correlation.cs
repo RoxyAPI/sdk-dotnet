@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.MesoamericanAstrology.Mayan.Chart
 {
-    /// <summary>Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. &quot;gmt-584283&quot; is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. &quot;martinez-hernando-584281&quot; sits two days earlier, &quot;astronomical-584285&quot; two days later, and &quot;martin-skidmore-584286&quot; three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martinéz-Hernando.</summary>
+    /// <summary>Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. &quot;gmt-584283&quot; is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. &quot;martinez-hernandez-584281&quot; sits two days earlier, &quot;astronomical-584285&quot; two days later, and &quot;martin-skidmore-584286&quot; three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Martínez Hernández correlation, after Juan Martínez Hernández.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ChartPostRequestBody_correlation
     {
@@ -11,9 +11,9 @@ namespace RoxyApi.MesoamericanAstrology.Mayan.Chart
         #pragma warning disable CS1591
         Gmt584283,
         #pragma warning restore CS1591
-        [EnumMember(Value = "martinez-hernando-584281")]
+        [EnumMember(Value = "martinez-hernandez-584281")]
         #pragma warning disable CS1591
-        MartinezHernando584281,
+        MartinezHernandez584281,
         #pragma warning restore CS1591
         [EnumMember(Value = "astronomical-584285")]
         #pragma warning disable CS1591

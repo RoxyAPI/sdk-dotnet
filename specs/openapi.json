@@ -62557,13 +62557,13 @@
                     "type": "string",
                     "enum": [
                       "gmt-584283",
-                      "martinez-hernando-584281",
+                      "martinez-hernandez-584281",
                       "astronomical-584285",
                       "martin-skidmore-584286"
                     ],
                     "default": "gmt-584283",
                     "example": "gmt-584283",
-                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando."
+                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez."
                   }
                 },
                 "required": [
@@ -62843,13 +62843,13 @@
                     "type": "string",
                     "enum": [
                       "gmt-584283",
-                      "martinez-hernando-584281",
+                      "martinez-hernandez-584281",
                       "astronomical-584285",
                       "martin-skidmore-584286"
                     ],
                     "default": "gmt-584283",
                     "example": "gmt-584283",
-                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando."
+                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez."
                   },
                   "yearBearerSystem": {
                     "type": "string",
@@ -63383,13 +63383,13 @@
                     "type": "string",
                     "enum": [
                       "gmt-584283",
-                      "martinez-hernando-584281",
+                      "martinez-hernandez-584281",
                       "astronomical-584285",
                       "martin-skidmore-584286"
                     ],
                     "default": "gmt-584283",
                     "example": "gmt-584283",
-                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando."
+                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez."
                   }
                 }
               }
@@ -63583,16 +63583,16 @@
               "type": "string",
               "enum": [
                 "gmt-584283",
-                "martinez-hernando-584281",
+                "martinez-hernandez-584281",
                 "astronomical-584285",
                 "martin-skidmore-584286"
               ],
               "default": "gmt-584283",
               "example": "gmt-584283",
-              "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando."
+              "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez."
             },
             "required": false,
-            "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando.",
+            "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez.",
             "name": "correlation",
             "in": "query"
           }
@@ -63882,16 +63882,16 @@
               "type": "string",
               "enum": [
                 "gmt-584283",
-                "martinez-hernando-584281",
+                "martinez-hernandez-584281",
                 "astronomical-584285",
                 "martin-skidmore-584286"
               ],
               "default": "gmt-584283",
               "example": "gmt-584283",
-              "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando."
+              "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez."
             },
             "required": false,
-            "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando.",
+            "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez.",
             "name": "correlation",
             "in": "query"
           }
@@ -64139,13 +64139,13 @@
                     "type": "string",
                     "enum": [
                       "gmt-584283",
-                      "martinez-hernando-584281",
+                      "martinez-hernandez-584281",
                       "astronomical-584285",
                       "martin-skidmore-584286"
                     ],
                     "default": "gmt-584283",
                     "example": "gmt-584283",
-                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernando-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is attributed to Martinez and Hernando, printed in the literature as Martin\u00E9z-Hernando."
+                    "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez."
                   },
                   "directionScheme": {
                     "type": "string",
