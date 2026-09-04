@@ -112,14 +112,14 @@ await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 1
 
 ### Multi-language via the query lambda
 
-Eight languages: `en`, `tr`, `de`, `es`, `fr`, `hi`, `pt`, `ru`. Defaults to `en`.
+Ten languages: `en`, `tr`, `de`, `es`, `fr`, `hi`, `pt`, `ru`, `zh-Hans`, `zh-Hant`. Defaults to `en`.
 
 ```csharp
 await roxy.Tarot.Daily.PostAsync(new() { Date = new Date(2026, 4, 22) }, c => c.QueryParameters.Lang = "es");
 await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 15 }, c => c.QueryParameters.Lang = "hi");
 ```
 
-Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, fengShui, numerology, tarot, biorhythm, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on chineseAstrology and fengShui; every other domain answers those codes in English per field. Call `roxy.Languages.GetAsync()` for the live list.
+Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, fengShui, mesoamericanAstrology, vastu, numerology, kabbalah, tarot, biorhythm, ayurveda, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on chineseAstrology and fengShui; every other domain answers those codes in English per field. Call `roxy.Languages.GetAsync()` for the live list.
 
 ### Error handling
 

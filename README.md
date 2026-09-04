@@ -445,7 +445,7 @@ var card = await roxy.Tarot.Daily.PostAsync(
     c => c.QueryParameters.Lang = "es");
 ```
 
-Supported: astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, numerology, tarot, biorhythm, I Ching, crystals, angel numbers. English-only: dreams, location. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on Chinese astrology and feng shui; every other domain answers those codes in English per field. Untranslated fields fall back to English. Call `roxy.Languages.GetAsync()` for the live list.
+Supported: astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, Mesoamerican astrology, vastu, numerology, kabbalah, tarot, biorhythm, ayurveda, I Ching, crystals, angel numbers. English-only: dreams, location. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on Chinese astrology and feng shui; every other domain answers those codes in English per field. Untranslated fields fall back to English. Call `roxy.Languages.GetAsync()` for the live list.
 
 ## Error handling
 
