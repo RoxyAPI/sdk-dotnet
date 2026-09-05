@@ -70,7 +70,7 @@ namespace RoxyApi.Kabbalah.Gematria
 #else
         public List<global::RoxyApi.Kabbalah.Gematria.GematriaPostResponse_transformations> Transformations { get; set; }
 #endif
-        /// <summary>Every requested cipher applied to the chosen spelling.</summary>
+        /// <summary>Every requested cipher applied to the chosen spelling, in catalogue order, each named as the catalogue names it. Only computed ciphers appear, so every row carries a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Kabbalah.Gematria.GematriaPostResponse_values>? Values { get; set; }

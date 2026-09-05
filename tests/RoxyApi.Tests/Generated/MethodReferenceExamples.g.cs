@@ -144,9 +144,9 @@ internal static class MethodReferenceExamples
         await roxy.FengShui.FlyingStars.Natal.PostAsync(new() { Period = 9, FacingDegrees = 180 });
         await roxy.FengShui.FlyingStars.Annual[2026].GetAsync();
         await roxy.FengShui.FlyingStars.Monthly.GetAsync(c => { c.QueryParameters.Year = 2026; c.QueryParameters.Month = 1; });
-        await roxy.FengShui.FlyingStars.Stars.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+        await roxy.FengShui.FlyingStars.Stars.GetAsync(c => { c.QueryParameters.Limit = 9; c.QueryParameters.Offset = 0; });
         await roxy.FengShui.Afflictions[2026].GetAsync();
-        await roxy.FengShui.Bagua.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+        await roxy.FengShui.Bagua.GetAsync(c => { c.QueryParameters.Limit = 9; c.QueryParameters.Offset = 0; });
         await roxy.FengShui.Bagua["wealth"].GetAsync();
         await roxy.FengShui.Periods.GetAsync(c => c.QueryParameters.Date = new Date(2026, 8, 23));
         await roxy.MesoamericanAstrology.Mayan.Tzolkin.PostAsync(new() { Date = new Date(2012, 12, 21) });

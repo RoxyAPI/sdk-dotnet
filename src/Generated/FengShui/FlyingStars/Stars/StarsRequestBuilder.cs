@@ -101,10 +101,10 @@ namespace RoxyApi.FengShui.FlyingStars.Stars
             /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.FengShui.FlyingStars.Stars.GetLangQueryParameterType? Lang { get; set; }
-            /// <summary>Maximum stars to return per page. Range 1 to 9, default 20.</summary>
+            /// <summary>Maximum items to return per page. Range: 1-9, default 9.</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
-            /// <summary>Number of stars to skip for pagination. Default 0.</summary>
+            /// <summary>Number of items to skip for pagination. Default 0.</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
         }

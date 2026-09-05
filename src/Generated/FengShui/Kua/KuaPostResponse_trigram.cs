@@ -38,6 +38,14 @@ namespace RoxyApi.FengShui.Kua
 #else
         public string Direction { get; set; }
 #endif
+        /// <summary>Compass sector in the requested language, for display only, the same word the composed readings use. Present only when lang is set to a language other than English. Never compare against this value.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DirectionLocalized { get; set; }
+#nullable restore
+#else
+        public string DirectionLocalized { get; set; }
+#endif
         /// <summary>Five phase of this entry: Wood, Fire, Earth, Metal or Water. Always English so it stays safe to compare against and to key styling on. The full cycles live on the Chinese astrology elements endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -46,7 +54,15 @@ namespace RoxyApi.FengShui.Kua
 #else
         public string Element { get; set; }
 #endif
-        /// <summary>English name of the trigram, byte identical to the value the I-Ching trigram endpoints publish for this number.</summary>
+        /// <summary>Five phase name in the requested language, for display only. Present only when lang is set to a language other than English. Never compare against this value.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ElementLocalized { get; set; }
+#nullable restore
+#else
+        public string ElementLocalized { get; set; }
+#endif
+        /// <summary>English name of the trigram, byte identical to the English value the I-Ching trigram endpoints publish for this number. Always English here, whatever the lang parameter says, so it stays safe to compare against. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? English { get; set; }
@@ -54,13 +70,21 @@ namespace RoxyApi.FengShui.Kua
 #else
         public string English { get; set; }
 #endif
-        /// <summary>Family role of the trigram. Read alongside an affliction to know which member of the household a sector points at.</summary>
+        /// <summary>Family role of the trigram. Read alongside an affliction to know which member of the household a sector points at. Always English, and it carries no localized sibling: no vocabulary this package ships names the eight family roles.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FamilyMember { get; set; }
 #nullable restore
 #else
         public string FamilyMember { get; set; }
+#endif
+        /// <summary>Trigram name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat english exactly. Never compare against this value.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>Trigram number, 1 to 8, the same identifier the I-Ching trigram endpoints use. It is a lookup key, not a ranking.</summary>
         public double? Number { get; set; }
@@ -108,9 +132,12 @@ namespace RoxyApi.FengShui.Kua
                 { "binary", n => { Binary = n.GetStringValue(); } },
                 { "chinese", n => { Chinese = n.GetStringValue(); } },
                 { "direction", n => { Direction = n.GetStringValue(); } },
+                { "directionLocalized", n => { DirectionLocalized = n.GetStringValue(); } },
                 { "element", n => { Element = n.GetStringValue(); } },
+                { "elementLocalized", n => { ElementLocalized = n.GetStringValue(); } },
                 { "english", n => { English = n.GetStringValue(); } },
                 { "familyMember", n => { FamilyMember = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "number", n => { Number = n.GetDoubleValue(); } },
                 { "pinyin", n => { Pinyin = n.GetStringValue(); } },
                 { "symbol", n => { Symbol = n.GetStringValue(); } },
@@ -126,9 +153,12 @@ namespace RoxyApi.FengShui.Kua
             writer.WriteStringValue("binary", Binary);
             writer.WriteStringValue("chinese", Chinese);
             writer.WriteStringValue("direction", Direction);
+            writer.WriteStringValue("directionLocalized", DirectionLocalized);
             writer.WriteStringValue("element", Element);
+            writer.WriteStringValue("elementLocalized", ElementLocalized);
             writer.WriteStringValue("english", English);
             writer.WriteStringValue("familyMember", FamilyMember);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteDoubleValue("number", Number);
             writer.WriteStringValue("pinyin", Pinyin);
             writer.WriteStringValue("symbol", Symbol);

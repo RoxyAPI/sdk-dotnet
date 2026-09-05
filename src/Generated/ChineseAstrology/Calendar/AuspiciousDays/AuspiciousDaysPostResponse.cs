@@ -38,6 +38,14 @@ namespace RoxyApi.ChineseAstrology.Calendar.AuspiciousDays
 #else
         public string AvoidAnimal { get; set; }
 #endif
+        /// <summary>Display name of the protected animal in the requested language, beside the avoidAnimal identifier. Absent when no animal was sent and absent when lang is en, so an English response is unchanged.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AvoidAnimalLocalized { get; set; }
+#nullable restore
+#else
+        public string AvoidAnimalLocalized { get; set; }
+#endif
         /// <summary>The favoured days, in date order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -94,6 +102,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.AuspiciousDays
                 { "activity", n => { Activity = n.GetStringValue(); } },
                 { "activityLabel", n => { ActivityLabel = n.GetStringValue(); } },
                 { "avoidAnimal", n => { AvoidAnimal = n.GetStringValue(); } },
+                { "avoidAnimalLocalized", n => { AvoidAnimalLocalized = n.GetStringValue(); } },
                 { "days", n => { Days = n.GetCollectionOfObjectValues<global::RoxyApi.ChineseAstrology.Calendar.AuspiciousDays.AuspiciousDaysPostResponse_days>(global::RoxyApi.ChineseAstrology.Calendar.AuspiciousDays.AuspiciousDaysPostResponse_days.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "daysSearched", n => { DaysSearched = n.GetDoubleValue(); } },
                 { "endDate", n => { EndDate = n.GetStringValue(); } },
@@ -111,6 +120,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.AuspiciousDays
             writer.WriteStringValue("activity", Activity);
             writer.WriteStringValue("activityLabel", ActivityLabel);
             writer.WriteStringValue("avoidAnimal", AvoidAnimal);
+            writer.WriteStringValue("avoidAnimalLocalized", AvoidAnimalLocalized);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.ChineseAstrology.Calendar.AuspiciousDays.AuspiciousDaysPostResponse_days>("days", Days);
             writer.WriteDoubleValue("daysSearched", DaysSearched);
             writer.WriteStringValue("endDate", EndDate);

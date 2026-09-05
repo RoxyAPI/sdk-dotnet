@@ -23,13 +23,7 @@ namespace RoxyApi.Vastu.Devatas.Item
         public List<global::RoxyApi.Vastu.Devatas.Item.DevatasGetResponse_cells> Cells { get; set; }
 #endif
         /// <summary>Which ring of the mandala the devata belongs to: perimeter for the outer 32, innerRing for the eight around Brahma, innerCorner for the four on the inner diagonals, center for Brahma alone. 32 plus 8 plus 4 plus 1 is 45. Always English.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Class { get; set; }
-#nullable restore
-#else
-        public string Class { get; set; }
-#endif
+        public global::RoxyApi.Vastu.Devatas.Item.DevatasGetResponse_class? Class { get; set; }
         /// <summary>The entrance pada this devata governs, 1 to 32. Present only on the outer 32, since only a perimeter square can hold a main door.</summary>
         public double? EntrancePada { get; set; }
         /// <summary>How many squares the devata holds under 53.49 to 50: padika for one, dvipada for two, tripada for three. Absent for Brahma, whom those verses leave outside the scheme while enumerating 44 devatas.</summary>
@@ -140,7 +134,7 @@ namespace RoxyApi.Vastu.Devatas.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "cells", n => { Cells = n.GetCollectionOfObjectValues<global::RoxyApi.Vastu.Devatas.Item.DevatasGetResponse_cells>(global::RoxyApi.Vastu.Devatas.Item.DevatasGetResponse_cells.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "class", n => { Class = n.GetStringValue(); } },
+                { "class", n => { Class = n.GetEnumValue<global::RoxyApi.Vastu.Devatas.Item.DevatasGetResponse_class>(); } },
                 { "entrancePada", n => { EntrancePada = n.GetDoubleValue(); } },
                 { "group", n => { Group = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
@@ -163,7 +157,7 @@ namespace RoxyApi.Vastu.Devatas.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Vastu.Devatas.Item.DevatasGetResponse_cells>("cells", Cells);
-            writer.WriteStringValue("class", Class);
+            writer.WriteEnumValue<global::RoxyApi.Vastu.Devatas.Item.DevatasGetResponse_class>("class", Class);
             writer.WriteDoubleValue("entrancePada", EntrancePada);
             writer.WriteStringValue("group", Group);
             writer.WriteStringValue("id", Id);

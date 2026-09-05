@@ -49,7 +49,7 @@ namespace RoxyApi.Ayurveda.Dinacharya
 #else
         public string Translation { get; set; }
 #endif
-        /// <summary>Verse or verse range, as printed. Where the claim sits in an appended note or a commentary rather than in a numbered verse, this says so.</summary>
+        /// <summary>Verse or verse range, printed as the source prints it, so it is a string and not always numeric. Where the claim sits in an appended note or a commentary rather than in a numbered verse, this value is prose, as in &quot;note to 20&quot;. Join it to the chapter with a dot only when it is numeric, and otherwise render it after the chapter with a comma, so the pair reads &quot;18, note to 20&quot; rather than &quot;18.note to 20&quot;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Verse { get; set; }

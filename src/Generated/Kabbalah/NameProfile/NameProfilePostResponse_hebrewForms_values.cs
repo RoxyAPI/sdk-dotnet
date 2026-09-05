@@ -46,7 +46,7 @@ namespace RoxyApi.Kabbalah.NameProfile
 #else
         public string Tradition { get; set; }
 #endif
-        /// <summary>The number this cipher gives for the string. Null on the one catalogued cipher this API does not compute, which is stated on its catalogue entry rather than left to guess.</summary>
+        /// <summary>The number this cipher gives for the string. Always a number: the one catalogued cipher this API does not compute is absent from this array rather than present without a value, so no row here has to be guarded. Its catalogue entry carries computed false and says why.</summary>
         public double? Value { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Kabbalah.NameProfile.NameProfilePostResponse_hebrewForms_values"/> and sets the default values.

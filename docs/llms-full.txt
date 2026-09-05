@@ -470,13 +470,13 @@ await roxy.FengShui.FlyingStars.Annual[2026].GetAsync();
 await roxy.FengShui.FlyingStars.Monthly.GetAsync(c => { c.QueryParameters.Year = 2026; c.QueryParameters.Month = 1; });
 
 // List the nine flying stars - Xuan Kong star reference API
-await roxy.FengShui.FlyingStars.Stars.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+await roxy.FengShui.FlyingStars.Stars.GetAsync(c => { c.QueryParameters.Limit = 9; c.QueryParameters.Offset = 0; });
 
 // Annual afflictions - Tai Sui, San Sha and Five Yellow API
 await roxy.FengShui.Afflictions[2026].GetAsync();
 
 // List Bagua sectors - Feng shui bagua map API
-await roxy.FengShui.Bagua.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; });
+await roxy.FengShui.Bagua.GetAsync(c => { c.QueryParameters.Limit = 9; c.QueryParameters.Offset = 0; });
 
 // Look up a Bagua sector - Life area reference API
 await roxy.FengShui.Bagua["wealth"].GetAsync();

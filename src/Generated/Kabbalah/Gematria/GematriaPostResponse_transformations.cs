@@ -22,6 +22,14 @@ namespace RoxyApi.Kabbalah.Gematria
 #else
         public string Id { get; set; }
 #endif
+        /// <summary>Display name of the transformation as the catalogue names it, in the requested language.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
         /// <summary>The substituted Hebrew string. Absent when atbashOutput asked for the value alone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -82,6 +90,7 @@ namespace RoxyApi.Kabbalah.Gematria
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "id", n => { Id = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
                 { "output", n => { Output = n.GetStringValue(); } },
                 { "outputRomanization", n => { OutputRomanization = n.GetStringValue(); } },
                 { "source", n => { Source = n.GetStringValue(); } },
@@ -97,6 +106,7 @@ namespace RoxyApi.Kabbalah.Gematria
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("name", Name);
             writer.WriteStringValue("output", Output);
             writer.WriteStringValue("outputRomanization", OutputRomanization);
             writer.WriteStringValue("source", Source);

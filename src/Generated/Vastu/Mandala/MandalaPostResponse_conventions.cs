@@ -23,6 +23,8 @@ namespace RoxyApi.Vastu.Mandala
 #else
         public string Grid { get; set; }
 #endif
+        /// <summary>Unit every distance and area in the response is measured in, areas in its square. Echoes the resolved value whether it was sent or defaulted.</summary>
+        public global::RoxyApi.Vastu.Mandala.MandalaPostResponse_conventions_unit? Unit { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Vastu.Mandala.MandalaPostResponse_conventions"/> and sets the default values.
         /// </summary>
@@ -49,6 +51,7 @@ namespace RoxyApi.Vastu.Mandala
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "grid", n => { Grid = n.GetStringValue(); } },
+                { "unit", n => { Unit = n.GetEnumValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_conventions_unit>(); } },
             };
         }
         /// <summary>
@@ -59,6 +62,7 @@ namespace RoxyApi.Vastu.Mandala
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("grid", Grid);
+            writer.WriteEnumValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_conventions_unit>("unit", Unit);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

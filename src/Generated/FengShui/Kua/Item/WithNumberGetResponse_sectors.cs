@@ -22,7 +22,7 @@ namespace RoxyApi.FengShui.Kua.Item
 #else
         public string Direction { get; set; }
 #endif
-        /// <summary>The life domain this sector governs, in a few words.</summary>
+        /// <summary>The life domain this sector governs, in a few words, written in the requested language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Domain { get; set; }

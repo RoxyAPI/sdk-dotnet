@@ -23,13 +23,7 @@ namespace RoxyApi.Vastu.Mandala
         public global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_center Center { get; set; }
 #endif
         /// <summary>Which ring of the mandala the devata belongs to: perimeter for the outer 32, innerRing for the eight around Brahma, innerCorner for the four on the inner diagonals, center for Brahma. Present only on the 81 pada grid.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Class { get; set; }
-#nullable restore
-#else
-        public string Class { get; set; }
-#endif
+        public global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_class? Class { get; set; }
         /// <summary>Column of the grid, 1 at the western edge and 9 or 8 at the eastern one.</summary>
         public double? ColumnFromWest { get; set; }
         /// <summary>Identifier of the devata holding this square. Always English transliteration, safe to compare against. Present only on the 81 pada grid, since the chapter names no devata on the 64 pada division.</summary>
@@ -57,13 +51,7 @@ namespace RoxyApi.Vastu.Mandala
         public string Group { get; set; }
 #endif
         /// <summary>The structural role 53.55 to 56 gives this square of the 64 pada division: brahma, halved-inner-corner, halved-outer-corner, around-brahma, dvipada or outer. Present only on the 64 pada grid, which is the only thing that chapter states about it.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Role { get; set; }
-#nullable restore
-#else
-        public string Role { get; set; }
-#endif
+        public global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_role? Role { get; set; }
         /// <summary>Row of the grid, 1 at the northern edge and 9 or 8 at the southern one.</summary>
         public double? RowFromNorth { get; set; }
         /// <summary>Square number, 1 to 81 on the Paramasayika and 1 to 64 on the Manduka. Squares run row-major over the printed plate, which puts 1 in the north-east, 9 in the south-east, 73 in the north-west and 81 in the south-west on the 81 pada grid.</summary>
@@ -96,12 +84,12 @@ namespace RoxyApi.Vastu.Mandala
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "center", n => { Center = n.GetObjectValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_center>(global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_center.CreateFromDiscriminatorValue); } },
-                { "class", n => { Class = n.GetStringValue(); } },
+                { "class", n => { Class = n.GetEnumValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_class>(); } },
                 { "columnFromWest", n => { ColumnFromWest = n.GetDoubleValue(); } },
                 { "devata", n => { Devata = n.GetStringValue(); } },
                 { "devataName", n => { DevataName = n.GetStringValue(); } },
                 { "group", n => { Group = n.GetStringValue(); } },
-                { "role", n => { Role = n.GetStringValue(); } },
+                { "role", n => { Role = n.GetEnumValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_role>(); } },
                 { "rowFromNorth", n => { RowFromNorth = n.GetDoubleValue(); } },
                 { "square", n => { Square = n.GetDoubleValue(); } },
                 { "withinPlot", n => { WithinPlot = n.GetBoolValue(); } },
@@ -115,12 +103,12 @@ namespace RoxyApi.Vastu.Mandala
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_center>("center", Center);
-            writer.WriteStringValue("class", Class);
+            writer.WriteEnumValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_class>("class", Class);
             writer.WriteDoubleValue("columnFromWest", ColumnFromWest);
             writer.WriteStringValue("devata", Devata);
             writer.WriteStringValue("devataName", DevataName);
             writer.WriteStringValue("group", Group);
-            writer.WriteStringValue("role", Role);
+            writer.WriteEnumValue<global::RoxyApi.Vastu.Mandala.MandalaPostResponse_cells_role>("role", Role);
             writer.WriteDoubleValue("rowFromNorth", RowFromNorth);
             writer.WriteDoubleValue("square", Square);
             writer.WriteBoolValue("withinPlot", WithinPlot);

@@ -30,6 +30,14 @@ namespace RoxyApi.Kabbalah.Gematria
 #else
         public string Id { get; set; }
 #endif
+        /// <summary>Display name of the cipher in the requested language, the same string the ciphers catalogue serves for this id. Present so a caller holding one response can label a row without humanizing the identifier or fetching the catalogue. Switch on id, never on this.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
         /// <summary>The first published source this cipher was taken from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -46,7 +54,7 @@ namespace RoxyApi.Kabbalah.Gematria
 #else
         public string Tradition { get; set; }
 #endif
-        /// <summary>The number this cipher gives for the string. Null on the one catalogued cipher this API does not compute, which is stated on its catalogue entry rather than left to guess.</summary>
+        /// <summary>The number this cipher gives for the string. Always a number: the one catalogued cipher this API does not compute is absent from this array rather than present without a value, so no row here has to be guarded. Its catalogue entry carries computed false and says why.</summary>
         public double? Value { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Kabbalah.Gematria.GematriaPostResponse_values"/> and sets the default values.
@@ -75,6 +83,7 @@ namespace RoxyApi.Kabbalah.Gematria
             {
                 { "alternateValues", n => { AlternateValues = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
                 { "source", n => { Source = n.GetStringValue(); } },
                 { "tradition", n => { Tradition = n.GetStringValue(); } },
                 { "value", n => { Value = n.GetDoubleValue(); } },
@@ -89,6 +98,7 @@ namespace RoxyApi.Kabbalah.Gematria
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<double?>("alternateValues", AlternateValues);
             writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("name", Name);
             writer.WriteStringValue("source", Source);
             writer.WriteStringValue("tradition", Tradition);
             writer.WriteDoubleValue("value", Value);

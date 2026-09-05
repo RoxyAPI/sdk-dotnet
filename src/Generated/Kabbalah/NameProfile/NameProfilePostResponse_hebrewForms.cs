@@ -46,7 +46,7 @@ namespace RoxyApi.Kabbalah.NameProfile
 #else
         public string Rule { get; set; }
 #endif
-        /// <summary>Every cipher applied to this spelling.</summary>
+        /// <summary>Every computed cipher applied to this spelling, in catalogue order. The rows carry no display name, because they are the same ciphers in the same order for every spelling: read the names off the top level values array once.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Kabbalah.NameProfile.NameProfilePostResponse_hebrewForms_values>? Values { get; set; }

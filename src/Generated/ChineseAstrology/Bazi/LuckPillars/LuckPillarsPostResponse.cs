@@ -38,6 +38,14 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
 #else
         public string BoundaryTerm { get; set; }
 #endif
+        /// <summary>Display name of that same term, in the requested language. Always present, and English when lang is en. Several English renderings of a term are in circulation, so treat this as the label and boundaryTerm as the value.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BoundaryTermName { get; set; }
+#nullable restore
+#else
+        public string BoundaryTermName { get; set; }
+#endif
         /// <summary>The three school conventions this result was computed under. Returned on every BaZi response so a chart is self-describing: two calculators can produce different pillars for one birth and both be correct, and this object says which reading you are holding.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -112,6 +120,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
                 { "annualPillars", n => { AnnualPillars = n.GetCollectionOfObjectValues<global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_annualPillars>(global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_annualPillars.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "birthData", n => { BirthData = n.GetObjectValue<global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_birthData>(global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_birthData.CreateFromDiscriminatorValue); } },
                 { "boundaryTerm", n => { BoundaryTerm = n.GetStringValue(); } },
+                { "boundaryTermName", n => { BoundaryTermName = n.GetStringValue(); } },
                 { "conventions", n => { Conventions = n.GetObjectValue<global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_conventions>(global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_conventions.CreateFromDiscriminatorValue); } },
                 { "daysToTerm", n => { DaysToTerm = n.GetDoubleValue(); } },
                 { "direction", n => { Direction = n.GetStringValue(); } },
@@ -132,6 +141,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
             writer.WriteCollectionOfObjectValues<global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_annualPillars>("annualPillars", AnnualPillars);
             writer.WriteObjectValue<global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_birthData>("birthData", BirthData);
             writer.WriteStringValue("boundaryTerm", BoundaryTerm);
+            writer.WriteStringValue("boundaryTermName", BoundaryTermName);
             writer.WriteObjectValue<global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_conventions>("conventions", Conventions);
             writer.WriteDoubleValue("daysToTerm", DaysToTerm);
             writer.WriteStringValue("direction", Direction);
