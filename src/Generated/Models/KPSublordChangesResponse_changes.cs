@@ -48,7 +48,7 @@ namespace RoxyApi.Models
 #else
         public string FromSublord { get; set; }
 #endif
-        /// <summary>Precise sublord transition time (HH:MM, 24-hour). Refined via binary search to ~1 minute accuracy. Adjusted to requested timezone.</summary>
+        /// <summary>Sublord transition time (HH:MM, 24-hour): the instant is found to the second and shown to the minute it falls in. Adjusted to requested timezone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Time { get; set; }

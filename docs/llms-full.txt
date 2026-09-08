@@ -243,10 +243,10 @@ await roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new() { Latitude = 28.6139,
 await roxy.VedicAstrology.Kp.RulingPlanetsInterval.PostAsync(new() { StartDatetime = DateTimeOffset.Parse("2026-02-03T00:00:00Z"), EndDatetime = DateTimeOffset.Parse("2026-02-03T01:00:00Z"), IntervalMinutes = 5, Latitude = 17.385044, Longitude = 78.486671, Timezone = new() { Double = 5.5 } });
 
 // Find KP sublord changes
-await roxy.VedicAstrology.Kp.SublordChanges.PostAsync(new() { Planet = "Moon", StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 1, 31), Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Kp.SublordChanges.PostAsync(new() { StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 1, 31), Timezone = new() { Double = 5.5 } });
 
 // Find KP rasi ingress times
-await roxy.VedicAstrology.Kp.RasiChanges.PostAsync(new() { Planet = "Sun", StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 12, 31), Timezone = new() { Double = 5.5 } });
+await roxy.VedicAstrology.Kp.RasiChanges.PostAsync(new() { StartDate = new Date(2025, 1, 1), EndDate = new Date(2025, 12, 31), Timezone = new() { Double = 5.5 } });
 
 // Get KP planets at time intervals
 await roxy.VedicAstrology.Kp.PlanetsInterval.PostAsync(new() { StartDatetime = DateTimeOffset.Parse("2025-01-15T00:00:00Z"), EndDatetime = DateTimeOffset.Parse("2025-01-15T23:59:00Z"), IntervalMinutes = 60, Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } });

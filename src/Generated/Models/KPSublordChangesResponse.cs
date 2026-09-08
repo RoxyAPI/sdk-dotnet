@@ -46,7 +46,7 @@ namespace RoxyApi.Models
 #else
         public string StartDate { get; set; }
 #endif
-        /// <summary>Total Krishnamurti sublord transitions detected. Moon crosses ~14 sublords per day due to its fast motion.</summary>
+        /// <summary>Total Krishnamurti sublord transitions detected. The Moon, the fastest body, crosses about 9 sublords a day.</summary>
         public double? TotalChanges { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.KPSublordChangesResponse"/> and sets the default values.

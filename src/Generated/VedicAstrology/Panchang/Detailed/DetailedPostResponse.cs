@@ -230,7 +230,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
 #else
         public global::RoxyApi.VedicAstrology.Panchang.Detailed.DetailedPostResponse_tithi Tithi { get; set; }
 #endif
-        /// <summary>Panchang element transition times. exact timing of when each element (tithi, yoga, karana, nakshatra, Moon sign) changes. Calculated using binary search for ~1 minute precision. Essential for precise muhurta determination and panchang calendars.</summary>
+        /// <summary>Panchang element transition times: when each element (tithi, yoga, karana, nakshatra, Moon sign) changes, found to the second. Essential for precise muhurta determination and panchang calendars.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Panchang.Detailed.DetailedPostResponse_transitions? Transitions { get; set; }

@@ -17,21 +17,15 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Ayanamsa system for sidereal conversion. &quot;kp-newcomb&quot; uses the KP-Newcomb dynamic formula, the most common choice for KP astrology. &quot;kp-old&quot; uses the Krishnamurti original table from KP Reader-1 with constant precession rate. &quot;lahiri&quot; uses Lahiri/Chitrapaksha ayanamsa, matching most traditional Vedic software. &quot;raman&quot; uses the B.V. Raman ayanamsa from Hindu Predictive Astrology, a recognised traditional school that sits about 1.45 degrees below Lahiri. Defaults to &quot;kp-newcomb&quot;.</summary>
         public global::RoxyApi.Models.KPSublordChangesRequest_ayanamsa? Ayanamsa { get; set; }
-        /// <summary>End date for sublord change search (YYYY-MM-DD format)</summary>
+        /// <summary>Last day of the search, inclusive (YYYY-MM-DD), a calendar day in `timezone`. Not before startDate, at most 365 days after it.</summary>
         public Date? EndDate { get; set; }
         /// <summary>Lunar node convention. &quot;mean&quot; is the smoothed average node, which always moves retrograde; &quot;true&quot; is the osculating node, which tracks the real perturbed node, oscillates up to about 1.5 degrees either side of the mean on a 173-day cycle, and can briefly turn direct. Neither is more correct and they almost always fall in the same sign. Applies to the Rahu and Ketu positions. Mean is the traditional Vedic default and what printed panchangs use; the choice can move a KP sub-lord in narrow boundary cases, where a span can be as small as 0.5 degrees. Defaults to &quot;mean&quot;.</summary>
         public global::RoxyApi.Models.KPSublordChangesRequest_nodeType? NodeType { get; set; }
         /// <summary>Planet to track (case-insensitive). Valid values: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Planet { get; set; }
-#nullable restore
-#else
-        public string Planet { get; set; }
-#endif
-        /// <summary>Start date for sublord change search (YYYY-MM-DD format)</summary>
+        public global::RoxyApi.Models.KPSublordChangesRequest_planet? Planet { get; set; }
+        /// <summary>First day of the search (YYYY-MM-DD), a calendar day in `timezone`.</summary>
         public Date? StartDate { get; set; }
-        /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC. IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
+        /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;), a fixed offset like &quot;+05:30&quot;, OR decimal hours from UTC. One offset is taken from startDate (DST-correct for that date) and used for the whole range, so a window crossing a daylight-saving change is read on the earlier offset throughout; send a fixed offset if you need that explicit. The two dates are read as calendar days in this timezone and output times are converted to it, so one date with 5.5 is that whole Indian day. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.KPSublordChangesRequest.KPSublordChangesRequest_timezone? Timezone { get; set; }
@@ -69,7 +63,7 @@ namespace RoxyApi.Models
                 { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.Models.KPSublordChangesRequest_ayanamsa>(); } },
                 { "endDate", n => { EndDate = n.GetDateValue(); } },
                 { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.Models.KPSublordChangesRequest_nodeType>(); } },
-                { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planet", n => { Planet = n.GetEnumValue<global::RoxyApi.Models.KPSublordChangesRequest_planet>(); } },
                 { "startDate", n => { StartDate = n.GetDateValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Models.KPSublordChangesRequest.KPSublordChangesRequest_timezone>(global::RoxyApi.Models.KPSublordChangesRequest.KPSublordChangesRequest_timezone.CreateFromDiscriminatorValue); } },
             };
@@ -84,7 +78,7 @@ namespace RoxyApi.Models
             writer.WriteEnumValue<global::RoxyApi.Models.KPSublordChangesRequest_ayanamsa>("ayanamsa", Ayanamsa);
             writer.WriteDateValue("endDate", EndDate);
             writer.WriteEnumValue<global::RoxyApi.Models.KPSublordChangesRequest_nodeType>("nodeType", NodeType);
-            writer.WriteStringValue("planet", Planet);
+            writer.WriteEnumValue<global::RoxyApi.Models.KPSublordChangesRequest_planet>("planet", Planet);
             writer.WriteDateValue("startDate", StartDate);
             writer.WriteObjectValue<global::RoxyApi.Models.KPSublordChangesRequest.KPSublordChangesRequest_timezone>("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);

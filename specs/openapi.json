@@ -3,7 +3,7 @@
   "info": {
     "title": "RoxyAPI",
     "version": "2.0.0",
-    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 18 domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Mesoamerican Astrology, Vastu Shastra, Numerology, Kabbalah, Tarot Reading, Biorhythm, Ayurveda, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 258\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (Remote MCP)\n\nRoxyAPI ships a Remote MCP server per product over Streamable HTTP, with no local setup and no Docker. Your AI agent auto-discovers all 258\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable and stable, so it is the one safe to switch on programmatically.\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060, \u0060X-RateLimit-Reset\u0060 (Unix timestamp, seconds). Quotas reset on the 1st of every calendar month at 12:00 AM UTC, not on your renewal date.\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 per month for 50K requests, up to 3M requests, with custom volume above that.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart): first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs): guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp): connect AI agents\n- [Open source templates](https://roxyapi.com/starters): clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq): common questions\n- [Contact](https://roxyapi.com/contact): support and API key recovery\n",
+    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 18 domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Mesoamerican Astrology, Vastu Shastra, Numerology, Kabbalah, Tarot Reading, Biorhythm, Ayurveda, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 258\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (Remote MCP)\n\nRoxyAPI ships a Remote MCP server per product over Streamable HTTP, with no local setup and no Docker. Your AI agent auto-discovers all 258\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable and stable, so it is the one safe to switch on programmatically.\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060, \u0060X-RateLimit-Reset\u0060 (Unix timestamp, seconds). Quotas reset on the 1st of every calendar month at 12:00 AM UTC, not on your renewal date.\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 per month for 50K requests, up to 3M requests, with custom volume above that.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart): first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs): guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp): connect AI agents\n- [Open source templates](https://roxyapi.com/templates): clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq): common questions\n- [Contact](https://roxyapi.com/contact): support and API key recovery\n",
     "contact": {
       "name": "RoxyAPI Support",
       "url": "https://roxyapi.com/contact"
@@ -9912,7 +9912,7 @@
                         "Mars",
                         "Jupiter"
                       ],
-                      "description": "All significators in order of strength"
+                      "description": "The four levels flattened, strongest first, repeats included: a planet that reaches the house at two levels appears once per level, so the length counts level hits. The levels beside it are the per-level view."
                     }
                   },
                   "required": [
@@ -9970,7 +9970,7 @@
                         2,
                         11
                       ],
-                      "description": "All houses signified in order of strength"
+                      "description": "The four levels flattened, strongest first, repeats included: a house appears once per level the planet reaches it at, so the length counts level hits. The levels beside it are the per-level view."
                     }
                   },
                   "required": [
@@ -10779,7 +10779,7 @@
           "totalChanges": {
             "type": "number",
             "example": 42,
-            "description": "Total Krishnamurti sublord transitions detected. Moon crosses ~14 sublords per day due to its fast motion."
+            "description": "Total Krishnamurti sublord transitions detected. The Moon, the fastest body, crosses about 9 sublords a day."
           },
           "changes": {
             "type": "array",
@@ -10794,7 +10794,7 @@
                 "time": {
                   "type": "string",
                   "example": "13:53",
-                  "description": "Precise sublord transition time (HH:MM, 24-hour). Refined via binary search to ~1 minute accuracy. Adjusted to requested timezone."
+                  "description": "Sublord transition time (HH:MM, 24-hour): the instant is found to the second and shown to the minute it falls in. Adjusted to requested timezone."
                 },
                 "datetime": {
                   "type": "string",
@@ -10860,6 +10860,15 @@
         "properties": {
           "planet": {
             "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mars",
+              "Mercury",
+              "Jupiter",
+              "Venus",
+              "Saturn"
+            ],
             "example": "Moon",
             "description": "Planet to track (case-insensitive). Valid values: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn"
           },
@@ -10867,13 +10876,13 @@
             "type": "string",
             "format": "date",
             "example": "2025-01-01",
-            "description": "Start date for sublord change search (YYYY-MM-DD format)"
+            "description": "First day of the search (YYYY-MM-DD), a calendar day in \u0060timezone\u0060."
           },
           "endDate": {
             "type": "string",
             "format": "date",
             "example": "2025-01-31",
-            "description": "End date for sublord change search (YYYY-MM-DD format)"
+            "description": "Last day of the search, inclusive (YYYY-MM-DD), a calendar day in \u0060timezone\u0060. Not before startDate, at most 365 days after it."
           },
           "timezone": {
             "anyOf": [
@@ -10887,7 +10896,7 @@
               }
             ],
             "default": 0,
-            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC. IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).",
+            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022), a fixed offset like \u0022\u002B05:30\u0022, OR decimal hours from UTC. One offset is taken from startDate (DST-correct for that date) and used for the whole range, so a window crossing a daylight-saving change is read on the earlier offset throughout; send a fixed offset if you need that explicit. The two dates are read as calendar days in this timezone and output times are converted to it, so one date with 5.5 is that whole Indian day. Defaults to 0 (UTC).",
             "example": 5.5
           },
           "ayanamsa": {
@@ -10955,7 +10964,7 @@
                 "time": {
                   "type": "string",
                   "example": "08:00",
-                  "description": "Precise ingress time (HH:MM, 24-hour). Calculated via binary search refinement to ~1 minute accuracy. Adjusted to requested timezone."
+                  "description": "Ingress time (HH:MM, 24-hour): the instant is found to the second and shown to the minute it falls in. Adjusted to requested timezone."
                 },
                 "datetime": {
                   "type": "string",
@@ -11009,6 +11018,15 @@
         "properties": {
           "planet": {
             "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mars",
+              "Mercury",
+              "Jupiter",
+              "Venus",
+              "Saturn"
+            ],
             "example": "Sun",
             "description": "Planet to track (case-insensitive). Valid values: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn"
           },
@@ -11016,13 +11034,13 @@
             "type": "string",
             "format": "date",
             "example": "2025-01-01",
-            "description": "Start date for sign ingress search (YYYY-MM-DD format)"
+            "description": "First day of the search (YYYY-MM-DD), a calendar day in \u0060timezone\u0060."
           },
           "endDate": {
             "type": "string",
             "format": "date",
             "example": "2025-12-31",
-            "description": "End date for sign ingress search (YYYY-MM-DD format)"
+            "description": "Last day of the search, inclusive (YYYY-MM-DD), a calendar day in \u0060timezone\u0060. Not before startDate, at most 365 days after it."
           },
           "timezone": {
             "anyOf": [
@@ -11036,7 +11054,7 @@
               }
             ],
             "default": 0,
-            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC. IANA resolved to the DST-correct offset for startDate. Output times are converted to this timezone. Defaults to 0 (UTC).",
+            "description": "IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022), a fixed offset like \u0022\u002B05:30\u0022, OR decimal hours from UTC. One offset is taken from startDate (DST-correct for that date) and used for the whole range, so a window crossing a daylight-saving change is read on the earlier offset throughout; send a fixed offset if you need that explicit. The two dates are read as calendar days in this timezone and output times are converted to it, so one date with 5.5 is that whole Indian day. Defaults to 0 (UTC).",
             "example": 5.5
           },
           "ayanamsa": {
@@ -11670,7 +11688,7 @@
                         "Mars",
                         "Jupiter"
                       ],
-                      "description": "All significators in order of strength"
+                      "description": "The four levels flattened, strongest first, repeats included: a planet that reaches the house at two levels appears once per level, so the length counts level hits. The levels beside it are the per-level view."
                     }
                   },
                   "required": [
@@ -11728,7 +11746,7 @@
                         2,
                         11
                       ],
-                      "description": "All houses signified in order of strength"
+                      "description": "The four levels flattened, strongest first, repeats included: a house appears once per level the planet reaches it at, so the length counts level hits. The levels beside it are the per-level view."
                     }
                   },
                   "required": [
@@ -37173,7 +37191,7 @@
                         "nakshatra",
                         "moonSign"
                       ],
-                      "description": "Panchang element transition times. exact timing of when each element (tithi, yoga, karana, nakshatra, Moon sign) changes. Calculated using binary search for ~1 minute precision. Essential for precise muhurta determination and panchang calendars."
+                      "description": "Panchang element transition times: when each element (tithi, yoga, karana, nakshatra, Moon sign) changes, found to the second. Essential for precise muhurta determination and panchang calendars."
                     }
                   },
                   "required": [
@@ -39749,7 +39767,7 @@
           "Vedic Astrology"
         ],
         "summary": "Find KP sublord changes",
-        "description": "Track when planets cross KP sublord boundaries (1-249 divisions) for precise Krishnamurti Paddhati event timing. Returns exact timestamps when a planet transitions between sublords, essential for prashna kundali analysis and dasha predictions. Use this to find favorable windows when benefic sublords are active. Supports Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn tracking over any date range.",
+        "description": "Track when planets cross KP sublord boundaries (1-249 divisions) for precise Krishnamurti Paddhati event timing. Returns exact timestamps when a planet transitions between sublords, essential for prashna kundali analysis and dasha predictions. Use this to find favorable windows when benefic sublords are active. Supports Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn tracking over any window up to 365 days.",
         "security": [
           {
             "apiKey": []

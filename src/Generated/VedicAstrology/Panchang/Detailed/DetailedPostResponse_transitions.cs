@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.VedicAstrology.Panchang.Detailed
 {
     /// <summary>
-    /// Panchang element transition times. exact timing of when each element (tithi, yoga, karana, nakshatra, Moon sign) changes. Calculated using binary search for ~1 minute precision. Essential for precise muhurta determination and panchang calendars.
+    /// Panchang element transition times: when each element (tithi, yoga, karana, nakshatra, Moon sign) changes, found to the second. Essential for precise muhurta determination and panchang calendars.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DetailedPostResponse_transitions : IAdditionalDataHolder, IParsable

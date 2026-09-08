@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.Kp.SublordChanges
         {
         }
         /// <summary>
-        /// Track when planets cross KP sublord boundaries (1-249 divisions) for precise Krishnamurti Paddhati event timing. Returns exact timestamps when a planet transitions between sublords, essential for prashna kundali analysis and dasha predictions. Use this to find favorable windows when benefic sublords are active. Supports Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn tracking over any date range.
+        /// Track when planets cross KP sublord boundaries (1-249 divisions) for precise Krishnamurti Paddhati event timing. Returns exact timestamps when a planet transitions between sublords, essential for prashna kundali analysis and dasha predictions. Use this to find favorable windows when benefic sublords are active. Supports Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn tracking over any window up to 365 days.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.KPSublordChangesResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.Kp.SublordChanges
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.KPSublordChangesResponse>(requestInfo, global::RoxyApi.Models.KPSublordChangesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Track when planets cross KP sublord boundaries (1-249 divisions) for precise Krishnamurti Paddhati event timing. Returns exact timestamps when a planet transitions between sublords, essential for prashna kundali analysis and dasha predictions. Use this to find favorable windows when benefic sublords are active. Supports Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn tracking over any date range.
+        /// Track when planets cross KP sublord boundaries (1-249 divisions) for precise Krishnamurti Paddhati event timing. Returns exact timestamps when a planet transitions between sublords, essential for prashna kundali analysis and dasha predictions. Use this to find favorable windows when benefic sublords are active. Supports Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn tracking over any window up to 365 days.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

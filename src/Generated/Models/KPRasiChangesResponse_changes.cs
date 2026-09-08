@@ -46,7 +46,7 @@ namespace RoxyApi.Models
 #else
         public string FromSignLord { get; set; }
 #endif
-        /// <summary>Precise ingress time (HH:MM, 24-hour). Calculated via binary search refinement to ~1 minute accuracy. Adjusted to requested timezone.</summary>
+        /// <summary>Ingress time (HH:MM, 24-hour): the instant is found to the second and shown to the minute it falls in. Adjusted to requested timezone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Time { get; set; }

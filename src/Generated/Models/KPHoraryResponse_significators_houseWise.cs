@@ -14,7 +14,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>All significators in order of strength</summary>
+        /// <summary>The four levels flattened, strongest first, repeats included: a planet that reaches the house at two levels appears once per level, so the length counts level hits. The levels beside it are the per-level view.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? All { get; set; }
