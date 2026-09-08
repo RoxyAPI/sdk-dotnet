@@ -530,7 +530,7 @@ The typed client is generated from the public OpenAPI specification with [Kiota]
 - [API Reference](https://roxyapi.com/api-reference)
 - [Pricing](https://roxyapi.com/pricing)
 - [MCP setup for AI agents](https://roxyapi.com/docs/mcp)
-- [Templates](https://roxyapi.com/starters)
+- [Templates](https://roxyapi.com/templates)
 - [TypeScript SDK](https://www.npmjs.com/package/@roxyapi/sdk) | [Python SDK](https://pypi.org/project/roxy-sdk/) | [PHP SDK](https://packagist.org/packages/roxyapi/sdk)
 - [Issues](https://github.com/RoxyAPI/sdk-dotnet/issues)
 
