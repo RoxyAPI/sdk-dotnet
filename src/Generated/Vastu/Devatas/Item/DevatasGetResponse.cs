@@ -42,7 +42,7 @@ namespace RoxyApi.Vastu.Devatas.Item
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>Display name of the devata, with the diacritics the transliteration carries. A Sanskrit proper noun, so it stays as it is in every language.</summary>
+        /// <summary>Display name of the devata. A Sanskrit proper noun: romanised with the diacritics the transliteration carries in every language, and written in Devanagari as the Sanskrit text prints it when lang is hi. Compare on id, never on this.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

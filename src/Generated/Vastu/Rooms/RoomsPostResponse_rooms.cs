@@ -38,7 +38,7 @@ namespace RoxyApi.Vastu.Rooms
 #else
         public string Reading { get; set; }
 #endif
-        /// <summary>What to do when the room is not where it belongs. Original prose, translated in place when lang is set.</summary>
+        /// <summary>What to do when the room is not where it belongs. Present when the verdict is acceptable or avoid, and absent on an ideal placement, which has nothing to fix. Original prose, translated in place when lang is set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Remedy { get; set; }

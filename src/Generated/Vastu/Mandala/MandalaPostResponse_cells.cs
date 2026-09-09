@@ -34,7 +34,7 @@ namespace RoxyApi.Vastu.Mandala
 #else
         public string Devata { get; set; }
 #endif
-        /// <summary>Display name of that devata, with the diacritics the transliteration carries. Present only on the 81 pada grid.</summary>
+        /// <summary>Display name of that devata. A Sanskrit proper noun: romanised with the diacritics the transliteration carries in every language, and written in Devanagari as the Sanskrit text prints it when lang is hi. Present only on the 81 pada grid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DevataName { get; set; }

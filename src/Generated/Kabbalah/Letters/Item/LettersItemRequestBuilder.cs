@@ -41,7 +41,6 @@ namespace RoxyApi.Kabbalah.Letters.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 401 status code</exception>
-        /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 404 status code</exception>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 405 status code</exception>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 429 status code</exception>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
@@ -59,7 +58,6 @@ namespace RoxyApi.Kabbalah.Letters.Item
             {
                 { "400", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },
                 { "401", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },
-                { "404", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },
                 { "405", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },
                 { "429", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },
                 { "500", global::RoxyApi.Models.RoxyError.CreateFromDiscriminatorValue },

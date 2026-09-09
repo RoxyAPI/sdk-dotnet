@@ -22,7 +22,7 @@ namespace RoxyApi.Vastu.Directions
 #else
         public List<global::RoxyApi.Vastu.Directions.DirectionsGetResponse_directions_devatas> Devatas { get; set; }
 #endif
-        /// <summary>The lord of this quarter of the horizon, per Brihat Samhita 54.3. Always English transliteration, safe to compare against. These are NOT the 45 mandala devatas and the two sets must not be merged: Agni is the north-east mandala square and the south-east dikpala.</summary>
+        /// <summary>The lord of this quarter of the horizon, per Brihat Samhita 54.3. A Sanskrit proper noun: romanised with the diacritics the transliteration carries in every language, and written in Devanagari as the Sanskrit text prints it when lang is hi. Compare on id, never on this. These are NOT the 45 mandala devatas and the two sets must not be merged: Agni is the north-east mandala square and the south-east dikpala.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Dikpala { get; set; }
