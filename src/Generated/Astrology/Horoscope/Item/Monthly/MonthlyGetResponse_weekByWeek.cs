@@ -14,7 +14,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Specific guidance for this week.</summary>
+        /// <summary>What that house asks for, as one sentence in the requested language. No two weeks of one month repeat a sentence.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Advice { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Advice { get; set; }
 #endif
-        /// <summary>Primary focus area for this week, derived from planetary house activations for this sign.</summary>
+        /// <summary>The life area the week turns on, in the requested language: the theme of the whole-sign house holding the strongest event the reading names inside that week, or of the strongest standing placement where the week holds no dated event. Same values as the life areas of the yearly key periods.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Focus { get; set; }
@@ -30,7 +30,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Focus { get; set; }
 #endif
-        /// <summary>Week number within the month (1-4).</summary>
+        /// <summary>Position of the week inside the month, 1 first. The rows are calendar weeks, Monday to Sunday, clipped to the month at each end, so a month carries four, five or six of them. Row N is therefore the same week the weekly forecast covers, which is what lets a monthly page link straight into it.</summary>
         public double? Week { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_weekByWeek"/> and sets the default values.

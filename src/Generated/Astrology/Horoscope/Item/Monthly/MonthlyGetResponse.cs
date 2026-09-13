@@ -14,7 +14,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Actionable guidance for the month as a whole, derived from the Mercury house activation for this sign. Distinct from the per-week advice inside weekByWeek: this is the single takeaway for the month.</summary>
+        /// <summary>The single actionable takeaway from the leading event of the period, read into the whole-sign houses of this sign and checkable against the events array. Drawn from the same event as overview, kept to a short, actionable pair of sentences rather than grown to match the other sections. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Advice { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Advice { get; set; }
 #endif
-        /// <summary>Monthly career and professional outlook.</summary>
+        /// <summary>Monthly career and professional outlook, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to career, work and reputation, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries career, work and reputation, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 120 to 200 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Career { get; set; }
@@ -30,7 +30,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Career { get; set; }
 #endif
-        /// <summary>The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 400 to 700 words. The six section fields are the same reading split by topic, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
+        /// <summary>The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 400 to 700 words. The six section fields read the same ranked events filtered to their own life area, each composed as a column of its own rather than an excerpt of this one, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Column { get; set; }
@@ -54,7 +54,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public List<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_events> Events { get; set; }
 #endif
-        /// <summary>Monthly financial outlook and guidance.</summary>
+        /// <summary>Monthly financial outlook and guidance, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to finance, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries finance, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 120 to 200 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Finance { get; set; }
@@ -62,7 +62,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Finance { get; set; }
 #endif
-        /// <summary>Monthly health and wellness guidance.</summary>
+        /// <summary>Monthly health and wellness guidance, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to health, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries health, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 120 to 200 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Health { get; set; }
@@ -70,7 +70,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Health { get; set; }
 #endif
-        /// <summary>Key astrological dates this month with actual New Moon, Full Moon, and retrograde dates calculated from ephemeris data.</summary>
+        /// <summary>The dates to circle this month, earliest first: every lunation and eclipse of the month, plus the headline movements the reading is built on, which are the sign changes of the slower planets and every station with the direction it turns. Each is placed in the whole-sign house it reaches for this sign. Every row is an instant the ephemeris gives, checkable against NASA JPL Horizons or the US Naval Observatory, and every row that is not a lunation or an eclipse is also a row of events[], so the list cannot contradict the reading beside it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_keyDates>? KeyDates { get; set; }
@@ -78,7 +78,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public List<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_keyDates> KeyDates { get; set; }
 #endif
-        /// <summary>Monthly love and relationship forecast.</summary>
+        /// <summary>Monthly love and relationship forecast, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to romance and partnership, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries romance and partnership, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 120 to 200 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Love { get; set; }
@@ -110,7 +110,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Month { get; set; }
 #endif
-        /// <summary>Monthly overview covering the major planetary transits and their impact on the sign.</summary>
+        /// <summary>The single most relevant event of the period, whichever life area it touches, read into the whole-sign houses of this sign. The same event that leads column, at lede length rather than developed into a full movement, and checkable against the events array. Typically 55 to 100 words. Join it with love, career, health and finance for a general reading built from the six sections. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Overview { get; set; }
@@ -126,7 +126,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Sign { get; set; }
 #endif
-        /// <summary>Week-by-week breakdown with sign-specific focus areas based on transit house positions.</summary>
+        /// <summary>The month read one calendar week at a time, off the same ranked events as column and events[]: the life area each week turns on, and the one thing that area asks for. Two weeks may land in the same area, because two events of a month often do; the sentence beside it is always different. Use it for the week strip of a monthly page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Astrology.Horoscope.Item.Monthly.MonthlyGetResponse_weekByWeek>? WeekByWeek { get; set; }

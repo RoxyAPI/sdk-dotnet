@@ -46,7 +46,7 @@ namespace RoxyApi.Astrology.Aspects.Monthly
 #else
         public string Datetime { get; set; }
 #endif
-        /// <summary>Whether the aspect is harmonious, challenging or neutral. Canonical English, so a calendar can colour or filter on it directly. natureLocalized carries the reader-facing form.</summary>
+        /// <summary>Whether the aspect is harmonious, challenging or neutral. Canonical English, so a calendar can color or filter on it directly. natureLocalized carries the reader-facing form.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Nature { get; set; }

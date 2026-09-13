@@ -14,7 +14,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Date of the astrological event (YYYY-MM-DD).</summary>
+        /// <summary>UTC date of the event (YYYY-MM-DD). The exact instant, to the second, is on the matching row of events[].</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Date { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
 #else
         public string Date { get; set; }
 #endif
-        /// <summary>Astrological event active on this date (lunar phases, retrogrades, sign ingresses).</summary>
+        /// <summary>The event as one sentence in the requested language, placed in the whole-sign house it reaches for this sign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Event { get; set; }
