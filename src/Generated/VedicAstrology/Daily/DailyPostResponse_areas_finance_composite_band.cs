@@ -3,9 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Daily
 {
-    /// <summary>The band the finance score falls in, on the same ladder as the top-level verdict so the two can never disagree about what a word means: &quot;very-strong&quot; above 75, &quot;strong&quot; above 50, &quot;moderate&quot; above 25, &quot;weak&quot; at 25 and below. Null above latitude 66.56, where the Placidus cusps the KP significators are read from have no solution: the question does not apply there rather than the answer being no, so never render it as zero or as a weak verdict. The natal block beside it is unaffected and still ships, and degraded names areas.finance.score.</summary>
+    /// <summary>The band the composite falls in, on the same ladder the top-level verdict uses: &quot;very-strong&quot; above 75, &quot;strong&quot; above 50, &quot;moderate&quot; above 25, &quot;weak&quot; at 25 and below.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum DailyPostResponse_areas_finance_band
+    public enum DailyPostResponse_areas_finance_composite_band
     {
         [EnumMember(Value = "very-strong")]
         #pragma warning disable CS1591

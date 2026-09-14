@@ -174,7 +174,7 @@ await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1
 await roxy.VedicAstrology.PlanetaryPositions.Monthly.PostAsync(new() { Year = 2026, Month = 2 });
 
 // Get current Mahadasha, Antardasha, Pratyantardasha, Sookshma, Prana - Dasha Calculator API
-await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });
+await roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false, Datetime = DateTimeOffset.Parse("2026-08-23T13:47:46Z") });
 
 // Get all 9 Mahadasha periods (120-year cycle)
 await roxy.VedicAstrology.Dasha.Major.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Significators = false });

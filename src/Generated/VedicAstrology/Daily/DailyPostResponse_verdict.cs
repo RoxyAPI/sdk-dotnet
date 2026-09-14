@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Daily
 {
-    /// <summary>The band the score falls in: &quot;very-strong&quot; at 75 and above, &quot;strong&quot; at 50 and above, &quot;moderate&quot; at 25 and above, &quot;weak&quot; below 25. The four WORDS are the shipped KP significator band words, reused so nothing new has to be translated. The EDGES are the RoxyAPI convention and are quartiles, because no authority bands a day and quartiles are the least arbitrary division of a percentage into four named steps. Read it with the same expectation the score carries: the gates cancel far more often than they deliver, so the lower bands are the common case.</summary>
+    /// <summary>The score as one of four bands: &quot;very-strong&quot; above 75, &quot;strong&quot; above 50, &quot;moderate&quot; above 25, &quot;weak&quot; at 25 and below. A band starts above its edge, so a balanced day at exactly 50 is &quot;moderate&quot; and &quot;strong&quot; means the net is in favour of the native. &quot;moderate&quot; is the ordinary day. &quot;weak&quot; needs the members against to outnumber the members for by more than half of those evaluated, which is six of eleven, and &quot;very-strong&quot; is the mirror of that and is rare. The same four words band the finance score, the composite and each of its layers, on the same edges, so one word means one thing everywhere in this response. Canonical English machine values, the same enum every KP significator route returns.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DailyPostResponse_verdict
     {

@@ -21,6 +21,8 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
         public double? AyanamsaValue { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas).</summary>
         public Date? Date { get; set; }
+        /// <summary>ISO 8601 datetime (YYYY-MM-DDTHH:MM:SS) to read the running periods at, for a reading prepared for a future day, a backtest, or a chart cast for a past moment. Defaults to the current instant. Interpreted as local time in the request timezone (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
+        public DateTimeOffset? Datetime { get; set; }
         /// <summary>Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172.</summary>
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees. Affects local time calculations and ayanamsha adjustments. Example: Delhi 77.2090, Mumbai 72.8777, Kathmandu 85.3240.</summary>
@@ -70,6 +72,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
                 { "ayanamsa", n => { Ayanamsa = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_ayanamsa>(); } },
                 { "ayanamsaValue", n => { AyanamsaValue = n.GetDoubleValue(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
+                { "datetime", n => { Datetime = n.GetDateTimeOffsetValue(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_nodeType>(); } },
@@ -88,6 +91,7 @@ namespace RoxyApi.VedicAstrology.Dasha.Current
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_ayanamsa>("ayanamsa", Ayanamsa);
             writer.WriteDoubleValue("ayanamsaValue", AyanamsaValue);
             writer.WriteDateValue("date", Date);
+            writer.WriteDateTimeOffsetValue("datetime", Datetime);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.Dasha.Current.CurrentPostRequestBody_nodeType>("nodeType", NodeType);

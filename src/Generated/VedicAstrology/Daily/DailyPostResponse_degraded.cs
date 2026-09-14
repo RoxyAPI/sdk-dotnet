@@ -14,7 +14,7 @@ namespace RoxyApi.VedicAstrology.Daily
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Which part of the reading this location or date could not supply. &quot;areas.finance.score&quot; names the KP net by the member it is read through: the finance area itself always ships and its natal block is always populated, and it is the six netted members that are null.</summary>
+        /// <summary>Which part of the reading this location or date could not supply. &quot;areas.finance.score&quot; names the KP net by the member it is read through: the finance area itself always ships and its natal block is always populated, and it is the seven netted members that are null.</summary>
         public global::RoxyApi.VedicAstrology.Daily.DailyPostResponse_degraded_component? Component { get; set; }
         /// <summary>Why it could not: &quot;sun-does-not-rise&quot; for a day with no sunrise at these coordinates, &quot;polar-latitude&quot; above 66.56 degrees where the Placidus cusps have no solution.</summary>
         public global::RoxyApi.VedicAstrology.Daily.DailyPostResponse_degraded_reason? Reason { get; set; }

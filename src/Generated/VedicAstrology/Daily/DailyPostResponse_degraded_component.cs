@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.VedicAstrology.Daily
 {
-    /// <summary>Which part of the reading this location or date could not supply. &quot;areas.finance.score&quot; names the KP net by the member it is read through: the finance area itself always ships and its natal block is always populated, and it is the six netted members that are null.</summary>
+    /// <summary>Which part of the reading this location or date could not supply. &quot;areas.finance.score&quot; names the KP net by the member it is read through: the finance area itself always ships and its natal block is always populated, and it is the seven netted members that are null.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DailyPostResponse_degraded_component
     {
