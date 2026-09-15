@@ -7,37 +7,26 @@ using System.IO;
 using System;
 namespace RoxyApi.Models
 {
-    /// <summary>
-    /// Ketu (South Lunar Node), shadow planet, spiritual karmic indicator.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class KPChartResponse_nodes_ketu : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class KPDailyFinanceResponse_layers_cusps_rows : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Occupied house number (1-12) based on Placidus cusps.</summary>
+        /// <summary>The cusp judged, 1 to 12.</summary>
         public double? House { get; set; }
-        /// <summary>KP number (1-249) locating Ketu in the 249-division sub-lord scheme. Each of the 249 divisions maps to a unique sign, star lord and sub lord triple, so one integer pins the position precisely enough for KP event timing.</summary>
-        public double? KpNumber { get; set; }
-        /// <summary>Sidereal longitude of Ketu (South Node). Always 180 degrees from Rahu.</summary>
+        /// <summary>Whether the planet signifies at least one gain house at any of the four tiers.</summary>
+        public bool? InGain { get; set; }
+        /// <summary>Whether the planet signifies at least one loss house at any of the four tiers.</summary>
+        public bool? InLoss { get; set; }
+        /// <summary>True on a loss house, where the verdict score is inverted: a loss cusp whose sub lord signifies only loss scores 100, because a denied loss is good news for the native.</summary>
+        public bool? Inverted { get; set; }
+        /// <summary>Sidereal longitude of the cusp in the requested ayanamsa, degrees.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Nakshatra of Ketu.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Nakshatra { get; set; }
-#nullable restore
-#else
-        public string Nakshatra { get; set; }
-#endif
-        /// <summary>Zodiac sign Ketu occupies.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Sign { get; set; }
-#nullable restore
-#else
-        public string Sign { get; set; }
-#endif
-        /// <summary>Rashi lord of the sign Ketu occupies. Ketu has no sign of its own and acts as agent of this lord.</summary>
+        /// <summary>The verdict score, 100 / 50 / 0 / 50, after the inversion on a loss house.</summary>
+        public double? Score { get; set; }
+        /// <summary>Lord of the sign the cusp falls in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SignLord { get; set; }
@@ -45,7 +34,7 @@ namespace RoxyApi.Models
 #else
         public string SignLord { get; set; }
 #endif
-        /// <summary>KP star lord of Ketu.</summary>
+        /// <summary>Lord of the nakshatra the cusp falls in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? StarLord { get; set; }
@@ -53,7 +42,7 @@ namespace RoxyApi.Models
 #else
         public string StarLord { get; set; }
 #endif
-        /// <summary>KP sub lord of Ketu.</summary>
+        /// <summary>The KP sub lord of the cusp, the one lord that decides whether the house delivers. It is the planet the row classifies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SubLord { get; set; }
@@ -61,30 +50,24 @@ namespace RoxyApi.Models
 #else
         public string SubLord { get; set; }
 #endif
-        /// <summary>KP sub-sub lord (SSL) of Ketu.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SubSubLord { get; set; }
-#nullable restore
-#else
-        public string SubSubLord { get; set; }
-#endif
+        /// <summary>The one classification every layer uses: &quot;favourable&quot; when the planet signifies a gain house and no loss house (100), &quot;mixed&quot; when it signifies both (50), &quot;unfavourable&quot; when it signifies a loss house and no gain house (0), &quot;neutral&quot; when it signifies neither (50). Canonical English machine value.</summary>
+        public global::RoxyApi.Models.KPDailyFinanceResponse_layers_cusps_rows_verdict? Verdict { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.Models.KPChartResponse_nodes_ketu"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.Models.KPDailyFinanceResponse_layers_cusps_rows"/> and sets the default values.
         /// </summary>
-        public KPChartResponse_nodes_ketu()
+        public KPDailyFinanceResponse_layers_cusps_rows()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.Models.KPChartResponse_nodes_ketu"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Models.KPDailyFinanceResponse_layers_cusps_rows"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.Models.KPChartResponse_nodes_ketu CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.Models.KPDailyFinanceResponse_layers_cusps_rows CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.Models.KPChartResponse_nodes_ketu();
+            return new global::RoxyApi.Models.KPDailyFinanceResponse_layers_cusps_rows();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -95,14 +78,15 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "house", n => { House = n.GetDoubleValue(); } },
-                { "kpNumber", n => { KpNumber = n.GetDoubleValue(); } },
+                { "inGain", n => { InGain = n.GetBoolValue(); } },
+                { "inLoss", n => { InLoss = n.GetBoolValue(); } },
+                { "inverted", n => { Inverted = n.GetBoolValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
-                { "nakshatra", n => { Nakshatra = n.GetStringValue(); } },
-                { "sign", n => { Sign = n.GetStringValue(); } },
+                { "score", n => { Score = n.GetDoubleValue(); } },
                 { "signLord", n => { SignLord = n.GetStringValue(); } },
                 { "starLord", n => { StarLord = n.GetStringValue(); } },
                 { "subLord", n => { SubLord = n.GetStringValue(); } },
-                { "subSubLord", n => { SubSubLord = n.GetStringValue(); } },
+                { "verdict", n => { Verdict = n.GetEnumValue<global::RoxyApi.Models.KPDailyFinanceResponse_layers_cusps_rows_verdict>(); } },
             };
         }
         /// <summary>
@@ -113,14 +97,15 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("house", House);
-            writer.WriteDoubleValue("kpNumber", KpNumber);
+            writer.WriteBoolValue("inGain", InGain);
+            writer.WriteBoolValue("inLoss", InLoss);
+            writer.WriteBoolValue("inverted", Inverted);
             writer.WriteDoubleValue("longitude", Longitude);
-            writer.WriteStringValue("nakshatra", Nakshatra);
-            writer.WriteStringValue("sign", Sign);
+            writer.WriteDoubleValue("score", Score);
             writer.WriteStringValue("signLord", SignLord);
             writer.WriteStringValue("starLord", StarLord);
             writer.WriteStringValue("subLord", SubLord);
-            writer.WriteStringValue("subSubLord", SubSubLord);
+            writer.WriteEnumValue<global::RoxyApi.Models.KPDailyFinanceResponse_layers_cusps_rows_verdict>("verdict", Verdict);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -56,6 +56,14 @@ namespace RoxyApi.Models
 #else
         public string Sign { get; set; }
 #endif
+        /// <summary>Rashi lord (sign ruler). First level of the KP significator hierarchy. Its house ownership determines L4 significations.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLord { get; set; }
+#nullable restore
+#else
+        public string SignLord { get; set; }
+#endif
         /// <summary>KP star lord, determines primary house signification.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -114,6 +122,7 @@ namespace RoxyApi.Models
                 { "planet", n => { Planet = n.GetStringValue(); } },
                 { "retrograde", n => { Retrograde = n.GetBoolValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLord", n => { SignLord = n.GetStringValue(); } },
                 { "starLord", n => { StarLord = n.GetStringValue(); } },
                 { "subLord", n => { SubLord = n.GetStringValue(); } },
                 { "subSubLord", n => { SubSubLord = n.GetStringValue(); } },
@@ -135,6 +144,7 @@ namespace RoxyApi.Models
             writer.WriteStringValue("planet", Planet);
             writer.WriteBoolValue("retrograde", Retrograde);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLord", SignLord);
             writer.WriteStringValue("starLord", StarLord);
             writer.WriteStringValue("subLord", SubLord);
             writer.WriteStringValue("subSubLord", SubSubLord);

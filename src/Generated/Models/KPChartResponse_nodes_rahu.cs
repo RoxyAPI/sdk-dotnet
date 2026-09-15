@@ -37,6 +37,14 @@ namespace RoxyApi.Models
 #else
         public string Sign { get; set; }
 #endif
+        /// <summary>Rashi lord of the sign Rahu occupies. Rahu has no sign of its own and acts as agent of this lord.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLord { get; set; }
+#nullable restore
+#else
+        public string SignLord { get; set; }
+#endif
         /// <summary>KP star lord of Rahu.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -91,6 +99,7 @@ namespace RoxyApi.Models
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nakshatra", n => { Nakshatra = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLord", n => { SignLord = n.GetStringValue(); } },
                 { "starLord", n => { StarLord = n.GetStringValue(); } },
                 { "subLord", n => { SubLord = n.GetStringValue(); } },
                 { "subSubLord", n => { SubSubLord = n.GetStringValue(); } },
@@ -108,6 +117,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("nakshatra", Nakshatra);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLord", SignLord);
             writer.WriteStringValue("starLord", StarLord);
             writer.WriteStringValue("subLord", SubLord);
             writer.WriteStringValue("subSubLord", SubSubLord);
