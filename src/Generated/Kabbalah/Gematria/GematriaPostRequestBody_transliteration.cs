@@ -3,13 +3,17 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Kabbalah.Gematria
 {
-    /// <summary>How a Latin name is written in Hebrew before it is scored. One member, a deterministic published letter map. Phonetic Ashkenazi and Sephardi schemes are not offered because no two references agree on a rule for that direction, and every published Hebrew standard romanizes the other way. Send textHebrew to control the spelling yourself.</summary>
+    /// <summary>How a Latin name is written in Hebrew before it is scored. Two members. letter-map-mathers is the 1887 Hermetic letter map, with e read as its author practised it: a point inside a word and alef at the start of one. It writes no c, f, w or x, so a name carrying one of them outside a two letter group returns 400 naming the letter. letter-map-modern follows the modern Israeli transcription rules for the sound each Latin letter carries in English and French spelling, covers every Latin letter, drops the geresh and does not double vav or yod, so send textHebrew for the ktiv male form. Every form states the readings it used in rule. Phonetic Ashkenazi and Sephardi schemes are not offered because no two references agree on a rule for that direction.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum GematriaPostRequestBody_transliteration
     {
         [EnumMember(Value = "letter-map-mathers")]
         #pragma warning disable CS1591
         LetterMapMathers,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "letter-map-modern")]
+        #pragma warning disable CS1591
+        LetterMapModern,
         #pragma warning restore CS1591
     }
 }

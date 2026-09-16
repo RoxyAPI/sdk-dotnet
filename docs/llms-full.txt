@@ -254,7 +254,7 @@ await roxy.VedicAstrology.Kp.PlanetsInterval.PostAsync(new() { StartDatetime = D
 // Cast a KP horary (Prashna) chart from a number 1-249 - KP Horary API
 await roxy.VedicAstrology.Kp.Horary.PostAsync(new() { HoraryNumber = 108, Date = new Date(2026, 3, 8), Time = new Time(14, 30, 0), Latitude = 19.076, Longitude = 72.8777, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });
 
-// Score the day for money with four sub lord layers - KP Daily Finance API
+// Daily finance score from four KP sub lord layers - KP Daily Finance API
 await roxy.VedicAstrology.Kp.DailyFinance.PostAsync(new() { BirthDate = new Date(1990, 6, 15), BirthTime = new Time(7, 30, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, Date = new Date(2026, 9, 14), Time = new Time(12, 0, 0), GainHouses = [2], LossHouses = [6], Weights = new() { Cusps = 30, Dasha = 40, RulingPlanets = 15, MoonWindows = 15 } });
 
 // Get planetary aspects (Drishti) - Mutual aspects between all planets

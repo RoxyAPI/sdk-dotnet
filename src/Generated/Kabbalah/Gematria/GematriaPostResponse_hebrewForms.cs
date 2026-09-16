@@ -38,7 +38,7 @@ namespace RoxyApi.Kabbalah.Gematria
 #else
         public string Romanization { get; set; }
 #endif
-        /// <summary>Why this spelling came out of the map, so a caller can tell the parses apart.</summary>
+        /// <summary>Why this spelling came out of the map: the parse rule first, then one sentence for every reading the scheme applied that the letters alone would not show, so a caller can tell the parses apart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Rule { get; set; }

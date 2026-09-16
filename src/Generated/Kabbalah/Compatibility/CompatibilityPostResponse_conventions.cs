@@ -7,11 +7,10 @@ using System.IO;
 using System;
 namespace RoxyApi.Kabbalah.Compatibility
 {
-    /// <summary>
-    /// The conventions this answer was computed under.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+    #pragma warning disable CS1591
     public partial class CompatibilityPostResponse_conventions : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -23,7 +22,7 @@ namespace RoxyApi.Kabbalah.Compatibility
 #else
         public string MisparGadol { get; set; }
 #endif
-        /// <summary>The Latin to Hebrew scheme applied. Absent when both names arrived in Hebrew.</summary>
+        /// <summary>The Latin to Hebrew scheme applied. Absent when the caller sent Hebrew directly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Transliteration { get; set; }

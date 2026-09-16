@@ -32,7 +32,7 @@ namespace RoxyApi.Kabbalah.Gematria
 #else
         public string LetterId { get; set; }
 #endif
-        /// <summary>Display name of the letter.</summary>
+        /// <summary>Display name of the letter, in the requested language. Branch on letterId, never on this.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

@@ -30,7 +30,7 @@ namespace RoxyApi.Kabbalah.Compatibility
 #else
         public List<global::RoxyApi.Kabbalah.Compatibility.CompatibilityPostResponse_components> Components { get; set; }
 #endif
-        /// <summary>The conventions this answer was computed under.</summary>
+        /// <summary>The conventions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Kabbalah.Compatibility.CompatibilityPostResponse_conventions? Conventions { get; set; }
