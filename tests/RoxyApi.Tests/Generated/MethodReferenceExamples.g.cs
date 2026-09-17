@@ -190,7 +190,7 @@ internal static class MethodReferenceExamples
         await roxy.Numerology.PersonalDay.PostAsync(new() { Month = 7, Day = 18, TargetDate = new Date(2026, 4, 4) });
         await roxy.Numerology.PersonalMonth.PostAsync(new() { Month = 7, Day = 18, Year = 2026, TargetMonth = 4 });
         await roxy.Numerology.PersonalYear.PostAsync(new() { Month = 7, Day = 15, Year = 2025 });
-        await roxy.Numerology.Compatibility.PostAsync(new() { Person1 = new() { LifePath = 5, Expression = 7, SoulUrge = 6, FullName = "John William Smith", Year = 1990, Month = 7, Day = 15 }, Person2 = new() { LifePath = 3, Expression = 9, SoulUrge = 2, FullName = "Jane Marie Doe", Year = 1992, Month = 3, Day = 22 } });
+        await roxy.Numerology.Compatibility.PostAsync(new() { Person1 = new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, LifePath = 5, Expression = 7, SoulUrge = 6 }, Person2 = new() { FullName = "Jane Marie Doe", Year = 1992, Month = 3, Day = 22, LifePath = 3, Expression = 9, SoulUrge = 2 } });
         await roxy.Numerology.Chart.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, CurrentYear = 2025 });
         await roxy.Numerology.Meanings["5"].GetAsync();
         await roxy.Numerology.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });

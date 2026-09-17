@@ -29,7 +29,7 @@ namespace RoxyApi.Models
         public double? RelocationLongitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Combined with the timezone it fixes the exact birth instant, which the relocated angles and houses are recomputed for.</summary>
         public Time? Time { get; set; }
-        /// <summary>Birth timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. &quot;America/New_York&quot;). Resolved to the DST-correct offset for the birth date. This is the birthplace timezone, not the new location timezone.</summary>
+        /// <summary>Birth timezone: decimal hours from UTC (e.g. -5 for EST, 5.5 for IST) OR IANA name (e.g. &quot;America/New_York&quot;). Resolved to the offset in force at the birth date and time. This is the birthplace timezone, not the new location timezone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.RelocationChartRequest.RelocationChartRequest_timezone? Timezone { get; set; }

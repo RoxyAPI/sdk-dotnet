@@ -25,7 +25,7 @@ namespace RoxyApi.Forecast.SolarReturn
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Pins the exact natal Sun position that defines the solar return moment.</summary>
         public Time? Time { get; set; }
-        /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, &quot;UTC&quot;), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. &quot;-05:00&quot;, &quot;+01:00&quot;). Prefer the IANA name: it is resolved to the DST-correct offset for the birth date, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state on that date. Invalid timezones return 400 with a validation error.</summary>
+        /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, &quot;UTC&quot;), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. &quot;-05:00&quot;, &quot;+01:00&quot;). Prefer the IANA name: it is resolved to the offset in force at the birth date and time, historical daylight-saving rules included, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state at that moment. On a transition day a time in the repeated hour is read as its first occurrence and a time in the skipped hour is moved forward past the gap. Invalid timezones return 400 with a validation error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Forecast.SolarReturn.SolarReturnPostRequestBody.SolarReturnPostRequestBody_timezone? Timezone { get; set; }

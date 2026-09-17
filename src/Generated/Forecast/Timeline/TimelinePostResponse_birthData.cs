@@ -24,7 +24,7 @@ namespace RoxyApi.Forecast.Timeline
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Precision matters for the natal positions the transit aspects are measured against.</summary>
         public Time? Time { get; set; }
-        /// <summary>Decimal UTC offset the forecast was computed with, resolved from whatever the request sent. An IANA name is resolved to the DST-correct offset for the birth date, so this is the literal number applied, never the name.</summary>
+        /// <summary>Decimal UTC offset the forecast was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force at the birth date and time, so this is the literal number applied, never the name.</summary>
         public double? Timezone { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Forecast.Timeline.TimelinePostResponse_birthData"/> and sets the default values.

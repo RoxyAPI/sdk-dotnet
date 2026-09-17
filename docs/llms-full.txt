@@ -632,7 +632,7 @@ await roxy.Numerology.PersonalMonth.PostAsync(new() { Month = 7, Day = 18, Year 
 await roxy.Numerology.PersonalYear.PostAsync(new() { Month = 7, Day = 15, Year = 2025 });
 
 // Calculate Compatibility - Relationship dynamics between two people
-await roxy.Numerology.Compatibility.PostAsync(new() { Person1 = new() { LifePath = 5, Expression = 7, SoulUrge = 6, FullName = "John William Smith", Year = 1990, Month = 7, Day = 15 }, Person2 = new() { LifePath = 3, Expression = 9, SoulUrge = 2, FullName = "Jane Marie Doe", Year = 1992, Month = 3, Day = 22 } });
+await roxy.Numerology.Compatibility.PostAsync(new() { Person1 = new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, LifePath = 5, Expression = 7, SoulUrge = 6 }, Person2 = new() { FullName = "Jane Marie Doe", Year = 1992, Month = 3, Day = 22, LifePath = 3, Expression = 9, SoulUrge = 2 } });
 
 // Generate Complete Numerology Chart - Full profile analysis
 await roxy.Numerology.Chart.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, CurrentYear = 2025 });

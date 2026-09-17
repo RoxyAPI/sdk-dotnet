@@ -23,7 +23,7 @@ namespace RoxyApi.Astrology.LocalSpace
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Time is essential: the local horizon rotates a full circle each day, so the azimuth (compass direction) of every body depends on the exact birth time.</summary>
         public Time? Time { get; set; }
-        /// <summary>Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST) OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the birth date.</summary>
+        /// <summary>Decimal hours from UTC (e.g. -5 for EST, 5.5 for IST, 9 for JST) OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the offset in force at the birth date and time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.LocalSpace.LocalSpacePostRequestBody.LocalSpacePostRequestBody_timezone? Timezone { get; set; }

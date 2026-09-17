@@ -104,7 +104,7 @@ namespace RoxyApi.VedicAstrology.Kp.Ayanamsa
             /// <summary>Time of day in 24-hour HH:MM:SS format, interpreted in the timezone below. Omit for midnight UTC. The ayanamsa moves about 0.14 arcseconds across a day, so supplying the time matters only when reconciling a chart against reference software to the arcsecond.</summary>
             [QueryParameter("time")]
             public Time? Time { get; set; }
-            /// <summary>IANA name (e.g. &quot;Asia/Kolkata&quot;, &quot;America/New_York&quot;), decimal hours (e.g. 5.5 for IST, -5 for EST), or a fixed UTC offset (e.g. &quot;+05:30&quot;). IANA resolved to the DST-correct offset for the given date. Applies to the time field above. Defaults to 0 (UTC).</summary>
+            /// <summary>IANA name (e.g. &quot;Asia/Kolkata&quot;, &quot;America/New_York&quot;), decimal hours (e.g. 5.5 for IST, -5 for EST), or a fixed UTC offset (e.g. &quot;+05:30&quot;). IANA resolved to the offset in force at the given date and the time field above. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("timezone")]
