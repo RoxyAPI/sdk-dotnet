@@ -34,7 +34,7 @@ namespace RoxyApi.Tarot.Spreads.ThreeCard
         {
         }
         /// <summary>
-        /// Perform the classic three-card tarot spread revealing Past (what led to this situation), Present (current energy and circumstances), and Future (likely outcome if current path continues). The most popular beginner-friendly spread, perfect for quick insights, daily guidance, or exploring specific questions. Each position includes a drawn card with reversal state, keywords, full meaning, and position-specific interpretation. Returns a summary connecting all three cards. Ideal for tarot reading apps, decision-making tools, and personal growth platforms. Optionally provide a seed for reproducible readings.
+        /// Perform the classic three-card tarot spread revealing Past, Present, and Future. Past is what led to this situation, Present the current energy and circumstances, and Future the likely outcome if the current path continues. The most popular beginner-friendly spread, perfect for quick insights, daily guidance, or exploring specific questions. Each position includes a drawn card with reversal state, keywords, full meaning, and position-specific interpretation. Returns a summary connecting all three cards. Ideal for tarot reading apps, decision-making tools, and personal growth platforms. Optionally provide a seed for reproducible readings.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Tarot.Spreads.ThreeCard.ThreeCardPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Tarot.Spreads.ThreeCard
             return await RequestAdapter.SendAsync<global::RoxyApi.Tarot.Spreads.ThreeCard.ThreeCardPostResponse>(requestInfo, global::RoxyApi.Tarot.Spreads.ThreeCard.ThreeCardPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Perform the classic three-card tarot spread revealing Past (what led to this situation), Present (current energy and circumstances), and Future (likely outcome if current path continues). The most popular beginner-friendly spread, perfect for quick insights, daily guidance, or exploring specific questions. Each position includes a drawn card with reversal state, keywords, full meaning, and position-specific interpretation. Returns a summary connecting all three cards. Ideal for tarot reading apps, decision-making tools, and personal growth platforms. Optionally provide a seed for reproducible readings.
+        /// Perform the classic three-card tarot spread revealing Past, Present, and Future. Past is what led to this situation, Present the current energy and circumstances, and Future the likely outcome if the current path continues. The most popular beginner-friendly spread, perfect for quick insights, daily guidance, or exploring specific questions. Each position includes a drawn card with reversal state, keywords, full meaning, and position-specific interpretation. Returns a summary connecting all three cards. Ideal for tarot reading apps, decision-making tools, and personal growth platforms. Optionally provide a seed for reproducible readings.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Tarot.Spreads.ThreeCard
             return new global::RoxyApi.Tarot.Spreads.ThreeCard.ThreeCardRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Perform the classic three-card tarot spread revealing Past (what led to this situation), Present (current energy and circumstances), and Future (likely outcome if current path continues). The most popular beginner-friendly spread, perfect for quick insights, daily guidance, or exploring specific questions. Each position includes a drawn card with reversal state, keywords, full meaning, and position-specific interpretation. Returns a summary connecting all three cards. Ideal for tarot reading apps, decision-making tools, and personal growth platforms. Optionally provide a seed for reproducible readings.
+        /// Perform the classic three-card tarot spread revealing Past, Present, and Future. Past is what led to this situation, Present the current energy and circumstances, and Future the likely outcome if the current path continues. The most popular beginner-friendly spread, perfect for quick insights, daily guidance, or exploring specific questions. Each position includes a drawn card with reversal state, keywords, full meaning, and position-specific interpretation. Returns a summary connecting all three cards. Ideal for tarot reading apps, decision-making tools, and personal growth platforms. Optionally provide a seed for reproducible readings.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ThreeCardRequestBuilderPostQueryParameters 

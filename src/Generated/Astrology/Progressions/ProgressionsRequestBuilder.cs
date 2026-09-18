@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.Progressions
         {
         }
         /// <summary>
-        /// Generate the secondary progressed chart for any date using the day-for-a-year key, where each day of ephemeris motion after birth stands in for one year of life. Returns every progressed body with its sign, degree, whole-sign house, motion, and retrograde state, plus the progressed Ascendant and Midheaven via the Naibod arc. The progressed Sun and progressed Moon are the headline timing markers for inner growth and emotional chapters. Secondary progressions API, progressed chart calculator, progressed Sun and Moon, progressed Ascendant and Midheaven.
+        /// Generate the secondary progressed chart for any date using the day-for-a-year key. Each day of ephemeris motion after birth stands in for one year of life. Returns every progressed body with its sign, degree, whole-sign house, motion, and retrograde state, plus the progressed Ascendant and Midheaven via the Naibod arc. The progressed Sun and progressed Moon are the headline timing markers for inner growth and emotional chapters. Secondary progressions API, progressed chart calculator, progressed Sun and Moon, progressed Ascendant and Midheaven.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.ProgressionsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Astrology.Progressions
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.ProgressionsResponse>(requestInfo, global::RoxyApi.Models.ProgressionsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Generate the secondary progressed chart for any date using the day-for-a-year key, where each day of ephemeris motion after birth stands in for one year of life. Returns every progressed body with its sign, degree, whole-sign house, motion, and retrograde state, plus the progressed Ascendant and Midheaven via the Naibod arc. The progressed Sun and progressed Moon are the headline timing markers for inner growth and emotional chapters. Secondary progressions API, progressed chart calculator, progressed Sun and Moon, progressed Ascendant and Midheaven.
+        /// Generate the secondary progressed chart for any date using the day-for-a-year key. Each day of ephemeris motion after birth stands in for one year of life. Returns every progressed body with its sign, degree, whole-sign house, motion, and retrograde state, plus the progressed Ascendant and Midheaven via the Naibod arc. The progressed Sun and progressed Moon are the headline timing markers for inner growth and emotional chapters. Secondary progressions API, progressed chart calculator, progressed Sun and Moon, progressed Ascendant and Midheaven.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Astrology.Progressions
             return new global::RoxyApi.Astrology.Progressions.ProgressionsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Generate the secondary progressed chart for any date using the day-for-a-year key, where each day of ephemeris motion after birth stands in for one year of life. Returns every progressed body with its sign, degree, whole-sign house, motion, and retrograde state, plus the progressed Ascendant and Midheaven via the Naibod arc. The progressed Sun and progressed Moon are the headline timing markers for inner growth and emotional chapters. Secondary progressions API, progressed chart calculator, progressed Sun and Moon, progressed Ascendant and Midheaven.
+        /// Generate the secondary progressed chart for any date using the day-for-a-year key. Each day of ephemeris motion after birth stands in for one year of life. Returns every progressed body with its sign, degree, whole-sign house, motion, and retrograde state, plus the progressed Ascendant and Midheaven via the Naibod arc. The progressed Sun and progressed Moon are the headline timing markers for inner growth and emotional chapters. Secondary progressions API, progressed chart calculator, progressed Sun and Moon, progressed Ascendant and Midheaven.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ProgressionsRequestBuilderPostQueryParameters 

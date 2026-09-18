@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.ArabicLots
         {
         }
         /// <summary>
-        /// Calculate the seven Hermetic lots (Arabic parts) for any birth moment: Part of Fortune, Part of Spirit, Eros, Necessity, Courage, Victory, and Nemesis. Each lot is a sensitive point projected by arc from the Ascendant, with the day or night formula applied automatically from the chart sect. Returns the zodiac sign, degree, exact longitude, the arc used, and a plain language interpretation per lot, for Hellenistic and traditional astrology apps. Built on accurate tropical chart positions, no astronomy expertise needed.
+        /// Calculate the seven Hermetic lots (Arabic parts) for any birth moment. The lots are the Part of Fortune, Part of Spirit, Eros, Necessity, Courage, Victory, and Nemesis. Each lot is a sensitive point projected by arc from the Ascendant, with the day or night formula applied automatically from the chart sect. Returns the zodiac sign, degree, exact longitude, the arc used, and a plain language interpretation per lot, for Hellenistic and traditional astrology apps. Built on accurate tropical chart positions, no astronomy expertise needed.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.ArabicLotsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Astrology.ArabicLots
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.ArabicLotsResponse>(requestInfo, global::RoxyApi.Models.ArabicLotsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate the seven Hermetic lots (Arabic parts) for any birth moment: Part of Fortune, Part of Spirit, Eros, Necessity, Courage, Victory, and Nemesis. Each lot is a sensitive point projected by arc from the Ascendant, with the day or night formula applied automatically from the chart sect. Returns the zodiac sign, degree, exact longitude, the arc used, and a plain language interpretation per lot, for Hellenistic and traditional astrology apps. Built on accurate tropical chart positions, no astronomy expertise needed.
+        /// Calculate the seven Hermetic lots (Arabic parts) for any birth moment. The lots are the Part of Fortune, Part of Spirit, Eros, Necessity, Courage, Victory, and Nemesis. Each lot is a sensitive point projected by arc from the Ascendant, with the day or night formula applied automatically from the chart sect. Returns the zodiac sign, degree, exact longitude, the arc used, and a plain language interpretation per lot, for Hellenistic and traditional astrology apps. Built on accurate tropical chart positions, no astronomy expertise needed.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Astrology.ArabicLots
             return new global::RoxyApi.Astrology.ArabicLots.ArabicLotsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate the seven Hermetic lots (Arabic parts) for any birth moment: Part of Fortune, Part of Spirit, Eros, Necessity, Courage, Victory, and Nemesis. Each lot is a sensitive point projected by arc from the Ascendant, with the day or night formula applied automatically from the chart sect. Returns the zodiac sign, degree, exact longitude, the arc used, and a plain language interpretation per lot, for Hellenistic and traditional astrology apps. Built on accurate tropical chart positions, no astronomy expertise needed.
+        /// Calculate the seven Hermetic lots (Arabic parts) for any birth moment. The lots are the Part of Fortune, Part of Spirit, Eros, Necessity, Courage, Victory, and Nemesis. Each lot is a sensitive point projected by arc from the Ascendant, with the day or night formula applied automatically from the chart sect. Returns the zodiac sign, degree, exact longitude, the arc used, and a plain language interpretation per lot, for Hellenistic and traditional astrology apps. Built on accurate tropical chart positions, no astronomy expertise needed.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ArabicLotsRequestBuilderPostQueryParameters 

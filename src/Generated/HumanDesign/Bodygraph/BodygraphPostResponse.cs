@@ -86,6 +86,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string DefinitionLocalized { get; set; }
 #endif
+        /// <summary>The Design moment as an ISO 8601 UTC instant: the exact time the Sun stood 88 degrees of solar arc before its natal longitude, and the instant every Design activation was computed at. Compare it with the Design date a reference tool prints to validate the chart on the moment itself.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DesignInstantUtc { get; set; }
+#nullable restore
+#else
+        public string DesignInstantUtc { get; set; }
+#endif
         /// <summary>All 26 activations, 13 Personality and 13 Design.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -248,6 +256,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
                 { "definition", n => { Definition = n.GetStringValue(); } },
                 { "definitionDescription", n => { DefinitionDescription = n.GetStringValue(); } },
                 { "definitionLocalized", n => { DefinitionLocalized = n.GetStringValue(); } },
+                { "designInstantUtc", n => { DesignInstantUtc = n.GetStringValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "incarnationCross", n => { IncarnationCross = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross.CreateFromDiscriminatorValue); } },
                 { "notSelf", n => { NotSelf = n.GetStringValue(); } },
@@ -282,6 +291,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             writer.WriteStringValue("definition", Definition);
             writer.WriteStringValue("definitionDescription", DefinitionDescription);
             writer.WriteStringValue("definitionLocalized", DefinitionLocalized);
+            writer.WriteStringValue("designInstantUtc", DesignInstantUtc);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>("gates", Gates);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>("incarnationCross", IncarnationCross);
             writer.WriteStringValue("notSelf", NotSelf);

@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.FixedStars
         {
         }
         /// <summary>
-        /// Calculate the tropical zodiac positions of the major named fixed stars for any birth moment, including the four Royal stars and the fifteen Behenian stars, then detect conjunctions to the natal planets, Ascendant, and Midheaven. Each star returns its precessed ecliptic longitude, zodiac sign, visual magnitude, and traditional planetary nature, with a plain language interpretation for every conjunction inside the chosen orb. A focused tool for natal reports that weigh Regulus, Spica, Aldebaran, Antares, and Algol against the chart.
+        /// Calculate the tropical zodiac positions of the major named fixed stars for any birth moment. Covers the four Royal stars and the fifteen Behenian stars, then detects conjunctions to the natal planets, Ascendant, and Midheaven. Each star returns its precessed ecliptic longitude, zodiac sign, visual magnitude, and traditional planetary nature, with a plain language interpretation for every conjunction inside the chosen orb. A focused tool for natal reports that weigh Regulus, Spica, Aldebaran, Antares, and Algol against the chart.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.FixedStarsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Astrology.FixedStars
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.FixedStarsResponse>(requestInfo, global::RoxyApi.Models.FixedStarsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate the tropical zodiac positions of the major named fixed stars for any birth moment, including the four Royal stars and the fifteen Behenian stars, then detect conjunctions to the natal planets, Ascendant, and Midheaven. Each star returns its precessed ecliptic longitude, zodiac sign, visual magnitude, and traditional planetary nature, with a plain language interpretation for every conjunction inside the chosen orb. A focused tool for natal reports that weigh Regulus, Spica, Aldebaran, Antares, and Algol against the chart.
+        /// Calculate the tropical zodiac positions of the major named fixed stars for any birth moment. Covers the four Royal stars and the fifteen Behenian stars, then detects conjunctions to the natal planets, Ascendant, and Midheaven. Each star returns its precessed ecliptic longitude, zodiac sign, visual magnitude, and traditional planetary nature, with a plain language interpretation for every conjunction inside the chosen orb. A focused tool for natal reports that weigh Regulus, Spica, Aldebaran, Antares, and Algol against the chart.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Astrology.FixedStars
             return new global::RoxyApi.Astrology.FixedStars.FixedStarsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate the tropical zodiac positions of the major named fixed stars for any birth moment, including the four Royal stars and the fifteen Behenian stars, then detect conjunctions to the natal planets, Ascendant, and Midheaven. Each star returns its precessed ecliptic longitude, zodiac sign, visual magnitude, and traditional planetary nature, with a plain language interpretation for every conjunction inside the chosen orb. A focused tool for natal reports that weigh Regulus, Spica, Aldebaran, Antares, and Algol against the chart.
+        /// Calculate the tropical zodiac positions of the major named fixed stars for any birth moment. Covers the four Royal stars and the fifteen Behenian stars, then detects conjunctions to the natal planets, Ascendant, and Midheaven. Each star returns its precessed ecliptic longitude, zodiac sign, visual magnitude, and traditional planetary nature, with a plain language interpretation for every conjunction inside the chosen orb. A focused tool for natal reports that weigh Regulus, Spica, Aldebaran, Antares, and Algol against the chart.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class FixedStarsRequestBuilderPostQueryParameters 

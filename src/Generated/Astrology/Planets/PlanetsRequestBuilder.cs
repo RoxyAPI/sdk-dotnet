@@ -40,7 +40,7 @@ namespace RoxyApi.Astrology.Planets
         {
         }
         /// <summary>
-        /// Calculate accurate tropical zodiac positions for all 14 celestial bodies (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith) for any date, time, and location. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, and retrograde status. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.
+        /// Calculate accurate tropical zodiac positions for all 14 celestial bodies for any date, time, and location. The bodies are the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, and retrograde status. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Astrology.Planets.PlanetsPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -73,7 +73,7 @@ namespace RoxyApi.Astrology.Planets
             return await RequestAdapter.SendAsync<global::RoxyApi.Astrology.Planets.PlanetsPostResponse>(requestInfo, global::RoxyApi.Astrology.Planets.PlanetsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate accurate tropical zodiac positions for all 14 celestial bodies (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith) for any date, time, and location. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, and retrograde status. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.
+        /// Calculate accurate tropical zodiac positions for all 14 celestial bodies for any date, time, and location. The bodies are the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, and retrograde status. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -104,7 +104,7 @@ namespace RoxyApi.Astrology.Planets
             return new global::RoxyApi.Astrology.Planets.PlanetsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate accurate tropical zodiac positions for all 14 celestial bodies (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith) for any date, time, and location. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, and retrograde status. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.
+        /// Calculate accurate tropical zodiac positions for all 14 celestial bodies for any date, time, and location. The bodies are the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, and retrograde status. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PlanetsRequestBuilderPostQueryParameters 

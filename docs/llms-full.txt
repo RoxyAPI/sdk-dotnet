@@ -152,7 +152,7 @@ await roxy.Astrology.Profections.PostAsync(new() { Date = new Date(1990, 7, 15),
 
 ## Vedic Astrology - `roxy.VedicAstrology`
 
-Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional charts (D1-D60), Ashtakoot Gun Milan ku...
+Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional charts (D1-D60), panchang with choghadi...
 
 ```csharp
 // Get birth chart (D1 Rashi chart) - Kundli Calculator API
@@ -328,7 +328,7 @@ await roxy.VedicAstrology.Heliacal.PostAsync(new() { Date = new Date(2026, 7, 25
 
 ## Forecast - `roxy.Forecast`
 
-Forecast API that merges upcoming transit aspects, sign ingresses, retrograde stations, new and full moons, biorhythm...
+Astrology forecast API that merges upcoming transit aspects, sign ingresses, retrograde stations, new and full moons,...
 
 ```csharp
 // Cross-domain forecast timeline - Transits, ingresses, stations, dasha changes, critical days
@@ -351,7 +351,7 @@ await roxy.Forecast.SolarReturn.PostAsync(new() { Date = new Date(1990, 7, 15), 
 
 ## Human Design - `roxy.HumanDesign`
 
-Generate the full Human Design bodygraph from a birth moment: type, strategy, inner authority, profile, definition, i...
+Human Design API that generates the full bodygraph from a birth moment: type, strategy, inner authority, profile, def...
 
 ```csharp
 // Generate full Human Design bodygraph - Type, authority, profile, centers, channels, gates
@@ -395,7 +395,7 @@ await roxy.HumanDesign.Variables.PostAsync(new() { Date = new Date(1990, 7, 15),
 
 ## Chinese Astrology - `roxy.ChineseAstrology`
 
-Calculate BaZi Four Pillars charts, Chinese zodiac signs, and the Chinese lunisolar calendar from any birth moment: y...
+Chinese zodiac and BaZi astrology API: Four Pillars charts, Chinese zodiac signs and the Chinese lunisolar calendar f...
 
 ```csharp
 // Generate BaZi chart - Four Pillars of Destiny calculator API
@@ -922,7 +922,7 @@ await roxy.AngelNumbers.Daily.PostAsync(new() { Seed = "user123", Date = new Dat
 
 ## Location and Timezone - `roxy.Location`
 
-Location and timezone API with city search and geocoding across 235,000+ cities in 240+ countries, returning latitude...
+Timezone and location API with city search and geocoding across 235,000+ cities in 240+ countries, returning latitude...
 
 ```csharp
 // Search cities worldwide - Geocoding autocomplete with coordinates and timezone
