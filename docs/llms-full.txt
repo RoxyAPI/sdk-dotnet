@@ -980,7 +980,7 @@ catch (RoxyApi.Models.RoxyError e)
 }
 ```
 
-Codes: validation_error (400), api_key_required / invalid_api_key / subscription_not_found / subscription_inactive (401), not_found (404), rate_limit_exceeded (429), internal_error (500).
+Codes: validation_error (400, with e.Issues), api_key_required / invalid_api_key / subscription_not_found / subscription_inactive / api_key_revoked (401), not_found (404), bad_request and other status-derived codes for a client error the endpoint itself detected, such as a date window whose endDate precedes startDate (4xx), rate_limit_exceeded (429), internal_error (500).
 
 ## Advanced
 

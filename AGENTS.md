@@ -22,25 +22,26 @@ var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 
 Get these and the generated types do the rest.
 
-- **The fluent path mirrors the URL.** `GET /astrology/horoscope/{sign}/daily` is `roxy.Astrology.Horoscope["aries"].Daily.GetAsync()`. Each path segment is a property; each `{param}` is an indexer. Type `roxy.` and let IntelliSense walk the tree. Never invent a method name.
+- **The fluent path mirrors the URL.** `GET /astrology/horoscope/{sign}/daily` is `roxy.Astrology.Horoscope["aries"].Daily.GetAsync()`. Each path segment is a property; each `{param}` is an indexer. Type `roxy.` and let IntelliSense walk the tree. Never invent a method name, and never derive one from the `operationId` in the spec: this SDK is path-fluent, not operation-named.
 - **Request bodies use a target-typed `new()`.** `await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), ... })`. The type is inferred from the method, so you never need to name it; IntelliSense shows every field on `new() {`.
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`. Multiple: `c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; }`.
 - **Always `await`, and catch `RoxyError`.** There is no result-wrapper object. The call returns the typed response directly and throws `RoxyError` (a subclass of `ApiException`) on failure. Switch on `e.Code`, not `e.Message`.
-- **Never hand-roll HttpClient.** `new RoxyClient(key)` injects auth, base URL, retries, and typed responses.
+- **Never hand-roll HttpClient.** `new RoxyClient(key)` injects auth, the base URL, typed responses, and a retry with backoff on a 429 or 503. Response field names come from the response schema of the spec and are PascalCase properties; the compiler catches any invented field, so if the build fails on a property, the field does not exist.
 
 ## Critical rule: geocode before any chart endpoint
 
 Every chart, horoscope, panchang, dasha, dosha, navamsa, KP, synastry, compatibility, and natal endpoint needs `Latitude`, `Longitude`, and (for Western) `Timezone`. **Never ask the user for coordinates.** Call `roxy.Location.Search` first.
 
 ```csharp
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Berlin");
-var city = search!.Cities![0];
-// city.Timezone is the IANA string ("Europe/Berlin"); pass it straight into a chart call and
-// the server resolves the DST-correct offset for the chart date. city.UtcOffset (5.5, -5, ...)
-// is the decimal equivalent.
+var place = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "New York");
+var city = place!.Cities![0];
+// city.Timezone is the IANA string ("America/New_York"). Pass it straight into any chart
+// endpoint and the server resolves it to the DST-correct decimal offset using the Date of
+// the chart itself, so a January 1990 New York chart picks EST (-5) even when you looked
+// the city up in July. city.UtcOffset (5.5, -5, 9, ...) also works and produces identical charts.
 ```
 
-`Q` accepts a bare city (`"Paris"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate.
+`Q` accepts a bare city (`"Paris"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate same-named cities.
 
 ## Domains
 
@@ -74,18 +75,22 @@ var city = search!.Cities![0];
 ### Two-step pattern for coordinate-dependent endpoints
 
 ```csharp
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London");
-var city = search!.Cities![0];
+var place = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London");
+var city = place!.Cities![0];
+var latitude = city.Latitude;
+var longitude = city.Longitude;
+var timezone = city.Timezone;
+var birthDate = new Date(1990, 1, 15);
+var birthTime = new Time(14, 30, 0);
 
 var chart = await roxy.Astrology.NatalChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15),
-    Time = new Time(14, 30, 0),
-    Latitude = city.Latitude,
-    Longitude = city.Longitude,
-    Timezone = new() { String = city.Timezone },
+    Date = birthDate, Time = birthTime,
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
 ```
+
+One lookup feeds every domain. Request bodies are distinct generated types, so capture the five values once as locals and assign them into each body. The same `Date`, `Time`, `Latitude`, `Longitude` and `Timezone` are the body for `Astrology.NatalChart`, `VedicAstrology.BirthChart`, `VedicAstrology.Dasha.Current`, `Ayurveda.Constitution` and the `BirthData` of `Forecast.Transits`; the instant alone (`Date`, `Time`, `Timezone`) is the body for `HumanDesign.Bodygraph`, `ChineseAstrology.Bazi.Chart` and `Kabbalah.BirthProfile`. Never look the city up twice for one person.
 
 ### GET endpoints: path params are indexers, query params use the lambda
 
@@ -102,8 +107,8 @@ Most valuable endpoints (charts, spreads, calculations) are POST:
 ```csharp
 await roxy.VedicAstrology.BirthChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Date = birthDate, Time = birthTime,
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
 
 await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I focus on?" });
@@ -123,11 +128,9 @@ Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, f
 
 ### Error handling
 
-Calls throw `RoxyError` (extends `ApiException`) on a 4xx or 5xx. `Message` is human-readable and may change; `Code` is stable, switch on it.
+Calls throw `RoxyError` (in `RoxyApi.Models`, extends `ApiException`) on a 4xx or 5xx. `Message` is human-readable and may change; `Code` is stable, switch on it.
 
 ```csharp
-using RoxyApi.Models;
-
 try
 {
     var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
@@ -147,7 +150,9 @@ catch (RoxyError e)
 | 401 | `invalid_api_key` | Key format invalid or tampered |
 | 401 | `subscription_not_found` | Key references a non-existent subscription |
 | 401 | `subscription_inactive` | Subscription cancelled, expired, or suspended |
+| 401 | `api_key_revoked` | Key was deleted from the account |
 | 404 | `not_found` | Resource not found |
+| 4xx | `bad_request` and other status-derived codes | A client error the endpoint itself detected, such as a date window whose `endDate` precedes `startDate` |
 | 429 | `rate_limit_exceeded` | Monthly quota reached |
 | 500 | `internal_error` | Server error |
 
@@ -157,49 +162,75 @@ Responses are fully typed objects, not dictionaries. Discover fields with Intell
 
 - **City** (`Location.Search` -> `Cities[i]`): `City` (the name), `Country`, `Province`, `Latitude`, `Longitude`, `Timezone` (IANA), `UtcOffset` (decimal), `Population`.
 - **Natal chart**: `Planets`, `Houses`, `Aspects`, `Ascendant`, `Midheaven`, `Summary`. Each planet has `Name`, `Sign`, `Degree`, `House`, `IsRetrograde`. The `Planets` list has more than ten entries (classical bodies plus nodes and key points).
+- **Maps keyed by name** arrive in `AdditionalData`, not as properties. The Vedic kundli `Meta` (one entry per planet: `rashi`, `nakshatra`, `longitude`) and the biorhythm reading `Cycles` (one entry per cycle: `value`, `rawValue`, `phase`) are objects whose keys the spec leaves open, so the generated class has no fields of its own: read `kundli.Meta!.AdditionalData["Moon"]`, which is an `UntypedObject` from `Microsoft.Kiota.Abstractions.Serialization`, and call `GetValue()` on it for the inner dictionary.
 
 ```csharp
-var chart = await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } });
+var chart = await roxy.Astrology.NatalChart.PostAsync(new() { Date = birthDate, Time = birthTime, Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone } });
 foreach (var p in chart!.Planets!)
     Console.WriteLine($"{p.Name}: {p.Sign} (house {p.House})");
 ```
 
 ## Common tasks
 
-Ordered by domain priority (Western, Vedic, Forecast, Human Design, Chinese Astrology, Feng Shui, Numerology, Tarot, Biorhythm, I Ching, Crystals, Dreams, Angel Numbers, Location).
+In the catalog order (Western astrology, Vedic astrology, forecast, Human Design, Chinese astrology, feng shui, Mesoamerican astrology, Vastu, numerology, Kabbalah, tarot, biorhythm, Ayurveda, I Ching, crystals, dreams, angel numbers, location, usage, languages). `Date, Time, Latitude, Longitude, Timezone` are the five values from the two-step pattern above; `Person1`, `Person2`, `PersonA`, `PersonB` and `BirthData` are nested bodies built from them.
 
 | Task | Code |
 |------|------|
-| Daily horoscope | `roxy.Astrology.Horoscope["aries"].Daily.GetAsync()` |
+| Find city coordinates (do this first) | `roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Berlin")` |
+| Daily horoscope | `roxy.Astrology.Horoscope[sign].Daily.GetAsync()` |
 | Natal chart (Western) | `roxy.Astrology.NatalChart.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
 | Synastry | `roxy.Astrology.Synastry.PostAsync(new() { Person1, Person2 })` |
 | Compatibility score | `roxy.Astrology.CompatibilityScore.PostAsync(new() { Person1, Person2 })` |
 | Current moon phase | `roxy.Astrology.MoonPhase.Current.GetAsync()` |
+| Transits | `roxy.Astrology.Transits.PostAsync(new() { NatalChart })` |
 | Kundli (Vedic birth chart) | `roxy.VedicAstrology.BirthChart.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
 | Panchang (detailed) | `roxy.VedicAstrology.Panchang.Detailed.PostAsync(new() { Date, Latitude, Longitude, Timezone })` |
+| Choghadiya | `roxy.VedicAstrology.Panchang.Choghadiya.PostAsync(new() { Date, Latitude, Longitude, Timezone })` |
 | Current dasha | `roxy.VedicAstrology.Dasha.Current.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
 | Mangal Dosha | `roxy.VedicAstrology.Dosha.Manglik.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
 | Guna Milan (matching) | `roxy.VedicAstrology.Compatibility.PostAsync(new() { Person1, Person2 })` |
 | Navamsa (D9) | `roxy.VedicAstrology.Navamsa.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
-| KP ruling planets | `roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new() { Latitude, Longitude, Timezone, Datetime })` |
+| KP chart | `roxy.VedicAstrology.Kp.Chart.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
+| KP ruling planets | `roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new() { Latitude, Longitude, Timezone })` |
 | Nakshatra detail | `roxy.VedicAstrology.Nakshatras["ashwini"].GetAsync()` |
+| Transit forecast | `roxy.Forecast.Transits.PostAsync(new() { BirthData, StartDate, EndDate })` |
+| Cross-domain timeline | `roxy.Forecast.Timeline.PostAsync(new() { BirthData, StartDate, EndDate })` |
+| Human Design bodygraph | `roxy.HumanDesign.Bodygraph.PostAsync(new() { Date, Time, Timezone })` |
+| Human Design connection | `roxy.HumanDesign.Connection.PostAsync(new() { PersonA, PersonB })` |
+| BaZi Four Pillars | `roxy.ChineseAstrology.Bazi.Chart.PostAsync(new() { Date, Time, Timezone })` |
+| Chinese zodiac animal | `roxy.ChineseAstrology.Zodiac.Sign.PostAsync(new() { Date })` |
+| Almanac day (Tong Shu) | `roxy.ChineseAstrology.Calendar.Day["2026-10-01"].GetAsync()` |
+| Kua number | `roxy.FengShui.Kua.PostAsync(new() { Date, Gender })` |
+| Flying star natal chart | `roxy.FengShui.FlyingStars.Natal.PostAsync(new() { Period, Facing })` |
+| Tzolkin day sign | `roxy.MesoamericanAstrology.Mayan.Tzolkin.PostAsync(new() { Date })` |
+| Full Maya chart | `roxy.MesoamericanAstrology.Mayan.Chart.PostAsync(new() { Date })` |
+| Vastu entrance | `roxy.Vastu.Entrance.PostAsync(new() { Plot, Facing, DoorPosition })` |
+| Vastu room compliance | `roxy.Vastu.Rooms.PostAsync(new() { Plot, Facing, Rooms })` |
 | Life path number | `roxy.Numerology.LifePath.PostAsync(new() { Year, Month, Day })` |
 | Full numerology chart | `roxy.Numerology.Chart.PostAsync(new() { FullName, Year, Month, Day })` |
-| Personal year | `roxy.Numerology.PersonalYear.PostAsync(new() { Month, Day, Year })` |
+| Personal year | `roxy.Numerology.PersonalYear.PostAsync(new() { Month, Day })` |
+| Gematria | `roxy.Kabbalah.Gematria.PostAsync(new() { Text })` |
+| Kabbalah birth profile | `roxy.Kabbalah.BirthProfile.PostAsync(new() { Date, Time, Timezone })` |
 | Daily tarot card | `roxy.Tarot.Daily.PostAsync(new() { Seed })` |
 | Three-card spread | `roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question })` |
 | Celtic Cross | `roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question })` |
 | Yes / no tarot | `roxy.Tarot.YesNo.PostAsync(new() { Question })` |
-| Human Design bodygraph | `roxy.HumanDesign.Bodygraph.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
-| Forecast timeline | `roxy.Forecast.Timeline.PostAsync(new() { BirthData, StartDate, EndDate })` |
-| Daily biorhythm | `roxy.Biorhythm.Daily.PostAsync(new() { Seed })` |
-| Cast I Ching reading | `roxy.Iching.Cast.GetAsync(c => c.QueryParameters.Seed = "user-42")` |
-| Crystal by zodiac | `roxy.Crystals.Zodiac["scorpio"].GetAsync()` |
-| Crystal by chakra | `roxy.Crystals.Chakra["Heart"].GetAsync()` |
-| Dream symbol lookup | `roxy.Dreams.Symbols["snake"].GetAsync()` |
+| Biorhythm reading | `roxy.Biorhythm.Reading.PostAsync(new() { BirthDate })` |
+| Daily biorhythm (seeded) | `roxy.Biorhythm.Daily.PostAsync(new() { Seed })` |
+| Biorhythm forecast | `roxy.Biorhythm.Forecast.PostAsync(new() { BirthDate })` |
+| Biorhythm compatibility | `roxy.Biorhythm.Compatibility.PostAsync(new() { Person1, Person2 })` |
+| Ayurvedic constitution | `roxy.Ayurveda.Constitution.PostAsync(new() { Date, Time, Latitude, Longitude, Timezone })` |
+| Dinacharya | `roxy.Ayurveda.Dinacharya.PostAsync(new() { Date, Latitude, Longitude, Timezone })` |
+| Daily hexagram | `roxy.Iching.Daily.PostAsync(new() { Seed })` |
+| Cast I Ching reading | `roxy.Iching.Cast.GetAsync()` |
+| Hexagram detail | `roxy.Iching.Hexagrams[1].GetAsync()` |
+| Crystal by zodiac | `roxy.Crystals.Zodiac[sign].GetAsync()` |
+| Crystal by chakra | `roxy.Crystals.Chakra[chakra].GetAsync()` |
+| Dream symbol lookup | `roxy.Dreams.Symbols["flying"].GetAsync()` |
 | Angel number meaning | `roxy.AngelNumbers.Numbers["1111"].GetAsync()` |
-| Find city coordinates | `roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Berlin")` |
+| Universal number lookup | `roxy.AngelNumbers.Lookup.GetAsync(c => c.QueryParameters.Number = "1234")` |
 | Check API usage | `roxy.Usage.GetAsync()` |
+| List supported languages | `roxy.Languages.GetAsync()` |
 
 ## Field formats that trip agents
 
@@ -217,12 +248,13 @@ Copy the format column exactly.
 | `Seed` | Any string (deterministic) | `"user-42"`, `"session-abc"` | numbers, objects |
 | `number` (angel numbers indexer) | String | `["1111"]`, `["777"]` | `[1111]` |
 | `Lang` (query) | Lowercase code | `c.QueryParameters.Lang = "hi"` | `"Hindi"`, `"HI"` |
+| Enum fields (`Gender`, `Facing`, `Unit`, room `Type`) | The generated enum, which lives in the namespace of its request body | `KuaPostRequestBody_gender.Female` after `using RoxyApi.FengShui.Kua;` | `"female"`, `Gender = "Female"` |
 
 ### Timezone cheat sheet (decimal offsets)
 
 | Region | Decimal | Region | Decimal |
 |--------|---------|--------|---------|
-| UTC / London (winter) | `0` | Delhi / Kolkata (IST) | `5.5` |
+| UTC / London (winter) | `0` | Delhi (IST) | `5.5` |
 | Berlin / Paris | `1` (winter) / `2` (summer) | Kathmandu | `5.75` |
 | Istanbul / Moscow | `3` | Dhaka | `6` |
 | Dubai | `4` | Bangkok | `7` |
@@ -230,7 +262,7 @@ Copy the format column exactly.
 | Chicago (CST / CDT) | `-6` / `-5` | Tokyo | `9` |
 | Los Angeles (PST / PDT) | `-8` / `-7` | Sydney | `10` / `11` (summer) |
 
-DST matters for Western charts: use the summer offset if the birth date falls in a daylight-saving window, or pass the IANA name and let the server resolve it. Vedic endpoints default to IST (`5.5`), which is DST-free.
+DST matters. If the birth date falls inside a daylight-saving window, use the summer / DST offset, or pass the IANA string from the location lookup and let the server resolve it. India observes no DST, so a fixed `5.5` is always right there; anywhere else, a natal chart must carry the offset in force at the time of birth.
 
 ## Astrology domain gotchas
 
@@ -257,10 +289,13 @@ Use the SDK for typed .NET apps. Use MCP for AI agents (Claude, Cursor, ChatGPT)
 ## Gotchas
 
 - **Geocode first.** Any chart, panchang, synastry, compatibility, or natal endpoint needs coordinates. Call `roxy.Location.Search` before the chart method.
-- **Path params are indexers, query params are a lambda.** `roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 4, 3))`.
-- **Do not guess method names.** Type `roxy.Domain.` and let IntelliSense show the fluent tree. It mirrors the URL path.
+- **Path params are indexers, query params are a lambda.** `roxy.Astrology.Horoscope["aries"].Daily.GetAsync(c => c.QueryParameters.Date = new Date(2026, 4, 3))`. An indexer is typed from the spec: a numeric path param takes a number (`Birthstone[1]`, `Hexagrams[1]`), a string one takes a string (`Numbers["1111"]`, `Calendar.Day["2026-10-01"]`).
+- **Do not guess method names.** Type `roxy.Domain.` and let IntelliSense show the fluent tree. It mirrors the URL path, not the `operationId`.
 - **Responses are nullable.** Use `result!.Field` or null checks; the success body is non-null only on a 2xx (errors throw).
 - **`Timezone` is a union wrapper, never a bare number.** Use `new() { Double = -5 }` or `new() { String = "America/New_York" }`.
+- **Switch on `e.Code`, not `e.Message`.** The message may change; the code is stable.
+- **List endpoints return a paginated envelope**, `Total`, `Limit`, `Offset` plus a named list (`Cities`, `Crystals`, `Hexagrams`, `Symbols`), never a bare list. Pass `c => c.QueryParameters.Limit = 64` to widen a page; `Iching.Hexagrams` defaults to 20 of 64.
+- **Enums live beside their request body.** `Gender`, `Facing`, `Unit` and room `Type` are generated enums in the namespace of the body that uses them (`using RoxyApi.FengShui.Kua;`, `using RoxyApi.Vastu.Rooms;`), so the same member name can exist in several namespaces; the one the body expects is the one to use.
 - **Do not expose API keys client-side.** Call Roxy from server, API, or backend code only.
 
 ## Dependencies

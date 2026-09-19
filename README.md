@@ -46,17 +46,17 @@ Then expand into charts, compatibility, numerology, tarot, and more.
 
 ```csharp
 using RoxyApi;
-using RoxyApi.Models;
-using Microsoft.Kiota.Abstractions; // for the Date type
+using Microsoft.Kiota.Abstractions; // the Date and Time structs
 
 var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 
-// Step 1: geocode the birth city (required for any chart endpoint).
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London, UK");
-var city = search!.Cities![0];
+// Step 1: geocode the birth city once. Every chart endpoint takes these three values.
+var place = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London");
+var city = place!.Cities![0];
 
-// Step 2: Western natal chart. Pass the IANA timezone string and the server
-// resolves it to the DST-correct offset for the chart's own date.
+// Step 2: a Western natal chart. city.Timezone is the IANA string from the lookup
+// ("Europe/London"); the server resolves it to the DST-correct offset for the
+// date of the chart.
 var chart = await roxy.Astrology.NatalChart.PostAsync(new()
 {
     Date = new Date(1990, 1, 15),
@@ -66,7 +66,7 @@ var chart = await roxy.Astrology.NatalChart.PostAsync(new()
     Timezone = new() { String = city.Timezone },
 });
 
-// Vedic kundli takes the same inputs (timezone optional, defaults to 5.5 IST).
+// Step 3: the same birth as a Vedic kundli. Same inputs, sidereal zodiac.
 var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 {
     Date = new Date(1990, 1, 15),
@@ -77,7 +77,7 @@ var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 });
 ```
 
-`new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and injects the auth header and SDK identification header on every request.
+`new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and injects the auth header and SDK identification header on every request. Every call returns the typed response and throws `RoxyError` on a 4xx or 5xx (see Error handling).
 
 ## Three things to know
 
@@ -86,19 +86,6 @@ These are the only .NET-specific shapes worth learning. The rest is plain typed 
 - **Dates and times use typed structs.** `Date = new Date(1990, 1, 15)` and `Time = new Time(14, 30, 0)`, both from `Microsoft.Kiota.Abstractions`.
 - **`Timezone` is a typed union.** Pass a decimal offset with `new() { Double = -5 }` or an IANA name with `new() { String = "America/New_York" }`. The server resolves an IANA name to the DST-correct offset for the request date.
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
-
-## Location first
-
-Every chart, horoscope, panchang, dasha, dosha, navamsa, KP, synastry, compatibility, and natal endpoint needs `Latitude`, `Longitude`, and (for Western) `Timezone`. **Never ask users to type coordinates.** Call `roxy.Location.Search` first, then feed the result into the chart method.
-
-```csharp
-var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "Tokyo");
-var city = search!.Cities![0];
-// city.Timezone is the IANA string ("Asia/Tokyo"). Pass it straight into any chart
-// endpoint. city.UtcOffset (a decimal like 9 or 5.5) also works.
-```
-
-`Q` accepts a bare city (`"Paris"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate same-named cities.
 
 ## Domains
 
@@ -131,271 +118,398 @@ Type `roxy.` to see every domain. Type `roxy.Astrology.` to see every endpoint i
 
 ## Most-used endpoints
 
-The highest-demand endpoints by domain, in the order you are most likely to ship them. Full endpoint catalog in the [API reference](https://roxyapi.com/api-reference), complete method list in [`docs/llms-full.txt`](https://github.com/RoxyAPI/sdk-dotnet/blob/main/docs/llms-full.txt).
+The highest-demand endpoints by domain, in the order you are most likely to ship them. Every example below reads the same birth through a different domain, and every coordinate comes from one location lookup at the top: one API key, one lookup, and eighteen domains that compose into a single product instead of eighteen separate ones. Full catalog in the [API reference](https://roxyapi.com/api-reference).
+
+### Location first: one lookup feeds every chart
+
+Every chart, horoscope, panchang, dasha, dosha, synastry and compatibility endpoint needs `Latitude`, `Longitude` and `Timezone`. Never ask users to type coordinates. Look the city up once and reuse the result in every domain below. Request bodies are distinct generated types, so the values are captured once as locals and assigned into each body.
+
+```csharp
+// One lookup feeds every chart below. timezone is the IANA name from the city
+// record; the server resolves it to the DST-correct offset for the date of each chart.
+var place = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "New York");
+var city = place!.Cities![0];
+var latitude = city.Latitude;
+var longitude = city.Longitude;
+var timezone = city.Timezone;
+// The birth instant every chart below reads, beside the coordinates from the lookup.
+var birthDate = new Date(1990, 1, 15);
+var birthTime = new Time(14, 30, 0);
+
+// A second person for the two-chart calls (synastry, Guna Milan, Human Design connection).
+var london = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London");
+var partnerCity = london!.Cities![0];
+var lat2 = partnerCity.Latitude;
+var lon2 = partnerCity.Longitude;
+var tz2 = partnerCity.Timezone;
+var partnerDate = new Date(1992, 7, 22);
+var partnerTime = new Time(9, 0, 0);
+```
 
 ### 1. Western astrology API (natal chart, daily horoscope, synastry)
 
-The global astrology app market is $6.27B and almost entirely Western. These endpoints power zodiac dating apps, Co-Star-style natal chart products, daily horoscope features, and lunar-cycle wellness apps.
+Natal chart products, daily horoscope features, dating and compatibility apps, and lunar-cycle wellness apps start here.
 
 ```csharp
-// Natal chart. The number-one Western query, called on every onboarding.
+// Natal chart. The most requested Western call, run once at onboarding.
+// The latitude, longitude and timezone come from the location lookup above.
 var natal = await roxy.Astrology.NatalChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
-    Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 },
+    Date = birthDate, Time = birthTime,
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
+// natal.Planets[n].Name, .Sign, .House, .Interpretation.Summary; natal.Ascendant.Sign; natal.Aspects
 
-// Daily horoscope. Highest per-user call frequency in the catalog, drives DAUs and push.
+// Daily horoscope. The highest per-user call frequency in the catalog: daily content, streaks, push.
 var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
-// horoscope.Overview, horoscope.Love, horoscope.Career, horoscope.LuckyNumber
+// horoscope.Overview, horoscope.Love, horoscope.Career, horoscope.Column, horoscope.Events, horoscope.LuckyNumber
 
-// Synastry. The dating-app pro-tier feature, full inter-aspect analysis between two charts.
+// Synastry. Full inter-aspect analysis between two charts, the relationship feature of dating apps.
+// Both people come from the lookups above.
 var synastry = await roxy.Astrology.Synastry.PostAsync(new()
 {
-    Person1 = new() { Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -5 } },
-    Person2 = new() { Date = new Date(1992, 7, 22), Time = new Time(9, 0, 0), Latitude = 51.5074, Longitude = -0.1278, Timezone = new() { Double = 1 } },
+    Person1 = new() { Date = birthDate, Time = birthTime, Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone } },
+    Person2 = new() { Date = partnerDate, Time = partnerTime, Latitude = lat2, Longitude = lon2, Timezone = new() { String = tz2 } },
 });
+// synastry.CompatibilityScore, synastry.InterAspects, synastry.Analysis.Strengths
 
-// Moon phase. Viral for wellness, cycle-tracking, and meditation apps.
+// Moon phase. A zero-setup GET for wellness, cycle-tracking and meditation apps.
 var moon = await roxy.Astrology.MoonPhase.Current.GetAsync();
+// moon.Phase, moon.Illumination, moon.Sign, moon.Meaning.Description
 ```
 
 ### 2. Vedic astrology API (kundli, panchang, dasha, Guna Milan, KP)
 
-The depth moat. India astrology market: $163M in 2024, projected $1.8B by 2030. Kundli, panchang, dasha, dosha, and KP are the five Google-dominant queries for every matrimonial platform, kundli generator, and muhurat app.
+Kundli generators, matrimonial matching, muhurta and panchang apps, and KP practitioners. The same birth, read sidereally.
 
 ```csharp
-// Vedic kundli. Top India astrology keyword. Entry point for every Jyotish product.
+// Vedic kundli. The same birth read sidereally, from the same location lookup above.
 var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Date = birthDate, Time = birthTime,
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
+// kundli.Meta.AdditionalData["Moon"] (every planet keyed by name: rashi, nakshatra, longitude), kundli.Houses, kundli.Yogas, kundli.Combustion
 
-// Panchang. Tithi, nakshatra, yoga, karana, rahu kaal, abhijit muhurta in one call.
+// Detailed panchang. Tithi, nakshatra, yoga, karana, rahu kaal and the muhurtas for a date at the place looked up above.
 var panchang = await roxy.VedicAstrology.Panchang.Detailed.PostAsync(new()
 {
-    Date = new Date(2026, 4, 22), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Date = new Date(2026, 10, 1), Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
+// panchang.Tithi, panchang.Nakshatra, panchang.RahuKaal, panchang.AbhijitMuhurta
 
-// Vimshottari dasha. Highest-value single-shot Vedic query.
+// Vimshottari dasha. The mahadasha, antardasha and pratyantardasha running right now.
 var dasha = await roxy.VedicAstrology.Dasha.Current.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Date = birthDate, Time = birthTime,
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
+// dasha.Mahadasha, dasha.Antardasha, dasha.RemainingInMahadasha
 
-// Mangal Dosha. Most-asked matrimonial question in India.
-var manglik = await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new()
+// Mangal Dosha. The most asked matrimonial check.
+var dosha = await roxy.VedicAstrology.Dosha.Manglik.PostAsync(new()
 {
-    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
+    Date = birthDate, Time = birthTime,
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
+// dosha.Present; dosha.Severity and dosha.Remedies are set only when Present is true
 
-// Guna Milan. 36-point Ashtakoota matrimonial compatibility score.
+// Guna Milan. The 36-point Ashtakoota score behind kundli matching, both people from the lookups above.
 var milan = await roxy.VedicAstrology.Compatibility.PostAsync(new()
 {
-    Person1 = new() { Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0), Latitude = 28.61, Longitude = 77.20, Timezone = new() { Double = 5.5 } },
-    Person2 = new() { Date = new Date(1992, 7, 22), Time = new Time(9, 0, 0), Latitude = 19.07, Longitude = 72.87, Timezone = new() { Double = 5.5 } },
+    Person1 = new() { Date = birthDate, Time = birthTime, Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone } },
+    Person2 = new() { Date = partnerDate, Time = partnerTime, Latitude = lat2, Longitude = lon2, Timezone = new() { String = tz2 } },
 });
+// milan.Total, milan.Percentage, milan.IsCompatible, milan.Breakdown
 
-// KP ruling planets. Horary answers for "will X happen" questions in real time.
+// KP ruling planets. Horary answers at the moment of the question, for the place looked up above.
 var kp = await roxy.VedicAstrology.Kp.RulingPlanets.PostAsync(new()
 {
-    Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 },
-    Datetime = DateTimeOffset.Parse("2026-04-22T10:30:00Z"),
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
 });
+// kp.DayLord, kp.MoonSublord, kp.RulingPlanets
 ```
 
-### 3. Numerology API (life path, full chart, personal year)
+### 3. Astrology forecast API (transit forecast, cross-domain timeline)
 
-Commodity content with durable demand. `life path number calculator` is among the highest-volume spiritual searches globally. Works without birth time, the easiest domain to integrate.
+Forecast feeds, transit alerts and timing tools. One call returns a dated, significance-scored event list; the timeline variant merges Vedic dasha boundaries and biorhythm critical days into the same list, which no single-domain API can do.
 
 ```csharp
-// Life Path. The number-one numerology keyword, every calculator page starts here.
-var lifePath = await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 15 });
-// lifePath.Number, lifePath.Type ("single" or "master"), lifePath.Meaning
-
-// Full numerology chart. Premium one-shot: all core numbers plus karmic and personal year.
-var chart = await roxy.Numerology.Chart.PostAsync(new()
+// Transit forecast. Transit-to-natal aspects, sign ingresses and retrograde stations over a window.
+// BirthData is the same birth: date, time, latitude, longitude and timezone from the lookup above.
+var transits = await roxy.Forecast.Transits.PostAsync(new()
 {
-    FullName = "Jane Smith", Year = 1990, Month = 1, Day = 15,
+    BirthData = new() { Date = birthDate, Time = birthTime, Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone } },
+    StartDate = new Date(2026, 10, 1), EndDate = new Date(2026, 10, 31),
 });
+// transits.Count, transits.Events[n].Date, .Type, .Body, .Target, .Aspect, .Significance
 
-// Personal Year. Annual forecast, drives January traffic spikes.
-var personalYear = await roxy.Numerology.PersonalYear.PostAsync(new() { Month = 1, Day = 15, Year = 2026 });
-```
-
-### 4. Tarot API (daily card, Celtic Cross, three-card, yes / no)
-
-High search volume, evergreen. Apps fetch the card database once and cache it, then draw on demand.
-
-```csharp
-// Daily card. Stickiest tarot feature. Seed per user for deterministic once-per-day behavior.
-var daily = await roxy.Tarot.Daily.PostAsync(new() { Seed = "user-42" });
-// daily.Card.Name, daily.Card.ImageUrl, daily.DailyMessage
-
-// Celtic Cross. Professional-reader spread. Premium-tier, ten positions.
-var celtic = await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I focus on?" });
-
-// Three-card past-present-future. Most-drawn spread on every tarot platform.
-var three = await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "My next quarter" });
-
-// Yes / No. Impulse micro-query, highest conversion-to-first-call on tarot surfaces.
-var answer = await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I take the offer?" });
-// answer.Answer ("Yes", "No", "Maybe"), answer.Strength
-```
-
-### 5. Human Design API (bodygraph in one call)
-
-The breakout 2026 self-discovery category. One call returns the full bodygraph from a birth moment: energy type, strategy, authority, profile, definition, incarnation cross, the nine centers, defined channels, and all gate activations. The Design side is solved on the exact 88-degree solar arc, not approximated as calendar days.
-
-```csharp
-var bodygraph = await roxy.HumanDesign.Bodygraph.PostAsync(new()
-{
-    Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0),
-    Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -4 },
-});
-// bodygraph.Type, bodygraph.Strategy, bodygraph.Profile, bodygraph.Definition
-// bodygraph.Centers, bodygraph.Channels, bodygraph.Gates, bodygraph.IncarnationCross
-```
-
-### 6. Forecast API (cross-domain timeline)
-
-The first cross-domain, stateless forecast in the catalog. One call merges Western transit-to-natal aspects, sign ingresses, retrograde stations, Vedic Vimshottari dasha boundaries, and biorhythm critical days into a single significance-scored, time-ordered timeline.
-
-```csharp
+// Cross-domain timeline. The same window with Vedic dasha boundaries and biorhythm critical days merged in.
 var timeline = await roxy.Forecast.Timeline.PostAsync(new()
 {
-    BirthData = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { Double = -4 } },
-    StartDate = new Date(2026, 6, 1),
-    EndDate = new Date(2026, 6, 30),
+    BirthData = new() { Date = birthDate, Time = birthTime, Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone } },
+    StartDate = new Date(2026, 10, 1), EndDate = new Date(2026, 10, 31),
 });
-// timeline.Count, timeline.Events[0].Date, timeline.Events[0].Domain, timeline.Events[0].Significance
+// timeline.Events[n].Domain (an enum: Western, Vedic, Biorhythm), .Description, .Significance
 ```
 
-### 7. Chinese astrology API (BaZi four pillars, zodiac sign)
+### 4. Human Design API (bodygraph, connection)
 
-BaZi (Four Pillars of Destiny), the twelve-animal zodiac, and the lunisolar calendar with its almanac. The school splits that make two calculators disagree are typed request parameters with named defaults, echoed back in a `conventions` object on every response, so a chart can be reproduced rather than guessed at. The zodiac routes answer the high-volume consumer questions; BaZi and the almanac are where an app goes deeper.
+Self-discovery apps, coaching bots and compatibility products. The full bodygraph is one call, and the Design side is solved on the exact 88-degree solar arc rather than approximated as calendar days.
 
 ```csharp
-// BaZi Four Pillars. The anchor call: the rest of the domain reads off these four pillars.
-// Timezone takes the IANA name, resolved to the DST-correct offset for the birth date.
+// Bodygraph. Type, strategy, authority, profile, definition, centers, channels and all 26 gates in one call.
+// Human Design needs only the birth instant, so it takes the date, time and timezone from the lookup above.
+var hd = await roxy.HumanDesign.Bodygraph.PostAsync(new()
+{
+    Date = birthDate, Time = birthTime, Timezone = new() { String = timezone },
+});
+// hd.Type, hd.Strategy, hd.Authority, hd.Profile, hd.Definition, hd.IncarnationCross.Name, hd.Centers, hd.Channels, hd.Gates
+
+// Connection. Two bodygraphs combined, each of the 36 channels classified by how the pair forms it.
+var connection = await roxy.HumanDesign.Connection.PostAsync(new()
+{
+    PersonA = new() { Date = birthDate, Time = birthTime, Timezone = new() { String = timezone } },
+    PersonB = new() { Date = partnerDate, Time = partnerTime, Timezone = new() { String = tz2 } },
+});
+// connection.TotalChannels, connection.Summary.Electromagnetic, connection.CombinedDefinition
+```
+
+### 5. Chinese zodiac API (BaZi four pillars, zodiac animal, almanac)
+
+BaZi readings, zodiac content and Tong Shu date pages. The school splits that make two calculators disagree (`DayBoundary`, `YearBoundary`, `HourClock`) are typed request parameters with named defaults.
+
+```csharp
+// BaZi Four Pillars. The anchor call of the domain, from the same birth instant as every chart above.
+// Each response echoes the Conventions it was computed under, so a chart can be reproduced, not guessed.
 var bazi = await roxy.ChineseAstrology.Bazi.Chart.PostAsync(new()
 {
-    Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0),
-    Timezone = new() { String = "America/New_York" },
+    Date = birthDate, Time = birthTime, Timezone = new() { String = timezone },
 });
-// bazi.Pillars[n].Position ("year" | "month" | "day" | "hour"), .Stem.Element, .Branch.Animal
-// bazi.Pillars[n].TenGod.Name, .HiddenStems, .NaYin
-// bazi.DayMaster.Element, bazi.ZodiacAnimal, bazi.FiveElements, bazi.Conventions, bazi.Summary
+// bazi.Pillars[n].Position ("year" | "month" | "day" | "hour"), .Stem.Element, .Branch.Animal, .TenGod.Name
+// bazi.DayMaster.Element, bazi.ZodiacAnimal, bazi.FiveElements, bazi.Conventions
 
-// Chinese zodiac sign. Defaults YearBoundary to "lunar-new-year", the folk rule people mean
-// when they say which animal they are. Pass "li-chun" to match the classical BaZi boundary.
-var sign = await roxy.ChineseAstrology.Zodiac.Sign.PostAsync(new()
-{
-    Date = new Date(1990, 7, 4),
-});
-// sign.Animal.Name ("Horse"), sign.Animal.Element ("Fire"), sign.Animal.Polarity
-// sign.Element is the YEAR STEM element ("Metal"), not the element of the animal
-// sign.YearPillar, sign.Interpretation
+// Chinese zodiac animal. Defaults YearBoundary to the Lunar New Year, the folk rule people mean
+// when they ask which animal they are. Pass LiChun for the classical BaZi boundary.
+var animal = await roxy.ChineseAstrology.Zodiac.Sign.PostAsync(new() { Date = birthDate });
+// animal.Animal.Name, animal.Animal.Element, animal.Element (the year stem element), animal.Interpretation
+
+// Almanac day. The Tong Shu view of a date: day officer, mansion, clash animal, favours and avoids.
+var almanac = await roxy.ChineseAstrology.Calendar.Day["2026-10-01"].GetAsync();
+// almanac.DayPillar, almanac.DayOfficer, almanac.ClashAnimal, almanac.Favours, almanac.Avoids
 ```
 
-### 8. Feng shui API (Kua number, flying star chart)
+### 6. Feng shui API (Kua number, flying star chart)
 
-Kua numbers with the full Eight Mansions map ranked best to worst, Xuan Kong flying star natal charts for any of the nine periods and 24 mountains, annual and monthly star plates, and the four annual afflictions with exact degree spans. Chinese years resolve at Li Chun, computed astronomically rather than assumed, so the annual charts change over on the real boundary.
+Kua numbers with the Eight Mansions map, Xuan Kong flying star charts for any of the nine periods and 24 mountains, annual and monthly star plates, and the annual afflictions.
 
 ```csharp
-// Kua number: one birth date and a gender gives the personal directions everything else reads off.
-// Gender is required. The enums live with their request bodies:
-// using RoxyApi.FengShui.Kua; and using RoxyApi.FengShui.FlyingStars.Natal;
-var kua = await roxy.FengShui.Kua.PostAsync(new()
-{
-    Date = new Date(1990, 7, 4),
-    Gender = KuaPostRequestBody_gender.Female,
-});
-// kua.Kua (8), kua.Group ("east" | "west"), kua.Trigram.English ("Mountain")
-// kua.Sectors[n].Direction, .StarName, .Nature ("auspicious" | "inauspicious"), .Rank, .Domain
+// Kua number. One birth date and a gender give the personal directions everything else reads off.
+// The enums live with their request bodies: using RoxyApi.FengShui.Kua; and using RoxyApi.FengShui.FlyingStars.Natal;
+var kua = await roxy.FengShui.Kua.PostAsync(new() { Date = birthDate, Gender = KuaPostRequestBody_gender.Female });
+// kua.Kua, kua.Group ("east" | "west"), kua.Trigram.English, kua.Sectors[n].Direction, .Nature, .Rank
 
-// Flying star natal chart. Period plus facing gives the nine palaces with base, mountain
-// and water stars. Send Facing (a mountain id like "bing" or a compass label like "S2")
-// or FacingDegrees, not neither.
-var chart = await roxy.FengShui.FlyingStars.Natal.PostAsync(new()
-{
-    Period = 9, Facing = NatalPostRequestBody_facing.S2,
-});
-// chart.Facing.Label ("S2"), chart.Sitting.Label, chart.Structure.Name
-// chart.Palaces[n].Palace, .Base, .Mountain, .Water, .Reading
-// chart.MountainCenterStar, chart.WaterCenterStar, chart.Straddling
+// Flying star natal chart. Period plus facing gives the nine palaces with base, mountain and water stars.
+// Send Facing (a mountain id like Bing or a compass label like S2) or FacingDegrees, not neither.
+var stars = await roxy.FengShui.FlyingStars.Natal.PostAsync(new() { Period = 9, Facing = NatalPostRequestBody_facing.S2 });
+// stars.Facing.Label, stars.Sitting.Label, stars.Structure.Name, stars.Palaces[n].Palace, .Base, .Mountain, .Water, .Reading
 ```
 
-### 9. Biorhythm API (daily check-in, forecast, compatibility)
+### 7. Mayan astrology API (Tzolkin day sign, full Maya chart)
 
-Zero competition domain. Steady search volume with the top Google result being a static calculator page. Pure land-grab for wellness, productivity, sports, and couples apps.
+Maya day signs, the Haab and Long Count, and the Aztec tonalpohualli, every value a function of the date under a typed `Correlation` convention echoed back in `Conventions`.
 
 ```csharp
-// Daily biorhythm. Physical, emotional, intellectual, intuitive, plus extended cycles.
-var bio = await roxy.Biorhythm.Daily.PostAsync(new() { Seed = "user-1", Date = new Date(2026, 4, 23) });
+// Tzolkin day sign. The most asked Maya question, answered from a date alone.
+var tzolkin = await roxy.MesoamericanAstrology.Mayan.Tzolkin.PostAsync(new() { Date = birthDate });
+// tzolkin.DaySign, tzolkin.DaySignName, tzolkin.Number, tzolkin.Trecena, tzolkin.Reading
 
-// Multi-day forecast. Best-day and worst-day planner for calendar and coaching products.
-var forecast = await roxy.Biorhythm.Forecast.PostAsync(new()
-{
-    BirthDate = new Date(1990, 1, 15), StartDate = new Date(2026, 4, 1), EndDate = new Date(2026, 4, 30),
-});
+// Full Maya chart. Tzolkin, Haab, Long Count, Calendar Round, Lord of the Night, Year Bearer and the Cruz Maya.
+var maya = await roxy.MesoamericanAstrology.Mayan.Chart.PostAsync(new() { Date = birthDate });
+// maya.Tzolkin, maya.Haab, maya.LongCount, maya.CalendarRound, maya.YearBearer, maya.Cross, maya.Conventions.Correlation
 ```
 
-### 10. I Ching API (cast a reading, 64-hexagram catalog)
+### 8. Vastu Shastra API (entrance analysis, room compliance)
 
-Meditation apps, decision-making tools, and wisdom chatbots. `i ching API` and `hexagram API` are the keywords.
+Home and plot analysis from typed geometry. Every verdict carries a `Source` object naming the text, chapter and verse it rests on, or a convention label where the texts are silent.
 
 ```csharp
-// Cast a reading. Active divination: primary hexagram plus changing lines and transformed hexagram.
+// Entrance analysis. Plot, facing and door in; the pada, its devata, the classical effect and the recommended padas out.
+// The enums live with their request bodies: using RoxyApi.Vastu.Entrance; and using RoxyApi.Vastu.Rooms;
+var entrance = await roxy.Vastu.Entrance.PostAsync(new()
+{
+    Plot = new() { Width = 30, Depth = 40, Unit = EntrancePostRequestBody_plot_unit.Feet },
+    Facing = EntrancePostRequestBody_facing.North, DoorPosition = 0.4,
+});
+// entrance.Pada, entrance.Devata, entrance.Effect, entrance.Auspiciousness, entrance.RecommendedPadas, entrance.Source
+
+// Room compliance. A verdict per room with the verse or the convention it rests on, and a scored composite.
+var rooms = await roxy.Vastu.Rooms.PostAsync(new()
+{
+    Plot = new() { Width = 30, Depth = 40, Unit = RoomsPostRequestBody_plot_unit.Feet },
+    Facing = RoomsPostRequestBody_facing.North,
+    Rooms =
+    [
+        new() { Type = RoomsPostRequestBody_rooms_type.Kitchen, Direction = RoomsPostRequestBody_rooms_direction.Southeast },
+        new() { Type = RoomsPostRequestBody_rooms_type.MasterBedroom, Direction = RoomsPostRequestBody_rooms_direction.Southwest },
+        new() { Type = RoomsPostRequestBody_rooms_type.Puja, Direction = RoomsPostRequestBody_rooms_direction.Northeast },
+    ],
+});
+// rooms.Score, rooms.Rooms[n].Type, .Verdict, .IdealDirections, .Source
+```
+
+### 9. Numerology API (life path, full chart, personal year)
+
+Works from the birth date and name alone, no coordinates, which makes it the easiest domain to integrate.
+
+```csharp
+// Life Path. The most searched numerology number, from the birth date alone.
+var lifePath = await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 15 });
+// lifePath.Number, lifePath.Type (an enum: Single, Master), lifePath.Meaning
+
+// Full numerology chart. All six core numbers plus karmic lessons, pinnacles and the personal year in one call.
+var numerology = await roxy.Numerology.Chart.PostAsync(new() { FullName = "Jane Smith", Year = 1990, Month = 1, Day = 15 });
+// numerology.CoreNumbers.LifePath, .Expression, .SoulUrge, numerology.AdditionalInsights.PersonalYear
+
+// Personal Year. The annual theme, the January feature of every numerology app.
+var personalYear = await roxy.Numerology.PersonalYear.PostAsync(new() { Month = 1, Day = 15, Year = 2026 });
+// personalYear.PersonalYear, personalYear.Theme, personalYear.Advice
+```
+
+### 10. Kabbalah API (gematria, birth profile)
+
+Gematria of a Latin name under a declared transliteration convention, the 72 names, the Tree of Life, and a Hebrew birthday computed from the same birth instant as every chart above.
+
+```csharp
+// Gematria. A Latin name transliterated under a declared convention, ten ciphers, each with its tradition and source.
+var gematria = await roxy.Kabbalah.Gematria.PostAsync(new() { Text = "Sarah" });
+// gematria.Chosen.Hebrew, gematria.Values[n].Id, .Name, .Value, .Tradition; gematria.Matches, gematria.Conventions
+
+// Birth profile. The Hebrew date and birthday, the three birth angels and the birth sephirah from the instant above.
+var kabbalah = await roxy.Kabbalah.BirthProfile.PostAsync(new()
+{
+    Date = birthDate, Time = birthTime, Timezone = new() { String = timezone },
+});
+// kabbalah.HebrewDate, kabbalah.HebrewBirthday, kabbalah.Angels, kabbalah.Sephirah
+```
+
+### 11. Tarot API (daily card, three-card, Celtic Cross, yes or no)
+
+The complete 78-card deck with meanings for love, career, health and spirit. Pass a `Seed` per user for deterministic once-per-day draws.
+
+```csharp
+// Daily card. Deterministic per (seed, date), so one user sees one card per day.
+var card = await roxy.Tarot.Daily.PostAsync(new() { Seed = "user-42" });
+// card.Card.Name, card.Card.Reversed, card.Card.ImageUrl, card.DailyMessage
+
+// Three-card spread. Past, present, future: the most drawn spread on every tarot platform.
+var three = await roxy.Tarot.Spreads.ThreeCard.PostAsync(new() { Question = "My next quarter", Seed = "user-42" });
+// three.Positions[n].Name, .Card.Name, .Interpretation; three.Summary
+
+// Celtic Cross. The ten-position professional reading.
+var celtic = await roxy.Tarot.Spreads.CelticCross.PostAsync(new() { Question = "What should I focus on?", Seed = "user-42" });
+// celtic.Positions[n].Name, .Card.Name, .Interpretation; celtic.Summary
+
+// Yes or no. One card, one answer, with its strength.
+var answer = await roxy.Tarot.YesNo.PostAsync(new() { Question = "Should I take the offer?" });
+// answer.Answer (an enum: Yes, No, Maybe), answer.Strength, answer.Card.Name
+```
+
+### 12. Biorhythm API (reading, forecast)
+
+Ten cycle types across primary, secondary and extended cycles, for wellness, productivity, sports and couples apps.
+
+```csharp
+// Biorhythm reading. All ten cycles for a date, from the same birth date as every chart above.
+var bio = await roxy.Biorhythm.Reading.PostAsync(new() { BirthDate = birthDate, TargetDate = new Date(2026, 10, 1) });
+// bio.Cycles.AdditionalData["physical"] (every cycle keyed by name: value, rawValue, phase); bio.EnergyRating, bio.OverallPhase, bio.CriticalAlerts, bio.Interpretation
+
+// Forecast. Every cycle for every day of a window, with the best and worst days named.
+var bioForecast = await roxy.Biorhythm.Forecast.PostAsync(new()
+{
+    BirthDate = birthDate, StartDate = new Date(2026, 10, 1), EndDate = new Date(2026, 10, 31),
+});
+// bioForecast.Summary.BestDay, .WorstDay, .AverageEnergy; bioForecast.Days[n].Date, .Physical, .Emotional, .Intellectual, .IsCritical
+```
+
+### 13. Ayurveda API (dosha constitution, dinacharya)
+
+The dosha profile read from a verified sidereal chart with the verse on each factor, a daily routine anchored on the local sunrise, and the six seasons from real solar ingresses. Every response carries `Meta.Disclaimer`.
+
+```csharp
+// Constitution. The dosha profile read from the sidereal chart of the same birth, each factor with its verse.
+var constitution = await roxy.Ayurveda.Constitution.PostAsync(new()
+{
+    Date = birthDate, Time = birthTime,
+    Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
+});
+// constitution.Composite.Dominant, .Type; constitution.Factors[n].Id, .Input, .Doshas, .Source; constitution.Meta.Disclaimer
+
+// Dinacharya. Brahma muhurta, the dosha periods and the routine for a date at the place looked up above.
+var dinacharya = await roxy.Ayurveda.Dinacharya.PostAsync(new()
+{
+    Date = new Date(2026, 10, 1), Latitude = latitude, Longitude = longitude, Timezone = new() { String = timezone },
+});
+// dinacharya.BrahmaMuhurta, dinacharya.DoshaPeriods, dinacharya.Routine
+```
+
+### 14. I Ching API (cast a reading, hexagram catalog)
+
+All 64 hexagrams, 384 changing lines and 8 trigrams, for meditation apps, decision tools and wisdom chatbots.
+
+```csharp
+// Cast a reading. Three coins six times: the primary hexagram, the changing lines and the resulting hexagram.
 var reading = await roxy.Iching.Cast.GetAsync(c => c.QueryParameters.Seed = "user-42");
-// reading.Hexagram, reading.ChangingLinePositions, reading.ResultingHexagram
+// reading.Hexagram.Number, reading.Hexagram.English, reading.Lines, reading.ChangingLinePositions, reading.ResultingHexagram
 
-// Hexagram catalog. Cache once for all 64 hexagrams.
-var hexagrams = await roxy.Iching.Hexagrams.GetAsync();
+// Hexagram catalog. Paginated, 20 per page by default; ask for all 64 once and cache them.
+var hexagrams = await roxy.Iching.Hexagrams.GetAsync(c => c.QueryParameters.Limit = 64);
+// hexagrams.Total, hexagrams.Hexagrams[n].Number, .English, .Pinyin; fetch roxy.Iching.Hexagrams[number].GetAsync() for the judgment and lines
 ```
 
-### 11. Crystals API (by zodiac, by chakra, birthstone)
+### 15. Crystal healing API (by zodiac, by chakra, birthstone)
 
-Crystal retail and metaphysical shops use these to build "crystals for [sign]" and "[chakra] chakra stones" pages.
+Crystal retail and metaphysical content: "crystals for [sign]" and "[chakra] chakra stones" pages, plus the birthstone for each month.
 
 ```csharp
-// By zodiac. Highest-search crystal query pattern.
+// By zodiac. The most searched crystal query pattern.
 var bySign = await roxy.Crystals.Zodiac["scorpio"].GetAsync();
+// bySign.Crystals[n].Id, .Name, .ImageUrl, .Colors; fetch roxy.Crystals[id].GetAsync() for full properties
 
-// By chakra. Second-highest crystal query pattern.
+// By chakra. Wellness and yoga content pages.
 var byChakra = await roxy.Crystals.Chakra["Heart"].GetAsync();
+// byChakra.Crystals[n].Name, .Colors
 
-// Birthstone by month. Evergreen gift and jewelry SEO.
-var birthstone = await roxy.Crystals.Birthstone[4].GetAsync();
+// Birthstone. Evergreen gift and jewelry pages.
+var birthstone = await roxy.Crystals.Birthstone[1].GetAsync();
 ```
 
-### 12. Dream interpretation API (symbol dictionary, search)
+### 16. Dream interpretation API (symbol dictionary, search)
 
-Thousands of dream symbols. `dream meaning` is among the highest-volume spiritual searches on Google. Journal apps, AI therapy chatbots, and self-discovery products are the buyers.
+A 2,000+ symbol dream dictionary for journal apps, AI companions and self-discovery products.
 
 ```csharp
 // Symbol detail. Every "what does it mean to dream about X" page lands here.
-var symbol = await roxy.Dreams.Symbols["snake"].GetAsync();
-// symbol.Name, symbol.Meaning
+var symbol = await roxy.Dreams.Symbols["flying"].GetAsync();
+// symbol.Id, symbol.Name, symbol.Meaning
 
-// Symbol search. Chatbots cache the dictionary locally after one call.
-var results = await roxy.Dreams.Symbols.GetAsync(c => c.QueryParameters.Q = "water");
+// Symbol search. Chatbots fetch the dictionary once and keep it locally.
+var symbols = await roxy.Dreams.Symbols.GetAsync(c => c.QueryParameters.Q = "water");
+// symbols.Symbols[n].Id, .Name
 ```
 
-### 13. Angel Numbers API (111, 222, 333 meanings plus universal lookup)
+### 17. Angel numbers API (1111, 222, 333 meanings plus universal lookup)
 
-Gen Z spiritual-tok fuel. `111 meaning`, `222 meaning`, `333 angel number` are evergreen viral queries with massive shareability.
+Meanings for every common sequence, and a lookup that answers any positive integer through its digit root.
 
 ```csharp
-// By number. Every "meaning of 1111" page is backed by this.
+// By number. Every "meaning of 1111" page is backed by this. The path param is a string.
 var angel = await roxy.AngelNumbers.Numbers["1111"].GetAsync();
-// angel.Meaning.Spiritual, angel.Meaning.Love, angel.Affirmation
+// angel.Title, angel.CoreMessage, angel.Meaning.Spiritual, angel.Meaning.Love, angel.Affirmation
 
-// Universal lookup. Works for any positive integer via digit-root fallback.
-var any = await roxy.AngelNumbers.Lookup.GetAsync(c => c.QueryParameters.Number = "4242");
+// Universal lookup. Any positive integer, with the digit root carrying the answer when no curated entry exists.
+var sequence = await roxy.AngelNumbers.Lookup.GetAsync(c => c.QueryParameters.Number = "4242");
+// sequence.DigitRoot, sequence.IsRepeating, sequence.KnownMeaning (null when not curated), sequence.DigitRootMeaning.Title
 ```
 
 ## Built for AI agents (Cursor, Claude Code, Copilot, Codex, Gemini CLI)
@@ -449,15 +563,13 @@ Supported: astrology, Vedic astrology, forecast, human design, Chinese astrology
 
 ## Error handling
 
-Every endpoint throws a typed `RoxyError` (which extends `ApiException`) on a 4xx or 5xx response. The message is human-readable; switch on `Code` for programmatic handling.
+Every endpoint throws a typed `RoxyError` (in `RoxyApi.Models`, a subclass of `ApiException`) on a 4xx or 5xx response. The message is human-readable; switch on `Code` for programmatic handling.
 
 ```csharp
-using RoxyApi.Models;
-
 try
 {
-    var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
-    Console.WriteLine(horoscope!.Overview);
+    var daily = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
+    Console.WriteLine(daily!.Overview);
 }
 catch (RoxyError e)
 {
@@ -474,7 +586,9 @@ catch (RoxyError e)
 | 401 | `invalid_api_key` | Key format invalid or tampered |
 | 401 | `subscription_not_found` | Key references a non-existent subscription |
 | 401 | `subscription_inactive` | Subscription cancelled, expired, or suspended |
+| 401 | `api_key_revoked` | Key was deleted from the account |
 | 404 | `not_found` | Resource not found |
+| 4xx | `bad_request` and other status-derived codes | A client error the endpoint itself detected, such as a date window whose `endDate` precedes `startDate` |
 | 429 | `rate_limit_exceeded` | Monthly quota reached |
 | 500 | `internal_error` | Server error |
 
@@ -531,7 +645,7 @@ The typed client is generated from the public OpenAPI specification with [Kiota]
 - [Pricing](https://roxyapi.com/pricing)
 - [MCP setup for AI agents](https://roxyapi.com/docs/mcp)
 - [Templates](https://roxyapi.com/templates)
-- [TypeScript SDK](https://www.npmjs.com/package/@roxyapi/sdk) | [Python SDK](https://pypi.org/project/roxy-sdk/) | [PHP SDK](https://packagist.org/packages/roxyapi/sdk)
+- [TypeScript SDK](https://www.npmjs.com/package/@roxyapi/sdk) | [Python SDK](https://pypi.org/project/roxy-sdk/) | [PHP SDK](https://packagist.org/packages/roxyapi/sdk) | [Go SDK](https://pkg.go.dev/github.com/RoxyAPI/sdk-go)
 - [Issues](https://github.com/RoxyAPI/sdk-dotnet/issues)
 
 ## License
