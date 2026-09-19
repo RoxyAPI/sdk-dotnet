@@ -23,4 +23,9 @@
     <ProjectReference Include="..\..\src\RoxyApi.csproj" />
   </ItemGroup>
 
+  <ItemGroup Label="Spec-driven surface test: the naming rule shared with the generator tool, and the committed spec it walks">
+    <Compile Include="..\..\tools\RoxyDevTools\Naming.cs" Link="Naming.cs" />
+    <None Include="..\..\specs\openapi.json" Link="specs\openapi.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

@@ -4,8 +4,8 @@
 //   generate    Fetch the spec, patch it for client generation, run Kiota into
 //               src/Generated, then sync the spec-derived docs.
 //   sync-docs   Regenerate only the spec-derived regions of README.md, AGENTS.md,
-//               and docs/llms-full.txt (between BEGIN/END markers). Run by CI and
-//               the pre-push hook to fail on drift.
+//               and docs/llms-full.txt (between BEGIN/END markers) plus the compiled
+//               example guard in tests/. Run by CI and the git hooks to fail on drift.
 //
 // Run from the repository root: `dotnet run --project tools/RoxyDevTools -- <cmd>`.
 
@@ -14,17 +14,12 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using static RoxyDevTools.Naming;
 
 const string SpecUrl = "https://roxyapi.com/api/v2/openapi.json";
 const string AbsoluteServerUrl = "https://roxyapi.com/api/v2";
 const string SpecPath = "specs/openapi.json";
 const string GeneratedDir = "src/Generated";
-
-// Error status codes the API returns with a `{ error, code }` body. The served
-// spec declares them as descriptions only (no schema) because typed 401/500
-// responses break the server's route handler types. We attach a RoxyError schema
-// to the local spec copy so Kiota emits one catchable, typed exception.
-int[] errorStatusCodes = [400, 401, 404, 405, 429, 500];
 
 return (args.FirstOrDefault()) switch
 {
@@ -114,19 +109,16 @@ void PatchServerUrl(JsonObject spec)
 void FixPathParameters(JsonObject spec)
 {
     var fixedCount = 0;
-    foreach (var (_, pathItem) in spec["paths"]!.AsObject())
+    foreach (var (_, _, op) in Operations(spec))
     {
-        foreach (var (verb, opNode) in pathItem!.AsObject())
+        if (op["parameters"] is not JsonArray ps) continue;
+        foreach (var p in ps)
         {
-            if (!IsHttpVerb(verb) || opNode is not JsonObject op || op["parameters"] is not JsonArray ps) continue;
-            foreach (var p in ps)
+            if (p is JsonObject param && param["in"]?.GetValue<string>() == "path"
+                && param["required"]?.GetValue<bool>() != true)
             {
-                if (p is JsonObject param && param["in"]?.GetValue<string>() == "path"
-                    && param["required"]?.GetValue<bool>() != true)
-                {
-                    param["required"] = true;
-                    fixedCount++;
-                }
+                param["required"] = true;
+                fixedCount++;
             }
         }
     }
@@ -136,10 +128,11 @@ void FixPathParameters(JsonObject spec)
 // Every endpoint returns the same `{ error, code }` shape on failure (400 adds
 // validation `issues[]`, 405 adds `allow[]`). The served spec inlines that schema
 // per operation, so Kiota would emit a distinct error type for every operation and
-// status. Point every error response at one shared RoxyError schema instead: Kiota
-// then generates a single catchable exception inheriting ApiException, and the
+// status. Point every 4xx and 5xx response at one shared RoxyError schema instead:
+// Kiota then generates a single catchable exception inheriting ApiException, and the
 // generated client shrinks by thousands of redundant types. x-ms-primary-error-message
-// surfaces `error` as Exception.Message.
+// surfaces `error` as Exception.Message. The status codes are read off the document,
+// never listed here, so a new error status cannot slip past as a per-operation type.
 void NormalizeErrors(JsonObject spec)
 {
     var schemas = spec["components"]!.AsObject()["schemas"]!.AsObject();
@@ -187,23 +180,20 @@ void NormalizeErrors(JsonObject spec)
     };
 
     var normalized = 0;
-    foreach (var (_, pathItem) in spec["paths"]!.AsObject())
+    foreach (var (_, _, op) in Operations(spec))
     {
-        foreach (var (verb, opNode) in pathItem!.AsObject())
+        if (op["responses"] is not JsonObject responses) continue;
+        foreach (var (code, respNode) in responses)
         {
-            if (!IsHttpVerb(verb) || opNode is not JsonObject op || op["responses"] is not JsonObject responses) continue;
-            foreach (var code in errorStatusCodes)
+            if (code.Length != 3 || code[0] is not ('4' or '5') || respNode is not JsonObject resp) continue;
+            resp["content"] = new JsonObject
             {
-                if (responses[code.ToString()] is not JsonObject resp) continue;
-                resp["content"] = new JsonObject
+                ["application/json"] = new JsonObject
                 {
-                    ["application/json"] = new JsonObject
-                    {
-                        ["schema"] = new JsonObject { ["$ref"] = "#/components/schemas/RoxyError" },
-                    },
-                };
-                normalized++;
-            }
+                    ["schema"] = new JsonObject { ["$ref"] = "#/components/schemas/RoxyError" },
+                },
+            };
+            normalized++;
         }
     }
     Console.WriteLine($"Normalized {normalized} error responses to RoxyError.");
@@ -301,17 +291,13 @@ List<Domain> BuildDomains(JsonObject spec)
 {
     var opsBySegment = new Dictionary<string, List<(string, string, JsonObject)>>();
     var tagToSegment = new Dictionary<string, string>();
-    foreach (var (path, pathItem) in spec["paths"]!.AsObject())
+    foreach (var (path, verb, op) in Operations(spec))
     {
         var segment = path.Trim('/').Split('/')[0];
-        foreach (var (verb, opNode) in pathItem!.AsObject())
-        {
-            if (!IsHttpVerb(verb) || opNode is not JsonObject op) continue;
-            if (!opsBySegment.TryGetValue(segment, out var list)) opsBySegment[segment] = list = [];
-            list.Add((path, verb, op));
-            var tag = op["tags"]?.AsArray().FirstOrDefault()?.GetValue<string>();
-            if (tag is not null && !tagToSegment.ContainsKey(tag)) tagToSegment[tag] = segment;
-        }
+        if (!opsBySegment.TryGetValue(segment, out var list)) opsBySegment[segment] = list = [];
+        list.Add((path, verb, op));
+        var tag = op["tags"]?.AsArray().FirstOrDefault()?.GetValue<string>();
+        if (tag is not null && !tagToSegment.ContainsKey(tag)) tagToSegment[tag] = segment;
     }
     return (opsBySegment, tagToSegment);
 }
@@ -336,14 +322,6 @@ string TagSummary(JsonObject tag)
     var firstSentence = desc.Split(". ", 2)[0].Trim().TrimEnd('.');
     var flat = string.Join(' ', firstSentence.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
     return flat.Length > 120 ? flat[..117].TrimEnd() + "..." : flat;
-}
-
-bool IsHttpVerb(string v) => v is "get" or "post" or "put" or "delete" or "patch";
-
-string Pascal(string s)
-{
-    var parts = s.Split(['-', '_', ' ', '.', '/'], StringSplitOptions.RemoveEmptyEntries);
-    return string.Concat(parts.Select(p => char.ToUpperInvariant(p[0]) + p[1..]));
 }
 
 // Swap the text between two markers in a file. optional=true skips a file that is
@@ -440,7 +418,7 @@ string RenderCall(JsonObject spec, string path, string verb, JsonObject op)
         else chain.Append('.').Append(Pascal(s));
     }
 
-    var method = char.ToUpperInvariant(verb[0]) + verb[1..] + "Async";
+    var method = Method(verb);
     var args = new List<string>();
 
     if (op["requestBody"]?["content"]?["application/json"]?["schema"] is JsonObject bodySchema)

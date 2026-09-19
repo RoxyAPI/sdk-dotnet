@@ -17,7 +17,7 @@ How the calls below map to the API:
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
 - **Dates use `new Date(year, month, day)`; times use `new Time(hour, minute, second)`** (both from `Microsoft.Kiota.Abstractions`).
 - **`Timezone` is a union:** `new() { Double = -5 }` (decimal offset) or `new() { String = "America/New_York" }` (IANA name, resolved to the DST-correct offset).
-- **Every call is async and throws `RoxyError` on a 4xx or 5xx.** Capture the result directly: `var chart = await roxy.Astrology.NatalChart.PostAsync(new() { ... });`
+- **Every call is async and throws `RoxyError` on an error response** (see Error handling below). Capture the result directly: `var chart = await roxy.Astrology.NatalChart.PostAsync(new() { ... });`
 
 **Multi-language responses.** Interpretations are available in 10 languages: en, tr, de, es, fr, hi, pt, ru, zh-Hans, zh-Hant. Add `c => c.QueryParameters.Lang = "es"` to any supported endpoint. Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, fengShui, mesoamericanAstrology, vastu, numerology, kabbalah, tarot, biorhythm, ayurveda, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. The two Chinese scripts currently ship on chineseAstrology and fengShui. Untranslated fields fall back to English.
 
@@ -965,7 +965,7 @@ await roxy.Languages.GetAsync();
 
 ## Error handling
 
-Calls throw `RoxyApi.Models.RoxyError` (a subclass of `Microsoft.Kiota.Abstractions.ApiException`) on a 4xx or 5xx response.
+Calls throw `RoxyApi.Models.RoxyError` (a subclass of `Microsoft.Kiota.Abstractions.ApiException`) on every error status the endpoint declares. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set, and a 503 or 504 still failing after three retries throws an `AggregateException` holding every attempt.
 
 ```csharp
 try

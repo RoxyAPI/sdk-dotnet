@@ -77,7 +77,7 @@ var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 });
 ```
 
-`new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and injects the auth header and SDK identification header on every request. Every call returns the typed response and throws `RoxyError` on a 4xx or 5xx (see Error handling).
+`new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and injects the auth header and SDK identification header on every request. Every call returns the typed response and throws `RoxyError` on an error response (see Error handling).
 
 ## Three things to know
 
@@ -563,7 +563,7 @@ Supported: astrology, Vedic astrology, forecast, human design, Chinese astrology
 
 ## Error handling
 
-Every endpoint throws a typed `RoxyError` (in `RoxyApi.Models`, a subclass of `ApiException`) on a 4xx or 5xx response. The message is human-readable; switch on `Code` for programmatic handling.
+Every endpoint throws a typed `RoxyError` (in `RoxyApi.Models`, a subclass of `ApiException`) on every error status it declares. The message is human-readable; switch on `Code` for programmatic handling. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set, and a 503 or 504 still failing after three retries throws an `AggregateException` holding every attempt.
 
 ```csharp
 try
@@ -625,7 +625,7 @@ foreach (var planet in chart!.Planets!)
 
 ### Do calls return an error object or throw?
 
-They throw. On success a call returns the typed response (a nullable reference, so use `!` or a null check after you have handled errors); on a 4xx or 5xx it throws `RoxyError`. Wrap calls in `try`/`catch (RoxyError e)` and switch on `e.Code`.
+They throw. On success a call returns the typed response (a nullable reference, so use `!` or a null check after you have handled errors); on an error status the endpoint declares it throws `RoxyError`. Wrap calls in `try`/`catch (RoxyError e)` and switch on `e.Code`; add `catch (ApiException e)` for a status the endpoint does not declare (see Error handling).
 
 ### Which .NET versions are supported?
 

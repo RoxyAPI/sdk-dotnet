@@ -16,7 +16,7 @@ using RoxyApi;
 var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 ```
 
-`new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and the auth and SDK headers automatically. Every call is async and returns the typed response, or throws `RoxyError` on a 4xx or 5xx.
+`new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and the auth and SDK headers automatically. Every call is async and returns the typed response, or throws `RoxyError` on an error response (see Error handling).
 
 ## Five rules to get right
 
@@ -26,7 +26,7 @@ Get these and the generated types do the rest.
 - **Request bodies use a target-typed `new()`.** `await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), ... })`. The type is inferred from the method, so you never need to name it; IntelliSense shows every field on `new() {`.
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`. Multiple: `c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; }`.
 - **Always `await`, and catch `RoxyError`.** There is no result-wrapper object. The call returns the typed response directly and throws `RoxyError` (a subclass of `ApiException`) on failure. Switch on `e.Code`, not `e.Message`.
-- **Never hand-roll HttpClient.** `new RoxyClient(key)` injects auth, the base URL, typed responses, and a retry with backoff on a 429 or 503. Response field names come from the response schema of the spec and are PascalCase properties; the compiler catches any invented field, so if the build fails on a property, the field does not exist.
+- **Never hand-roll HttpClient.** `new RoxyClient(key)` injects auth, the base URL, typed responses, and a retry with backoff on a 429, 503 or 504: up to three attempts, honouring `Retry-After`, and giving up at once when that header asks for more than thirty seconds. Response field names come from the response schema of the spec and are PascalCase properties; the compiler catches any invented field, so if the build fails on a property, the field does not exist.
 
 ## Critical rule: geocode before any chart endpoint
 
@@ -128,7 +128,7 @@ Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, f
 
 ### Error handling
 
-Calls throw `RoxyError` (in `RoxyApi.Models`, extends `ApiException`) on a 4xx or 5xx. `Message` is human-readable and may change; `Code` is stable, switch on it.
+Calls throw `RoxyError` (in `RoxyApi.Models`, extends `ApiException`) on every error status the endpoint declares. `Message` is human-readable and may change; `Code` is stable, switch on it. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set, and a 503 or 504 still failing after three retries throws an `AggregateException` holding every attempt.
 
 ```csharp
 try
