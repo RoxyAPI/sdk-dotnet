@@ -63,7 +63,9 @@ public class SurfaceTests
     }
 
     // Kiota types a path indexer from the parameter schema; the null member of a 3.1 union
-    // carries no type, so a nullable integer is still an int indexer.
+    // carries no type, so a nullable integer is still an int indexer, and a string with a
+    // format becomes the matching Kiota or BCL type (the almanac date gained format: date
+    // on 2026-09-18 and turned its indexer from string into Date at the next regenerate).
     private static Type IndexerType(JsonObject schema)
     {
         var type = schema["type"] switch
@@ -72,11 +74,15 @@ public class SurfaceTests
             JsonNode t => t.GetValue<string>(),
             _ => throw new InvalidOperationException($"path parameter without a type: {schema}"),
         };
-        return type switch
+        var format = schema["format"]?.GetValue<string>();
+        return (type, format) switch
         {
-            "integer" => typeof(int),
-            "number" => typeof(double),
-            "string" => typeof(string),
+            ("integer", _) => typeof(int),
+            ("number", _) => typeof(double),
+            ("string", "date") => typeof(Microsoft.Kiota.Abstractions.Date),
+            ("string", "date-time") => typeof(DateTimeOffset),
+            ("string", "uuid") => typeof(Guid),
+            ("string", _) => typeof(string),
             _ => throw new InvalidOperationException($"path parameter of type {type} has no indexer rule"),
         };
     }

@@ -295,7 +295,7 @@ var animal = await roxy.ChineseAstrology.Zodiac.Sign.PostAsync(new() { Date = bi
 // animal.Animal.Name, animal.Animal.Element, animal.Element (the year stem element), animal.Interpretation
 
 // Almanac day. The Tong Shu view of a date: day officer, mansion, clash animal, favours and avoids.
-var almanac = await roxy.ChineseAstrology.Calendar.Day["2026-10-01"].GetAsync();
+var almanac = await roxy.ChineseAstrology.Calendar.Day[new Date(2026, 10, 1)].GetAsync();
 // almanac.DayPillar, almanac.DayOfficer, almanac.ClashAnimal, almanac.Favours, almanac.Avoids
 ```
 

@@ -199,7 +199,7 @@ In the catalog order (Western astrology, Vedic astrology, forecast, Human Design
 | Human Design connection | `roxy.HumanDesign.Connection.PostAsync(new() { PersonA, PersonB })` |
 | BaZi Four Pillars | `roxy.ChineseAstrology.Bazi.Chart.PostAsync(new() { Date, Time, Timezone })` |
 | Chinese zodiac animal | `roxy.ChineseAstrology.Zodiac.Sign.PostAsync(new() { Date })` |
-| Almanac day (Tong Shu) | `roxy.ChineseAstrology.Calendar.Day["2026-10-01"].GetAsync()` |
+| Almanac day (Tong Shu) | `roxy.ChineseAstrology.Calendar.Day[new Date(2026, 10, 1)].GetAsync()` |
 | Kua number | `roxy.FengShui.Kua.PostAsync(new() { Date, Gender })` |
 | Flying star natal chart | `roxy.FengShui.FlyingStars.Natal.PostAsync(new() { Period, Facing })` |
 | Tzolkin day sign | `roxy.MesoamericanAstrology.Mayan.Tzolkin.PostAsync(new() { Date })` |
