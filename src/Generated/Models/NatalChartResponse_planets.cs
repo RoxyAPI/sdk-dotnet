@@ -30,11 +30,11 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Whether the planet is in retrograde motion.</summary>
         public bool? IsRetrograde { get; set; }
-        /// <summary>Ecliptic latitude in degrees.</summary>
+        /// <summary>Apparent geocentric ecliptic latitude of date, in degrees.</summary>
         public double? Latitude { get; set; }
-        /// <summary>Tropical ecliptic longitude in degrees (0-360).</summary>
+        /// <summary>Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet or point name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees. The lunar nodes are the mean node; software using the true node may show node positions up to 1.75 degrees different.</summary>
+        /// <summary>Planet or point name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees. The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass &quot;mean&quot; for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

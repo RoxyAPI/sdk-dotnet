@@ -18,7 +18,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.Day
         /// <summary>Gets an item from the RoxyApi.chineseAstrology.calendar.day.item collection</summary>
         /// <param name="position">Gregorian date in YYYY-MM-DD format, evaluated at the reference meridian. Years 1900 to 2100.</param>
         /// <returns>A <see cref="global::RoxyApi.ChineseAstrology.Calendar.Day.Item.WithDateItemRequestBuilder"/></returns>
-        public global::RoxyApi.ChineseAstrology.Calendar.Day.Item.WithDateItemRequestBuilder this[string position]
+        public global::RoxyApi.ChineseAstrology.Calendar.Day.Item.WithDateItemRequestBuilder this[Date position]
         {
             get
             {

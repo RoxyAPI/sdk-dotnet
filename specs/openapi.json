@@ -169,7 +169,7 @@
                 "name": {
                   "type": "string",
                   "example": "Sun",
-                  "description": "Planet or point name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees. The lunar nodes are the mean node; software using the true node may show node positions up to 1.75 degrees different."
+                  "description": "Planet or point name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees. The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                 },
                 "nameLocalized": {
                   "type": "string",
@@ -179,12 +179,12 @@
                 "longitude": {
                   "type": "number",
                   "example": 112.45,
-                  "description": "Tropical ecliptic longitude in degrees (0-360)."
+                  "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either."
                 },
                 "latitude": {
                   "type": "number",
                   "example": 0.01,
-                  "description": "Ecliptic latitude in degrees."
+                  "description": "Apparent geocentric ecliptic latitude of date, in degrees."
                 },
                 "sign": {
                   "type": "string",
@@ -1878,7 +1878,7 @@
                 "name": {
                   "type": "string",
                   "example": "Sun",
-                  "description": "Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees. The lunar nodes are the mean node; software using the true node may show node positions up to 1.75 degrees different."
+                  "description": "Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use nameLocalized for anything a reader sees. The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                 },
                 "nameLocalized": {
                   "type": "string",
@@ -1888,12 +1888,12 @@
                 "longitude": {
                   "type": "number",
                   "example": 267.45,
-                  "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for sign and aspect calculation."
+                  "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for sign and aspect calculation."
                 },
                 "latitude": {
                   "type": "number",
                   "example": 0.01,
-                  "description": "Ecliptic latitude in degrees. Near zero for most planets except Moon and Pluto."
+                  "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets except Moon and Pluto."
                 },
                 "sign": {
                   "type": "string",
@@ -2783,19 +2783,19 @@
               "Black Moon Lilith"
             ],
             "example": "Sun",
-            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
           },
           "longitude": {
             "type": "number",
             "minimum": 0,
             "maximum": 360,
             "example": 112.45,
-            "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+            "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
           },
           "latitude": {
             "type": "number",
             "example": 0.01,
-            "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+            "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
           },
           "sign": {
             "type": "string",
@@ -17371,17 +17371,17 @@
                           "name": {
                             "type": "string",
                             "example": "Sun",
-                            "description": "Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). The lunar nodes are the mean node; software using the true node may show node positions up to 1.75 degrees different."
+                            "description": "Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                           },
                           "longitude": {
                             "type": "number",
                             "example": 267.45,
-                            "description": "Tropical ecliptic longitude in degrees (0-360)."
+                            "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either."
                           },
                           "latitude": {
                             "type": "number",
                             "example": 0.01,
-                            "description": "Ecliptic latitude in degrees."
+                            "description": "Apparent geocentric ecliptic latitude of date, in degrees."
                           },
                           "sign": {
                             "type": "string",
@@ -20610,19 +20610,19 @@
                               "Black Moon Lilith"
                             ],
                             "example": "Sun",
-                            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+                            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                           },
                           "longitude": {
                             "type": "number",
                             "minimum": 0,
                             "maximum": 360,
                             "example": 112.45,
-                            "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+                            "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
                           },
                           "latitude": {
                             "type": "number",
                             "example": 0.01,
-                            "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+                            "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
                           },
                           "sign": {
                             "type": "string",
@@ -20701,19 +20701,19 @@
                               "Black Moon Lilith"
                             ],
                             "example": "Sun",
-                            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+                            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                           },
                           "longitude": {
                             "type": "number",
                             "minimum": 0,
                             "maximum": 360,
                             "example": 112.45,
-                            "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+                            "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
                           },
                           "latitude": {
                             "type": "number",
                             "example": 0.01,
-                            "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+                            "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
                           },
                           "sign": {
                             "type": "string",
@@ -21993,19 +21993,19 @@
                                   "Black Moon Lilith"
                                 ],
                                 "example": "Sun",
-                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                               },
                               "longitude": {
                                 "type": "number",
                                 "minimum": 0,
                                 "maximum": 360,
                                 "example": 112.45,
-                                "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+                                "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
                               },
                               "latitude": {
                                 "type": "number",
                                 "example": 0.01,
-                                "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+                                "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
                               },
                               "sign": {
                                 "type": "string",
@@ -22687,19 +22687,19 @@
                                   "Black Moon Lilith"
                                 ],
                                 "example": "Sun",
-                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                               },
                               "longitude": {
                                 "type": "number",
                                 "minimum": 0,
                                 "maximum": 360,
                                 "example": 112.45,
-                                "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+                                "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
                               },
                               "latitude": {
                                 "type": "number",
                                 "example": 0.01,
-                                "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+                                "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
                               },
                               "sign": {
                                 "type": "string",
@@ -23471,19 +23471,19 @@
                               "Black Moon Lilith"
                             ],
                             "example": "Sun",
-                            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+                            "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                           },
                           "longitude": {
                             "type": "number",
                             "minimum": 0,
                             "maximum": 360,
                             "example": 112.45,
-                            "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+                            "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
                           },
                           "latitude": {
                             "type": "number",
                             "example": 0.01,
-                            "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+                            "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
                           },
                           "sign": {
                             "type": "string",
@@ -26184,6 +26184,8 @@
           {
             "schema": {
               "type": "number",
+              "minimum": 1900,
+              "maximum": 2100,
               "example": 2026,
               "description": "Calendar year to forecast, 1900 to 2100. Defaults to the current year in the timezone parameter."
             },
@@ -27226,19 +27228,19 @@
                                   "Black Moon Lilith"
                                 ],
                                 "example": "Sun",
-                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                               },
                               "longitude": {
                                 "type": "number",
                                 "minimum": 0,
                                 "maximum": 360,
                                 "example": 112.45,
-                                "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+                                "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
                               },
                               "latitude": {
                                 "type": "number",
                                 "example": 0.01,
-                                "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+                                "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
                               },
                               "sign": {
                                 "type": "string",
@@ -47731,19 +47733,19 @@
                                   "Black Moon Lilith"
                                 ],
                                 "example": "Sun",
-                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request \u0060nodeType\u0060, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
+                                "description": "Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass \u0022mean\u0022 for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected."
                               },
                               "longitude": {
                                 "type": "number",
                                 "minimum": 0,
                                 "maximum": 360,
                                 "example": 112.45,
-                                "description": "Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations."
+                                "description": "Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations."
                               },
                               "latitude": {
                                 "type": "number",
                                 "example": 0.01,
-                                "description": "Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
+                                "description": "Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit)."
                               },
                               "sign": {
                                 "type": "string",
@@ -48415,7 +48417,7 @@
                         "name": {
                           "type": "string",
                           "example": "Left Angle Cross of the Clarion",
-                          "description": "Canonical published name of the incarnation cross, determined by the Personality Sun gate and the angle. Falls back to a name composed from the angle and the four gates if no canonical name exists."
+                          "description": "Canonical published name of the incarnation cross, determined by the Personality Sun gate and the angle. All 192 crosses (64 Personality Sun gates times three angles) carry their published name, numbered variants included, so this is never a composed placeholder. Always begins with the angle followed by Cross of. Always English, whatever the lang parameter says."
                         },
                         "description": {
                           "type": "string",
@@ -57809,6 +57811,8 @@
           {
             "schema": {
               "type": "number",
+              "minimum": 1900,
+              "maximum": 2100,
               "example": 2026,
               "description": "Solar year, 1900 to 2100. The year opens at Li Chun rather than on 1 January, so its last two terms fall in the following January."
             },
@@ -58240,6 +58244,7 @@
           {
             "schema": {
               "type": "string",
+              "format": "date",
               "example": "1990-06-15",
               "description": "Gregorian date in YYYY-MM-DD format, evaluated at the reference meridian. Years 1900 to 2100."
             },
@@ -58746,6 +58751,8 @@
           {
             "schema": {
               "type": "number",
+              "minimum": 1900,
+              "maximum": 2100,
               "example": 1990,
               "description": "Gregorian year, 1900 to 2100. Defaults to the current UTC year when omitted, together with month."
             },
@@ -58757,6 +58764,8 @@
           {
             "schema": {
               "type": "number",
+              "minimum": 1,
+              "maximum": 12,
               "example": 6,
               "description": "Gregorian month, 1 to 12. Defaults to the current UTC month when omitted, together with year."
             },
@@ -65425,6 +65434,8 @@
           {
             "schema": {
               "type": "integer",
+              "minimum": 1900,
+              "maximum": 2100,
               "example": 2026,
               "description": "Gregorian year of the grid, 1900 to 2100. Defaults to the current year in UTC. Wider historical ranges are available on the single date routes, which are not bounded to this window."
             },
@@ -65436,6 +65447,8 @@
           {
             "schema": {
               "type": "integer",
+              "minimum": 1,
+              "maximum": 12,
               "example": 9,
               "description": "Calendar month of the grid, 1 to 12. Defaults to the current month in UTC."
             },
@@ -99311,7 +99324,7 @@
                     },
                     "usedThisMonth": {
                       "type": "number",
-                      "description": "Billable requests counted against the current calendar month. The quota window is the UTC calendar month and resets on the 1st at 12:00 AM UTC, never on your renewal date, so an annual plan refills every month and a plan bought mid month still refills on the 1st. Read from the same counter the rate limiter enforces on, so it never reports a rosier number than the limit that will 429 you. Cached responses still count.",
+                      "description": "Billable requests counted against the current calendar month. The quota window is the UTC calendar month and resets on the 1st at 12:00 AM UTC, never on your renewal date, so an annual plan refills every month and a plan bought mid month still refills on the 1st. Read from the durable request ledger, which can trail the live limiter by up to 5 minutes; for the exact live position read the X-RateLimit-Used header on any response, including this one. Cached responses still count.",
                       "example": 1523
                     },
                     "requestsPerMonth": {

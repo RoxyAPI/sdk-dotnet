@@ -44,7 +44,7 @@ namespace RoxyApi.Usage
 #else
         public string Status { get; set; }
 #endif
-        /// <summary>Billable requests counted against the current calendar month. The quota window is the UTC calendar month and resets on the 1st at 12:00 AM UTC, never on your renewal date, so an annual plan refills every month and a plan bought mid month still refills on the 1st. Read from the same counter the rate limiter enforces on, so it never reports a rosier number than the limit that will 429 you. Cached responses still count.</summary>
+        /// <summary>Billable requests counted against the current calendar month. The quota window is the UTC calendar month and resets on the 1st at 12:00 AM UTC, never on your renewal date, so an annual plan refills every month and a plan bought mid month still refills on the 1st. Read from the durable request ledger, which can trail the live limiter by up to 5 minutes; for the exact live position read the X-RateLimit-Used header on any response, including this one. Cached responses still count.</summary>
         public double? UsedThisMonth { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Usage.UsageGetResponse"/> and sets the default values.

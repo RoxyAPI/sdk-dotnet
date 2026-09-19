@@ -20,11 +20,11 @@ namespace RoxyApi.Astrology.LunarReturn
         public int? House { get; set; }
         /// <summary>Whether the planet appears to move backward from Earth perspective. Retrograde periods signal review and introspection.</summary>
         public bool? IsRetrograde { get; set; }
-        /// <summary>Ecliptic latitude in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit).</summary>
+        /// <summary>Apparent geocentric ecliptic latitude of date, in degrees. Near zero for most planets, varies for the Moon and Pluto, and reaches up to about 5 degrees for Black Moon Lilith (projected from the inclined mean lunar orbit).</summary>
         public double? Latitude { get; set; }
-        /// <summary>Tropical ecliptic longitude in degrees (0-360). Primary coordinate for zodiac sign and aspect calculations.</summary>
+        /// <summary>Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either. Primary coordinate for zodiac sign and aspect calculations.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The nodes follow the request `nodeType`, which defaults to the true (osculating) node; pass &quot;mean&quot; for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected.</summary>
+        /// <summary>Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass &quot;mean&quot; for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected.</summary>
         public global::RoxyApi.Astrology.LunarReturn.LunarReturnPostResponse_chart_planets_name? Name { get; set; }
         /// <summary>Tropical zodiac sign this planet occupies. Determined by 30-degree divisions of ecliptic longitude.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

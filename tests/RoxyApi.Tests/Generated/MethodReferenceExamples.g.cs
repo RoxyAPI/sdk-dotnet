@@ -135,7 +135,7 @@ internal static class MethodReferenceExamples
         await roxy.ChineseAstrology.Zodiac["rat"].Daily.GetAsync(c => { c.QueryParameters.Date = new Date(2026, 4, 3); c.QueryParameters.Timezone = "America/New_York"; });
         await roxy.ChineseAstrology.Calendar.SolarTerms[2026].GetAsync();
         await roxy.ChineseAstrology.Calendar.LunarDate.PostAsync(new() { Date = new Date(1990, 6, 15), LunarYear = 1990, LunarMonth = 5, LunarDay = 23, IsLeapMonth = false });
-        await roxy.ChineseAstrology.Calendar.Day["1990-06-15"].GetAsync();
+        await roxy.ChineseAstrology.Calendar.Day[new Date(1990, 6, 15)].GetAsync();
         await roxy.ChineseAstrology.Calendar.Monthly.GetAsync(c => { c.QueryParameters.Year = 1990; c.QueryParameters.Month = 6; });
         await roxy.ChineseAstrology.Calendar.AuspiciousDays.PostAsync(new() { StartDate = new Date(2026, 3, 1), EndDate = new Date(2026, 4, 30) });
         await roxy.ChineseAstrology.Elements.GetAsync(c => { c.QueryParameters.Limit = 5; c.QueryParameters.Offset = 0; });

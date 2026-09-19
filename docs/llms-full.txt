@@ -435,7 +435,7 @@ await roxy.ChineseAstrology.Calendar.SolarTerms[2026].GetAsync();
 await roxy.ChineseAstrology.Calendar.LunarDate.PostAsync(new() { Date = new Date(1990, 6, 15), LunarYear = 1990, LunarMonth = 5, LunarDay = 23, IsLeapMonth = false });
 
 // Get the almanac for a day - Tong Shu API with day officers and mansions
-await roxy.ChineseAstrology.Calendar.Day["1990-06-15"].GetAsync();
+await roxy.ChineseAstrology.Calendar.Day[new Date(1990, 6, 15)].GetAsync();
 
 // Get a month of almanac days - Chinese calendar month view API
 await roxy.ChineseAstrology.Calendar.Monthly.GetAsync(c => { c.QueryParameters.Year = 1990; c.QueryParameters.Month = 6; });
