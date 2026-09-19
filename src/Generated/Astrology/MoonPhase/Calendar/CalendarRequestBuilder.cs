@@ -18,7 +18,7 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar
         /// <summary>Gets an item from the RoxyApi.astrology.moonPhase.calendar.item collection</summary>
         /// <param name="position">Calendar year (1900-2100).</param>
         /// <returns>A <see cref="global::RoxyApi.Astrology.MoonPhase.Calendar.Item.WithYearItemRequestBuilder"/></returns>
-        public global::RoxyApi.Astrology.MoonPhase.Calendar.Item.WithYearItemRequestBuilder this[double position]
+        public global::RoxyApi.Astrology.MoonPhase.Calendar.Item.WithYearItemRequestBuilder this[int position]
         {
             get
             {

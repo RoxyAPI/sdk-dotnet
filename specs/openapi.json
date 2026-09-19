@@ -18079,7 +18079,7 @@
           },
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1,
               "maximum": 20,
               "default": 8,
@@ -18208,7 +18208,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1900,
               "maximum": 2100,
               "example": 2026,
@@ -18221,7 +18221,7 @@
           },
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1,
               "maximum": 12,
               "example": 3,
@@ -26183,7 +26183,7 @@
           },
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1900,
               "maximum": 2100,
               "example": 2026,
@@ -50646,10 +50646,9 @@
         "parameters": [
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64,
               "example": 34,
               "description": "Gate number from 1 to 64."
             },
@@ -50794,16 +50793,6 @@
           },
           "401": {
             "description": "Invalid or missing API key",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoxyError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Gate number is outside the range 1 to 64",
             "content": {
               "application/json": {
                 "schema": {
@@ -57810,7 +57799,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1900,
               "maximum": 2100,
               "example": 2026,
@@ -58750,7 +58739,7 @@
           },
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1900,
               "maximum": 2100,
               "example": 1990,
@@ -58763,7 +58752,7 @@
           },
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1,
               "maximum": 12,
               "example": 6,
@@ -60503,7 +60492,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1,
               "maximum": 9,
               "example": 8,
@@ -82376,10 +82365,9 @@
         "parameters": [
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 72,
               "example": 27,
               "description": "Index of the name, 1 to 72."
             },
@@ -82532,16 +82520,6 @@
           },
           "401": {
             "description": "Invalid or missing API key",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoxyError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "No name carries that index.",
             "content": {
               "application/json": {
                 "schema": {
@@ -84743,7 +84721,7 @@
           {
             "schema": {
               "type": [
-                "number",
+                "integer",
                 "null"
               ],
               "minimum": 0,
@@ -85038,7 +85016,7 @@
                 "type": "object",
                 "properties": {
                   "count": {
-                    "type": "number",
+                    "type": "integer",
                     "minimum": 1,
                     "maximum": 78,
                     "example": 3,
@@ -93629,7 +93607,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1,
               "maximum": 64,
               "example": 1,
@@ -97030,7 +97008,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number",
+              "type": "integer",
               "minimum": 1,
               "maximum": 10,
               "default": 1,

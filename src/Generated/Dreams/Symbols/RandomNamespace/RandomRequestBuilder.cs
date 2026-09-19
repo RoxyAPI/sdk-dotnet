@@ -100,7 +100,7 @@ namespace RoxyApi.Dreams.Symbols.RandomNamespace
         {
             /// <summary>Number of random symbols to return (1-10). Default: 1.</summary>
             [QueryParameter("count")]
-            public double? Count { get; set; }
+            public int? Count { get; set; }
         }
     }
 }

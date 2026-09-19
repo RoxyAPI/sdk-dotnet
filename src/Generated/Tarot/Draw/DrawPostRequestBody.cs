@@ -19,7 +19,7 @@ namespace RoxyApi.Tarot.Draw
         /// <summary>Whether cards can appear reversed (upside down). Reversed cards have different meanings. Set false for upright-only readings. Default: true (50% chance of reversal per card).</summary>
         public bool? AllowReversals { get; set; }
         /// <summary>Number of cards to draw (1-78). Common values: 1 for daily card, 3 for past-present-future, 5 for relationship spread, 10 for Celtic Cross. Drawing 78 returns the entire shuffled deck.</summary>
-        public double? Count { get; set; }
+        public int? Count { get; set; }
         /// <summary>Optional seed for reproducible results. Same seed = same cards in same order. Use format like &quot;userId-date&quot; for daily consistency, or &quot;readingId&quot; for shareable readings. Omit for true randomness.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,7 +57,7 @@ namespace RoxyApi.Tarot.Draw
             {
                 { "allowDuplicates", n => { AllowDuplicates = n.GetBoolValue(); } },
                 { "allowReversals", n => { AllowReversals = n.GetBoolValue(); } },
-                { "count", n => { Count = n.GetDoubleValue(); } },
+                { "count", n => { Count = n.GetIntValue(); } },
                 { "seed", n => { Seed = n.GetStringValue(); } },
             };
         }
@@ -70,7 +70,7 @@ namespace RoxyApi.Tarot.Draw
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowDuplicates", AllowDuplicates);
             writer.WriteBoolValue("allowReversals", AllowReversals);
-            writer.WriteDoubleValue("count", Count);
+            writer.WriteIntValue("count", Count);
             writer.WriteStringValue("seed", Seed);
             writer.WriteAdditionalData(AdditionalData);
         }

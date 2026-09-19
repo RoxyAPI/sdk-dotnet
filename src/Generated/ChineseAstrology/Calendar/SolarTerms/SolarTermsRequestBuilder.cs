@@ -18,7 +18,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.SolarTerms
         /// <summary>Gets an item from the RoxyApi.chineseAstrology.calendar.solarTerms.item collection</summary>
         /// <param name="position">Solar year, 1900 to 2100. The year opens at Li Chun rather than on 1 January, so its last two terms fall in the following January.</param>
         /// <returns>A <see cref="global::RoxyApi.ChineseAstrology.Calendar.SolarTerms.Item.WithYearItemRequestBuilder"/></returns>
-        public global::RoxyApi.ChineseAstrology.Calendar.SolarTerms.Item.WithYearItemRequestBuilder this[double position]
+        public global::RoxyApi.ChineseAstrology.Calendar.SolarTerms.Item.WithYearItemRequestBuilder this[int position]
         {
             get
             {

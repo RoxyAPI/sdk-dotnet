@@ -21,7 +21,7 @@ namespace RoxyApi.FengShui.Kua
         /// <summary>Gets an item from the RoxyApi.fengShui.kua.item collection</summary>
         /// <param name="position">Kua number, 1 to 9.</param>
         /// <returns>A <see cref="global::RoxyApi.FengShui.Kua.Item.WithNumberItemRequestBuilder"/></returns>
-        public global::RoxyApi.FengShui.Kua.Item.WithNumberItemRequestBuilder this[double position]
+        public global::RoxyApi.FengShui.Kua.Item.WithNumberItemRequestBuilder this[int position]
         {
             get
             {

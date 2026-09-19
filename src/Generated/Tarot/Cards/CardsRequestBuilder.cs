@@ -122,7 +122,7 @@ namespace RoxyApi.Tarot.Cards
             public int? Limit { get; set; }
             /// <summary>Filter by card number. Major Arcana: 0 (The Fool) through 21 (The World). Minor Arcana: 1 (Ace) through 14 (King). Combine with arcana or suit filters for precise results.</summary>
             [QueryParameter("number")]
-            public double? Number { get; set; }
+            public int? Number { get; set; }
             /// <summary>Number of items to skip for pagination. Default 0.</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

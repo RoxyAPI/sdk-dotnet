@@ -33,7 +33,7 @@ namespace RoxyApi.Iching.Hexagrams
         /// <summary>Gets an item from the RoxyApi.iching.hexagrams.item collection</summary>
         /// <param name="position">Hexagram number in King Wen sequence (1-64).</param>
         /// <returns>A <see cref="global::RoxyApi.Iching.Hexagrams.Item.WithNumberItemRequestBuilder"/></returns>
-        public global::RoxyApi.Iching.Hexagrams.Item.WithNumberItemRequestBuilder this[double position]
+        public global::RoxyApi.Iching.Hexagrams.Item.WithNumberItemRequestBuilder this[int position]
         {
             get
             {

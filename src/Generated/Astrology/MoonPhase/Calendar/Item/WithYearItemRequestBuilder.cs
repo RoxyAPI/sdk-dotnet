@@ -18,7 +18,7 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar.Item
         /// <summary>Gets an item from the RoxyApi.astrology.moonPhase.calendar.item.item collection</summary>
         /// <param name="position">Calendar month (1-12). 1 = January, 12 = December.</param>
         /// <returns>A <see cref="global::RoxyApi.Astrology.MoonPhase.Calendar.Item.Item.WithMonthItemRequestBuilder"/></returns>
-        public global::RoxyApi.Astrology.MoonPhase.Calendar.Item.Item.WithMonthItemRequestBuilder this[double position]
+        public global::RoxyApi.Astrology.MoonPhase.Calendar.Item.Item.WithMonthItemRequestBuilder this[int position]
         {
             get
             {

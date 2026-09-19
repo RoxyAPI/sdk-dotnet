@@ -113,7 +113,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #endif
             /// <summary>Calendar year to forecast, 1900 to 2100. Defaults to the current year in the timezone parameter.</summary>
             [QueryParameter("year")]
-            public double? Year { get; set; }
+            public int? Year { get; set; }
         }
     }
 }

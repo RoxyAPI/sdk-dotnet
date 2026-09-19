@@ -103,10 +103,10 @@ namespace RoxyApi.ChineseAstrology.Calendar.Monthly
             public global::RoxyApi.ChineseAstrology.Calendar.Monthly.GetLangQueryParameterType? Lang { get; set; }
             /// <summary>Gregorian month, 1 to 12. Defaults to the current UTC month when omitted, together with year.</summary>
             [QueryParameter("month")]
-            public double? Month { get; set; }
+            public int? Month { get; set; }
             /// <summary>Gregorian year, 1900 to 2100. Defaults to the current UTC year when omitted, together with month.</summary>
             [QueryParameter("year")]
-            public double? Year { get; set; }
+            public int? Year { get; set; }
         }
     }
 }
