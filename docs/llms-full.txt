@@ -152,7 +152,7 @@ await roxy.Astrology.Profections.PostAsync(new() { Date = new Date(1990, 7, 15),
 
 ## Vedic Astrology - `roxy.VedicAstrology`
 
-Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional charts (D1-D60), panchang with choghadi...
+Vedic astrology (Jyotish) and KP API for kundli generation with the sixteen Shodasavarga divisional charts (D1 to D60...
 
 ```csharp
 // Get birth chart (D1 Rashi chart) - Kundli Calculator API
@@ -166,6 +166,12 @@ await roxy.VedicAstrology.DivisionalChart.PostAsync(new() { Date = new Date(1990
 
 // Calculate compatibility score - Gun Milan API (Ashtakoot Matching)
 await roxy.VedicAstrology.Compatibility.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, AyanamsaValue = 24 });
+
+// Calculate ten porutham match - Dashakoot South Indian Kundli Matching API
+await roxy.VedicAstrology.Compatibility.Dashakoot.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, AyanamsaValue = 24 });
+
+// Compare malefic affliction - Papasamyam Kundli Matching API
+await roxy.VedicAstrology.Compatibility.Papasamyam.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, AyanamsaValue = 24 });
 
 // Get planetary positions - Graha Positions API
 await roxy.VedicAstrology.PlanetaryPositions.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24 });

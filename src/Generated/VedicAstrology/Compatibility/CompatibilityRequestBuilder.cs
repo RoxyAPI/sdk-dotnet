@@ -4,6 +4,8 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using RoxyApi.Models;
+using RoxyApi.VedicAstrology.Compatibility.Dashakoot;
+using RoxyApi.VedicAstrology.Compatibility.Papasamyam;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +19,16 @@ namespace RoxyApi.VedicAstrology.Compatibility
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CompatibilityRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The dashakoot property</summary>
+        public global::RoxyApi.VedicAstrology.Compatibility.Dashakoot.DashakootRequestBuilder Dashakoot
+        {
+            get => new global::RoxyApi.VedicAstrology.Compatibility.Dashakoot.DashakootRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The papasamyam property</summary>
+        public global::RoxyApi.VedicAstrology.Compatibility.Papasamyam.PapasamyamRequestBuilder Papasamyam
+        {
+            get => new global::RoxyApi.VedicAstrology.Compatibility.Papasamyam.PapasamyamRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Compatibility.CompatibilityRequestBuilder"/> and sets the default values.
         /// </summary>

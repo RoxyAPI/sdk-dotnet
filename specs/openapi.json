@@ -3,7 +3,7 @@
   "info": {
     "title": "RoxyAPI",
     "version": "2.0.0",
-    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 18 domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Mesoamerican Astrology, Vastu Shastra, Numerology, Kabbalah, Tarot Reading, Biorhythm, Ayurveda, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 259\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (Remote MCP)\n\nRoxyAPI ships a Remote MCP server per product over Streamable HTTP, with no local setup and no Docker. Your AI agent auto-discovers all 259\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable and stable, so it is the one safe to switch on programmatically.\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060, \u0060X-RateLimit-Reset\u0060 (Unix timestamp, seconds). Quotas reset on the 1st of every calendar month at 12:00 AM UTC, not on your renewal date.\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 per month for 50K requests, up to 3M requests, with custom volume above that.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart): first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs): guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp): connect AI agents\n- [Open source templates](https://roxyapi.com/templates): clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq): common questions\n- [Contact](https://roxyapi.com/contact): support and API key recovery\n",
+    "description": "# RoxyAPI: AI-Native Insight Infrastructure\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060\n\u003E All endpoint paths below are relative to this base URL.\n\nThe only multi-domain spiritual intelligence API. 18 domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Mesoamerican Astrology, Vastu Shastra, Numerology, Kabbalah, Tarot Reading, Biorhythm, Ayurveda, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 261\u002B endpoints, one API key, instant activation. Remote MCP server per domain plus AGENTS.md for AI coding agents.\n\n## Who uses RoxyAPI\n\n- **Developers** building astrology apps, tarot platforms, numerology calculators, or dream journals\n- **AI agent builders** connecting Claude, GPT, or Gemini to real calculation engines via MCP\n- **Vibe coders** shipping insight apps with Cursor, Bolt, or Replit using zero domain knowledge\n- **Founders and brands** launching branded spiritual experiences for their audience\n\n## Quick start (60 seconds)\n\n**1. Get your API key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant delivery, no account required.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/tarot/draw -X POST -H \u0022Content-Type: application/json\u0022 -d \u0027{\u0022count\u0022: 3}\u0027\n\u0060\u0060\u0060\n\n**3. Monitor usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agent integration (Remote MCP)\n\nRoxyAPI ships a Remote MCP server per product over Streamable HTTP, with no local setup and no Docker. Your AI agent auto-discovers all 261\u002B endpoints as callable tools with zero configuration:\n- **Claude Desktop, Cursor, Windsurf**: Add MCP server URL in settings\n- **OpenAI Agents, Gemini ADK**: Connect via Streamable HTTP transport\n- **Custom agents**: Use the MCP Python/TypeScript SDK\n\nMCP endpoints: \u0060https://roxyapi.com/mcp/{domain}\u0060 (e.g., \u0060/mcp/astrology\u0060, \u0060/mcp/tarot\u0060)\n\nSetup guide: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp)\n\n## Authentication\n\nAll endpoints require an API key via header or query param:\n- **Header (recommended):** \u0060X-API-Key: YOUR_KEY\u0060\n- **Query param (testing):** \u0060?api_key=YOUR_KEY\u0060\n\n## Response format\n\nClean JSON, no wrapper objects. Errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060. The \u0060error\u0060 field is human-readable (may change wording). The \u0060code\u0060 field is machine-readable and stable, so it is the one safe to switch on programmatically.\n\nRate limit headers on every response: \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060, \u0060X-RateLimit-Reset\u0060 (Unix timestamp, seconds). Quotas reset on the 1st of every calendar month at 12:00 AM UTC, not on your renewal date.\n\n## Errors\n\nAll errors return \u0060{ \u0022error\u0022: \u0022message\u0022, \u0022code\u0022: \u0022error_code\u0022 }\u0060:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | \u0060validation_error\u0060 | Missing or invalid parameters. Response includes \u0060issues[]\u0060 with per-field \u0060path\u0060, \u0060message\u0060, \u0060code\u0060, \u0060expected\u0060, \u0060minimum\u0060, \u0060maximum\u0060, \u0060format\u0060, \u0060pattern\u0060. |\n| 401 | \u0060api_key_required\u0060 | No API key provided |\n| 401 | \u0060invalid_api_key\u0060 | Key format invalid or tampered |\n| 401 | \u0060subscription_not_found\u0060 | Key references non-existent subscription |\n| 401 | \u0060subscription_inactive\u0060 | Subscription cancelled, expired, or suspended |\n| 404 | \u0060not_found\u0060 | Resource not found. Response may include a ranked \u0060suggestions[]\u0060 array (each with \u0060endpoint\u0060, \u0060hint\u0060, and a \u0060docs\u0060 deep link) for typo recovery. |\n| 405 | \u0060method_not_allowed\u0060 | Path exists for a different HTTP method. Response includes \u0060allow[]\u0060 and the \u0060Allow\u0060 header lists valid methods. |\n| 429 | \u0060rate_limit_exceeded\u0060 | Monthly quota reached |\n| 500 | \u0060internal_error\u0060 | Server error |\n\n## Pricing\n\nFlat per-request pricing. Every call counts the same, whether a planet position or a full birth chart with aspects. No credit systems, no variable costs. Plans from $39 per month for 50K requests, up to 3M requests, with custom volume above that.\n\nSee [roxyapi.com/pricing](https://roxyapi.com/pricing)\n\n## Resources\n\n- [Quickstart guide](https://roxyapi.com/docs/quickstart): first API call in 60 seconds\n- [Documentation](https://roxyapi.com/docs): guides, tutorials, domain reference\n- [MCP setup](https://roxyapi.com/docs/mcp): connect AI agents\n- [Open source templates](https://roxyapi.com/templates): clone and deploy in 30 minutes\n- [FAQ](https://roxyapi.com/faq): common questions\n- [Contact](https://roxyapi.com/contact): support and API key recovery\n",
     "contact": {
       "name": "RoxyAPI Support",
       "url": "https://roxyapi.com/contact"
@@ -35,7 +35,7 @@
     },
     {
       "name": "Vedic Astrology",
-      "description": "Vedic astrology (Jyotish) and KP API for kundli generation with 15 divisional charts (D1-D60), panchang with choghadiya, hora and the classical muhurta windows, Ashtakoot Gun Milan kundli matching, Vimshottari Dasha predictions, dosha detection with remedies, a 301-entry planetary yoga glossary with 48 of them chart-detected and evidenced, and KP horary with 249-level sub-lord analysis. Calculations verified against NASA JPL Horizons at arc-second-level accuracy. Built for matrimonial apps, horoscope platforms, spiritual wellness services, and AI-powered astrology chatbots. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
+      "description": "Vedic astrology (Jyotish) and KP API for kundli generation with the sixteen Shodasavarga divisional charts (D1 to D60), panchang with choghadiya, hora and the classical muhurta windows, kundli matching by Ashtakoot Gun Milan, the South Indian ten porutham with Rajju and Vedha vetoes and Papasamyam, Vimshottari Dasha predictions, dosha detection with remedies, a 301-entry planetary yoga glossary with 48 of them chart-detected and evidenced, and KP horary with 249-level sub-lord analysis. Calculations verified against NASA JPL Horizons at arc-second-level accuracy. Built for matrimonial apps, horoscope platforms, spiritual wellness services, and AI-powered astrology chatbots. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
     },
     {
       "name": "Forecast",
@@ -7927,6 +7927,633 @@
               "longitude"
             ],
             "description": "Birth data of the second person (typically the girl/bride in traditional Ashtakoot matching). Moon nakshatra compared against person 1 across all 8 kootas."
+          },
+          "ayanamsa": {
+            "type": "string",
+            "enum": [
+              "kp-newcomb",
+              "kp-old",
+              "lahiri",
+              "raman",
+              "custom"
+            ],
+            "default": "lahiri",
+            "example": "lahiri",
+            "description": "Sidereal frame (ayanamsa) the chart is cast in. \u0022lahiri\u0022 is Lahiri/Chitrapaksha, the traditional Vedic standard used by most software, and is the default. \u0022raman\u0022 is the B.V. Raman ayanamsa from Hindu Predictive Astrology, about 1.45 degrees below Lahiri. \u0022kp-newcomb\u0022 and \u0022kp-old\u0022 are the two Krishnamurti Paddhati frames. \u0022custom\u0022 takes your own value in degrees via ayanamsaValue, for reconciling exactly against a specific reference program. The frame rotates the whole zodiac, so a graha sitting within 1.45 degrees of a boundary can change rashi or nakshatra when you switch: pick the one your reference software uses and keep it."
+          },
+          "ayanamsaValue": {
+            "type": "number",
+            "example": 24,
+            "description": "Custom ayanamsa value in degrees. When provided, overrides the computed ayanamsa from the selected type. Use for testing with specific ayanamsa values or matching a particular reference source."
+          }
+        },
+        "required": [
+          "person1",
+          "person2"
+        ]
+      },
+      "DashakootResponse": {
+        "type": "object",
+        "properties": {
+          "frame": {
+            "type": "object",
+            "properties": {
+              "ayanamsa": {
+                "type": "string",
+                "example": "lahiri",
+                "description": "Sidereal frame this chart was cast in, echoing the ayanamsa request field. \u0022lahiri\u0022 when the field was omitted."
+              },
+              "ayanamsaDegrees": {
+                "type": "number",
+                "example": 24.2247,
+                "description": "Degrees actually subtracted from every tropical longitude to produce this chart, read at the birth instant. Subtract it back to recover the tropical positions, or compare it against your reference software to confirm you are in the same frame before chasing a placement difference."
+              }
+            },
+            "required": [
+              "ayanamsa",
+              "ayanamsaDegrees"
+            ],
+            "description": "The sidereal frame this response was computed in, so a cached or forwarded payload is self describing."
+          },
+          "total": {
+            "type": "number",
+            "example": 7,
+            "description": "Poruthams matched, 0 to 10. Each porutham is a pass or a fail in the South Indian system rather than a weighted score, so this is a plain count and never a fraction. A total says nothing on its own while a veto is active, which is why verdict exists."
+          },
+          "maxTotal": {
+            "type": "number",
+            "example": 10,
+            "description": "Poruthams on the sheet, always 10. The South Indian system counts ten equal agreements where the Ashtakoot system weights eight kootas across 36 points."
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "recommended",
+              "marginal",
+              "rejected"
+            ],
+            "example": "recommended",
+            "description": "Overall reading. \u0022rejected\u0022 means Rajju or Vedha fired, which the tradition treats as disqualifying however many poruthams matched, so it can appear on a high total. \u0022recommended\u0022 means no veto and the total reached the working threshold. \u0022marginal\u0022 means no veto and the total fell short of it. The threshold is a RoxyAPI convention because the tradition names a minimum SET of poruthams rather than a number, and that set varies by desk."
+          },
+          "recommendation": {
+            "type": "string",
+            "example": "The match reads 7 of 10 poruthams with neither hard veto active, so the union is recommended.",
+            "description": "One sentence stating the verdict and why, localized by the lang query parameter. Renders directly; the machine value to branch on is verdict."
+          },
+          "rajju": {
+            "type": "object",
+            "properties": {
+              "active": {
+                "type": "boolean",
+                "example": false,
+                "description": "True when both Moon nakshatras fall on the same Rajju limb, which is the first of the two hard vetoes. A true here sets verdict to rejected regardless of total."
+              },
+              "reason": {
+                "type": "string",
+                "example": "The two birth stars fall on different Rajju limbs, so no Rajju obstruction applies.",
+                "description": "Why the veto is or is not active, localized by the lang query parameter. The same sentence appears on the Rajju row of breakdown, which also carries the limb each person falls on."
+              }
+            },
+            "required": [
+              "active",
+              "reason"
+            ],
+            "description": "Rajju veto. The 27 nakshatras divide into five limbs of a body, Paada the foot, Kati the waist, Udara the stomach, Kantha the neck and Siro the head, and a couple whose birth stars share a limb is refused. Published at the top level as well as on its breakdown row because it overrides the total, and a caller must not have to scan the sheet to find it."
+          },
+          "vedha": {
+            "type": "object",
+            "properties": {
+              "active": {
+                "type": "boolean",
+                "example": false,
+                "description": "True when the two Moon nakshatras are a mutually obstructing vedha pair, which is the second hard veto. A true here sets verdict to rejected regardless of total."
+              },
+              "reason": {
+                "type": "string",
+                "example": "Neither birth star obstructs the other, so no Vedha applies.",
+                "description": "Why the veto is or is not active, localized by the lang query parameter. The same sentence appears on the Vedha row of breakdown."
+              }
+            },
+            "required": [
+              "active",
+              "reason"
+            ],
+            "description": "Vedha veto. Thirteen nakshatra pairs are held to obstruct each other and a couple falling on one is refused. Chitra belongs to no pair and can never trigger this veto."
+          },
+          "breakdown": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "Dina",
+                    "Gana",
+                    "Mahendra",
+                    "Stree Deergha",
+                    "Yoni",
+                    "Rasi",
+                    "Rasyadhipati",
+                    "Vasya",
+                    "Rajju",
+                    "Vedha"
+                  ],
+                  "example": "Rajju",
+                  "description": "Which of the ten poruthams this row decides. Canonical English, never translated, so it is safe to switch on. Rasyadhipati is the South Indian name for the agreement the North calls Graha Maitri."
+                },
+                "points": {
+                  "type": "number",
+                  "example": 1,
+                  "description": "One when this porutham matched and zero when it did not. Every porutham carries equal weight in this system, unlike the Ashtakoot kootas."
+                },
+                "maxPoints": {
+                  "type": "number",
+                  "example": 1,
+                  "description": "Always one, since each porutham is a single pass or fail."
+                },
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "matched",
+                    "unmatched"
+                  ],
+                  "example": "matched",
+                  "description": "The outcome as a word rather than a number, for a caller keying a badge or a filter off it. Canonical English, never translated."
+                },
+                "person1": {
+                  "type": "string",
+                  "example": "Udara",
+                  "description": "How the GROOM classifies for this porutham: a Rajju limb, a Gana class, a Yoni animal, a Moon rashi, a Moon rashi lord, or the Moon nakshatra where the rule counts stars. Canonical English, so the note never has to name it."
+                },
+                "person2": {
+                  "type": "string",
+                  "example": "Kantha",
+                  "description": "How the BRIDE classifies for this porutham, same vocabulary."
+                },
+                "note": {
+                  "type": "string",
+                  "example": "The two birth stars fall on different Rajju limbs, so no Rajju obstruction applies.",
+                  "description": "One sentence explaining what decided this porutham, localized by the lang query parameter. Only counts are written into it; every classification stays on person1 and person2 so a translated sentence never carries an English term."
+                }
+              },
+              "required": [
+                "name",
+                "points",
+                "maxPoints",
+                "verdict",
+                "person1",
+                "person2",
+                "note"
+              ]
+            },
+            "description": "The ten poruthams in the order a Tamil panchangam prints them: Dina, Gana, Mahendra, Stree Deergha, Yoni, Rasi, Rasyadhipati, Vasya, Rajju, Vedha. Dina, Mahendra, Stree Deergha, Rasi and Vasya are directional and read from the bride toward the groom."
+          }
+        },
+        "required": [
+          "frame",
+          "total",
+          "maxTotal",
+          "verdict",
+          "recommendation",
+          "rajju",
+          "vedha",
+          "breakdown"
+        ]
+      },
+      "DashakootRequest": {
+        "type": "object",
+        "properties": {
+          "person1": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-04",
+                "description": "Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas)."
+              },
+              "time": {
+                "type": "string",
+                "format": "time",
+                "example": "10:12:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Time is CRITICAL for Lagna (Ascendant) calculation and house divisions. It changes every two hours roughly. Even minutes matter for accurate nakshatra pada and divisional chart (D9, D10) calculations. Without exact time, Lagna and house-based predictions will be incorrect."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 28.6139,
+                "description": "Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": 77.209,
+                "description": "Birth location longitude in decimal degrees. Affects local time calculations and ayanamsha adjustments. Example: Delhi 77.2090, Mumbai 72.8777, Kathmandu 85.3240."
+              },
+              "timezone": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": -14,
+                    "maximum": 14
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "default": 5.5,
+                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "example": 5.5
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude"
+            ],
+            "description": "Birth data of the GROOM. Direction is load bearing in this system: Dina, Mahendra, Stree Deergha, Rasi and Vasya all count from the bride toward the groom, so sending the two people the wrong way round returns a different and wrong sheet without any error."
+          },
+          "person2": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-04",
+                "description": "Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas)."
+              },
+              "time": {
+                "type": "string",
+                "format": "time",
+                "example": "10:12:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Time is CRITICAL for Lagna (Ascendant) calculation and house divisions. It changes every two hours roughly. Even minutes matter for accurate nakshatra pada and divisional chart (D9, D10) calculations. Without exact time, Lagna and house-based predictions will be incorrect."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 28.6139,
+                "description": "Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": 77.209,
+                "description": "Birth location longitude in decimal degrees. Affects local time calculations and ayanamsha adjustments. Example: Delhi 77.2090, Mumbai 72.8777, Kathmandu 85.3240."
+              },
+              "timezone": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": -14,
+                    "maximum": 14
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "default": 5.5,
+                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "example": 5.5
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude"
+            ],
+            "description": "Birth data of the BRIDE. Five of the ten poruthams count FROM this birth star, so this field is not interchangeable with person1. Date, time and location determine the Moon nakshatra and Moon rashi every porutham reads."
+          },
+          "ayanamsa": {
+            "type": "string",
+            "enum": [
+              "kp-newcomb",
+              "kp-old",
+              "lahiri",
+              "raman",
+              "custom"
+            ],
+            "default": "lahiri",
+            "example": "lahiri",
+            "description": "Sidereal frame (ayanamsa) the chart is cast in. \u0022lahiri\u0022 is Lahiri/Chitrapaksha, the traditional Vedic standard used by most software, and is the default. \u0022raman\u0022 is the B.V. Raman ayanamsa from Hindu Predictive Astrology, about 1.45 degrees below Lahiri. \u0022kp-newcomb\u0022 and \u0022kp-old\u0022 are the two Krishnamurti Paddhati frames. \u0022custom\u0022 takes your own value in degrees via ayanamsaValue, for reconciling exactly against a specific reference program. The frame rotates the whole zodiac, so a graha sitting within 1.45 degrees of a boundary can change rashi or nakshatra when you switch: pick the one your reference software uses and keep it."
+          },
+          "ayanamsaValue": {
+            "type": "number",
+            "example": 24,
+            "description": "Custom ayanamsa value in degrees. When provided, overrides the computed ayanamsa from the selected type. Use for testing with specific ayanamsa values or matching a particular reference source."
+          }
+        },
+        "required": [
+          "person1",
+          "person2"
+        ]
+      },
+      "PapasamyamResponse": {
+        "type": "object",
+        "properties": {
+          "frame": {
+            "type": "object",
+            "properties": {
+              "ayanamsa": {
+                "type": "string",
+                "example": "lahiri",
+                "description": "Sidereal frame this chart was cast in, echoing the ayanamsa request field. \u0022lahiri\u0022 when the field was omitted."
+              },
+              "ayanamsaDegrees": {
+                "type": "number",
+                "example": 24.2247,
+                "description": "Degrees actually subtracted from every tropical longitude to produce this chart, read at the birth instant. Subtract it back to recover the tropical positions, or compare it against your reference software to confirm you are in the same frame before chasing a placement difference."
+              }
+            },
+            "required": [
+              "ayanamsa",
+              "ayanamsaDegrees"
+            ],
+            "description": "The sidereal frame this response was computed in, so a cached or forwarded payload is self describing."
+          },
+          "person1": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number",
+                "example": 3.25,
+                "description": "Papa points this chart carries, summed across the three reference points with each hit multiplied by that reference weight. The range is 0 to 7, and quarter points are normal because a hit read from Venus is worth 0.25. The number is never a verdict on one person: only the comparison between the two totals means anything."
+              },
+              "byReference": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "enum": [
+                        "Lagna",
+                        "Moon",
+                        "Venus"
+                      ],
+                      "example": "Moon",
+                      "description": "Which point the houses on this row were counted from. Lagna is the Ascendant, Moon is the Chandra lagna and Venus is the karaka of marriage. Canonical English, never translated."
+                    },
+                    "weight": {
+                      "type": "number",
+                      "example": 0.5,
+                      "description": "What one affliction seen from this reference is worth: 1 from the Lagna, 0.5 from the Moon, 0.25 from Venus. Published rather than assumed because a school that weights the three equally exists, and a caller reconciling against one can see exactly which number to change. The points from this row are the length of afflictions multiplied by this weight."
+                    },
+                    "afflictions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "graha": {
+                            "type": "string",
+                            "enum": [
+                              "Mars",
+                              "Saturn",
+                              "Sun",
+                              "Rahu"
+                            ],
+                            "example": "Saturn",
+                            "description": "The malefic contributing this point. Canonical English, never translated, so it is safe to switch on or use as a glyph key."
+                          },
+                          "house": {
+                            "type": "number",
+                            "example": 8,
+                            "description": "Whole-sign bhava 1 to 12 counted from the reference on this row, which is NOT the bhava from the Lagna unless the reference is the Lagna. Only the six afflicting bhavas 1, 2, 4, 7, 8 and 12 appear here, because a malefic anywhere else contributes nothing."
+                          }
+                        },
+                        "required": [
+                          "graha",
+                          "house"
+                        ]
+                      },
+                      "description": "Every malefic this reference point sees in an afflicting bhava, one entry per point contributed. An empty array means this reference point contributes nothing, which is a clean reading rather than missing data. The length of the array is the points from this reference, so it is not published a second time as a number."
+                    }
+                  },
+                  "required": [
+                    "reference",
+                    "weight",
+                    "afflictions"
+                  ]
+                },
+                "description": "The count broken out by the three reference points, in the order Lagna, Moon, Venus. A Kuja Dosha check reads only the first of these and only Mars, which is why a Manglik verdict and a Papasamyam count answer different questions."
+              }
+            },
+            "required": [
+              "total",
+              "byReference"
+            ],
+            "description": "Papa count of the groom chart, with the working shown per reference."
+          },
+          "person2": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number",
+                "example": 3.25,
+                "description": "Papa points this chart carries, summed across the three reference points with each hit multiplied by that reference weight. The range is 0 to 7, and quarter points are normal because a hit read from Venus is worth 0.25. The number is never a verdict on one person: only the comparison between the two totals means anything."
+              },
+              "byReference": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "enum": [
+                        "Lagna",
+                        "Moon",
+                        "Venus"
+                      ],
+                      "example": "Moon",
+                      "description": "Which point the houses on this row were counted from. Lagna is the Ascendant, Moon is the Chandra lagna and Venus is the karaka of marriage. Canonical English, never translated."
+                    },
+                    "weight": {
+                      "type": "number",
+                      "example": 0.5,
+                      "description": "What one affliction seen from this reference is worth: 1 from the Lagna, 0.5 from the Moon, 0.25 from Venus. Published rather than assumed because a school that weights the three equally exists, and a caller reconciling against one can see exactly which number to change. The points from this row are the length of afflictions multiplied by this weight."
+                    },
+                    "afflictions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "graha": {
+                            "type": "string",
+                            "enum": [
+                              "Mars",
+                              "Saturn",
+                              "Sun",
+                              "Rahu"
+                            ],
+                            "example": "Saturn",
+                            "description": "The malefic contributing this point. Canonical English, never translated, so it is safe to switch on or use as a glyph key."
+                          },
+                          "house": {
+                            "type": "number",
+                            "example": 8,
+                            "description": "Whole-sign bhava 1 to 12 counted from the reference on this row, which is NOT the bhava from the Lagna unless the reference is the Lagna. Only the six afflicting bhavas 1, 2, 4, 7, 8 and 12 appear here, because a malefic anywhere else contributes nothing."
+                          }
+                        },
+                        "required": [
+                          "graha",
+                          "house"
+                        ]
+                      },
+                      "description": "Every malefic this reference point sees in an afflicting bhava, one entry per point contributed. An empty array means this reference point contributes nothing, which is a clean reading rather than missing data. The length of the array is the points from this reference, so it is not published a second time as a number."
+                    }
+                  },
+                  "required": [
+                    "reference",
+                    "weight",
+                    "afflictions"
+                  ]
+                },
+                "description": "The count broken out by the three reference points, in the order Lagna, Moon, Venus. A Kuja Dosha check reads only the first of these and only Mars, which is why a Manglik verdict and a Papasamyam count answer different questions."
+              }
+            },
+            "required": [
+              "total",
+              "byReference"
+            ],
+            "description": "Papa count of the bride chart, with the working shown per reference."
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "balanced",
+              "unbalanced"
+            ],
+            "example": "balanced",
+            "description": "Whether the two charts carry comparable affliction. \u0022balanced\u0022 when the bride total is equal to or below the groom total, \u0022unbalanced\u0022 when the bride carries more. Canonical English, never translated, so it is safe to branch on. Both totals are published, so a desk that also caps how far the groom may exceed the bride, or that allows the bride a small tolerance, can apply its own band without a second request."
+          },
+          "recommendation": {
+            "type": "string",
+            "example": "The bride carries 2.25 papa points against 3.25 for the groom, so the affliction is balanced and the match is not refused on this count.",
+            "description": "One sentence stating the comparison and what it means, localized by the lang query parameter. Renders directly; the machine value to branch on is verdict."
+          }
+        },
+        "required": [
+          "frame",
+          "person1",
+          "person2",
+          "verdict",
+          "recommendation"
+        ]
+      },
+      "PapasamyamRequest": {
+        "type": "object",
+        "properties": {
+          "person1": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-04",
+                "description": "Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas)."
+              },
+              "time": {
+                "type": "string",
+                "format": "time",
+                "example": "10:12:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Time is CRITICAL for Lagna (Ascendant) calculation and house divisions. It changes every two hours roughly. Even minutes matter for accurate nakshatra pada and divisional chart (D9, D10) calculations. Without exact time, Lagna and house-based predictions will be incorrect."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 28.6139,
+                "description": "Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": 77.209,
+                "description": "Birth location longitude in decimal degrees. Affects local time calculations and ayanamsha adjustments. Example: Delhi 77.2090, Mumbai 72.8777, Kathmandu 85.3240."
+              },
+              "timezone": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": -14,
+                    "maximum": 14
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "default": 5.5,
+                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "example": 5.5
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude"
+            ],
+            "description": "Birth data of the GROOM. The comparison is directional, so this field is not interchangeable with person2: the match reads as balanced only when the bride carries no more affliction than the groom, and swapping the two people can flip the verdict."
+          },
+          "person2": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "1990-07-04",
+                "description": "Birth date in YYYY-MM-DD format. Date determines planetary positions and nakshatra calculations for Vedic kundli (janam patri). Accurate birth date is essential for dashas, yoga calculations, and divisional charts (vargas)."
+              },
+              "time": {
+                "type": "string",
+                "format": "time",
+                "example": "10:12:00",
+                "description": "Birth time in 24-hour HH:MM:SS format. Time is CRITICAL for Lagna (Ascendant) calculation and house divisions. It changes every two hours roughly. Even minutes matter for accurate nakshatra pada and divisional chart (D9, D10) calculations. Without exact time, Lagna and house-based predictions will be incorrect."
+              },
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "example": 28.6139,
+                "description": "Birth location latitude in decimal degrees. Location determines local sidereal time for Lagna calculation and affects bhava (house) cusps. Example: Delhi 28.6139, Mumbai 19.0760, Kathmandu 27.7172."
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "example": 77.209,
+                "description": "Birth location longitude in decimal degrees. Affects local time calculations and ayanamsha adjustments. Example: Delhi 77.2090, Mumbai 72.8777, Kathmandu 85.3240."
+              },
+              "timezone": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": -14,
+                    "maximum": 14
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "default": 5.5,
+                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "example": 5.5
+              }
+            },
+            "required": [
+              "date",
+              "time",
+              "latitude",
+              "longitude"
+            ],
+            "description": "Birth data of the BRIDE. Date, time and location determine the Lagna, the Moon and Venus, which are the three points every papa point is counted from."
           },
           "ayanamsa": {
             "type": "string",
@@ -29511,6 +30138,246 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CompatibilityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vedic-astrology/compatibility/dashakoot": {
+      "post": {
+        "operationId": "calculateDashakoot",
+        "tags": [
+          "Vedic Astrology"
+        ],
+        "summary": "Calculate ten porutham match - Dashakoot South Indian Kundli Matching API",
+        "description": "Calculate the South Indian ten porutham marriage match (Dashakoot, also called Dasa Porutham) for two birth records. Returns a pass or fail on each of Dina, Gana, Mahendra, Stree Deergha, Yoni, Rasi, Rasyadhipati, Vasya, Rajju and Vedha, a total out of ten, and Rajju and Vedha as explicit hard vetoes that disqualify a match whatever the rest of the sheet reads. This is a different system from the 36 point Ashtakoot Gun Milan on POST /vedic-astrology/compatibility and the two are never reconciled, so a Tamil, Malayalam or Telugu matrimonial desk can read the sheet it actually uses. Direction matters: person1 is the groom and person2 is the bride, because five of the ten poruthams count from the bride birth star to the groom birth star.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru",
+                "zh-Hans",
+                "zh-Hant"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English."
+            },
+            "required": false,
+            "description": "Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DashakootRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ten porutham sheet with a pass or fail and an explanation on every porutham, the total out of ten, the Rajju and Vedha vetoes, and an overall verdict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashakootResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error. \u0060issues[]\u0060 lists every failed field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed. The path exists but only responds to the methods listed in \u0060allow[]\u0060 and the \u0060Allow\u0060 response header.",
+            "headers": {
+              "Allow": {
+                "description": "Comma-separated list of allowed methods (RFC 9110).",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Monthly rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoxyError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vedic-astrology/compatibility/papasamyam": {
+      "post": {
+        "operationId": "calculatePapasamyam",
+        "tags": [
+          "Vedic Astrology"
+        ],
+        "summary": "Compare malefic affliction - Papasamyam Kundli Matching API",
+        "description": "Calculate Papasamyam, the balance of malefic (papa) points between two birth charts, for Vedic marriage matching. Counts Mars, Saturn, Sun and Rahu sitting in the afflicting bhavas 1, 2, 4, 7, 8 and 12 read from three reference points in each chart, the Lagna weighted 1, the Moon weighted 0.5 and Venus weighted 0.25, and returns both totals with the graha, the bhava and the weight behind every point. The verdict is a comparison and never a judgement on one person: the bride total must be equal to or below the groom total, so a heavily afflicted groom matched with a comparably afflicted bride reads as balanced while an unafflicted groom matched with an afflicted bride does not. Use it beside Gun Milan and the ten porutham sheet on a matrimonial platform, since a koota score says nothing about malefic balance.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "tr",
+                "de",
+                "es",
+                "hi",
+                "pt",
+                "fr",
+                "ru",
+                "zh-Hans",
+                "zh-Hant"
+              ],
+              "default": "en",
+              "example": "en",
+              "description": "Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English."
+            },
+            "required": false,
+            "description": "Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PapasamyamRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Papa point totals for both charts with the graha and bhava behind every point, and a balanced or unbalanced verdict on the comparison.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PapasamyamResponse"
                 }
               }
             }
