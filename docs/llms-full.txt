@@ -670,7 +670,7 @@ Kabbalah API for gematria, the 72 names, the Tree of Life and the Hebrew birthda
 
 ```csharp
 // Calculate gematria - Hebrew gematria calculator API with every spelling shown
-await roxy.Kabbalah.Gematria.PostAsync(new() { Text = "Sarah", TextHebrew = "שלום", Ciphers = ["mispar-hechrachi"], IncludeMatches = true, LatinCiphers = false });
+await roxy.Kabbalah.Gematria.PostAsync(new() { Text = "Sarah", TextHebrew = "שלום", IncludeMatches = true, LatinCiphers = false });
 
 // List gematria ciphers - gematria methods API with provenance on every row
 await roxy.Kabbalah.Ciphers.GetAsync();

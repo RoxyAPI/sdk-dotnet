@@ -37,7 +37,7 @@ namespace RoxyApi.Vastu.Entrance
         /// Vastu entrance analysis for a main door: send the plot and where the door sits, and the API returns which of the 32 perimeter padas it falls on, the devata of that square, the effect the classical chapter gives that pada, and the favourable padas on the same side to move toward. Every verdict carries the chapter and verse it comes from as a typed field, and the reading holds on either the 81 pada or the 64 pada division. Built for property and interior design tools, practitioner reports, and any product that has to say whether a front door is well placed.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Vastu.Entrance.EntrancePostResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Where the main door sits on the plot. Send facing or facingDegrees, never both, and locate the door with either door coordinates or doorPosition, never both.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.Vastu.Entrance
         /// Vastu entrance analysis for a main door: send the plot and where the door sits, and the API returns which of the 32 perimeter padas it falls on, the devata of that square, the effect the classical chapter gives that pada, and the favourable padas on the same side to move toward. Every verdict carries the chapter and verse it comes from as a typed field, and the reading holds on either the 81 pada or the 64 pada division. Built for property and interior design tools, practitioner reports, and any product that has to say whether a front door is well placed.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Where the main door sits on the plot. Send facing or facingDegrees, never both, and locate the door with either door coordinates or doorPosition, never both.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

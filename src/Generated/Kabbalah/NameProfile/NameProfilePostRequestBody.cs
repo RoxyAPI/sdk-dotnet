@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace RoxyApi.Kabbalah.NameProfile
 {
+    /// <summary>
+    /// The name to profile. Send name for a Latin input or nameHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class NameProfilePostRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

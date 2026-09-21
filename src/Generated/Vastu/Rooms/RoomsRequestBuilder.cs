@@ -37,7 +37,7 @@ namespace RoxyApi.Vastu.Rooms
         /// Vastu room direction check for a whole floor plan: send the plot and a list of rooms, by quarter or by outline, and the API returns a verdict per room with the quarters it belongs in, the quarters to keep it out of, a remedy when it is misplaced, and a composite score with the weights published. Four of the twelve room types carry a chapter and verse and the other eight are labelled convention, so a report can say which half of it is classical. Built for floor plan tools, listing checks and practitioner reports.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Vastu.Rooms.RoomsPostResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The floor plan to check. Send facing or facingDegrees, never both, and give each room either its quarter or its outline, never both.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.Vastu.Rooms
         /// Vastu room direction check for a whole floor plan: send the plot and a list of rooms, by quarter or by outline, and the API returns a verdict per room with the quarters it belongs in, the quarters to keep it out of, a remedy when it is misplaced, and a composite score with the weights published. Four of the twelve room types carry a chapter and verse and the other eight are labelled convention, so a report can say which half of it is classical. Built for floor plan tools, listing checks and practitioner reports.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The floor plan to check. Send facing or facingDegrees, never both, and give each room either its quarter or its outline, never both.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

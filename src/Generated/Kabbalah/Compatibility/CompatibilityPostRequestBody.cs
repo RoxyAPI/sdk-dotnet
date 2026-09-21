@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace RoxyApi.Kabbalah.Compatibility
 {
+    /// <summary>
+    /// The two names to compare. Each side takes the Latin field or the Hebrew one, never both: which one you send decides whether a transliteration step runs for that side.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CompatibilityPostRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

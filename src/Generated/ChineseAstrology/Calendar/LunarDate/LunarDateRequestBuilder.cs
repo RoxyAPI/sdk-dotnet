@@ -37,7 +37,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.LunarDate
         /// Convert a Gregorian date to the Chinese lunisolar calendar or convert a lunar date back, in one endpoint. The calendar is computed at the UTC+8 reference meridian with the month containing the winter solstice fixed as month 11 and the leap month placed as the first month of the cycle carrying no major solar term, so a lunar date is the same worldwide rather than shifting with the caller timezone. The response reports the length of the lunar month, whether the date sits in a leap month, and which month the year doubles if any. Built for festival calendars, birthday features that follow the lunar date, and any app that has to survive a leap month without shifting every date after it.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.ChineseAstrology.Calendar.LunarDate.LunarDatePostResponse"/></returns>
-        /// <param name="body">Send a Gregorian date to convert forward, or a lunar year, month and day to convert back.</param>
+        /// <param name="body">Send a Gregorian date to convert forward, or a lunar year, month and day to convert back. The two sides are exclusive, which is why the whole body carries one example rather than leaving the per field ones to be read together.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.LunarDate
         /// Convert a Gregorian date to the Chinese lunisolar calendar or convert a lunar date back, in one endpoint. The calendar is computed at the UTC+8 reference meridian with the month containing the winter solstice fixed as month 11 and the leap month placed as the first month of the cycle carrying no major solar term, so a lunar date is the same worldwide rather than shifting with the caller timezone. The response reports the length of the lunar month, whether the date sits in a leap month, and which month the year doubles if any. Built for festival calendars, birthday features that follow the lunar date, and any app that has to survive a leap month without shifting every date after it.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">Send a Gregorian date to convert forward, or a lunar year, month and day to convert back.</param>
+        /// <param name="body">Send a Gregorian date to convert forward, or a lunar year, month and day to convert back. The two sides are exclusive, which is why the whole body carries one example rather than leaving the per field ones to be read together.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

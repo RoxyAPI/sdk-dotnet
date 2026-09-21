@@ -37,7 +37,7 @@ namespace RoxyApi.Kabbalah.Gematria
         /// Score a Hebrew word or a Latin name across ten rabbinic gematria ciphers and two substitution transformations, with the per letter breakdown and the curated equal value matches beside each number. A Latin name has no single Hebrew spelling, so every candidate spelling the transliteration map produces comes back with its own values and the rule that produced it, and the chosen one is named. Built for name meaning features, numerology apps that want the Hebrew reading, and any product that has to show a reader why the number is what it is.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Kabbalah.Gematria.GematriaPostResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">What to score and how. Send text for a Latin input or textHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all. Every other field has a default.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.Kabbalah.Gematria
         /// Score a Hebrew word or a Latin name across ten rabbinic gematria ciphers and two substitution transformations, with the per letter breakdown and the curated equal value matches beside each number. A Latin name has no single Hebrew spelling, so every candidate spelling the transliteration map produces comes back with its own values and the rule that produced it, and the chosen one is named. Built for name meaning features, numerology apps that want the Hebrew reading, and any product that has to show a reader why the number is what it is.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">What to score and how. Send text for a Latin input or textHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all. Every other field has a default.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

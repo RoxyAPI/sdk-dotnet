@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace RoxyApi.Vastu.Plot
 {
+    /// <summary>
+    /// The site to read: the ground, which way the front looks, and whichever of the slope, road, extensions, cuts and water you know. Send facing or facingDegrees, never both, and the same for the two plot forms.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class PlotPostRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

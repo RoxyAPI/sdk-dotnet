@@ -22,7 +22,7 @@ namespace RoxyApi.Ayurveda.Daily
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DailyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ayurveda/daily{?date*,lang*,latitude*,longitude*,timezone*}", pathParameters)
+        public DailyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ayurveda/daily?latitude={latitude}&longitude={longitude}{&date*,lang*,timezone*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.Ayurveda.Daily
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DailyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ayurveda/daily{?date*,lang*,latitude*,longitude*,timezone*}", rawUrl)
+        public DailyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ayurveda/daily?latitude={latitude}&longitude={longitude}{&date*,lang*,timezone*}", rawUrl)
         {
         }
         /// <summary>

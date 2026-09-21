@@ -10397,6 +10397,11 @@
                     "example": "Shravana",
                     "description": "Nakshatra of Rahu."
                   },
+                  "pada": {
+                    "type": "number",
+                    "example": 2,
+                    "description": "Nakshatra pada (1-4) of Rahu."
+                  },
                   "starLord": {
                     "type": "string",
                     "example": "Moon",
@@ -10424,6 +10429,7 @@
                   "signLord",
                   "house",
                   "nakshatra",
+                  "pada",
                   "starLord",
                   "subLord",
                   "subSubLord",
@@ -10459,6 +10465,11 @@
                     "example": "Pushya",
                     "description": "Nakshatra of Ketu."
                   },
+                  "pada": {
+                    "type": "number",
+                    "example": 4,
+                    "description": "Nakshatra pada (1-4) of Ketu."
+                  },
                   "starLord": {
                     "type": "string",
                     "example": "Saturn",
@@ -10486,6 +10497,7 @@
                   "signLord",
                   "house",
                   "nakshatra",
+                  "pada",
                   "starLord",
                   "subLord",
                   "subSubLord",
@@ -25385,7 +25397,7 @@
           "Western Astrology"
         ],
         "summary": "Daily horoscope by zodiac sign - Transit-based editorial columns",
-        "description": "A publish-ready column for any zodiac sign, built from the dated transits over it and returned with those events for fact-checking. The reading names the aspects, sign ingresses, lunations and retrograde stations driving it and reads each into the whole-sign houses of that sign, so every sign gets different content rather than one blurb reused twelve times. Alongside the column come overview, love, career, health, finance and advice, the active transits, Moon sign and phase, an energy rating, lucky number and color, and compatible signs. No language model is involved, so a given sign and date always returns the same text and a piece scheduled months ahead is the piece that runs. Content rolls over at midnight, by default UTC. Pass date for editorial scheduling, or timezone to roll over on a local clock. Available in eight languages. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.",
+        "description": "A publish-ready column for any zodiac sign, built from the dated transits over it and returned with those events for fact-checking. The reading names the aspects, sign ingresses, lunations and retrograde stations driving it and reads each into the whole-sign houses of that sign, so every sign gets different content rather than one blurb reused twelve times. Alongside the column come overview, love, career, health, finance and advice, the active transits, Moon sign and phase, an energy rating, lucky number and color, and compatible signs. No language model is involved, so a given sign and date always returns the same text and a piece scheduled months ahead is the piece that runs. Content rolls over at midnight, by default UTC. Pass date for editorial scheduling, or timezone to roll over on a local clock. Composed in 8 languages (en, de, es, fr, hi, pt, ru, tr); any other lang code returns English. Daily horoscope API, zodiac forecast, sun sign horoscope, astrology prediction.",
         "security": [
           {
             "apiKey": []
@@ -25771,7 +25783,7 @@
           "Western Astrology"
         ],
         "summary": "Weekly horoscope by zodiac sign - Seven-day editorial column",
-        "description": "A Monday to Sunday column for any zodiac sign, naming the transits that perfect during the week and the days they fall on. Each event is read into the whole-sign houses of that sign, so content is unique per sign, and the dated events come back beside the prose so an editor can check a piece before it runs. Alongside the column come overview, love, career, health, finance and advice, plus lucky days, lucky numbers and compatible signs. No language model is involved, so the same sign and week always returns the same text. Pass any date inside a week to retrieve that week, or timezone to roll over on a local clock. Available in eight languages. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.",
+        "description": "A Monday to Sunday column for any zodiac sign, naming the transits that perfect during the week and the days they fall on. Each event is read into the whole-sign houses of that sign, so content is unique per sign, and the dated events come back beside the prose so an editor can check a piece before it runs. Alongside the column come overview, love, career, health, finance and advice, plus lucky days, lucky numbers and compatible signs. No language model is involved, so the same sign and week always returns the same text. Pass any date inside a week to retrieve that week, or timezone to roll over on a local clock. Composed in 8 languages (en, de, es, fr, hi, pt, ru, tr); any other lang code returns English. Weekly horoscope API, zodiac weekly forecast, astrology weekly prediction.",
         "security": [
           {
             "apiKey": []
@@ -26148,7 +26160,7 @@
           "Western Astrology"
         ],
         "summary": "Monthly horoscope by zodiac sign - Editorial column with key dates",
-        "description": "A month-long column for any zodiac sign, plus a week-by-week breakdown and dated key dates a calendar page renders directly. The column names the major aspects, slow-planet sign changes, lunations and stations of the month, and reads each into the whole-sign houses of that sign, and those events come back beside the prose with their exact instants, so a piece can be checked against NASA JPL Horizons or the US Naval Observatory before it runs. Key dates are the real New Moon, Full Moon and retrograde instants, never approximations. Alongside the column come overview, love, career, health, finance and advice. Pass any date inside a month to retrieve that month, or timezone to roll over on a local clock. Available in eight languages. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.",
+        "description": "A month-long column for any zodiac sign, plus a week-by-week breakdown and dated key dates a calendar page renders directly. The column names the major aspects, slow-planet sign changes, lunations and stations of the month, and reads each into the whole-sign houses of that sign, and those events come back beside the prose with their exact instants, so a piece can be checked against NASA JPL Horizons or the US Naval Observatory before it runs. Key dates are the real New Moon, Full Moon and retrograde instants, never approximations. Alongside the column come overview, love, career, health, finance and advice. Pass any date inside a month to retrieve that month, or timezone to roll over on a local clock. Composed in 8 languages (en, de, es, fr, hi, pt, ru, tr); any other lang code returns English. Monthly horoscope API, zodiac monthly forecast, astrology monthly prediction.",
         "security": [
           {
             "apiKey": []
@@ -28831,13 +28843,7 @@
           },
           {
             "schema": {
-              "type": [
-                "number",
-                "null"
-              ],
-              "minimum": 0,
-              "maximum": 3,
-              "default": 1,
+              "type": "number",
               "example": 1,
               "description": "Conjunction orb in degrees, the maximum separation for a star to count as conjunct a chart point. Defaults to 1, maximum 3. Widen it to surface looser contacts or tighten it for only the closest hits."
             },
@@ -44586,7 +44592,7 @@
           "Vedic Astrology"
         ],
         "summary": "Ecliptic Crossings - When planets cross the ecliptic plane",
-        "description": "Find all ecliptic plane crossings for visible planets during a given year. An ecliptic crossing occurs when a planetary celestial latitude passes through 0 degrees, crossing from one side of the ecliptic to the other. Ascending crossings (south to north) correspond to the ascending node, descending crossings (north to south) to the descending node. Moon crosses ~2 times per month, outer planets cross less frequently. Returns exact date, time, direction, sidereal longitude, and zodiac sign. Ecliptic crossing API, planetary node crossing, ascending descending node ephemeris.",
+        "description": "Find all ecliptic plane crossings for visible planets during a given year. An ecliptic crossing occurs when a planetary celestial latitude passes through 0 degrees, crossing from one side of the ecliptic to the other. Ascending crossings (south to north) correspond to the ascending node, descending crossings (north to south) to the descending node. Moon crosses ~2 times per month, outer planets cross less frequently. Returns exact date, time, direction, longitude and zodiac sign in the requested coordinateSystem, sidereal by default. Ecliptic crossing API, planetary node crossing, ascending descending node ephemeris.",
         "security": [
           {
             "apiKey": []
@@ -44693,12 +44699,12 @@
                           "longitude": {
                             "type": "number",
                             "example": 345.67,
-                            "description": "Sidereal longitude of the planet at the moment of crossing (Lahiri ayanamsa)."
+                            "description": "Longitude of the planet at the moment of crossing, in the requested coordinateSystem: sidereal (Lahiri ayanamsa) by default, tropical when asked."
                           },
                           "sign": {
                             "type": "string",
                             "example": "Pisces",
-                            "description": "Vedic zodiac sign (rashi) the planet occupies at the crossing."
+                            "description": "Zodiac sign the planet occupies at the crossing, read in the same coordinateSystem as longitude: the rashi under sidereal, the tropical sign under tropical."
                           }
                         },
                         "required": [
@@ -56937,12 +56943,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -58941,7 +58942,10 @@
                     "description": "Set true to address the leap repetition of lunarMonth rather than the first pass. Requesting a leap month a year does not have returns 400."
                   }
                 },
-                "description": "Send a Gregorian date to convert forward, or a lunar year, month and day to convert back."
+                "example": {
+                  "date": "1990-06-15"
+                },
+                "description": "Send a Gregorian date to convert forward, or a lunar year, month and day to convert back. The two sides are exclusive, which is why the whole body carries one example rather than leaving the per field ones to be read together."
               }
             }
           }
@@ -60762,12 +60766,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -63060,12 +63059,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -63957,12 +63951,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -65823,7 +65812,11 @@
                     "example": "gmt-584283",
                     "description": "Which correlation constant ties the day count to a civil date. This is the single choice that shifts every value in the response, so it is a parameter rather than a hidden default, and the resolved value comes back under conventions. \u0022gmt-584283\u0022 is the commonly accepted constant and the default, and it is the one the major institutional converter runs on. \u0022martinez-hernandez-584281\u0022 sits two days earlier, \u0022astronomical-584285\u0022 two days later, and \u0022martin-skidmore-584286\u0022 three days later, each shifting the Long Count by exactly its difference in days. Four of the eight published constants are offered: the other four sit tens of thousands of days away and are of historical interest only. The 584281 constant is the Mart\u00EDnez Hern\u00E1ndez correlation, after Juan Mart\u00EDnez Hern\u00E1ndez."
                   }
-                }
+                },
+                "example": {
+                  "date": "2012-12-21"
+                },
+                "description": "What to convert, and under which correlation. Exactly one of date and longCount is present, which is why the whole body carries one example rather than leaving the per field ones to be read together."
               }
             }
           }
@@ -66984,12 +66977,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -67528,12 +67516,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -67901,12 +67884,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -68780,12 +68758,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -69199,12 +69172,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -69620,6 +69588,11 @@
                         "description": "Unit the plot dimensions are given in. Every distance the response returns is in this same unit. The mandala projection is scale free, so this affects the areas and the marma size and nothing else."
                       }
                     },
+                    "example": {
+                      "width": 30,
+                      "depth": 40,
+                      "unit": "feet"
+                    },
                     "description": "The ground the mandala is projected over. Send width and depth for a compass-aligned rectangle, or polygon for anything else. The x axis runs east and the y axis north, and the mandala is aligned to the compass rather than to the building."
                   },
                   "facing": {
@@ -69684,7 +69657,17 @@
                 },
                 "required": [
                   "plot"
-                ]
+                ],
+                "example": {
+                  "plot": {
+                    "width": 30,
+                    "depth": 40,
+                    "unit": "feet"
+                  },
+                  "facing": "North",
+                  "doorPosition": 0.4
+                },
+                "description": "Where the main door sits on the plot. Send facing or facingDegrees, never both, and locate the door with either door coordinates or doorPosition, never both."
               }
             }
           }
@@ -70055,6 +70038,11 @@
                         "example": "feet",
                         "description": "Unit the plot dimensions are given in. Every distance the response returns is in this same unit. The mandala projection is scale free, so this affects the areas and the marma size and nothing else."
                       }
+                    },
+                    "example": {
+                      "width": 30,
+                      "depth": 40,
+                      "unit": "feet"
                     },
                     "description": "The ground the mandala is projected over. Send width and depth for a compass-aligned rectangle, or polygon for anything else. The x axis runs east and the y axis north, and the mandala is aligned to the compass rather than to the building."
                   },
@@ -70645,6 +70633,11 @@
                         "description": "Unit the plot dimensions are given in. Every distance the response returns is in this same unit. The mandala projection is scale free, so this affects the areas and the marma size and nothing else."
                       }
                     },
+                    "example": {
+                      "width": 30,
+                      "depth": 40,
+                      "unit": "feet"
+                    },
                     "description": "The ground the mandala is projected over. Send width and depth for a compass-aligned rectangle, or polygon for anything else. The x axis runs east and the y axis north, and the mandala is aligned to the compass rather than to the building."
                   },
                   "facing": {
@@ -70769,7 +70762,25 @@
                 },
                 "required": [
                   "plot"
-                ]
+                ],
+                "example": {
+                  "plot": {
+                    "width": 30,
+                    "depth": 40,
+                    "unit": "feet"
+                  },
+                  "facing": "North",
+                  "slopeLowDirection": "Northeast",
+                  "road": "North",
+                  "extensions": [
+                    "Northeast"
+                  ],
+                  "cuts": [
+                    "Southwest"
+                  ],
+                  "water": "Northeast"
+                },
+                "description": "The site to read: the ground, which way the front looks, and whichever of the slope, road, extensions, cuts and water you know. Send facing or facingDegrees, never both, and the same for the two plot forms."
               }
             }
           }
@@ -72052,6 +72063,11 @@
                         "description": "Unit the plot dimensions are given in. Every distance the response returns is in this same unit. The mandala projection is scale free, so this affects the areas and the marma size and nothing else."
                       }
                     },
+                    "example": {
+                      "width": 30,
+                      "depth": 40,
+                      "unit": "feet"
+                    },
                     "description": "The ground the mandala is projected over. Send width and depth for a compass-aligned rectangle, or polygon for anything else. The x axis runs east and the y axis north, and the mandala is aligned to the compass rather than to the building."
                   },
                   "facing": {
@@ -72171,7 +72187,26 @@
                 "required": [
                   "plot",
                   "rooms"
-                ]
+                ],
+                "example": {
+                  "plot": {
+                    "width": 30,
+                    "depth": 40,
+                    "unit": "feet"
+                  },
+                  "facing": "North",
+                  "rooms": [
+                    {
+                      "type": "kitchen",
+                      "direction": "Southeast"
+                    },
+                    {
+                      "type": "master-bedroom",
+                      "direction": "Southwest"
+                    }
+                  ]
+                },
+                "description": "The floor plan to check. Send facing or facingDegrees, never both, and give each room either its quarter or its outline, never both."
               }
             }
           }
@@ -73044,12 +73079,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -73641,12 +73671,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -81146,7 +81171,19 @@
                   "ciphers": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "enum": [
+                        "mispar-hechrachi",
+                        "mispar-gadol",
+                        "otiyot-be-milui",
+                        "mispar-katan",
+                        "mispar-kidmi",
+                        "mispar-prati",
+                        "mispar-ha-merubah-ha-klali",
+                        "mispar-meshulash",
+                        "mispar-musafi",
+                        "kolel"
+                      ]
                     },
                     "example": [
                       "mispar-hechrachi",
@@ -81187,7 +81224,15 @@
                     "example": false,
                     "description": "Whether to also score the Latin text with the three Latin alphabet ciphers. They are Renaissance Christian and modern in lineage rather than rabbinic, and the response labels each one. Ignored when textHebrew was sent."
                   }
-                }
+                },
+                "example": {
+                  "text": "Sarah",
+                  "ciphers": [
+                    "mispar-hechrachi",
+                    "mispar-gadol"
+                  ]
+                },
+                "description": "What to score and how. Send text for a Latin input or textHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all. Every other field has a default."
               }
             }
           }
@@ -82039,7 +82084,11 @@
                     "example": "finals-500-900",
                     "description": "Which method the name mispar gadol means, because the sources use it for two. Use finals-500-900 to score the five word final letters as 500 to 900, or milui to score each letter as the value of its own spelled out name."
                   }
-                }
+                },
+                "example": {
+                  "name": "Sarah"
+                },
+                "description": "The name to profile. Send name for a Latin input or nameHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all."
               }
             }
           }
@@ -82983,12 +83032,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -82999,12 +83043,7 @@
           },
           {
             "schema": {
-              "type": [
-                "number",
-                "null"
-              ],
-              "minimum": 0,
-              "exclusiveMaximum": 360,
+              "type": "number",
               "example": 131.18,
               "description": "Ecliptic longitude in degrees, 0 inclusive to 360 exclusive, measured from 0 Aries. Returns the single name governing that degree instead of the list. 360 is rejected because it is the same point as 0 and the arcs are half open at the top."
             },
@@ -84928,7 +84967,12 @@
                     "example": "finals-500-900",
                     "description": "Which method the name mispar gadol means, because the sources use it for two. Use finals-500-900 to score the five word final letters as 500 to 900, or milui to score each letter as the value of its own spelled out name."
                   }
-                }
+                },
+                "example": {
+                  "firstName": "Sarah",
+                  "secondName": "David"
+                },
+                "description": "The two names to compare. Each side takes the Latin field or the Hebrew one, never both: which one you send decides whether a transliteration step runs for that side."
               }
             }
           }
@@ -85539,12 +85583,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -85587,12 +85626,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "maximum": 21,
+              "type": "integer",
               "example": 1,
               "description": "Filter by card number. Major Arcana: 0 (The Fool) through 21 (The World). Minor Arcana: 1 (Ace) through 14 (King). Combine with arcana or suit filters for precise results."
             },
@@ -91048,32 +91082,22 @@
           },
           {
             "schema": {
-              "type": [
-                "number",
-                "null"
-              ],
-              "minimum": -90,
-              "maximum": 90,
+              "type": "number",
               "example": 51.5074,
               "description": "Latitude in decimal degrees. It sets how long the day and the night actually are, which is what the dosha periods are cut from."
             },
-            "required": false,
+            "required": true,
             "description": "Latitude in decimal degrees. It sets how long the day and the night actually are, which is what the dosha periods are cut from.",
             "name": "latitude",
             "in": "query"
           },
           {
             "schema": {
-              "type": [
-                "number",
-                "null"
-              ],
-              "minimum": -180,
-              "maximum": 180,
+              "type": "number",
               "example": -0.1278,
               "description": "Longitude in decimal degrees. It sets the clock time of sunrise at this place."
             },
-            "required": false,
+            "required": true,
             "description": "Longitude in decimal degrees. It sets the clock time of sunrise at this place.",
             "name": "longitude",
             "in": "query"
@@ -91498,12 +91522,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -92680,12 +92699,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -93076,12 +93090,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -94087,12 +94096,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -95111,12 +95115,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -95348,12 +95347,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -95583,12 +95577,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -96007,12 +95996,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -97192,12 +97176,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -97742,12 +97721,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -98406,12 +98380,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -99570,12 +99539,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -99776,12 +99740,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },
@@ -99965,12 +99924,7 @@
           },
           {
             "schema": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 0,
-              "default": 0,
+              "type": "integer",
               "example": 0,
               "description": "Number of items to skip for pagination. Default 0."
             },

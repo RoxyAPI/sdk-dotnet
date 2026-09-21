@@ -37,7 +37,7 @@ namespace RoxyApi.Vastu.Plot
         /// Vastu plot analysis from typed geometry: send the outline, the facing, where the ground falls and where the water is, and the API returns a verdict on the shape, the proportion, the ground level under two schools, each corner extension and cut, the road and the water. Every verdict names the chapter and verse behind it, or says plainly that it is convention, which matters because the ground level verses and the widely taught modern rule genuinely disagree. Built for listing and land assessment tools, practitioner site reports and buyer facing checks.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Vastu.Plot.PlotPostResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The site to read: the ground, which way the front looks, and whichever of the slope, road, extensions, cuts and water you know. Send facing or facingDegrees, never both, and the same for the two plot forms.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.Vastu.Plot
         /// Vastu plot analysis from typed geometry: send the outline, the facing, where the ground falls and where the water is, and the API returns a verdict on the shape, the proportion, the ground level under two schools, each corner extension and cut, the road and the water. Every verdict names the chapter and verse behind it, or says plainly that it is convention, which matters because the ground level verses and the widely taught modern rule genuinely disagree. Built for listing and land assessment tools, practitioner site reports and buyer facing checks.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The site to read: the ground, which way the front looks, and whichever of the slope, road, extensions, cuts and water you know. Send facing or facingDegrees, never both, and the same for the two plot forms.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

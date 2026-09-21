@@ -37,7 +37,7 @@ namespace RoxyApi.MesoamericanAstrology.Mayan.LongCount.ConvertNamespace
         /// Maya Long Count converter that runs both ways: give it a Gregorian date and it returns the Long Count, give it a dotted Long Count and it returns the date. Every answer carries the Julian Day Number, the elapsed day count and the Calendar Round, and the correlation constant is a typed parameter so a value can be matched against any published inscription reading. Built for epigraphy tools, museum and education apps, and anything that has to place a Maya date on a civil calendar.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.MesoamericanAstrology.Mayan.LongCount.ConvertNamespace.ConvertPostResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">What to convert, and under which correlation. Exactly one of date and longCount is present, which is why the whole body carries one example rather than leaving the per field ones to be read together.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.MesoamericanAstrology.Mayan.LongCount.ConvertNamespace
         /// Maya Long Count converter that runs both ways: give it a Gregorian date and it returns the Long Count, give it a dotted Long Count and it returns the date. Every answer carries the Julian Day Number, the elapsed day count and the Calendar Round, and the correlation constant is a typed parameter so a value can be matched against any published inscription reading. Built for epigraphy tools, museum and education apps, and anything that has to place a Maya date on a civil calendar.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">What to convert, and under which correlation. Exactly one of date and longCount is present, which is why the whole body carries one example rather than leaving the per field ones to be read together.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

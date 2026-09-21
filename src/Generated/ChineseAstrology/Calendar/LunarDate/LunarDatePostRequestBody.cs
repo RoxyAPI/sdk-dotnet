@@ -9,7 +9,7 @@ using System;
 namespace RoxyApi.ChineseAstrology.Calendar.LunarDate
 {
     /// <summary>
-    /// Send a Gregorian date to convert forward, or a lunar year, month and day to convert back.
+    /// Send a Gregorian date to convert forward, or a lunar year, month and day to convert back. The two sides are exclusive, which is why the whole body carries one example rather than leaving the per field ones to be read together.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LunarDatePostRequestBody : IAdditionalDataHolder, IParsable

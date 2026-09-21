@@ -37,7 +37,7 @@ namespace RoxyApi.Kabbalah.Compatibility
         /// Score two names against each other in gematria and return both profiles, the ciphers they agree on, and a composite with every component and its maximum published beside it. Equal value under the standard reading is the one relation the classical method actually works with and it carries the largest weight; the rest of the composite is ours and the response says so, so a caller can recompute or ignore it. Built for name compatibility features, relationship content and any product that wants a number it can show the arithmetic for.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Kabbalah.Compatibility.CompatibilityPostResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The two names to compare. Each side takes the Latin field or the Hebrew one, never both: which one you send decides whether a transliteration step runs for that side.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.Kabbalah.Compatibility
         /// Score two names against each other in gematria and return both profiles, the ciphers they agree on, and a composite with every component and its maximum published beside it. Equal value under the standard reading is the one relation the classical method actually works with and it carries the largest weight; the rest of the composite is ours and the response says so, so a caller can recompute or ignore it. Built for name compatibility features, relationship content and any product that wants a number it can show the arithmetic for.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The two names to compare. Each side takes the Latin field or the Hebrew one, never both: which one you send decides whether a transliteration step runs for that side.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

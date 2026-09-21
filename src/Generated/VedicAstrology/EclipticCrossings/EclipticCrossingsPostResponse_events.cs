@@ -32,7 +32,7 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
 #endif
         /// <summary>Ascending = planet moves from south to north of the ecliptic. Descending = north to south.</summary>
         public global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse_events_direction? Direction { get; set; }
-        /// <summary>Sidereal longitude of the planet at the moment of crossing (Lahiri ayanamsa).</summary>
+        /// <summary>Longitude of the planet at the moment of crossing, in the requested coordinateSystem: sidereal (Lahiri ayanamsa) by default, tropical when asked.</summary>
         public double? Longitude { get; set; }
         /// <summary>Planet crossing the ecliptic plane. Sun is excluded (always on the ecliptic by definition).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,7 +42,7 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
 #else
         public string Planet { get; set; }
 #endif
-        /// <summary>Vedic zodiac sign (rashi) the planet occupies at the crossing.</summary>
+        /// <summary>Zodiac sign the planet occupies at the crossing, read in the same coordinateSystem as longitude: the rashi under sidereal, the tropical sign under tropical.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }

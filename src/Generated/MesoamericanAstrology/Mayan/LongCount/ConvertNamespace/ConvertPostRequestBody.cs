@@ -8,10 +8,11 @@ using System.IO;
 using System;
 namespace RoxyApi.MesoamericanAstrology.Mayan.LongCount.ConvertNamespace
 {
+    /// <summary>
+    /// What to convert, and under which correlation. Exactly one of date and longCount is present, which is why the whole body carries one example rather than leaving the per field ones to be read together.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class ConvertPostRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

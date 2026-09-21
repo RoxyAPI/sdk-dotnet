@@ -29,6 +29,8 @@ namespace RoxyApi.Models
 #else
         public string Nakshatra { get; set; }
 #endif
+        /// <summary>Nakshatra pada (1-4) of Rahu.</summary>
+        public double? Pada { get; set; }
         /// <summary>Zodiac sign Rahu occupies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,6 +100,7 @@ namespace RoxyApi.Models
                 { "kpNumber", n => { KpNumber = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nakshatra", n => { Nakshatra = n.GetStringValue(); } },
+                { "pada", n => { Pada = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
                 { "signLord", n => { SignLord = n.GetStringValue(); } },
                 { "starLord", n => { StarLord = n.GetStringValue(); } },
@@ -116,6 +119,7 @@ namespace RoxyApi.Models
             writer.WriteDoubleValue("kpNumber", KpNumber);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("nakshatra", Nakshatra);
+            writer.WriteDoubleValue("pada", Pada);
             writer.WriteStringValue("sign", Sign);
             writer.WriteStringValue("signLord", SignLord);
             writer.WriteStringValue("starLord", StarLord);

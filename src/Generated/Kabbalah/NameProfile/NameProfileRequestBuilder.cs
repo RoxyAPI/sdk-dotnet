@@ -37,7 +37,7 @@ namespace RoxyApi.Kabbalah.NameProfile
         /// Score a name across the rabbinic gematria ciphers and place it on the Tree of Life, with every candidate Hebrew spelling shown and the chosen one named. The response carries the standard, the large, the small and the preceding readings with the per letter breakdown, the sephirah the reduced value points at, and the curated words that share the value. Built for name meaning pages, Kabbalah numerology features and any product that wants a name reading it can defend line by line.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Kabbalah.NameProfile.NameProfilePostResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The name to profile. Send name for a Latin input or nameHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 400 status code</exception>
@@ -70,7 +70,7 @@ namespace RoxyApi.Kabbalah.NameProfile
         /// Score a name across the rabbinic gematria ciphers and place it on the Tree of Life, with every candidate Hebrew spelling shown and the chosen one named. The response carries the standard, the large, the small and the preceding readings with the per letter breakdown, the sephirah the reduced value points at, and the curated words that share the value. Built for name meaning pages, Kabbalah numerology features and any product that wants a name reading it can defend line by line.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The name to profile. Send name for a Latin input or nameHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

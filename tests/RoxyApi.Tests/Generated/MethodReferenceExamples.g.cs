@@ -200,7 +200,7 @@ internal static class MethodReferenceExamples
         await roxy.Numerology.CompoundNumber["23"].GetAsync();
         await roxy.Numerology.Dual.PostAsync(new() { Name = "David" });
         await roxy.Numerology.BusinessName.PostAsync(new() { Name = "Ford" });
-        await roxy.Kabbalah.Gematria.PostAsync(new() { Text = "Sarah", TextHebrew = "שלום", Ciphers = ["mispar-hechrachi"], IncludeMatches = true, LatinCiphers = false });
+        await roxy.Kabbalah.Gematria.PostAsync(new() { Text = "Sarah", TextHebrew = "שלום", IncludeMatches = true, LatinCiphers = false });
         await roxy.Kabbalah.Ciphers.GetAsync();
         await roxy.Kabbalah.NameProfile.PostAsync(new() { Name = "Sarah", NameHebrew = "שרה" });
         await roxy.Kabbalah.BirthProfile.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, AfterSunset = false });

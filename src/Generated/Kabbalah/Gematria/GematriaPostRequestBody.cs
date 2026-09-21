@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace RoxyApi.Kabbalah.Gematria
 {
+    /// <summary>
+    /// What to score and how. Send text for a Latin input or textHebrew for a Hebrew one, never both: which one you send decides whether a transliteration step runs at all. Every other field has a default.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class GematriaPostRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -19,10 +20,10 @@ namespace RoxyApi.Kabbalah.Gematria
         /// <summary>Which ciphers to return, by identifier. Omit for every computed cipher. Valid values are mispar-hechrachi, mispar-gadol, otiyot-be-milui, mispar-katan, mispar-kidmi, mispar-prati, mispar-ha-merubah-ha-klali, mispar-meshulash, mispar-musafi, kolel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Ciphers { get; set; }
+        public List<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_ciphers?>? Ciphers { get; set; }
 #nullable restore
 #else
-        public List<string> Ciphers { get; set; }
+        public List<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_ciphers?> Ciphers { get; set; }
 #endif
         /// <summary>Whether to return the curated equal value entries for the chosen spelling. Set false to skip the lookup when only the numbers are wanted.</summary>
         public bool? IncludeMatches { get; set; }
@@ -79,7 +80,7 @@ namespace RoxyApi.Kabbalah.Gematria
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "atbashOutput", n => { AtbashOutput = n.GetEnumValue<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_atbashOutput>(); } },
-                { "ciphers", n => { Ciphers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "ciphers", n => { Ciphers = n.GetCollectionOfEnumValues<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_ciphers>()?.AsList(); } },
                 { "includeMatches", n => { IncludeMatches = n.GetBoolValue(); } },
                 { "latinCiphers", n => { LatinCiphers = n.GetBoolValue(); } },
                 { "misparGadol", n => { MisparGadol = n.GetEnumValue<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_misparGadol>(); } },
@@ -96,7 +97,7 @@ namespace RoxyApi.Kabbalah.Gematria
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_atbashOutput>("atbashOutput", AtbashOutput);
-            writer.WriteCollectionOfPrimitiveValues<string>("ciphers", Ciphers);
+            writer.WriteCollectionOfEnumValues<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_ciphers>("ciphers", Ciphers);
             writer.WriteBoolValue("includeMatches", IncludeMatches);
             writer.WriteBoolValue("latinCiphers", LatinCiphers);
             writer.WriteEnumValue<global::RoxyApi.Kabbalah.Gematria.GematriaPostRequestBody_misparGadol>("misparGadol", MisparGadol);
