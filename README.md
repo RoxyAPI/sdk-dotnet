@@ -1,4 +1,4 @@
-[![RoxyAPI .NET SDK: the Spiritual OS layer for agentic AI. One key, flat pricing.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/hero.png)](https://roxyapi.com)
+[![RoxyAPI .NET SDK, typed from the spec. The Spiritual OS layer for agentic AI. One key, flat pricing.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/hero.png)](https://roxyapi.com)
 
 # RoxyApi
 
