@@ -514,7 +514,7 @@ var sequence = await roxy.AngelNumbers.Lookup.GetAsync(c => c.QueryParameters.Nu
 
 ## Built for AI agents (Cursor, Claude Code, Copilot, Codex, Gemini CLI)
 
-![Built for Cursor, Claude Code, Copilot, Codex. AGENTS.md ships in the package, remote MCP, no local setup.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/agents.png)
+![Your coding agent already knows the API. Built for AI agents, Remote MCP, no local setup.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/agents.png)
 
 This package ships documentation that AI coding agents read directly from the restored NuGet package:
 
@@ -523,7 +523,7 @@ This package ships documentation that AI coding agents read directly from the re
 
 Agents that support `AGENTS.md` (Claude Code, Cursor, GitHub Copilot, OpenAI Codex, Gemini CLI) pick it up automatically. For other tools, point your agent at the restored package under `~/.nuget/packages/roxyapi.sdk/<version>/`.
 
-Prefer MCP? Every domain has a [remote MCP server](https://roxyapi.com/docs/mcp) at `https://roxyapi.com/mcp/{domain}` (Streamable HTTP, no stdio, no self-hosting). One-line Claude Code setup:
+Prefer MCP? Every domain has a [Remote MCP server](https://roxyapi.com/docs/mcp) at `https://roxyapi.com/mcp/{domain}` (Streamable HTTP, no stdio, no self-hosting). One-line Claude Code setup:
 
 ```bash
 claude mcp add-json --scope user roxy-astrology \
