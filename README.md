@@ -1,4 +1,4 @@
-[![Roxy .NET SDK. Astrology, Vedic, numerology, tarot, and more behind one API key.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/hero.png)](https://roxyapi.com)
+[![RoxyAPI .NET SDK: the Spiritual OS layer for agentic AI. One key, flat pricing.](https://raw.githubusercontent.com/RoxyAPI/sdk-dotnet/main/assets/hero.png)](https://roxyapi.com)
 
 # RoxyApi
 
