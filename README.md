@@ -554,9 +554,10 @@ var roxy = new RoxyClient(adapter);
 Interpretations and editorial text are available in 10 languages: English (`en`), Turkish (`tr`), German (`de`), Spanish (`es`), French (`fr`), Hindi (`hi`), Portuguese (`pt`), Russian (`ru`), Chinese Simplified (`zh-Hans`), Chinese Traditional (`zh-Hant`). Pass `Lang` on any supported endpoint through the query configuration:
 
 ```csharp
+// Lang is a generated enum scoped to its own endpoint: using RoxyApi.Tarot.Daily;
 var card = await roxy.Tarot.Daily.PostAsync(
     new() { Date = new Date(2026, 4, 22) },
-    c => c.QueryParameters.Lang = "es");
+    c => c.QueryParameters.Lang = PostLangQueryParameterType.Es);
 ```
 
 Supported: astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, Mesoamerican astrology, vastu, numerology, kabbalah, tarot, biorhythm, ayurveda, I Ching, crystals, angel numbers. English-only: dreams, location. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on Chinese astrology and feng shui; every other domain answers those codes in English per field. Untranslated fields fall back to English. Call `roxy.Languages.GetAsync()` for the live list.

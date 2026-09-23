@@ -120,8 +120,8 @@ await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 1
 Ten languages: `en`, `tr`, `de`, `es`, `fr`, `hi`, `pt`, `ru`, `zh-Hans`, `zh-Hant`. Defaults to `en`.
 
 ```csharp
-await roxy.Tarot.Daily.PostAsync(new() { Date = new Date(2026, 4, 22) }, c => c.QueryParameters.Lang = "es");
-await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 15 }, c => c.QueryParameters.Lang = "hi");
+await roxy.Tarot.Daily.PostAsync(new() { Date = new Date(2026, 4, 22) }, c => c.QueryParameters.Lang = RoxyApi.Tarot.Daily.PostLangQueryParameterType.Es);
+await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 15 }, c => c.QueryParameters.Lang = RoxyApi.Numerology.LifePath.PostLangQueryParameterType.Hi);
 ```
 
 Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, fengShui, mesoamericanAstrology, vastu, numerology, kabbalah, tarot, biorhythm, ayurveda, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on chineseAstrology and fengShui; every other domain answers those codes in English per field. Call `roxy.Languages.GetAsync()` for the live list.
@@ -247,7 +247,7 @@ Copy the format column exactly.
 | `FullName` (numerology) | Birth-certificate name | `"John William Smith"` | Nickname, partial name |
 | `Seed` | Any string (deterministic) | `"user-42"`, `"session-abc"` | numbers, objects |
 | `number` (angel numbers indexer) | String | `["1111"]`, `["777"]` | `[1111]` |
-| `Lang` (query) | Lowercase code | `c.QueryParameters.Lang = "hi"` | `"Hindi"`, `"HI"` |
+| `Lang` (query) | The endpoint enum (`PostLangQueryParameterType` in that endpoint namespace) | `c.QueryParameters.Lang = PostLangQueryParameterType.Hi` | a string such as `"hi"` |
 | Enum fields (`Gender`, `Facing`, `Unit`, room `Type`) | The generated enum, which lives in the namespace of its request body | `KuaPostRequestBody_gender.Female` after `using RoxyApi.FengShui.Kua;` | `"female"`, `Gender = "Female"` |
 
 ### Timezone cheat sheet (decimal offsets)
