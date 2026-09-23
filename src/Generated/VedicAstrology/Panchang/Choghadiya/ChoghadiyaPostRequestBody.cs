@@ -21,7 +21,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Choghadiya
         public double? Latitude { get; set; }
         /// <summary>Observer longitude in decimal degrees. Affects local time calculations for sunrise, sunset, and muhurta period boundaries.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Timezone offset from UTC in decimal hours. Used for accurate sunrise/sunset calculation and output time formatting. Essential for correct Choghadiya periods outside IST. Defaults to 5.5 (IST).</summary>
+        /// <summary>Timezone: an IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, or `cities[0].timezone` from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Used for accurate sunrise/sunset calculation and output time formatting. Essential for correct Choghadiya periods outside IST. Defaults to 5.5 (IST).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Panchang.Choghadiya.ChoghadiyaPostRequestBody.ChoghadiyaPostRequestBody_timezone? Timezone { get; set; }

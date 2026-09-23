@@ -14,7 +14,7 @@ namespace RoxyApi.Astrology.EclipticCrossings
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Timezone offset from UTC in hours. Crossing dates and times are reported in this zone. Defaults to 0 (UTC).</summary>
+        /// <summary>Timezone: an IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, or `cities[0].timezone` from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Crossing dates and times are reported in this zone. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.EclipticCrossings.EclipticCrossingsPostRequestBody.EclipticCrossingsPostRequestBody_timezone? Timezone { get; set; }

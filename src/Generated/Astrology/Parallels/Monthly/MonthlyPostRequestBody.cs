@@ -20,7 +20,7 @@ namespace RoxyApi.Astrology.Parallels.Monthly
         public global::RoxyApi.Astrology.Parallels.Monthly.MonthlyPostRequestBody_nodeType? NodeType { get; set; }
         /// <summary>How far from exact still counts, in degrees. The traditional orb for a declination contact is tighter than for a zodiacal aspect because declination changes slowly. Defaults to 1.5.</summary>
         public double? Orb { get; set; }
-        /// <summary>Timezone offset from UTC in hours. Event dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).</summary>
+        /// <summary>Timezone: an IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, or `cities[0].timezone` from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Event dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Astrology.Parallels.Monthly.MonthlyPostRequestBody.MonthlyPostRequestBody_timezone? Timezone { get; set; }

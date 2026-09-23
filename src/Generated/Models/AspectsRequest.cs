@@ -35,7 +35,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Time in HH:MM:SS format (24-hour)</summary>
         public Time? Time { get; set; }
-        /// <summary>Timezone offset from UTC in decimal hours (NOT minutes format). Examples: New York EST = -5, India IST = 5.5 (NOT 5:30), Tokyo JST = 9. IMPORTANT: Use decimal format (5.5, not 5:30).</summary>
+        /// <summary>Timezone: an IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, or `cities[0].timezone` from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.AspectsRequest.AspectsRequest_timezone? Timezone { get; set; }

@@ -27,7 +27,7 @@ namespace RoxyApi.Models
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format</summary>
         public Time? Time { get; set; }
-        /// <summary>Timezone offset from UTC in hours. Defaults to 5.5 (IST) for Vedic astrology.</summary>
+        /// <summary>Timezone: an IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, or `cities[0].timezone` from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST) for Vedic astrology.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.KPCuspsRequest.KPCuspsRequest_timezone? Timezone { get; set; }

@@ -872,7 +872,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -1592,7 +1592,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone offset from UTC in decimal hours (NOT minutes format). Examples: New York EST = -5, India IST = 5.5 (NOT 5:30), Tokyo JST = 9. IMPORTANT: Use decimal format (5.5, not 5:30).",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "planets": {
@@ -1823,7 +1823,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -3492,7 +3492,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -3715,7 +3715,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -3948,7 +3948,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -4248,7 +4248,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -4451,7 +4451,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -4643,7 +4643,7 @@
                 "type": "string"
               }
             ],
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
             "example": -5
           },
           "nodeType": {
@@ -6924,7 +6924,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -7274,7 +7274,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -7645,7 +7645,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -7863,7 +7863,7 @@
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -7916,7 +7916,7 @@
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -8165,7 +8165,7 @@
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -8218,7 +8218,7 @@
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -8490,7 +8490,7 @@
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -8543,7 +8543,7 @@
                   }
                 ],
                 "default": 5.5,
-                "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                 "example": 5.5
               }
             },
@@ -8819,7 +8819,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -8992,7 +8992,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -9172,7 +9172,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -9335,7 +9335,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -9615,7 +9615,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -9830,7 +9830,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone offset from UTC in hours. Defaults to 5.5 (IST) for Vedic astrology.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST) for Vedic astrology.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -10044,7 +10044,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone offset from UTC in hours. Defaults to 5.5 (IST) for Vedic astrology.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST) for Vedic astrology.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -10733,7 +10733,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone offset from UTC in hours. Defaults to 5.5 (IST) for Vedic astrology.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST) for Vedic astrology.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -13882,7 +13882,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -14222,7 +14222,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -14553,7 +14553,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -14759,7 +14759,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -14953,7 +14953,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -15179,7 +15179,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -15449,7 +15449,7 @@
               }
             ],
             "default": 5.5,
-            "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+            "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
             "example": 5.5
           },
           "ayanamsa": {
@@ -19105,7 +19105,7 @@
                             "type": "string"
                           }
                         ],
-                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                         "example": -5
                       },
                       "nodeType": {
@@ -19172,7 +19172,7 @@
                             "type": "string"
                           }
                         ],
-                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                         "example": -5
                       },
                       "nodeType": {
@@ -20157,7 +20157,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Event dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Event dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).",
                     "example": -5
                   },
                   "nodeType": {
@@ -20700,7 +20700,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Ingress dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Ingress dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).",
                     "example": -5
                   },
                   "nodeType": {
@@ -21006,7 +21006,7 @@
                             "type": "string"
                           }
                         ],
-                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                         "example": -5
                       },
                       "nodeType": {
@@ -21949,7 +21949,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Event dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Event dates and times are reported in this zone, which is what makes a published calendar read correctly for its audience. Defaults to 0 (UTC).",
                     "example": -5
                   },
                   "orb": {
@@ -22219,7 +22219,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Crossing dates and times are reported in this zone. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Crossing dates and times are reported in this zone. Defaults to 0 (UTC).",
                     "example": -5
                   }
                 },
@@ -23879,7 +23879,7 @@
                             "type": "string"
                           }
                         ],
-                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                         "example": -5
                       },
                       "nodeType": {
@@ -23942,7 +23942,7 @@
                             "type": "string"
                           }
                         ],
-                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                         "example": -5
                       },
                       "nodeType": {
@@ -24616,7 +24616,7 @@
                             "type": "string"
                           }
                         ],
-                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                         "example": -5
                       },
                       "nodeType": {
@@ -24679,7 +24679,7 @@
                             "type": "string"
                           }
                         ],
-                        "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                        "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                         "example": -5
                       },
                       "nodeType": {
@@ -28406,7 +28406,7 @@
                         "type": "string"
                       }
                     ],
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                     "example": -5
                   },
                   "nodeType": {
@@ -28896,7 +28896,7 @@
                         "type": "string"
                       }
                     ],
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time.",
                     "example": -5
                   },
                   "nodeType": {
@@ -30900,7 +30900,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                     "example": 5.5
                   },
                   "ayanamsa": {
@@ -32636,7 +32636,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                     "example": 5.5
                   },
                   "ayanamsa": {
@@ -33225,7 +33225,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                     "example": 5.5
                   },
                   "ayanamsa": {
@@ -34011,7 +34011,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                     "example": 5.5
                   },
                   "ayanamsa": {
@@ -34870,7 +34870,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                     "example": 5.5
                   },
                   "ayanamsa": {
@@ -35802,7 +35802,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone: IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022) OR decimal hours from UTC (e.g. -5 for EST, 1 for CET). IANA strings are resolved to the offset in force at the given date and time, so you can pass \u0060cities[0].timezone\u0060 from /location/search directly. Defaults to 5.5.",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5.",
                     "example": 5.5
                   },
                   "ayanamsa": {
@@ -38160,7 +38160,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in decimal hours. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST).",
                     "example": 5.5
                   }
                 },
@@ -38506,7 +38506,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in decimal hours, for example -5 for New York or 9 for Tokyo. Send the offset that matches the coordinates: sunrise, sunset and every muhurta boundary are found by searching forward from local midnight, so the default anchors the search to an Indian day. Omitting it for a location outside IST returns a correctly ordered set of periods for the wrong window, shifted by the difference between 5.5 and the real offset. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Send the timezone that matches the coordinates: sunrise, sunset and every muhurta boundary are found by searching forward from local midnight, so the default anchors the search to an Indian day. Omitting it for a location outside IST returns a correctly ordered set of periods for the wrong window, shifted by the difference between 5.5 and the real offset. Defaults to 5.5 (IST).",
                     "example": 5.5
                   }
                 },
@@ -39578,7 +39578,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in decimal hours. Used for accurate sunrise/sunset calculation and output time formatting. Essential for correct Choghadiya periods outside IST. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Used for accurate sunrise/sunset calculation and output time formatting. Essential for correct Choghadiya periods outside IST. Defaults to 5.5 (IST).",
                     "example": 5.5
                   }
                 },
@@ -39834,7 +39834,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in decimal hours. Used for accurate sunrise/sunset calculation and output time formatting. Essential for correct Hora periods outside IST. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Used for accurate sunrise/sunset calculation and output time formatting. Essential for correct Hora periods outside IST. Defaults to 5.5 (IST).",
                     "example": 5.5
                   }
                 },
@@ -41874,7 +41874,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in decimal hours. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Output times are also converted to this timezone. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Output times are also converted to this timezone. Defaults to 5.5 (IST).",
                     "example": 5.5
                   },
                   "ayanamsa": {
@@ -42552,7 +42552,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in hours. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST).",
                     "example": 5.5
                   },
                   "coordinateSystem": {
@@ -42889,7 +42889,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Output times are converted to this timezone. Defaults to 0 (UTC).",
                     "example": 5.5
                   },
                   "coordinateSystem": {
@@ -43154,7 +43154,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Output times are converted to this timezone. Defaults to 0 (UTC).",
                     "example": 5.5
                   },
                   "coordinateSystem": {
@@ -43406,7 +43406,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in hours. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST).",
                     "example": 5.5
                   },
                   "coordinateSystem": {
@@ -43874,7 +43874,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Output times are converted to this timezone. Defaults to 0 (UTC).",
                     "example": 5.5
                   },
                   "coordinateSystem": {
@@ -44152,7 +44152,7 @@
                       }
                     ],
                     "default": 5.5,
-                    "description": "Timezone offset from UTC in hours. Defaults to 5.5 (IST).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved to the offset in force at the given date and time. Defaults to 5.5 (IST).",
                     "example": 5.5
                   },
                   "orb": {
@@ -44409,7 +44409,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Output times are converted to this timezone. Defaults to 0 (UTC).",
                     "example": 5.5
                   }
                 }
@@ -44623,7 +44623,7 @@
                       }
                     ],
                     "default": 0,
-                    "description": "Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).",
+                    "description": "Timezone: an IANA name (e.g. \u0022America/New_York\u0022, \u0022Europe/London\u0022, or \u0060cities[0].timezone\u0060 from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Output times are converted to this timezone. Defaults to 0 (UTC).",
                     "example": 5.5
                   },
                   "coordinateSystem": {

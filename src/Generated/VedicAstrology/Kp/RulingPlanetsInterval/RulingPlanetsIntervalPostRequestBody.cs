@@ -28,7 +28,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody_nodeType? NodeType { get; set; }
         /// <summary>Start of the interval range in ISO 8601 (YYYY-MM-DDTHH:MM:SS). Interpreted as local time when a non-zero timezone is provided (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
         public DateTimeOffset? StartDatetime { get; set; }
-        /// <summary>Timezone offset from UTC in decimal hours. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Output times are also converted to this timezone. Defaults to 5.5 (IST).</summary>
+        /// <summary>Timezone: an IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, or `cities[0].timezone` from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. When non-zero, all datetimes are treated as local time in this timezone (Z suffix is ignored). Output times are also converted to this timezone. Defaults to 5.5 (IST).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval.RulingPlanetsIntervalPostRequestBody.RulingPlanetsIntervalPostRequestBody_timezone? Timezone { get; set; }

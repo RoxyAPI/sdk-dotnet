@@ -18,7 +18,7 @@ namespace RoxyApi.VedicAstrology.Aspects.Lunar
         public global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody_coordinateSystem? CoordinateSystem { get; set; }
         /// <summary>Month number (1-12). Defaults to the current month (UTC).</summary>
         public int? Month { get; set; }
-        /// <summary>Timezone offset from UTC in hours. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
+        /// <summary>Timezone: an IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, or `cities[0].timezone` from /location/search) or decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). An IANA name is resolved once, at the start of the window, and that offset applies to every time in the response. Output times are converted to this timezone. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Aspects.Lunar.LunarPostRequestBody.LunarPostRequestBody_timezone? Timezone { get; set; }
