@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Most represented element in the chart (Fire, Earth, Air, Water). Always English, whatever the lang parameter says. Use dominantElementLocalized for anything a reader sees.</summary>
+        /// <summary>Element holding the most of the ten planets, Sun through Pluto (Fire, Earth, Air, Water). A tie goes to the tied element holding the Sun, else the Moon, else the Ascendant, else the first of Mercury through Pluto. Always English, whatever the lang parameter says. Use dominantElementLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DominantElement { get; set; }
@@ -31,7 +31,7 @@ namespace RoxyApi.Models
 #else
         public string DominantElementLocalized { get; set; }
 #endif
-        /// <summary>Most represented modality in the chart (Cardinal, Fixed, Mutable). Always English, whatever the lang parameter says. Use dominantModalityLocalized for anything a reader sees.</summary>
+        /// <summary>Modality holding the most of the ten planets, Sun through Pluto (Cardinal, Fixed, Mutable). A tie is broken as for dominantElement: the Sun, then the Moon, then the Ascendant, then Mercury through Pluto. Always English, whatever the lang parameter says. Use dominantModalityLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DominantModality { get; set; }
@@ -47,7 +47,7 @@ namespace RoxyApi.Models
 #else
         public string DominantModalityLocalized { get; set; }
 #endif
-        /// <summary>Count of planets in each element. Shows elemental emphasis in the personality.</summary>
+        /// <summary>Count of the ten planets, Sun through Pluto, in each element; the four counts sum to 10. The lunar nodes, Chiron and Lilith are points, not planets, and are not counted. Shows elemental emphasis in the personality.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.NatalChartResponse_summary_elementDistribution? ElementDistribution { get; set; }
@@ -55,7 +55,7 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.NatalChartResponse_summary_elementDistribution ElementDistribution { get; set; }
 #endif
-        /// <summary>Count of planets in each modality. Shows the dominant operating mode.</summary>
+        /// <summary>Count of the ten planets, Sun through Pluto, in each modality; the three counts sum to 10, and the lunar nodes, Chiron and Lilith are not counted. Shows the dominant operating mode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.NatalChartResponse_summary_modalityDistribution? ModalityDistribution { get; set; }
@@ -63,7 +63,7 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.NatalChartResponse_summary_modalityDistribution ModalityDistribution { get; set; }
 #endif
-        /// <summary>Planets in retrograde motion at the time of birth. Always English, whatever the lang parameter says. Use retrogradePlanetsLocalized for anything a reader sees.</summary>
+        /// <summary>Bodies in retrograde motion at the time of birth: the ten planets and the chart points (lunar nodes, Chiron, Lilith) alike. Always English, whatever the lang parameter says. Use retrogradePlanetsLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? RetrogradePlanets { get; set; }

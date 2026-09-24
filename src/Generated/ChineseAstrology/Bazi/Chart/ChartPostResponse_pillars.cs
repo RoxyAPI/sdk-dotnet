@@ -54,13 +54,21 @@ namespace RoxyApi.ChineseAstrology.Bazi.Chart
 #else
         public string NaYinChinese { get; set; }
 #endif
-        /// <summary>Element the Na Yin resolves to. Independent of the stem element and often different from it, which is why it is reported separately rather than folded in.</summary>
+        /// <summary>Element the Na Yin resolves to. Independent of the stem element and often different from it, which is why it is reported separately rather than folded in. Always English, whatever the lang parameter says. Use naYinElementLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NaYinElement { get; set; }
 #nullable restore
 #else
         public string NaYinElement { get; set; }
+#endif
+        /// <summary>Na Yin element name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NaYinElementLocalized { get; set; }
+#nullable restore
+#else
+        public string NaYinElementLocalized { get; set; }
 #endif
         /// <summary>Position of this pillar in the sexagenary cycle, 1 to 60, where jia-zi is 1. The cycle runs stems and branches together, which is why only 60 of the 120 possible pairings occur.</summary>
         public double? Number { get; set; }
@@ -119,6 +127,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.Chart
                 { "naYin", n => { NaYin = n.GetStringValue(); } },
                 { "naYinChinese", n => { NaYinChinese = n.GetStringValue(); } },
                 { "naYinElement", n => { NaYinElement = n.GetStringValue(); } },
+                { "naYinElementLocalized", n => { NaYinElementLocalized = n.GetStringValue(); } },
                 { "number", n => { Number = n.GetDoubleValue(); } },
                 { "position", n => { Position = n.GetStringValue(); } },
                 { "stem", n => { Stem = n.GetObjectValue<global::RoxyApi.ChineseAstrology.Bazi.Chart.ChartPostResponse_pillars_stem>(global::RoxyApi.ChineseAstrology.Bazi.Chart.ChartPostResponse_pillars_stem.CreateFromDiscriminatorValue); } },
@@ -138,6 +147,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.Chart
             writer.WriteStringValue("naYin", NaYin);
             writer.WriteStringValue("naYinChinese", NaYinChinese);
             writer.WriteStringValue("naYinElement", NaYinElement);
+            writer.WriteStringValue("naYinElementLocalized", NaYinElementLocalized);
             writer.WriteDoubleValue("number", Number);
             writer.WriteStringValue("position", Position);
             writer.WriteObjectValue<global::RoxyApi.ChineseAstrology.Bazi.Chart.ChartPostResponse_pillars_stem>("stem", Stem);

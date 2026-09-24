@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
         public global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse_events_direction? Direction { get; set; }
         /// <summary>Longitude of the planet at the moment of crossing, in the requested coordinateSystem: sidereal (Lahiri ayanamsa) by default, tropical when asked.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet crossing the ecliptic plane. Sun is excluded (always on the ecliptic by definition).</summary>
+        /// <summary>Planet crossing the ecliptic plane. Sun is excluded (always on the ecliptic by definition). Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use planetLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Planet { get; set; }
@@ -42,13 +42,29 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
 #else
         public string Planet { get; set; }
 #endif
-        /// <summary>Zodiac sign the planet occupies at the crossing, read in the same coordinateSystem as longitude: the rashi under sidereal, the tropical sign under tropical.</summary>
+        /// <summary>Planet name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat planet exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PlanetLocalized { get; set; }
+#nullable restore
+#else
+        public string PlanetLocalized { get; set; }
+#endif
+        /// <summary>Zodiac sign the planet occupies at the crossing, read in the same coordinateSystem as longitude: the rashi under sidereal, the tropical sign under tropical. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use signLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Sign { get; set; }
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name in the requested language, for display. Present only when lang is set to a language other than English, since in English it would repeat sign exactly.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>Time of the ecliptic crossing (HH:MM, 24-hour). Adjusted to requested timezone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -88,7 +104,9 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
                 { "direction", n => { Direction = n.GetEnumValue<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse_events_direction>(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "planet", n => { Planet = n.GetStringValue(); } },
+                { "planetLocalized", n => { PlanetLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
                 { "time", n => { Time = n.GetStringValue(); } },
             };
         }
@@ -104,7 +122,9 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
             writer.WriteEnumValue<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse_events_direction>("direction", Direction);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("planet", Planet);
+            writer.WriteStringValue("planetLocalized", PlanetLocalized);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteStringValue("time", Time);
             writer.WriteAdditionalData(AdditionalData);
         }

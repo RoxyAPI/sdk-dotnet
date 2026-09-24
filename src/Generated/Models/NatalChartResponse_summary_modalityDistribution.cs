@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Models
 {
     /// <summary>
-    /// Count of planets in each modality. Shows the dominant operating mode.
+    /// Count of the ten planets, Sun through Pluto, in each modality; the three counts sum to 10, and the lunar nodes, Chiron and Lilith are not counted. Shows the dominant operating mode.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NatalChartResponse_summary_modalityDistribution : IAdditionalDataHolder, IParsable

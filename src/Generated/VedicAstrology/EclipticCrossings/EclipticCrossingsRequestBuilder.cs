@@ -22,7 +22,7 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EclipticCrossingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/ecliptic-crossings", pathParameters)
+        public EclipticCrossingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/ecliptic-crossings{?lang*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EclipticCrossingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/ecliptic-crossings", rawUrl)
+        public EclipticCrossingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/vedic-astrology/ecliptic-crossings{?lang*}", rawUrl)
         {
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
         /// <exception cref="global::RoxyApi.Models.RoxyError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse?> PostAsync(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder.EclipticCrossingsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse> PostAsync(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostResponse> PostAsync(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder.EclipticCrossingsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,11 +74,11 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder.EclipticCrossingsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsPostRequestBody body, Action<RequestConfiguration<global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder.EclipticCrossingsRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,6 +96,16 @@ namespace RoxyApi.VedicAstrology.EclipticCrossings
         public global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::RoxyApi.VedicAstrology.EclipticCrossings.EclipticCrossingsRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Find all ecliptic plane crossings for visible planets during a given year. An ecliptic crossing occurs when a planetary celestial latitude passes through 0 degrees, crossing from one side of the ecliptic to the other. Ascending crossings (south to north) correspond to the ascending node, descending crossings (north to south) to the descending node. Moon crosses ~2 times per month, outer planets cross less frequently. Returns exact date, time, direction, longitude and zodiac sign in the requested coordinateSystem, sidereal by default. Ecliptic crossing API, planetary node crossing, ascending descending node ephemeris.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class EclipticCrossingsRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
+            [QueryParameter("lang")]
+            public global::RoxyApi.VedicAstrology.EclipticCrossings.PostLangQueryParameterType? Lang { get; set; }
         }
     }
 }

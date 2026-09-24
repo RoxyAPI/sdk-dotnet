@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Models
 {
     /// <summary>
-    /// Count of planets in each element. Shows elemental emphasis in the personality.
+    /// Count of the ten planets, Sun through Pluto, in each element; the four counts sum to 10. The lunar nodes, Chiron and Lilith are points, not planets, and are not counted. Shows elemental emphasis in the personality.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NatalChartResponse_summary_elementDistribution : IAdditionalDataHolder, IParsable

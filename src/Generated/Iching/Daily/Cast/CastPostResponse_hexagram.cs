@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using RoxyApi.Models;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -14,6 +15,22 @@ namespace RoxyApi.Iching.Daily.Cast
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Binary line pattern (6 digits, bottom to top). 1 = yang (solid line), 0 = yin (broken line). Lines 1-3 form the lower trigram, lines 4-6 form the upper trigram.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Binary { get; set; }
+#nullable restore
+#else
+        public string Binary { get; set; }
+#endif
+        /// <summary>The oracle statement and meaning of each line that came up CHANGING, and only those. The changing lines are what the cast is actually about, so this saves a second call to read them and stops a consuming agent from having to invent them.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Models.ChangingLine>? ChangingLines { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Models.ChangingLine> ChangingLines { get; set; }
+#endif
         /// <summary>Original Chinese name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -113,6 +130,8 @@ namespace RoxyApi.Iching.Daily.Cast
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "binary", n => { Binary = n.GetStringValue(); } },
+                { "changingLines", n => { ChangingLines = n.GetCollectionOfObjectValues<global::RoxyApi.Models.ChangingLine>(global::RoxyApi.Models.ChangingLine.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "chinese", n => { Chinese = n.GetStringValue(); } },
                 { "english", n => { English = n.GetStringValue(); } },
                 { "image", n => { Image = n.GetStringValue(); } },
@@ -132,6 +151,8 @@ namespace RoxyApi.Iching.Daily.Cast
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("binary", Binary);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.ChangingLine>("changingLines", ChangingLines);
             writer.WriteStringValue("chinese", Chinese);
             writer.WriteStringValue("english", English);
             writer.WriteStringValue("image", Image);
