@@ -27,6 +27,7 @@ Get these and the generated types do the rest.
 - **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`. Multiple: `c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; }`.
 - **Always `await`, and catch `RoxyError`.** There is no result-wrapper object. The call returns the typed response directly and throws `RoxyError` (a subclass of `ApiException`) on failure. Switch on `e.Code`, not `e.Message`.
 - **Never hand-roll HttpClient.** `new RoxyClient(key)` injects auth, the base URL, typed responses, and a retry with backoff on a 429, 503 or 504: up to three attempts, honouring `Retry-After`, and giving up at once when that header asks for more than thirty seconds. Response field names come from the response schema of the spec and are PascalCase properties; the compiler catches any invented field, so if the build fails on a property, the field does not exist.
+- **Look up any operation or field beyond this guide.** Query the combined OpenAPI spec at `https://roxyapi.com/api/v2/openapi.json` with the jq recipe in `https://roxyapi.com/AGENTS.md`, or search the keyless Docs MCP server at `https://roxyapi.com/mcp/docs` (one tool, `search_docs`).
 
 ## Critical rule: geocode before any chart endpoint
 
