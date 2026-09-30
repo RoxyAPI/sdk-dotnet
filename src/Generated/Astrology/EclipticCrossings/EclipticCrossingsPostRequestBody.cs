@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.EclipticCrossings
 #else
         public global::RoxyApi.Astrology.EclipticCrossings.EclipticCrossingsPostRequestBody.EclipticCrossingsPostRequestBody_timezone Timezone { get; set; }
 #endif
-        /// <summary>Year to scan for node passages (1900-2100).</summary>
+        /// <summary>Year to scan for node passages (1551 to 2649).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.EclipticCrossings.EclipticCrossingsPostRequestBody"/> and sets the default values.

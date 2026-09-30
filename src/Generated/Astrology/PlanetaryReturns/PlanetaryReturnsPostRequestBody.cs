@@ -15,7 +15,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Approximate date near the expected planetary return (YYYY-MM-DD). Provide a date within the expected return window. The algorithm searches from this starting point.</summary>
+        /// <summary>Approximate date near the expected planetary return (YYYY-MM-DD). The return nearest this date is returned, so a date off by months still lands on a genuine return; during a retrograde loop the planet crosses its natal degree up to three times and the crossing nearest the date is the one returned.</summary>
         public Date? ApproximateDate { get; set; }
         /// <summary>Original birth date in YYYY-MM-DD format. Used to determine the natal longitude of the selected planet.</summary>
         public Date? BirthDate { get; set; }

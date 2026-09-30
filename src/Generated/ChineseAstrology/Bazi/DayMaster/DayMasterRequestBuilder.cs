@@ -34,7 +34,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.DayMaster
         {
         }
         /// <summary>
-        /// Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.
+        /// Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems and the branches outside the month help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.ChineseAstrology.Bazi.DayMaster.DayMasterPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.DayMaster
             return await RequestAdapter.SendAsync<global::RoxyApi.ChineseAstrology.Bazi.DayMaster.DayMasterPostResponse>(requestInfo, global::RoxyApi.ChineseAstrology.Bazi.DayMaster.DayMasterPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.
+        /// Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems and the branches outside the month help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.DayMaster
             return new global::RoxyApi.ChineseAstrology.Bazi.DayMaster.DayMasterRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.
+        /// Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems and the branches outside the month help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DayMasterRequestBuilderPostQueryParameters 

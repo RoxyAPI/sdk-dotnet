@@ -26,7 +26,7 @@ namespace RoxyApi.Astrology.Aspects.Monthly
 #else
         public global::RoxyApi.Astrology.Aspects.Monthly.MonthlyPostRequestBody.MonthlyPostRequestBody_timezone Timezone { get; set; }
 #endif
-        /// <summary>Year for the aspect calendar (1900-2100). Defaults to the current year (UTC).</summary>
+        /// <summary>Year for the aspect calendar (1551 to 2649). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Aspects.Monthly.MonthlyPostRequestBody"/> and sets the default values.

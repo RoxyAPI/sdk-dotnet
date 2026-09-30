@@ -24,7 +24,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Sets the hour pillar, which is one of the four and carries the whole picture of later life and offspring. Each Earthly Branch covers two hours, so a birth within a few minutes of an odd hour can land in either. All four pillars are read in the local clock of the birth, and the day boundary is applied in that same clock; only the lunisolar calendar date itself is a world constant, fixed at UTC plus 8 so one instant has one Chinese date everywhere.</summary>
         public Time? Time { get; set; }
-        /// <summary>Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force on the birth date, so this is the literal number applied and never the name.</summary>
+        /// <summary>Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force at the birth, so this is the literal number applied and never the name. A local time that never happened (the skipped hour of a daylight-saving change) is moved forward past the gap, and date, time and timezone then echo the clock that was running, which the day and hour pillars are read from.</summary>
         public double? Timezone { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.ChineseAstrology.Bazi.LuckPillars.LuckPillarsPostResponse_birthData"/> and sets the default values.

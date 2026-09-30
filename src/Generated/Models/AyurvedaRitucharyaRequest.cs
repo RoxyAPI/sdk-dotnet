@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The date to resolve, in YYYY-MM-DD format. The season is read at midday UTC on this date, because a season boundary is an instant and a calendar day has to be reduced to one; on a day that carries a boundary, the half the midday falls in is the answer.</summary>
+        /// <summary>The date to resolve, in YYYY-MM-DD format. The season is read at midday UTC on this date, because a season boundary is an instant and a calendar day has to be reduced to one; on a day that carries a boundary, the half the midday falls in is the answer. Within about two months of either end of the supported span, a date whose season opens or closes outside that span answers 400.</summary>
         public Date? Date { get; set; }
         /// <summary>Which half of the world the season names are stated for. Defaults to &quot;northern&quot;, which is the half the primary text describes. It is NEVER inferred from a latitude: a silent flip would change the answer without the caller asking, and no classical text handles the southern case at all. Passing &quot;southern&quot; rotates the six season names by three places, following a modern almanac rather than a verse, and the response says so and states what was not rotated with them.</summary>
         public global::RoxyApi.Models.AyurvedaRitucharyaRequest_hemisphere? Hemisphere { get; set; }

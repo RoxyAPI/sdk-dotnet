@@ -32,7 +32,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.DayMaster
 #else
         public string Detail { get; set; }
 #endif
-        /// <summary>Which classical factor this is. month-command is de ling, whether the birth month season backs the Day Master element. rooting is de di, whether any branch stores a stem of that element. party is de shi, whether the other three stems help or spend it. Always English, whatever the lang parameter says.</summary>
+        /// <summary>Which classical factor this is. month-command is de ling, whether the birth month season backs the Day Master element. rooting is de di, whether any branch stores a stem of that element. party is de shi, whether the other three stems, and the principal stems of the three branches outside the month, help or spend it. Always English, whatever the lang parameter says.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }

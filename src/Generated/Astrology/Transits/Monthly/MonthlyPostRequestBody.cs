@@ -26,7 +26,7 @@ namespace RoxyApi.Astrology.Transits.Monthly
 #else
         public global::RoxyApi.Astrology.Transits.Monthly.MonthlyPostRequestBody.MonthlyPostRequestBody_timezone Timezone { get; set; }
 #endif
-        /// <summary>Year for the monthly transit table (1900-2100). Defaults to the current year (UTC).</summary>
+        /// <summary>Year for the monthly transit table (1551 to 2649). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Transits.Monthly.MonthlyPostRequestBody"/> and sets the default values.

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.ChineseAstrology.Bazi.DayMaster
 {
-    /// <summary>Which clock the HOUR branch is read from. &quot;clock&quot; is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. &quot;local-mean&quot; shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. &quot;solar&quot; adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need &quot;longitude&quot; in the request and return 400 without it.</summary>
+    /// <summary>Which clock the day boundary and the hour branch are read from, so a correction that carries a birth across midnight moves the day pillar with the hour. &quot;clock&quot; is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. &quot;local-mean&quot; shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. &quot;solar&quot; adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need &quot;longitude&quot; in the request and return 400 without it.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DayMasterPostRequestBody_hourClock
     {

@@ -26,7 +26,7 @@ namespace RoxyApi.VedicAstrology.Aspects.Monthly
 #else
         public global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody.MonthlyPostRequestBody_timezone Timezone { get; set; }
 #endif
-        /// <summary>Year for monthly analysis (1900-2100). Defaults to the current year (UTC).</summary>
+        /// <summary>Year for monthly analysis (1551 to 2649). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.VedicAstrology.Aspects.Monthly.MonthlyPostRequestBody"/> and sets the default values.

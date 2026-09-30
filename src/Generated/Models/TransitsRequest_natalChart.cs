@@ -16,7 +16,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected.</summary>
+        /// <summary>Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected. Calculations that read planetary positions support 1550-01-02 to 2650-01-22; outside that span they answer 400 with code date_out_of_range, and a calculation that reads a window around the date (a sunrise search, a run of days) may answer the same 400 for a date within a few days of either end.</summary>
         public Date? Date { get; set; }
         /// <summary>Natal birth latitude in decimal degrees, positive north. Sets the local sidereal time behind the natal Ascendant and house cusps that the transits are measured against.</summary>
         public double? Latitude { get; set; }

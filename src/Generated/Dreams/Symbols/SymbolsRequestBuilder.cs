@@ -31,7 +31,7 @@ namespace RoxyApi.Dreams.Symbols
             get => new global::RoxyApi.Dreams.Symbols.RandomNamespace.RandomRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the RoxyApi.dreams.symbols.item collection</summary>
-        /// <param name="position">Unique symbol identifier in kebab-case (e.g., &quot;snake&quot;, &quot;being-chased&quot;, &quot;teeth-falling-out&quot;).</param>
+        /// <param name="position">Unique symbol identifier in kebab-case (e.g., &quot;snake&quot;, &quot;chase-dreams&quot;, &quot;losing-teeth&quot;).</param>
         /// <returns>A <see cref="global::RoxyApi.Dreams.Symbols.Item.SymbolsItemRequestBuilder"/></returns>
         public global::RoxyApi.Dreams.Symbols.Item.SymbolsItemRequestBuilder this[string position]
         {

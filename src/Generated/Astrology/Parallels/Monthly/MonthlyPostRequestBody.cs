@@ -28,7 +28,7 @@ namespace RoxyApi.Astrology.Parallels.Monthly
 #else
         public global::RoxyApi.Astrology.Parallels.Monthly.MonthlyPostRequestBody.MonthlyPostRequestBody_timezone Timezone { get; set; }
 #endif
-        /// <summary>Year for the declination calendar (1900-2100). Defaults to the current year (UTC).</summary>
+        /// <summary>Year for the declination calendar (1551 to 2649). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Parallels.Monthly.MonthlyPostRequestBody"/> and sets the default values.

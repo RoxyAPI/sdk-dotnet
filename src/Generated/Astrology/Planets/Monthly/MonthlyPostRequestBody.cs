@@ -16,7 +16,7 @@ namespace RoxyApi.Astrology.Planets.Monthly
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Month number (1-12) for the ephemeris. Defaults to the current month (UTC).</summary>
         public int? Month { get; set; }
-        /// <summary>Year for the monthly ephemeris (1900-2100). Defaults to the current year (UTC).</summary>
+        /// <summary>Year for the monthly ephemeris (1551 to 2649). Defaults to the current year (UTC).</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.Planets.Monthly.MonthlyPostRequestBody"/> and sets the default values.

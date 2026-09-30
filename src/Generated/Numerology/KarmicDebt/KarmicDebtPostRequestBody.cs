@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.KarmicDebt
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Birth day (checks Life Path)</summary>
+        /// <summary>Birth day (checks Birth Day on its own, and Life Path with year and month)</summary>
         public int? Day { get; set; }
         /// <summary>Full birth name (checks Expression, Soul Urge, Personality)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

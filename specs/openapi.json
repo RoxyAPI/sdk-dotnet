@@ -3,7 +3,7 @@
   "info": {
     "title": "RoxyAPI",
     "version": "2.0.0",
-    "description": "# RoxyAPI: the Spiritual OS layer for agentic AI\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060. Every path below is relative to it.\n\nOne API key for 18 insight domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Mesoamerican Astrology, Vastu Shastra, Numerology, Kabbalah, Tarot Reading, Biorhythm, Ayurveda, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 261\u002B endpoints, planetary positions verified against NASA JPL Horizons and the calculations held by 2,961 gold standard tests. Readings come back as structured data with editorial interpretation text, translated into 10\u002B languages via \u0060?lang=\u0060 on translated endpoints. Remote MCP servers, typed SDKs for TypeScript, Python, PHP, C#, and Go, drop-in UI components and copy-paste widgets, and open source Templates all run on this one document.\n\n## Who builds on RoxyAPI\n\n- **Developers** shipping astrology, tarot, numerology and wellness apps without learning each system first\n- **AI agent builders** giving Claude, GPT or Gemini real calculations instead of guesses, over Remote MCP\n- **Vibe coders** building with Cursor, Claude Code, Bolt or Replit from the spec and AGENTS.md\n- **Founders and brands** launching insight products for their audience in days instead of months\n\n## Quick start\n\n**1. Get a key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). It is ready the moment payment clears.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/astrology/horoscope/aries/daily\n\u0060\u0060\u0060\n\n**3. Check your usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agents: Remote MCP\n\nEvery domain has its own Remote MCP server over Streamable HTTP at \u0060https://roxyapi.com/mcp/{domain}\u0060 (for example \u0060/mcp/astrology\u0060), 258\u002B tools in all, with nothing to install or host. Add the URL to Claude, Cursor, VS Code, ChatGPT or any MCP client, or connect from the OpenAI Agents SDK and Gemini ADK. Coding agents that build against this API use the documentation server at \u0060/mcp/docs\u0060. Setup for every client: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp).\n\n## Authentication\n\nSend your key as \u0060X-API-Key: YOUR_KEY\u0060 (recommended), as \u0060Authorization: Bearer YOUR_KEY\u0060, or as the \u0060?api_key=\u0060 query parameter for quick tests. Keep secret keys on a server; publishable keys are for the browser.\n\n## Responses and limits\n\nClean JSON with no wrapper. An error returns \u0060{ \u0022error\u0022, \u0022code\u0022, \u0022doc_url\u0022 }\u0060: \u0060error\u0060 is readable and may change wording, \u0060code\u0060 is stable and the one to switch on, and \u0060doc_url\u0060 links to the fix for that exact code.\n\nEvery response carries \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060 and \u0060X-RateLimit-Reset\u0060 for your monthly allowance, which resets on the 1st of each month at 00:00 UTC. Each plan also has a per-minute limit for bursts, from 600 requests per minute on Starter; going over it answers \u0060429\u0060 with a \u0060Retry-After\u0060 and never counts against the month.\n\n## Errors\n\nEvery code the API returns, also published machine-readably as \u0060x-error-codes\u0060 on the \u0060info\u0060 object of this document:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | [\u0060validation_error\u0060](https://roxyapi.com/docs/errors#validation_error) | A field is missing or invalid. The body lists every failing field at once in issues, each with its path and the expected shape. |\n| 400 | [\u0060bad_request\u0060](https://roxyapi.com/docs/errors#bad_request) | The request was rejected as a whole, for example a body that is not valid JSON or a date range that ends before it starts. |\n| 401 | [\u0060api_key_required\u0060](https://roxyapi.com/docs/errors#api_key_required) | No API key was sent. |\n| 401 | [\u0060invalid_api_key\u0060](https://roxyapi.com/docs/errors#invalid_api_key) | The key sent is malformed or cannot be verified. |\n| 401 | [\u0060api_key_revoked\u0060](https://roxyapi.com/docs/errors#api_key_revoked) | The key was valid once and has since been revoked from the account page. |\n| 401 | [\u0060subscription_not_found\u0060](https://roxyapi.com/docs/errors#subscription_not_found) | The key verifies, but the subscription behind it no longer exists. |\n| 401 | [\u0060subscription_inactive\u0060](https://roxyapi.com/docs/errors#subscription_inactive) | The subscription behind the key is cancelled, expired or suspended, or a trial is past its end date. |\n| 401 | [\u0060publishable_key_not_allowed_on_mcp\u0060](https://roxyapi.com/docs/errors#publishable_key_not_allowed_on_mcp) | A publishable key was used on a Remote MCP server, which takes a secret key. |\n| 401 | [\u0060invalid_client_ip\u0060](https://roxyapi.com/docs/errors#invalid_client_ip) | A keyless request could not be attributed to a caller. |\n| 401 | [\u0060unauthorized\u0060](https://roxyapi.com/docs/errors#unauthorized) | Authentication failed with no more specific reason to give. |\n| 403 | [\u0060forbidden\u0060](https://roxyapi.com/docs/errors#forbidden) | The key is valid, but this request is not permitted. |\n| 403 | [\u0060origin_required\u0060](https://roxyapi.com/docs/errors#origin_required) | A publishable key with an origin allowlist was used with no Origin header, as from a server or a native app. |\n| 403 | [\u0060origin_not_allowed\u0060](https://roxyapi.com/docs/errors#origin_not_allowed) | The calling site is not on the origin allowlist of this publishable key. |\n| 404 | [\u0060not_found\u0060](https://roxyapi.com/docs/errors#not_found) | Nothing is served at this path, or the identifier in it does not exist. A path miss adds suggestions, the closest real endpoints. |\n| 405 | [\u0060method_not_allowed\u0060](https://roxyapi.com/docs/errors#method_not_allowed) | The path exists for a different HTTP method. The body lists the accepted methods in allow, as does the Allow header. |\n| 409 | [\u0060conflict\u0060](https://roxyapi.com/docs/errors#conflict) | The request cannot be applied in the current state. |\n| 410 | [\u0060gone\u0060](https://roxyapi.com/docs/errors#gone) | The path was removed permanently. |\n| 413 | [\u0060payload_too_large\u0060](https://roxyapi.com/docs/errors#payload_too_large) | The request body is larger than the API accepts. |\n| 415 | [\u0060unsupported_media_type\u0060](https://roxyapi.com/docs/errors#unsupported_media_type) | A request with a body was sent without Content-Type: application/json. |\n| 422 | [\u0060unprocessable_entity\u0060](https://roxyapi.com/docs/errors#unprocessable_entity) | Every field is valid, but the combination cannot be computed. |\n| 429 | [\u0060rate_limit_exceeded\u0060](https://roxyapi.com/docs/errors#rate_limit_exceeded) | The monthly request allowance is used up. Retry-After gives the seconds to the reset. |\n| 429 | [\u0060rate_limit_per_minute\u0060](https://roxyapi.com/docs/errors#rate_limit_per_minute) | The per-minute limit of the plan was reached. Retry-After gives the seconds to the next minute, and the monthly allowance is not charged. |\n| 429 | [\u0060rate_limited\u0060](https://roxyapi.com/docs/errors#rate_limited) | A rate limit was reached, reported without the plan detail. |\n| 429 | [\u0060free_tier_exhausted\u0060](https://roxyapi.com/docs/errors#free_tier_exhausted) | A keyless request has used up its trial allowance. |\n| 500 | [\u0060internal_error\u0060](https://roxyapi.com/docs/errors#internal_error) | The request failed inside our service. Retry with exponential backoff. |\n| 503 | [\u0060compute_saturated\u0060](https://roxyapi.com/docs/errors#compute_saturated) | Heavy calculations are briefly at capacity. Send the same request again after Retry-After seconds. |\n| Any | [\u0060error\u0060](https://roxyapi.com/docs/errors#error) | A fallback for a status with no more specific code. The status and the error field carry the signal. |\n\n## Pricing\n\nOne flat subscription covers every domain, every endpoint, Remote MCP, the SDKs, UI components, widgets and every language. Every call counts the same, a planet position or a full birth chart, with no credits and no per-product fees. From $39 per month for 50K requests, up to 3M requests, with custom volume above that: [roxyapi.com/pricing](https://roxyapi.com/pricing).\n\n## Resources\n\n- [Quickstart](https://roxyapi.com/docs/quickstart): the first call in 60 seconds\n- [Documentation](https://roxyapi.com/docs): guides, tutorials and a reference per domain\n- [Remote MCP](https://roxyapi.com/docs/mcp): connect an AI agent\n- [SDKs](https://roxyapi.com/docs/sdk) and [UI components](https://roxyapi.com/ui)\n- [Templates](https://roxyapi.com/templates): open source apps to clone and deploy\n- [Methodology](https://roxyapi.com/methodology): how accuracy is verified\n- [Contact](https://roxyapi.com/contact): support and key recovery\n",
+    "description": "# RoxyAPI: the Spiritual OS layer for agentic AI\n\n\u003E **Base URL:** \u0060https://roxyapi.com/api/v2\u0060. Every path below is relative to it.\n\nOne API key for 18 insight domains (Astrology, Vedic Astrology, Forecast, Human Design, Chinese Astrology, Feng Shui, Mesoamerican Astrology, Vastu Shastra, Numerology, Kabbalah, Tarot Reading, Biorhythm, Ayurveda, I-Ching Oracle, Crystals and Healing Stones, Dream Interpretation, Angel Numbers, Location and Timezone), 261\u002B endpoints, planetary positions verified against NASA JPL Horizons and the calculations held by 3,502 gold standard tests. Readings come back as structured data with editorial interpretation text, translated into 10\u002B languages via \u0060?lang=\u0060 on translated endpoints. Remote MCP servers, typed SDKs for TypeScript, Python, PHP, C#, and Go, drop-in UI components and copy-paste widgets, and open source Templates all run on this one document.\n\n## Who builds on RoxyAPI\n\n- **Developers** shipping astrology, tarot, numerology and wellness apps without learning each system first\n- **AI agent builders** giving Claude, GPT or Gemini real calculations instead of guesses, over Remote MCP\n- **Vibe coders** building with Cursor, Claude Code, Bolt or Replit from the spec and AGENTS.md\n- **Founders and brands** launching insight products for their audience in days instead of months\n\n## Quick start\n\n**1. Get a key** at [roxyapi.com/pricing](https://roxyapi.com/pricing). It is ready the moment payment clears.\n\n**2. Make your first call:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/astrology/horoscope/aries/daily\n\u0060\u0060\u0060\n\n**3. Check your usage:**\n\u0060\u0060\u0060bash\ncurl -H \u0022X-API-Key: YOUR_KEY\u0022 https://roxyapi.com/api/v2/usage\n\u0060\u0060\u0060\n\n## AI agents: Remote MCP\n\nEvery domain has its own Remote MCP server over Streamable HTTP at \u0060https://roxyapi.com/mcp/{domain}\u0060 (for example \u0060/mcp/astrology\u0060), 258\u002B tools in all, with nothing to install or host. Add the URL to Claude, Cursor, VS Code, ChatGPT or any MCP client, or connect from the OpenAI Agents SDK and Gemini ADK. Coding agents that build against this API use the documentation server at \u0060/mcp/docs\u0060. Setup for every client: [roxyapi.com/docs/mcp](https://roxyapi.com/docs/mcp).\n\n## Authentication\n\nSend your key as \u0060X-API-Key: YOUR_KEY\u0060 (recommended), as \u0060Authorization: Bearer YOUR_KEY\u0060, or as the \u0060?api_key=\u0060 query parameter for quick tests. Keep secret keys on a server; publishable keys are for the browser.\n\n## Responses and limits\n\nClean JSON with no wrapper. An error returns \u0060{ \u0022error\u0022, \u0022code\u0022, \u0022doc_url\u0022 }\u0060: \u0060error\u0060 is readable and may change wording, \u0060code\u0060 is stable and the one to switch on, and \u0060doc_url\u0060 links to the fix for that exact code.\n\nEvery response carries \u0060X-RateLimit-Limit\u0060, \u0060X-RateLimit-Remaining\u0060, \u0060X-RateLimit-Used\u0060 and \u0060X-RateLimit-Reset\u0060 for your monthly allowance, which resets on the 1st of each month at 00:00 UTC. Each plan also has a per-minute limit for bursts, from 600 requests per minute on Starter; going over it answers \u0060429\u0060 with a \u0060Retry-After\u0060 and never counts against the month.\n\n## Errors\n\nEvery code the API returns, also published machine-readably as \u0060x-error-codes\u0060 on the \u0060info\u0060 object of this document:\n\n| Status | Code | When |\n|--------|------|------|\n| 400 | [\u0060validation_error\u0060](https://roxyapi.com/docs/errors#validation_error) | A field is missing or invalid. The body lists every failing field at once in issues, each with its path and the expected shape. |\n| 400 | [\u0060bad_request\u0060](https://roxyapi.com/docs/errors#bad_request) | The request was rejected as a whole, for example a body that is not valid JSON or a date range that ends before it starts. |\n| 400 | [\u0060date_out_of_range\u0060](https://roxyapi.com/docs/errors#date_out_of_range) | A date lies outside the span the planetary positions are served for. The error names the supported dates. |\n| 401 | [\u0060api_key_required\u0060](https://roxyapi.com/docs/errors#api_key_required) | No API key was sent. |\n| 401 | [\u0060invalid_api_key\u0060](https://roxyapi.com/docs/errors#invalid_api_key) | The key sent is malformed or cannot be verified. |\n| 401 | [\u0060api_key_revoked\u0060](https://roxyapi.com/docs/errors#api_key_revoked) | The key was valid once and has since been revoked from the account page. |\n| 401 | [\u0060subscription_not_found\u0060](https://roxyapi.com/docs/errors#subscription_not_found) | The key verifies, but the subscription behind it no longer exists. |\n| 401 | [\u0060subscription_inactive\u0060](https://roxyapi.com/docs/errors#subscription_inactive) | The subscription behind the key is cancelled, expired or suspended, or a trial is past its end date. |\n| 401 | [\u0060publishable_key_not_allowed_on_mcp\u0060](https://roxyapi.com/docs/errors#publishable_key_not_allowed_on_mcp) | A publishable key was used on a Remote MCP server, which takes a secret key. |\n| 401 | [\u0060invalid_client_ip\u0060](https://roxyapi.com/docs/errors#invalid_client_ip) | A keyless request could not be attributed to a caller. |\n| 401 | [\u0060unauthorized\u0060](https://roxyapi.com/docs/errors#unauthorized) | Authentication failed with no more specific reason to give. |\n| 403 | [\u0060forbidden\u0060](https://roxyapi.com/docs/errors#forbidden) | The key is valid, but this request is not permitted. |\n| 403 | [\u0060origin_required\u0060](https://roxyapi.com/docs/errors#origin_required) | A publishable key with an origin allowlist was used with no Origin header, as from a server or a native app. |\n| 403 | [\u0060origin_not_allowed\u0060](https://roxyapi.com/docs/errors#origin_not_allowed) | The calling site is not on the origin allowlist of this publishable key. |\n| 404 | [\u0060not_found\u0060](https://roxyapi.com/docs/errors#not_found) | Nothing is served at this path, or the identifier in it does not exist. A path miss adds suggestions, the closest real endpoints. |\n| 405 | [\u0060method_not_allowed\u0060](https://roxyapi.com/docs/errors#method_not_allowed) | The path exists for a different HTTP method. The body lists the accepted methods in allow, as does the Allow header. |\n| 409 | [\u0060conflict\u0060](https://roxyapi.com/docs/errors#conflict) | The request cannot be applied in the current state. |\n| 410 | [\u0060gone\u0060](https://roxyapi.com/docs/errors#gone) | The path was removed permanently. |\n| 413 | [\u0060payload_too_large\u0060](https://roxyapi.com/docs/errors#payload_too_large) | The request body is larger than the API accepts. |\n| 415 | [\u0060unsupported_media_type\u0060](https://roxyapi.com/docs/errors#unsupported_media_type) | A request with a body was sent without Content-Type: application/json. |\n| 422 | [\u0060unprocessable_entity\u0060](https://roxyapi.com/docs/errors#unprocessable_entity) | Every field is valid, but the combination cannot be computed. |\n| 429 | [\u0060rate_limit_exceeded\u0060](https://roxyapi.com/docs/errors#rate_limit_exceeded) | The monthly request allowance is used up. Retry-After gives the seconds to the reset. |\n| 429 | [\u0060rate_limit_per_minute\u0060](https://roxyapi.com/docs/errors#rate_limit_per_minute) | The per-minute limit of the plan was reached. Retry-After gives the seconds to the next minute, and the monthly allowance is not charged. |\n| 429 | [\u0060rate_limited\u0060](https://roxyapi.com/docs/errors#rate_limited) | A rate limit was reached, reported without the plan detail. |\n| 429 | [\u0060free_tier_exhausted\u0060](https://roxyapi.com/docs/errors#free_tier_exhausted) | A keyless request has used up its trial allowance. |\n| 500 | [\u0060internal_error\u0060](https://roxyapi.com/docs/errors#internal_error) | The request failed inside our service. Retry with exponential backoff. |\n| 503 | [\u0060compute_saturated\u0060](https://roxyapi.com/docs/errors#compute_saturated) | Heavy calculations are briefly at capacity. Send the same request again after Retry-After seconds. |\n| Any | [\u0060error\u0060](https://roxyapi.com/docs/errors#error) | A fallback for a status with no more specific code. The status and the error field carry the signal. |\n\n## Pricing\n\nOne flat subscription covers every domain, every endpoint, Remote MCP, the SDKs, UI components, widgets and every language. Every call counts the same, a planet position or a full birth chart, with no credits and no per-product fees. From $39 per month for 50K requests, up to 3M requests, with custom volume above that: [roxyapi.com/pricing](https://roxyapi.com/pricing).\n\n## Resources\n\n- [Quickstart](https://roxyapi.com/docs/quickstart): the first call in 60 seconds\n- [Documentation](https://roxyapi.com/docs): guides, tutorials and a reference per domain\n- [Remote MCP](https://roxyapi.com/docs/mcp): connect an AI agent\n- [SDKs](https://roxyapi.com/docs/sdk) and [UI components](https://roxyapi.com/ui)\n- [Templates](https://roxyapi.com/templates): open source apps to clone and deploy\n- [Methodology](https://roxyapi.com/methodology): how accuracy is verified\n- [Contact](https://roxyapi.com/contact): support and key recovery\n",
     "x-error-codes": [
       {
         "code": "validation_error",
@@ -14,6 +14,11 @@
         "code": "bad_request",
         "status": 400,
         "meaning": "The request was rejected as a whole, for example a body that is not valid JSON or a date range that ends before it starts."
+      },
+      {
+        "code": "date_out_of_range",
+        "status": 400,
+        "meaning": "A date lies outside the span the planetary positions are served for. The error names the supported dates."
       },
       {
         "code": "api_key_required",
@@ -1363,7 +1368,7 @@
                 ]
               }
             },
-            "description": "Side-by-side house cusp comparison keyed by house system id: placidus, whole-sign, equal, koch. Only included when houseSystem is set to \u0022all\u0022. Useful for educational tools and system comparison."
+            "description": "Side-by-side house cusp comparison keyed by house system id: placidus, whole-sign, equal, koch. Only included when houseSystem is set to \u0022all\u0022. A system that cannot be computed at the latitude (Placidus and Koch beyond 66 degrees 33 minutes north or south) is omitted, so every key present carries its own cusps, and the top level houses array is the first system present in that order. Useful for educational tools and system comparison."
           }
         },
         "required": [
@@ -2278,7 +2283,7 @@
                 "type": "string",
                 "format": "date",
                 "example": "1990-07-15",
-                "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected."
+                "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected. Calculations that read planetary positions support 1550-01-02 to 2650-01-22; outside that span they answer 400 with code date_out_of_range, and a calculation that reads a window around the date (a sunrise search, a run of days) may answer the same 400 for a date within a few days of either end."
               },
               "time": {
                 "type": "string",
@@ -16321,7 +16326,7 @@
               }
             ],
             "default": 0,
-            "description": "Timezone as an IANA name such as \u0022Europe/London\u0022, or as decimal hours from UTC such as 5.5. An IANA name is resolved to the offset in force on the requested date. It decides which local day is meant and, on the clock-hour grid, where the blocks fall. Defaults to 0.",
+            "description": "Timezone as an IANA name such as \u0022Europe/London\u0022, or as decimal hours from UTC such as 5.5. An IANA name is resolved to the offset in force on the requested date, and on the clock-hour grid at the local hour each block opens, so on a daylight-saving change every block keeps its printed hour and one that falls in the skipped hour moves forward past it. It decides which local day is meant and, on the clock-hour grid, where the blocks fall. Defaults to 0.",
             "example": "Europe/London"
           },
           "doshaClock": {
@@ -16348,7 +16353,7 @@
             "type": "string",
             "format": "date",
             "example": "2026-03-01",
-            "description": "The date to resolve, in YYYY-MM-DD format. The season is read at midday UTC on this date, because a season boundary is an instant and a calendar day has to be reduced to one; on a day that carries a boundary, the half the midday falls in is the answer."
+            "description": "The date to resolve, in YYYY-MM-DD format. The season is read at midday UTC on this date, because a season boundary is an instant and a calendar day has to be reduced to one; on a day that carries a boundary, the half the midday falls in is the answer. Within about two months of either end of the supported span, a date whose season opens or closes outside that span answers 400."
           },
           "ritucharyaScheme": {
             "type": "string",
@@ -18379,10 +18384,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for the monthly ephemeris (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for the monthly ephemeris (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -18985,13 +18990,13 @@
           {
             "schema": {
               "type": "integer",
-              "minimum": 1900,
-              "maximum": 2100,
+              "minimum": 1551,
+              "maximum": 2649,
               "example": 2026,
-              "description": "Calendar year (1900-2100)."
+              "description": "Calendar year, 1551 to 2649."
             },
             "required": true,
-            "description": "Calendar year (1900-2100).",
+            "description": "Calendar year, 1551 to 2649.",
             "name": "year",
             "in": "path"
           },
@@ -20270,10 +20275,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for the aspect calendar (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for the aspect calendar (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -20813,10 +20818,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for the monthly transit table (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for the monthly transit table (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -22062,10 +22067,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for the declination calendar (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for the declination calendar (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -22339,10 +22344,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year to scan for node passages (1900-2100)."
+                    "description": "Year to scan for node passages (1551 to 2649)."
                   },
                   "timezone": {
                     "anyOf": [
@@ -22824,7 +22829,7 @@
                               "isRetrograde"
                             ]
                           },
-                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith."
+                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith. Chiron is included for charts from 1600 to 2500 and omitted outside that range."
                         },
                         "houses": {
                           "type": "array",
@@ -23518,7 +23523,7 @@
                               "isRetrograde"
                             ]
                           },
-                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith."
+                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith. Chiron is included for charts from 1600 to 2500 and omitted outside that range."
                         },
                         "houses": {
                           "type": "array",
@@ -27821,7 +27826,7 @@
                     "type": "string",
                     "format": "date",
                     "example": "2026-08-15",
-                    "description": "Approximate date near the expected planetary return (YYYY-MM-DD). Provide a date within the expected return window. The algorithm searches from this starting point."
+                    "description": "Approximate date near the expected planetary return (YYYY-MM-DD). The return nearest this date is returned, so a date off by months still lands on a genuine return; during a retrograde loop the planet crosses its natal degree up to three times and the crossing nearest the date is the one returned."
                   },
                   "latitude": {
                     "type": "number",
@@ -28059,7 +28064,7 @@
                               "isRetrograde"
                             ]
                           },
-                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith."
+                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith. Chiron is included for charts from 1600 to 2500 and omitted outside that range."
                         },
                         "houses": {
                           "type": "array",
@@ -30756,10 +30761,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for monthly ephemeris (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for monthly ephemeris (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -38618,7 +38623,7 @@
                     "type": "string",
                     "format": "date",
                     "example": "2026-02-03",
-                    "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected."
+                    "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected. Calculations that read planetary positions support 1550-01-02 to 2650-01-22; outside that span they answer 400 with code date_out_of_range, and a calculation that reads a window around the date (a sunrise search, a run of days) may answer the same 400 for a date within a few days of either end."
                   },
                   "latitude": {
                     "type": "number",
@@ -39690,7 +39695,7 @@
                     "type": "string",
                     "format": "date",
                     "example": "2026-02-03",
-                    "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected."
+                    "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected. Calculations that read planetary positions support 1550-01-02 to 2650-01-22; outside that span they answer 400 with code date_out_of_range, and a calculation that reads a window around the date (a sunrise search, a run of days) may answer the same 400 for a date within a few days of either end."
                   },
                   "latitude": {
                     "type": "number",
@@ -39946,7 +39951,7 @@
                     "type": "string",
                     "format": "date",
                     "example": "2026-02-03",
-                    "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected."
+                    "description": "Date in YYYY-MM-DD format. A single-digit month or day is accepted and zero-padded (2026-3-5 becomes 2026-03-05). Impossible calendar dates are rejected. Calculations that read planetary positions support 1550-01-02 to 2650-01-22; outside that span they answer 400 with code date_out_of_range, and a calculation that reads a window around the date (a sunrise search, a run of days) may answer the same 400 for a date within a few days of either end."
                   },
                   "latitude": {
                     "type": "number",
@@ -43005,10 +43010,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for monthly analysis (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for monthly analysis (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -43270,10 +43275,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for monthly analysis (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for monthly analysis (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -43990,10 +43995,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for monthly transit analysis (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for monthly transit analysis (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -44271,14 +44276,14 @@
                     "minimum": -90,
                     "maximum": 90,
                     "example": 17.385044,
-                    "description": "Observer latitude in decimal degrees. Used for topocentric declination corrections."
+                    "description": "Birth latitude in decimal degrees, part of the birth record. Declinations are geocentric, as every published ephemeris prints them, so it does not move them."
                   },
                   "longitude": {
                     "type": "number",
                     "minimum": -180,
                     "maximum": 180,
                     "example": 78.486671,
-                    "description": "Observer longitude in decimal degrees. Affects local time context for declination calculations."
+                    "description": "Birth longitude in decimal degrees, part of the birth record. Declinations are geocentric, so it does not move them; the instant comes from date, time and timezone."
                   },
                   "timezone": {
                     "anyOf": [
@@ -44525,10 +44530,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year for monthly parallel analysis (1900-2100). Defaults to the current year (UTC)."
+                    "description": "Year for monthly parallel analysis (1551 to 2649). Defaults to the current year (UTC)."
                   },
                   "month": {
                     "type": "integer",
@@ -44772,10 +44777,10 @@
                 "properties": {
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
-                    "description": "Year to scan for ecliptic crossings (1900-2100)."
+                    "description": "Year to scan for ecliptic crossings (1551 to 2649)."
                   },
                   "timezone": {
                     "anyOf": [
@@ -48576,8 +48581,8 @@
                   },
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2200,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
                     "description": "Year to cast the solar return for. The chart is erected for the moment in this year when the transiting Sun returns to the natal Sun longitude, on or within a day of the birthday."
                   },
@@ -48837,7 +48842,7 @@
                               "isRetrograde"
                             ]
                           },
-                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith."
+                          "description": "All 14 celestial bodies in the tropical zodiac with house placements: the 10 classical planets (Sun through Pluto), the lunar nodes (North Node, South Node, in the requested \u0060nodeType\u0060 convention), Chiron, and Black Moon Lilith. Chiron is included for charts from 1600 to 2500 and omitted outside that range."
                         },
                         "houses": {
                           "type": "array",
@@ -53333,7 +53338,7 @@
                     ],
                     "default": "clock",
                     "example": "clock",
-                    "description": "Which clock the HOUR branch is read from. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
+                    "description": "Which clock the day boundary and the hour branch are read from, so a correction that carries a birth across midnight moves the day pillar with the hour. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
                   }
                 },
                 "required": [
@@ -53371,7 +53376,7 @@
                         "timezone": {
                           "type": "number",
                           "example": 8,
-                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force on the birth date, so this is the literal number applied and never the name."
+                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force at the birth, so this is the literal number applied and never the name. A local time that never happened (the skipped hour of a daylight-saving change) is moved forward past the gap, and date, time and timezone then echo the clock that was running, which the day and hour pillars are read from."
                         },
                         "latitude": {
                           "type": "number",
@@ -54131,7 +54136,7 @@
                     ],
                     "default": "clock",
                     "example": "clock",
-                    "description": "Which clock the HOUR branch is read from. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
+                    "description": "Which clock the day boundary and the hour branch are read from, so a correction that carries a birth across midnight moves the day pillar with the hour. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
                   },
                   "gender": {
                     "type": "string",
@@ -54152,8 +54157,8 @@
                   },
                   "annualFromYear": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
                     "description": "First Gregorian year of the annual pillar overlay. Omit it to leave annualPillars out of the response entirely. The annual pillar is the year the chart is currently walking through, read against the ten-year luck pillar underneath it."
                   },
@@ -54202,7 +54207,7 @@
                         "timezone": {
                           "type": "number",
                           "example": 8,
-                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force on the birth date, so this is the literal number applied and never the name."
+                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force at the birth, so this is the literal number applied and never the name. A local time that never happened (the skipped hour of a daylight-saving change) is moved forward past the gap, and date, time and timezone then echo the clock that was running, which the day and hour pillars are read from."
                         },
                         "latitude": {
                           "type": "number",
@@ -54680,7 +54685,7 @@
           "Chinese Astrology"
         ],
         "summary": "Calculate Day Master strength - BaZi favorable element API",
-        "description": "Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.",
+        "description": "Assess how well the Day Master is supported by the rest of a BaZi chart, and which of the five elements help it. Uses the classical three-factor method: whether the birth month season backs the Day Master element, whether any branch stores a root for it, and whether the other stems and the branches outside the month help or spend it. Returns the verdict, an auditable score with each factor contribution, the seasonal state, the root count, the element headcount, and the favorable and unfavorable element lists that follow from the verdict. Built for chart readers, remedy features, and agents that need the usable half of a Four Pillars reading.",
         "security": [
           {
             "apiKey": []
@@ -54789,7 +54794,7 @@
                     ],
                     "default": "clock",
                     "example": "clock",
-                    "description": "Which clock the HOUR branch is read from. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
+                    "description": "Which clock the day boundary and the hour branch are read from, so a correction that carries a birth across midnight moves the day pillar with the hour. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
                   }
                 },
                 "required": [
@@ -54827,7 +54832,7 @@
                         "timezone": {
                           "type": "number",
                           "example": 8,
-                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force on the birth date, so this is the literal number applied and never the name."
+                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force at the birth, so this is the literal number applied and never the name. A local time that never happened (the skipped hour of a daylight-saving change) is moved forward past the gap, and date, time and timezone then echo the clock that was running, which the day and hour pillars are read from."
                         },
                         "latitude": {
                           "type": "number",
@@ -54979,7 +54984,7 @@
                           "id": {
                             "type": "string",
                             "example": "month-command",
-                            "description": "Which classical factor this is. month-command is de ling, whether the birth month season backs the Day Master element. rooting is de di, whether any branch stores a stem of that element. party is de shi, whether the other three stems help or spend it. Always English, whatever the lang parameter says."
+                            "description": "Which classical factor this is. month-command is de ling, whether the birth month season backs the Day Master element. rooting is de di, whether any branch stores a stem of that element. party is de shi, whether the other three stems, and the principal stems of the three branches outside the month, help or spend it. Always English, whatever the lang parameter says."
                           },
                           "name": {
                             "type": "string",
@@ -55287,7 +55292,7 @@
                         ],
                         "default": "clock",
                         "example": "clock",
-                        "description": "Which clock the HOUR branch is read from. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
+                        "description": "Which clock the day boundary and the hour branch are read from, so a correction that carries a birth across midnight moves the day pillar with the hour. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
                       }
                     },
                     "required": [
@@ -55371,7 +55376,7 @@
                         ],
                         "default": "clock",
                         "example": "clock",
-                        "description": "Which clock the HOUR branch is read from. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
+                        "description": "Which clock the day boundary and the hour branch are read from, so a correction that carries a birth across midnight moves the day pillar with the hour. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
                       }
                     },
                     "required": [
@@ -56539,12 +56544,12 @@
                     ],
                     "default": "clock",
                     "example": "clock",
-                    "description": "Which clock the HOUR branch is read from. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
+                    "description": "Which clock the day boundary and the hour branch are read from, so a correction that carries a birth across midnight moves the day pillar with the hour. \u0022clock\u0022 is civil time exactly as a birth certificate records it, which is what most calculators use and the default here. \u0022local-mean\u0022 shifts to the mean sun over the birth longitude, a correction of up to 59 minutes at the edge of a wide time zone. \u0022solar\u0022 adds the equation of time on top of that, up to a further 16 minutes. Both non-civil options need \u0022longitude\u0022 in the request and return 400 without it."
                   },
                   "year": {
                     "type": "integer",
-                    "minimum": 1900,
-                    "maximum": 2100,
+                    "minimum": 1551,
+                    "maximum": 2649,
                     "example": 2026,
                     "description": "Gregorian year to read against the natal chart. The annual pillar for that year is resolved under the same year boundary the request selected, so a li-chun reading and a lunar-new-year reading of the same calendar year can differ."
                   }
@@ -56585,7 +56590,7 @@
                         "timezone": {
                           "type": "number",
                           "example": 8,
-                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force on the birth date, so this is the literal number applied and never the name."
+                          "description": "Decimal UTC offset the chart was computed with, resolved from whatever the request sent. An IANA name is resolved to the offset in force at the birth, so this is the literal number applied and never the name. A local time that never happened (the skipped hour of a daylight-saving change) is moved forward past the gap, and date, time and timezone then echo the clock that was running, which the day and hour pillars are read from."
                         },
                         "latitude": {
                           "type": "number",
@@ -59105,7 +59110,7 @@
                     "type": "string",
                     "format": "date",
                     "example": "1990-06-15",
-                    "description": "Gregorian date to convert to the lunisolar calendar. Send this OR the lunar fields, never both."
+                    "description": "Gregorian date to convert to the lunisolar calendar. Send this OR the lunar fields, never both. Converts from the first day of lunar year 1551 to the last day of lunar year 2648, a little inside the supported date span, because numbering a lunar month needs the winter solstice on each side of it and placing a leap month needs the year before; a date outside that answers 400 date_out_of_range."
                   },
                   "lunarYear": {
                     "type": "integer",
@@ -64898,10 +64903,10 @@
               "type": "string",
               "format": "date",
               "example": "2026-08-23",
-              "description": "Date to resolve the current period for, in YYYY-MM-DD format. Defaults to today in UTC. Useful for asking which period a building was completed in."
+              "description": "Date to resolve the current period for, in YYYY-MM-DD format. Defaults to today in UTC. Useful for asking which period a building was completed in. A date landing exactly on the Li Chun day a period opens is placed in the outgoing period."
             },
             "required": false,
-            "description": "Date to resolve the current period for, in YYYY-MM-DD format. Defaults to today in UTC. Useful for asking which period a building was completed in.",
+            "description": "Date to resolve the current period for, in YYYY-MM-DD format. Defaults to today in UTC. Useful for asking which period a building was completed in. A date landing exactly on the Li Chun day a period opens is placed in the outgoing period.",
             "name": "date",
             "in": "query"
           }
@@ -64937,7 +64942,7 @@
                     "currentPeriod": {
                       "type": "number",
                       "example": 9,
-                      "description": "The period in force on that date. Resolved at Li Chun, so a date in January belongs to the previous solar year and can fall in the previous period."
+                      "description": "The period in force on that date. Resolved at Li Chun, so a date in January belongs to the previous solar year and can fall in the previous period. A date is read at the start of its day in the Chinese calendar frame (UTC\u002B8) and Li Chun falls part-way through its own day, so the date a period opens on still reads as the previous period, the same reading the Kua route gives a birth date."
                     },
                     "periods": {
                       "type": "array",
@@ -76742,7 +76747,7 @@
           "Numerology"
         ],
         "summary": "Detect Karmic Debt numbers - Past life challenges (13, 14, 16, 19)",
-        "description": "Check for Karmic Debt numbers (13, 14, 16, 19) in Life Path, Expression, Soul Urge, or Personality calculations using Pythagorean numerology. Karmic debt indicates challenges carried from past lives that must be resolved in this lifetime. These numbers appear during reduction and represent specific lessons and tests. Returns comprehensive analysis including debt descriptions, challenges to overcome, and resolution guidance. Perfect for spiritual growth apps, karmic astrology platforms, past life exploration services, and personal transformation tools. Get detailed meanings for all four karmic debt numbers with practical resolution strategies.",
+        "description": "Check for Karmic Debt numbers (13, 14, 16, 19) in the five core numbers that carry it, Life Path, Birth Day, Expression, Soul Urge and Personality, using Pythagorean numerology. Karmic debt indicates challenges carried from past lives that must be resolved in this lifetime. These numbers appear during reduction and represent specific lessons and tests. Returns comprehensive analysis including debt descriptions, challenges to overcome, and resolution guidance. Perfect for spiritual growth apps, karmic astrology platforms, past life exploration services, and personal transformation tools. Get detailed meanings for all four karmic debt numbers with practical resolution strategies.",
         "security": [
           {
             "apiKey": []
@@ -76799,7 +76804,7 @@
                     "minimum": 1,
                     "maximum": 31,
                     "example": 15,
-                    "description": "Birth day (checks Life Path)"
+                    "description": "Birth day (checks Birth Day on its own, and Life Path with year and month)"
                   },
                   "fullName": {
                     "type": "string",
@@ -77207,7 +77212,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "minimum": 2020,
+                    "minimum": 100,
                     "maximum": 2100,
                     "example": 2026,
                     "description": "Target year for calculation (defaults to current year)"
@@ -77401,7 +77406,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "minimum": 2020,
+                    "minimum": 100,
                     "maximum": 2100,
                     "example": 2025,
                     "description": "Year to calculate (defaults to current year)"
@@ -78002,7 +78007,7 @@
                   },
                   "currentYear": {
                     "type": "integer",
-                    "minimum": 2020,
+                    "minimum": 100,
                     "maximum": 2100,
                     "example": 2025,
                     "description": "Year for Personal Year calculation (defaults to current year)"
@@ -98332,10 +98337,10 @@
             "schema": {
               "type": "string",
               "example": "snake",
-              "description": "Unique symbol identifier in kebab-case (e.g., \u0022snake\u0022, \u0022being-chased\u0022, \u0022teeth-falling-out\u0022)."
+              "description": "Unique symbol identifier in kebab-case (e.g., \u0022snake\u0022, \u0022chase-dreams\u0022, \u0022losing-teeth\u0022)."
             },
             "required": true,
-            "description": "Unique symbol identifier in kebab-case (e.g., \u0022snake\u0022, \u0022being-chased\u0022, \u0022teeth-falling-out\u0022).",
+            "description": "Unique symbol identifier in kebab-case (e.g., \u0022snake\u0022, \u0022chase-dreams\u0022, \u0022losing-teeth\u0022).",
             "name": "id",
             "in": "path"
           }

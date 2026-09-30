@@ -17,9 +17,9 @@ namespace RoxyApi.VedicAstrology.Parallels
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Date in YYYY-MM-DD format. Planetary declinations are calculated for this date to find parallel and contraparallel aspects.</summary>
         public Date? Date { get; set; }
-        /// <summary>Observer latitude in decimal degrees. Used for topocentric declination corrections.</summary>
+        /// <summary>Birth latitude in decimal degrees, part of the birth record. Declinations are geocentric, as every published ephemeris prints them, so it does not move them.</summary>
         public double? Latitude { get; set; }
-        /// <summary>Observer longitude in decimal degrees. Affects local time context for declination calculations.</summary>
+        /// <summary>Birth longitude in decimal degrees, part of the birth record. Declinations are geocentric, so it does not move them; the instant comes from date, time and timezone.</summary>
         public double? Longitude { get; set; }
         /// <summary>Orb in degrees for parallel/contraparallel detection. Defaults to 1.5°.</summary>
         public double? Orb { get; set; }

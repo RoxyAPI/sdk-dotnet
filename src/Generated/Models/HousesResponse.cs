@@ -22,7 +22,7 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.HousesResponse_ascendant Ascendant { get; set; }
 #endif
-        /// <summary>Side-by-side house cusp comparison keyed by house system id: placidus, whole-sign, equal, koch. Only included when houseSystem is set to &quot;all&quot;. Useful for educational tools and system comparison.</summary>
+        /// <summary>Side-by-side house cusp comparison keyed by house system id: placidus, whole-sign, equal, koch. Only included when houseSystem is set to &quot;all&quot;. A system that cannot be computed at the latitude (Placidus and Koch beyond 66 degrees 33 minutes north or south) is omitted, so every key present carries its own cusps, and the top level houses array is the first system present in that order. Useful for educational tools and system comparison.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.HousesResponse_comparison? Comparison { get; set; }

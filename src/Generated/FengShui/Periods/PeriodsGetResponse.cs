@@ -14,7 +14,7 @@ namespace RoxyApi.FengShui.Periods
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The period in force on that date. Resolved at Li Chun, so a date in January belongs to the previous solar year and can fall in the previous period.</summary>
+        /// <summary>The period in force on that date. Resolved at Li Chun, so a date in January belongs to the previous solar year and can fall in the previous period. A date is read at the start of its day in the Chinese calendar frame (UTC+8) and Li Chun falls part-way through its own day, so the date a period opens on still reads as the previous period, the same reading the Kua route gives a birth date.</summary>
         public double? CurrentPeriod { get; set; }
         /// <summary>Last solar year of the recorded cycle. The cycle then repeats, so 2044 opens Period 1 again.</summary>
         public double? CycleEndYear { get; set; }

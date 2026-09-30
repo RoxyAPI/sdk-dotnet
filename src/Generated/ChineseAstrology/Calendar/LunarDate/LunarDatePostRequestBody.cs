@@ -16,7 +16,7 @@ namespace RoxyApi.ChineseAstrology.Calendar.LunarDate
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Gregorian date to convert to the lunisolar calendar. Send this OR the lunar fields, never both.</summary>
+        /// <summary>Gregorian date to convert to the lunisolar calendar. Send this OR the lunar fields, never both. Converts from the first day of lunar year 1551 to the last day of lunar year 2648, a little inside the supported date span, because numbering a lunar month needs the winter solstice on each side of it and placing a leap month needs the year before; a date outside that answers 400 date_out_of_range.</summary>
         public Date? Date { get; set; }
         /// <summary>Set true to address the leap repetition of lunarMonth rather than the first pass. Requesting a leap month a year does not have returns 400.</summary>
         public bool? IsLeapMonth { get; set; }

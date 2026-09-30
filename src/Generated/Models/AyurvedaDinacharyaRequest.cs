@@ -23,7 +23,7 @@ namespace RoxyApi.Models
         public double? Latitude { get; set; }
         /// <summary>Longitude in decimal degrees. It sets the clock time of sunrise at this place.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Timezone as an IANA name such as &quot;Europe/London&quot;, or as decimal hours from UTC such as 5.5. An IANA name is resolved to the offset in force on the requested date. It decides which local day is meant and, on the clock-hour grid, where the blocks fall. Defaults to 0.</summary>
+        /// <summary>Timezone as an IANA name such as &quot;Europe/London&quot;, or as decimal hours from UTC such as 5.5. An IANA name is resolved to the offset in force on the requested date, and on the clock-hour grid at the local hour each block opens, so on a daylight-saving change every block keeps its printed hour and one that falls in the skipped hour moves forward past it. It decides which local day is meant and, on the clock-hour grid, where the blocks fall. Defaults to 0.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.AyurvedaDinacharyaRequest.AyurvedaDinacharyaRequest_timezone? Timezone { get; set; }
