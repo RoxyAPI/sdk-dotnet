@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.PersonalDay
         {
         }
         /// <summary>
-        /// Calculate your Personal Day number from birth month, day, and a target date. Personal Day is the most granular cycle in Pythagorean numerology, revealing the specific energy and theme for a single calendar day personalized to you. Unlike generic daily numbers, this is based on YOUR birth data combined with the calendar date. Returns the daily theme, actionable guidance, and parent month and year context. Perfect for daily push notifications, morning briefings, calendar widget integrations, daily content generation, and life coaching tools.
+        /// Calculate the Personal Day number from a birth month and day with Pythagorean numerology, the 1 to 9 theme of a single calendar day personalized to the birthday. The day is targetDate, or today in UTC when omitted. The response returns the day theme and guidance with the parent Personal Month and Personal Year, in the language set by lang. Built for daily push notifications, morning briefings, calendar widgets and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.PersonalDay.PersonalDayPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.PersonalDay
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.PersonalDay.PersonalDayPostResponse>(requestInfo, global::RoxyApi.Numerology.PersonalDay.PersonalDayPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Personal Day number from birth month, day, and a target date. Personal Day is the most granular cycle in Pythagorean numerology, revealing the specific energy and theme for a single calendar day personalized to you. Unlike generic daily numbers, this is based on YOUR birth data combined with the calendar date. Returns the daily theme, actionable guidance, and parent month and year context. Perfect for daily push notifications, morning briefings, calendar widget integrations, daily content generation, and life coaching tools.
+        /// Calculate the Personal Day number from a birth month and day with Pythagorean numerology, the 1 to 9 theme of a single calendar day personalized to the birthday. The day is targetDate, or today in UTC when omitted. The response returns the day theme and guidance with the parent Personal Month and Personal Year, in the language set by lang. Built for daily push notifications, morning briefings, calendar widgets and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.PersonalDay
             return new global::RoxyApi.Numerology.PersonalDay.PersonalDayRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Personal Day number from birth month, day, and a target date. Personal Day is the most granular cycle in Pythagorean numerology, revealing the specific energy and theme for a single calendar day personalized to you. Unlike generic daily numbers, this is based on YOUR birth data combined with the calendar date. Returns the daily theme, actionable guidance, and parent month and year context. Perfect for daily push notifications, morning briefings, calendar widget integrations, daily content generation, and life coaching tools.
+        /// Calculate the Personal Day number from a birth month and day with Pythagorean numerology, the 1 to 9 theme of a single calendar day personalized to the birthday. The day is targetDate, or today in UTC when omitted. The response returns the day theme and guidance with the parent Personal Month and Personal Year, in the language set by lang. Built for daily push notifications, morning briefings, calendar widgets and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PersonalDayRequestBuilderPostQueryParameters 

@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.Expression
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Full Pythagorean letter-to-number conversion showing every letter value in the birth name, grouped by word, then summed and reduced to the final Expression number.</summary>
+        /// <summary>Every letter value of the birth name, grouped by name: each name is summed and reduced, then the names are added and reduced to the final Expression number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Calculation { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Numerology.Expression
 #else
         public string Calculation { get; set; }
 #endif
-        /// <summary>Whether a Karmic Debt number (13, 14, 16, 19) appeared during the name reduction. Indicates inherited challenges embedded in your given name.</summary>
+        /// <summary>Whether a Karmic Debt number (13, 14, 16, 19) appeared in the final reduction, the sum of the reduced names. Indicates inherited challenges embedded in your given name.</summary>
         public bool? HasKarmicDebt { get; set; }
         /// <summary>Detailed interpretation of the Karmic Debt number when present. Includes the debt theme, the inherited challenge, and guidance for resolution. Only returned when hasKarmicDebt is true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,7 +42,7 @@ namespace RoxyApi.Numerology.Expression
 #else
         public global::RoxyApi.Numerology.Expression.ExpressionPostResponse_meaning Meaning { get; set; }
 #endif
-        /// <summary>Expression number (also called Destiny number) derived from all letters in the full birth name. Reveals natural talents, abilities, and the goals you are meant to achieve. Values: 1 to 9, 11, 22, or 33.</summary>
+        /// <summary>Expression number (also called Destiny number) from every letter of the full birth name. Reveals natural talents, abilities, and the goals you are meant to achieve. Values: 1 to 9, 11, 22, or 33.</summary>
         public double? Number { get; set; }
         /// <summary>Single-digit (1 to 9) or Master Number (11, 22, 33). Master Numbers in the Expression position indicate extraordinary innate talent that demands conscious development.</summary>
         public global::RoxyApi.Numerology.Expression.ExpressionPostResponse_type? Type { get; set; }

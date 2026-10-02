@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Daily
         {
         }
         /// <summary>
-        /// Receive a daily numerology number (1-9, 11, 22, 33) for guidance and reflection. Uses seeded randomness so the same seed gets the same number on the same date, perfect for &quot;Number of the Day&quot; features in numerology apps, wellness platforms, and daily guidance tools. Returns the number with full interpretation including archetype, keywords, strengths, challenges, career, relationships, and spiritual insights. Ideal for daily push notifications, morning briefings, and personalized numerology experiences.
+        /// Get the numerology Number of the Day, one of 1 to 9, 11, 22 or 33, with its full interpretation. The same seed returns the same number for the same date, so a user keeps one number all day, and the date defaults to today in UTC. The response returns the number, its type, a daily message and the archetype, keywords, strengths, challenges, career, relationships and spirituality reading in the language set by lang. Built for Number of the Day widgets, push notifications and daily content.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Daily.DailyPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Daily
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Daily.DailyPostResponse>(requestInfo, global::RoxyApi.Numerology.Daily.DailyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Receive a daily numerology number (1-9, 11, 22, 33) for guidance and reflection. Uses seeded randomness so the same seed gets the same number on the same date, perfect for &quot;Number of the Day&quot; features in numerology apps, wellness platforms, and daily guidance tools. Returns the number with full interpretation including archetype, keywords, strengths, challenges, career, relationships, and spiritual insights. Ideal for daily push notifications, morning briefings, and personalized numerology experiences.
+        /// Get the numerology Number of the Day, one of 1 to 9, 11, 22 or 33, with its full interpretation. The same seed returns the same number for the same date, so a user keeps one number all day, and the date defaults to today in UTC. The response returns the number, its type, a daily message and the archetype, keywords, strengths, challenges, career, relationships and spirituality reading in the language set by lang. Built for Number of the Day widgets, push notifications and daily content.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.Daily
             return new global::RoxyApi.Numerology.Daily.DailyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Receive a daily numerology number (1-9, 11, 22, 33) for guidance and reflection. Uses seeded randomness so the same seed gets the same number on the same date, perfect for &quot;Number of the Day&quot; features in numerology apps, wellness platforms, and daily guidance tools. Returns the number with full interpretation including archetype, keywords, strengths, challenges, career, relationships, and spiritual insights. Ideal for daily push notifications, morning briefings, and personalized numerology experiences.
+        /// Get the numerology Number of the Day, one of 1 to 9, 11, 22 or 33, with its full interpretation. The same seed returns the same number for the same date, so a user keeps one number all day, and the date defaults to today in UTC. The response returns the number, its type, a daily message and the archetype, keywords, strengths, challenges, career, relationships and spirituality reading in the language set by lang. Built for Number of the Day widgets, push notifications and daily content.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DailyRequestBuilderPostQueryParameters 

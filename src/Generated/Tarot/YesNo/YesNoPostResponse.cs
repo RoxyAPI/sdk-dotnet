@@ -14,8 +14,16 @@ namespace RoxyApi.Tarot.YesNo
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Tarot-derived answer. Yes = upright card supports a positive outcome. No = reversed card suggests obstacles. Maybe = inherently ambiguous card drawn (The Hanged Man, Wheel of Fortune, Temperance, Two of Swords, Four of Swords) signaling pause, reflection, or shifting circumstances.</summary>
+        /// <summary>Tarot-derived answer. Yes = upright card supports a positive outcome. No = reversed card suggests obstacles. Maybe = inherently ambiguous card drawn (The Hanged Man, Wheel of Fortune, Temperance, Two of Swords, Four of Swords) signaling pause, reflection, or shifting circumstances. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use answerLocalized for anything a reader sees.</summary>
         public global::RoxyApi.Tarot.YesNo.YesNoPostResponse_answer? Answer { get; set; }
+        /// <summary>Answer in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AnswerLocalized { get; set; }
+#nullable restore
+#else
+        public string AnswerLocalized { get; set; }
+#endif
         /// <summary>The card property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -48,8 +56,16 @@ namespace RoxyApi.Tarot.YesNo
 #else
         public string Seed { get; set; }
 #endif
-        /// <summary>Confidence level of the answer. Strong = Major Arcana card drawn (powerful, definitive cosmic energy). Qualified = Minor Arcana card drawn (nuanced, situational guidance).</summary>
+        /// <summary>Confidence level of the answer. Strong = Major Arcana card drawn (powerful, definitive cosmic energy). Qualified = Minor Arcana card drawn (nuanced, situational guidance). Always English, whatever the lang parameter says. Use strengthLocalized for anything a reader sees.</summary>
         public global::RoxyApi.Tarot.YesNo.YesNoPostResponse_strength? Strength { get; set; }
+        /// <summary>Answer strength in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StrengthLocalized { get; set; }
+#nullable restore
+#else
+        public string StrengthLocalized { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Tarot.YesNo.YesNoPostResponse"/> and sets the default values.
         /// </summary>
@@ -76,11 +92,13 @@ namespace RoxyApi.Tarot.YesNo
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "answer", n => { Answer = n.GetEnumValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_answer>(); } },
+                { "answerLocalized", n => { AnswerLocalized = n.GetStringValue(); } },
                 { "card", n => { Card = n.GetObjectValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_card>(global::RoxyApi.Tarot.YesNo.YesNoPostResponse_card.CreateFromDiscriminatorValue); } },
                 { "interpretation", n => { Interpretation = n.GetStringValue(); } },
                 { "question", n => { Question = n.GetStringValue(); } },
                 { "seed", n => { Seed = n.GetStringValue(); } },
                 { "strength", n => { Strength = n.GetEnumValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_strength>(); } },
+                { "strengthLocalized", n => { StrengthLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -91,11 +109,13 @@ namespace RoxyApi.Tarot.YesNo
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_answer>("answer", Answer);
+            writer.WriteStringValue("answerLocalized", AnswerLocalized);
             writer.WriteObjectValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_card>("card", Card);
             writer.WriteStringValue("interpretation", Interpretation);
             writer.WriteStringValue("question", Question);
             writer.WriteStringValue("seed", Seed);
             writer.WriteEnumValue<global::RoxyApi.Tarot.YesNo.YesNoPostResponse_strength>("strength", Strength);
+            writer.WriteStringValue("strengthLocalized", StrengthLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

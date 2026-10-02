@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Compatibility
         {
         }
         /// <summary>
-        /// Calculate numerology compatibility between two people using Pythagorean numerology. Accepts two input modes per person: pre-calculated Life Path, Expression, and Soul Urge numbers, or raw name and birthdate for automatic calculation. You can mix modes across persons (e.g. numbers for person1, raw inputs for person2). Provides comprehensive relationship analysis with overall compatibility score (0-100), individual aspect compatibility (Life Path 50% weight, Expression 30%, Soul Urge 20%), relationship strengths, challenges, and practical advice. Uses detailed compatibility matrix for all number combinations. Perfect for dating apps, relationship counseling platforms, matchmaking services, and compatibility tools. Get actionable insights for improving relationship dynamics.
+        /// Calculate numerology compatibility between two people from their Life Path, Expression and Soul Urge numbers. Send each person as a full birth name with a birth date, or as precomputed numbers, and mix the two modes freely across the pair. The response returns an overall score from 50 to 100 with its rating, a score and description for each number pair, and the strengths, challenges and advice for the relationship, in the language set by lang. Built for dating apps, matchmaking, relationship coaching and AI companions.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Compatibility.CompatibilityPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Compatibility
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Compatibility.CompatibilityPostResponse>(requestInfo, global::RoxyApi.Numerology.Compatibility.CompatibilityPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate numerology compatibility between two people using Pythagorean numerology. Accepts two input modes per person: pre-calculated Life Path, Expression, and Soul Urge numbers, or raw name and birthdate for automatic calculation. You can mix modes across persons (e.g. numbers for person1, raw inputs for person2). Provides comprehensive relationship analysis with overall compatibility score (0-100), individual aspect compatibility (Life Path 50% weight, Expression 30%, Soul Urge 20%), relationship strengths, challenges, and practical advice. Uses detailed compatibility matrix for all number combinations. Perfect for dating apps, relationship counseling platforms, matchmaking services, and compatibility tools. Get actionable insights for improving relationship dynamics.
+        /// Calculate numerology compatibility between two people from their Life Path, Expression and Soul Urge numbers. Send each person as a full birth name with a birth date, or as precomputed numbers, and mix the two modes freely across the pair. The response returns an overall score from 50 to 100 with its rating, a score and description for each number pair, and the strengths, challenges and advice for the relationship, in the language set by lang. Built for dating apps, matchmaking, relationship coaching and AI companions.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.Compatibility
             return new global::RoxyApi.Numerology.Compatibility.CompatibilityRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate numerology compatibility between two people using Pythagorean numerology. Accepts two input modes per person: pre-calculated Life Path, Expression, and Soul Urge numbers, or raw name and birthdate for automatic calculation. You can mix modes across persons (e.g. numbers for person1, raw inputs for person2). Provides comprehensive relationship analysis with overall compatibility score (0-100), individual aspect compatibility (Life Path 50% weight, Expression 30%, Soul Urge 20%), relationship strengths, challenges, and practical advice. Uses detailed compatibility matrix for all number combinations. Perfect for dating apps, relationship counseling platforms, matchmaking services, and compatibility tools. Get actionable insights for improving relationship dynamics.
+        /// Calculate numerology compatibility between two people from their Life Path, Expression and Soul Urge numbers. Send each person as a full birth name with a birth date, or as precomputed numbers, and mix the two modes freely across the pair. The response returns an overall score from 50 to 100 with its rating, a score and description for each number pair, and the strengths, challenges and advice for the relationship, in the language set by lang. Built for dating apps, matchmaking, relationship coaching and AI companions.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CompatibilityRequestBuilderPostQueryParameters 

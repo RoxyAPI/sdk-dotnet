@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Expression
         {
         }
         /// <summary>
-        /// Calculate your Expression (Destiny) number from your full birth name using Pythagorean numerology. This number reveals your natural talents, abilities, and life goals. It shows what you came here to do and what tools you have to accomplish your life purpose. Returns comprehensive interpretation including personality traits, career paths, relationship dynamics, and spiritual insights. Automatically detects Master Numbers (11, 22, 33). Perfect for name numerology apps, career guidance tools, personal development platforms, and talent assessment services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Expression number, also called the Destiny number, from a full birth name with Pythagorean numerology. Every letter is valued and the name is reduced name by name, with master numbers 11, 22 and 33 kept and a karmic debt of 13, 14, 16 or 19 flagged with its meaning. The response lists every letter value and returns a full interpretation of natural talents, career, relationships and spiritual path in the language set by lang. Built for name numerology apps, career and personal brand tools, and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Expression.ExpressionPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Expression
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Expression.ExpressionPostResponse>(requestInfo, global::RoxyApi.Numerology.Expression.ExpressionPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Expression (Destiny) number from your full birth name using Pythagorean numerology. This number reveals your natural talents, abilities, and life goals. It shows what you came here to do and what tools you have to accomplish your life purpose. Returns comprehensive interpretation including personality traits, career paths, relationship dynamics, and spiritual insights. Automatically detects Master Numbers (11, 22, 33). Perfect for name numerology apps, career guidance tools, personal development platforms, and talent assessment services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Expression number, also called the Destiny number, from a full birth name with Pythagorean numerology. Every letter is valued and the name is reduced name by name, with master numbers 11, 22 and 33 kept and a karmic debt of 13, 14, 16 or 19 flagged with its meaning. The response lists every letter value and returns a full interpretation of natural talents, career, relationships and spiritual path in the language set by lang. Built for name numerology apps, career and personal brand tools, and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.Expression
             return new global::RoxyApi.Numerology.Expression.ExpressionRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Expression (Destiny) number from your full birth name using Pythagorean numerology. This number reveals your natural talents, abilities, and life goals. It shows what you came here to do and what tools you have to accomplish your life purpose. Returns comprehensive interpretation including personality traits, career paths, relationship dynamics, and spiritual insights. Automatically detects Master Numbers (11, 22, 33). Perfect for name numerology apps, career guidance tools, personal development platforms, and talent assessment services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Expression number, also called the Destiny number, from a full birth name with Pythagorean numerology. Every letter is valued and the name is reduced name by name, with master numbers 11, 22 and 33 kept and a karmic debt of 13, 14, 16 or 19 flagged with its meaning. The response lists every letter value and returns a full interpretation of natural talents, career, relationships and spiritual path in the language set by lang. Built for name numerology apps, career and personal brand tools, and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ExpressionRequestBuilderPostQueryParameters 

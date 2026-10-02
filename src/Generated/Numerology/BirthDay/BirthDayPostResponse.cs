@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.BirthDay
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Step-by-step digit reduction of the birth day. Single-digit days (1 to 9) remain as-is, Master Number days (11, 22) are preserved, and all other double-digit days are reduced by summing their digits.</summary>
+        /// <summary>Step-by-step digit reduction of the birth day. Single-digit days (1 to 9) remain as they are, a day that is or reduces to 11 or 22 keeps it, and every other two-digit day is reduced to one digit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Calculation { get; set; }
@@ -42,7 +42,7 @@ namespace RoxyApi.Numerology.BirthDay
 #else
         public global::RoxyApi.Numerology.BirthDay.BirthDayPostResponse_meaning Meaning { get; set; }
 #endif
-        /// <summary>Your Birth Day number, revealing the special talents and innate abilities you carry from the day you were born. Values range from 1 to 9 for single digits, or 11, 22 for Master Numbers (days 11 and 22 are never reduced).</summary>
+        /// <summary>Your Birth Day number, revealing the special talents and innate abilities you carry from the day you were born. Values range from 1 to 9 for single digits, or 11, 22 for Master Numbers (the 11th, 22nd and 29th).</summary>
         public double? Number { get; set; }
         /// <summary>Whether this is a standard single-digit number (1 to 9) or a Master Number (11, 22). Master Numbers in the Birth Day position indicate extraordinary innate gifts that are available from birth and demand conscious development.</summary>
         public global::RoxyApi.Numerology.BirthDay.BirthDayPostResponse_type? Type { get; set; }

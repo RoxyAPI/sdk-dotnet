@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.SoulUrge
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Full step-by-step Pythagorean reduction using only the vowels (A, E, I, O, U) from the birth name. Shows each vowel mapped to its numeric value, grouped by word, then summed and reduced to the final Soul Urge number.</summary>
+        /// <summary>Every vowel (A, E, I, O, U) of the birth name with its value, grouped by name: each name is summed and reduced, then the names are added and reduced to the final Soul Urge number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Calculation { get; set; }

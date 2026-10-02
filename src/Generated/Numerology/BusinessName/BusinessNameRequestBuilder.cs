@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.BusinessName
         {
         }
         /// <summary>
-        /// Analyze a business or brand name with Chaldean numerology, the system practitioners use for trade names. Returns the name number (compound and root), its planetary ruler, an overall business rating, the industries the number favors, and whether the compound is one of Cheiro fortunate compounds. The most favorable business roots are 1 (leadership), 3 (expansion), 5 (commerce) and 6 (beauty and hospitality); the numbers 4 and 8 carry caution as the karmic numbers of instability and heavy demand. Use it to vet a company name, compare brand options, or guide a naming decision. This is positioning guidance layered over the fundamentals of a memorable, available name, not a guarantee.
+        /// Analyze a business or brand name with Chaldean numerology, the system practitioners use for trade names. The name is read word by word, and the response returns the compound number and root with every step, the planetary ruler, a business rating, the industries the number favors, whether the compound is one of the fortunate compounds Cheiro names, and guidance, in the language set by lang. The roots 1, 3, 5 and 6 rate excellent, 2 and 9 good, 7 and 8 caution and 4 avoid. Built for naming tools, brand agencies and founder apps; the rating is positioning guidance, not a guarantee.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.BusinessName.BusinessNamePostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.BusinessName
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.BusinessName.BusinessNamePostResponse>(requestInfo, global::RoxyApi.Numerology.BusinessName.BusinessNamePostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Analyze a business or brand name with Chaldean numerology, the system practitioners use for trade names. Returns the name number (compound and root), its planetary ruler, an overall business rating, the industries the number favors, and whether the compound is one of Cheiro fortunate compounds. The most favorable business roots are 1 (leadership), 3 (expansion), 5 (commerce) and 6 (beauty and hospitality); the numbers 4 and 8 carry caution as the karmic numbers of instability and heavy demand. Use it to vet a company name, compare brand options, or guide a naming decision. This is positioning guidance layered over the fundamentals of a memorable, available name, not a guarantee.
+        /// Analyze a business or brand name with Chaldean numerology, the system practitioners use for trade names. The name is read word by word, and the response returns the compound number and root with every step, the planetary ruler, a business rating, the industries the number favors, whether the compound is one of the fortunate compounds Cheiro names, and guidance, in the language set by lang. The roots 1, 3, 5 and 6 rate excellent, 2 and 9 good, 7 and 8 caution and 4 avoid. Built for naming tools, brand agencies and founder apps; the rating is positioning guidance, not a guarantee.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.BusinessName
             return new global::RoxyApi.Numerology.BusinessName.BusinessNameRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Analyze a business or brand name with Chaldean numerology, the system practitioners use for trade names. Returns the name number (compound and root), its planetary ruler, an overall business rating, the industries the number favors, and whether the compound is one of Cheiro fortunate compounds. The most favorable business roots are 1 (leadership), 3 (expansion), 5 (commerce) and 6 (beauty and hospitality); the numbers 4 and 8 carry caution as the karmic numbers of instability and heavy demand. Use it to vet a company name, compare brand options, or guide a naming decision. This is positioning guidance layered over the fundamentals of a memorable, available name, not a guarantee.
+        /// Analyze a business or brand name with Chaldean numerology, the system practitioners use for trade names. The name is read word by word, and the response returns the compound number and root with every step, the planetary ruler, a business rating, the industries the number favors, whether the compound is one of the fortunate compounds Cheiro names, and guidance, in the language set by lang. The roots 1, 3, 5 and 6 rate excellent, 2 and 9 good, 7 and 8 caution and 4 avoid. Built for naming tools, brand agencies and founder apps; the rating is positioning guidance, not a guarantee.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class BusinessNameRequestBuilderPostQueryParameters 

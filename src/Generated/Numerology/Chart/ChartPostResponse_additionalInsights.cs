@@ -15,7 +15,7 @@ namespace RoxyApi.Numerology.Chart
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Four Challenge numbers representing life obstacles aligned with Pinnacle timing.</summary>
+        /// <summary>Four Challenge numbers representing life obstacles. The 3rd (Main) Challenge lasts for life; the other three are timed approximately with the Pinnacle phases.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Numerology.Chart.ChartPostResponse_additionalInsights_challenges>? Challenges { get; set; }
@@ -63,7 +63,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public global::RoxyApi.Numerology.Chart.ChartPostResponse_additionalInsights_personalYear PersonalYear { get; set; }
 #endif
-        /// <summary>Four Pinnacle numbers representing major life phases with age ranges and meanings.</summary>
+        /// <summary>Four Pinnacle numbers representing major life phases, master numbers 11, 22 and 33 kept, with age ranges and meanings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Numerology.Chart.ChartPostResponse_additionalInsights_pinnacles>? Pinnacles { get; set; }

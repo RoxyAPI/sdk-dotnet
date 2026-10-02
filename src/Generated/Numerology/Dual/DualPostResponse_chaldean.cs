@@ -52,7 +52,7 @@ namespace RoxyApi.Numerology.Dual
 #else
         public string Title { get; set; }
 #endif
-        /// <summary>Raw Chaldean letter total.</summary>
+        /// <summary>The sum the compound is read from: for a one-word name, its Chaldean letter total; for a longer name, the sum of each word reduced to its single number, as Cheiro works John Smith (18 to 9, 17 to 8, total 17).</summary>
         public double? Total { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.Dual.DualPostResponse_chaldean"/> and sets the default values.

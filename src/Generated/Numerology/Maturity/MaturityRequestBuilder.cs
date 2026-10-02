@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Maturity
         {
         }
         /// <summary>
-        /// Calculate your Maturity (Realization) number by adding Life Path and Expression numbers using Pythagorean numerology. This number reveals who you become in the second half of life, typically manifesting after age 35-40. It shows the ultimate goal of personal development and mature self-expression. Returns comprehensive interpretation including life transformation, mature personality, later-life purpose, and wisdom development. Automatically detects Master Numbers (11, 22, 33). Perfect for life coaching apps, midlife guidance platforms, personal development services, and aging wisdom tools. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Maturity number, also called the Realization number, from the Life Path and Expression numbers with Pythagorean numerology. Send a full birth name and birth date, the two numbers precomputed, or one of each; master numbers 11, 22 and 33 are kept at full value and in the result. The Maturity number describes who a person grows into in the second half of life, usually felt from around 35 to 40, and the response returns the calculation and a full interpretation in the language set by lang. Built for life coaching apps, midlife and later-life guidance, and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Maturity.MaturityPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Maturity
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Maturity.MaturityPostResponse>(requestInfo, global::RoxyApi.Numerology.Maturity.MaturityPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Maturity (Realization) number by adding Life Path and Expression numbers using Pythagorean numerology. This number reveals who you become in the second half of life, typically manifesting after age 35-40. It shows the ultimate goal of personal development and mature self-expression. Returns comprehensive interpretation including life transformation, mature personality, later-life purpose, and wisdom development. Automatically detects Master Numbers (11, 22, 33). Perfect for life coaching apps, midlife guidance platforms, personal development services, and aging wisdom tools. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Maturity number, also called the Realization number, from the Life Path and Expression numbers with Pythagorean numerology. Send a full birth name and birth date, the two numbers precomputed, or one of each; master numbers 11, 22 and 33 are kept at full value and in the result. The Maturity number describes who a person grows into in the second half of life, usually felt from around 35 to 40, and the response returns the calculation and a full interpretation in the language set by lang. Built for life coaching apps, midlife and later-life guidance, and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.Maturity
             return new global::RoxyApi.Numerology.Maturity.MaturityRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Maturity (Realization) number by adding Life Path and Expression numbers using Pythagorean numerology. This number reveals who you become in the second half of life, typically manifesting after age 35-40. It shows the ultimate goal of personal development and mature self-expression. Returns comprehensive interpretation including life transformation, mature personality, later-life purpose, and wisdom development. Automatically detects Master Numbers (11, 22, 33). Perfect for life coaching apps, midlife guidance platforms, personal development services, and aging wisdom tools. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Maturity number, also called the Realization number, from the Life Path and Expression numbers with Pythagorean numerology. Send a full birth name and birth date, the two numbers precomputed, or one of each; master numbers 11, 22 and 33 are kept at full value and in the result. The Maturity number describes who a person grows into in the second half of life, usually felt from around 35 to 40, and the response returns the calculation and a full interpretation in the language set by lang. Built for life coaching apps, midlife and later-life guidance, and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MaturityRequestBuilderPostQueryParameters 

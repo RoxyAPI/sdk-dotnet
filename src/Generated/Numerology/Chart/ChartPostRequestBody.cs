@@ -14,11 +14,11 @@ namespace RoxyApi.Numerology.Chart
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Year for Personal Year calculation (defaults to current year)</summary>
+        /// <summary>Calendar year for the Personal Year, defaults to the current UTC year. It moves the Personal Year only: the nested personalMonth and maturityStatus.currentAge always read the current UTC date.</summary>
         public int? CurrentYear { get; set; }
         /// <summary>Birth day (1-31)</summary>
         public int? Day { get; set; }
-        /// <summary>Full birth name as it appears on the birth certificate. Used for all letter-based Pythagorean numerology calculations including Expression, Soul Urge, Personality, and Karmic Lessons.</summary>
+        /// <summary>Full birth name as it appears on the birth certificate. Used for every letter-based number in the chart: Expression, Soul Urge, Personality, Karmic Lessons, Hidden Passion, Subconscious Self and the special letters. A name in any script is converted to Latin letters before it is counted, Cyrillic and Greek as the passport spelling and accents folded to the base letter, and the calculation lists the letters counted. For a script that does not write its vowels, send the Latin spelling the person uses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FullName { get; set; }

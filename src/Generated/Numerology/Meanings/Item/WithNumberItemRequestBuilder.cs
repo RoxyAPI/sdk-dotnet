@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Meanings.Item
         {
         }
         /// <summary>
-        /// Get the complete meaning and interpretation for any numerology number (1-9, 11, 22, 33) using Pythagorean numerology. Returns comprehensive description including archetype title, keywords, personality traits, strengths, weaknesses, career guidance, relationship dynamics, and spiritual insights. Master numbers (11, 22, 33) include amplified meanings with their reduced base number. Perfect for numerology reference tools, educational apps, quick lookups, and building custom numerology calculators. Get detailed 300-500 word expert-written meanings for all 12 valid numerology numbers.
+        /// Get the full numerology meaning of any number 1 to 9 or the master numbers 11, 22 and 33. The response returns the archetype title, keywords, a core description, strengths, challenges, career, relationships and spirituality in the language set by lang, the same reading every core number endpoint returns for that number. Built for numerology reference pages, custom calculators, educational apps and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Meanings.Item.WithNumberGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Meanings.Item
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Meanings.Item.WithNumberGetResponse>(requestInfo, global::RoxyApi.Numerology.Meanings.Item.WithNumberGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get the complete meaning and interpretation for any numerology number (1-9, 11, 22, 33) using Pythagorean numerology. Returns comprehensive description including archetype title, keywords, personality traits, strengths, weaknesses, career guidance, relationship dynamics, and spiritual insights. Master numbers (11, 22, 33) include amplified meanings with their reduced base number. Perfect for numerology reference tools, educational apps, quick lookups, and building custom numerology calculators. Get detailed 300-500 word expert-written meanings for all 12 valid numerology numbers.
+        /// Get the full numerology meaning of any number 1 to 9 or the master numbers 11, 22 and 33. The response returns the archetype title, keywords, a core description, strengths, challenges, career, relationships and spirituality in the language set by lang, the same reading every core number endpoint returns for that number. Built for numerology reference pages, custom calculators, educational apps and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -95,7 +95,7 @@ namespace RoxyApi.Numerology.Meanings.Item
             return new global::RoxyApi.Numerology.Meanings.Item.WithNumberItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get the complete meaning and interpretation for any numerology number (1-9, 11, 22, 33) using Pythagorean numerology. Returns comprehensive description including archetype title, keywords, personality traits, strengths, weaknesses, career guidance, relationship dynamics, and spiritual insights. Master numbers (11, 22, 33) include amplified meanings with their reduced base number. Perfect for numerology reference tools, educational apps, quick lookups, and building custom numerology calculators. Get detailed 300-500 word expert-written meanings for all 12 valid numerology numbers.
+        /// Get the full numerology meaning of any number 1 to 9 or the master numbers 11, 22 and 33. The response returns the archetype title, keywords, a core description, strengths, challenges, career, relationships and spirituality in the language set by lang, the same reading every core number endpoint returns for that number. Built for numerology reference pages, custom calculators, educational apps and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithNumberItemRequestBuilderGetQueryParameters 

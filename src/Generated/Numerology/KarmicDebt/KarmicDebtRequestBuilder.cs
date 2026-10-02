@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.KarmicDebt
         {
         }
         /// <summary>
-        /// Check for Karmic Debt numbers (13, 14, 16, 19) in the five core numbers that carry it, Life Path, Birth Day, Expression, Soul Urge and Personality, using Pythagorean numerology. Karmic debt indicates challenges carried from past lives that must be resolved in this lifetime. These numbers appear during reduction and represent specific lessons and tests. Returns comprehensive analysis including debt descriptions, challenges to overcome, and resolution guidance. Perfect for spiritual growth apps, karmic astrology platforms, past life exploration services, and personal transformation tools. Get detailed meanings for all four karmic debt numbers with practical resolution strategies.
+        /// Detect Karmic Debt numbers 13, 14, 16 and 19 across the five core numbers that carry them: Life Path, Expression, Soul Urge, Personality and Birth Day. Send a birth date, a full birth name, or both, and only the positions those inputs reach are read; each debt is listed once with its challenge and resolution guidance in the language set by lang. Built for spiritual growth apps, karmic readings, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.KarmicDebt.KarmicDebtPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.KarmicDebt
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.KarmicDebt.KarmicDebtPostResponse>(requestInfo, global::RoxyApi.Numerology.KarmicDebt.KarmicDebtPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Check for Karmic Debt numbers (13, 14, 16, 19) in the five core numbers that carry it, Life Path, Birth Day, Expression, Soul Urge and Personality, using Pythagorean numerology. Karmic debt indicates challenges carried from past lives that must be resolved in this lifetime. These numbers appear during reduction and represent specific lessons and tests. Returns comprehensive analysis including debt descriptions, challenges to overcome, and resolution guidance. Perfect for spiritual growth apps, karmic astrology platforms, past life exploration services, and personal transformation tools. Get detailed meanings for all four karmic debt numbers with practical resolution strategies.
+        /// Detect Karmic Debt numbers 13, 14, 16 and 19 across the five core numbers that carry them: Life Path, Expression, Soul Urge, Personality and Birth Day. Send a birth date, a full birth name, or both, and only the positions those inputs reach are read; each debt is listed once with its challenge and resolution guidance in the language set by lang. Built for spiritual growth apps, karmic readings, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.KarmicDebt
             return new global::RoxyApi.Numerology.KarmicDebt.KarmicDebtRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Check for Karmic Debt numbers (13, 14, 16, 19) in the five core numbers that carry it, Life Path, Birth Day, Expression, Soul Urge and Personality, using Pythagorean numerology. Karmic debt indicates challenges carried from past lives that must be resolved in this lifetime. These numbers appear during reduction and represent specific lessons and tests. Returns comprehensive analysis including debt descriptions, challenges to overcome, and resolution guidance. Perfect for spiritual growth apps, karmic astrology platforms, past life exploration services, and personal transformation tools. Get detailed meanings for all four karmic debt numbers with practical resolution strategies.
+        /// Detect Karmic Debt numbers 13, 14, 16 and 19 across the five core numbers that carry them: Life Path, Expression, Soul Urge, Personality and Birth Day. Send a birth date, a full birth name, or both, and only the positions those inputs reach are read; each debt is listed once with its challenge and resolution guidance in the language set by lang. Built for spiritual growth apps, karmic readings, coaching tools and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class KarmicDebtRequestBuilderPostQueryParameters 

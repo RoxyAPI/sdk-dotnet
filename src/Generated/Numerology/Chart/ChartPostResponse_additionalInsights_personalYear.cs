@@ -55,7 +55,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public List<string> Opportunities { get; set; }
 #endif
-        /// <summary>Personal Month forecast nested within the Personal Year cycle.</summary>
+        /// <summary>Personal Month forecast for the current UTC calendar month, applied to the Personal Year above. With a currentYear other than the current year, it pairs that Personal Year with the current month.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Numerology.Chart.ChartPostResponse_additionalInsights_personalYear_personalMonth? PersonalMonth { get; set; }

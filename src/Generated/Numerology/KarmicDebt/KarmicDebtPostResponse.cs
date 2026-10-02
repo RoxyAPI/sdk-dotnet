@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.KarmicDebt
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>All karmic debt numbers found (13, 14, 16, 19)</summary>
+        /// <summary>All karmic debt numbers found (13, 14, 16, 19), each listed once, in core-number order: Life Path, Expression, Soul Urge, Personality, Birth Day.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<double?>? DebtNumbers { get; set; }

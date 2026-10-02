@@ -30,7 +30,7 @@ namespace RoxyApi.Numerology.Daily
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Expert-written 300 to 500 word interpretation of the daily energy. Covers personality resonance, life themes, and how this number influences the day.</summary>
+        /// <summary>Core interpretation of the number of the day: its personality resonance, life themes and how it colors the day. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Tarot.YesNo
 {
-    /// <summary>Tarot-derived answer. Yes = upright card supports a positive outcome. No = reversed card suggests obstacles. Maybe = inherently ambiguous card drawn (The Hanged Man, Wheel of Fortune, Temperance, Two of Swords, Four of Swords) signaling pause, reflection, or shifting circumstances.</summary>
+    /// <summary>Tarot-derived answer. Yes = upright card supports a positive outcome. No = reversed card suggests obstacles. Maybe = inherently ambiguous card drawn (The Hanged Man, Wheel of Fortune, Temperance, Two of Swords, Four of Swords) signaling pause, reflection, or shifting circumstances. Always English, whatever the lang parameter says, so it stays safe to compare against in code. Use answerLocalized for anything a reader sees.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum YesNoPostResponse_answer
     {

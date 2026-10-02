@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Dual
         {
         }
         /// <summary>
-        /// Calculate a name number in both major numerology systems at once and compare them. The Pythagorean system maps letters 1 to 9 in alphabetical order and preserves master numbers (11, 22, 33), giving the Expression or Destiny number used in modern Western numerology. The Chaldean system maps letters 1 to 8 by vibration, reads the compound number (10 to 52), and reduces to a root 1 to 9. Returns both results with their interpretations, plus an agreement flag showing whether the two systems point to the same single-digit energy. The only numerology API that returns Pythagorean and Chaldean for a name in a single request, ideal for comparison tools and AI numerology assistants.
+        /// Calculate a name number in both Pythagorean and Chaldean numerology in one call and compare them. The Pythagorean side returns the Expression or Destiny number with master numbers 11, 22 and 33 kept; the Chaldean side returns the compound number from 10 to 52, the root, its planetary ruler and the compound interpretation; each shows its calculation name by name. An agreement flag and a plain-language note show whether the two systems point to the same single-digit energy, in the language set by lang. Built for system comparison tools, name analysis features and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Dual.DualPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Dual
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Dual.DualPostResponse>(requestInfo, global::RoxyApi.Numerology.Dual.DualPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate a name number in both major numerology systems at once and compare them. The Pythagorean system maps letters 1 to 9 in alphabetical order and preserves master numbers (11, 22, 33), giving the Expression or Destiny number used in modern Western numerology. The Chaldean system maps letters 1 to 8 by vibration, reads the compound number (10 to 52), and reduces to a root 1 to 9. Returns both results with their interpretations, plus an agreement flag showing whether the two systems point to the same single-digit energy. The only numerology API that returns Pythagorean and Chaldean for a name in a single request, ideal for comparison tools and AI numerology assistants.
+        /// Calculate a name number in both Pythagorean and Chaldean numerology in one call and compare them. The Pythagorean side returns the Expression or Destiny number with master numbers 11, 22 and 33 kept; the Chaldean side returns the compound number from 10 to 52, the root, its planetary ruler and the compound interpretation; each shows its calculation name by name. An agreement flag and a plain-language note show whether the two systems point to the same single-digit energy, in the language set by lang. Built for system comparison tools, name analysis features and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.Dual
             return new global::RoxyApi.Numerology.Dual.DualRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate a name number in both major numerology systems at once and compare them. The Pythagorean system maps letters 1 to 9 in alphabetical order and preserves master numbers (11, 22, 33), giving the Expression or Destiny number used in modern Western numerology. The Chaldean system maps letters 1 to 8 by vibration, reads the compound number (10 to 52), and reduces to a root 1 to 9. Returns both results with their interpretations, plus an agreement flag showing whether the two systems point to the same single-digit energy. The only numerology API that returns Pythagorean and Chaldean for a name in a single request, ideal for comparison tools and AI numerology assistants.
+        /// Calculate a name number in both Pythagorean and Chaldean numerology in one call and compare them. The Pythagorean side returns the Expression or Destiny number with master numbers 11, 22 and 33 kept; the Chaldean side returns the compound number from 10 to 52, the root, its planetary ruler and the compound interpretation; each shows its calculation name by name. An agreement flag and a plain-language note show whether the two systems point to the same single-digit energy, in the language set by lang. Built for system comparison tools, name analysis features and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DualRequestBuilderPostQueryParameters 

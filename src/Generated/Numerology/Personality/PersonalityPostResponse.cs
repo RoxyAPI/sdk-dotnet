@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.Personality
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Full step-by-step Pythagorean reduction using only the consonants from the birth name. Shows each consonant mapped to its numeric value, grouped by word, then summed and reduced to the final Personality number.</summary>
+        /// <summary>Every consonant of the birth name with its value, grouped by name: each name is summed and reduced, then the names are added and reduced to the final Personality number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Calculation { get; set; }

@@ -30,7 +30,7 @@ namespace RoxyApi.Numerology.Expression
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Expert-written 300 to 500 word interpretation of the natural abilities, life mission, and destiny encoded in your birth name. Covers how these talents manifest across life stages.</summary>
+        /// <summary>Core interpretation of the natural abilities, life mission and destiny the birth name describes. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

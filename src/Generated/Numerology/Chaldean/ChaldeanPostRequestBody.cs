@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.Chaldean
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name to analyze. Chaldean tradition uses the name a person is most known by, not necessarily the full legal birth name.</summary>
+        /// <summary>The name to analyze. Chaldean tradition uses the name a person is most known by, not necessarily the full legal birth name. It needs at least one vowel (A, E, I, O, U) and one consonant, since the Soul Urge is read from the vowels and the Personality from the consonants; Y counts as a consonant. A name in any script is converted to Latin letters before it is counted, Cyrillic and Greek as the passport spelling and accents folded to the base letter, and the calculation lists the letters counted. For a script that does not write its vowels, send the Latin spelling the person uses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

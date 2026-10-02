@@ -31,7 +31,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Authoritative 300 to 500 word interpretation covering personality, life purpose, and core themes. Written by numerology experts and suitable for full-page readings or PDF report generation.</summary>
+        /// <summary>Core interpretation of the Life Path covering personality, life purpose and core themes. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

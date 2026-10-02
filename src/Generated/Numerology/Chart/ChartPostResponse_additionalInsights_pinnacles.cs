@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.Chart
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Age when this phase ends. Null for the 4th Pinnacle (lasts rest of life).</summary>
+        /// <summary>Last whole age of this phase, inclusive. The First Pinnacle ends at 36 minus the Life Path reduced to one digit and each later phase starts the year after; null for the 4th Pinnacle (lasts rest of life).</summary>
         public double? EndAge { get; set; }
         /// <summary>Meaning and interpretation for this Pinnacle number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

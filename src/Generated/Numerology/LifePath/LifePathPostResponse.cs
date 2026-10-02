@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.LifePath
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Full step-by-step breakdown of the 3-Cycle Pythagorean reduction. Shows how month, day, and year each reduce independently before combining into the final Life Path number.</summary>
+        /// <summary>Every step of the calculation: the birth month, day and year each reduced, then combined into the final Life Path number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Calculation { get; set; }

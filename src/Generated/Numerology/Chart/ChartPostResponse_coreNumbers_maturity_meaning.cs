@@ -31,7 +31,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Expert-written 300 to 500 word guide to the person you are evolving into. The Maturity number represents the wisdom gained through lived experience and reveals your ultimate destination.</summary>
+        /// <summary>Core interpretation of the person being grown into in the second half of life, the wisdom gained through lived experience. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

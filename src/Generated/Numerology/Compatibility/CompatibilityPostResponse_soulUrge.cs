@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.Compatibility
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Soul Urge compatibility score (0-100)</summary>
+        /// <summary>Soul Urge compatibility score (50-100)</summary>
         public double? Compatibility { get; set; }
         /// <summary>Detailed Soul Urge compatibility analysis</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

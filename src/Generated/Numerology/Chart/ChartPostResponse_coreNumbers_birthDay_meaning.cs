@@ -31,7 +31,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Expert-written 300 to 500 word reading of the special abilities your birth day bestows. Covers how these gifts complement your Life Path and Expression numbers.</summary>
+        /// <summary>Core interpretation of the special abilities the birth day brings and how they complement the Life Path and Expression numbers. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

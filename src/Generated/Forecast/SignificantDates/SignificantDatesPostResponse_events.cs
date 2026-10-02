@@ -22,7 +22,7 @@ namespace RoxyApi.Forecast.SignificantDates
 #else
         public string Aspect { get; set; }
 #endif
-        /// <summary>Primary subject of the event. A transiting planet for western events, Sun for a solar eclipse, Moon for a lunar eclipse or a new or full moon, a mahadasha, antardasha, or pratyantardasha label for dasha changes, or the critical cycle for biorhythm days.</summary>
+        /// <summary>Primary subject of the event. A transiting planet for western events, Sun for a solar eclipse, Moon for a lunar eclipse or a new or full moon, or the critical cycle for biorhythm days. For a dasha-change, the Vimshottari lords outermost first, joined by a hyphen, then one space and the level: Saturn Mahadasha, Saturn-Mercury Antardasha, Saturn-Mercury-Ketu Pratyantardasha. Lords are always one of Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury. Never localized.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Body { get; set; }
@@ -38,7 +38,7 @@ namespace RoxyApi.Forecast.SignificantDates
 #else
         public string Date { get; set; }
 #endif
-        /// <summary>Exact instant of the event as an ISO-8601 UTC datetime. Astronomical events are refined to this instant by search, not reported at a daily sample point.</summary>
+        /// <summary>Exact instant of the event as an ISO-8601 UTC datetime, to the nearest second. Astronomical events are refined to this instant by search, not reported at a daily sample point; a dasha-change is the period boundary itself, counted from the birth instant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Datetime { get; set; }
@@ -60,7 +60,7 @@ namespace RoxyApi.Forecast.SignificantDates
         public global::RoxyApi.Forecast.SignificantDates.SignificantDatesPostResponse_events_kind? Kind { get; set; }
         /// <summary>For a lunar eclipse, the peak fraction from 0 to 1 of the Moon disc covered by Earth umbra. 1 for a total lunar eclipse, between 0 and 1 for a partial, 0 for a penumbral. Absent for solar eclipses and other event types.</summary>
         public double? Obscuration { get; set; }
-        /// <summary>For a transit-aspect, the separation in degrees from the exact aspect at the reported instant. Tighter orb means a more exact and significant aspect.</summary>
+        /// <summary>For a transit-aspect, the separation in degrees from the exact aspect at the reported instant, rounded to three decimals. The instant is the moment the aspect perfects, so this reads 0. Absent for other event types.</summary>
         public double? Orb { get; set; }
         /// <summary>For a lunar-phase event, which syzygy it is: new-moon (Sun-Moon conjunction) or full-moon (Sun-Moon opposition). The intermediate quarters are not emitted. A stable machine value, never localized. Absent for other event types.</summary>
         public global::RoxyApi.Forecast.SignificantDates.SignificantDatesPostResponse_events_phase? Phase { get; set; }

@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Personality
         {
         }
         /// <summary>
-        /// Calculate your Personality number from the consonants in your birth name using Pythagorean numerology. This number reveals how others perceive you, your outer personality, and first impressions you make. It represents the mask you show the world and your social persona. Returns comprehensive interpretation including public image, social dynamics, professional presence, and relationship first impressions. Automatically detects Master Numbers (11, 22, 33). Perfect for personal branding apps, social skills training, professional development platforms, and communication coaching services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Personality number from the consonants of a full birth name with Pythagorean numerology. Every letter other than A, E, I, O and U is a consonant, Y and W included; master numbers 11, 22 and 33 are kept and a karmic debt of 13, 14, 16 or 19 is flagged with its meaning. The response lists every consonant name by name and returns a full interpretation of first impressions, public image, career and relationships in the language set by lang. Built for personal branding apps, social and dating profiles, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Personality.PersonalityPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Personality
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Personality.PersonalityPostResponse>(requestInfo, global::RoxyApi.Numerology.Personality.PersonalityPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Personality number from the consonants in your birth name using Pythagorean numerology. This number reveals how others perceive you, your outer personality, and first impressions you make. It represents the mask you show the world and your social persona. Returns comprehensive interpretation including public image, social dynamics, professional presence, and relationship first impressions. Automatically detects Master Numbers (11, 22, 33). Perfect for personal branding apps, social skills training, professional development platforms, and communication coaching services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Personality number from the consonants of a full birth name with Pythagorean numerology. Every letter other than A, E, I, O and U is a consonant, Y and W included; master numbers 11, 22 and 33 are kept and a karmic debt of 13, 14, 16 or 19 is flagged with its meaning. The response lists every consonant name by name and returns a full interpretation of first impressions, public image, career and relationships in the language set by lang. Built for personal branding apps, social and dating profiles, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.Personality
             return new global::RoxyApi.Numerology.Personality.PersonalityRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Personality number from the consonants in your birth name using Pythagorean numerology. This number reveals how others perceive you, your outer personality, and first impressions you make. It represents the mask you show the world and your social persona. Returns comprehensive interpretation including public image, social dynamics, professional presence, and relationship first impressions. Automatically detects Master Numbers (11, 22, 33). Perfect for personal branding apps, social skills training, professional development platforms, and communication coaching services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Personality number from the consonants of a full birth name with Pythagorean numerology. Every letter other than A, E, I, O and U is a consonant, Y and W included; master numbers 11, 22 and 33 are kept and a karmic debt of 13, 14, 16 or 19 is flagged with its meaning. The response lists every consonant name by name and returns a full interpretation of first impressions, public image, career and relationships in the language set by lang. Built for personal branding apps, social and dating profiles, coaching tools and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PersonalityRequestBuilderPostQueryParameters 

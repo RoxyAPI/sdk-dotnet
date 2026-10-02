@@ -19,7 +19,7 @@ namespace RoxyApi.Numerology.PersonalDay
         public int? Day { get; set; }
         /// <summary>Birth month (1-12)</summary>
         public int? Month { get; set; }
-        /// <summary>Target date in YYYY-MM-DD format. Defaults to today (UTC).</summary>
+        /// <summary>Target date in YYYY-MM-DD format, in the years 100 to 2100. Defaults to today (UTC).</summary>
         public Date? TargetDate { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.PersonalDay.PersonalDayPostRequestBody"/> and sets the default values.

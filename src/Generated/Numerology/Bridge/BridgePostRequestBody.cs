@@ -16,7 +16,7 @@ namespace RoxyApi.Numerology.Bridge
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Birth day (1 to 31)</summary>
         public int? Day { get; set; }
-        /// <summary>Full legal birth name as it appears on the birth certificate. Used to calculate Expression, Soul Urge, and Personality numbers. Include first, middle, and last names separated by spaces.</summary>
+        /// <summary>Full birth name as it appears on the birth certificate, first, middle and last names separated by spaces. Used to calculate the Expression, Soul Urge and Personality numbers. A name in any script is converted to Latin letters before it is counted, Cyrillic and Greek as the passport spelling and accents folded to the base letter, and the calculation lists the letters counted. For a script that does not write its vowels, send the Latin spelling the person uses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FullName { get; set; }

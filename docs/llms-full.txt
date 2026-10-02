@@ -598,67 +598,67 @@ await roxy.Vastu.Devatas["jayanta"].GetAsync();
 
 ## Numerology - `roxy.Numerology`
 
-Numerology API to calculate life path, expression, soul urge, personality, and maturity numbers, with Pinnacle and Ch...
+Numerology API for life path numbers, complete numerology charts and compatibility, in both Pythagorean and Chaldean...
 
 ```csharp
-// Calculate Life Path number - Most important numerology calculation
+// Calculate Life Path number - Calculator and meaning API
 await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 7, Day = 15 });
 
-// Calculate Expression number - Natural talents and life goals
+// Calculate Expression number - Destiny number calculator API
 await roxy.Numerology.Expression.PostAsync(new() { FullName = "John William Smith" });
 
-// Calculate Bridge Numbers - Harmonize different aspects of personality
+// Calculate Bridge Numbers - Numerology bridge numbers API
 await roxy.Numerology.Bridge.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15 });
 
-// Calculate Soul Urge number - Inner motivations and desires
+// Calculate Soul Urge number - Heart Desire number calculator API
 await roxy.Numerology.SoulUrge.PostAsync(new() { FullName = "John William Smith" });
 
-// Calculate Personality number - How others perceive you
+// Calculate Personality number - Outer personality numerology API
 await roxy.Numerology.Personality.PostAsync(new() { FullName = "John William Smith" });
 
-// Calculate Birth Day number - Special talents from day of birth
+// Calculate Birth Day number - Birthday numerology API
 await roxy.Numerology.BirthDay.PostAsync(new() { Day = 23 });
 
-// Calculate Maturity number - Who you become in later life
+// Calculate Maturity number - Realization number numerology API
 await roxy.Numerology.Maturity.PostAsync(new() { LifePath = 5, Expression = 7, FullName = "John William Smith", Year = 1990, Month = 7, Day = 15 });
 
-// Analyze Karmic Lessons - Life lessons from missing numbers
+// Analyze Karmic Lessons - Missing numbers numerology API
 await roxy.Numerology.KarmicLessons.PostAsync(new() { FullName = "John William Smith" });
 
-// Detect Karmic Debt numbers - Past life challenges (13, 14, 16, 19)
+// Detect Karmic Debt numbers - Karmic debt 13, 14, 16, 19 API
 await roxy.Numerology.KarmicDebt.PostAsync(new() { Year = 1990, Month = 7, Day = 15, FullName = "John William Smith" });
 
-// Calculate Personal Day - Daily personalized numerology forecast
+// Calculate Personal Day - Daily numerology forecast API
 await roxy.Numerology.PersonalDay.PostAsync(new() { Month = 7, Day = 18, TargetDate = new Date(2026, 4, 4) });
 
-// Calculate Personal Month - Monthly numerology forecast
+// Calculate Personal Month - Monthly numerology forecast API
 await roxy.Numerology.PersonalMonth.PostAsync(new() { Month = 7, Day = 18, Year = 2026, TargetMonth = 4 });
 
-// Calculate Personal Year - Annual cycle and forecast for current year
+// Calculate Personal Year - Personal Year number forecast API
 await roxy.Numerology.PersonalYear.PostAsync(new() { Month = 7, Day = 15, Year = 2025 });
 
-// Calculate Compatibility - Relationship dynamics between two people
+// Calculate numerology compatibility - Love match scoring API
 await roxy.Numerology.Compatibility.PostAsync(new() { Person1 = new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, LifePath = 5, Expression = 7, SoulUrge = 6 }, Person2 = new() { FullName = "Jane Marie Doe", Year = 1992, Month = 3, Day = 22, LifePath = 3, Expression = 9, SoulUrge = 2 } });
 
-// Generate Complete Numerology Chart - Full profile analysis
+// Generate numerology chart - Complete numerology reading API
 await roxy.Numerology.Chart.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, CurrentYear = 2025 });
 
-// Get Number Meaning - Interpretation for any number 1-9, 11, 22, 33
+// Get number meaning - Numerology number meanings API
 await roxy.Numerology.Meanings["5"].GetAsync();
 
-// Get daily numerology number - Number of the Day with interpretation
+// Get daily numerology number - Number of the Day API
 await roxy.Numerology.Daily.PostAsync(new() { Seed = "user123", Date = new Date(2026, 3, 6) });
 
-// Chaldean numerology name reading - Destiny, compound number, planetary ruler
+// Calculate Chaldean numerology - Chaldean name number calculator API
 await roxy.Numerology.Chaldean.PostAsync(new() { Name = "Helen" });
 
-// Compound number meaning - Cheiro Chaldean interpretation 10 to 52
+// Get compound number meaning - Chaldean compound numbers 10 to 52 API
 await roxy.Numerology.CompoundNumber["23"].GetAsync();
 
-// Dual numerology - Pythagorean and Chaldean name numbers in one call
+// Calculate dual numerology - Pythagorean and Chaldean name number API
 await roxy.Numerology.Dual.PostAsync(new() { Name = "David" });
 
-// Business name numerology - Chaldean brand name analysis and lucky numbers
+// Calculate business name numerology - Brand name numerology API
 await roxy.Numerology.BusinessName.PostAsync(new() { Name = "Ford" });
 ```
 

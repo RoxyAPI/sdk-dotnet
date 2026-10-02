@@ -30,7 +30,7 @@ namespace RoxyApi.Numerology.LifePath
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>In-depth 300 to 500 word interpretation covering personality, purpose, and life themes. Written by numerology experts with decades of practice. Suitable for full-page readings and detailed reports.</summary>
+        /// <summary>Core interpretation of the number covering personality, purpose and life themes. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full-page reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -38,7 +38,7 @@ namespace RoxyApi.Numerology.LifePath
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Ten defining personality traits and energetic themes associated with this number. Useful for quick personality snapshots, tag clouds, and compatibility matching.</summary>
+        /// <summary>Defining personality traits and energetic themes of this number. Useful for quick personality snapshots, tag clouds and compatibility matching.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Keywords { get; set; }

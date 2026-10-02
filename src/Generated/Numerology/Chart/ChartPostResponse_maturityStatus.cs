@@ -23,7 +23,7 @@ namespace RoxyApi.Numerology.Chart
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Current age calculated from the birth year.</summary>
+        /// <summary>The current UTC calendar year minus the birth year. The birthday is not considered, so before the birthday it reads one more than the age in whole years, and currentYear does not move it.</summary>
         public double? CurrentAge { get; set; }
         /// <summary>Whether the Maturity number is currently active (typically activates around age 35-40).</summary>
         public bool? IsActive { get; set; }

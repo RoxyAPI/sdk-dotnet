@@ -31,7 +31,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Expert-written 300 to 500 word exploration of the inner self, hidden desires, and emotional landscape. Reveals what the heart truly craves beneath the surface persona.</summary>
+        /// <summary>Core interpretation of the inner self, hidden desires and emotional landscape. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.KarmicLessons
         {
         }
         /// <summary>
-        /// Analyze your Karmic Lessons from your birth name using Pythagorean numerology. Karmic lessons are indicated by numbers missing from your name (numbers 1-9 that do not appear). These represent challenges you came to learn and skills you need to develop in this lifetime. Returns comprehensive analysis including missing numbers, specific lessons for each, challenges to overcome, and practical guidance for development. Perfect for spiritual growth apps, personal development platforms, life coaching services, and self-improvement tools. Get detailed lesson descriptions, development strategies, and practical exercises for each missing number.
+        /// Analyze the Karmic Lessons of a full birth name with Pythagorean numerology: the numbers 1 to 9 that no letter of the name carries. Each missing number is returned with its lesson, a fuller explanation and practical guidance for developing it, in the language set by lang, beside the count of letters behind every number present. Built for spiritual growth apps, coaching tools, full numerology reports and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.KarmicLessons.KarmicLessonsPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.KarmicLessons
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.KarmicLessons.KarmicLessonsPostResponse>(requestInfo, global::RoxyApi.Numerology.KarmicLessons.KarmicLessonsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Analyze your Karmic Lessons from your birth name using Pythagorean numerology. Karmic lessons are indicated by numbers missing from your name (numbers 1-9 that do not appear). These represent challenges you came to learn and skills you need to develop in this lifetime. Returns comprehensive analysis including missing numbers, specific lessons for each, challenges to overcome, and practical guidance for development. Perfect for spiritual growth apps, personal development platforms, life coaching services, and self-improvement tools. Get detailed lesson descriptions, development strategies, and practical exercises for each missing number.
+        /// Analyze the Karmic Lessons of a full birth name with Pythagorean numerology: the numbers 1 to 9 that no letter of the name carries. Each missing number is returned with its lesson, a fuller explanation and practical guidance for developing it, in the language set by lang, beside the count of letters behind every number present. Built for spiritual growth apps, coaching tools, full numerology reports and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.KarmicLessons
             return new global::RoxyApi.Numerology.KarmicLessons.KarmicLessonsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Analyze your Karmic Lessons from your birth name using Pythagorean numerology. Karmic lessons are indicated by numbers missing from your name (numbers 1-9 that do not appear). These represent challenges you came to learn and skills you need to develop in this lifetime. Returns comprehensive analysis including missing numbers, specific lessons for each, challenges to overcome, and practical guidance for development. Perfect for spiritual growth apps, personal development platforms, life coaching services, and self-improvement tools. Get detailed lesson descriptions, development strategies, and practical exercises for each missing number.
+        /// Analyze the Karmic Lessons of a full birth name with Pythagorean numerology: the numbers 1 to 9 that no letter of the name carries. Each missing number is returned with its lesson, a fuller explanation and practical guidance for developing it, in the language set by lang, beside the count of letters behind every number present. Built for spiritual growth apps, coaching tools, full numerology reports and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class KarmicLessonsRequestBuilderPostQueryParameters 

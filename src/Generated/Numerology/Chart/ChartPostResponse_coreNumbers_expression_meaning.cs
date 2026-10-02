@@ -31,7 +31,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Expert-written 300 to 500 word analysis of natural abilities, life goals, and the talents your birth name reveals. Suitable for detailed readings and personality assessments.</summary>
+        /// <summary>Core interpretation of the natural abilities, life goals and talents the birth name describes. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

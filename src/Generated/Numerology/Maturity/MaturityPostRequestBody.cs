@@ -18,7 +18,7 @@ namespace RoxyApi.Numerology.Maturity
         public int? Day { get; set; }
         /// <summary>Your Expression number (1-9, 11, 22, 33). Optional if fullName is provided.</summary>
         public int? Expression { get; set; }
-        /// <summary>Full birth name to calculate Expression number automatically. Use instead of passing expression directly.</summary>
+        /// <summary>Full birth name to calculate the Expression number automatically. Use instead of passing expression directly. A name in any script is converted to Latin letters before it is counted, Cyrillic and Greek as the passport spelling and accents folded to the base letter, and the calculation lists the letters counted. For a script that does not write its vowels, send the Latin spelling the person uses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FullName { get; set; }

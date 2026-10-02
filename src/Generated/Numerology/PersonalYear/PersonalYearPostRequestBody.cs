@@ -18,7 +18,7 @@ namespace RoxyApi.Numerology.PersonalYear
         public int? Day { get; set; }
         /// <summary>Birth month (1-12)</summary>
         public int? Month { get; set; }
-        /// <summary>Year to calculate (defaults to current year)</summary>
+        /// <summary>Year to forecast. Defaults to the current UTC year; the Personal Year turns over on 1 January.</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.PersonalYear.PersonalYearPostRequestBody"/> and sets the default values.

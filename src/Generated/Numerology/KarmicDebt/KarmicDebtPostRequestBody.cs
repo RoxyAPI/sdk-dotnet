@@ -16,7 +16,7 @@ namespace RoxyApi.Numerology.KarmicDebt
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Birth day (checks Birth Day on its own, and Life Path with year and month)</summary>
         public int? Day { get; set; }
-        /// <summary>Full birth name (checks Expression, Soul Urge, Personality)</summary>
+        /// <summary>Full birth name (checks Expression, Soul Urge, Personality). A name in any script is converted to Latin letters before it is counted, Cyrillic and Greek as the passport spelling and accents folded to the base letter, and the calculation lists the letters counted. For a script that does not write its vowels, send the Latin spelling the person uses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FullName { get; set; }

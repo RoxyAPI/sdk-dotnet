@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.BirthDay
         {
         }
         /// <summary>
-        /// Calculate your Birth Day number from the day you were born (1-31) using Pythagorean numerology. This number reveals special talents and abilities you possess from birth. It shows natural gifts that can help you achieve your life purpose. Returns comprehensive interpretation including innate talents, natural abilities, career advantages, and how to leverage your special gifts. Automatically detects Master Numbers (11, 22) and reduces double-digit days. Perfect for talent discovery apps, career counseling platforms, personal development services, and skill assessment tools. Get detailed 300-500 word meanings for all numbers 1-9, 11, and 22.
+        /// Calculate the Birth Day number from the day of the month a person was born, 1 to 31, with Pythagorean numerology. The 11th, 22nd and 29th keep the master numbers 11 and 22, other two-digit days reduce to one digit, and the 13th, 14th, 16th and 19th are flagged as karmic debt with their meaning. The response returns the calculation and a full interpretation of the special talents the day brings in the language set by lang. Built for birthday features, talent and career discovery tools, and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.BirthDay.BirthDayPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.BirthDay
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.BirthDay.BirthDayPostResponse>(requestInfo, global::RoxyApi.Numerology.BirthDay.BirthDayPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Birth Day number from the day you were born (1-31) using Pythagorean numerology. This number reveals special talents and abilities you possess from birth. It shows natural gifts that can help you achieve your life purpose. Returns comprehensive interpretation including innate talents, natural abilities, career advantages, and how to leverage your special gifts. Automatically detects Master Numbers (11, 22) and reduces double-digit days. Perfect for talent discovery apps, career counseling platforms, personal development services, and skill assessment tools. Get detailed 300-500 word meanings for all numbers 1-9, 11, and 22.
+        /// Calculate the Birth Day number from the day of the month a person was born, 1 to 31, with Pythagorean numerology. The 11th, 22nd and 29th keep the master numbers 11 and 22, other two-digit days reduce to one digit, and the 13th, 14th, 16th and 19th are flagged as karmic debt with their meaning. The response returns the calculation and a full interpretation of the special talents the day brings in the language set by lang. Built for birthday features, talent and career discovery tools, and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.BirthDay
             return new global::RoxyApi.Numerology.BirthDay.BirthDayRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Birth Day number from the day you were born (1-31) using Pythagorean numerology. This number reveals special talents and abilities you possess from birth. It shows natural gifts that can help you achieve your life purpose. Returns comprehensive interpretation including innate talents, natural abilities, career advantages, and how to leverage your special gifts. Automatically detects Master Numbers (11, 22) and reduces double-digit days. Perfect for talent discovery apps, career counseling platforms, personal development services, and skill assessment tools. Get detailed 300-500 word meanings for all numbers 1-9, 11, and 22.
+        /// Calculate the Birth Day number from the day of the month a person was born, 1 to 31, with Pythagorean numerology. The 11th, 22nd and 29th keep the master numbers 11 and 22, other two-digit days reduce to one digit, and the 13th, 14th, 16th and 19th are flagged as karmic debt with their meaning. The response returns the calculation and a full interpretation of the special talents the day brings in the language set by lang. Built for birthday features, talent and career discovery tools, and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class BirthDayRequestBuilderPostQueryParameters 

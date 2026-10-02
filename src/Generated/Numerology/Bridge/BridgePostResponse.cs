@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.Bridge
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Bridge between Expression and Personality numbers. Reveals the gap between your true talents (all letters) and how others perceive you (consonants only). A high bridge means others may not see your real capabilities, requiring you to present yourself more authentically.</summary>
+        /// <summary>Bridge between Expression and Personality numbers, a pairing this API adds beside the classical bridges. Reveals the gap between your true talents (all letters) and how others perceive you (consonants only). A high bridge means others may not see your real capabilities, requiring you to present yourself more authentically.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Numerology.Bridge.BridgePostResponse_expressionPersonality? ExpressionPersonality { get; set; }
@@ -37,6 +37,14 @@ namespace RoxyApi.Numerology.Bridge
 #nullable restore
 #else
         public global::RoxyApi.Numerology.Bridge.BridgePostResponse_lifePathExpression LifePathExpression { get; set; }
+#endif
+        /// <summary>Bridge between Soul Urge and Personality numbers, one of the classical bridges. Reveals the gap between your inner self (vowels only) and the image others meet first (consonants only). A high bridge means what you want and how you come across pull apart, calling for a more transparent presentation of your real motives.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality? SoulUrgePersonality { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality SoulUrgePersonality { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.Bridge.BridgePostResponse"/> and sets the default values.
@@ -66,6 +74,7 @@ namespace RoxyApi.Numerology.Bridge
                 { "expressionPersonality", n => { ExpressionPersonality = n.GetObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_expressionPersonality>(global::RoxyApi.Numerology.Bridge.BridgePostResponse_expressionPersonality.CreateFromDiscriminatorValue); } },
                 { "expressionSoulUrge", n => { ExpressionSoulUrge = n.GetObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_expressionSoulUrge>(global::RoxyApi.Numerology.Bridge.BridgePostResponse_expressionSoulUrge.CreateFromDiscriminatorValue); } },
                 { "lifePathExpression", n => { LifePathExpression = n.GetObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_lifePathExpression>(global::RoxyApi.Numerology.Bridge.BridgePostResponse_lifePathExpression.CreateFromDiscriminatorValue); } },
+                { "soulUrgePersonality", n => { SoulUrgePersonality = n.GetObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality>(global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -78,6 +87,7 @@ namespace RoxyApi.Numerology.Bridge
             writer.WriteObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_expressionPersonality>("expressionPersonality", ExpressionPersonality);
             writer.WriteObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_expressionSoulUrge>("expressionSoulUrge", ExpressionSoulUrge);
             writer.WriteObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_lifePathExpression>("lifePathExpression", LifePathExpression);
+            writer.WriteObjectValue<global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality>("soulUrgePersonality", SoulUrgePersonality);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

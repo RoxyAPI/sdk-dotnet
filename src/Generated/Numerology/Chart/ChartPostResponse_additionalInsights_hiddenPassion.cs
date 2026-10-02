@@ -15,7 +15,7 @@ namespace RoxyApi.Numerology.Chart
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>All numbers tied for highest frequency (usually one, sometimes multiple).</summary>
+        /// <summary>All numbers tied for highest frequency, in ascending order (usually one, sometimes multiple).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<double?>? AllPassions { get; set; }
@@ -33,7 +33,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Hidden Passion number (1-9). The most frequently occurring number in the birth name.</summary>
+        /// <summary>Hidden Passion number (1-9). The most frequently occurring number in the birth name; when several tie, the lowest of them.</summary>
         public double? Number { get; set; }
         /// <summary>Archetype title for this Hidden Passion.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

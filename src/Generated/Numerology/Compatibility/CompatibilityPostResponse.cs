@@ -46,9 +46,9 @@ namespace RoxyApi.Numerology.Compatibility
 #else
         public global::RoxyApi.Numerology.Compatibility.CompatibilityPostResponse_lifePath LifePath { get; set; }
 #endif
-        /// <summary>Overall compatibility score (0-100)</summary>
+        /// <summary>Overall compatibility score: 50% Life Path, 30% Expression and 20% Soul Urge pair scores, rounded. Every pair score runs 50 to 100, so the overall score does too.</summary>
         public double? OverallScore { get; set; }
-        /// <summary>Compatibility rating: Highly Compatible, Very Compatible, Compatible, Moderately Compatible, or Challenging.</summary>
+        /// <summary>Compatibility rating from overallScore: Highly Compatible (90 and up), Very Compatible (75 to 89), Compatible (60 to 74) or Moderately Compatible (50 to 59). The scale also names Challenging below 45, which no pair of core numbers reaches.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Rating { get; set; }

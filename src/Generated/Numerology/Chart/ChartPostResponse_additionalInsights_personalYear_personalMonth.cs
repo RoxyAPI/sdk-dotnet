@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Numerology.Chart
 {
     /// <summary>
-    /// Personal Month forecast nested within the Personal Year cycle.
+    /// Personal Month forecast for the current UTC calendar month, applied to the Personal Year above. With a currentYear other than the current year, it pairs that Personal Year with the current month.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ChartPostResponse_additionalInsights_personalYear_personalMonth : IAdditionalDataHolder, IParsable
@@ -23,7 +23,7 @@ namespace RoxyApi.Numerology.Chart
 #else
         public string Focus { get; set; }
 #endif
-        /// <summary>Personal Month number (1-9).</summary>
+        /// <summary>Personal Month number (1-9): the Personal Year above plus the current UTC calendar month, reduced to one digit.</summary>
         public double? PersonalMonth { get; set; }
         /// <summary>Central theme for this Personal Month.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

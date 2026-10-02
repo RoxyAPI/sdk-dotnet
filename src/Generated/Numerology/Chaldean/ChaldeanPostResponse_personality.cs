@@ -15,7 +15,7 @@ namespace RoxyApi.Numerology.Chaldean
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Letter-by-letter Chaldean breakdown summed to the total, then to compound and root.</summary>
+        /// <summary>Letter-by-letter Chaldean breakdown, name by name for a longer name, summed to the total, then to compound and root.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Calculation { get; set; }
@@ -35,7 +35,7 @@ namespace RoxyApi.Numerology.Chaldean
 #endif
         /// <summary>The single-digit root (1 to 9), the outward expression. Chaldean does not preserve master numbers.</summary>
         public double? Root { get; set; }
-        /// <summary>Raw sum of the Chaldean letter values before any reduction.</summary>
+        /// <summary>The sum the compound is read from: for a one-word name, its Chaldean letter total; for a longer name, the sum of each word reduced to its single number, as Cheiro works John Smith (18 to 9, 17 to 8, total 17).</summary>
         public double? Total { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.Chaldean.ChaldeanPostResponse_personality"/> and sets the default values.

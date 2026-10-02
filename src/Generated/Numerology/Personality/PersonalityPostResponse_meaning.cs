@@ -30,7 +30,7 @@ namespace RoxyApi.Numerology.Personality
 #else
         public List<string> Challenges { get; set; }
 #endif
-        /// <summary>Expert-written 300 to 500 word analysis of the outer personality, social presence, and the image you project to the world. Reveals the gap between how others see you and who you truly are.</summary>
+        /// <summary>Core interpretation of the outer personality, social presence and the image projected to the world. Together with the strengths, challenges, career, relationships and spirituality fields it makes a full reading.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

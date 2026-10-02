@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.LifePath
         {
         }
         /// <summary>
-        /// Calculate your Life Path number from your birth date using Pythagorean numerology. This is the most significant number in your numerology chart, revealing your life purpose, natural talents, and destiny path. Automatically detects Master Numbers (11, 22, 33) and Karmic Debt numbers (13, 14, 16, 19). Returns comprehensive interpretation including personality traits, strengths, challenges, career guidance, relationship compatibility, and spiritual insights. Perfect for numerology apps, birth chart calculators, life purpose discovery tools, personal development platforms, and astrology services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate a Life Path number from a birth date with Pythagorean numerology. The Life Path is the core number of a numerology chart, read from the birth year, month and day alone, with master numbers 11, 22 and 33 kept and a karmic debt of 13, 14, 16 or 19 flagged with its meaning. The response returns every reduction step and a full interpretation (archetype title, keywords, description, strengths, challenges, career, relationships and spirituality) in the language set by lang. Built for Life Path calculators, numerology apps, onboarding personality profiles and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.LifePath.LifePathPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.LifePath
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.LifePath.LifePathPostResponse>(requestInfo, global::RoxyApi.Numerology.LifePath.LifePathPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Life Path number from your birth date using Pythagorean numerology. This is the most significant number in your numerology chart, revealing your life purpose, natural talents, and destiny path. Automatically detects Master Numbers (11, 22, 33) and Karmic Debt numbers (13, 14, 16, 19). Returns comprehensive interpretation including personality traits, strengths, challenges, career guidance, relationship compatibility, and spiritual insights. Perfect for numerology apps, birth chart calculators, life purpose discovery tools, personal development platforms, and astrology services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate a Life Path number from a birth date with Pythagorean numerology. The Life Path is the core number of a numerology chart, read from the birth year, month and day alone, with master numbers 11, 22 and 33 kept and a karmic debt of 13, 14, 16 or 19 flagged with its meaning. The response returns every reduction step and a full interpretation (archetype title, keywords, description, strengths, challenges, career, relationships and spirituality) in the language set by lang. Built for Life Path calculators, numerology apps, onboarding personality profiles and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.LifePath
             return new global::RoxyApi.Numerology.LifePath.LifePathRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Life Path number from your birth date using Pythagorean numerology. This is the most significant number in your numerology chart, revealing your life purpose, natural talents, and destiny path. Automatically detects Master Numbers (11, 22, 33) and Karmic Debt numbers (13, 14, 16, 19). Returns comprehensive interpretation including personality traits, strengths, challenges, career guidance, relationship compatibility, and spiritual insights. Perfect for numerology apps, birth chart calculators, life purpose discovery tools, personal development platforms, and astrology services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate a Life Path number from a birth date with Pythagorean numerology. The Life Path is the core number of a numerology chart, read from the birth year, month and day alone, with master numbers 11, 22 and 33 kept and a karmic debt of 13, 14, 16 or 19 flagged with its meaning. The response returns every reduction step and a full interpretation (archetype title, keywords, description, strengths, challenges, career, relationships and spirituality) in the language set by lang. Built for Life Path calculators, numerology apps, onboarding personality profiles and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class LifePathRequestBuilderPostQueryParameters 

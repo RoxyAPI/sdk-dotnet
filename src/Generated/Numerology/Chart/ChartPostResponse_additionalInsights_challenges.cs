@@ -14,7 +14,7 @@ namespace RoxyApi.Numerology.Chart
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Age when this period ends. Null for the 4th Challenge.</summary>
+        /// <summary>Last whole age of the period, inclusive, approximate as startAge explains. Null for the 3rd (Main) Challenge and the 4th, which last for life.</summary>
         public double? EndAge { get; set; }
         /// <summary>Meaning and resolution guidance for this Challenge number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -28,7 +28,7 @@ namespace RoxyApi.Numerology.Chart
         public double? Number { get; set; }
         /// <summary>Challenge position (1-4). Four life obstacle periods.</summary>
         public double? Position { get; set; }
-        /// <summary>Age when this Challenge period begins.</summary>
+        /// <summary>Age when this Challenge is most felt. The 3rd (Main) Challenge starts at 0 and lasts for life; the 1st, 2nd and 4th take the ages of their Pinnacle phase as an approximation, since Challenges have no fixed durations.</summary>
         public double? StartAge { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.Chart.ChartPostResponse_additionalInsights_challenges"/> and sets the default values.

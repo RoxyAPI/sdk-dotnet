@@ -15,7 +15,7 @@ namespace RoxyApi.Numerology.Chart
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>First vowel in the full name (A, E, I, O, or U).</summary>
+        /// <summary>First vowel of the first name (A, E, I, O or U). A first name with none of them takes its Y, the vowel sound of names like Lynn; one with no Y either takes the first A, E, I, O or U of the rest of the name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Letter { get; set; }

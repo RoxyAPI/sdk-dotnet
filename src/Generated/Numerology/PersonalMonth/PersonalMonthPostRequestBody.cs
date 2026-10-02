@@ -18,9 +18,9 @@ namespace RoxyApi.Numerology.PersonalMonth
         public int? Day { get; set; }
         /// <summary>Birth month (1-12)</summary>
         public int? Month { get; set; }
-        /// <summary>Target calendar month to forecast (1-12, defaults to current month)</summary>
+        /// <summary>Target calendar month to forecast (1 to 12). Defaults to the current UTC month.</summary>
         public int? TargetMonth { get; set; }
-        /// <summary>Target year for calculation (defaults to current year)</summary>
+        /// <summary>Target year. Defaults to the current UTC year.</summary>
         public int? Year { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.PersonalMonth.PersonalMonthPostRequestBody"/> and sets the default values.

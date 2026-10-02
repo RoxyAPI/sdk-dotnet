@@ -5,16 +5,16 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace RoxyApi.Numerology.BusinessName
+namespace RoxyApi.Numerology.Bridge
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class BusinessNamePostRequestBody : IAdditionalDataHolder, IParsable
+    public partial class BridgePostResponse_soulUrgePersonality_from : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The business or brand name to evaluate. A name in any script is converted to Latin letters before it is counted, Cyrillic and Greek as the passport spelling and accents folded to the base letter, and the calculation lists the letters counted. For a script that does not write its vowels, send the Latin spelling the person uses.</summary>
+        /// <summary>Name of the first core number in this bridge pair. Identifies which aspect of personality or destiny is being compared.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -22,22 +22,24 @@ namespace RoxyApi.Numerology.BusinessName
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>The reduced single-digit value (1 to 9) of the first core number used in the bridge calculation.</summary>
+        public double? Number { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::RoxyApi.Numerology.BusinessName.BusinessNamePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality_from"/> and sets the default values.
         /// </summary>
-        public BusinessNamePostRequestBody()
+        public BridgePostResponse_soulUrgePersonality_from()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::RoxyApi.Numerology.BusinessName.BusinessNamePostRequestBody"/></returns>
+        /// <returns>A <see cref="global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality_from"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::RoxyApi.Numerology.BusinessName.BusinessNamePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality_from CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::RoxyApi.Numerology.BusinessName.BusinessNamePostRequestBody();
+            return new global::RoxyApi.Numerology.Bridge.BridgePostResponse_soulUrgePersonality_from();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,6 +50,7 @@ namespace RoxyApi.Numerology.BusinessName
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "number", n => { Number = n.GetDoubleValue(); } },
             };
         }
         /// <summary>
@@ -58,6 +61,7 @@ namespace RoxyApi.Numerology.BusinessName
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
+            writer.WriteDoubleValue("number", Number);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

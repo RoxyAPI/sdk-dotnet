@@ -45,7 +45,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #endif
         /// <summary>Transit date in YYYY-MM-DD format. Defaults to current date if omitted. Use future dates for predictive transit analysis.</summary>
         public Date? TransitDate { get; set; }
-        /// <summary>Transit time in HH:MM:SS format. Defaults to 12:00:00 (noon) if omitted.</summary>
+        /// <summary>Transit time in HH:MM:SS format, read on the clock of the natal chart timezone at the transit date (an IANA zone takes the offset in force on that date, daylight saving included). Defaults to 12:00:00 (noon) if omitted.</summary>
         public Time? TransitTime { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.TransitAspects.TransitAspectsPostRequestBody"/> and sets the default values.

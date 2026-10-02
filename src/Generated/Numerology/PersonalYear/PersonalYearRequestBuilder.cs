@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.PersonalYear
         {
         }
         /// <summary>
-        /// Calculate your Personal Year number from your birth month, day, and current year using Pythagorean numerology. Personal Year runs in 9-year cycles (1-9) and reveals the theme, opportunities, and challenges for the current year. Each year has a specific energy and lessons. Returns comprehensive annual forecast including year theme, opportunities, challenges, and actionable advice. Perfect for yearly planning apps, life coaching platforms, astrology services, and personal development tools. Get detailed forecasts for all 9 Personal Year cycles with practical guidance.
+        /// Calculate the Personal Year number from a birth month and day with Pythagorean numerology, the 1 to 9 cycle that sets the theme of a calendar year. The year is the one sent, or the current UTC year when omitted, and it turns over on 1 January; the birth year is not needed. The response returns the place in the nine-year cycle, the theme, a forecast, opportunities, challenges and advice in the language set by lang. Built for yearly planning features, New Year content, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.PersonalYear.PersonalYearPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.PersonalYear
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.PersonalYear.PersonalYearPostResponse>(requestInfo, global::RoxyApi.Numerology.PersonalYear.PersonalYearPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Personal Year number from your birth month, day, and current year using Pythagorean numerology. Personal Year runs in 9-year cycles (1-9) and reveals the theme, opportunities, and challenges for the current year. Each year has a specific energy and lessons. Returns comprehensive annual forecast including year theme, opportunities, challenges, and actionable advice. Perfect for yearly planning apps, life coaching platforms, astrology services, and personal development tools. Get detailed forecasts for all 9 Personal Year cycles with practical guidance.
+        /// Calculate the Personal Year number from a birth month and day with Pythagorean numerology, the 1 to 9 cycle that sets the theme of a calendar year. The year is the one sent, or the current UTC year when omitted, and it turns over on 1 January; the birth year is not needed. The response returns the place in the nine-year cycle, the theme, a forecast, opportunities, challenges and advice in the language set by lang. Built for yearly planning features, New Year content, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.PersonalYear
             return new global::RoxyApi.Numerology.PersonalYear.PersonalYearRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Personal Year number from your birth month, day, and current year using Pythagorean numerology. Personal Year runs in 9-year cycles (1-9) and reveals the theme, opportunities, and challenges for the current year. Each year has a specific energy and lessons. Returns comprehensive annual forecast including year theme, opportunities, challenges, and actionable advice. Perfect for yearly planning apps, life coaching platforms, astrology services, and personal development tools. Get detailed forecasts for all 9 Personal Year cycles with practical guidance.
+        /// Calculate the Personal Year number from a birth month and day with Pythagorean numerology, the 1 to 9 cycle that sets the theme of a calendar year. The year is the one sent, or the current UTC year when omitted, and it turns over on 1 January; the birth year is not needed. The response returns the place in the nine-year cycle, the theme, a forecast, opportunities, challenges and advice in the language set by lang. Built for yearly planning features, New Year content, coaching tools and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PersonalYearRequestBuilderPostQueryParameters 

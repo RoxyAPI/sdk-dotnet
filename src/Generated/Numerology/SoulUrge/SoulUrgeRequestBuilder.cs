@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.SoulUrge
         {
         }
         /// <summary>
-        /// Calculate your Soul Urge (Heart Desire) number from the vowels in your birth name using Pythagorean numerology. This number reveals your innermost desires, motivations, and what your soul truly wants to experience. It shows what drives you from within, your emotional needs, and what brings you fulfillment. Returns comprehensive interpretation including personality traits, emotional needs, relationship desires, and spiritual longings. Automatically detects Master Numbers (11, 22, 33). Perfect for self-discovery apps, emotional intelligence tools, relationship counseling platforms, and personal development services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Soul Urge number, also called the Heart Desire number, from the vowels of a full birth name with Pythagorean numerology. A, E, I, O and U are the vowels and Y and W count as consonants; master numbers 11, 22 and 33 are kept and a karmic debt of 13, 14, 16 or 19 is flagged with its meaning. The response lists every vowel name by name and returns a full interpretation of inner motivation, relationships and spiritual path in the language set by lang. Built for self-discovery apps, dating profiles, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.SoulUrge.SoulUrgePostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.SoulUrge
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.SoulUrge.SoulUrgePostResponse>(requestInfo, global::RoxyApi.Numerology.SoulUrge.SoulUrgePostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate your Soul Urge (Heart Desire) number from the vowels in your birth name using Pythagorean numerology. This number reveals your innermost desires, motivations, and what your soul truly wants to experience. It shows what drives you from within, your emotional needs, and what brings you fulfillment. Returns comprehensive interpretation including personality traits, emotional needs, relationship desires, and spiritual longings. Automatically detects Master Numbers (11, 22, 33). Perfect for self-discovery apps, emotional intelligence tools, relationship counseling platforms, and personal development services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Soul Urge number, also called the Heart Desire number, from the vowels of a full birth name with Pythagorean numerology. A, E, I, O and U are the vowels and Y and W count as consonants; master numbers 11, 22 and 33 are kept and a karmic debt of 13, 14, 16 or 19 is flagged with its meaning. The response lists every vowel name by name and returns a full interpretation of inner motivation, relationships and spiritual path in the language set by lang. Built for self-discovery apps, dating profiles, coaching tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.SoulUrge
             return new global::RoxyApi.Numerology.SoulUrge.SoulUrgeRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate your Soul Urge (Heart Desire) number from the vowels in your birth name using Pythagorean numerology. This number reveals your innermost desires, motivations, and what your soul truly wants to experience. It shows what drives you from within, your emotional needs, and what brings you fulfillment. Returns comprehensive interpretation including personality traits, emotional needs, relationship desires, and spiritual longings. Automatically detects Master Numbers (11, 22, 33). Perfect for self-discovery apps, emotional intelligence tools, relationship counseling platforms, and personal development services. Get detailed 300-500 word meanings for all numbers 1-9, 11, 22, and 33.
+        /// Calculate the Soul Urge number, also called the Heart Desire number, from the vowels of a full birth name with Pythagorean numerology. A, E, I, O and U are the vowels and Y and W count as consonants; master numbers 11, 22 and 33 are kept and a karmic debt of 13, 14, 16 or 19 is flagged with its meaning. The response lists every vowel name by name and returns a full interpretation of inner motivation, relationships and spiritual path in the language set by lang. Built for self-discovery apps, dating profiles, coaching tools and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SoulUrgeRequestBuilderPostQueryParameters 

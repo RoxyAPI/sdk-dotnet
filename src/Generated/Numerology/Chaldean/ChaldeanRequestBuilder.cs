@@ -34,7 +34,7 @@ namespace RoxyApi.Numerology.Chaldean
         {
         }
         /// <summary>
-        /// Calculate a complete Chaldean numerology reading for a name. The older Chaldean system maps letters to values 1 to 8 by vibration (the number 9 is sacred and never assigned to a letter) and reads the unreduced two-digit compound number (10 to 52, also called a fadic number, defined by Cheiro) in addition to the single-digit root. Returns the Destiny or name number from all letters, the Soul Urge from vowels, and the Personality from consonants, each with its compound number, root, and Cheiro compound interpretation, plus the planetary ruler of the Destiny root and a caution flag for the karmic numbers 4 and 8. Perfect for Chaldean numerology calculators, name analysis tools, and AI numerology assistants that need both the compound and root layers in one call.
+        /// Calculate a complete Chaldean numerology reading for a name, following Cheiro. The Destiny or name number, the Soul Urge from the vowels and the Personality from the consonants each come with the compound number from 10 to 52, the single-digit root and the classical compound interpretation, and a longer name is read name by name with every step shown in its calculation. The response adds the planetary ruler and meaning of the Destiny root, a caution flag for the roots 4 and 8, and a summary, in the language set by lang. Built for Chaldean numerology calculators, name analysis tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Numerology.Chaldean.ChaldeanPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Numerology.Chaldean
             return await RequestAdapter.SendAsync<global::RoxyApi.Numerology.Chaldean.ChaldeanPostResponse>(requestInfo, global::RoxyApi.Numerology.Chaldean.ChaldeanPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate a complete Chaldean numerology reading for a name. The older Chaldean system maps letters to values 1 to 8 by vibration (the number 9 is sacred and never assigned to a letter) and reads the unreduced two-digit compound number (10 to 52, also called a fadic number, defined by Cheiro) in addition to the single-digit root. Returns the Destiny or name number from all letters, the Soul Urge from vowels, and the Personality from consonants, each with its compound number, root, and Cheiro compound interpretation, plus the planetary ruler of the Destiny root and a caution flag for the karmic numbers 4 and 8. Perfect for Chaldean numerology calculators, name analysis tools, and AI numerology assistants that need both the compound and root layers in one call.
+        /// Calculate a complete Chaldean numerology reading for a name, following Cheiro. The Destiny or name number, the Soul Urge from the vowels and the Personality from the consonants each come with the compound number from 10 to 52, the single-digit root and the classical compound interpretation, and a longer name is read name by name with every step shown in its calculation. The response adds the planetary ruler and meaning of the Destiny root, a caution flag for the roots 4 and 8, and a summary, in the language set by lang. Built for Chaldean numerology calculators, name analysis tools and AI agents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Numerology.Chaldean
             return new global::RoxyApi.Numerology.Chaldean.ChaldeanRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate a complete Chaldean numerology reading for a name. The older Chaldean system maps letters to values 1 to 8 by vibration (the number 9 is sacred and never assigned to a letter) and reads the unreduced two-digit compound number (10 to 52, also called a fadic number, defined by Cheiro) in addition to the single-digit root. Returns the Destiny or name number from all letters, the Soul Urge from vowels, and the Personality from consonants, each with its compound number, root, and Cheiro compound interpretation, plus the planetary ruler of the Destiny root and a caution flag for the karmic numbers 4 and 8. Perfect for Chaldean numerology calculators, name analysis tools, and AI numerology assistants that need both the compound and root layers in one call.
+        /// Calculate a complete Chaldean numerology reading for a name, following Cheiro. The Destiny or name number, the Soul Urge from the vowels and the Personality from the consonants each come with the compound number from 10 to 52, the single-digit root and the classical compound interpretation, and a longer name is read name by name with every step shown in its calculation. The response adds the planetary ruler and meaning of the Destiny root, a caution flag for the roots 4 and 8, and a summary, in the language set by lang. Built for Chaldean numerology calculators, name analysis tools and AI agents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ChaldeanRequestBuilderPostQueryParameters 
