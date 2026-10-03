@@ -11,6 +11,10 @@ on:
         description: 'patch | minor | major'
         required: false
         default: 'patch'
+      version:
+        description: 'Exact X.Y.Z to release instead of a bump; must be greater than the last release'
+        required: false
+        default: ''
 
 jobs:
   release:
@@ -27,6 +31,24 @@ jobs:
           # checkout fetches none of them, which would make every run look like a
           # first release.
           fetch-depth: 0
+
+      # An exact version is a deliberate jump the bump cannot express (0.1.x to 1.1.1).
+      # Refused before any build when malformed or not above the last release tag.
+      - name: Validate the requested version
+        if: inputs.version != ''
+        env:
+          EXACT_VERSION: ${{ inputs.version }}
+        run: |
+          LAST=$(git tag --list 'v*' --sort=-v:refname | head -1)
+          LAST=${LAST#v}
+          if ! [[ "$EXACT_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::version must be MAJOR.MINOR.PATCH, got $EXACT_VERSION"
+            exit 1
+          fi
+          if [ "$EXACT_VERSION" = "$LAST" ] || [ "$(printf '%s\n' "$LAST" "$EXACT_VERSION" | sort -V | tail -1)" != "$EXACT_VERSION" ]; then
+            echo "::error::version $EXACT_VERSION must be greater than the last release $LAST"
+            exit 1
+          fi
 
       - uses: actions/setup-dotnet@v5
         with:
@@ -79,6 +101,8 @@ jobs:
       - name: Bump version in src/RoxyApi.csproj
         id: bump
         if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          EXACT_VERSION: ${{ inputs.version }}
         run: |
           python3 - <<'PY'
           import os, re
@@ -90,7 +114,7 @@ jobs:
           if bump == "major":   major, minor, patch = major + 1, 0, 0
           elif bump == "minor": minor, patch = minor + 1, 0
           else:                 patch += 1
-          new = f"{major}.{minor}.{patch}"
+          new = os.environ["EXACT_VERSION"] or f"{major}.{minor}.{patch}"
           open(path, "w").write(text.replace(f"<Version>{cur}</Version>", f"<Version>{new}</Version>", 1))
           with open(os.environ["GITHUB_OUTPUT"], "a") as f:
               f.write(f"version={new}\n")
