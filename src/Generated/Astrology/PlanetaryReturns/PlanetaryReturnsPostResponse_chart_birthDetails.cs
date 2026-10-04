@@ -24,7 +24,7 @@ namespace RoxyApi.Astrology.PlanetaryReturns
         public double? Longitude { get; set; }
         /// <summary>Birth time in 24-hour HH:MM:SS format. Determines the Ascendant (rising sign) and house cusps. Use 12:00:00 if unknown.</summary>
         public Time? Time { get; set; }
-        /// <summary>Timezone offset from UTC in decimal hours. Examples: New York = -5, London = 0, India = 5.5, Tokyo = 9.</summary>
+        /// <summary>Timezone offset from UTC in decimal hours, resolved for the birth date. Examples: New York = -5 in winter and -4 in summer, London = 0, India = 5.5, Tokyo = 9.</summary>
         public double? Timezone { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.PlanetaryReturns.PlanetaryReturnsPostResponse_chart_birthDetails"/> and sets the default values.
