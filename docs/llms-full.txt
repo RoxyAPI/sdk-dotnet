@@ -666,7 +666,7 @@ await roxy.Numerology.BusinessName.PostAsync(new() { Name = "Ford" });
 
 ## Kabbalah - `roxy.Kabbalah`
 
-Kabbalah API for gematria, the 72 names, the Tree of Life and the Hebrew birthday, from one key
+Kabbalah API for gematria, the 72 names, the Tree of Life and the Hebrew birthday
 
 ```csharp
 // Calculate gematria - Hebrew gematria calculator API with every spelling shown
@@ -748,7 +748,7 @@ await roxy.Tarot.Spreads.Custom.PostAsync(new() { SpreadName = "My Custom Spread
 
 ## Biorhythm - `roxy.Biorhythm`
 
-The most complete biorhythm API: 10 cycle types across 3 primary (physical, emotional, intellectual), 4 secondary (in...
+Biorhythm API for entertainment and reflection, with 10 model cycle types across 3 primary (physical, emotional, inte...
 
 ```csharp
 // Get biorhythm reading - Complete cycle analysis for any date
