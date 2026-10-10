@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.MoonPhase.Upcoming
         {
         }
         /// <summary>
-        /// Get upcoming moon phase transitions (New Moon, First Quarter, Full Moon, Last Quarter) for the next weeks/months. Returns dates and phase names for each lunar quarter. Perfect for lunar event calendars, moon phase widgets, and astrology planning tools.
+        /// Get upcoming moon phase transitions (New Moon, First Quarter Moon, Full Moon, Third Quarter Moon) for the next weeks/months. Returns dates and phase names for each lunar quarter. Perfect for lunar event calendars, moon phase widgets, and astrology planning tools.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Astrology.MoonPhase.Upcoming.UpcomingGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace RoxyApi.Astrology.MoonPhase.Upcoming
             return await RequestAdapter.SendAsync<global::RoxyApi.Astrology.MoonPhase.Upcoming.UpcomingGetResponse>(requestInfo, global::RoxyApi.Astrology.MoonPhase.Upcoming.UpcomingGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get upcoming moon phase transitions (New Moon, First Quarter, Full Moon, Last Quarter) for the next weeks/months. Returns dates and phase names for each lunar quarter. Perfect for lunar event calendars, moon phase widgets, and astrology planning tools.
+        /// Get upcoming moon phase transitions (New Moon, First Quarter Moon, Full Moon, Third Quarter Moon) for the next weeks/months. Returns dates and phase names for each lunar quarter. Perfect for lunar event calendars, moon phase widgets, and astrology planning tools.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace RoxyApi.Astrology.MoonPhase.Upcoming
             return new global::RoxyApi.Astrology.MoonPhase.Upcoming.UpcomingRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get upcoming moon phase transitions (New Moon, First Quarter, Full Moon, Last Quarter) for the next weeks/months. Returns dates and phase names for each lunar quarter. Perfect for lunar event calendars, moon phase widgets, and astrology planning tools.
+        /// Get upcoming moon phase transitions (New Moon, First Quarter Moon, Full Moon, Third Quarter Moon) for the next weeks/months. Returns dates and phase names for each lunar quarter. Perfect for lunar event calendars, moon phase widgets, and astrology planning tools.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class UpcomingRequestBuilderGetQueryParameters 

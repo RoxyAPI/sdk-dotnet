@@ -15,7 +15,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Nakshatra index in the zodiac sequence starting from Ashwini.</summary>
+        /// <summary>Nakshatra index (1-27) in the zodiac sequence starting from Ashwini.</summary>
         public double? Key { get; set; }
         /// <summary>Vimshottari ruling planet of this nakshatra.</summary>
         public global::RoxyApi.Models.DivisionalChartResponse_chart_aries_signs_nakshatra_lord? Lord { get; set; }

@@ -15,7 +15,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>ISO 8601 UTC time when the current karana ends.</summary>
+        /// <summary>Local time in the requested timezone (ISO 8601, no offset suffix) when the current karana ends.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EndsAt { get; set; }

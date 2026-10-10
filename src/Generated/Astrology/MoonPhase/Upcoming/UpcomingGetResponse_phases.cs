@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.MoonPhase.Upcoming
 #else
         public string Date { get; set; }
 #endif
-        /// <summary>Lunar phase name (New Moon, First Quarter, Full Moon, Last Quarter).</summary>
+        /// <summary>Lunar phase name (New Moon, First Quarter Moon, Full Moon, Third Quarter Moon).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Phase { get; set; }

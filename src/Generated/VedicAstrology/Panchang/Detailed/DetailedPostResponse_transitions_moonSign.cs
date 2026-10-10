@@ -15,7 +15,7 @@ namespace RoxyApi.VedicAstrology.Panchang.Detailed
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>ISO 8601 UTC time when Moon enters the next rashi. Moon changes sign approximately every 2.25 days.</summary>
+        /// <summary>Local time in the requested timezone (ISO 8601, no offset suffix) when Moon enters the next rashi. Moon changes sign approximately every 2.25 days.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ChangesAt { get; set; }

@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
         {
         }
         /// <summary>
-        /// Get daily sidereal ecliptic positions for all 9 Vedic planets (Navagraha) for an entire month. Returns longitude, zodiac sign, degree within sign, and retrograde status for each planet on each day. Calculated at noon UTC. Omit year and month to get the month in progress, so a published ephemeris page stays current without a redeploy. Essential for ephemeris generation, transit tracking, and planetary movement visualization. Monthly planetary ephemeris API, sidereal position table, daily graha gochara positions, ecliptic longitude calculator.
+        /// Get daily sidereal ecliptic positions for all 9 Vedic planets (Navagraha) for an entire month. Returns longitude, zodiac sign, degree within sign, and retrograde status for each planet on each day. Calculated at noon UTC. Omit year and month to get the month in progress, so a published ephemeris page stays current without a redeploy. Essential for ephemeris generation, transit tracking, and planetary movement visualization. Monthly planetary ephemeris API, sidereal position table, daily graha gochara positions, ecliptic longitude calculator. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
             return await RequestAdapter.SendAsync<global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostResponse>(requestInfo, global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get daily sidereal ecliptic positions for all 9 Vedic planets (Navagraha) for an entire month. Returns longitude, zodiac sign, degree within sign, and retrograde status for each planet on each day. Calculated at noon UTC. Omit year and month to get the month in progress, so a published ephemeris page stays current without a redeploy. Essential for ephemeris generation, transit tracking, and planetary movement visualization. Monthly planetary ephemeris API, sidereal position table, daily graha gochara positions, ecliptic longitude calculator.
+        /// Get daily sidereal ecliptic positions for all 9 Vedic planets (Navagraha) for an entire month. Returns longitude, zodiac sign, degree within sign, and retrograde status for each planet on each day. Calculated at noon UTC. Omit year and month to get the month in progress, so a published ephemeris page stays current without a redeploy. Essential for ephemeris generation, transit tracking, and planetary movement visualization. Monthly planetary ephemeris API, sidereal position table, daily graha gochara positions, ecliptic longitude calculator. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions.Monthly
             return new global::RoxyApi.VedicAstrology.PlanetaryPositions.Monthly.MonthlyRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get daily sidereal ecliptic positions for all 9 Vedic planets (Navagraha) for an entire month. Returns longitude, zodiac sign, degree within sign, and retrograde status for each planet on each day. Calculated at noon UTC. Omit year and month to get the month in progress, so a published ephemeris page stays current without a redeploy. Essential for ephemeris generation, transit tracking, and planetary movement visualization. Monthly planetary ephemeris API, sidereal position table, daily graha gochara positions, ecliptic longitude calculator.
+        /// Get daily sidereal ecliptic positions for all 9 Vedic planets (Navagraha) for an entire month. Returns longitude, zodiac sign, degree within sign, and retrograde status for each planet on each day. Calculated at noon UTC. Omit year and month to get the month in progress, so a published ephemeris page stays current without a redeploy. Essential for ephemeris generation, transit tracking, and planetary movement visualization. Monthly planetary ephemeris API, sidereal position table, daily graha gochara positions, ecliptic longitude calculator. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MonthlyRequestBuilderPostQueryParameters 

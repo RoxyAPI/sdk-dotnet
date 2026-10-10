@@ -40,7 +40,7 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions
         {
         }
         /// <summary>
-        /// Get simplified planetary positions (graha positions) for all 9 planets (Sun through Ketu) plus Ascendant (Lagna). Real-time planet transit calculator for Vedic astrology. Navagraha positions API with nakshatra, pada, and rashi details. Includes house number placement using Whole Sign house system from Lagna. Faster response for basic planetary data without full chart structure. Perfect for planetary alignment tracking, daily transit updates, and astrology widgets.
+        /// Get simplified planetary positions (graha positions) for all 9 planets (Sun through Ketu) plus Ascendant (Lagna). Real-time planet transit calculator for Vedic astrology. Navagraha positions API with nakshatra, pada, and rashi details. Includes house number placement using Whole Sign house system from Lagna. Faster response for basic planetary data without full chart structure. Perfect for planetary alignment tracking, daily transit updates, and astrology widgets. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.PlanetaryPositionsResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -73,7 +73,7 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.PlanetaryPositionsResponse>(requestInfo, global::RoxyApi.Models.PlanetaryPositionsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get simplified planetary positions (graha positions) for all 9 planets (Sun through Ketu) plus Ascendant (Lagna). Real-time planet transit calculator for Vedic astrology. Navagraha positions API with nakshatra, pada, and rashi details. Includes house number placement using Whole Sign house system from Lagna. Faster response for basic planetary data without full chart structure. Perfect for planetary alignment tracking, daily transit updates, and astrology widgets.
+        /// Get simplified planetary positions (graha positions) for all 9 planets (Sun through Ketu) plus Ascendant (Lagna). Real-time planet transit calculator for Vedic astrology. Navagraha positions API with nakshatra, pada, and rashi details. Includes house number placement using Whole Sign house system from Lagna. Faster response for basic planetary data without full chart structure. Perfect for planetary alignment tracking, daily transit updates, and astrology widgets. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -104,7 +104,7 @@ namespace RoxyApi.VedicAstrology.PlanetaryPositions
             return new global::RoxyApi.VedicAstrology.PlanetaryPositions.PlanetaryPositionsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get simplified planetary positions (graha positions) for all 9 planets (Sun through Ketu) plus Ascendant (Lagna). Real-time planet transit calculator for Vedic astrology. Navagraha positions API with nakshatra, pada, and rashi details. Includes house number placement using Whole Sign house system from Lagna. Faster response for basic planetary data without full chart structure. Perfect for planetary alignment tracking, daily transit updates, and astrology widgets.
+        /// Get simplified planetary positions (graha positions) for all 9 planets (Sun through Ketu) plus Ascendant (Lagna). Real-time planet transit calculator for Vedic astrology. Navagraha positions API with nakshatra, pada, and rashi details. Includes house number placement using Whole Sign house system from Lagna. Faster response for basic planetary data without full chart structure. Perfect for planetary alignment tracking, daily transit updates, and astrology widgets. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PlanetaryPositionsRequestBuilderPostQueryParameters 
