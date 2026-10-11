@@ -233,7 +233,7 @@
     },
     {
       "name": "Dreams",
-      "description": "Dream interpretation API with a 2,000\u002B symbol dream dictionary and psychological meanings covering animals, objects, emotions, people, scenarios, and abstract concepts. Decode dreams about falling, flying, teeth falling out, being chased, water, snakes, and more. Search, browse A-Z, or discover random symbols. Build dream journal apps, AI dream analysis chatbots, sleep-tracking features, and wellness platforms. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
+      "description": "Dream interpretation API with a 2,200\u002B symbol dream dictionary and psychological meanings covering animals, objects, emotions, people, scenarios, and abstract concepts. Decode dreams about falling, flying, teeth falling out, being chased, water, snakes, and more. Search, browse A-Z, or discover random symbols. Build dream journal apps, AI dream analysis chatbots, sleep-tracking features, and wellness platforms. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
     },
     {
       "name": "Angel Numbers",
@@ -3449,7 +3449,7 @@
           },
           "summary": {
             "type": "string",
-            "example": "Fixed star positions for 1990-07-15 with 3 conjunctions within 1 degrees across the major named stars including Regulus, Spica, and Algol.",
+            "example": "Fixed star positions for July 15, 1990 at 2:30 PM, with 3 conjunctions within 1\u00B0 across the major named stars including Regulus, Spica, and Algol.",
             "description": "Short overview of the fixed-star report for previews and report intros."
           }
         },
@@ -98003,7 +98003,7 @@
           "Dreams"
         ],
         "summary": "List and search dream symbols - Dream dictionary API",
-        "description": "Browse and search our complete dream interpretation dictionary containing 2,000\u002B dream symbols with psychological meanings. Find dream meanings for animals (snake dreams, spider dreams, dog dreams), common scenarios (falling dreams, flying dreams, being chased, drowning), people (dreams about mother, father, baby, ex), objects (car, house, water, fire), emotions (fear, anxiety, love), body parts (teeth falling out, hair, eyes), colors, numbers, and abstract concepts. Filter by starting letter for A-Z navigation or search by keyword to find what your dreams mean.",
+        "description": "Browse and search our complete dream interpretation dictionary containing 2,200\u002B dream symbols with psychological meanings. Find dream meanings for animals (snake dreams, spider dreams, dog dreams), common scenarios (falling dreams, flying dreams, being chased, drowning), people (dreams about mother, father, baby, ex), objects (car, house, water, fire), emotions (fear, anxiety, love), body parts (teeth falling out, hair, eyes), colors, numbers, and abstract concepts. Filter by starting letter for A-Z navigation or search by keyword to find what your dreams mean.",
         "security": [
           {
             "apiKey": []
@@ -98092,7 +98092,7 @@
                       "items": {
                         "$ref": "#/components/schemas/BasicDreamSymbol"
                       },
-                      "description": "Dream symbols for the current page. Use /symbols/{id} to get full interpretation."
+                      "description": "Dream symbols for the current page, in alphabetical order by name. With q, symbols whose name starts with the query come first, then names containing it, then symbols whose meaning mentions it, each group alphabetical. Use /symbols/{id} to get full interpretation."
                     }
                   },
                   "required": [
@@ -98173,7 +98173,7 @@
           "Dreams"
         ],
         "summary": "Random dream symbols - Dream symbol discovery API",
-        "description": "Discover random dream symbols and their interpretations for daily dream insights and exploration. Each request returns different symbols from the 2,000\u002B dream meaning database, perfect for dream of the day features, dream journaling prompts, meditation on subconscious themes, or exploring what different dreams mean. Get one or multiple random dream interpretations with full psychological meanings.",
+        "description": "Discover random dream symbols and their interpretations for daily dream insights and exploration. Each request returns different symbols from the 2,200\u002B dream meaning database, perfect for dream of the day features, dream journaling prompts, meditation on subconscious themes, or exploring what different dreams mean. Get one or multiple random dream interpretations with full psychological meanings.",
         "security": [
           {
             "apiKey": []

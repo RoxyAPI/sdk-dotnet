@@ -19,7 +19,7 @@ namespace RoxyApi.Dreams.Symbols
         public double? Limit { get; set; }
         /// <summary>Number of symbols skipped. Use with limit for pagination.</summary>
         public double? Offset { get; set; }
-        /// <summary>Dream symbols for the current page. Use /symbols/{id} to get full interpretation.</summary>
+        /// <summary>Dream symbols for the current page, in alphabetical order by name. With q, symbols whose name starts with the query come first, then names containing it, then symbols whose meaning mentions it, each group alphabetical. Use /symbols/{id} to get full interpretation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Models.BasicDreamSymbol>? Symbols { get; set; }

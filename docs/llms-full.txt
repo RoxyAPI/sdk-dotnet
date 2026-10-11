@@ -885,7 +885,7 @@ await roxy.Crystals["amethyst"].GetAsync();
 
 ## Dreams - `roxy.Dreams`
 
-Dream interpretation API with a 2,000+ symbol dream dictionary and psychological meanings covering animals, objects,...
+Dream interpretation API with a 2,200+ symbol dream dictionary and psychological meanings covering animals, objects,...
 
 ```csharp
 // List and search dream symbols - Dream dictionary API
