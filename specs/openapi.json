@@ -529,7 +529,7 @@
                   "properties": {
                     "summary": {
                       "type": "string",
-                      "example": "Your Sun forms a very strong conjunction (0) with Jupiter, currently separating (weakening). This neutral aspect creates Planets and points that form a conjunction are energies that are united. They are blended; therefore...",
+                      "example": "Your Sun forms a very strong conjunction (0) with Jupiter, currently separating (weakening). This neutral aspect highlights themes of blend, difficult, and unite.",
                       "description": "One-sentence read of THIS pair: which two bodies, how tight the aspect is, whether it is applying or separating, and how it is classified. Translated in place, so it arrives in the requested language."
                     },
                     "keywords": {
@@ -21070,7 +21070,7 @@
           "Western Astrology"
         ],
         "summary": "Transit Aspects - Detailed transit-to-natal aspect analysis with interpretations",
-        "description": "Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Supports planet and aspect-type filtering. More detailed than the /transits endpoint, adding AI-friendly interpretation fields. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.",
+        "description": "Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Like /astrology/transits with a natalChart, returns summary, timing, impact, guidance, and keywords for each aspect. Adds planet, aspect-type, and minStrength filtering plus summary.strongest and summary.byType rollups. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.",
         "security": [
           {
             "apiKey": []
