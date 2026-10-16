@@ -14,7 +14,7 @@ namespace RoxyApi.Languages.FieldLabels
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Label per selectable option, keyed `{fieldName}.{value}` so the same value can read differently under different fields. For example `nodeType.mean` and `houseSystem.whole-sign`. Split on the first dot: the field name is before it, and everything after it is the value you send back unchanged.</summary>
+        /// <summary>Label per selectable option, keyed `{fieldName}.{value}` so the same value can read differently under different fields. For example `nodeType.mean`, `houseSystem.whole-sign` and `id.rat`. An id shared by collections with different display names is omitted. Split on the first dot: the field name is before it, and everything after it is the value you send back unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Languages.FieldLabels.FieldLabelsGetResponse_enums? Enums { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Languages.FieldLabels
 #else
         public global::RoxyApi.Languages.FieldLabels.FieldLabelsGetResponse_enums Enums { get; set; }
 #endif
-        /// <summary>Label per request field or parameter name. Keys are the wire names used in request bodies and query parameters, such as `birthDate`, `timezone` or `houseSystem`.</summary>
+        /// <summary>Label per request field or parameter name. Keys are the wire names used in request bodies, query parameters and path parameters, such as `birthDate`, `timezone` or `houseSystem`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Languages.FieldLabels.FieldLabelsGetResponse_fields? Fields { get; set; }

@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Languages.FieldLabels
 {
     /// <summary>
-    /// Label per selectable option, keyed `{fieldName}.{value}` so the same value can read differently under different fields. For example `nodeType.mean` and `houseSystem.whole-sign`. Split on the first dot: the field name is before it, and everything after it is the value you send back unchanged.
+    /// Label per selectable option, keyed `{fieldName}.{value}` so the same value can read differently under different fields. For example `nodeType.mean`, `houseSystem.whole-sign` and `id.rat`. An id shared by collections with different display names is omitted. Split on the first dot: the field name is before it, and everything after it is the value you send back unchanged.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class FieldLabelsGetResponse_enums : IAdditionalDataHolder, IParsable

@@ -16911,7 +16911,7 @@
                         "example": "Fecha de nacimiento",
                         "description": "Label to display for that field name."
                       },
-                      "description": "Label per request field or parameter name. Keys are the wire names used in request bodies and query parameters, such as \u0060birthDate\u0060, \u0060timezone\u0060 or \u0060houseSystem\u0060."
+                      "description": "Label per request field or parameter name. Keys are the wire names used in request bodies, query parameters and path parameters, such as \u0060birthDate\u0060, \u0060timezone\u0060 or \u0060houseSystem\u0060."
                     },
                     "enums": {
                       "type": "object",
@@ -16920,7 +16920,7 @@
                         "example": "Nodo medio",
                         "description": "Label to display for that option, beside the unchanged value."
                       },
-                      "description": "Label per selectable option, keyed \u0060{fieldName}.{value}\u0060 so the same value can read differently under different fields. For example \u0060nodeType.mean\u0060 and \u0060houseSystem.whole-sign\u0060. Split on the first dot: the field name is before it, and everything after it is the value you send back unchanged."
+                      "description": "Label per selectable option, keyed \u0060{fieldName}.{value}\u0060 so the same value can read differently under different fields. For example \u0060nodeType.mean\u0060, \u0060houseSystem.whole-sign\u0060 and \u0060id.rat\u0060. An id shared by collections with different display names is omitted. Split on the first dot: the field name is before it, and everything after it is the value you send back unchanged."
                     }
                   },
                   "required": [

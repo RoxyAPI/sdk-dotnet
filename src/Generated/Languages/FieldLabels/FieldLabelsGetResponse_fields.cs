@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Languages.FieldLabels
 {
     /// <summary>
-    /// Label per request field or parameter name. Keys are the wire names used in request bodies and query parameters, such as `birthDate`, `timezone` or `houseSystem`.
+    /// Label per request field or parameter name. Keys are the wire names used in request bodies, query parameters and path parameters, such as `birthDate`, `timezone` or `houseSystem`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class FieldLabelsGetResponse_fields : IAdditionalDataHolder, IParsable
