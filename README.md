@@ -646,7 +646,7 @@ The typed client is generated from the public OpenAPI specification with [Kiota]
 - [Pricing](https://roxyapi.com/pricing)
 - [MCP setup for AI agents](https://roxyapi.com/docs/mcp)
 - [Templates](https://roxyapi.com/templates)
-- [TypeScript SDK](https://www.npmjs.com/package/@roxyapi/sdk) | [Python SDK](https://pypi.org/project/roxy-sdk/) | [PHP SDK](https://packagist.org/packages/roxyapi/sdk) | [Go SDK](https://pkg.go.dev/github.com/RoxyAPI/sdk-go)
+- [TypeScript SDK](https://www.npmjs.com/package/@roxyapi/sdk) | [Python SDK](https://pypi.org/project/roxy-sdk/) | [PHP SDK](https://packagist.org/packages/roxyapi/sdk) | [Go SDK](https://pkg.go.dev/github.com/RoxyAPI/sdk-go) | [Rust SDK](https://crates.io/crates/roxyapi)
 - [Issues](https://github.com/RoxyAPI/sdk-dotnet/issues)
 
 ## License
