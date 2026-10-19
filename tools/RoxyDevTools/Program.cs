@@ -281,6 +281,7 @@ List<Domain> BuildDomains(JsonObject spec)
         var name = tagNode!["name"]!.GetValue<string>();
         if (!tagToSegment.TryGetValue(name, out var segment)) continue;
         domains.Add(new Domain(
+            Tag: name,
             Accessor: $"roxy.{Pascal(segment)}",
             Count: opsBySegment[segment].Count,
             Summary: TagSummary(tagNode.AsObject())));
@@ -307,6 +308,9 @@ List<Domain> BuildDomains(JsonObject spec)
     return (opsBySegment, tagToSegment);
 }
 
+string ReferenceUrl(string tag) =>
+    "https://roxyapi.com/api-reference/" + Regex.Replace(tag.ToLowerInvariant(), @"\s+", "-");
+
 string RenderDomainsTable(List<Domain> domains)
 {
     var sb = new StringBuilder();
@@ -314,7 +318,7 @@ string RenderDomainsTable(List<Domain> domains)
     sb.AppendLine("| Accessor | What it covers |");
     sb.AppendLine("|----------|----------------|");
     foreach (var d in domains)
-        sb.AppendLine($"| `{d.Accessor}` | {d.Summary} |");
+        sb.AppendLine($"| [`{d.Accessor}`]({ReferenceUrl(d.Tag)}) | {d.Summary} |");
     sb.Append("<!-- END:DOMAINS -->");
     return sb.ToString();
 }
@@ -384,7 +388,7 @@ bool ReplaceRegion(string path, string begin, string end, string block, bool opt
         if (!tagToSegment.TryGetValue(tag, out var seg)) continue;
         if (!first) md.Append("\n---\n\n");
         first = false;
-        md.Append($"## {tag} - `roxy.{Pascal(seg)}`\n\n");
+        md.Append($"## [{tag}]({ReferenceUrl(tag)}) - `roxy.{Pascal(seg)}`\n\n");
         var summary = TagSummary(tagNode.AsObject());
         if (summary.Length > 0) md.Append(summary).Append("\n\n");
         md.Append("```csharp\n");
@@ -753,4 +757,4 @@ string ReadmeSlug(string heading)
     return slug.Length == 0 ? "Block" : slug;
 }
 
-record Domain(string Accessor, int Count, string Summary);
+record Domain(string Tag, string Accessor, int Count, string Summary);
