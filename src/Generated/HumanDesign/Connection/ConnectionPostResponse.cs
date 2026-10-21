@@ -46,6 +46,22 @@ namespace RoxyApi.HumanDesign.Connection
 #else
         public string CombinedDefinitionLocalized { get; set; }
 #endif
+        /// <summary>All unique active Human Design gate numbers for person A, in ascending order, including hanging gates that do not complete a channel. Use with personBGates to draw every activation on the combined bodygraph. Gate numbers are machine identifiers and do not change with lang.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<int?>? PersonAGates { get; set; }
+#nullable restore
+#else
+        public List<int?> PersonAGates { get; set; }
+#endif
+        /// <summary>All unique active Human Design gate numbers for person B, in ascending order, including hanging gates that do not complete a channel. Use with personAGates to draw every activation on the combined bodygraph. Gate numbers are machine identifiers and do not change with lang.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<int?>? PersonBGates { get; set; }
+#nullable restore
+#else
+        public List<int?> PersonBGates { get; set; }
+#endif
         /// <summary>Count of each connection dynamic across all connected channels.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -85,6 +101,8 @@ namespace RoxyApi.HumanDesign.Connection
                 { "channels", n => { Channels = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_channels>(global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_channels.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "combinedDefinition", n => { CombinedDefinition = n.GetStringValue(); } },
                 { "combinedDefinitionLocalized", n => { CombinedDefinitionLocalized = n.GetStringValue(); } },
+                { "personAGates", n => { PersonAGates = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
+                { "personBGates", n => { PersonBGates = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "summary", n => { Summary = n.GetObjectValue<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_summary>(global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_summary.CreateFromDiscriminatorValue); } },
                 { "totalChannels", n => { TotalChannels = n.GetDoubleValue(); } },
             };
@@ -100,6 +118,8 @@ namespace RoxyApi.HumanDesign.Connection
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_channels>("channels", Channels);
             writer.WriteStringValue("combinedDefinition", CombinedDefinition);
             writer.WriteStringValue("combinedDefinitionLocalized", CombinedDefinitionLocalized);
+            writer.WriteCollectionOfPrimitiveValues<int?>("personAGates", PersonAGates);
+            writer.WriteCollectionOfPrimitiveValues<int?>("personBGates", PersonBGates);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Connection.ConnectionPostResponse_summary>("summary", Summary);
             writer.WriteDoubleValue("totalChannels", TotalChannels);
             writer.WriteAdditionalData(AdditionalData);

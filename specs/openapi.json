@@ -49818,7 +49818,7 @@
           "Human Design"
         ],
         "summary": "Calculate Human Design connection chart - Two-person composite bodygraph compatibility",
-        "description": "Calculate a Human Design connection chart by overlaying two bodygraphs. For each of the 36 channels the dynamic between the two people is classified as electromagnetic, dominance, compromise, or companionship, the four mechanics of how two designs meet. Also returns the nine centers as defined or open in the combined bodygraph with which person defines each, the combined definition, and a count of each dynamic. Built for relationship, dating, and coaching tools.",
+        "description": "Calculate a Human Design connection chart by overlaying two bodygraphs. For each of the 36 channels the dynamic between the two people is classified as electromagnetic, dominance, compromise, or companionship, the four mechanics of how two designs meet. Returns every active gate for each person, including hanging gates, the nine centers as defined or open in the combined bodygraph with which person defines each, the combined definition, and a count of each dynamic. Built for relationship, dating, and coaching tools.",
         "security": [
           {
             "apiKey": []
@@ -49999,6 +49999,36 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "personAGates": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 64
+                      },
+                      "example": [
+                        3,
+                        20,
+                        34,
+                        61
+                      ],
+                      "description": "All unique active Human Design gate numbers for person A, in ascending order, including hanging gates that do not complete a channel. Use with personBGates to draw every activation on the combined bodygraph. Gate numbers are machine identifiers and do not change with lang."
+                    },
+                    "personBGates": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 64
+                      },
+                      "example": [
+                        20,
+                        24,
+                        27,
+                        50
+                      ],
+                      "description": "All unique active Human Design gate numbers for person B, in ascending order, including hanging gates that do not complete a channel. Use with personAGates to draw every activation on the combined bodygraph. Gate numbers are machine identifiers and do not change with lang."
+                    },
                     "totalChannels": {
                       "type": "number",
                       "example": 14,
