@@ -27,6 +27,8 @@ namespace RoxyApi.Tests.Generated.ReadmeExamples
     {
         public static async Task Run()
         {
+            // Retries 429, 500, 502, 503 and 504 by default. Optional settings, shown with their defaults:
+            // new RoxyClient(key, new RoxyRetryOptions { MaxRetries = 2, InitialDelay = TimeSpan.FromMilliseconds(500), MaxDelay = TimeSpan.FromSeconds(30) })
             var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 
             // Step 1: geocode the birth city once. Every chart endpoint takes these three values.
@@ -681,8 +683,25 @@ namespace RoxyApi.Tests.Generated.ReadmeExamples
 
 namespace RoxyApi.Tests.Generated.ReadmeExamples
 {
+    using RoxyApi.Astrology.Horoscope.Item.Daily;
+
+    // README.md "Multi-language responses"
+    internal static class ReadmeExample_24_MultiLanguageResponses
+    {
+        public static async Task Run()
+        {
+            var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
+
+            var aries = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(
+                c => c.QueryParameters.Lang = GetLangQueryParameterType.Es);
+        }
+    }
+}
+
+namespace RoxyApi.Tests.Generated.ReadmeExamples
+{
     // README.md "Error handling"
-    internal static class ReadmeExample_24_ErrorHandling
+    internal static class ReadmeExample_25_ErrorHandling
     {
         public static async Task Run()
         {
@@ -696,8 +715,12 @@ namespace RoxyApi.Tests.Generated.ReadmeExamples
             catch (RoxyError e)
             {
                 // e.Code is stable; e.Message may change wording. e.ResponseStatusCode is the HTTP status.
-                // On a 400, e.Issues lists every field that failed validation.
+                // e.DocUrl links the documentation of the code; e.RetryAfter is the server-stated wait, if any.
                 Console.WriteLine($"{e.ResponseStatusCode} {e.Code}: {e.Message}");
+                // On a validation_error, Issues lists every failing field. Path is the dot-separated field
+                // (for example time or person1.date), or (root) for the whole body. All three members are nullable strings.
+                foreach (var i in e.Issues ?? [])
+                    Console.WriteLine($"{i.Path}: {i.Message} ({i.Code})");
             }
         }
     }
@@ -705,8 +728,40 @@ namespace RoxyApi.Tests.Generated.ReadmeExamples
 
 namespace RoxyApi.Tests.Generated.ReadmeExamples
 {
+    // README.md "Retries"
+    internal static class ReadmeExample_26_Retries
+    {
+        public static async Task Run()
+        {
+            var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
+
+            try
+            {
+                await roxy.Astrology.Signs.GetAsync();
+            }
+            catch (RoxyError e) when (e.Code == ErrorCodes.RateLimitPerMinute)
+            {
+                await Task.Delay(e.RetryAfter ?? TimeSpan.FromSeconds(1));
+            }
+            catch (RoxyError e) when (e.Code == ErrorCodes.RateLimitExceeded)
+            {
+                Console.WriteLine($"Quota reached, resets in {e.RetryAfter}. See {e.DocUrl}");
+            }
+
+            var patient = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!, new RoxyRetryOptions
+            {
+                MaxRetries = 5,
+                InitialDelay = TimeSpan.FromMilliseconds(250),
+                MaxDelay = TimeSpan.FromSeconds(10),
+            });
+        }
+    }
+}
+
+namespace RoxyApi.Tests.Generated.ReadmeExamples
+{
     // README.md "What does a city lookup return?"
-    internal static class ReadmeExample_25_WhatDoesACityLookupReturn
+    internal static class ReadmeExample_27_WhatDoesACityLookupReturn
     {
         public static async Task Run()
         {
@@ -722,7 +777,7 @@ namespace RoxyApi.Tests.Generated.ReadmeExamples
 namespace RoxyApi.Tests.Generated.ReadmeExamples
 {
     // README.md "What does a natal chart return?"
-    internal static class ReadmeExample_26_WhatDoesANatalChartReturn
+    internal static class ReadmeExample_28_WhatDoesANatalChartReturn
     {
         public static async Task Run()
         {
@@ -736,6 +791,43 @@ namespace RoxyApi.Tests.Generated.ReadmeExamples
 
             foreach (var planet in chart!.Planets!)
                 Console.WriteLine($"{planet.Name}: {planet.Sign} {planet.Degree:F2} (house {planet.House})");
+        }
+    }
+}
+
+namespace RoxyApi.Tests.Generated.ReadmeExamples
+{
+    using Microsoft.Kiota.Abstractions.Serialization;
+
+    // README.md "How do I read a planet, a Vedic Moon or my usage?"
+    internal static class ReadmeExample_29_HowDoIReadAPlanetAVedicMoonOrMyUsage
+    {
+        public static async Task Run()
+        {
+            var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
+
+            // Western: Planets is a list of objects, so find a body by Name.
+            var natal = await roxy.Astrology.NatalChart.PostAsync(new()
+            {
+                Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
+                Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" },
+            });
+            var moonSign = natal!.Planets!.First(p => p.Name == "Moon").Sign;
+
+            // Vedic: Meta is an open map, so each value is an UntypedNode. Cast, then unwrap with GetValue().
+            // rashi is a string; nakshatra is an object (name, pada, lord).
+            var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
+            {
+                Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
+                Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" },
+            });
+            var moon = ((UntypedObject)kundli!.Meta!.AdditionalData["Moon"]).GetValue();
+            var rashi = ((UntypedString)moon["rashi"]).GetValue();
+            var nakshatra = ((UntypedString)((UntypedObject)moon["nakshatra"]).GetValue()["name"]).GetValue();
+
+            // Usage: every figure is a nullable double.
+            var usage = await roxy.Usage.GetAsync();
+            Console.WriteLine($"{usage!.UsedThisMonth} of {usage.RequestsPerMonth} used, {usage.RemainingThisMonth} left");
         }
     }
 }

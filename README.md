@@ -48,6 +48,8 @@ Then expand into charts, compatibility, numerology, tarot, and more.
 using RoxyApi;
 using Microsoft.Kiota.Abstractions; // the Date and Time structs
 
+// Retries 429, 500, 502, 503 and 504 by default. Optional settings, shown with their defaults:
+// new RoxyClient(key, new RoxyRetryOptions { MaxRetries = 2, InitialDelay = TimeSpan.FromMilliseconds(500), MaxDelay = TimeSpan.FromSeconds(30) })
 var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 
 // Step 1: geocode the birth city once. Every chart endpoint takes these three values.
@@ -78,14 +80,6 @@ var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
 ```
 
 `new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and injects the auth header and SDK identification header on every request. Every call returns the typed response and throws `RoxyError` on an error response (see Error handling).
-
-## Three things to know
-
-These are the only .NET-specific shapes worth learning. The rest is plain typed objects.
-
-- **Dates and times use typed structs.** `Date = new Date(1990, 1, 15)` and `Time = new Time(14, 30, 0)`, both from `Microsoft.Kiota.Abstractions`.
-- **`Timezone` is a typed union.** Pass a decimal offset with `new() { Double = -5 }` or an IANA name with `new() { String = "America/New_York" }`. The server resolves an IANA name to the DST-correct offset for the request date.
-- **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
 
 ## Domains
 
@@ -538,7 +532,7 @@ Get your API key at [roxyapi.com/pricing](https://roxyapi.com/pricing). Instant 
 var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 ```
 
-Never expose your API key in a desktop, mobile, browser, or Unity client. Call Roxy from your server, API, or backend only.
+Never expose your API key client-side (a desktop, mobile, browser, or Unity client). Call Roxy from server code only.
 
 For advanced use (a custom `HttpClient`, a proxy, or your own middleware), build the client with a Kiota request adapter:
 
@@ -560,13 +554,27 @@ var card = await roxy.Tarot.Daily.PostAsync(
     c => c.QueryParameters.Lang = PostLangQueryParameterType.Es);
 ```
 
+A GET endpoint names the enum `GetLangQueryParameterType`, and its namespace gains an `Item` segment for every indexer on the path:
+
+```csharp
+using RoxyApi.Astrology.Horoscope.Item.Daily;
+
+var aries = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync(
+    c => c.QueryParameters.Lang = GetLangQueryParameterType.Es);
+```
+
+Each endpoint has its own `Lang` enum, so a member borrowed from another endpoint does not compile: add the `using` for the endpoint you call.
+
 Supported: astrology, Vedic astrology, forecast, human design, Chinese astrology, feng shui, Mesoamerican astrology, vastu, numerology, kabbalah, tarot, biorhythm, ayurveda, I Ching, crystals, angel numbers. English-only: dreams, location. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on Chinese astrology and feng shui; every other domain answers those codes in English per field. Untranslated fields fall back to English. Call `roxy.Languages.GetAsync()` for the live list.
 
 ## Error handling
 
-Every endpoint throws a typed `RoxyError` (in `RoxyApi.Models`, a subclass of `ApiException`) on every error status it declares. The message is human-readable; switch on `Code` for programmatic handling. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set, and a 503 or 504 still failing after three retries throws an `AggregateException` holding every attempt.
+Every endpoint throws a typed `RoxyError` (in `RoxyApi.Models`, a subclass of `ApiException`) on every error status it declares. The message is human-readable; switch on `Code` for programmatic handling. `DocUrl` links the documentation for the code, and `RetryAfter` (a nullable `TimeSpan`) holds the `Retry-After` wait when the response sent one. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set. A request that still fails after the last retry throws the error of the final response.
 
 ```csharp
+using RoxyApi;         // RoxyClient, ErrorCodes, RoxyRetryOptions
+using RoxyApi.Models;  // RoxyError
+
 try
 {
     var daily = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
@@ -575,25 +583,85 @@ try
 catch (RoxyError e)
 {
     // e.Code is stable; e.Message may change wording. e.ResponseStatusCode is the HTTP status.
-    // On a 400, e.Issues lists every field that failed validation.
+    // e.DocUrl links the documentation of the code; e.RetryAfter is the server-stated wait, if any.
     Console.WriteLine($"{e.ResponseStatusCode} {e.Code}: {e.Message}");
+    // On a validation_error, Issues lists every failing field. Path is the dot-separated field
+    // (for example time or person1.date), or (root) for the whole body. All three members are nullable strings.
+    foreach (var i in e.Issues ?? [])
+        Console.WriteLine($"{i.Path}: {i.Message} ({i.Code})");
 }
 ```
 
-| Status | Code | When |
-|--------|------|------|
-| 400 | `validation_error` | Missing or invalid parameters (see `Issues`) |
-| 401 | `api_key_required` | No API key provided |
-| 401 | `invalid_api_key` | Key format invalid or tampered |
-| 401 | `subscription_not_found` | Key references a non-existent subscription |
-| 401 | `subscription_inactive` | Subscription cancelled, expired, or suspended |
-| 401 | `api_key_revoked` | Key was deleted from the account |
-| 404 | `not_found` | Resource not found |
-| 4xx | `bad_request` and other status-derived codes | A client error the endpoint itself detected, such as a date window whose `endDate` precedes `startDate` |
-| 429 | `rate_limit_exceeded` | Monthly quota reached |
-| 500 | `internal_error` | Server error |
+<!-- BEGIN:ERRORS -->
+Every error returns `{ error, code, doc_url }`. Switch on `code`; `error` is readable text and may change. Each meaning below says whether and when to retry, and `Retry-After` carries the wait when the response sends it. Every code is documented at https://roxyapi.com/docs/errors.
 
-## Frequently asked questions
+| Status | Code | Meaning |
+|--------|------|---------|
+| 400 | `validation_error` | A field is missing or invalid. The body lists every failing field at once in issues, each with its path and the expected shape. |
+| 400 | `bad_request` | The request was rejected as a whole, for example a body that is not valid JSON or a date range that ends before it starts. |
+| 400 | `date_out_of_range` | A date lies outside the span the planetary positions are served for. The error names the supported dates. |
+| 401 | `api_key_required` | No API key was sent. |
+| 401 | `invalid_api_key` | The key sent is malformed or cannot be verified. |
+| 401 | `api_key_revoked` | The key was valid once and has since been revoked from the account page. |
+| 401 | `subscription_not_found` | The key verifies, but the subscription behind it no longer exists. |
+| 401 | `subscription_inactive` | The subscription behind the key is cancelled, expired or suspended, or a trial is past its end date. |
+| 401 | `publishable_key_not_allowed_on_mcp` | A publishable key was used on a Remote MCP server, which takes a secret key. |
+| 401 | `invalid_client_ip` | A keyless request could not be attributed to a caller. |
+| 401 | `unauthorized` | Authentication failed with no more specific reason to give. |
+| 403 | `forbidden` | The key is valid, but this request is not permitted. |
+| 403 | `origin_required` | A publishable key with an origin allowlist was used with no Origin header, as from a server or a native app. |
+| 403 | `origin_not_allowed` | The calling site is not on the origin allowlist of this publishable key. |
+| 404 | `not_found` | Nothing is served at this path, or the identifier in it does not exist. A path miss adds suggestions, the closest real endpoints. |
+| 405 | `method_not_allowed` | The path exists for a different HTTP method. The body lists the accepted methods in allow, as does the Allow header. |
+| 409 | `conflict` | The request cannot be applied in the current state. |
+| 410 | `gone` | The path was removed permanently. |
+| 413 | `payload_too_large` | The request body is larger than the API accepts. A body far over the cap is refused before it reaches the API and returns a bare 413 with no JSON body. |
+| 415 | `unsupported_media_type` | A request with a body was sent without Content-Type: application/json. |
+| 422 | `unprocessable_entity` | Every field is valid, but the combination cannot be computed. |
+| 429 | `rate_limit_exceeded` | The monthly request allowance is used up. Retry-After gives the seconds to the reset. |
+| 429 | `rate_limit_per_minute` | The per-minute limit of the plan was reached. Retry-After gives the seconds to the next minute, and the monthly allowance is not charged. |
+| 429 | `rate_limited` | A rate limit was reached, reported without the plan detail. |
+| 429 | `free_tier_exhausted` | A keyless request has used up its trial allowance. |
+| 500 | `internal_error` | The request failed inside our service. Retry with exponential backoff. |
+| 503 | `compute_saturated` | Heavy calculations are briefly at capacity. Send the same request again after Retry-After seconds. |
+| Any | `error` | A fallback for a status with no more specific code. The status and the error field carry the signal. |
+<!-- END:ERRORS -->
+
+### Retries
+
+`new RoxyClient(apiKey)` retries by default, up to twice, on a 429, 500, 502, 503 or 504 and on a connection that was refused or could not resolve the host (the request never left your machine). The wait is `Retry-After` plus a random padding of up to 500 ms when the response sends it, and otherwise a random value up to 500 ms doubled per attempt (full jitter), never more than 30 seconds. A `Retry-After` above 30 seconds is not waited out: the call throws `RoxyError` at once with `RetryAfter` set, so an exhausted monthly quota never blocks a caller for hours. A read timeout is not retried, and a retry never sleeps past the `HttpClient` timeout. Pass `RoxyRetryOptions` to change the limits, or `MaxRetries = 0` to turn retries off. A call that keeps failing makes 1 + `MaxRetries` requests in total (3 by default), and `MaxRetries = 0` makes exactly one. Every retry replays the same request body. A call that still fails after the last retry throws the `RoxyError` (or `ApiException`) of the final response; it never throws an `AggregateException`. `ErrorCodes` holds a constant for every code in the table above. Handle `rate_limit_per_minute` and the monthly `rate_limit_exceeded` by `Code`:
+
+```csharp
+try
+{
+    await roxy.Astrology.Signs.GetAsync();
+}
+catch (RoxyError e) when (e.Code == ErrorCodes.RateLimitPerMinute)
+{
+    await Task.Delay(e.RetryAfter ?? TimeSpan.FromSeconds(1));
+}
+catch (RoxyError e) when (e.Code == ErrorCodes.RateLimitExceeded)
+{
+    Console.WriteLine($"Quota reached, resets in {e.RetryAfter}. See {e.DocUrl}");
+}
+
+var patient = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!, new RoxyRetryOptions
+{
+    MaxRetries = 5,
+    InitialDelay = TimeSpan.FromMilliseconds(250),
+    MaxDelay = TimeSpan.FromSeconds(10),
+});
+```
+
+## .NET
+
+Every request and response is fully typed, so IntelliSense shows every domain, endpoint and field. These are the only .NET-specific shapes worth learning. The rest is plain typed objects.
+
+- **Dates and times use typed structs.** `Date = new Date(1990, 1, 15)` and `Time = new Time(14, 30, 0)`, both from `Microsoft.Kiota.Abstractions`.
+- **`Timezone` is a typed union.** Pass a decimal offset with `new() { Double = -5 }` or an IANA name with `new() { String = "America/New_York" }`. The server resolves an IANA name to the DST-correct offset for the request date.
+- **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`
+
+## FAQ
 
 ### How do I discover the fields on a response?
 
@@ -601,7 +669,7 @@ Every response is a fully typed object, so your IDE autocompletes every field. T
 
 ### What does a city lookup return?
 
-`roxy.Location.Search` returns `Cities`, a list where each item has `City` (the name), `Country`, `Province`, `Latitude`, `Longitude`, `Timezone` (IANA string), `UtcOffset` (decimal), and `Population`.
+`roxy.Location.Search` returns `Cities`, a list where each item has `City` (the name), `Province`, `Country`, `Iso2`, `Latitude`, `Longitude`, `Timezone` (IANA string), `UtcOffset` (decimal, the offset in force today) and `Population`. The name is `City`, never `Name`. Pass the IANA `Timezone` to a chart endpoint and the server resolves the offset for the birth date.
 
 ```csharp
 var search = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "London, UK");
@@ -624,17 +692,42 @@ foreach (var planet in chart!.Planets!)
     Console.WriteLine($"{planet.Name}: {planet.Sign} {planet.Degree:F2} (house {planet.House})");
 ```
 
+### How do I read a planet, a Vedic Moon or my usage?
+
+```csharp
+using Microsoft.Kiota.Abstractions.Serialization;
+
+// Western: Planets is a list of objects, so find a body by Name.
+var natal = await roxy.Astrology.NatalChart.PostAsync(new()
+{
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
+    Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" },
+});
+var moonSign = natal!.Planets!.First(p => p.Name == "Moon").Sign;
+
+// Vedic: Meta is an open map, so each value is an UntypedNode. Cast, then unwrap with GetValue().
+// rashi is a string; nakshatra is an object (name, pada, lord).
+var kundli = await roxy.VedicAstrology.BirthChart.PostAsync(new()
+{
+    Date = new Date(1990, 1, 15), Time = new Time(14, 30, 0),
+    Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" },
+});
+var moon = ((UntypedObject)kundli!.Meta!.AdditionalData["Moon"]).GetValue();
+var rashi = ((UntypedString)moon["rashi"]).GetValue();
+var nakshatra = ((UntypedString)((UntypedObject)moon["nakshatra"]).GetValue()["name"]).GetValue();
+
+// Usage: every figure is a nullable double.
+var usage = await roxy.Usage.GetAsync();
+Console.WriteLine($"{usage!.UsedThisMonth} of {usage.RequestsPerMonth} used, {usage.RemainingThisMonth} left");
+```
+
 ### Do calls return an error object or throw?
 
 They throw. On success a call returns the typed response (a nullable reference, so use `!` or a null check after you have handled errors); on an error status the endpoint declares it throws `RoxyError`. Wrap calls in `try`/`catch (RoxyError e)` and switch on `e.Code`; add `catch (ApiException e)` for a status the endpoint does not declare (see Error handling).
 
-### Which .NET versions are supported?
+## Requirements
 
-.NET 8 and later, plus anything that consumes `netstandard2.0`: .NET Framework 4.6.1+, Unity, Xamarin, MAUI, and Mono. Language version 12 or later is recommended for the `new()` and collection-expression syntax in these examples.
-
-## Requirements and dependencies
-
-- **.NET 8 or later, or any runtime supporting `netstandard2.0`** (.NET Framework 4.6.1+, Unity, Mono). Language version 12 or later is recommended for the collection-expression and target-typed `new()` syntax shown above.
+- **.NET 8 or later, or any runtime supporting `netstandard2.0`** (.NET Framework 4.6.1+, Unity, Xamarin, MAUI, and Mono). Language version 12 or later is recommended for the collection-expression and target-typed `new()` syntax shown above.
 - **[`Microsoft.Kiota.Bundle`](https://www.nuget.org/packages/Microsoft.Kiota.Bundle)** is the only runtime dependency. It pulls in the Kiota HTTP, authentication, and serialization libraries (all MIT licensed, maintained by Microsoft) that power the generated client.
 
 The typed client is generated from the public OpenAPI specification with [Kiota](https://learn.microsoft.com/openapi/kiota/), so the SDK stays in lockstep with the API and new endpoints arrive automatically.
@@ -646,8 +739,8 @@ The typed client is generated from the public OpenAPI specification with [Kiota]
 - [Pricing](https://roxyapi.com/pricing)
 - [MCP setup for AI agents](https://roxyapi.com/docs/mcp)
 - [Templates](https://roxyapi.com/templates)
-- [TypeScript SDK](https://www.npmjs.com/package/@roxyapi/sdk) | [Python SDK](https://pypi.org/project/roxy-sdk/) | [PHP SDK](https://packagist.org/packages/roxyapi/sdk) | [Go SDK](https://pkg.go.dev/github.com/RoxyAPI/sdk-go) | [Rust SDK](https://crates.io/crates/roxyapi)
 - [Issues](https://github.com/RoxyAPI/sdk-dotnet/issues)
+- Other SDKs: [TypeScript](https://www.npmjs.com/package/@roxyapi/sdk), [Python](https://pypi.org/project/roxy-sdk/), [PHP](https://packagist.org/packages/roxyapi/sdk), [Go](https://pkg.go.dev/github.com/RoxyAPI/sdk-go), [Rust](https://crates.io/crates/roxyapi)
 
 ## License
 

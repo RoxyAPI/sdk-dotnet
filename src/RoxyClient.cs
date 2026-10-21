@@ -1,6 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Http.HttpClientLibrary;
-using Microsoft.Kiota.Http.HttpClientLibrary.Middleware.Options;
+using Microsoft.Kiota.Http.HttpClientLibrary.Middleware;
 
 namespace RoxyApi;
 
@@ -25,36 +25,45 @@ public partial class RoxyClient
     /// </summary>
     /// <param name="apiKey">Your RoxyAPI key. Create one at <see href="https://roxyapi.com/pricing">roxyapi.com/pricing</see>.</param>
     /// <exception cref="System.ArgumentException">Thrown when <paramref name="apiKey"/> is null, empty, or whitespace.</exception>
-    public RoxyClient(string apiKey) : this(BuildRequestAdapter(apiKey, KiotaClientFactory.GetDefaultHttpMessageHandler())) { }
-
-    // The test seam: the same pipeline over a stubbed transport, so the headers, the base
-    // URL, the error mapping and the retry ceiling are asserted without the network.
-    internal RoxyClient(string apiKey, HttpMessageHandler transport) : this(BuildRequestAdapter(apiKey, transport)) { }
+    public RoxyClient(string apiKey) : this(apiKey, new RoxyRetryOptions()) { }
 
     /// <summary>
-    /// The default retry handler waits <c>Retry-After</c> (capped at 180 seconds) up to three times
-    /// before surfacing a 429, 503 or 504. Its own backoff without the header sums to 21 seconds
-    /// (3, 6, 12), which this ceiling keeps; a longer server-stated wait, such as a monthly quota
-    /// that resets in days, surfaces as <c>RoxyError</c> at once instead of blocking the caller.
+    /// Creates a client like <see cref="RoxyClient(string)"/> with your own retry settings.
     /// </summary>
-    private static readonly TimeSpan RetryCeiling = TimeSpan.FromSeconds(30);
+    /// <param name="apiKey">Your RoxyAPI key. Create one at <see href="https://roxyapi.com/pricing">roxyapi.com/pricing</see>.</param>
+    /// <param name="retry">When and how long to retry; <c>MaxRetries = 0</c> turns retries off.</param>
+    /// <exception cref="System.ArgumentException">Thrown when <paramref name="apiKey"/> is null, empty, or whitespace.</exception>
+    public RoxyClient(string apiKey, RoxyRetryOptions retry) : this(BuildRequestAdapter(apiKey, KiotaClientFactory.GetDefaultHttpMessageHandler(), retry, null, null)) { }
 
-    private static IRequestAdapter BuildRequestAdapter(string apiKey, HttpMessageHandler transport)
+    // The test seam: the same pipeline over a stubbed transport, with the retry randomness and
+    // sleep injectable, so the headers, the base URL, the error mapping and the retry schedule
+    // are asserted without the network or the wall clock.
+    internal RoxyClient(string apiKey, HttpMessageHandler transport, RoxyRetryOptions? retry = null, Func<double>? random = null, Func<TimeSpan, CancellationToken, Task>? sleep = null)
+        : this(BuildRequestAdapter(apiKey, transport, retry ?? new RoxyRetryOptions(), random, sleep)) { }
+
+    private static IRequestAdapter BuildRequestAdapter(string apiKey, HttpMessageHandler transport, RoxyRetryOptions retry, Func<double>? random, Func<TimeSpan, CancellationToken, Task>? sleep)
     {
         if (string.IsNullOrWhiteSpace(apiKey))
         {
             throw new ArgumentException(
                 "A RoxyAPI key is required. Create one at https://roxyapi.com/pricing.", nameof(apiKey));
         }
+        if (retry is null) throw new ArgumentNullException(nameof(retry));
+        retry.Validate();
 
-        // Kiota's default middleware: retry (429, 503, 504, honouring Retry-After), redirect,
-        // parameter name decoding, user agent and the two inspection handlers, over a transport
-        // with automatic decompression. The SDK identification header goes last; the API key is
-        // added by the authentication provider, which the request adapter runs first.
-        var handlers = KiotaClientFactory.CreateDefaultHandlers([new RetryHandlerOption { RetriesTimeLimit = RetryCeiling }]);
+        // Kiota's default middleware (redirect, parameter name decoding, user agent and the two
+        // inspection handlers) over a transport with automatic decompression, with RoxyRetryHandler
+        // standing where Kiota's own retry handler sits. The SDK identification header goes last;
+        // the API key is added by the authentication provider, which the request adapter runs first.
+        var handlers = KiotaClientFactory.CreateDefaultHandlers();
+        var retryHandler = random is null || sleep is null ? new RoxyRetryHandler(retry) : new RoxyRetryHandler(retry, random, sleep);
+        var slot = handlers.ToList().FindIndex(h => h is RetryHandler);
+        if (slot < 0) throw new InvalidOperationException("Kiota's default handler chain has no retry handler to replace.");
+        handlers[slot] = retryHandler;
         handlers.Add(new SdkClientHandler());
         var pipeline = KiotaClientFactory.ChainHandlersCollectionAndGetFirstLink(transport, handlers.ToArray());
         var httpClient = new HttpClient(pipeline!);
+        retryHandler.OverallTimeout = httpClient.Timeout;
 
         return new HttpClientRequestAdapter(new RoxyApiKeyAuthenticationProvider(apiKey), httpClient: httpClient);
     }

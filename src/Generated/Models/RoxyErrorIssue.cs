@@ -7,15 +7,14 @@ using System.IO;
 using System;
 namespace RoxyApi.Models
 {
-    /// <summary>
-    /// A single field-level validation failure from a 400 response.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+    #pragma warning disable CS1591
     public partial class RoxyErrorIssue : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Validation issue code, for example invalid_type or too_small.</summary>
+        /// <summary>Zod issue code (invalid_type, too_small, too_big, invalid_string, ...).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Code { get; set; }
@@ -23,7 +22,7 @@ namespace RoxyApi.Models
 #else
         public string Code { get; set; }
 #endif
-        /// <summary>Expected type, when the issue is a type mismatch.</summary>
+        /// <summary>Expected type for invalid_type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Expected { get; set; }
@@ -31,7 +30,25 @@ namespace RoxyApi.Models
 #else
         public string Expected { get; set; }
 #endif
-        /// <summary>Human readable description of this failure.</summary>
+        /// <summary>Format name for string issues (regex, email, url, uuid).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Format { get; set; }
+#nullable restore
+#else
+        public string Format { get; set; }
+#endif
+        /// <summary>The inclusive property</summary>
+        public bool? Inclusive { get; set; }
+        /// <summary>Maximum bound for too_big issues.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Maximum { get; set; }
+#nullable restore
+#else
+        public string Maximum { get; set; }
+#endif
+        /// <summary>The message property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Message { get; set; }
@@ -39,13 +56,29 @@ namespace RoxyApi.Models
 #else
         public string Message { get; set; }
 #endif
-        /// <summary>Dot-separated field path, or (root) for a top-level error.</summary>
+        /// <summary>Minimum bound for too_small issues.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Minimum { get; set; }
+#nullable restore
+#else
+        public string Minimum { get; set; }
+#endif
+        /// <summary>Dot-separated field path, or &quot;(root)&quot; for top-level.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Path { get; set; }
 #nullable restore
 #else
         public string Path { get; set; }
+#endif
+        /// <summary>Regex pattern when format is regex.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Pattern { get; set; }
+#nullable restore
+#else
+        public string Pattern { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.RoxyErrorIssue"/> and sets the default values.
@@ -74,8 +107,13 @@ namespace RoxyApi.Models
             {
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "expected", n => { Expected = n.GetStringValue(); } },
+                { "format", n => { Format = n.GetStringValue(); } },
+                { "inclusive", n => { Inclusive = n.GetBoolValue(); } },
+                { "maximum", n => { Maximum = n.GetStringValue(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
+                { "minimum", n => { Minimum = n.GetStringValue(); } },
                 { "path", n => { Path = n.GetStringValue(); } },
+                { "pattern", n => { Pattern = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -87,8 +125,13 @@ namespace RoxyApi.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("expected", Expected);
+            writer.WriteStringValue("format", Format);
+            writer.WriteBoolValue("inclusive", Inclusive);
+            writer.WriteStringValue("maximum", Maximum);
             writer.WriteStringValue("message", Message);
+            writer.WriteStringValue("minimum", Minimum);
             writer.WriteStringValue("path", Path);
+            writer.WriteStringValue("pattern", Pattern);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -971,7 +971,7 @@ await roxy.Languages.GetAsync();
 
 ## Error handling
 
-Calls throw `RoxyApi.Models.RoxyError` (a subclass of `Microsoft.Kiota.Abstractions.ApiException`) on every error status the endpoint declares. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set, and a 503 or 504 still failing after three retries throws an `AggregateException` holding every attempt.
+Calls throw `RoxyApi.Models.RoxyError` (a subclass of `Microsoft.Kiota.Abstractions.ApiException`) on every error status the endpoint declares. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set. A request that still fails after the last retry throws the error of the final response.
 
 ```csharp
 try
@@ -988,6 +988,8 @@ catch (RoxyApi.Models.RoxyError e)
 
 Codes: validation_error (400, with e.Issues), api_key_required / invalid_api_key / subscription_not_found / subscription_inactive / api_key_revoked (401), not_found (404), bad_request and other status-derived codes for a client error the endpoint itself detected, such as a date window whose endDate precedes startDate (4xx), rate_limit_exceeded (429), internal_error (500).
 
+Retries are on by default: `new RoxyClient(apiKey)` resends a request up to twice after a 429, 500, 502, 503 or 504, or a connection that was never made, waiting for `Retry-After` when present (up to `MaxDelay`, default 30 seconds) and a jittered backoff otherwise. `new RoxyClient(apiKey, new RoxyRetryOptions { MaxRetries = 0 })` turns retries off. A read timeout is never retried. On a persistent failure the total is 1 + `MaxRetries` requests, so 3 by default and exactly 1 with `MaxRetries = 0`.
+
 ## Advanced
 
 `new RoxyClient(apiKey)` is the common path. For a custom `HttpClient`, proxy, or middleware, build the client from a Kiota request adapter:
@@ -1001,6 +1003,10 @@ var roxy = new RoxyClient(adapter);
 
 ## Links
 
+- Documentation: https://roxyapi.com/docs
 - Interactive API docs: https://roxyapi.com/api-reference
 - Pricing and API keys: https://roxyapi.com/pricing
 - MCP for AI agents: https://roxyapi.com/docs/mcp
+- Templates: https://roxyapi.com/templates
+- Source and issues: https://github.com/RoxyAPI/sdk-dotnet
+- Other SDKs: TypeScript https://www.npmjs.com/package/@roxyapi/sdk, Python https://pypi.org/project/roxy-sdk/, PHP https://packagist.org/packages/roxyapi/sdk, Go https://pkg.go.dev/github.com/RoxyAPI/sdk-go, Rust https://crates.io/crates/roxyapi

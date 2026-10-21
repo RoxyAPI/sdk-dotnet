@@ -13,33 +13,26 @@ dotnet add package RoxyApi.Sdk
 ```csharp
 using RoxyApi;
 
+// Retries 429, 500, 502, 503 and 504 by default. Optional settings, shown with their defaults:
+// new RoxyClient(key, new RoxyRetryOptions { MaxRetries = 2, InitialDelay = TimeSpan.FromMilliseconds(500), MaxDelay = TimeSpan.FromSeconds(30) })
 var roxy = new RoxyClient(Environment.GetEnvironmentVariable("ROXY_API_KEY")!);
 ```
 
 `new RoxyClient(apiKey)` sets the base URL (`https://roxyapi.com/api/v2`) and the auth and SDK headers automatically. Every call is async and returns the typed response, or throws `RoxyError` on an error response (see Error handling).
 
-## Five rules to get right
-
-Get these and the generated types do the rest.
-
-- **The fluent path mirrors the URL.** `GET /astrology/horoscope/{sign}/daily` is `roxy.Astrology.Horoscope["aries"].Daily.GetAsync()`. Each path segment is a property; each `{param}` is an indexer. Type `roxy.` and let IntelliSense walk the tree. Never invent a method name, and never derive one from the `operationId` in the spec: this SDK is path-fluent, not operation-named.
-- **Request bodies use a target-typed `new()`.** `await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), ... })`. The type is inferred from the method, so you never need to name it; IntelliSense shows every field on `new() {`.
-- **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`. Multiple: `c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; }`.
-- **Always `await`, and catch `RoxyError`.** There is no result-wrapper object. The call returns the typed response directly and throws `RoxyError` (a subclass of `ApiException`) on failure. Switch on `e.Code`, not `e.Message`.
-- **Never hand-roll HttpClient.** `new RoxyClient(key)` injects auth, the base URL, typed responses, and a retry with backoff on a 429, 503 or 504: up to three attempts, honouring `Retry-After`, and giving up at once when that header asks for more than thirty seconds. Response field names come from the response schema of the spec and are PascalCase properties; the compiler catches any invented field, so if the build fails on a property, the field does not exist.
-- **Look up any operation or field beyond this guide.** Query the combined OpenAPI spec at `https://roxyapi.com/api/v2/openapi.json` with the jq recipe in `https://roxyapi.com/AGENTS.md`, or search the keyless Docs MCP server at `https://roxyapi.com/mcp/docs` (one tool, `search_docs`).
+One runtime dependency: [`Microsoft.Kiota.Bundle`](https://www.nuget.org/packages/Microsoft.Kiota.Bundle) (MIT, by Microsoft), which provides the HTTP, auth, and serialization libraries the generated client uses. Targets `netstandard2.0` and `net8.0`.
 
 ## Critical rule: geocode before any chart endpoint
 
-Every chart, horoscope, panchang, dasha, dosha, navamsa, KP, synastry, compatibility, and natal endpoint needs `Latitude`, `Longitude`, and (for Western) `Timezone`. **Never ask the user for coordinates.** Call `roxy.Location.Search` first.
+Every chart, horoscope, panchang, dasha, dosha, navamsa, KP, synastry, compatibility, and natal endpoint needs `Latitude`, `Longitude`, and (for Western) `Timezone`. **Never ask the user for coordinates.** Always call `roxy.Location.Search` first.
 
 ```csharp
 var place = await roxy.Location.Search.GetAsync(c => c.QueryParameters.Q = "New York");
 var city = place!.Cities![0];
-// city.Timezone is the IANA string ("America/New_York"). Pass it straight into any chart
-// endpoint and the server resolves it to the DST-correct decimal offset using the Date of
-// the chart itself, so a January 1990 New York chart picks EST (-5) even when you looked
-// the city up in July. city.UtcOffset (5.5, -5, 9, ...) also works and produces identical charts.
+// `city.Timezone` is the IANA string ("America/New_York"). Pass it directly to any chart endpoint.
+// The server resolves it to the DST-correct decimal offset using the date of the chart itself,
+// so a January 1990 New York chart gets EST (-5) even when you looked the city up in July.
+// `city.UtcOffset` is the offset in force today, not on the birth date, so pass the IANA `timezone` string.
 ```
 
 `Q` accepts a bare city (`"Paris"`), city plus country (`"Berlin Germany"`), or comma-qualified (`"Springfield, Illinois"`). Use the qualified form to disambiguate same-named cities.
@@ -70,6 +63,17 @@ var city = place!.Cities![0];
 | [`roxy.Usage`](https://roxyapi.com/api-reference/usage) | Monitor your API usage, check rate limits, and track request consumption |
 | [`roxy.Languages`](https://roxyapi.com/api-reference/languages) | List the response languages accepted by the `lang` query parameter on every i18n-aware endpoint |
 <!-- END:DOMAINS -->
+
+## Quality guidelines for agents
+
+The rules to follow when writing any call with this SDK. Get these right and the generated types do the rest.
+
+- **The fluent path mirrors the URL.** `GET /astrology/horoscope/{sign}/daily` is `roxy.Astrology.Horoscope["aries"].Daily.GetAsync()`. Each path segment is a property; each `{param}` is an indexer. Type `roxy.` and let IntelliSense walk the tree. Never invent a method name, and never derive one from the `operationId` in the spec: this SDK is path-fluent, not operation-named.
+- **Request bodies use a target-typed `new()`.** `await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 1, 15), ... })`. The type is inferred from the method, so you never need to name it; IntelliSense shows every field on `new() {`.
+- **Query parameters use a configuration lambda.** `await roxy.Crystals.Search.GetAsync(c => c.QueryParameters.Q = "amethyst");`. Multiple: `c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; }`.
+- **Always `await`, and catch `RoxyError`.** There is no result-wrapper object. The call returns the typed response directly and throws `RoxyError` (a subclass of `ApiException`) on failure. Switch on `e.Code`, not `e.Message`.
+- **Do not hand-roll requests.** No raw `HttpClient` calls. `new RoxyClient(key)` injects auth, the base URL, typed responses, and retries twice by default (see Retries). Response field names come from the response schema of the spec and are PascalCase properties; the compiler catches any invented field, so if the build fails on a property, the field does not exist.
+- **Look up any operation or field beyond this guide.** Query the combined OpenAPI spec at `https://roxyapi.com/api/v2/openapi.json` with the jq recipe in `https://roxyapi.com/AGENTS.md`, or search the keyless Docs MCP server at `https://roxyapi.com/mcp/docs` (one tool, `search_docs`).
 
 ## Critical patterns
 
@@ -127,41 +131,11 @@ await roxy.Numerology.LifePath.PostAsync(new() { Year = 1990, Month = 1, Day = 1
 
 Supported: astrology, vedicAstrology, forecast, humanDesign, chineseAstrology, fengShui, mesoamericanAstrology, vastu, numerology, kabbalah, tarot, biorhythm, ayurveda, iching, crystals, angelNumbers. English-only: dreams, location, usage, languages. The two Chinese scripts (zh-Hans, zh-Hant) currently ship on chineseAstrology and fengShui; every other domain answers those codes in English per field. Call `roxy.Languages.GetAsync()` for the live list.
 
-### Error handling
-
-Calls throw `RoxyError` (in `RoxyApi.Models`, extends `ApiException`) on every error status the endpoint declares. `Message` is human-readable and may change; `Code` is stable, switch on it. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set, and a 503 or 504 still failing after three retries throws an `AggregateException` holding every attempt.
-
-```csharp
-try
-{
-    var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
-    Console.WriteLine(horoscope!.Overview);
-}
-catch (RoxyError e)
-{
-    Console.WriteLine($"{e.ResponseStatusCode} {e.Code}: {e.Message}");
-    // On a 400, e.Issues lists each field that failed validation.
-}
-```
-
-| Status | Code | When |
-|--------|------|------|
-| 400 | `validation_error` | Missing or invalid parameters (see `Issues`) |
-| 401 | `api_key_required` | No API key provided |
-| 401 | `invalid_api_key` | Key format invalid or tampered |
-| 401 | `subscription_not_found` | Key references a non-existent subscription |
-| 401 | `subscription_inactive` | Subscription cancelled, expired, or suspended |
-| 401 | `api_key_revoked` | Key was deleted from the account |
-| 404 | `not_found` | Resource not found |
-| 4xx | `bad_request` and other status-derived codes | A client error the endpoint itself detected, such as a date window whose `endDate` precedes `startDate` |
-| 429 | `rate_limit_exceeded` | Monthly quota reached |
-| 500 | `internal_error` | Server error |
-
 ### Reading responses
 
 Responses are fully typed objects, not dictionaries. Discover fields with IntelliSense (`result.`) or the full response JSON on https://roxyapi.com/api-reference. `docs/llms-full.txt` documents the call and inputs for every endpoint; the response shape comes from the type. The success body is nullable (non-null only on a 2xx, since errors throw), so use `result!.Field`.
 
-- **City** (`Location.Search` -> `Cities[i]`): `City` (the name), `Country`, `Province`, `Latitude`, `Longitude`, `Timezone` (IANA), `UtcOffset` (decimal), `Population`.
+- **City** (`Location.Search` -> `Cities[i]`): `City` (the name, never `Name`), `Province`, `Country`, `Iso2`, `Latitude`, `Longitude`, `Timezone` (IANA), `UtcOffset` (decimal, the offset in force today), `Population`.
 - **Natal chart**: `Planets`, `Houses`, `Aspects`, `Ascendant`, `Midheaven`, `Summary`. Each planet has `Name`, `Sign`, `Degree`, `House`, `IsRetrograde`. The `Planets` list has more than ten entries (classical bodies plus nodes and key points).
 - **Maps keyed by name** arrive in `AdditionalData`, not as properties. The Vedic kundli `Meta` (one entry per planet: `rashi`, `nakshatra`, `longitude`) and the biorhythm reading `Cycles` (one entry per cycle: `value`, `rawValue`, `phase`) are objects whose keys the spec leaves open, so the generated class has no fields of its own: read `kundli.Meta!.AdditionalData["Moon"]`, which is an `UntypedObject` from `Microsoft.Kiota.Abstractions.Serialization`, and call `GetValue()` on it for the inner dictionary.
 
@@ -235,7 +209,7 @@ In the catalog order (Western astrology, Vedic astrology, forecast, Human Design
 
 ## Field formats that trip agents
 
-Copy the format column exactly.
+These are the fields AI agents most often get wrong. Copy the format column exactly.
 
 | Field | Format | Good | Bad |
 |-------|--------|------|-----|
@@ -243,7 +217,7 @@ Copy the format column exactly.
 | `Time` | The `Time` struct from `Microsoft.Kiota.Abstractions` | `new Time(14, 30, 0)`, `new Time(9, 0, 0)` | `"14:30:00"` (string), `DateTime.Now`, `new TimeOnly(...)` |
 | `Timezone` | Union wrapper: decimal OR IANA | `new() { Double = 5.5 }`, `new() { Double = -5 }` OR `new() { String = "America/New_York" }` | `5.5`, `"5.5"`, `"+0530"` assigned directly |
 | `Latitude` / `Longitude` | `double` | `40.7128`, `-74.006` | `"40.7128"`, DMS strings |
-| `sign` (horoscope indexer) | Lowercase zodiac name | `["aries"]`, `["scorpio"]` | `["Aries"]`, `["1"]` |
+| `sign` (horoscope indexer) | Zodiac name; matched case-insensitively, lowercase is canonical | `["aries"]`, `["scorpio"]` | `["1"]`, `["ram"]` |
 | `chakra` (crystals indexer) | Title-case name | `["Root"]`, `["Heart"]`, `["Third Eye"]` | `["heart"]`, `["third-eye"]` |
 | `FullName` (numerology) | Birth-certificate name | `"John William Smith"` | Nickname, partial name |
 | `Seed` | Any string (deterministic) | `"user-42"`, `"session-abc"` | numbers, objects |
@@ -251,41 +225,108 @@ Copy the format column exactly.
 | `Lang` (query) | The endpoint enum (`PostLangQueryParameterType` in that endpoint namespace) | `c.QueryParameters.Lang = PostLangQueryParameterType.Hi` | a string such as `"hi"` |
 | Enum fields (`Gender`, `Facing`, `Unit`, room `Type`) | The generated enum, which lives in the namespace of its request body | `KuaPostRequestBody_gender.Female` after `using RoxyApi.FengShui.Kua;` | `"female"`, `Gender = "Female"` |
 
-### Timezone cheat sheet (decimal offsets)
+### Timezone cheat sheet (most-asked locations)
 
 | Region | Decimal | Region | Decimal |
 |--------|---------|--------|---------|
-| UTC / London (winter) | `0` | Delhi (IST) | `5.5` |
-| Berlin / Paris | `1` (winter) / `2` (summer) | Kathmandu | `5.75` |
-| Istanbul / Moscow | `3` | Dhaka | `6` |
-| Dubai | `4` | Bangkok | `7` |
-| New York (EST / EDT) | `-5` / `-4` | Singapore / Beijing | `8` |
-| Chicago (CST / CDT) | `-6` / `-5` | Tokyo | `9` |
-| Los Angeles (PST / PDT) | `-8` / `-7` | Sydney | `10` / `11` (summer) |
+| UTC / London (winter) | `0` | Dubai | `4` |
+| London (summer, BST) | `1` | Karachi | `5` |
+| Berlin / Paris | `1` (winter) / `2` (summer) | Delhi (IST) | `5.5` |
+| Istanbul | `3` | Kathmandu (NPT) | `5.75` |
+| Moscow | `3` | Dhaka | `6` |
+| Tehran | `3.5` (winter) / `4.5` (summer) | Bangkok | `7` |
+| Adelaide | `9.5` (winter) / `10.5` (summer) | Singapore / Beijing | `8` |
+| New York (EST / EDT) | `-5` / `-4` | Tokyo | `9` |
+| Chicago (CST / CDT) | `-6` / `-5` | Sydney | `10` (winter) / `11` (summer) |
+| Denver (MST / MDT) | `-7` / `-6` | Auckland | `12` (winter) / `13` (summer) |
+| Los Angeles (PST / PDT) | `-8` / `-7` | Honolulu | `-10` |
 
 DST matters. If the birth date falls inside a daylight-saving window, use the summer / DST offset, or pass the IANA string from the location lookup and let the server resolve it. India observes no DST, so a fixed `5.5` is always right there; anywhere else, a natal chart must carry the offset in force at the time of birth.
 
-## Astrology domain gotchas
+## Astrology domain gotchas for LLMs
 
-LLMs hallucinate confidently in this category. The specific traps:
+LLMs hallucinate confidently in this category. These are the specific traps you will hit when writing client code:
 
-- **Ayanamsa is server-side in Vedic.** Vedic endpoints apply sidereal Lahiri ayanamsa server-side; KP endpoints take an `AyanamsaValue`. Do not subtract ayanamsa in client code.
-- **Tithi count is 30, not 2.** 15 Shukla (waxing) plus 15 Krishna (waning). Panchang responses carry a paksha plus a tithi number.
-- **Rahu and Ketu are shadow points, not planets.** They do not appear in a real ephemeris.
-- **Nakshatra count is 27.** `roxy.VedicAstrology.Nakshatras.GetAsync()` returns 27 entries.
-- **Retrograde is per-planet, not global.** Check the specific planet in the response; never generate "Mercury retrograde globally" copy.
-- **Seed-based daily endpoints are deterministic per (seed, date).** Same seed plus same date returns the same reading. By design for push consistency, not a cache bug.
-- **Angel number lookup works for any positive integer.** `roxy.AngelNumbers.Lookup` covers non-canonical numbers via digit-root fallback. Do not reject anything but 111 / 222 / 333.
+- **Ayanamsa is server-side in Vedic.** LLMs default to tropical / Western math. Vedic endpoints apply sidereal Lahiri ayanamsa server-side. KP endpoints accept `Ayanamsa` of `kp-newcomb` (default), `kp-old`, `lahiri`, or `custom` (your own degrees in `AyanamsaValue`). Do not try to "correct" server output by subtracting ayanamsa in client code.
+- **Tithi count is 30, not 2.** 15 Shukla (waxing) plus 15 Krishna (waning). Older LLM training data conflates Purnima and Amavasya as single tithis. Our panchang response carries a `paksha` field (`"Shukla"` or `"Krishna"`) plus a tithi number, so there are 30 distinct tithis in a lunar month.
+- **Rahu and Ketu are shadow points, not planets.** They do not appear in a real ephemeris. Endpoints accept `NodeType` of `"mean"` (smooth mean node, traditional Vedic default) or `"true"` (osculating node with perturbation corrections) to select which calculation to use.
+- **Nakshatra count is 27.** Abhijit is sometimes treated as a 28th in some schools, but this API uses the standard 27. `roxy.VedicAstrology.Nakshatras.GetAsync()` returns a list of length 27.
+- **Retrograde is per-planet, not global.** Natal chart planets and Vedic `meta` include `IsRetrograde` (a boolean) per planet. KP planet lists use `retrograde`. Never generate "Mercury retrograde globally" UI copy, check the specific planet in the response.
+- **Tarot reversals are a product choice.** `AllowReversals = false` on a tarot draw means no reversed cards in that draw, period. It is not cosmically meaningful, it is a config flag.
+- **Angel number lookup works for any positive integer.** Digit-root fallback covers non-canonical numbers. Do not generate validation logic that rejects anything other than `111` / `222` / `333`.
+- **Seed-based daily endpoints are DETERMINISTIC per `(seed, date)` pair.** Same seed plus same date returns the same reading. This is by design for push-notification consistency. Do not describe it as "cached" or retry on stale responses.
+- **Timezone affects Western calculations more than Vedic.** Western natal charts must respect DST at the time of birth. Vedic endpoints default to IST (`5.5`) which is DST-free. Pass the IANA `Timezone` string from the location lookup (`"America/New_York"`, `"Asia/Kolkata"`) directly to chart calls and the server resolves the DST-correct offset for the chart `Date`. Never pass the `UtcOffset` of the city record (the offset in force today) or the clock of the user right now.
+
+## Error handling
+
+Calls throw `RoxyError` (in `RoxyApi.Models`, extends `ApiException`) on every error status the endpoint declares. `Message` is human-readable and may change; `Code` is stable, switch on it, comparing against the `ErrorCodes` constants. `DocUrl` and `RetryAfter` (a nullable `TimeSpan`) carry the documentation link and the `Retry-After` wait. A status the endpoint does not declare, such as a 5xx from the edge, throws the base `ApiException` with `ResponseStatusCode` set. A request that still fails after the last retry throws the error of the final response.
+
+```csharp
+try
+{
+    var horoscope = await roxy.Astrology.Horoscope["aries"].Daily.GetAsync();
+    Console.WriteLine(horoscope!.Overview);
+}
+catch (RoxyError e) when (e.Code == ErrorCodes.RateLimitPerMinute)
+{
+    await Task.Delay(e.RetryAfter ?? TimeSpan.FromSeconds(1)); // then repeat the call
+}
+catch (RoxyError e)
+{
+    Console.WriteLine($"{e.ResponseStatusCode} {e.Code}: {e.Message} ({e.DocUrl})");
+    // On a 400, e.Issues lists each field that failed validation.
+}
+```
+
+<!-- BEGIN:ERRORS -->
+Every error returns `{ error, code, doc_url }`. Switch on `code`; `error` is readable text and may change. Each meaning below says whether and when to retry, and `Retry-After` carries the wait when the response sends it. Every code is documented at https://roxyapi.com/docs/errors.
+
+| Status | Code | Meaning |
+|--------|------|---------|
+| 400 | `validation_error` | A field is missing or invalid. The body lists every failing field at once in issues, each with its path and the expected shape. |
+| 400 | `bad_request` | The request was rejected as a whole, for example a body that is not valid JSON or a date range that ends before it starts. |
+| 400 | `date_out_of_range` | A date lies outside the span the planetary positions are served for. The error names the supported dates. |
+| 401 | `api_key_required` | No API key was sent. |
+| 401 | `invalid_api_key` | The key sent is malformed or cannot be verified. |
+| 401 | `api_key_revoked` | The key was valid once and has since been revoked from the account page. |
+| 401 | `subscription_not_found` | The key verifies, but the subscription behind it no longer exists. |
+| 401 | `subscription_inactive` | The subscription behind the key is cancelled, expired or suspended, or a trial is past its end date. |
+| 401 | `publishable_key_not_allowed_on_mcp` | A publishable key was used on a Remote MCP server, which takes a secret key. |
+| 401 | `invalid_client_ip` | A keyless request could not be attributed to a caller. |
+| 401 | `unauthorized` | Authentication failed with no more specific reason to give. |
+| 403 | `forbidden` | The key is valid, but this request is not permitted. |
+| 403 | `origin_required` | A publishable key with an origin allowlist was used with no Origin header, as from a server or a native app. |
+| 403 | `origin_not_allowed` | The calling site is not on the origin allowlist of this publishable key. |
+| 404 | `not_found` | Nothing is served at this path, or the identifier in it does not exist. A path miss adds suggestions, the closest real endpoints. |
+| 405 | `method_not_allowed` | The path exists for a different HTTP method. The body lists the accepted methods in allow, as does the Allow header. |
+| 409 | `conflict` | The request cannot be applied in the current state. |
+| 410 | `gone` | The path was removed permanently. |
+| 413 | `payload_too_large` | The request body is larger than the API accepts. A body far over the cap is refused before it reaches the API and returns a bare 413 with no JSON body. |
+| 415 | `unsupported_media_type` | A request with a body was sent without Content-Type: application/json. |
+| 422 | `unprocessable_entity` | Every field is valid, but the combination cannot be computed. |
+| 429 | `rate_limit_exceeded` | The monthly request allowance is used up. Retry-After gives the seconds to the reset. |
+| 429 | `rate_limit_per_minute` | The per-minute limit of the plan was reached. Retry-After gives the seconds to the next minute, and the monthly allowance is not charged. |
+| 429 | `rate_limited` | A rate limit was reached, reported without the plan detail. |
+| 429 | `free_tier_exhausted` | A keyless request has used up its trial allowance. |
+| 500 | `internal_error` | The request failed inside our service. Retry with exponential backoff. |
+| 503 | `compute_saturated` | Heavy calculations are briefly at capacity. Send the same request again after Retry-After seconds. |
+| Any | `error` | A fallback for a status with no more specific code. The status and the error field carry the signal. |
+<!-- END:ERRORS -->
+
+### Retries
+
+The client retries twice by default on a 429, 500, 502, 503 or 504 and on a refused or unresolvable connection, with full jitter, honouring `Retry-After`, and gives up at once when that header asks for more than thirty seconds. A read timeout is not retried, and an exhausted retry throws the final `RoxyError` or `ApiException`. `new RoxyClient(key, new RoxyRetryOptions { MaxRetries = 0 })` turns retries off.
 
 ## MCP equivalents
 
-Every method has a matching MCP tool. The remote MCP server per domain is at `https://roxyapi.com/mcp/{domain}` (Streamable HTTP, no stdio, no self-hosting). Tool names follow `{method}_{path_snake_case}`:
+Every method has a matching MCP tool. The remote MCP server per domain is at `https://roxyapi.com/mcp/{domain}` (Streamable HTTP, no stdio / no self-hosting). Tool names follow `{method}_{path_snake_case}`, for example:
 
 - `POST /astrology/natal-chart` -> `post_astrology_natal_chart` on `/mcp/astrology`
 - `GET /astrology/horoscope/{sign}/daily` -> `get_astrology_horoscope_sign_daily` on `/mcp/astrology`
 - `POST /vedic-astrology/birth-chart` -> `post_vedic_astrology_birth_chart` on `/mcp/vedic-astrology`
+- `POST /tarot/spreads/celtic-cross` -> `post_tarot_spreads_celtic_cross` on `/mcp/tarot`
 
-Use the SDK for typed .NET apps. Use MCP for AI agents (Claude, Cursor, ChatGPT) where the agent selects tools from user intent.
+Use the SDK for typed .NET apps. Use MCP for AI agents (Claude Desktop, Cursor MCP, OpenAI agents) where the agent selects tools based on user intent.
 
 ## Gotchas
 
@@ -294,19 +335,31 @@ Use the SDK for typed .NET apps. Use MCP for AI agents (Claude, Cursor, ChatGPT)
 - **Do not guess method names.** Type `roxy.Domain.` and let IntelliSense show the fluent tree. It mirrors the URL path, not the `operationId`.
 - **Responses are nullable.** Use `result!.Field` or null checks; the success body is non-null only on a 2xx (errors throw).
 - **`Timezone` is a union wrapper, never a bare number.** Use `new() { Double = -5 }` or `new() { String = "America/New_York" }`.
-- **Switch on `e.Code`, not `e.Message`.** The message may change; the code is stable.
-- **List endpoints return a paginated envelope**, `Total`, `Limit`, `Offset` plus a named list (`Cities`, `Crystals`, `Hexagrams`, `Symbols`), never a bare list. Pass `c => c.QueryParameters.Limit = 64` to widen a page; `Iching.Hexagrams` defaults to 20 of 64.
+- **Switch on `e.Code`, not `e.Message`.** The message may change; the code is stable. Compare against `ErrorCodes`, and `using RoxyApi.Models;` for `RoxyError` (`ErrorCodes` and `RoxyRetryOptions` are in `RoxyApi`).
+- **A `validation_error` carries `Issues`, each with `Path` (the dot-separated field, such as `time` or `person1.date`), `Message` and `Code`.** Loop over them to show every failing field. `Path` is `(root)` for the whole body, and all three members are nullable strings:
+  ```csharp
+  foreach (var i in e.Issues ?? [])
+      Console.WriteLine($"{i.Path}: {i.Message} ({i.Code})");
+  ```
+- **`Lang` is a per-endpoint enum.** A GET enum is `GetLangQueryParameterType` in the endpoint namespace, which gains an `Item` segment per indexer: `using RoxyApi.Astrology.Horoscope.Item.Daily;` then `c => c.QueryParameters.Lang = GetLangQueryParameterType.Es`. A POST enum is `PostLangQueryParameterType` in its own namespace.
+- **A city record has `City`, `Province`, `Country`, `Iso2`, `Latitude`, `Longitude`, `Timezone`, `UtcOffset` and `Population`.** The name is `City`, never `Name`.
+- **`UtcOffset` on a city record is the offset in force today.** Pass the IANA `Timezone` string to chart calls so the server resolves the offset for the birth date.
+- **A natal chart `Planets` is a list of objects.** Find a body by `Name`: `chart!.Planets!.First(p => p.Name == "Moon")`.
+- **In a Vedic chart `meta.Moon.rashi` is a string and `meta.Moon.nakshatra` is an object** (`name`, `pada`, `lord`). `Meta` values are untyped: `((UntypedObject)kundli!.Meta!.AdditionalData["Moon"]).GetValue()` is a dictionary of `UntypedNode` (`rashi` an `UntypedString`, `nakshatra` an `UntypedObject`). Unwrap with `((UntypedString)node).GetValue()` (`using Microsoft.Kiota.Abstractions.Serialization;`) and display the nakshatra `name`.
+- **Usage figures are nullable doubles.** `Usage.GetAsync()` returns `UsedThisMonth`, `RemainingThisMonth` and `RequestsPerMonth` as `double?`.
+- **`sign` is matched case-insensitively.** Lowercase is canonical.
+- **Total requests on a persistent failure = 1 + retries.** The default `MaxRetries` of 2 makes 3 requests; `MaxRetries = 0` makes exactly one.
+- **Most list endpoints return a paginated envelope**, `Total`, `Limit`, `Offset` plus a named list (`Cities`, `Crystals`, `Hexagrams`, `Symbols`). A few catalogs return a bare `List<...>` instead (`Astrology.Signs`, `Astrology.PlanetMeanings`, `VedicAstrology.Avasthas`). Tell them apart by the spec: `jq -r '.paths | to_entries[] | select(.value.get.responses["200"].content["application/json"].schema.type == "array") | .key' specs/openapi.json`, or by the return type of `GetAsync` (`List<...>?` versus an object). Pass `c => c.QueryParameters.Limit = 64` to widen a page; `Iching.Hexagrams` defaults to 20 of 64.
 - **Enums live beside their request body.** `Gender`, `Facing`, `Unit` and room `Type` are generated enums in the namespace of the body that uses them (`using RoxyApi.FengShui.Kua;`, `using RoxyApi.Vastu.Rooms;`), so the same member name can exist in several namespaces; the one the body expects is the one to use.
-- **Do not expose API keys client-side.** Call Roxy from server, API, or backend code only.
-
-## Dependencies
-
-One runtime dependency: [`Microsoft.Kiota.Bundle`](https://www.nuget.org/packages/Microsoft.Kiota.Bundle) (MIT, by Microsoft), which provides the HTTP, auth, and serialization libraries the generated client uses. Targets `netstandard2.0` and `net8.0`.
+- **Do not expose API keys client-side.** Call Roxy from server code only.
 
 ## Links
 
 - Full method reference: `docs/llms-full.txt` (bundled in this package)
+- Documentation: https://roxyapi.com/docs
 - Interactive API docs: https://roxyapi.com/api-reference
 - Pricing and API keys: https://roxyapi.com/pricing
 - MCP for AI agents: https://roxyapi.com/docs/mcp
-- TypeScript SDK: https://www.npmjs.com/package/@roxyapi/sdk | Python SDK: https://pypi.org/project/roxy-sdk/
+- Templates: https://roxyapi.com/templates
+- Source and issues: https://github.com/RoxyAPI/sdk-dotnet
+- Other SDKs: TypeScript https://www.npmjs.com/package/@roxyapi/sdk, Python https://pypi.org/project/roxy-sdk/, PHP https://packagist.org/packages/roxyapi/sdk, Go https://pkg.go.dev/github.com/RoxyAPI/sdk-go, Rust https://crates.io/crates/roxyapi

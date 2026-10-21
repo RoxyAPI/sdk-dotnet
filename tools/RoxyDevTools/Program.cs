@@ -15,6 +15,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
+using RoxyDevTools;
 using static RoxyDevTools.Naming;
 
 const string SpecUrl = "https://roxyapi.com/api/v2/openapi.json";
@@ -126,59 +127,20 @@ void FixPathParameters(JsonObject spec)
     if (fixedCount > 0) Console.WriteLine($"Forced required:true on {fixedCount} path parameters.");
 }
 
-// Every endpoint returns the same `{ error, code }` shape on failure (400 adds
-// validation `issues[]`, 405 adds `allow[]`). The served spec inlines that schema
+// Every endpoint returns the same error envelope on failure (`{ error, code, doc_url }`,
+// plus `issues[]` on a 400 and `allow[]` on a 405). The served spec inlines that schema
 // per operation, so Kiota would emit a distinct error type for every operation and
 // status. Point every 4xx and 5xx response at one shared RoxyError schema instead:
 // Kiota then generates a single catchable exception inheriting ApiException, and the
 // generated client shrinks by thousands of redundant types. x-ms-primary-error-message
-// surfaces `error` as Exception.Message. The status codes are read off the document,
-// never listed here, so a new error status cannot slip past as a per-operation type.
+// surfaces `error` as Exception.Message. The shared schema is the union of the inlined
+// ones (ErrorSchema.cs). The status codes are read off the document, never listed here,
+// so a new error status cannot slip past as a per-operation type.
 void NormalizeErrors(JsonObject spec)
 {
     var schemas = spec["components"]!.AsObject()["schemas"]!.AsObject();
 
-    schemas["RoxyErrorIssue"] = new JsonObject
-    {
-        ["type"] = "object",
-        ["description"] = "A single field-level validation failure from a 400 response.",
-        ["properties"] = new JsonObject
-        {
-            ["path"] = StringProp("Dot-separated field path, or (root) for a top-level error."),
-            ["message"] = StringProp("Human readable description of this failure."),
-            ["code"] = StringProp("Validation issue code, for example invalid_type or too_small."),
-            ["expected"] = StringProp("Expected type, when the issue is a type mismatch."),
-        },
-    };
-    schemas["RoxyError"] = new JsonObject
-    {
-        ["type"] = "object",
-        ["description"] = "Error returned by every RoxyAPI endpoint on a 4xx or 5xx response.",
-        ["required"] = new JsonArray("error", "code"),
-        ["properties"] = new JsonObject
-        {
-            ["error"] = new JsonObject
-            {
-                ["type"] = "string",
-                ["description"] = "Human readable error message. Wording may change; switch on Code instead.",
-                ["x-ms-primary-error-message"] = true,
-            },
-            ["code"] = StringProp("Stable machine readable error code, for example validation_error or rate_limit_exceeded."),
-            ["issues"] = new JsonObject
-            {
-                ["type"] = "array",
-                ["description"] = "Present on 400 responses: every field that failed validation.",
-                ["items"] = new JsonObject { ["$ref"] = "#/components/schemas/RoxyErrorIssue" },
-            },
-            ["allow"] = new JsonObject
-            {
-                ["type"] = "array",
-                ["description"] = "Present on 405 responses: the HTTP methods this path accepts.",
-                ["items"] = new JsonObject { ["type"] = "string" },
-            },
-            ["docs"] = StringProp("Link to the documentation for this domain, when available."),
-        },
-    };
+    foreach (var (name, schema) in ErrorSchema.Derive(spec)) schemas[name] = schema;
 
     var normalized = 0;
     foreach (var (_, _, op) in Operations(spec))
@@ -186,7 +148,7 @@ void NormalizeErrors(JsonObject spec)
         if (op["responses"] is not JsonObject responses) continue;
         foreach (var (code, respNode) in responses)
         {
-            if (code.Length != 3 || code[0] is not ('4' or '5') || respNode is not JsonObject resp) continue;
+            if (!ErrorSchema.IsError(code) || respNode is not JsonObject resp) continue;
             resp["content"] = new JsonObject
             {
                 ["application/json"] = new JsonObject
@@ -199,8 +161,6 @@ void NormalizeErrors(JsonObject spec)
     }
     Console.WriteLine($"Normalized {normalized} error responses to RoxyError.");
 }
-
-JsonObject StringProp(string description) => new() { ["type"] = "string", ["description"] = description };
 
 int RunKiota()
 {
@@ -249,6 +209,11 @@ int SyncDocs()
     // Method reference + its compile guard are rendered from the same call expressions:
     // the .g.cs file is compiled by the test project, so any example that would not
     // compile fails CI before it can ship in docs/llms-full.txt.
+    changed |= ReplaceRegion("README.md", "<!-- BEGIN:ERRORS -->", "<!-- END:ERRORS -->", RenderErrorsTable(spec), optional: true);
+    changed |= ReplaceRegion("AGENTS.md", "<!-- BEGIN:ERRORS -->", "<!-- END:ERRORS -->", RenderErrorsTable(spec), optional: true);
+
+    changed |= WriteIfChanged($"{GeneratedDir}/ErrorCodes.cs", RenderErrorCodes(spec));
+
     var (methods, guard) = RenderMethods(spec);
     changed |= ReplaceRegion("docs/llms-full.txt", "<!-- BEGIN:METHODS -->", "<!-- END:METHODS -->", methods, optional: true);
     Directory.CreateDirectory("tests/RoxyApi.Tests/Generated");
@@ -320,6 +285,50 @@ string RenderDomainsTable(List<Domain> domains)
     foreach (var d in domains)
         sb.AppendLine($"| [`{d.Accessor}`]({ReferenceUrl(d.Tag)}) | {d.Summary} |");
     sb.Append("<!-- END:DOMAINS -->");
+    return sb.ToString();
+}
+
+// The error codes the API publishes, rendered from info["x-error-codes"] in spec order.
+string RenderErrorsTable(JsonObject spec)
+{
+    var sb = new StringBuilder();
+    sb.AppendLine("<!-- BEGIN:ERRORS -->");
+    sb.AppendLine("Every error returns `{ error, code, doc_url }`. Switch on `code`; `error` is readable text and may change. Each meaning below says whether and when to retry, and `Retry-After` carries the wait when the response sends it. Every code is documented at https://roxyapi.com/docs/errors.");
+    sb.AppendLine();
+    sb.AppendLine("| Status | Code | Meaning |");
+    sb.AppendLine("|--------|------|---------|");
+    foreach (var e in spec["info"]!["x-error-codes"]!.AsArray())
+        sb.AppendLine($"| {e!["status"]?.ToString() ?? "Any"} | `{e["code"]}` | {e["meaning"]} |");
+    sb.Append("<!-- END:ERRORS -->");
+    return sb.ToString();
+}
+
+// One constant per published error code, so callers switch on ErrorCodes.RateLimitPerMinute
+// instead of a typed string. Written by sync-docs next to the Kiota output, after Kiota has
+// cleaned that directory, and rendered from the same info["x-error-codes"] as the docs table.
+string RenderErrorCodes(JsonObject spec)
+{
+    var sb = new StringBuilder();
+    sb.AppendLine("// <auto-generated/>");
+    sb.AppendLine("// Regenerated by `dotnet run --project tools/RoxyDevTools -- sync-docs` from the spec. Do not edit by hand.");
+    sb.AppendLine("namespace RoxyApi");
+    sb.AppendLine("{");
+    sb.AppendLine("    /// <summary>The stable <c>code</c> values of a <see cref=\"RoxyApi.Models.RoxyError\"/>, for example <c>e.Code == ErrorCodes.RateLimitPerMinute</c>.</summary>");
+    sb.AppendLine("    public static class ErrorCodes");
+    sb.AppendLine("    {");
+    var first = true;
+    foreach (var e in spec["info"]!["x-error-codes"]!.AsArray())
+    {
+        var code = e!["code"]!.GetValue<string>();
+        if (!first) sb.AppendLine();
+        first = false;
+        var status = e["status"]?.ToString() ?? "any status";
+        var meaning = System.Security.SecurityElement.Escape(string.Join(' ', e["meaning"]!.GetValue<string>().Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)));
+        sb.AppendLine($"        /// <summary>HTTP {status}. {meaning}</summary>");
+        sb.AppendLine($"        public const string {Pascal(code)} = \"{code}\";");
+    }
+    sb.AppendLine("    }");
+    sb.AppendLine("}");
     return sb.ToString();
 }
 

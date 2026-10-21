@@ -16,7 +16,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Present on 405 responses: the HTTP methods this path accepts.</summary>
+        /// <summary>Allowed HTTP methods for this path. Mirrors the Allow response header.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Allow { get; set; }
@@ -24,7 +24,7 @@ namespace RoxyApi.Models
 #else
         public List<string> Allow { get; set; }
 #endif
-        /// <summary>Stable machine readable error code, for example validation_error or rate_limit_exceeded.</summary>
+        /// <summary>Machine-readable error code. Stable identifier.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Code { get; set; }
@@ -32,7 +32,7 @@ namespace RoxyApi.Models
 #else
         public string Code { get; set; }
 #endif
-        /// <summary>Link to the documentation for this domain, when available.</summary>
+        /// <summary>Link to the product page for this domain.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Docs { get; set; }
@@ -40,7 +40,15 @@ namespace RoxyApi.Models
 #else
         public string Docs { get; set; }
 #endif
-        /// <summary>Human readable error message. Wording may change; switch on Code instead.</summary>
+        /// <summary>Absolute URL of the documented explanation of this code, anchored at the code itself, for example https://roxyapi.com/docs/errors#not_found.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DocUrl { get; set; }
+#nullable restore
+#else
+        public string DocUrl { get; set; }
+#endif
+        /// <summary>Human-readable error message. May change wording.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Error { get; set; }
@@ -48,7 +56,7 @@ namespace RoxyApi.Models
 #else
         public string Error { get; set; }
 #endif
-        /// <summary>Present on 400 responses: every field that failed validation.</summary>
+        /// <summary>Every validation failure. Use this to rebuild a valid request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Models.RoxyErrorIssue>? Issues { get; set; }
@@ -85,6 +93,7 @@ namespace RoxyApi.Models
             {
                 { "allow", n => { Allow = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "code", n => { Code = n.GetStringValue(); } },
+                { "doc_url", n => { DocUrl = n.GetStringValue(); } },
                 { "docs", n => { Docs = n.GetStringValue(); } },
                 { "error", n => { Error = n.GetStringValue(); } },
                 { "issues", n => { Issues = n.GetCollectionOfObjectValues<global::RoxyApi.Models.RoxyErrorIssue>(global::RoxyApi.Models.RoxyErrorIssue.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -100,6 +109,7 @@ namespace RoxyApi.Models
             writer.WriteCollectionOfPrimitiveValues<string>("allow", Allow);
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("docs", Docs);
+            writer.WriteStringValue("doc_url", DocUrl);
             writer.WriteStringValue("error", Error);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.RoxyErrorIssue>("issues", Issues);
             writer.WriteAdditionalData(AdditionalData);
