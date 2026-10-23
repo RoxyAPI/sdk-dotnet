@@ -17,7 +17,7 @@ namespace RoxyApi.Biorhythm.Daily
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Date for the reading in YYYY-MM-DD format. Defaults to today (UTC). Useful for viewing past daily readings or pre-generating future ones.</summary>
         public Date? Date { get; set; }
-        /// <summary>Optional seed for reproducible readings. Same seed + same date = same reading every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings.</summary>
+        /// <summary>Optional seed for reproducible readings. Same seed + same date = same reading every time. Pass any unique identifier (userId, email hash, session token) to give each user their own reading for the day. Without a seed every caller receives the same shared reading of the day.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Seed { get; set; }

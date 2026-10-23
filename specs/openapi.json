@@ -61880,6 +61880,15 @@
     "/feng-shui/eight-mansions": {
       "post": {
         "operationId": "generateEightMansions",
+        "x-required-any-of": [
+          [
+            "date",
+            "gender"
+          ],
+          [
+            "kua"
+          ]
+        ],
         "tags": [
           "Feng Shui"
         ],
@@ -62343,6 +62352,14 @@
     "/feng-shui/flying-stars/natal": {
       "post": {
         "operationId": "generateFlyingStarChart",
+        "x-required-any-of": [
+          [
+            "facingDegrees"
+          ],
+          [
+            "facing"
+          ]
+        ],
         "tags": [
           "Feng Shui"
         ],
@@ -66004,6 +66021,14 @@
     "/mesoamerican-astrology/mayan/long-count/convert": {
       "post": {
         "operationId": "convertLongCount",
+        "x-required-any-of": [
+          [
+            "date"
+          ],
+          [
+            "longCount"
+          ]
+        ],
         "tags": [
           "Mesoamerican Astrology"
         ],
@@ -76349,6 +76374,28 @@
     "/numerology/maturity": {
       "post": {
         "operationId": "calculateMaturity",
+        "x-required-any-of": [
+          [
+            "fullName",
+            "year",
+            "month",
+            "day"
+          ],
+          [
+            "lifePath",
+            "expression"
+          ],
+          [
+            "lifePath",
+            "fullName"
+          ],
+          [
+            "expression",
+            "year",
+            "month",
+            "day"
+          ]
+        ],
         "tags": [
           "Numerology"
         ],
@@ -80022,7 +80069,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same number every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same number every time. Pass any unique identifier (userId, email hash, session token) to give each user their own number for the day. Without a seed every caller receives the same shared number of the day."
                   },
                   "date": {
                     "type": "string",
@@ -81434,6 +81481,14 @@
     "/kabbalah/gematria": {
       "post": {
         "operationId": "calculateGematria",
+        "x-required-any-of": [
+          [
+            "text"
+          ],
+          [
+            "textHebrew"
+          ]
+        ],
         "tags": [
           "Kabbalah"
         ],
@@ -82340,6 +82395,14 @@
     "/kabbalah/name-profile": {
       "post": {
         "operationId": "generateNameProfile",
+        "x-required-any-of": [
+          [
+            "name"
+          ],
+          [
+            "nameHebrew"
+          ]
+        ],
         "tags": [
           "Kabbalah"
         ],
@@ -85213,6 +85276,24 @@
     "/kabbalah/compatibility": {
       "post": {
         "operationId": "calculateNameCompatibility",
+        "x-required-any-of": [
+          [
+            "firstName",
+            "secondName"
+          ],
+          [
+            "firstName",
+            "secondNameHebrew"
+          ],
+          [
+            "firstNameHebrew",
+            "secondName"
+          ],
+          [
+            "firstNameHebrew",
+            "secondNameHebrew"
+          ]
+        ],
         "tags": [
           "Kabbalah"
         ],
@@ -86385,7 +86466,7 @@
           "Tarot"
         ],
         "summary": "Daily tarot card - Card of the day API",
-        "description": "Receive a single tarot card for daily guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same card on the same day, perfect for \u0022Card of the Day\u0022 features. Provide a seed (userId, email hash, session token) for reproducible consistency, or omit for anonymous daily draws. Returns card with keywords, full meaning, and a daily message summary. Great for tarot apps, wellness platforms, morning ritual apps, and journaling tools.",
+        "description": "Receive a single tarot card for daily guidance and reflection. This endpoint uses seeded randomness to ensure the same seed gets the same card on the same day, perfect for \u0022Card of the Day\u0022 features. Pass a seed (userId, email hash, session token) to give each user their own card for the day; without a seed every caller receives the same shared card of the day, which changes at midnight UTC. Returns card with keywords, full meaning, and a daily message summary. Great for tarot apps, wellness platforms, morning ritual apps, and journaling tools.",
         "security": [
           {
             "apiKey": []
@@ -86427,7 +86508,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same card every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same card every time. Pass any unique identifier (userId, email hash, session token) to give each user their own card for the day. Without a seed every caller receives the same shared card of the day."
                   },
                   "date": {
                     "type": "string",
@@ -89313,7 +89394,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same reading every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same reading every time. Pass any unique identifier (userId, email hash, session token) to give each user their own reading for the day. Without a seed every caller receives the same shared reading of the day."
                   },
                   "date": {
                     "type": "string",
@@ -93809,7 +93890,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same hexagram every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same hexagram every time. Pass any unique identifier (userId, email hash, session token) to give each user their own hexagram for the day. Without a seed every caller receives the same shared hexagram of the day."
                   },
                   "date": {
                     "type": "string",
@@ -94066,7 +94147,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same hexagram every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same hexagram every time. Pass any unique identifier (userId, email hash, session token) to give each user their own hexagram for the day. Without a seed every caller receives the same shared hexagram of the day."
                   },
                   "date": {
                     "type": "string",
@@ -96811,7 +96892,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same crystal every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same crystal every time. Pass any unique identifier (userId, email hash, session token) to give each user their own crystal for the day. Without a seed every caller receives the same shared crystal of the day."
                   },
                   "date": {
                     "type": "string",
@@ -98575,7 +98656,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same symbol every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same symbol every time. Pass any unique identifier (userId, email hash, session token) to give each user their own symbol for the day. Without a seed every caller receives the same shared symbol of the day."
                   },
                   "date": {
                     "type": "string",
@@ -99662,7 +99743,7 @@
                   "seed": {
                     "type": "string",
                     "example": "user123",
-                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same angel number every time. Pass any unique identifier (userId, email hash, session token). Omit for anonymous daily readings."
+                    "description": "Optional seed for reproducible readings. Same seed \u002B same date = same angel number every time. Pass any unique identifier (userId, email hash, session token) to give each user their own angel number for the day. Without a seed every caller receives the same shared angel number of the day."
                   },
                   "date": {
                     "type": "string",
