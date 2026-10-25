@@ -46,7 +46,7 @@ namespace RoxyApi.Astrology.Planets
         public double? Latitude { get; set; }
         /// <summary>Apparent geocentric tropical longitude on the true ecliptic of date, in degrees (0-360): light time and aberration applied, nutation included, the convention desktop chart software and the NASA JPL Horizons observer tables print, so it compares directly with either.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass &quot;mean&quot; for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected.</summary>
+        /// <summary>Planet name (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, North Node, South Node, Chiron, Black Moon Lilith). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass &quot;mean&quot; for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected. Black Moon Lilith is always the mean lunar apogee, whatever nodeType says. POST /lilith returns the mean and the true (osculating) apogee side by side, each labelled by its variant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
