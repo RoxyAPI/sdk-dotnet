@@ -29,7 +29,7 @@ namespace RoxyApi.Models
         public global::RoxyApi.Models.TransitsRequest_nodeType? NodeType { get; set; }
         /// <summary>Transit time in HH:MM:SS format (defaults to current time)</summary>
         public Time? Time { get; set; }
-        /// <summary>Transit timezone: decimal hours from UTC OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the transit date. Defaults to 0 (UTC).</summary>
+        /// <summary>Transit timezone: decimal hours from UTC OR IANA name (e.g. &quot;America/New_York&quot;). IANA resolved to the DST-correct offset for the transit date. When `date` or `time` is omitted, the current moment is read in this zone, so `transitDate` and `transitTime` come back as its local clock. Defaults to 0 (UTC).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.TransitsRequest.TransitsRequest_timezone? Timezone { get; set; }

@@ -43,7 +43,7 @@ namespace RoxyApi.Location.Countries.Item
         public double? Latitude { get; set; }
         /// <summary>Geographic longitude in decimal degrees (-180 to 180). Pass directly to astrology, horoscope, and panchang API endpoints alongside latitude.</summary>
         public double? Longitude { get; set; }
-        /// <summary>Population estimate for the place. Breaks ties between results of equal match quality, so among several places matching equally well the largest leads. It never outranks a better match, which is why a small town still wins when its name is typed exactly. May be 0 for a hamlet or administrative seat that carries no published figure.</summary>
+        /// <summary>Population estimate for the place. Weighs the ranking, so among places matching a query alike the larger leads, while a full name typed still outranks a namesake many times its size. 0 for a place with no published figure, as most villages are.</summary>
         public double? Population { get; set; }
         /// <summary>State, province, canton, or administrative region. Show it whenever more than one result comes back: it is what separates Richfield, Utah from Richfield, Minnesota, and the six US Springfields from each other. Empty for the small number of places with no administrative division recorded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

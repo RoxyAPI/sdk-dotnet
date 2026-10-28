@@ -928,7 +928,7 @@ await roxy.AngelNumbers.Daily.PostAsync(new() { Seed = "user123", Date = new Dat
 
 ## [Location and Timezone](https://roxyapi.com/api-reference/location-and-timezone) - `roxy.Location`
 
-Timezone and location API with city search and geocoding across 235,000+ cities in 240+ countries, returning latitude...
+Timezone and location API with city search and geocoding across 5,180,000+ cities, towns and villages in 240+ countri...
 
 ```csharp
 // Search cities worldwide - Geocoding autocomplete with coordinates and timezone
