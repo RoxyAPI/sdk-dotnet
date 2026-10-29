@@ -34,7 +34,7 @@ namespace RoxyApi.Kabbalah.BirthProfile
         {
         }
         /// <summary>
-        /// Return the Hebrew date of a birth, the Hebrew birthday that follows it, the three birth names of the Renaissance angel tradition and the sephirah of the birth day, from one birth moment. The Hebrew date is computed from the published calendar algorithm rather than looked up, the sunset boundary is a typed request field because it depends on where you were, and the two rival ways of dating the first name are a typed convention the response echoes. Built for Jewish culture and education apps, birth angel features and any product that wants the Hebrew birthday on the same key as the rest of its readings.
+        /// Return the Hebrew date of a birth, the next Hebrew birthday from targetDate or today, the three birth names of the Renaissance angel tradition and the sephirah of the birth day, from one birth moment. The Hebrew date is computed from the published calendar algorithm rather than looked up, the sunset boundary is a typed request field because it depends on where you were, and the two rival ways of dating the first name are a typed convention the response echoes. Built for Jewish culture and education apps, birth angel features and any product that wants the Hebrew birthday on the same key as the rest of its readings.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Kabbalah.BirthProfile
             return await RequestAdapter.SendAsync<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostResponse>(requestInfo, global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Return the Hebrew date of a birth, the Hebrew birthday that follows it, the three birth names of the Renaissance angel tradition and the sephirah of the birth day, from one birth moment. The Hebrew date is computed from the published calendar algorithm rather than looked up, the sunset boundary is a typed request field because it depends on where you were, and the two rival ways of dating the first name are a typed convention the response echoes. Built for Jewish culture and education apps, birth angel features and any product that wants the Hebrew birthday on the same key as the rest of its readings.
+        /// Return the Hebrew date of a birth, the next Hebrew birthday from targetDate or today, the three birth names of the Renaissance angel tradition and the sephirah of the birth day, from one birth moment. The Hebrew date is computed from the published calendar algorithm rather than looked up, the sunset boundary is a typed request field because it depends on where you were, and the two rival ways of dating the first name are a typed convention the response echoes. Built for Jewish culture and education apps, birth angel features and any product that wants the Hebrew birthday on the same key as the rest of its readings.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Kabbalah.BirthProfile
             return new global::RoxyApi.Kabbalah.BirthProfile.BirthProfileRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Return the Hebrew date of a birth, the Hebrew birthday that follows it, the three birth names of the Renaissance angel tradition and the sephirah of the birth day, from one birth moment. The Hebrew date is computed from the published calendar algorithm rather than looked up, the sunset boundary is a typed request field because it depends on where you were, and the two rival ways of dating the first name are a typed convention the response echoes. Built for Jewish culture and education apps, birth angel features and any product that wants the Hebrew birthday on the same key as the rest of its readings.
+        /// Return the Hebrew date of a birth, the next Hebrew birthday from targetDate or today, the three birth names of the Renaissance angel tradition and the sephirah of the birth day, from one birth moment. The Hebrew date is computed from the published calendar algorithm rather than looked up, the sunset boundary is a typed request field because it depends on where you were, and the two rival ways of dating the first name are a typed convention the response echoes. Built for Jewish culture and education apps, birth angel features and any product that wants the Hebrew birthday on the same key as the rest of its readings.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class BirthProfileRequestBuilderPostQueryParameters 

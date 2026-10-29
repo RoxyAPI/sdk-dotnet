@@ -23,6 +23,8 @@ namespace RoxyApi.Kabbalah.BirthProfile
         public Date? Date { get; set; }
         /// <summary>Where 29 February falls. The civil wheel was built for a 365 day year and has no slot for it, so published tables differ: extend-previous reads the day as part of the period ending 28 February, next-angel reads it as the opening of the period starting 1 March. Ignored when angelDating is solar-longitude.</summary>
         public global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody_leapDayPolicy? LeapDayPolicy { get; set; }
+        /// <summary>Date to count the next Hebrew birthday from, in YYYY-MM-DD format. Send the local date of the user for an exact answer: on the birthday itself the answer is that day. Defaults to today (UTC).</summary>
+        public Date? TargetDate { get; set; }
         /// <summary>Birth time in HH:MM:SS local to the timezone field. Defaults to noon when omitted, which is stated because the name read from the hour changes every twenty minutes and a defaulted time cannot be precise.</summary>
         public Time? Time { get; set; }
         /// <summary>IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;, &quot;UTC&quot;), decimal hours (e.g. -5 for EST, 1 for CET), or a fixed UTC offset (e.g. &quot;-05:00&quot;, &quot;+01:00&quot;). Prefer the IANA name: it is resolved to the offset in force at the birth date and time, historical daylight-saving rules included, while a fixed offset or decimal is taken literally and will be wrong if it does not match the daylight-saving state at that moment. On a transition day a time in the repeated hour is read as its first occurrence and a time in the skipped hour is moved forward past the gap. Invalid timezones return 400 with a validation error.</summary>
@@ -68,6 +70,7 @@ namespace RoxyApi.Kabbalah.BirthProfile
                 { "angelDating", n => { AngelDating = n.GetEnumValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody_angelDating>(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "leapDayPolicy", n => { LeapDayPolicy = n.GetEnumValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody_leapDayPolicy>(); } },
+                { "targetDate", n => { TargetDate = n.GetDateValue(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
                 { "timezone", n => { Timezone = n.GetObjectValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody.BirthProfilePostRequestBody_timezone>(global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody.BirthProfilePostRequestBody_timezone.CreateFromDiscriminatorValue); } },
                 { "yearStart", n => { YearStart = n.GetEnumValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody_yearStart>(); } },
@@ -84,6 +87,7 @@ namespace RoxyApi.Kabbalah.BirthProfile
             writer.WriteEnumValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody_angelDating>("angelDating", AngelDating);
             writer.WriteDateValue("date", Date);
             writer.WriteEnumValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody_leapDayPolicy>("leapDayPolicy", LeapDayPolicy);
+            writer.WriteDateValue("targetDate", TargetDate);
             writer.WriteTimeValue("time", Time);
             writer.WriteObjectValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody.BirthProfilePostRequestBody_timezone>("timezone", Timezone);
             writer.WriteEnumValue<global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostRequestBody_yearStart>("yearStart", YearStart);

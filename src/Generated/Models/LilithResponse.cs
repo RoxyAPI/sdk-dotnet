@@ -22,7 +22,7 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.LilithResponse_birthDetails BirthDetails { get; set; }
 #endif
-        /// <summary>House system applied when placing each variant in a house.</summary>
+        /// <summary>House system actually applied when placing each variant in a house. Differs from the requested system only above the polar circle, where quadrant systems fall back to Whole Sign.</summary>
         public global::RoxyApi.Models.LilithResponse_houseSystem? HouseSystem { get; set; }
         /// <summary>Both Black Moon Lilith variants, the mean lunar apogee first and the true (osculating) apogee second.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

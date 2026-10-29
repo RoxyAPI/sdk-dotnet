@@ -17,6 +17,8 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day.</summary>
         public Date? Date { get; set; }
+        /// <summary>House system of the natal chart that every progressed body is placed in. Pass the system the natal chart was drawn in so the house numbers match it. Placidus (default) is the most widely used in Western astrology. Whole Sign assigns one sign per house. Equal divides into 30 degree segments from the Ascendant. Koch emphasizes higher latitudes. Quadrant systems fall back to Whole Sign above the polar circle.</summary>
+        public global::RoxyApi.Models.ProgressionsRequest_houseSystem? HouseSystem { get; set; }
         /// <summary>Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South.</summary>
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees (-180 to 180). Positive = East, negative = West.</summary>
@@ -41,6 +43,7 @@ namespace RoxyApi.Models
         public ProgressionsRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            HouseSystem = global::RoxyApi.Models.ProgressionsRequest_houseSystem.Placidus;
             NodeType = global::RoxyApi.Models.ProgressionsRequest_nodeType.True;
         }
         /// <summary>
@@ -62,6 +65,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "date", n => { Date = n.GetDateValue(); } },
+                { "houseSystem", n => { HouseSystem = n.GetEnumValue<global::RoxyApi.Models.ProgressionsRequest_houseSystem>(); } },
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "nodeType", n => { NodeType = n.GetEnumValue<global::RoxyApi.Models.ProgressionsRequest_nodeType>(); } },
@@ -78,6 +82,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("date", Date);
+            writer.WriteEnumValue<global::RoxyApi.Models.ProgressionsRequest_houseSystem>("houseSystem", HouseSystem);
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.Models.ProgressionsRequest_nodeType>("nodeType", NodeType);

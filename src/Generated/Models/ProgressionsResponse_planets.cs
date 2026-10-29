@@ -16,7 +16,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree of the progressed body within its zodiac sign (0 to 29.999).</summary>
         public double? Degree { get; set; }
-        /// <summary>Whole-sign house (1 to 12) counted from the progressed Ascendant sign. The 1st house is the entire sign the progressed Ascendant falls in.</summary>
+        /// <summary>Natal house (1 to 12) the progressed body occupies, read against the natal cusps in the requested houseSystem, the same house number POST /natal-chart gives a body at this longitude. Natal houses are the standard frame for reading progressed planets, the progressed Moon through the houses above all.</summary>
         public int? House { get; set; }
         /// <summary>Plain language meaning of this progressed body in its sign, suitable for chart reports and AI agents. Localized to the requested language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

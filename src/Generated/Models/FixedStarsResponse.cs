@@ -40,7 +40,7 @@ namespace RoxyApi.Models
 #else
         public List<global::RoxyApi.Models.FixedStarsResponse_stars> Stars { get; set; }
 #endif
-        /// <summary>Short overview of the fixed-star report for previews and report intros.</summary>
+        /// <summary>Short overview of the fixed-star report for previews and report intros: the number of conjunctions inside the orb and the tightest one found, or a plain statement that no star touches the chart. Localized to the requested language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Summary { get; set; }

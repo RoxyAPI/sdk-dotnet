@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Models
 {
-    /// <summary>House system used to place each Lilith variant in a house. Placidus (default), Whole Sign, Equal, or Koch.</summary>
+    /// <summary>House system used to place each Lilith variant in a house. Placidus (default), Whole Sign, Equal, or Koch. Above the polar circle, quadrant systems fall back to Whole Sign and the echoed houseSystem reports the system actually used.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum LilithRequest_houseSystem
     {

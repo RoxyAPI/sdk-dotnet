@@ -24,7 +24,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
 #endif
         /// <summary>Age in whole years at which this period ends and the next one begins.</summary>
         public double? EndAge { get; set; }
-        /// <summary>Gregorian year this period ends.</summary>
+        /// <summary>Gregorian year this period ends and the next one begins, startYear plus ten.</summary>
         public double? EndYear { get; set; }
         /// <summary>Pillar identifier, the stem id and the branch id joined by a hyphen.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +40,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
         public double? Number { get; set; }
         /// <summary>Age in whole years at which this ten-year period begins.</summary>
         public double? StartAge { get; set; }
-        /// <summary>Gregorian year this period begins, the birth year plus startAge.</summary>
+        /// <summary>Gregorian year this period begins: the year of the date that falls startAge years and startAgeMonths months after the birth date, plus ten for each later period. A birth in November with a start of 4 years 7 months begins its first period in June of the birth year plus five.</summary>
         public double? StartYear { get; set; }
         /// <summary>The Heavenly Stem of this luck pillar, with its element and polarity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

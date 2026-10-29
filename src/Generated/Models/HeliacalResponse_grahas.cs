@@ -35,7 +35,7 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.HeliacalResponse_grahas_lastEvent LastEvent { get; set; }
 #endif
-        /// <summary>Plain angular separation of the two ecliptic longitudes, in degrees. Returned beside timeDegrees so the two measures can be compared: this is what a combustion flag on a birth chart uses, and the gap between them is precisely what a location-aware heliacal calculation adds.</summary>
+        /// <summary>Plain angular separation of the two ecliptic longitudes, in degrees, read at the same instant as timeDegrees: the Sun crossing the horizon named in `horizon` on the requested day, sunset for west and sunrise for east, at the observer location. Returned beside timeDegrees so the two measures can be compared: this is the quantity a combustion flag on a birth chart uses, and the gap between them is precisely what a location-aware heliacal calculation adds. A birth chart reads it at the birth moment instead, so the two differ by however far the graha and the Sun moved in between, about half a degree per hour for the Moon.</summary>
         public double? LongitudeSeparation { get; set; }
         /// <summary>The event that will end the current state, or null when none falls inside the search horizon. For an invisible graha this is the udaya a practitioner is waiting for, so it answers when Guru Asta or Shukra Asta lifts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

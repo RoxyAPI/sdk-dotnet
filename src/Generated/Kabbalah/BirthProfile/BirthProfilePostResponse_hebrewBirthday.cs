@@ -8,14 +8,14 @@ using System;
 namespace RoxyApi.Kabbalah.BirthProfile
 {
     /// <summary>
-    /// The next Hebrew birthday. Three Hebrew dates are missing from some years, and where the anniversary moves to is a matter of community practice rather than arithmetic, so the field is null with a note rather than a guess.
+    /// The next Hebrew birthday from targetDate (the current UTC date when omitted), the anniversary of hebrewDate. Three Hebrew dates are missing from some years, and where the anniversary moves to is a matter of community practice rather than arithmetic, so the field is null with a note rather than a guess.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BirthProfilePostResponse_hebrewBirthday : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The next Gregorian date the Hebrew birthday falls on, or null when that Hebrew date does not exist in the year it would fall in.</summary>
+        /// <summary>The Gregorian date of the next Hebrew birthday on or after targetDate, or the current UTC date when targetDate is omitted (that day when it is the birthday), or null when that Hebrew date does not exist in the year it falls in. It is the daytime civil date: the Hebrew day itself opens at nightfall the evening before.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Date { get; set; }
@@ -23,7 +23,7 @@ namespace RoxyApi.Kabbalah.BirthProfile
 #else
         public string Date { get; set; }
 #endif
-        /// <summary>The Hebrew year the anniversary was looked for in.</summary>
+        /// <summary>The Hebrew year of that next anniversary, always later than the birth year. Present on the null branch too, naming the year the date is missing from.</summary>
         public double? HebrewYear { get; set; }
         /// <summary>Present only when the date is null, saying why. Absent otherwise, so a caller can branch on presence.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

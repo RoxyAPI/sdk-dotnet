@@ -31,7 +31,7 @@ namespace RoxyApi.Models
 #else
         public List<int?> GainHouses { get; set; }
 #endif
-        /// <summary>Birth latitude in decimal degrees. Sets the Placidus cusps; also the place the ruling planets and the Moon windows are read at.</summary>
+        /// <summary>Birth latitude in decimal degrees. Sets the Placidus cusps; also the place the ruling planets and the Moon windows are read at. The latitude must lie below 66.56 degrees north or south, inside the polar circles: KP cusps are Placidus, which has no solution beyond them, so a polar latitude returns 400.</summary>
         public double? Latitude { get; set; }
         /// <summary>Birth longitude in decimal degrees, east positive.</summary>
         public double? Longitude { get; set; }
@@ -47,7 +47,7 @@ namespace RoxyApi.Models
         public global::RoxyApi.Models.KPDailyFinanceRequest_nodeType? NodeType { get; set; }
         /// <summary>Reading moment on that date, HH:MM:SS local. The ruling planets and the running sookshma lord are read at this instant. Defaults to 12:00:00; pass a market open or any hour for an intraday read.</summary>
         public Time? Time { get; set; }
-        /// <summary>Timezone as an IANA name (Asia/Kolkata) or decimal hours from UTC. Applies to the birth time, to the reading date and time, and to every local timestamp in the response. IANA names resolve to the offset in force on the date being read.</summary>
+        /// <summary>Timezone as an IANA name (Asia/Kolkata) or decimal hours from UTC. Applies to the birth time, to the reading date and time, and to every local timestamp in the response. An IANA name is resolved twice, each to the offset in force at its own moment: at the birth date and time for the natal chart, and on the date being read for the reading. A decimal is applied to both as sent.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.KPDailyFinanceRequest.KPDailyFinanceRequest_timezone? Timezone { get; set; }

@@ -82,7 +82,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
 #endif
         /// <summary>Age in whole years at which the first luck pillar begins. Counted from the birth instant to the adjacent minor solar term at three days to the year, forward for a forward direction and backward for a reverse one.</summary>
         public double? StartAge { get; set; }
-        /// <summary>Additional months past startAge, 0 to 11, from the remainder of the same count at one day to four months. Calculators that round the whole count to the nearest year will differ from this by up to six months.</summary>
+        /// <summary>Additional months past startAge, 0 to 11, from the remainder of the same count at one day to four months, rounded once to the nearest month. Calculators that round the whole count to the nearest year will differ from this by up to six months.</summary>
         public double? StartAgeMonths { get; set; }
         /// <summary>One-paragraph reading of the sequence direction and its start.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

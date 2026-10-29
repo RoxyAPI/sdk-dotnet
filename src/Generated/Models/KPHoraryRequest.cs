@@ -23,7 +23,7 @@ namespace RoxyApi.Models
         public Date? Date { get; set; }
         /// <summary>Horary number from 1 to 249, given by the querent while focused on their question. It maps to one of the 249 KP sub divisions of the zodiac, and that division sets the Ascendant of the chart. The querent should give the first number that comes to mind and use it once for that question; the astrologer never chooses it. Numbers outside 1 to 249 are rejected rather than wrapped, because a wrapped number would silently answer a different question.</summary>
         public int? HoraryNumber { get; set; }
-        /// <summary>Latitude where the question is judged, decimal degrees. The house cusps are Placidus and therefore latitude dependent, so this is the place of judgment, not the querent birthplace.</summary>
+        /// <summary>Latitude where the question is judged, decimal degrees. The house cusps are Placidus and therefore latitude dependent, so this is the place of judgment, not the querent birthplace. The latitude must lie below 66.56 degrees north or south, inside the polar circles: KP cusps are Placidus, which has no solution beyond them, so a polar latitude returns 400.</summary>
         public double? Latitude { get; set; }
         /// <summary>Longitude where the question is judged, decimal degrees.</summary>
         public double? Longitude { get; set; }

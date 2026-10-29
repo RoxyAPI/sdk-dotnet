@@ -20,7 +20,7 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanetsInterval
         public DateTimeOffset? EndDatetime { get; set; }
         /// <summary>Interval between calculations in minutes (1-1440). Use 1-5 for birth time rectification.</summary>
         public int? IntervalMinutes { get; set; }
-        /// <summary>Observer latitude in decimal degrees</summary>
+        /// <summary>Observer latitude in decimal degrees. The latitude must lie below 66.56 degrees north or south, inside the polar circles: KP cusps are Placidus, which has no solution beyond them, so a polar latitude returns 400.</summary>
         public double? Latitude { get; set; }
         /// <summary>Observer longitude in decimal degrees</summary>
         public double? Longitude { get; set; }

@@ -21,13 +21,13 @@ namespace RoxyApi.VedicAstrology.Kp.RulingPlanets
         public Time? BirthTime { get; set; }
         /// <summary>ISO 8601 datetime (YYYY-MM-DDTHH:MM:SS) for ruling planets. Defaults to current time. Interpreted as local time when a non-zero timezone is provided (a trailing Z is accepted but ignored); with timezone 0 it is UTC.</summary>
         public DateTimeOffset? Datetime { get; set; }
-        /// <summary>Observer latitude in decimal degrees</summary>
+        /// <summary>Observer latitude in decimal degrees. Any latitude for the ruling planets alone; with birthDate and birthTime the significators read Placidus cusps, so the latitude must lie below 66.56 degrees north or south and a polar latitude returns 400.</summary>
         public double? Latitude { get; set; }
         /// <summary>Observer longitude in decimal degrees</summary>
         public double? Longitude { get; set; }
         /// <summary>Lunar node convention. &quot;mean&quot; is the smoothed average node, which always moves retrograde; &quot;true&quot; is the osculating node, which tracks the real perturbed node, oscillates up to about 1.5 degrees either side of the mean on a 173-day cycle, and can briefly turn direct. Neither is more correct and they almost always fall in the same sign. Applies to the Rahu and Ketu positions. Mean is the traditional Vedic default and what printed panchangs use; the choice can move a KP sub-lord in narrow boundary cases, where a span can be as small as 0.5 degrees. Defaults to &quot;mean&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanets.RulingPlanetsPostRequestBody_nodeType? NodeType { get; set; }
-        /// <summary>Timezone: IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC. IANA resolved to the DST-correct offset based on birthDate or datetime. Defaults to 5.5.</summary>
+        /// <summary>Timezone: IANA name (e.g. &quot;America/New_York&quot;, &quot;Europe/London&quot;) OR decimal hours from UTC. An IANA name is resolved to the DST-correct offset of each moment separately: at datetime for the ruling planets, and at birthDate and birthTime for the significators. A decimal is applied to both as sent. Defaults to 5.5.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Kp.RulingPlanets.RulingPlanetsPostRequestBody.RulingPlanetsPostRequestBody_timezone? Timezone { get; set; }

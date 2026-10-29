@@ -21,7 +21,7 @@ namespace RoxyApi.Models
         public double? AyanamsaValue { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format</summary>
         public Date? Date { get; set; }
-        /// <summary>Birth location latitude in decimal degrees</summary>
+        /// <summary>Birth location latitude in decimal degrees. Accepted at any latitude, polar included: planet longitudes are geocentric and the star and sub lords are divisions of longitude, so no house cusp is involved.</summary>
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees</summary>
         public double? Longitude { get; set; }

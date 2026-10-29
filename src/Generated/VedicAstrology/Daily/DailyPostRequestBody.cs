@@ -27,7 +27,7 @@ namespace RoxyApi.VedicAstrology.Daily
         public double? Longitude { get; set; }
         /// <summary>Lunar node type for Rahu and Ketu. &quot;mean&quot; uses the smooth mean node, which is the traditional Vedic default and what printed panchangs use. &quot;true&quot; uses the osculating node, which swings up to 1.5 degrees either side of mean and can therefore move a node into a different rashi and change its gochara house. Defaults to &quot;mean&quot;.</summary>
         public global::RoxyApi.VedicAstrology.Daily.DailyPostRequestBody_nodeType? NodeType { get; set; }
-        /// <summary>Timezone: IANA name (e.g. &quot;Asia/Kolkata&quot;, &quot;America/New_York&quot;) OR decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). IANA strings are resolved to the DST-correct offset for the date being read. Interprets the birth time and the civil date below. Defaults to 5.5.</summary>
+        /// <summary>Timezone: IANA name (e.g. &quot;Asia/Kolkata&quot;, &quot;America/New_York&quot;) OR decimal hours from UTC (e.g. -5 for EST, 5.5 for IST). IANA strings are resolved twice, each to the DST-correct offset of its own moment: at the birth date and time for the birth chart, and on the date being read for the reading day. A decimal is applied to both as sent. Defaults to 5.5.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.VedicAstrology.Daily.DailyPostRequestBody.DailyPostRequestBody_timezone? Timezone { get; set; }

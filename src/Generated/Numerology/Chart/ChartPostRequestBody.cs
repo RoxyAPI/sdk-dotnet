@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -14,7 +15,7 @@ namespace RoxyApi.Numerology.Chart
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Calendar year for the Personal Year, defaults to the current UTC year. It moves the Personal Year only: the nested personalMonth and maturityStatus.currentAge always read the current UTC date.</summary>
+        /// <summary>Calendar year for the Personal Year. When omitted it is the year of targetDate, or of the current UTC date when targetDate is omitted too. It moves the Personal Year only: the nested personalMonth and maturityStatus.currentAge read targetDate.</summary>
         public int? CurrentYear { get; set; }
         /// <summary>Birth day (1-31)</summary>
         public int? Day { get; set; }
@@ -28,6 +29,8 @@ namespace RoxyApi.Numerology.Chart
 #endif
         /// <summary>Birth month (1-12)</summary>
         public int? Month { get; set; }
+        /// <summary>Date to read the chart on, in YYYY-MM-DD format, in the years 100 to 2100, on or after the birth date. Send the local date of the user for an exact answer: it sets maturityStatus.currentAge and isActive, the Personal Month, and the Personal Year when currentYear is absent. Defaults to today (UTC).</summary>
+        public Date? TargetDate { get; set; }
         /// <summary>Birth year between 100 and 2100. Supports historical figures like Einstein (1879) and Shakespeare (1564).</summary>
         public int? Year { get; set; }
         /// <summary>
@@ -59,6 +62,7 @@ namespace RoxyApi.Numerology.Chart
                 { "day", n => { Day = n.GetIntValue(); } },
                 { "fullName", n => { FullName = n.GetStringValue(); } },
                 { "month", n => { Month = n.GetIntValue(); } },
+                { "targetDate", n => { TargetDate = n.GetDateValue(); } },
                 { "year", n => { Year = n.GetIntValue(); } },
             };
         }
@@ -73,6 +77,7 @@ namespace RoxyApi.Numerology.Chart
             writer.WriteIntValue("day", Day);
             writer.WriteStringValue("fullName", FullName);
             writer.WriteIntValue("month", Month);
+            writer.WriteDateValue("targetDate", TargetDate);
             writer.WriteIntValue("year", Year);
             writer.WriteAdditionalData(AdditionalData);
         }

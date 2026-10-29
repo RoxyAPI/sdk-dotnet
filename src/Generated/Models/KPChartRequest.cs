@@ -21,7 +21,7 @@ namespace RoxyApi.Models
         public double? AyanamsaValue { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format</summary>
         public Date? Date { get; set; }
-        /// <summary>Birth location latitude in decimal degrees</summary>
+        /// <summary>Birth location latitude in decimal degrees. The latitude must lie below 66.56 degrees north or south, inside the polar circles: KP cusps are Placidus, which has no solution beyond them, so a polar latitude returns 400.</summary>
         public double? Latitude { get; set; }
         /// <summary>Birth location longitude in decimal degrees</summary>
         public double? Longitude { get; set; }

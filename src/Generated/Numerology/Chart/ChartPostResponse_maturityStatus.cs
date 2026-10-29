@@ -23,9 +23,9 @@ namespace RoxyApi.Numerology.Chart
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The current UTC calendar year minus the birth year. The birthday is not considered, so before the birthday it reads one more than the age in whole years, and currentYear does not move it.</summary>
+        /// <summary>Age in completed years on targetDate, or on the current UTC date when targetDate is omitted: the birth year subtracted, less one until the birthday has come round. A 29 February birthday comes round on 1 March in a common year. currentYear does not move it.</summary>
         public double? CurrentAge { get; set; }
-        /// <summary>Whether the Maturity number is currently active (typically activates around age 35-40).</summary>
+        /// <summary>Whether the Maturity number is currently active: true from the 35th birthday, when currentAge reaches 35 (the number typically activates around age 35-40).</summary>
         public bool? IsActive { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Numerology.Chart.ChartPostResponse_maturityStatus"/> and sets the default values.

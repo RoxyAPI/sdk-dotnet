@@ -22,7 +22,7 @@ namespace RoxyApi.ChineseAstrology.Bazi.LuckPillars
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>Which returned luck pillar this year falls inside, by its index. 0 means the year falls before the first luck pillar begins, in the stretch still governed by the natal chart alone.</summary>
+        /// <summary>Which returned luck pillar this year falls inside, by its index. The year a period begins in counts as inside it, though the handover falls in a month of that year. 0 means the year falls before the first luck pillar begins, in the stretch still governed by the natal chart alone.</summary>
         public double? LuckPillarIndex { get; set; }
         /// <summary>Position of the annual pillar in the sexagenary cycle, 1 to 60.</summary>
         public double? Number { get; set; }

@@ -38,7 +38,7 @@ namespace RoxyApi.Kabbalah.BirthProfile
 #else
         public global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostResponse_conventions Conventions { get; set; }
 #endif
-        /// <summary>The next Hebrew birthday. Three Hebrew dates are missing from some years, and where the anniversary moves to is a matter of community practice rather than arithmetic, so the field is null with a note rather than a guess.</summary>
+        /// <summary>The next Hebrew birthday from targetDate (the current UTC date when omitted), the anniversary of hebrewDate. Three Hebrew dates are missing from some years, and where the anniversary moves to is a matter of community practice rather than arithmetic, so the field is null with a note rather than a guess.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Kabbalah.BirthProfile.BirthProfilePostResponse_hebrewBirthday? HebrewBirthday { get; set; }

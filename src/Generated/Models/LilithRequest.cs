@@ -17,7 +17,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Birth date in YYYY-MM-DD format. Determines planetary positions for the specific calendar day.</summary>
         public Date? Date { get; set; }
-        /// <summary>House system used to place each Lilith variant in a house. Placidus (default), Whole Sign, Equal, or Koch.</summary>
+        /// <summary>House system used to place each Lilith variant in a house. Placidus (default), Whole Sign, Equal, or Koch. Above the polar circle, quadrant systems fall back to Whole Sign and the echoed houseSystem reports the system actually used.</summary>
         public global::RoxyApi.Models.LilithRequest_houseSystem? HouseSystem { get; set; }
         /// <summary>Birth location latitude in decimal degrees (-90 to 90). Positive = North, negative = South.</summary>
         public double? Latitude { get; set; }

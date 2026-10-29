@@ -641,7 +641,7 @@ await roxy.Numerology.PersonalYear.PostAsync(new() { Month = 7, Day = 15, Year =
 await roxy.Numerology.Compatibility.PostAsync(new() { Person1 = new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, LifePath = 5, Expression = 7, SoulUrge = 6 }, Person2 = new() { FullName = "Jane Marie Doe", Year = 1992, Month = 3, Day = 22, LifePath = 3, Expression = 9, SoulUrge = 2 } });
 
 // Generate numerology chart - Complete numerology reading API
-await roxy.Numerology.Chart.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, CurrentYear = 2025 });
+await roxy.Numerology.Chart.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, CurrentYear = 2025, TargetDate = new Date(2026, 10, 28) });
 
 // Get number meaning - Numerology number meanings API
 await roxy.Numerology.Meanings["5"].GetAsync();
@@ -679,7 +679,7 @@ await roxy.Kabbalah.Ciphers.GetAsync();
 await roxy.Kabbalah.NameProfile.PostAsync(new() { Name = "Sarah", NameHebrew = "שרה" });
 
 // Generate a birth profile - Hebrew birthday and birth angel API
-await roxy.Kabbalah.BirthProfile.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, AfterSunset = false });
+await roxy.Kabbalah.BirthProfile.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, AfterSunset = false, TargetDate = new Date(2026, 10, 28) });
 
 // List the 72 names - Shem HaMephorash API derived from the verses
 await roxy.Kabbalah.Names.GetAsync(c => { c.QueryParameters.Limit = 20; c.QueryParameters.Offset = 0; c.QueryParameters.Longitude = 131.18; });
