@@ -22,6 +22,7 @@ using RoxyApi.Languages;
 using RoxyApi.Location;
 using RoxyApi.MesoamericanAstrology;
 using RoxyApi.Numerology;
+using RoxyApi.Reports;
 using RoxyApi.Tarot;
 using RoxyApi.Usage;
 using RoxyApi.Vastu;
@@ -117,6 +118,11 @@ namespace RoxyApi
         public global::RoxyApi.Numerology.NumerologyRequestBuilder Numerology
         {
             get => new global::RoxyApi.Numerology.NumerologyRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The reports property</summary>
+        public global::RoxyApi.Reports.ReportsRequestBuilder Reports
+        {
+            get => new global::RoxyApi.Reports.ReportsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tarot property</summary>
         public global::RoxyApi.Tarot.TarotRequestBuilder Tarot

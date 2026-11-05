@@ -954,6 +954,41 @@ await roxy.Usage.GetAsync();
 
 ---
 
+## [Reports](https://roxyapi.com/api-reference/reports) - `roxy.Reports`
+
+Branded reports built from the API: a natal chart and more as a print-ready PDF, self-contained HTML or Markdown, whi...
+
+```csharp
+// Natal chart report - Branded PDF report API
+await roxy.Reports.Natal.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" }, Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// Synastry report - Branded PDF report API
+await roxy.Reports.Synastry.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" }, Name = "Alex" }, Person2 = new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" }, Name = "Alex" }, Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// Kundli report - Branded PDF report API
+await roxy.Reports.Kundli.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// Kundli matching report - Branded PDF report API
+await roxy.Reports.Matchmaking.PostAsync(new() { Person1 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, Person2 = new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 } }, AyanamsaValue = 24, Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// Yearly forecast report - Branded PDF report API
+await roxy.Reports.YearlyForecast.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Year = 2026, Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" }, Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// Human Design report - Branded PDF report API
+await roxy.Reports.HumanDesign.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(13, 0, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 0, Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// BaZi report - Branded PDF report API
+await roxy.Reports.Bazi.PostAsync(new() { Date = new Date(1990, 6, 15), Time = new Time(14, 30, 0), Timezone = new() { String = "America/New_York" }, Latitude = 0, Longitude = 116.4, Year = 2027, Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// Numerology report - Branded PDF report API
+await roxy.Reports.Numerology.PostAsync(new() { FullName = "John William Smith", Year = 1990, Month = 7, Day = 15, CurrentYear = 2025, TargetDate = new Date(2026, 10, 28), Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+
+// Tarot reading report - Branded PDF report API
+await roxy.Reports.Tarot.PostAsync(new() { Question = "What should I know about this situation?", Seed = "reading-2f9c1a", Branding = new() { Name = "Luna Rivera Astrology", Logo = "https://example.com/logo.png", Footer = "For reflection and entertainment. Book a reading at example.com.", Website = "https://example.com", Email = "hello@example.com" }, Readings = true });
+```
+
+---
+
 ## [Languages](https://roxyapi.com/api-reference/languages) - `roxy.Languages`
 
 List the response languages accepted by the `lang` query parameter on every i18n-aware endpoint

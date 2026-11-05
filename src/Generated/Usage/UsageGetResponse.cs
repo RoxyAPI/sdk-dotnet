@@ -34,7 +34,7 @@ namespace RoxyApi.Usage
 #endif
         /// <summary>Requests left before the monthly allowance is exhausted, floored at zero. Equal to requestsPerMonth minus usedThisMonth. Refills at the calendar month rollover, whose exact instant every API response carries as a Unix timestamp in the X-RateLimit-Reset header.</summary>
         public double? RemainingThisMonth { get; set; }
-        /// <summary>Monthly request allowance for the plan. One request, API or MCP, equals one unit: there is no credit weighting and no per domain fee.</summary>
+        /// <summary>Monthly request allowance for the plan. Every data endpoint call, API or MCP, is one request and a report spends the cost its operation lists in x-request-cost: there is no per domain fee.</summary>
         public double? RequestsPerMonth { get; set; }
         /// <summary>Subscription lifecycle state. Values: active, cancelled (no longer renewing but usable until endDate), suspended (payment failed, usable until endDate), expired (past endDate), pending (checkout started, payment not captured).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

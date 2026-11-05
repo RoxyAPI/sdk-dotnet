@@ -14,6 +14,15 @@ namespace RoxyApi
         /// <summary>HTTP 400. A date lies outside the span the planetary positions are served for. The error names the supported dates.</summary>
         public const string DateOutOfRange = "date_out_of_range";
 
+        /// <summary>HTTP 400. The report branding cannot be used, for example a logo that is not a PNG, JPEG, WebP or SVG image.</summary>
+        public const string InvalidBranding = "invalid_branding";
+
+        /// <summary>HTTP 400. The report logo could not be fetched: it must be an HTTPS URL on a public host that answers within the size limit.</summary>
+        public const string LogoFetchFailed = "logo_fetch_failed";
+
+        /// <summary>HTTP 400. The report text holds a character no report font draws. The error names it: remove or replace it.</summary>
+        public const string UnsupportedCharacter = "unsupported_character";
+
         /// <summary>HTTP 401. No API key was sent.</summary>
         public const string ApiKeyRequired = "api_key_required";
 
@@ -80,11 +89,20 @@ namespace RoxyApi
         /// <summary>HTTP 429. A keyless request has used up its trial allowance.</summary>
         public const string FreeTierExhausted = "free_tier_exhausted";
 
+        /// <summary>HTTP 429. Too many reports were requested this minute. Retry-After gives the seconds to the next minute.</summary>
+        public const string ReportsRateLimited = "reports_rate_limited";
+
         /// <summary>HTTP 500. The request failed inside our service. Retry with exponential backoff.</summary>
         public const string InternalError = "internal_error";
 
         /// <summary>HTTP 503. Heavy calculations are briefly at capacity. Send the same request again after Retry-After seconds.</summary>
         public const string ComputeSaturated = "compute_saturated";
+
+        /// <summary>HTTP 503. Report rendering is briefly at capacity. Send the same request again after Retry-After seconds.</summary>
+        public const string ReportsBusy = "reports_busy";
+
+        /// <summary>HTTP 503. The report took too long to render. Send the same request again.</summary>
+        public const string ReportRenderTimeout = "report_render_timeout";
 
         /// <summary>HTTP any status. A fallback for a status with no more specific code. The status and the error field carry the signal.</summary>
         public const string Error = "error";
