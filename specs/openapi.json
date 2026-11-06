@@ -16071,7 +16071,7 @@
               },
               "spirituality": {
                 "type": "string",
-                "example": "A spiritual journey is beginning, marked by openness, wonder, and a beginners willingness to learn.",
+                "example": "A spiritual journey is beginning, marked by openness, wonder, and the willingness of a beginner to learn.",
                 "description": "Spiritual interpretation for this orientation. Covers personal growth, inner wisdom, soul purpose, and metaphysical development."
               }
             },
@@ -16238,7 +16238,7 @@
           },
           "spirituality": {
             "type": "string",
-            "example": "A spiritual journey is beginning, marked by openness, wonder, and a beginners willingness to learn.",
+            "example": "A spiritual journey is beginning, marked by openness, wonder, and the willingness of a beginner to learn.",
             "description": "Spiritual interpretation for the drawn orientation. Covers personal growth, inner wisdom, soul purpose, and metaphysical development."
           },
           "imageUrl": {
@@ -21068,12 +21068,18 @@
                             "type": "number",
                             "example": 5.2,
                             "description": "Moon illumination percentage (0-100) at noon on this date."
+                          },
+                          "sign": {
+                            "type": "string",
+                            "example": "Aries",
+                            "description": "Tropical zodiac sign the Moon occupies at noon UTC on this date, canonical English. Use it to key a sign glyph or a moon-in-sign planting and ritual guide."
                           }
                         },
                         "required": [
                           "date",
                           "phase",
-                          "illumination"
+                          "illumination",
+                          "sign"
                         ]
                       },
                       "description": "Daily moon phase and illumination for every day of the month."
@@ -88257,7 +88263,7 @@
           "Tarot"
         ],
         "summary": "Get tarot card by id - Tarot card meaning API",
-        "description": "Retrieve comprehensive details for a specific tarot card from the traditional Rider-Waite-Smith deck including complete upright meanings (card drawn normally) and reversed meanings (inverted/upside down interpretations for nuanced guidance). Each card provides keywords for quick reference, full interpretations (400\u002B words each for upright and reversed orientations), and guidance across life domains: love and relationships, career and professional growth, finances and material success, health and wellbeing, spirituality and personal development. Major Arcana cards (0-21) reveal deep spiritual lessons and life-changing themes. Minor Arcana cards (Ace through King in Cups, Wands, Swords, Pentacles) address practical daily situations and specific challenges. Use card ID in kebab-case format: Major Arcana like \u0022fool\u0022, \u0022magician\u0022, \u0022death\u0022, \u0022tower\u0022, or Minor Arcana like \u0022ace-of-cups\u0022, \u0022seven-of-wands\u0022, \u0022queen-of-swords\u0022, \u0022king-of-pentacles\u0022. Major Arcana IDs carry no leading article, though one is accepted, so \u0022the-star\u0022 and \u0022star\u0022 both return The Star. Essential for detailed tarot study, reading interpretations, divination apps, fortune-telling platforms, spiritual guidance tools, and professional tarot learning applications.",
+        "description": "Retrieve comprehensive details for a specific tarot card from the traditional Rider-Waite-Smith deck including complete upright meanings (card drawn normally) and reversed meanings (inverted/upside down interpretations for nuanced guidance). Each card provides keywords for quick reference, full editorial interpretations for both upright and reversed orientations, and guidance across life domains: love and relationships, career and professional growth, finances and material success, health and wellbeing, spirituality and personal development. Major Arcana cards (0-21) reveal deep spiritual lessons and life-changing themes. Minor Arcana cards (Ace through King in Cups, Wands, Swords, Pentacles) address practical daily situations and specific challenges. Use card ID in kebab-case format: Major Arcana like \u0022fool\u0022, \u0022magician\u0022, \u0022death\u0022, \u0022tower\u0022, or Minor Arcana like \u0022ace-of-cups\u0022, \u0022seven-of-wands\u0022, \u0022queen-of-swords\u0022, \u0022king-of-pentacles\u0022. Major Arcana IDs carry no leading article, though one is accepted, so \u0022the-star\u0022 and \u0022star\u0022 both return The Star. Essential for detailed tarot study, reading interpretations, divination apps, fortune-telling platforms, spiritual guidance tools, and professional tarot learning applications.",
         "security": [
           {
             "apiKey": []
@@ -88389,7 +88395,7 @@
           "Tarot"
         ],
         "summary": "Draw tarot cards - Seeded tarot draw API",
-        "description": "Draw 1-78 tarot cards from the complete Rider-Waite-Smith deck with seeded reproducibility for consistent personalized readings. Provide an optional seed string (like \u0022user123-2025-12-27\u0022 or \u0022readingId\u0022) to ensure the same seed always returns identical cards in the exact same order, which is essential for daily tarot features, personalized user experiences, shareable readings, or reproducible testing. Omit seed for true random draws each time. Control card reversals (upright vs reversed or inverted orientations, where reversed cards provide alternative meanings when drawn upside down) and duplicates (traditional deck draws each of 78 cards once, or oracle-style allows repeating same card). Each drawn card includes position number, reversal state (boolean), keywords for quick interpretation, full meaning text (400\u002B words), authentic Rider-Waite imagery, and card metadata. Perfect for custom spread builders, random card generators, automated tarot reading platforms, daily card features, meditation apps, journaling prompts, divination tools, and any application requiring reproducible or random tarot draws from the industry-standard 78-card deck (22 Major Arcana spiritual lessons \u002B 56 Minor Arcana practical guidance across 4 suits).",
+        "description": "Draw 1-78 tarot cards from the complete Rider-Waite-Smith deck with seeded reproducibility for consistent personalized readings. Provide an optional seed string (like \u0022user123-2025-12-27\u0022 or \u0022readingId\u0022) to ensure the same seed always returns identical cards in the exact same order, which is essential for daily tarot features, personalized user experiences, shareable readings, or reproducible testing. Omit seed for true random draws each time. Control card reversals (upright vs reversed or inverted orientations, where reversed cards provide alternative meanings when drawn upside down) and duplicates (traditional deck draws each of 78 cards once, or oracle-style allows repeating same card). Each drawn card includes position number, reversal state (boolean), keywords for quick interpretation, the full meaning text for its orientation, a card image URL, and card metadata. Perfect for custom spread builders, random card generators, automated tarot reading platforms, daily card features, meditation apps, journaling prompts, divination tools, and any application requiring reproducible or random tarot draws from the industry-standard 78-card deck (22 Major Arcana spiritual lessons \u002B 56 Minor Arcana practical guidance across 4 suits).",
         "security": [
           {
             "apiKey": []
@@ -88634,7 +88640,7 @@
                     },
                     "dailyMessage": {
                       "type": "string",
-                      "example": "Your card for 2026-03-06: Knight of Pentacles (reversed). stagnation, stubbornness, boredom, overcaution. Reversed, the Knight of Pentacles shows his steady virtues tipping into excess, and the surrounding cards reveal which way. Waite gave the reversal as inertia, idleness, stagnation, and discouragement...",
+                      "example": "Your card for 2026-03-06: Knight of Pentacles (reversed). Stagnation, stubbornness, boredom, overcaution. Reversed, the Knight of Pentacles shows his steady virtues tipping into excess, and the surrounding cards reveal which way. Waite gave the reversal as inertia, idleness, stagnation, and discouragement...",
                       "description": "Concise daily tarot message summarizing the card, its orientation, key themes, and brief guidance for the day."
                     }
                   },

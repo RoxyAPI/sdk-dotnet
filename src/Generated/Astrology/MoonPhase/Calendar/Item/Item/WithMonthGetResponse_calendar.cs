@@ -32,6 +32,14 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar.Item.Item
 #else
         public string Phase { get; set; }
 #endif
+        /// <summary>Tropical zodiac sign the Moon occupies at noon UTC on this date, canonical English. Use it to key a sign glyph or a moon-in-sign planting and ritual guide.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Sign { get; set; }
+#nullable restore
+#else
+        public string Sign { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.MoonPhase.Calendar.Item.Item.WithMonthGetResponse_calendar"/> and sets the default values.
         /// </summary>
@@ -60,6 +68,7 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar.Item.Item
                 { "date", n => { Date = n.GetStringValue(); } },
                 { "illumination", n => { Illumination = n.GetDoubleValue(); } },
                 { "phase", n => { Phase = n.GetStringValue(); } },
+                { "sign", n => { Sign = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -72,6 +81,7 @@ namespace RoxyApi.Astrology.MoonPhase.Calendar.Item.Item
             writer.WriteStringValue("date", Date);
             writer.WriteDoubleValue("illumination", Illumination);
             writer.WriteStringValue("phase", Phase);
+            writer.WriteStringValue("sign", Sign);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
