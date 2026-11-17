@@ -12,7 +12,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
     public partial class DailyGetResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Active planetary transits affecting this sign today, with house activations. Each transit shows the planet, its current sign, and which house it activates for the queried sign. The sign and the house phrase translate with the lang parameter; the planet name stays canonical English so a caller can match on it whatever the language.</summary>
+        /// <summary>Active planetary transits affecting this sign today, with house activations. Each transit shows the planet, its current sign, and the house it activates for the queried sign, named by its life area as the prose names it (your house of partnership). The sign and the house phrase translate with the lang parameter; the planet name stays canonical English so a caller can match on it whatever the language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ActiveTransits { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The single actionable takeaway from the leading event of the period, read into the whole-sign houses of this sign and checkable against the events array. Drawn from the same event as overview, kept to a short, actionable pair of sentences rather than grown to match the other sections. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>The single actionable takeaway of the period. It opens on the event of the day that most reaches travel, belief, conversation and daily learning, or on a quiet day a standing planet, naming the bodies, the aspect and the life area, then a situation with a way through it, a conditional with a few options, and a close, in the shape of the five fields beside it. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Advice { get; set; }
@@ -30,7 +30,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Advice { get; set; }
 #endif
-        /// <summary>Career and professional outlook, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to career, work and reputation, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries career, work and reputation, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 50 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>Career and professional outlook, read into the whole-sign houses of this sign. It opens on the event of the day that most reaches career, work and reputation, or on a quiet day a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries career, work and reputation; the aggregate event house remains the leading body house. Typically 80 to 120 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Career { get; set; }
@@ -38,7 +38,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Career { get; set; }
 #endif
-        /// <summary>The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 120 to 180 words. The six section fields read the same ranked events filtered to their own life area, each composed as a column of its own rather than an excerpt of this one, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
+        /// <summary>The full column for this period, ready to run as one piece, its paragraphs, where it has more than one, separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 80 to 120 words. The six section fields each open on an event or standing planet of their own read through their life area, the one named in focus on the lead of this column, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Column { get; set; }
@@ -46,13 +46,21 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Column { get; set; }
 #endif
-        /// <summary>Most compatible zodiac signs for this sign. Trine partners (same element) followed by a sextile partner (complementary element). Use for compatibility widgets, dating app onboarding, and horoscope cards.</summary>
+        /// <summary>Three zodiac signs most in tune with this sign today, best first. Read from the real sky of the period, so the list moves with the transits instead of repeating a fixed table, and every pick can be traced in positions[]. On a quiet sky it settles on the classic element partners. For the fixed sign-to-sign pairing, read compatibleSigns from the signs endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? CompatibleSigns { get; set; }
 #nullable restore
 #else
         public List<string> CompatibleSigns { get; set; }
+#endif
+        /// <summary>Crystal of the day for this sign: a stone traditionally linked to this sign and to the planet that governs it today, stepping down to the next governing planet when none is, and to any stone of the sign after that. Rotates by date among equally fitting stones, so the same sign meets a new stone on consecutive days. Use for daily crystal cards beside the horoscope.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_crystal? Crystal { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_crystal Crystal { get; set; }
 #endif
         /// <summary>Date of this daily horoscope (YYYY-MM-DD).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,7 +80,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public List<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events> Events { get; set; }
 #endif
-        /// <summary>Financial outlook and money-related guidance, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to finance, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries finance, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 50 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>Financial outlook and money-related guidance, read into the whole-sign houses of this sign. It opens on the event of the day that most reaches finance, or on a quiet day a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries finance; the aggregate event house remains the leading body house. Typically 80 to 120 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Finance { get; set; }
@@ -80,7 +88,9 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Finance { get; set; }
 #endif
-        /// <summary>Health, energy, and wellness guidance, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to health, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries health, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 50 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>The topic this reading is mainly about: love, career, finance or health when the lead event falls in that life area, overview for a bigger-picture period. A machine value, canonical English in every language, so a client can route its own content on it (a related article, a product, a call to action) without parsing the prose; the topic field it names reads the same lead the column opens on.</summary>
+        public global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_focus? Focus { get; set; }
+        /// <summary>Health, energy, and wellness guidance, read into the whole-sign houses of this sign. It opens on the event of the day that most reaches health, or on a quiet day a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries health; the aggregate event house remains the leading body house. Typically 80 to 120 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Health { get; set; }
@@ -88,7 +98,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Health { get; set; }
 #endif
-        /// <summary>Love and relationship forecast, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to romance and partnership, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries romance and partnership, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 50 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>Love and relationship forecast, read into the whole-sign houses of this sign. It opens on the event of the day that most reaches romance and partnership, or on a quiet day a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries romance and partnership; the aggregate event house remains the leading body house. Typically 80 to 120 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Love { get; set; }
@@ -96,7 +106,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string Love { get; set; }
 #endif
-        /// <summary>Lucky color for the day, drawn from the three colors of the sign element and selected by the planet governing the reading.</summary>
+        /// <summary>Lucky color for the day, the color traditionally ruled by the planet that governs this sign today: Sun gold, Moon silver, Mercury light blue, Venus green, Mars red, Jupiter purple, Saturn brown. When Uranus, Neptune or Pluto governs, the next most governing of the seven classical planets gives the color. Translated with the lang parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LuckyColor { get; set; }
@@ -122,13 +132,21 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
 #else
         public string MoonSign { get; set; }
 #endif
-        /// <summary>The single most relevant event of the period, whichever life area it touches, read into the whole-sign houses of this sign. The same event that leads column, at lede length rather than developed into a full movement, and checkable against the events array. Typically 30 to 60 words. Join it with love, career, health and finance for a general reading built from the six sections. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>The event of the day that most reaches home, roots and the self, or on a quiet day a standing planet, written as the five topic fields are and opening on the lead of column whenever focus is overview. Typically 80 to 120 words. Join it with love, career, health and finance for a general reading built from the six sections. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Overview { get; set; }
 #nullable restore
 #else
         public string Overview { get; set; }
+#endif
+        /// <summary>Where each of the ten bodies stands for this reading, one row per body, so every standing claim in the prose (a body in a house, until a date, retrograde until it turns direct, exalted or at home) can be checked against the response itself. It carries state only: every aspect, lunation, eclipse, ingress or station of the period is a row of events[]. Against events[], it adds the bodies that do nothing exact in the period (events[] names only what happens), the entry and exit of the sign each stands in (events[].through carries an exit only for an ingress inside the period), the instant a retrograde body turns direct, and dignity. Against activeTransits, which the daily prints as translated strings for the seven visible bodies, it adds Uranus, Neptune and Pluto, the lowercase sign and numeric house as values, the retrograde flag as a boolean, and the three instants. Where an instant appears in both keys it is the same string. Never translated.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_positions>? Positions { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_positions> Positions { get; set; }
 #endif
         /// <summary>Zodiac sign for this horoscope.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -168,10 +186,12 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
                 { "career", n => { Career = n.GetStringValue(); } },
                 { "column", n => { Column = n.GetStringValue(); } },
                 { "compatibleSigns", n => { CompatibleSigns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "crystal", n => { Crystal = n.GetObjectValue<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_crystal>(global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_crystal.CreateFromDiscriminatorValue); } },
                 { "date", n => { Date = n.GetStringValue(); } },
                 { "energyRating", n => { EnergyRating = n.GetDoubleValue(); } },
                 { "events", n => { Events = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events>(global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "finance", n => { Finance = n.GetStringValue(); } },
+                { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_focus>(); } },
                 { "health", n => { Health = n.GetStringValue(); } },
                 { "love", n => { Love = n.GetStringValue(); } },
                 { "luckyColor", n => { LuckyColor = n.GetStringValue(); } },
@@ -179,6 +199,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
                 { "moonPhase", n => { MoonPhase = n.GetStringValue(); } },
                 { "moonSign", n => { MoonSign = n.GetStringValue(); } },
                 { "overview", n => { Overview = n.GetStringValue(); } },
+                { "positions", n => { Positions = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_positions>(global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_positions.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
             };
         }
@@ -194,10 +215,12 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
             writer.WriteStringValue("career", Career);
             writer.WriteStringValue("column", Column);
             writer.WriteCollectionOfPrimitiveValues<string>("compatibleSigns", CompatibleSigns);
+            writer.WriteObjectValue<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_crystal>("crystal", Crystal);
             writer.WriteStringValue("date", Date);
             writer.WriteDoubleValue("energyRating", EnergyRating);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_events>("events", Events);
             writer.WriteStringValue("finance", Finance);
+            writer.WriteEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_focus>("focus", Focus);
             writer.WriteStringValue("health", Health);
             writer.WriteStringValue("love", Love);
             writer.WriteStringValue("luckyColor", LuckyColor);
@@ -205,6 +228,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Daily
             writer.WriteStringValue("moonPhase", MoonPhase);
             writer.WriteStringValue("moonSign", MoonSign);
             writer.WriteStringValue("overview", Overview);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Daily.DailyGetResponse_positions>("positions", Positions);
             writer.WriteStringValue("sign", Sign);
             writer.WriteAdditionalData(AdditionalData);
         }

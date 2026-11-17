@@ -14,7 +14,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Monthly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>What that house asks for, as one sentence in the requested language. No two weeks of one month repeat a sentence.</summary>
+        /// <summary>One practical sentence for that life area, in the requested language. No two weeks of one month repeat a sentence.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Advice { get; set; }

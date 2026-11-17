@@ -14,7 +14,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The single actionable takeaway from the leading event of the period, read into the whole-sign houses of this sign and checkable against the events array. Drawn from the same event as overview, kept to a short, actionable pair of sentences rather than grown to match the other sections. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>The single actionable takeaway of the period. It opens on the event of the year that most reaches travel, belief, conversation and daily learning, or on a quiet year a standing planet, naming the bodies, the aspect and the life area, then a situation with a way through it, a conditional with a few options, and a close, in the shape of the five fields beside it. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Advice { get; set; }
@@ -30,7 +30,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_bestPeriods BestPeriods { get; set; }
 #endif
-        /// <summary>Yearly career and professional outlook, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to career, work and reputation, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries career, work and reputation, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 150 to 260 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>Yearly career and professional outlook, read into the whole-sign houses of this sign. It opens on the event of the year that most reaches career, work and reputation, dated, or on a quiet year a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries career, work and reputation; the aggregate event house remains the leading body house. Typically 35 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Career { get; set; }
@@ -38,7 +38,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public string Career { get; set; }
 #endif
-        /// <summary>The full column for this period, ready to run as one piece, with paragraphs separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 600 to 900 words. The six section fields read the same ranked events filtered to their own life area, each composed as a column of its own rather than an excerpt of this one, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
+        /// <summary>The full column for this period, ready to run as one piece, its paragraphs, where it has more than one, separated by a blank line. Names the events driving it and the dates they fall on, read into the whole-sign houses of this sign. Typically 190 to 320 words. The six section fields each open on an event or standing planet of their own read through their life area, the one named in focus on the lead of this column, so render either shape and never both. Deterministic: the same sign and period always returns the same column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Column { get; set; }
@@ -46,7 +46,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public string Column { get; set; }
 #endif
-        /// <summary>Most compatible zodiac signs for this sign. Trine partners (same element) followed by a sextile partner (complementary element).</summary>
+        /// <summary>Three zodiac signs most in tune with this sign this year, best first. Read from the real sky of the period, so the list moves with the transits instead of repeating a fixed table, and every pick can be traced in positions[]. On a quiet sky it settles on the classic element partners. For the fixed sign-to-sign pairing, read compatibleSigns from the signs endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? CompatibleSigns { get; set; }
@@ -70,7 +70,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public List<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_events> Events { get; set; }
 #endif
-        /// <summary>Yearly financial outlook, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to finance, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries finance, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 150 to 260 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>Yearly financial outlook, read into the whole-sign houses of this sign. It opens on the event of the year that most reaches finance, dated, or on a quiet year a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries finance; the aggregate event house remains the leading body house. Typically 35 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Finance { get; set; }
@@ -78,7 +78,9 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public string Finance { get; set; }
 #endif
-        /// <summary>Yearly health, energy, and wellness outlook, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to health, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries health, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 150 to 260 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>The topic this reading is mainly about: love, career, finance or health when the lead event falls in that life area, overview for a bigger-picture period. A machine value, canonical English in every language, so a client can route its own content on it (a related article, a product, a call to action) without parsing the prose; the topic field it names reads the same lead the column opens on.</summary>
+        public global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_focus? Focus { get; set; }
+        /// <summary>Yearly health, energy, and wellness outlook, read into the whole-sign houses of this sign. It opens on the event of the year that most reaches health, dated, or on a quiet year a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries health; the aggregate event house remains the leading body house. Typically 35 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Health { get; set; }
@@ -94,7 +96,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public List<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_keyPeriods> KeyPeriods { get; set; }
 #endif
-        /// <summary>Yearly love and relationship outlook, read into the whole-sign houses of this sign. The same ranked events that drive column, filtered to romance and partnership, plus the standing placements that reach it. Every event named here is in the events array, so a piece can be fact-checked before it runs; this section reads an event through whichever of its houses carries romance and partnership, which for an aspect between two houses can be the other one from the house the events array leads with, and both are whole-sign houses of the bodies involved counted from this sign. Typically 150 to 260 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is the same material woven into one piece instead of split by topic. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>Yearly love and relationship outlook, read into the whole-sign houses of this sign. It opens on the event of the year that most reaches romance and partnership, dated, or on a quiet year a standing planet, naming the bodies, the aspect and the life area and what it stirs, then a human situation of this topic with a way through it, a conditional with a few options, and a close; the topic named in focus opens on the same event as column. Every named event is in events, with each participant sign and whole-sign house in placements at the event time. This section reads whichever participant house carries romance and partnership; the aggregate event house remains the leading body house. Typically 35 to 90 words. Render it alone for a single-topic page, or alongside the other five sections for a general reading; column is a separate piece of its own. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Love { get; set; }
@@ -102,7 +104,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public string Love { get; set; }
 #endif
-        /// <summary>Lucky color for the year, drawn from the three colors of the sign element and selected by the planet governing the reading.</summary>
+        /// <summary>Lucky color for the year, the color traditionally ruled by the planet that governs this sign this year: Sun gold, Moon silver, Mercury light blue, Venus green, Mars red, Jupiter purple, Saturn brown. When Uranus, Neptune or Pluto governs, the next most governing of the seven classical planets gives the color. Translated with the lang parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LuckyColor { get; set; }
@@ -118,13 +120,21 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
 #else
         public List<double?> LuckyNumbers { get; set; }
 #endif
-        /// <summary>The single most relevant event of the period, whichever life area it touches, read into the whole-sign houses of this sign. The same event that leads column, at lede length rather than developed into a full movement, and checkable against the events array. Typically 70 to 120 words. Join it with love, career, health and finance for a general reading built from the six sections. Deterministic: the same sign and period always returns the same text.</summary>
+        /// <summary>The event of the year that most reaches home, roots and the self, or on a quiet year a standing planet, written as the five topic fields are and opening on the lead of column whenever focus is overview. Typically 35 to 90 words. Join it with love, career, health and finance for a general reading built from the six sections. Deterministic: the same sign and period always returns the same text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Overview { get; set; }
 #nullable restore
 #else
         public string Overview { get; set; }
+#endif
+        /// <summary>Where each of the ten bodies stands for this reading, one row per body, so every standing claim in the prose (a body in a house, until a date, retrograde until it turns direct, exalted or at home) can be checked against the response itself. It carries state only: every aspect, lunation, eclipse, ingress or station of the period is a row of events[]. Against events[], it adds the bodies that do nothing exact in the period (events[] names only what happens), the entry and exit of the sign each stands in (events[].through carries an exit only for an ingress inside the period), the instant a retrograde body turns direct, and dignity. Against activeTransits, which the daily prints as translated strings for the seven visible bodies, it adds Uranus, Neptune and Pluto, the lowercase sign and numeric house as values, the retrograde flag as a boolean, and the three instants. Where an instant appears in both keys it is the same string. Never translated.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_positions>? Positions { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_positions> Positions { get; set; }
 #endif
         /// <summary>Every retrograde and direct station of the year, in order, with the house each falls in for this sign. Drives review windows and the not-yet warnings a yearly column is bought for.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -185,12 +195,14 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
                 { "eclipses", n => { Eclipses = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_eclipses>(global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_eclipses.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "events", n => { Events = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_events>(global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_events.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "finance", n => { Finance = n.GetStringValue(); } },
+                { "focus", n => { Focus = n.GetEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_focus>(); } },
                 { "health", n => { Health = n.GetStringValue(); } },
                 { "keyPeriods", n => { KeyPeriods = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_keyPeriods>(global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_keyPeriods.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "love", n => { Love = n.GetStringValue(); } },
                 { "luckyColor", n => { LuckyColor = n.GetStringValue(); } },
                 { "luckyNumbers", n => { LuckyNumbers = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "overview", n => { Overview = n.GetStringValue(); } },
+                { "positions", n => { Positions = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_positions>(global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_positions.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "retrogrades", n => { Retrogrades = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_retrogrades>(global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_retrogrades.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
                 { "themes", n => { Themes = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_themes>(global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_themes.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -212,12 +224,14 @@ namespace RoxyApi.Astrology.Horoscope.Item.Yearly
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_eclipses>("eclipses", Eclipses);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_events>("events", Events);
             writer.WriteStringValue("finance", Finance);
+            writer.WriteEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_focus>("focus", Focus);
             writer.WriteStringValue("health", Health);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_keyPeriods>("keyPeriods", KeyPeriods);
             writer.WriteStringValue("love", Love);
             writer.WriteStringValue("luckyColor", LuckyColor);
             writer.WriteCollectionOfPrimitiveValues<double?>("luckyNumbers", LuckyNumbers);
             writer.WriteStringValue("overview", Overview);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_positions>("positions", Positions);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_retrogrades>("retrogrades", Retrogrades);
             writer.WriteStringValue("sign", Sign);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Yearly.YearlyGetResponse_themes>("themes", Themes);

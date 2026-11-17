@@ -22,7 +22,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
 #else
         public string Aspect { get; set; }
 #endif
-        /// <summary>Exact instant the event perfects, UTC, to the second. Verifiable against NASA JPL Horizons for a position event and against the US Naval Observatory for a lunar phase or eclipse.</summary>
+        /// <summary>Exact instant the event perfects, ISO 8601 to the second, on the clock the reading is read on: UTC with Z by default, the offset of timezone when one is passed on a daily, weekly or monthly reading (2026-11-13T19:27:27-05:00 in New York), the same instant either way; a yearly reading is written in UTC. Verifiable against NASA JPL Horizons for a position event and against the US Naval Observatory for a lunar phase or eclipse.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? At { get; set; }
@@ -38,8 +38,22 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
 #else
         public List<string> Bodies { get; set; }
 #endif
+        /// <summary>Direction the body turns at the event instant, on retrograde-station events only: retrograde starts backward motion and direct ends it. Canonical English in every language. Present even when the other end of the retrograde span cannot be dated.</summary>
+        public global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_direction? Direction { get; set; }
         /// <summary>Whole-sign house the event falls in, counted from the queried sign, 1 to 12. This is what turns one global sky event into a statement about this reader.</summary>
         public int? House { get; set; }
+        /// <summary>Eclipse classification at peak, on eclipse events only: penumbral, partial, annular, or total. Canonical English in every language. Sun in bodies identifies a solar eclipse and Moon a lunar eclipse.</summary>
+        public global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_kind? Kind { get; set; }
+        /// <summary>Exact quarter phase, on lunar-phase events only: new-moon, first-quarter, full-moon, or last-quarter. Canonical English in every language. Use to identify the phase at the event instant.</summary>
+        public global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_phase? Phase { get; set; }
+        /// <summary>Each participant at the enclosing event timestamp, in bodies order: two entries for an aspect and one for every other event. Names and signs stay canonical English in every language. Each entry carries its own whole-sign house, including the second body of an aspect. Event placements can differ from positions, which reports noon on the first day of the period.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_placements>? Placements { get; set; }
+#nullable restore
+#else
+        public List<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_placements> Placements { get; set; }
+#endif
         /// <summary>Sign the event falls in, lowercase, where it has exactly one. Absent for an aspect whose two bodies stand in different signs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -48,7 +62,7 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
 #else
         public string Sign { get; set; }
 #endif
-        /// <summary>End of the window this event holds open, UTC, given only where a bounded window is a real fact about it: the orb span of an aspect, the sign span of an ingress or a season, the retrograde span of a station. Absent for a lunar phase or an eclipse, which are instants and not spans.</summary>
+        /// <summary>End of the window this event holds open, on the same clock as at, given only where a bounded window is a real fact about it: the orb span of an aspect, the sign span of an ingress or a season, the retrograde span of a station. Absent for a lunar phase or an eclipse, which are instants and not spans.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Through { get; set; }
@@ -86,7 +100,11 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
                 { "aspect", n => { Aspect = n.GetStringValue(); } },
                 { "at", n => { At = n.GetStringValue(); } },
                 { "bodies", n => { Bodies = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "direction", n => { Direction = n.GetEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_direction>(); } },
                 { "house", n => { House = n.GetIntValue(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_kind>(); } },
+                { "phase", n => { Phase = n.GetEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_phase>(); } },
+                { "placements", n => { Placements = n.GetCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_placements>(global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_placements.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
                 { "through", n => { Through = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_type>(); } },
@@ -102,7 +120,11 @@ namespace RoxyApi.Astrology.Horoscope.Item.Weekly
             writer.WriteStringValue("aspect", Aspect);
             writer.WriteStringValue("at", At);
             writer.WriteCollectionOfPrimitiveValues<string>("bodies", Bodies);
+            writer.WriteEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_direction>("direction", Direction);
             writer.WriteIntValue("house", House);
+            writer.WriteEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_kind>("kind", Kind);
+            writer.WriteEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_phase>("phase", Phase);
+            writer.WriteCollectionOfObjectValues<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_placements>("placements", Placements);
             writer.WriteStringValue("sign", Sign);
             writer.WriteStringValue("through", Through);
             writer.WriteEnumValue<global::RoxyApi.Astrology.Horoscope.Item.Weekly.WeeklyGetResponse_events_type>("type", Type);
