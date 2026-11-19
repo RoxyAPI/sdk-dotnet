@@ -50,7 +50,7 @@ namespace RoxyApi.Models
 #else
         public global::RoxyApi.Models.AspectsResponse_patterns_interpretationVars InterpretationVars { get; set; }
 #endif
-        /// <summary>Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (Finger of Fate, fated adjustment), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3+ planets clustered in a sign or 10-degree arc).</summary>
+        /// <summary>Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (a planet at the apex of two quincunxes, a call to adjust), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3+ planets clustered in a sign or 10-degree arc).</summary>
         public global::RoxyApi.Models.AspectsResponse_patterns_kind? Kind { get; set; }
         /// <summary>Dominant modality for tension-based patterns (T-Square, Grand Cross). Cardinal initiates, Fixed sustains, Mutable adapts.</summary>
         public global::RoxyApi.Models.AspectsResponse_patterns_modality? Modality { get; set; }

@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.NatalChart
         {
         }
         /// <summary>
-        /// Calculate complete Western astrology natal chart (birth chart) with tropical zodiac. Returns all 14 celestial bodies (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith), 12 house cusps with customizable house systems (Placidus, Whole Sign, Equal, Koch), major and minor aspects, Ascendant, Midheaven, dominant elements and modalities. Perfect for astrology apps, birth chart generators, horoscope websites, and astrological consultation tools. Verified against NASA JPL Horizons.
+        /// Calculate a Western astrology natal chart (birth chart) with planets, houses, aspects and a written reading for that birth. It returns all 14 celestial bodies in the tropical zodiac (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron and Black Moon Lilith) with sign, house and dignity, 12 house cusps in Placidus, Whole Sign, Equal or Koch, major and minor aspects, Ascendant, Midheaven, and the dominant elements and modalities. Every chart carries an editorial reading written for that birth: an opening synthesis, love, career and home chapters, a closing, and a reading for each planet, aspect, the Ascendant and the Midheaven, in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish. Verified against NASA JPL Horizons.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.NatalChartResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Astrology.NatalChart
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.NatalChartResponse>(requestInfo, global::RoxyApi.Models.NatalChartResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate complete Western astrology natal chart (birth chart) with tropical zodiac. Returns all 14 celestial bodies (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith), 12 house cusps with customizable house systems (Placidus, Whole Sign, Equal, Koch), major and minor aspects, Ascendant, Midheaven, dominant elements and modalities. Perfect for astrology apps, birth chart generators, horoscope websites, and astrological consultation tools. Verified against NASA JPL Horizons.
+        /// Calculate a Western astrology natal chart (birth chart) with planets, houses, aspects and a written reading for that birth. It returns all 14 celestial bodies in the tropical zodiac (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron and Black Moon Lilith) with sign, house and dignity, 12 house cusps in Placidus, Whole Sign, Equal or Koch, major and minor aspects, Ascendant, Midheaven, and the dominant elements and modalities. Every chart carries an editorial reading written for that birth: an opening synthesis, love, career and home chapters, a closing, and a reading for each planet, aspect, the Ascendant and the Midheaven, in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish. Verified against NASA JPL Horizons.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Astrology.NatalChart
             return new global::RoxyApi.Astrology.NatalChart.NatalChartRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate complete Western astrology natal chart (birth chart) with tropical zodiac. Returns all 14 celestial bodies (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith), 12 house cusps with customizable house systems (Placidus, Whole Sign, Equal, Koch), major and minor aspects, Ascendant, Midheaven, dominant elements and modalities. Perfect for astrology apps, birth chart generators, horoscope websites, and astrological consultation tools. Verified against NASA JPL Horizons.
+        /// Calculate a Western astrology natal chart (birth chart) with planets, houses, aspects and a written reading for that birth. It returns all 14 celestial bodies in the tropical zodiac (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron and Black Moon Lilith) with sign, house and dignity, 12 house cusps in Placidus, Whole Sign, Equal or Koch, major and minor aspects, Ascendant, Midheaven, and the dominant elements and modalities. Every chart carries an editorial reading written for that birth: an opening synthesis, love, career and home chapters, a closing, and a reading for each planet, aspect, the Ascendant and the Midheaven, in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish. Verified against NASA JPL Horizons.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class NatalChartRequestBuilderPostQueryParameters 

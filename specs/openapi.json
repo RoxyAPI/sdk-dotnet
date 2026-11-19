@@ -203,7 +203,7 @@
   "tags": [
     {
       "name": "Western Astrology",
-      "description": "Western astrology API for natal birth charts, daily, weekly, monthly, and yearly horoscopes with unique content per sign and the dated sky events behind every reading, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, aspect-pattern detection (Grand Trine, T-Square, Yod), astrocartography planetary lines, relocation charts, and local space maps for location based astrology, plus classical and professional points like fixed star conjunctions, Arabic lots, the asteroid goddesses (Ceres, Pallas, Juno, Vesta), mean and true Black Moon Lilith, and timing techniques like secondary progressions, solar arc directions, and annual profections. Built for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes by date or by year for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
+      "description": "Western astrology API for natal birth charts with an editorial reading of the whole chart, daily, weekly, monthly, and yearly horoscopes with unique content per sign and the dated sky events behind every reading, synastry compatibility scores, composite charts, solar and lunar returns, real-time transit aspects, and moon phases. 4 house systems (Placidus, Koch, Whole Sign, Equal) with accurate tropical ephemeris, aspect-pattern detection (Grand Trine, T-Square, Yod), astrocartography planetary lines, relocation charts, and local space maps for location based astrology, plus classical and professional points like fixed star conjunctions, Arabic lots, the asteroid goddesses (Ceres, Pallas, Juno, Vesta), mean and true Black Moon Lilith, and timing techniques like secondary progressions, solar arc directions, and annual profections. Built for horoscope platforms, astrology dating apps, AI chatbots, wellness products, and zodiac content engines. Schedule future horoscopes by date or by year for editorial workflows, no astronomy expertise needed. One key covers every RoxyAPI domain, with Remote MCP and typed SDKs."
     },
     {
       "name": "Vedic Astrology",
@@ -299,6 +299,44 @@
       "NatalChartResponse": {
         "type": "object",
         "properties": {
+          "interpretation": {
+            "type": "object",
+            "properties": {
+              "opening": {
+                "type": "string",
+                "description": "Whole-chart natal reading connecting the Sun, Moon, Ascendant, central signature and the tension that shapes their expression.",
+                "example": "What you chase and what calms you rarely agree on timing, so the urge to shelter loved ones keeps tripping over a need for quick release. Your Scorpio rising fits your Sun like a well-cut coat, comfortable from the first wearing and roomy enough to move in without a second thought.\n\nIf one bond defines you, it is the Sun tied to Jupiter, near enough that their dealings play out in everything you do. There is nothing hidden about what steers you, since Pluto rules Scorpio rising while occupying a commanding place in Scorpio, drawing you again and again toward your sense of self and first impressions. Real results settle you more than promises do, so you see jobs through, tidy as you go, and believe the evidence of a spirit level or a measuring tape. Initiative comes as standard: you spot the gap nobody has filled yet and step into it before the meeting even ends.\n\nYour aims and your comfort seldom keep the same schedule, and a drive to give people a home and a quick outlet for strong feelings keep cutting in on one another, so plenty of what you build is built to end the dispute. The friction settles once it has a job, and a project, a deadline or a craft gives the two sides somewhere to meet instead of somewhere to collide. Much of the strain eases through Venus, since it gives the Moon a clear outlet and a little more room."
+              },
+              "love": {
+                "type": "string",
+                "description": "Relationships chapter connecting the seventh-house ruler and occupants with the Venus-Mars relationship.",
+                "example": "Whom you let near, and how you keep the balance once they arrive, shapes much of your growth and many of your best surprises. You look for people who show care through presence and comfort, and a long bond rewards consistency over excitement, held loosely enough never to cling. Venus, guiding your close ties, lies in the eighth house of depth and trust, so you want bonds that go all the way down, and you test them before you settle in. Words are a playground: Neptune, which oversees your fifth house, lives in your third, so clever messages, word games, short trips and lively chats with neighbors bring out your playful side."
+              },
+              "career": {
+                "type": "string",
+                "description": "Career chapter connecting the tenth-house ruler and occupants with the Midheaven sign.",
+                "example": "Whatever you call your work, you want it to leave a mark, a contribution others recognize and a reputation you would gladly sign. Purpose counts for more than rank: placed in your ninth house of beliefs and higher learning, the Sun draws you to work built around an idea you can defend. A Leo Midheaven steers you toward visible, creative leadership, output that carries your signature and brightens any room it reaches."
+              },
+              "home": {
+                "type": "string",
+                "description": "Home chapter connecting the fourth-house ruler and occupants with the IC sign and private foundations.",
+                "example": "You carry where you come from into wherever you live now, keeping the patterns that serve you and building fresh shelter around them. Feeling settled and feeling resourced are close cousins for you: Uranus, overseer of your fourth house, lives in your second, among possessions and self-esteem. With Aquarius among your roots, you feel most at home among like minds, and freedom outranks tradition for you."
+              },
+              "closing": {
+                "type": "string",
+                "description": "Closing synthesis returning to the central drives, their integration and the chart signature.",
+                "example": "Most of what you take on becomes a truce, with a fiercely protective streak getting its way and the freedom to feel at full heat kept content. Turn to Venus when the strain builds, because its easy link to the Moon makes that part of you easier to live with. Worked with, the restlessness becomes a knack for finishing, so you are frequently halfway down the road before other people have settled whether to start. You keep your deepest truths close and spend them only where they count."
+              }
+            },
+            "required": [
+              "opening",
+              "love",
+              "career",
+              "home",
+              "closing"
+            ],
+            "description": "Whole-chart natal interpretation. Present when lang is one the natal engine writes (English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish); absent otherwise."
+          },
           "birthDetails": {
             "type": "object",
             "properties": {
@@ -409,13 +447,13 @@
                   "properties": {
                     "summary": {
                       "type": "string",
-                      "description": "One-sentence interpretation of this planet in its sign and house placement.",
-                      "example": "Your Sun in Cancer in The Seventh House reveals how you express self-awareness and ego in the realm of partnerships."
+                      "description": "The placement in brief: what this body does in its sign and in its house, written for this chart.",
+                      "example": "Belonging is the root of your power, and you are most yourself with your people gathered close. Faith, scholarship and far shores stretch you, and every wider view adds to who you are becoming."
                     },
                     "detailed": {
                       "type": "string",
-                      "description": "Multi-sentence detailed interpretation with personality insights.",
-                      "example": "Sun represents self-awareness and ego. In Cancer, this energy becomes nurturing, protective, emotionally intelligent..."
+                      "description": "The full reading of this placement: its sign and house, and where they apply its dignity, retrograde motion, the Moon phase at birth, a nearby angle and its tightest aspect.",
+                      "example": "You remember birthdays, keep every handwritten note, and notice who stopped talking halfway through dinner. Your instincts catch a mood before anyone names it, and they are seldom wrong about who needs care. When exposed, you pull into your shell and wait to be guessed, though putting words to the need works faster. Home is wherever you set down your care, and even a rented room soon starts to feel lived in. A map, a syllabus or a heated debate about what life is for wakes you up. You shine as a seeker who loves explaining what you found to anyone curious enough to ask. A single trip abroad can change how you see everything back home for years. Optimism sits near the core with Jupiter beside the Sun, so big ideas get an easy welcome and the details are trusted to sort themselves out."
                     },
                     "keywords": {
                       "type": "array",
@@ -424,11 +462,10 @@
                       },
                       "description": "Key personality traits and themes for this placement.",
                       "example": [
-                        "Nurturing",
-                        "Protective",
-                        "Emotional",
-                        "Intuitive",
-                        "Home-oriented"
+                        "nurturing",
+                        "loyalty",
+                        "memory",
+                        "tenderness"
                       ]
                     }
                   },
@@ -437,7 +474,7 @@
                     "detailed",
                     "keywords"
                   ],
-                  "description": "Planet-in-sign-in-house interpretation. Narrative analysis of what this placement means in the natal chart."
+                  "description": "Reading of this body in its sign and house for this chart, in the requested language."
                 }
               },
               "required": [
@@ -563,8 +600,8 @@
                   "properties": {
                     "summary": {
                       "type": "string",
-                      "example": "Your Sun forms a very strong conjunction (0) with Jupiter, currently separating (weakening). This neutral aspect highlights themes of blend, difficult, and unite.",
-                      "description": "One-sentence read of THIS pair: which two bodies, how tight the aspect is, whether it is applying or separating, and how it is classified. Translated in place, so it arrives in the requested language."
+                      "example": "Your North Node in Aquarius points toward less familiar ground, while the South Node in Leo marks what you already know by heart.",
+                      "description": "Short read of THIS pair of bodies as the aspect joins them in this chart. Type, orb, strength and motion stay in the fields beside it. Translated in place, so it arrives in the requested language."
                     },
                     "keywords": {
                       "type": "array",
@@ -572,11 +609,11 @@
                         "type": "string"
                       },
                       "example": [
-                        "blend",
-                        "intensity",
-                        "focus",
-                        "unity",
-                        "emphasis"
+                        "polarity",
+                        "tension",
+                        "balance",
+                        "relationship",
+                        "compromise"
                       ],
                       "description": "Themes this aspect activates between the two bodies. Translated in place, so they arrive in the requested language."
                     }
@@ -619,7 +656,7 @@
                     "STELLIUM"
                   ],
                   "example": "GRAND_TRINE",
-                  "description": "Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (Finger of Fate, fated adjustment), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3\u002B planets clustered in a sign or 10-degree arc)."
+                  "description": "Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (a planet at the apex of two quincunxes, a call to adjust), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3\u002B planets clustered in a sign or 10-degree arc)."
                 },
                 "name": {
                   "type": "string",
@@ -678,7 +715,7 @@
                 },
                 "interpretation": {
                   "type": "string",
-                  "example": "Grand Trine in Water signs binds Sun, Moon, and Mars in flowing harmony, gifts that come easily but ask to be activated.",
+                  "example": "Your Sun, Moon, and Mars form a Grand Trine, an easy triangle of support, so talent passes between them without effort and grows most when you put it to deliberate use.",
                   "description": "Concise one-line interpretation naming the participating planets and theme. Localized to the requested language via the lang query parameter (defaults to English)."
                 },
                 "interpretationKey": {
@@ -720,26 +757,26 @@
               "summary": {
                 "type": "string",
                 "description": "Narrative summary of the overall aspect pattern in this chart.",
-                "example": "Your chart contains 15 aspects: 8 harmonious, 5 challenging, and 2 neutral. This creates a harmonious overall pattern."
+                "example": "Friction drives this chart, which tends to make you someone who grows by working things through rather than waiting for them to settle."
               },
               "dominant": {
                 "type": "string",
-                "example": "harmonious",
-                "description": "Whether the chart is predominantly harmonious, challenging, or balanced."
+                "example": "challenging",
+                "description": "Which way this chart leans, read from the harmonious and challenging counts beside it against how many of each a typical chart holds: harmonious, challenging or balanced. Always English, whatever the lang parameter says; the summary states the same lean in the requested language."
               },
               "harmonious": {
                 "type": "number",
-                "example": 8,
+                "example": 7,
                 "description": "Count of harmonious aspects (trine, sextile)."
               },
               "challenging": {
                 "type": "number",
-                "example": 5,
-                "description": "Count of challenging aspects (square, opposition)."
+                "example": 16,
+                "description": "Count of challenging aspects (square, opposition, quincunx)."
               },
               "neutral": {
                 "type": "number",
-                "example": 2,
+                "example": 6,
                 "description": "Count of neutral aspects (conjunction)."
               }
             },
@@ -774,6 +811,26 @@
                 "type": "number",
                 "example": 45.32,
                 "description": "Absolute ecliptic longitude of the Ascendant (0-360)."
+              },
+              "interpretation": {
+                "type": "object",
+                "properties": {
+                  "summary": {
+                    "type": "string",
+                    "example": "Intensity is your handshake, a steady gaze and a few chosen words that leave people wanting to know what you are thinking.",
+                    "description": "One-sentence read of the rising sign: how you meet the world and how others first meet you."
+                  },
+                  "detailed": {
+                    "type": "string",
+                    "example": "Someone tells you a light story and you hear the heavier one underneath it, which is why your silence makes some people say more than they planned. First meetings with you feel charged, as though more is being said under the words, and newcomers either lean closer or take a careful step back. Anything new gets investigated beneath the surface first, and you prefer knowing the hidden costs and motives before you commit a single ounce of trust. Privacy hardens into secrecy under scrutiny, and control or a stinging remark becomes the defense, while sharing one true thing first eases the standoff for everyone. Most people sense deep water in you, calm on top and strong underneath, and the few who swim farther find a fiercely devoted ally.",
+                    "description": "A paragraph on the rising sign: how you meet the world and how others first meet you: the strengths it brings, the habit to watch and how it shows in daily life."
+                  }
+                },
+                "required": [
+                  "summary",
+                  "detailed"
+                ],
+                "description": "Interpretation of the rising sign: how you meet the world and how others first meet you. Present when lang is one the natal engine writes (English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish); absent otherwise."
               }
             },
             "required": [
@@ -805,6 +862,26 @@
                 "type": "number",
                 "example": 308.76,
                 "description": "Absolute ecliptic longitude of the Midheaven (0-360)."
+              },
+              "interpretation": {
+                "type": "object",
+                "properties": {
+                  "summary": {
+                    "type": "string",
+                    "example": "Self-expression on a visible stage is the direction you choose, warm enough to draw a crowd and bold enough to lead it.",
+                    "description": "One-sentence read of the Midheaven sign: your public direction and the work you want to be known for."
+                  },
+                  "detailed": {
+                    "type": "string",
+                    "example": "You keep at a creative goal long after others drift, rehearsing, revising and polishing, because you want the finished piece to carry your name with real pride. Others read you as magnetic and commanding, someone whose confidence warms a room rather than chilling it, and people gravitate toward you without being asked. Persistence matters to you as much as flair, and the achievement you prize is a creative effort sustained over years, not one bright evening. Applause can begin to seem like oxygen, and the steadier fuel is the satisfaction of watching someone you encouraged step forward and shine on their own. Warmth and boldness travel together wherever you show up publicly, and people tend to remember the glow of working near you more than any single result.",
+                    "description": "A paragraph on the Midheaven sign: your public direction and the work you want to be known for: the strengths it brings, the habit to watch and how it shows in daily life."
+                  }
+                },
+                "required": [
+                  "summary",
+                  "detailed"
+                ],
+                "description": "Interpretation of the Midheaven sign: your public direction and the work you want to be known for. Present when lang is one the natal engine writes (English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish); absent otherwise."
               }
             },
             "required": [
@@ -1588,7 +1665,7 @@
                     "STELLIUM"
                   ],
                   "example": "GRAND_TRINE",
-                  "description": "Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (Finger of Fate, fated adjustment), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3\u002B planets clustered in a sign or 10-degree arc)."
+                  "description": "Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (a planet at the apex of two quincunxes, a call to adjust), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3\u002B planets clustered in a sign or 10-degree arc)."
                 },
                 "name": {
                   "type": "string",
@@ -1647,7 +1724,7 @@
                 },
                 "interpretation": {
                   "type": "string",
-                  "example": "Grand Trine in Water signs binds Sun, Moon, and Mars in flowing harmony, gifts that come easily but ask to be activated.",
+                  "example": "Your Sun, Moon, and Mars form a Grand Trine, an easy triangle of support, so talent passes between them without effort and grows most when you put it to deliberate use.",
                   "description": "Concise one-line interpretation naming the participating planets and theme. Localized to the requested language via the lang query parameter (defaults to English)."
                 },
                 "interpretationKey": {
@@ -1825,7 +1902,7 @@
                     "STELLIUM"
                   ],
                   "example": "GRAND_TRINE",
-                  "description": "Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (Finger of Fate, fated adjustment), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3\u002B planets clustered in a sign or 10-degree arc)."
+                  "description": "Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (a planet at the apex of two quincunxes, a call to adjust), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3\u002B planets clustered in a sign or 10-degree arc)."
                 },
                 "name": {
                   "type": "string",
@@ -1884,7 +1961,7 @@
                 },
                 "interpretation": {
                   "type": "string",
-                  "example": "Grand Trine in Water signs binds Sun, Moon, and Mars in flowing harmony, gifts that come easily but ask to be activated.",
+                  "example": "Your Sun, Moon, and Mars form a Grand Trine, an easy triangle of support, so talent passes between them without effort and grows most when you put it to deliberate use.",
                   "description": "Concise one-line interpretation naming the participating planets and theme. Localized to the requested language via the lang query parameter (defaults to English)."
                 },
                 "interpretationKey": {
@@ -1931,7 +2008,7 @@
               "strictOrbs": {
                 "type": "boolean",
                 "example": false,
-                "description": "Whether the tight orb budget was used. False uses the standard pattern-detection orbs (8 degrees for major aspects, 9 for square, 6 for sextile, 3 for quincunx)."
+                "description": "Whether the tight orb budget was used. False uses the chart aspect table orbs; true narrows them further."
               },
               "include": {
                 "type": "array",
@@ -3018,12 +3095,12 @@
             "properties": {
               "summary": {
                 "type": "string",
-                "example": "Your Sun in Leo in The Third House reveals how you express self-awareness and ego in the realm of communication.",
-                "description": "One-sentence interpretation of this planet in its sign and relocated house."
+                "example": "Confidence and open-handed warmth are your signature, and you feel most like yourself while others are being celebrated. Every chat, class and errand around town lets you say who you are and be heard.",
+                "description": "The placement in brief: what this body does in its natal sign and in its relocated house."
               },
               "detailed": {
                 "type": "string",
-                "example": "Sun represents self-awareness and ego. In Leo, this energy becomes confident and expressive...",
+                "example": "Loyalty in you is wholehearted, and once you back someone you cheer for them in every room. A message drafted, a question asked aloud or a talk you give lets you hear who you are. Short trips, local haunts and familiar shopkeepers give your days a stage you know by heart.",
                 "description": "Multi-sentence interpretation of this relocated placement."
               },
               "keywords": {
@@ -3032,9 +3109,10 @@
                   "type": "string"
                 },
                 "example": [
-                  "Confident",
-                  "Expressive",
-                  "Communicative"
+                  "warmth",
+                  "generosity",
+                  "creativity",
+                  "pride"
                 ],
                 "description": "Key themes for this relocated placement."
               }
@@ -19903,8 +19981,8 @@
         "tags": [
           "Western Astrology"
         ],
-        "summary": "Generate natal chart - Birth chart calculator API with houses and aspects",
-        "description": "Calculate complete Western astrology natal chart (birth chart) with tropical zodiac. Returns all 14 celestial bodies (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith), 12 house cusps with customizable house systems (Placidus, Whole Sign, Equal, Koch), major and minor aspects, Ascendant, Midheaven, dominant elements and modalities. Perfect for astrology apps, birth chart generators, horoscope websites, and astrological consultation tools. Verified against NASA JPL Horizons.",
+        "summary": "Generate natal chart - Birth chart API with houses, aspects and a written reading",
+        "description": "Calculate a Western astrology natal chart (birth chart) with planets, houses, aspects and a written reading for that birth. It returns all 14 celestial bodies in the tropical zodiac (the 10 classical planets Sun through Pluto, the lunar nodes, Chiron and Black Moon Lilith) with sign, house and dignity, 12 house cusps in Placidus, Whole Sign, Equal or Koch, major and minor aspects, Ascendant, Midheaven, and the dominant elements and modalities. Every chart carries an editorial reading written for that birth: an opening synthesis, love, career and home chapters, a closing, and a reading for each planet, aspect, the Ascendant and the Midheaven, in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish. Verified against NASA JPL Horizons.",
         "security": [
           {
             "apiKey": []
@@ -20024,7 +20102,7 @@
           "Western Astrology"
         ],
         "summary": "Get planetary positions - Ephemeris calculator for all planets",
-        "description": "Calculate accurate tropical zodiac positions for all 14 celestial bodies for any date, time, and location. The bodies are the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, and retrograde status. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.",
+        "description": "Calculate accurate tropical zodiac positions for all 14 celestial bodies for any date, time, and location. The bodies are the 10 classical planets Sun through Pluto, the lunar nodes, Chiron, and Black Moon Lilith. Returns longitude, latitude, zodiac sign, degree within sign, daily motion speed, retrograde status, and a reading of each body in its sign. Perfect for transit tracking, ephemeris tables, astrology apps, and planetary position widgets. Verified against NASA JPL Horizons.",
         "security": [
           {
             "apiKey": []
@@ -22544,10 +22622,10 @@
             "schema": {
               "type": "string",
               "example": "false",
-              "description": "Use tighter orbs, so only closely formed patterns are reported. Truthy values (true, 1, yes, on; case-insensitive) narrow trine to 5 degrees, square to 5, sextile to 4, quincunx to 2. Defaults to false, the standard pattern-detection orbs."
+              "description": "Use tighter orbs, so only closely formed patterns are reported. Truthy values (true, 1, yes, on; case-insensitive) narrow trine to 5 degrees, square to 5, sextile to 4, quincunx to 2. Every leg must occur in the chart aspect table. Defaults to false."
             },
             "required": false,
-            "description": "Use tighter orbs, so only closely formed patterns are reported. Truthy values (true, 1, yes, on; case-insensitive) narrow trine to 5 degrees, square to 5, sextile to 4, quincunx to 2. Defaults to false, the standard pattern-detection orbs.",
+            "description": "Use tighter orbs, so only closely formed patterns are reported. Truthy values (true, 1, yes, on; case-insensitive) narrow trine to 5 degrees, square to 5, sextile to 4, quincunx to 2. Every leg must occur in the chart aspect table. Defaults to false.",
             "name": "strictOrbs",
             "in": "query"
           },
@@ -31233,7 +31311,7 @@
           "Western Astrology"
         ],
         "summary": "Generate relocation chart - Relocated birth chart calculator with shifted houses and angles",
-        "description": "Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.",
+        "description": "Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house with a reading of each planet in its relocated house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.",
         "security": [
           {
             "apiKey": []

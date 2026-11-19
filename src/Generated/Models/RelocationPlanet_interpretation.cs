@@ -31,7 +31,7 @@ namespace RoxyApi.Models
 #else
         public List<string> Keywords { get; set; }
 #endif
-        /// <summary>One-sentence interpretation of this planet in its sign and relocated house.</summary>
+        /// <summary>The placement in brief: what this body does in its natal sign and in its relocated house.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Summary { get; set; }

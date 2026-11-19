@@ -17,6 +17,14 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Degree within the Midheaven sign (0-29.999).</summary>
         public double? Degree { get; set; }
+        /// <summary>Interpretation of the Midheaven sign: your public direction and the work you want to be known for. Present when lang is one the natal engine writes (English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish); absent otherwise.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.NatalChartResponse_midheaven_interpretation? Interpretation { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.NatalChartResponse_midheaven_interpretation Interpretation { get; set; }
+#endif
         /// <summary>Absolute ecliptic longitude of the Midheaven (0-360).</summary>
         public double? Longitude { get; set; }
         /// <summary>Zodiac sign on the Midheaven (MC). Always English, whatever the lang parameter says. Use signLocalized for anything a reader sees.</summary>
@@ -61,6 +69,7 @@ namespace RoxyApi.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "degree", n => { Degree = n.GetDoubleValue(); } },
+                { "interpretation", n => { Interpretation = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_midheaven_interpretation>(global::RoxyApi.Models.NatalChartResponse_midheaven_interpretation.CreateFromDiscriminatorValue); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
                 { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
@@ -74,6 +83,7 @@ namespace RoxyApi.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("degree", Degree);
+            writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_midheaven_interpretation>("interpretation", Interpretation);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteStringValue("sign", Sign);
             writer.WriteStringValue("signLocalized", SignLocalized);

@@ -23,7 +23,7 @@ namespace RoxyApi.Models
 #else
         public List<global::RoxyApi.Models.AspectPatternsResponse_options_include?> Include { get; set; }
 #endif
-        /// <summary>Whether the tight orb budget was used. False uses the standard pattern-detection orbs (8 degrees for major aspects, 9 for square, 6 for sextile, 3 for quincunx).</summary>
+        /// <summary>Whether the tight orb budget was used. False uses the chart aspect table orbs; true narrows them further.</summary>
         public bool? StrictOrbs { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Models.AspectPatternsResponse_options"/> and sets the default values.

@@ -8,14 +8,14 @@ using System;
 namespace RoxyApi.Models
 {
     /// <summary>
-    /// Planet-in-sign-in-house interpretation. Narrative analysis of what this placement means in the natal chart.
+    /// Reading of this body in its sign and house for this chart, in the requested language.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NatalChartResponse_planets_interpretation : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Multi-sentence detailed interpretation with personality insights.</summary>
+        /// <summary>The full reading of this placement: its sign and house, and where they apply its dignity, retrograde motion, the Moon phase at birth, a nearby angle and its tightest aspect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Detailed { get; set; }
@@ -31,7 +31,7 @@ namespace RoxyApi.Models
 #else
         public List<string> Keywords { get; set; }
 #endif
-        /// <summary>One-sentence interpretation of this planet in its sign and house placement.</summary>
+        /// <summary>The placement in brief: what this body does in its sign and in its house, written for this chart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Summary { get; set; }

@@ -23,7 +23,7 @@ namespace RoxyApi.Models
 #else
         public List<string> Keywords { get; set; }
 #endif
-        /// <summary>One-sentence read of THIS pair: which two bodies, how tight the aspect is, whether it is applying or separating, and how it is classified. Translated in place, so it arrives in the requested language.</summary>
+        /// <summary>Short read of THIS pair of bodies as the aspect joins them in this chart. Type, orb, strength and motion stay in the fields beside it. Translated in place, so it arrives in the requested language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Summary { get; set; }

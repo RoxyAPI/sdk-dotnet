@@ -27,7 +27,7 @@ How the calls below map to the API:
 <!-- BEGIN:METHODS -->
 ## [Western Astrology](https://roxyapi.com/api-reference/western-astrology) - `roxy.Astrology`
 
-Western astrology API for natal birth charts, daily, weekly, monthly, and yearly horoscopes with unique content per s...
+Western astrology API for natal birth charts with an editorial reading of the whole chart, daily, weekly, monthly, an...
 
 ```csharp
 // Get all zodiac signs - Complete zodiac signs list with dates and elements
@@ -42,7 +42,7 @@ await roxy.Astrology.PlanetMeanings.GetAsync();
 // Get planet meaning details - Complete astrology planet interpretation
 await roxy.Astrology.PlanetMeanings["sun"].GetAsync();
 
-// Generate natal chart - Birth chart calculator API with houses and aspects
+// Generate natal chart - Birth chart API with houses, aspects and a written reading
 await roxy.Astrology.NatalChart.PostAsync(new() { Date = new Date(1990, 7, 15), Time = new Time(14, 30, 0), Latitude = 40.7128, Longitude = -74.006, Timezone = new() { String = "America/New_York" } });
 
 // Get planetary positions - Ephemeris calculator for all planets

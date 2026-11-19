@@ -116,7 +116,7 @@ namespace RoxyApi.Astrology.AspectPatterns
             /// <summary>Response language (BCP 47). Supported: en, tr, de, es, hi, pt, fr, ru, zh-Hans, zh-Hant. Defaults to en. Coverage varies by domain, and a field with no translation in the requested language returns English.</summary>
             [QueryParameter("lang")]
             public global::RoxyApi.Astrology.AspectPatterns.PostLangQueryParameterType? Lang { get; set; }
-            /// <summary>Use tighter orbs, so only closely formed patterns are reported. Truthy values (true, 1, yes, on; case-insensitive) narrow trine to 5 degrees, square to 5, sextile to 4, quincunx to 2. Defaults to false, the standard pattern-detection orbs.</summary>
+            /// <summary>Use tighter orbs, so only closely formed patterns are reported. Truthy values (true, 1, yes, on; case-insensitive) narrow trine to 5 degrees, square to 5, sextile to 4, quincunx to 2. Every leg must occur in the chart aspect table. Defaults to false.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("strictOrbs")]

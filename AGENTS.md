@@ -42,7 +42,7 @@ var city = place!.Cities![0];
 <!-- BEGIN:DOMAINS -->
 | Accessor | What it covers |
 |----------|----------------|
-| [`roxy.Astrology`](https://roxyapi.com/api-reference/western-astrology) | Western astrology API for natal birth charts, daily, weekly, monthly, and yearly horoscopes with unique content per s... |
+| [`roxy.Astrology`](https://roxyapi.com/api-reference/western-astrology) | Western astrology API for natal birth charts with an editorial reading of the whole chart, daily, weekly, monthly, an... |
 | [`roxy.VedicAstrology`](https://roxyapi.com/api-reference/vedic-astrology) | Vedic astrology (Jyotish) and KP API for kundli generation with the sixteen Shodasavarga divisional charts (D1 to D60... |
 | [`roxy.Forecast`](https://roxyapi.com/api-reference/forecast) | Astrology forecast API that merges upcoming transit aspects, sign ingresses, retrograde stations, new and full moons,... |
 | [`roxy.HumanDesign`](https://roxyapi.com/api-reference/human-design) | Human Design API that generates the full bodygraph from a birth moment: type, strategy, inner authority, profile, def... |

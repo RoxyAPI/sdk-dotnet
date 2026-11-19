@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace RoxyApi.Models
 {
-    /// <summary>Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (Finger of Fate, fated adjustment), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3+ planets clustered in a sign or 10-degree arc).</summary>
+    /// <summary>Pattern kind identifier. GRAND_TRINE (3 trines, harmonious flow), KITE (Grand Trine with a focal outlet planet), T_SQUARE (opposition with squared apex, growth engine), GRAND_CROSS (4 planets in 2 oppositions and 4 squares, peak tension), YOD (a planet at the apex of two quincunxes, a call to adjust), MYSTIC_RECTANGLE (oppositions softened by trines and sextiles), STELLIUM (3+ planets clustered in a sign or 10-degree arc).</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum AspectsResponse_patterns_kind
     {

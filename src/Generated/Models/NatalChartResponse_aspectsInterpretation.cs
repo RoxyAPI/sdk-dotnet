@@ -15,9 +15,9 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Count of challenging aspects (square, opposition).</summary>
+        /// <summary>Count of challenging aspects (square, opposition, quincunx).</summary>
         public double? Challenging { get; set; }
-        /// <summary>Whether the chart is predominantly harmonious, challenging, or balanced.</summary>
+        /// <summary>Which way this chart leans, read from the harmonious and challenging counts beside it against how many of each a typical chart holds: harmonious, challenging or balanced. Always English, whatever the lang parameter says; the summary states the same lean in the requested language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Dominant { get; set; }

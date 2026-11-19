@@ -20,7 +20,7 @@ namespace RoxyApi.Models
         public global::RoxyApi.Models.NatalChartResponse_planets_dignity? Dignity { get; set; }
         /// <summary>House placement (1-12) based on the selected house system.</summary>
         public double? House { get; set; }
-        /// <summary>Planet-in-sign-in-house interpretation. Narrative analysis of what this placement means in the natal chart.</summary>
+        /// <summary>Reading of this body in its sign and house for this chart, in the requested language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.NatalChartResponse_planets_interpretation? Interpretation { get; set; }

@@ -62,6 +62,14 @@ namespace RoxyApi.Models
 #else
         public string HouseSystem { get; set; }
 #endif
+        /// <summary>Whole-chart natal interpretation. Present when lang is one the natal engine writes (English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish); absent otherwise.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.NatalChartResponse_interpretation? Interpretation { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.NatalChartResponse_interpretation Interpretation { get; set; }
+#endif
         /// <summary>Midheaven (MC). The highest point of the ecliptic at birth, representing career direction and public image.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -141,6 +149,7 @@ namespace RoxyApi.Models
                 { "birthDetails", n => { BirthDetails = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_birthDetails>(global::RoxyApi.Models.NatalChartResponse_birthDetails.CreateFromDiscriminatorValue); } },
                 { "houseSystem", n => { HouseSystem = n.GetStringValue(); } },
                 { "houses", n => { Houses = n.GetCollectionOfObjectValues<global::RoxyApi.Models.NatalChartResponse_houses>(global::RoxyApi.Models.NatalChartResponse_houses.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "interpretation", n => { Interpretation = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_interpretation>(global::RoxyApi.Models.NatalChartResponse_interpretation.CreateFromDiscriminatorValue); } },
                 { "midheaven", n => { Midheaven = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_midheaven>(global::RoxyApi.Models.NatalChartResponse_midheaven.CreateFromDiscriminatorValue); } },
                 { "partOfFortune", n => { PartOfFortune = n.GetObjectValue<global::RoxyApi.Models.NatalChartResponse_partOfFortune>(global::RoxyApi.Models.NatalChartResponse_partOfFortune.CreateFromDiscriminatorValue); } },
                 { "patterns", n => { Patterns = n.GetCollectionOfObjectValues<global::RoxyApi.Models.NatalChartResponse_patterns>(global::RoxyApi.Models.NatalChartResponse_patterns.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -162,6 +171,7 @@ namespace RoxyApi.Models
             writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_birthDetails>("birthDetails", BirthDetails);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.NatalChartResponse_houses>("houses", Houses);
             writer.WriteStringValue("houseSystem", HouseSystem);
+            writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_interpretation>("interpretation", Interpretation);
             writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_midheaven>("midheaven", Midheaven);
             writer.WriteObjectValue<global::RoxyApi.Models.NatalChartResponse_partOfFortune>("partOfFortune", PartOfFortune);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.NatalChartResponse_patterns>("patterns", Patterns);

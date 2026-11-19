@@ -34,7 +34,7 @@ namespace RoxyApi.Astrology.RelocationChart
         {
         }
         /// <summary>
-        /// Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.
+        /// Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house with a reading of each planet in its relocated house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.RelocationChartResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.Astrology.RelocationChart
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.RelocationChartResponse>(requestInfo, global::RoxyApi.Models.RelocationChartResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.
+        /// Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house with a reading of each planet in its relocated house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.Astrology.RelocationChart
             return new global::RoxyApi.Astrology.RelocationChart.RelocationChartRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.
+        /// Calculate a relocation chart (relocated birth chart) for a new place on Earth. The birth moment stays the same, so every planet keeps its natal sign and degree, while the Ascendant, Midheaven, Vertex, and all twelve house cusps are recomputed for the new latitude and longitude. Returns the relocated houses and angles, the planets that change house with a reading of each planet in its relocated house, the angular planets activated at the new place, and the distance and compass direction from the birthplace. Built for relocation astrology readings, astrocartography style move planning, and travel charts. Verified against NASA JPL Horizons.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RelocationChartRequestBuilderPostQueryParameters 
