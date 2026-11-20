@@ -14,7 +14,7 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Significations of the bhava (house). Present when an interpretation entry exists for this house.</summary>
+        /// <summary>Reading of the bhava (house), written for this chart in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish: where its lord sits, each graha it holds, and, for a bhava no graha occupies, the drishti Jupiter or Saturn casts on it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -22,7 +22,7 @@ namespace RoxyApi.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Classical name of the bhava (house). Present when an interpretation entry exists for this house.</summary>
+        /// <summary>Classical name of the bhava (house).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -32,7 +32,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Bhava (house) number 1-12. House 1 is the Lagna (Ascendant), house 7 the partnership axis, house 10 the career axis.</summary>
         public int? Number { get; set; }
-        /// <summary>Significations of the bhava as short keywords, the compact form of description. Bhava 1 covers self, body and vitality; 2 wealth and speech; 7 marriage and partnership; 10 career and status. Suited to chart labels, table cells and legends where the full classical description is too long, and identical to the houseThemes map returned by the Vimshottari dasha and KP chart routes. Localized by the lang query parameter.</summary>
+        /// <summary>Significations of the bhava as short keywords. Bhava 1 covers self, body and vitality; 2 wealth and speech; 7 marriage and partnership; 10 career and status. Suited to chart labels, table cells and legends, and identical to the houseThemes map returned by the Vimshottari dasha and KP chart routes. Localized by the lang query parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Themes { get; set; }

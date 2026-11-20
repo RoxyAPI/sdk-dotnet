@@ -8,7 +8,7 @@ using System;
 namespace RoxyApi.Models
 {
     /// <summary>
-    /// Planet-in-rashi and planet-in-nakshatra interpretation summaries, keyed by planet name. Translated when a supported lang is requested.
+    /// Rashi and nakshatra readings for every graha and the Lagna, keyed by planet name, written for this chart in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BirthChartResponse_interpretations : IAdditionalDataHolder, IParsable

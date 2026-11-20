@@ -78,7 +78,15 @@ namespace RoxyApi.Models
 #else
         public List<global::RoxyApi.Models.BirthChartResponse_houses> Houses { get; set; }
 #endif
-        /// <summary>Planet-in-rashi and planet-in-nakshatra interpretation summaries, keyed by planet name. Translated when a supported lang is requested.</summary>
+        /// <summary>Whole-chart Vedic birth chart reading written for this birth in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish, the kundli at a glance.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.BirthChartResponse_interpretation? Interpretation { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.BirthChartResponse_interpretation Interpretation { get; set; }
+#endif
+        /// <summary>Rashi and nakshatra readings for every graha and the Lagna, keyed by planet name, written for this chart in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.BirthChartResponse_interpretations? Interpretations { get; set; }
@@ -207,6 +215,7 @@ namespace RoxyApi.Models
                 { "frame", n => { Frame = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_frame>(global::RoxyApi.Models.BirthChartResponse_frame.CreateFromDiscriminatorValue); } },
                 { "gemini", n => { Gemini = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_gemini>(global::RoxyApi.Models.BirthChartResponse_gemini.CreateFromDiscriminatorValue); } },
                 { "houses", n => { Houses = n.GetCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_houses>(global::RoxyApi.Models.BirthChartResponse_houses.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "interpretation", n => { Interpretation = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_interpretation>(global::RoxyApi.Models.BirthChartResponse_interpretation.CreateFromDiscriminatorValue); } },
                 { "interpretations", n => { Interpretations = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_interpretations>(global::RoxyApi.Models.BirthChartResponse_interpretations.CreateFromDiscriminatorValue); } },
                 { "leo", n => { Leo = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_leo>(global::RoxyApi.Models.BirthChartResponse_leo.CreateFromDiscriminatorValue); } },
                 { "libra", n => { Libra = n.GetObjectValue<global::RoxyApi.Models.BirthChartResponse_libra>(global::RoxyApi.Models.BirthChartResponse_libra.CreateFromDiscriminatorValue); } },
@@ -236,6 +245,7 @@ namespace RoxyApi.Models
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_frame>("frame", Frame);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_gemini>("gemini", Gemini);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.BirthChartResponse_houses>("houses", Houses);
+            writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_interpretation>("interpretation", Interpretation);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_interpretations>("interpretations", Interpretations);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_leo>("leo", Leo);
             writer.WriteObjectValue<global::RoxyApi.Models.BirthChartResponse_libra>("libra", Libra);

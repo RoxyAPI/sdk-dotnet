@@ -34,7 +34,7 @@ namespace RoxyApi.VedicAstrology.BirthChart
         {
         }
         /// <summary>
-        /// Calculate complete Vedic birth chart (Janam Kundli, natal chart) with all 9 planetary positions (Sun through Ketu) plus Ascendant (Lagna). Kundli calculator API for astrology apps, matrimonial sites. Returns accurate graha positions grouped by zodiac signs (rashis) with nakshatra details and pada. Perfect for kundli generation, horoscope matching, and Vedic astrology software integration. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
+        /// Calculate a Vedic birth chart (Janam Kundli): all 9 grahas, Sun through Ketu, and the Lagna, grouped by rashi with nakshatra and pada. Every chart carries a Vedic chart reading written for that birth: the kundli at a glance, every graha read in its rashi and its nakshatra, and every bhava read from its lord and the grahas it holds, in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         /// <returns>A <see cref="global::RoxyApi.Models.BirthChartResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace RoxyApi.VedicAstrology.BirthChart
             return await RequestAdapter.SendAsync<global::RoxyApi.Models.BirthChartResponse>(requestInfo, global::RoxyApi.Models.BirthChartResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Calculate complete Vedic birth chart (Janam Kundli, natal chart) with all 9 planetary positions (Sun through Ketu) plus Ascendant (Lagna). Kundli calculator API for astrology apps, matrimonial sites. Returns accurate graha positions grouped by zodiac signs (rashis) with nakshatra details and pada. Perfect for kundli generation, horoscope matching, and Vedic astrology software integration. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
+        /// Calculate a Vedic birth chart (Janam Kundli): all 9 grahas, Sun through Ketu, and the Lagna, grouped by rashi with nakshatra and pada. Every chart carries a Vedic chart reading written for that birth: the kundli at a glance, every graha read in its rashi and its nakshatra, and every bhava read from its lord and the grahas it holds, in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -98,7 +98,7 @@ namespace RoxyApi.VedicAstrology.BirthChart
             return new global::RoxyApi.VedicAstrology.BirthChart.BirthChartRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Calculate complete Vedic birth chart (Janam Kundli, natal chart) with all 9 planetary positions (Sun through Ketu) plus Ascendant (Lagna). Kundli calculator API for astrology apps, matrimonial sites. Returns accurate graha positions grouped by zodiac signs (rashis) with nakshatra details and pada. Perfect for kundli generation, horoscope matching, and Vedic astrology software integration. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
+        /// Calculate a Vedic birth chart (Janam Kundli): all 9 grahas, Sun through Ketu, and the Lagna, grouped by rashi with nakshatra and pada. Every chart carries a Vedic chart reading written for that birth: the kundli at a glance, every graha read in its rashi and its nakshatra, and every bhava read from its lord and the grahas it holds, in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish. Rahu and Ketu are the mean lunar node, referred to the true equinox of date, with Ketu exactly opposite Rahu.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class BirthChartRequestBuilderPostQueryParameters 

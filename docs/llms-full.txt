@@ -152,10 +152,10 @@ await roxy.Astrology.Profections.PostAsync(new() { Date = new Date(1990, 7, 15),
 
 ## [Vedic Astrology](https://roxyapi.com/api-reference/vedic-astrology) - `roxy.VedicAstrology`
 
-Vedic astrology (Jyotish) and KP API for kundli generation with the sixteen Shodasavarga divisional charts (D1 to D60...
+Vedic astrology (Jyotish) and KP API for kundli generation with an editorial reading of the whole chart, the sixteen...
 
 ```csharp
-// Get birth chart (D1 Rashi chart) - Kundli Calculator API
+// Get birth chart (D1 Rashi chart) - Kundli API with a written chart reading
 await roxy.VedicAstrology.BirthChart.PostAsync(new() { Date = new Date(1990, 7, 4), Time = new Time(10, 12, 0), Latitude = 28.6139, Longitude = 77.209, Timezone = new() { Double = 5.5 }, AyanamsaValue = 24, AvasthaInfo = true, ModernPlanets = true });
 
 // Get Navamsa chart (D9) - Marriage Compatibility Calculator
