@@ -24,12 +24,36 @@ namespace RoxyApi.Astrology.CompositeChart
         public double? Orb { get; set; }
         /// <summary>First planet in the aspect pair.</summary>
         public global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_planet1? Planet1 { get; set; }
+        /// <summary>First planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet1Localized { get; set; }
+#nullable restore
+#else
+        public string Planet1Localized { get; set; }
+#endif
         /// <summary>Second planet in the aspect pair.</summary>
         public global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_planet2? Planet2 { get; set; }
+        /// <summary>Second planet name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Planet2Localized { get; set; }
+#nullable restore
+#else
+        public string Planet2Localized { get; set; }
+#endif
         /// <summary>Aspect strength percentage (0-100). Based on orb tightness relative to the allowed maximum.</summary>
         public double? Strength { get; set; }
         /// <summary>Aspect type. Major: conjunction (0), opposition (180), trine (120), square (90), sextile (60). Minor: semi-sextile, quincunx, semi-square, sesquiquadrate.</summary>
         public global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_type? Type { get; set; }
+        /// <summary>Aspect type name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TypeLocalized { get; set; }
+#nullable restore
+#else
+        public string TypeLocalized { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects"/> and sets the default values.
         /// </summary>
@@ -60,9 +84,12 @@ namespace RoxyApi.Astrology.CompositeChart
                 { "isApplying", n => { IsApplying = n.GetBoolValue(); } },
                 { "orb", n => { Orb = n.GetDoubleValue(); } },
                 { "planet1", n => { Planet1 = n.GetEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_planet1>(); } },
+                { "planet1Localized", n => { Planet1Localized = n.GetStringValue(); } },
                 { "planet2", n => { Planet2 = n.GetEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_planet2>(); } },
+                { "planet2Localized", n => { Planet2Localized = n.GetStringValue(); } },
                 { "strength", n => { Strength = n.GetDoubleValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_type>(); } },
+                { "typeLocalized", n => { TypeLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -77,9 +104,12 @@ namespace RoxyApi.Astrology.CompositeChart
             writer.WriteBoolValue("isApplying", IsApplying);
             writer.WriteDoubleValue("orb", Orb);
             writer.WriteEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_planet1>("planet1", Planet1);
+            writer.WriteStringValue("planet1Localized", Planet1Localized);
             writer.WriteEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_planet2>("planet2", Planet2);
+            writer.WriteStringValue("planet2Localized", Planet2Localized);
             writer.WriteDoubleValue("strength", Strength);
             writer.WriteEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_aspects_type>("type", Type);
+            writer.WriteStringValue("typeLocalized", TypeLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

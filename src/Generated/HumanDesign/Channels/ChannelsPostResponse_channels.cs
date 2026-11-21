@@ -46,7 +46,7 @@ namespace RoxyApi.HumanDesign.Channels
 #else
         public string CircuitLocalized { get; set; }
 #endif
-        /// <summary>What this channel wires between its two centers and the nature of the energy it carries.</summary>
+        /// <summary>What this channel wires between its two centers and how its energy shows up in you, in second person. Where the channel defines the center your inner authority comes from, or carries a motor to the Throat, the description says so.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

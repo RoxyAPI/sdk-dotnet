@@ -34,6 +34,14 @@ namespace RoxyApi.Astrology.CompositeChart
         public double? Longitude { get; set; }
         /// <summary>Body name. One of the 10 classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto), the lunar nodes (North Node, South Node), Chiron, or Black Moon Lilith (the mean lunar apogee). The lunar nodes follow the request nodeType, which defaults to the true (osculating) node; pass &quot;mean&quot; for the smoothed node. The two differ by up to about 1.8 degrees and no other body is affected.</summary>
         public global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_compositePlanets_name? Name { get; set; }
+        /// <summary>Body name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
+#endif
         /// <summary>Tropical zodiac sign this planet occupies. Determined by 30-degree divisions of ecliptic longitude.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,6 +49,14 @@ namespace RoxyApi.Astrology.CompositeChart
 #nullable restore
 #else
         public string Sign { get; set; }
+#endif
+        /// <summary>Zodiac sign name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SignLocalized { get; set; }
+#nullable restore
+#else
+        public string SignLocalized { get; set; }
 #endif
         /// <summary>Daily motion in degrees per day. Negative values indicate retrograde motion.</summary>
         public double? Speed { get; set; }
@@ -76,7 +92,9 @@ namespace RoxyApi.Astrology.CompositeChart
                 { "latitude", n => { Latitude = n.GetDoubleValue(); } },
                 { "longitude", n => { Longitude = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_compositePlanets_name>(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
+                { "signLocalized", n => { SignLocalized = n.GetStringValue(); } },
                 { "speed", n => { Speed = n.GetDoubleValue(); } },
             };
         }
@@ -94,7 +112,9 @@ namespace RoxyApi.Astrology.CompositeChart
             writer.WriteDoubleValue("latitude", Latitude);
             writer.WriteDoubleValue("longitude", Longitude);
             writer.WriteEnumValue<global::RoxyApi.Astrology.CompositeChart.CompositeChartPostResponse_compositePlanets_name>("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteStringValue("sign", Sign);
+            writer.WriteStringValue("signLocalized", SignLocalized);
             writer.WriteDoubleValue("speed", Speed);
             writer.WriteAdditionalData(AdditionalData);
         }

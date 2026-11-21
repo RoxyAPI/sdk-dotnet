@@ -39,7 +39,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string AngleLocalized { get; set; }
 #endif
-        /// <summary>The life theme of the cross, synthesized from its four gates and the orientation the angle gives them. The same Sun gate under a different angle is a genuinely different theme: Right Angle is personal destiny, Left Angle is worked out through other people, Juxtaposition is a fixed fate.</summary>
+        /// <summary>The life theme of the cross, read from all four of its gates, the way its angle orients that theme, and the conscious Sun gate it leads with. The same Sun gate under a different angle is a different theme: Right Angle is lived through personal experience, Left Angle through other people, Juxtaposition on one fixed course.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -55,13 +55,21 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public List<double?> Gates { get; set; }
 #endif
-        /// <summary>Canonical published name of the incarnation cross, determined by the Personality Sun gate and the angle. All 192 crosses (64 Personality Sun gates times three angles) carry their published name, numbered variants included, so this is never a composed placeholder. Always begins with the angle followed by Cross of. Always English, whatever the lang parameter says.</summary>
+        /// <summary>Canonical published name of the incarnation cross, determined by the Personality Sun gate and the angle. All 192 crosses (64 Personality Sun gates times three angles) carry their published name, numbered variants included, so this is never a composed placeholder. Always begins with the angle followed by Cross of. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Incarnation cross name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross"/> and sets the default values.
@@ -94,6 +102,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -109,6 +118,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfPrimitiveValues<double?>("gates", Gates);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

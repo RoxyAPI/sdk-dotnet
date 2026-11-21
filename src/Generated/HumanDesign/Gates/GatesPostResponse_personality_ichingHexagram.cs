@@ -15,13 +15,21 @@ namespace RoxyApi.HumanDesign.Gates
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>English name of the corresponding I-Ching hexagram.</summary>
+        /// <summary>English name of the corresponding I-Ching hexagram. Always English, whatever the lang parameter says. Use nameLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? English { get; set; }
 #nullable restore
 #else
         public string English { get; set; }
+#endif
+        /// <summary>Hexagram name in the requested language, for display only. Present only when lang is set to a language other than English, since in English it would repeat its canonical partner field exactly. Never compare against this value, compare against the canonical field beside it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameLocalized { get; set; }
+#nullable restore
+#else
+        public string NameLocalized { get; set; }
 #endif
         /// <summary>I-Ching hexagram number, identical to the gate number it corresponds to.</summary>
         public double? Number { get; set; }
@@ -51,6 +59,7 @@ namespace RoxyApi.HumanDesign.Gates
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "english", n => { English = n.GetStringValue(); } },
+                { "nameLocalized", n => { NameLocalized = n.GetStringValue(); } },
                 { "number", n => { Number = n.GetDoubleValue(); } },
             };
         }
@@ -62,6 +71,7 @@ namespace RoxyApi.HumanDesign.Gates
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("english", English);
+            writer.WriteStringValue("nameLocalized", NameLocalized);
             writer.WriteDoubleValue("number", Number);
             writer.WriteAdditionalData(AdditionalData);
         }

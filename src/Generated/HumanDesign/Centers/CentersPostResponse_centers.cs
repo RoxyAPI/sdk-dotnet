@@ -60,7 +60,7 @@ namespace RoxyApi.HumanDesign.Centers
 #else
         public string NameLocalized { get; set; }
 #endif
-        /// <summary>The conditioning trap of this center when it is open. Returned on every center so a consumer can surface it the moment `defined` is false, which is where the not-self operates.</summary>
+        /// <summary>The question that exposes this center going off course. On an open center it is the not-self question of the conditioning it takes in from others; on a defined center it is the trap of its own fixed energy, never the open-center question.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NotSelfQuestion { get; set; }
@@ -68,7 +68,7 @@ namespace RoxyApi.HumanDesign.Centers
 #else
         public string NotSelfQuestion { get; set; }
 #endif
-        /// <summary>Theme text describing the center in its current defined or undefined state.</summary>
+        /// <summary>What this center does in this chart, in second person: how it works when defined, or what it takes in and learns when open. A defined Throat reads differently when a motor reaches it, which is what lets it act.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Theme { get; set; }

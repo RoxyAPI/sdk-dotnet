@@ -50,7 +50,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #endif
         /// <summary>Line number from 1 to 6 within the gate, setting the line keynote and the profile.</summary>
         public double? Line { get; set; }
-        /// <summary>Meaning of this gate at this specific line, one of 384. The finest interpretive layer in the chart and the one that makes a reading specific rather than generic. This is not the six abstract line archetypes: gate 41 line 3 carries its own meaning that neither the gate keynote nor the line-3 archetype holds alone.</summary>
+        /// <summary>Meaning of this gate at this specific line, one of 384. The finest interpretive layer in the chart and the one that makes a reading specific rather than generic. This is not the six abstract line archetypes: gate 41 line 3 carries its own meaning that neither the gate keynote nor the line-3 archetype holds alone. When an earlier activation already sits on the same gate and line, this says so in one line instead of printing the meaning twice.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LineMeaning { get; set; }

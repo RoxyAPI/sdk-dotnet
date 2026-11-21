@@ -70,7 +70,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #else
         public string Definition { get; set; }
 #endif
-        /// <summary>How energy flows through the defined centers in this configuration, and what the configuration needs. For a split, this is where the bridging gates of other people matter.</summary>
+        /// <summary>How energy flows through your defined centers: which centers form each connected group and, where the definition is split, the gates in another person that would bridge the groups.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DefinitionDescription { get; set; }
@@ -109,6 +109,14 @@ namespace RoxyApi.HumanDesign.Bodygraph
 #nullable restore
 #else
         public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross IncarnationCross { get; set; }
+#endif
+        /// <summary>A reading of the whole bodygraph that connects type, authority, profile, definition and incarnation cross, written for this chart in English, German, Spanish, French, Hindi, Portuguese, Russian, Turkish.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_interpretation? Interpretation { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_interpretation Interpretation { get; set; }
 #endif
         /// <summary>The not-self theme, the recurring feeling that signals being out of alignment. Always English, whatever the lang parameter says. Use notSelfLocalized for anything a reader sees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -259,6 +267,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
                 { "designInstantUtc", n => { DesignInstantUtc = n.GetStringValue(); } },
                 { "gates", n => { Gates = n.GetCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "incarnationCross", n => { IncarnationCross = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross.CreateFromDiscriminatorValue); } },
+                { "interpretation", n => { Interpretation = n.GetObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_interpretation>(global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_interpretation.CreateFromDiscriminatorValue); } },
                 { "notSelf", n => { NotSelf = n.GetStringValue(); } },
                 { "notSelfLocalized", n => { NotSelfLocalized = n.GetStringValue(); } },
                 { "profile", n => { Profile = n.GetStringValue(); } },
@@ -294,6 +303,7 @@ namespace RoxyApi.HumanDesign.Bodygraph
             writer.WriteStringValue("designInstantUtc", DesignInstantUtc);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_gates>("gates", Gates);
             writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_incarnationCross>("incarnationCross", IncarnationCross);
+            writer.WriteObjectValue<global::RoxyApi.HumanDesign.Bodygraph.BodygraphPostResponse_interpretation>("interpretation", Interpretation);
             writer.WriteStringValue("notSelf", NotSelf);
             writer.WriteStringValue("notSelfLocalized", NotSelfLocalized);
             writer.WriteStringValue("profile", Profile);
