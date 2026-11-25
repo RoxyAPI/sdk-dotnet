@@ -46,7 +46,7 @@ namespace RoxyApi.Forecast.Digest
 #else
         public string Datetime { get; set; }
 #endif
-        /// <summary>Plain-language summary of the event, suitable for direct display. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English.</summary>
+        /// <summary>Plain-language reading of the event, suitable for direct display. A transit aspect, sign ingress or retrograde or direct station names the event and says what it stirs for this birth subject, in one or two sentences. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

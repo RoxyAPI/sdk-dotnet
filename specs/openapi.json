@@ -2251,23 +2251,23 @@
                   "properties": {
                     "summary": {
                       "type": "string",
-                      "example": "Sun activates your natal Mars neutrally",
-                      "description": "Narrative interpretation of what this transit aspect means and how it manifests."
+                      "example": "Uranus forms an opposition to your natal Lilith. Independence and closeness pull against each other, which sends you searching for common ground.",
+                      "description": "The transit in brief: what the transiting body is doing to the natal body in this aspect, in plain words for this chart."
                     },
                     "timing": {
                       "type": "string",
-                      "example": "Active for a few days",
-                      "description": "How long this transit influence lasts, localized. The bucket follows the speed of the transiting body: a few hours for the Moon, a few days for the Sun, Mercury, Venus and Mars, one to two weeks for Jupiter, several weeks for Saturn, and an extended period for Uranus, Neptune and Pluto."
+                      "example": "Felt from March 2024 to June 2027, with exact passes on June 5, 2025; December 19, 2025 and March 21, 2026.",
+                      "description": "The dated window of this transit on the transit clock: when it enters orb, every exact pass and when it leaves. A fast body such as the Moon reads in hours of the day."
                     },
                     "impact": {
                       "type": "string",
-                      "example": "Self-awareness and ego merges with Assertiveness and aggression. Intensifies this energy.",
-                      "description": "Strength and nature of the transit impact on your natal chart."
+                      "example": "Your untamed side is reflected by other people, and what draws a reaction shows what you hold back. The stage is your house of partnership, with Uranus on it and what you look for in another person in view.",
+                      "description": "What the transit stirs in the natal body and the life area where it plays out, from the natal house the transiting body passes through."
                     },
                     "guidance": {
                       "type": "string",
-                      "example": "Pay attention to how this combination manifests. Strong energy requires conscious direction.",
-                      "description": "Practical advice for working with or navigating this transit energy."
+                      "example": "Keep your bridges standing while you test a new direction. Which part of your power do you give away, and which do you keep?",
+                      "description": "Ways to work with this transit, offered as options and drawn from both bodies in the aspect."
                     },
                     "keywords": {
                       "type": "array",
@@ -2275,13 +2275,14 @@
                         "type": "string"
                       },
                       "example": [
-                        "blend",
-                        "intensity",
-                        "focus",
-                        "unity",
-                        "emphasis"
+                        "avant-garde",
+                        "change",
+                        "authenticity",
+                        "autonomy",
+                        "polarity",
+                        "tension"
                       ],
-                      "description": "Key themes activated by this transit aspect."
+                      "description": "Themes of this transit, drawn from both bodies and the aspect."
                     }
                   },
                   "required": [
@@ -2291,7 +2292,7 @@
                     "guidance",
                     "keywords"
                   ],
-                  "description": "Rich interpretation of the transit aspect including narrative summary, timing, impact assessment, practical guidance, and keywords."
+                  "description": "The reading of this transit aspect: summary, dated timing, impact, guidance and keywords, written for this chart."
                 }
               },
               "required": [
@@ -2306,7 +2307,27 @@
                 "interpretation"
               ]
             },
-            "description": "Transit-to-natal aspects (only included when natalChart is provided in the request). Shows which transiting planets are aspecting natal planets."
+            "description": "Transit-to-natal aspects with a written reading each (only included when natalChart is provided in the request). Aspects under 15 percent strength are left out of the list, not out of the readings."
+          },
+          "interpretation": {
+            "type": "object",
+            "properties": {
+              "summary": {
+                "type": "string",
+                "example": "Jupiter joins your natal Sun: you feel hopeful and ready to grow into a new chapter. It runs until July 4, 2026 and is easiest to see in your house of travel and belief.",
+                "description": "The leading transit of the moment in one or two sentences."
+              },
+              "detailed": {
+                "type": "string",
+                "example": "Jupiter sets the slow rhythm of this period, exact on May 26, 2026. This is a time of opening up to learning, hope and fresh possibilities that suit who you are becoming.\n\nCloser to hand, the Sun forms a trine to your natal Moon from your finance zone, lasting until December 26, 2025.",
+                "description": "The whole sky read as one piece in short paragraphs: the long season set by the slow bodies, the transits easing the way, the nearer ones and the Moon of the day, drawn from every aspect found."
+              }
+            },
+            "required": [
+              "summary",
+              "detailed"
+            ],
+            "description": "The reading of the whole transit sky against the natal chart (only included when natalChart is provided in the request)."
           },
           "summary": {
             "type": "object",
@@ -22785,7 +22806,7 @@
           "Western Astrology"
         ],
         "summary": "Calculate planetary transits - Current transits with natal chart comparison",
-        "description": "Calculate current or future planetary transits (positions of all bodies now). Optionally compare transits to natal chart to find transit-to-natal aspects. Returns all 14 celestial bodies (the 10 classical planets, the lunar nodes, Chiron, and Black Moon Lilith) with signs, degrees, and speeds. When natal chart provided, includes transit aspects (transiting Sun conjunct natal Mars, etc.) with orbs and applying/separating status. Perfect for daily transit forecasts, aspect alerts, and personalized transit reports.",
+        "description": "Calculate the planetary transits of any moment, and read them against a natal chart with dated windows and exact passes. Returns all 14 celestial bodies (the 10 classical planets, the lunar nodes, Chiron and Black Moon Lilith) with sign, degree and speed; with a natalChart, every transit-to-natal aspect carries a written reading, orb, strength and applying or separating status, beside a reading of the whole sky. The time is read on the timezone sent, and the natal houses are Placidus.",
         "security": [
           {
             "apiKey": []
@@ -23197,7 +23218,7 @@
           "Western Astrology"
         ],
         "summary": "Transit Aspects - Detailed transit-to-natal aspect analysis with interpretations",
-        "description": "Calculate all transit-to-natal aspects with detailed interpretations, strength ratings, and timing guidance. Compares current (or future) planetary positions against your natal chart to identify active transits. Returns aspect type, orb, applying/separating status, narrative interpretation, impact rating, and practical guidance for each transit. Like /astrology/transits with a natalChart, returns summary, timing, impact, guidance, and keywords for each aspect. Adds planet, aspect-type, and minStrength filtering plus summary.strongest and summary.byType rollups. Transit aspects API, transit-to-natal analysis, predictive astrology, personalized transit forecast.",
+        "description": "Read the sky of a given day against a natal chart: every transit-to-natal aspect with a written reading, its dated window and exact passes, and a reading of the whole sky. Returns orb, strength and applying or separating status for each aspect, plus summary.strongest and summary.byType rollups, and planet, aspect-type and minStrength filters. The same aspect readings as /astrology/transits with a natalChart, with the transit time read on the natal chart timezone and the natal houses in the requested houseSystem.",
         "security": [
           {
             "apiKey": []
@@ -23791,23 +23812,23 @@
                             "properties": {
                               "summary": {
                                 "type": "string",
-                                "example": "Sun supports your natal Moon harmoniously",
-                                "description": "Narrative interpretation of this transit aspect and its life impact."
+                                "example": "Chiron squares your natal Sun. You feel you must prove yourself, so each honest effort builds your self-respect.",
+                                "description": "The transit in brief: what the transiting body is doing to the natal body in this aspect, in plain words for this chart."
                               },
                               "timing": {
                                 "type": "string",
-                                "example": "Active for a few days",
-                                "description": "When this transit is most active and how long its influence lasts, localized. The bucket follows the speed of the transiting body: a few hours for the Moon, a few days for the Sun, Mercury, Venus and Mars, one to two weeks for Jupiter, several weeks for Saturn, and an extended period for Uranus, Neptune and Pluto."
+                                "example": "In effect from January 2024 to June 2026, exact on June 21, 2024; August 30, 2024; April 12, 2025; December 3, 2025 and February 1, 2026.",
+                                "description": "The dated window of this transit on the transit clock: when it enters orb, every exact pass and when it leaves. A fast body such as the Moon reads in hours of the day."
                               },
                               "impact": {
                                 "type": "string",
-                                "example": "Self-awareness and ego flows easily with Inner emotional life. Opportunities arise naturally in this area.",
-                                "description": "Strength and nature of this transit effect: constructive, challenging, or neutral."
+                                "example": "Something blocks your will, and that friction asks you to refine the goal rather than abandon it. Watch your realm of routine while Chiron is there, the craft behind your daily work in particular.",
+                                "description": "What the transit stirs in the natal body and the life area where it plays out, from the natal house the transiting body passes through."
                               },
                               "guidance": {
                                 "type": "string",
-                                "example": "Take advantage of this supportive energy. Things flow easily, so act on opportunities.",
-                                "description": "Practical advice for working with this transit energy."
+                                "example": "Notice what triggers you, and meet the trigger with patience before you reply to anyone. A plan that keeps meeting resistance may be pointing you toward a better route.",
+                                "description": "Ways to work with this transit, offered as options and drawn from both bodies in the aspect."
                               },
                               "keywords": {
                                 "type": "array",
@@ -23815,13 +23836,14 @@
                                   "type": "string"
                                 },
                                 "example": [
-                                  "harmony",
-                                  "flow",
-                                  "talent",
-                                  "support",
-                                  "acceptance"
+                                  "healing",
+                                  "wisdom",
+                                  "active",
+                                  "awareness",
+                                  "difficult",
+                                  "obstacle"
                                 ],
-                                "description": "Key themes activated by this transit aspect."
+                                "description": "Themes of this transit, drawn from both bodies and the aspect."
                               }
                             },
                             "required": [
@@ -23831,7 +23853,7 @@
                               "guidance",
                               "keywords"
                             ],
-                            "description": "Rich interpretation of the transit aspect: narrative summary, timing, impact assessment, practical guidance, and keywords."
+                            "description": "The reading of this transit aspect: summary, dated timing, impact, guidance and keywords, written for this chart."
                           }
                         },
                         "required": [
@@ -23846,7 +23868,27 @@
                           "transitInterpretation"
                         ]
                       },
-                      "description": "Transit-to-natal aspects with interpretations, strength ratings, and guidance. Each aspect represents a transiting planet forming a geometric angle to a natal planet."
+                      "description": "Transit-to-natal aspects, each with a written reading, strength and orb. Each aspect is a transiting body forming a geometric angle to a natal body."
+                    },
+                    "interpretation": {
+                      "type": "object",
+                      "properties": {
+                        "summary": {
+                          "type": "string",
+                          "example": "Chiron squares your natal Sun: you want to prove yourself and be gentle with yourself at once. You have until June 19, 2026 to make use of it, above all in your realm of routine.",
+                          "description": "The leading transit of the moment in one or two sentences."
+                        },
+                        "detailed": {
+                          "type": "string",
+                          "example": "The pace of this period belongs to Chiron, with you until June 19, 2026. Pressure on a tender area asks for care rather than force, and your response shows how much you have grown.\n\nNearer the surface, Mars stands opposite your natal Mercury from your conversation zone, in effect until February 11, 2026.",
+                          "description": "The whole sky read as one piece in short paragraphs: the long season set by the slow bodies, the transits easing the way, the nearer ones and the Moon of the day, drawn from every aspect before any filter applies."
+                        }
+                      },
+                      "required": [
+                        "summary",
+                        "detailed"
+                      ],
+                      "description": "The reading of the whole transit sky against this chart, from every aspect found, so planets, aspectTypes and minStrength never change it."
                     },
                     "summary": {
                       "type": "object",
@@ -23987,23 +24029,23 @@
                               "properties": {
                                 "summary": {
                                   "type": "string",
-                                  "example": "Sun supports your natal Moon harmoniously",
-                                  "description": "Narrative interpretation of this transit aspect and its life impact."
+                                  "example": "Chiron squares your natal Sun. You feel you must prove yourself, so each honest effort builds your self-respect.",
+                                  "description": "The transit in brief: what the transiting body is doing to the natal body in this aspect, in plain words for this chart."
                                 },
                                 "timing": {
                                   "type": "string",
-                                  "example": "Active for a few days",
-                                  "description": "When this transit is most active and how long its influence lasts, localized. The bucket follows the speed of the transiting body: a few hours for the Moon, a few days for the Sun, Mercury, Venus and Mars, one to two weeks for Jupiter, several weeks for Saturn, and an extended period for Uranus, Neptune and Pluto."
+                                  "example": "In effect from January 2024 to June 2026, exact on June 21, 2024; August 30, 2024; April 12, 2025; December 3, 2025 and February 1, 2026.",
+                                  "description": "The dated window of this transit on the transit clock: when it enters orb, every exact pass and when it leaves. A fast body such as the Moon reads in hours of the day."
                                 },
                                 "impact": {
                                   "type": "string",
-                                  "example": "Self-awareness and ego flows easily with Inner emotional life. Opportunities arise naturally in this area.",
-                                  "description": "Strength and nature of this transit effect: constructive, challenging, or neutral."
+                                  "example": "Something blocks your will, and that friction asks you to refine the goal rather than abandon it. Watch your realm of routine while Chiron is there, the craft behind your daily work in particular.",
+                                  "description": "What the transit stirs in the natal body and the life area where it plays out, from the natal house the transiting body passes through."
                                 },
                                 "guidance": {
                                   "type": "string",
-                                  "example": "Take advantage of this supportive energy. Things flow easily, so act on opportunities.",
-                                  "description": "Practical advice for working with this transit energy."
+                                  "example": "Notice what triggers you, and meet the trigger with patience before you reply to anyone. A plan that keeps meeting resistance may be pointing you toward a better route.",
+                                  "description": "Ways to work with this transit, offered as options and drawn from both bodies in the aspect."
                                 },
                                 "keywords": {
                                   "type": "array",
@@ -24011,13 +24053,14 @@
                                     "type": "string"
                                   },
                                   "example": [
-                                    "harmony",
-                                    "flow",
-                                    "talent",
-                                    "support",
-                                    "acceptance"
+                                    "healing",
+                                    "wisdom",
+                                    "active",
+                                    "awareness",
+                                    "difficult",
+                                    "obstacle"
                                   ],
-                                  "description": "Key themes activated by this transit aspect."
+                                  "description": "Themes of this transit, drawn from both bodies and the aspect."
                                 }
                               },
                               "required": [
@@ -24027,7 +24070,7 @@
                                 "guidance",
                                 "keywords"
                               ],
-                              "description": "Rich interpretation of the transit aspect: narrative summary, timing, impact assessment, practical guidance, and keywords."
+                              "description": "The reading of this transit aspect: summary, dated timing, impact, guidance and keywords, written for this chart."
                             }
                           },
                           "required": [
@@ -24078,6 +24121,7 @@
                     "transitPlanets",
                     "natalPlanets",
                     "aspects",
+                    "interpretation",
                     "summary"
                   ]
                 }
@@ -49835,8 +49879,8 @@
                           },
                           "description": {
                             "type": "string",
-                            "example": "Transiting Saturn square natal Moon, an exact aspect.",
-                            "description": "Plain-language summary of the event, suitable for direct display. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
+                            "example": "Venus opposes your natal Mars: your desire and your affection both run strong, which satisfies when the two point one way.",
+                            "description": "Plain-language reading of the event, suitable for direct display. A transit aspect, sign ingress or retrograde or direct station names the event and says what it stirs for this birth subject, in one or two sentences. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
                           },
                           "significance": {
                             "type": "number",
@@ -50216,8 +50260,8 @@
                           },
                           "description": {
                             "type": "string",
-                            "example": "Transiting Saturn square natal Moon, an exact aspect.",
-                            "description": "Plain-language summary of the event, suitable for direct display. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
+                            "example": "Venus opposes your natal Mars: your desire and your affection both run strong, which satisfies when the two point one way.",
+                            "description": "Plain-language reading of the event, suitable for direct display. A transit aspect, sign ingress or retrograde or direct station names the event and says what it stirs for this birth subject, in one or two sentences. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
                           },
                           "significance": {
                             "type": "number",
@@ -50647,8 +50691,8 @@
                           },
                           "description": {
                             "type": "string",
-                            "example": "Transiting Saturn square natal Moon, an exact aspect.",
-                            "description": "Plain-language summary of the event, suitable for direct display. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
+                            "example": "Venus opposes your natal Mars: your desire and your affection both run strong, which satisfies when the two point one way.",
+                            "description": "Plain-language reading of the event, suitable for direct display. A transit aspect, sign ingress or retrograde or direct station names the event and says what it stirs for this birth subject, in one or two sentences. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
                           },
                           "significance": {
                             "type": "number",
@@ -51171,8 +51215,8 @@
                                 },
                                 "description": {
                                   "type": "string",
-                                  "example": "Transiting Saturn square natal Moon, an exact aspect.",
-                                  "description": "Plain-language summary of the event, suitable for direct display. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
+                                  "example": "Venus opposes your natal Mars: your desire and your affection both run strong, which satisfies when the two point one way.",
+                                  "description": "Plain-language reading of the event, suitable for direct display. A transit aspect, sign ingress or retrograde or direct station names the event and says what it stirs for this birth subject, in one or two sentences. The only localized field: when lang is set this sentence, and the body, target, and aspect names within it, render in the requested language while the structured fields stay English."
                                 },
                                 "significance": {
                                   "type": "number",

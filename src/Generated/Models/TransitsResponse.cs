@@ -14,6 +14,14 @@ namespace RoxyApi.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The reading of the whole transit sky against the natal chart (only included when natalChart is provided in the request).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::RoxyApi.Models.TransitsResponse_interpretation? Interpretation { get; set; }
+#nullable restore
+#else
+        public global::RoxyApi.Models.TransitsResponse_interpretation Interpretation { get; set; }
+#endif
         /// <summary>Transit aspect summary counts (only included when natalChart is provided). Quick overview of the current transit weather.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -24,7 +32,7 @@ namespace RoxyApi.Models
 #endif
         /// <summary>Timezone offset from UTC in hours used for this calculation.</summary>
         public double? Timezone { get; set; }
-        /// <summary>Transit-to-natal aspects (only included when natalChart is provided in the request). Shows which transiting planets are aspecting natal planets.</summary>
+        /// <summary>Transit-to-natal aspects with a written reading each (only included when natalChart is provided in the request). Aspects under 15 percent strength are left out of the list, not out of the readings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::RoxyApi.Models.TransitsResponse_transitAspects>? TransitAspects { get; set; }
@@ -81,6 +89,7 @@ namespace RoxyApi.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "interpretation", n => { Interpretation = n.GetObjectValue<global::RoxyApi.Models.TransitsResponse_interpretation>(global::RoxyApi.Models.TransitsResponse_interpretation.CreateFromDiscriminatorValue); } },
                 { "summary", n => { Summary = n.GetObjectValue<global::RoxyApi.Models.TransitsResponse_summary>(global::RoxyApi.Models.TransitsResponse_summary.CreateFromDiscriminatorValue); } },
                 { "timezone", n => { Timezone = n.GetDoubleValue(); } },
                 { "transitAspects", n => { TransitAspects = n.GetCollectionOfObjectValues<global::RoxyApi.Models.TransitsResponse_transitAspects>(global::RoxyApi.Models.TransitsResponse_transitAspects.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -96,6 +105,7 @@ namespace RoxyApi.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::RoxyApi.Models.TransitsResponse_interpretation>("interpretation", Interpretation);
             writer.WriteObjectValue<global::RoxyApi.Models.TransitsResponse_summary>("summary", Summary);
             writer.WriteDoubleValue("timezone", Timezone);
             writer.WriteCollectionOfObjectValues<global::RoxyApi.Models.TransitsResponse_transitAspects>("transitAspects", TransitAspects);

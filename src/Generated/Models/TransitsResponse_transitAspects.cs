@@ -16,7 +16,7 @@ namespace RoxyApi.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Exact angle of this aspect type in degrees.</summary>
         public double? Angle { get; set; }
-        /// <summary>Rich interpretation of the transit aspect including narrative summary, timing, impact assessment, practical guidance, and keywords.</summary>
+        /// <summary>The reading of this transit aspect: summary, dated timing, impact, guidance and keywords, written for this chart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::RoxyApi.Models.TransitsResponse_transitAspects_interpretation? Interpretation { get; set; }

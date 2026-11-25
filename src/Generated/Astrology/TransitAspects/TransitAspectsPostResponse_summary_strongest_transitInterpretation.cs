@@ -8,14 +8,14 @@ using System;
 namespace RoxyApi.Astrology.TransitAspects
 {
     /// <summary>
-    /// Rich interpretation of the transit aspect: narrative summary, timing, impact assessment, practical guidance, and keywords.
+    /// The reading of this transit aspect: summary, dated timing, impact, guidance and keywords, written for this chart.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TransitAspectsPostResponse_summary_strongest_transitInterpretation : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Practical advice for working with this transit energy.</summary>
+        /// <summary>Ways to work with this transit, offered as options and drawn from both bodies in the aspect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Guidance { get; set; }
@@ -23,7 +23,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public string Guidance { get; set; }
 #endif
-        /// <summary>Strength and nature of this transit effect: constructive, challenging, or neutral.</summary>
+        /// <summary>What the transit stirs in the natal body and the life area where it plays out, from the natal house the transiting body passes through.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Impact { get; set; }
@@ -31,7 +31,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public string Impact { get; set; }
 #endif
-        /// <summary>Key themes activated by this transit aspect.</summary>
+        /// <summary>Themes of this transit, drawn from both bodies and the aspect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Keywords { get; set; }
@@ -39,7 +39,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public List<string> Keywords { get; set; }
 #endif
-        /// <summary>Narrative interpretation of this transit aspect and its life impact.</summary>
+        /// <summary>The transit in brief: what the transiting body is doing to the natal body in this aspect, in plain words for this chart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Summary { get; set; }
@@ -47,7 +47,7 @@ namespace RoxyApi.Astrology.TransitAspects
 #else
         public string Summary { get; set; }
 #endif
-        /// <summary>When this transit is most active and how long its influence lasts, localized. The bucket follows the speed of the transiting body: a few hours for the Moon, a few days for the Sun, Mercury, Venus and Mars, one to two weeks for Jupiter, several weeks for Saturn, and an extended period for Uranus, Neptune and Pluto.</summary>
+        /// <summary>The dated window of this transit on the transit clock: when it enters orb, every exact pass and when it leaves. A fast body such as the Moon reads in hours of the day.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Timing { get; set; }
